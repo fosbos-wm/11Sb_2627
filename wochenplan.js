@@ -187,7 +187,7 @@ function blockHtml0(b){
  if(b.k==="tutor"){return `<div class="wp-b tutor${b.offen?" offen":""}" style="${st}" onclick="wp.info('tutor','${b.id}')"><span class="wp-ic"></span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
  const t=b.typ,cls="wp-b plan "+t+(b.mTyp?" m-"+b.mTyp:"")+(t==="modul"&&b.mTyp?" art":"")+(b.erledigt?" done":"");
  const ic=t==="auszeit"?"":t==="eigen"?"":(MTYP[b.mTyp]?.i||"");
- return `<div class="${cls}" style="${st};--fc:${f.c};--fb:${f.bg};${t==="modul"&&b.mTyp?artStyle(b.mTyp):""}" draggable="true" ondragstart="wp.dragStart(event,'move','${b.id}')" onclick="wp.info('plan','${b.id}')"><span class="wp-ic">${ic}</span><b>${esc(b.titel)}</b><small>${esc(f.l)} · ${dauerKurz(dauerInfo(b))}</small>${b.erledigt?'<span class="wp-ok">✓</span>':""}</div>`;
+ return `<div class="${cls}" style="${st};--fc:${f.c};--fb:${f.bg};${t==="modul"&&b.mTyp?artStyle(b.mTyp):""}" ${b.fest?"":`draggable="true" ondragstart="wp.dragStart(event,'move','${b.id}')"`} onclick="wp.info('plan','${b.id}')"><span class="wp-ic">${ic}</span><b>${esc(b.titel)}</b><small>${esc(f.l)} · ${dauerKurz(dauerInfo(b))}</small>${b.erledigt?'<span class="wp-ok">✓</span>':""}</div>`;
 }
 function rasterHtml(opts){
  opts=opts||{};const w=parse(S.woche),bl=bloecke(),cov=new Set();
@@ -259,9 +259,23 @@ function startHtml(){
 function ansichtSwitch(){return `<div class="wp-seg"><button class="${S.ansicht==="verplant"?"on":""}" onclick="wp.ansicht('verplant')">Verplant</button><button class="${S.ansicht==="geleistet"?"on":""}" onclick="wp.ansicht('geleistet')">✓ Geleistet</button></div>`}
 function armedName(){const a=S.armed;if(!a)return "";if(a.kind==="modul")return S.d.module.find(m=>m.id===a.id)?.titel||"Lernbaustein";return SONDER.find(s=>s.typ===a.id)?.t||"Baustein"}
 
+/* Von der Lehrkraft fest platzierte Lernbausteine (Tag + Stunde) werden automatisch in den Plan gesetzt */
+async function autoPlatz(){
+ let geaendert=false;const pl=S.d.plan.eintraege;
+ for(const m of S.d.module){
+  if(m.fixTag==null||m.fixTag==="")continue;
+  const I=dauerInfo(m),d=Number(m.fixTag),h=Number(m.fixStd)||1;
+  const e=pl.find(x=>x.moduleId===m.id);
+  if(I.lang){if(!e){pl.push({id:nextId(),typ:"modul",mTyp:m.typ,moduleId:m.id,titel:m.titel,fach:m.fach,d:-1,h:0,len:0,lang:true,dauer:I.code,startTag:d,woche:S.woche,fest:true,erledigt:false,route:m.route||"",link:m.link||""});geaendert=true}continue}
+  if(e){if(e.fest&&(e.d!==d||e.h!==h)&&frei(d,h,I.len,e.id)){e.d=d;e.h=h;geaendert=true}continue}
+  if(frei(d,h,I.len)){pl.push({id:nextId(),typ:"modul",mTyp:m.typ,moduleId:m.id,titel:m.titel,fach:m.fach,d,h,len:I.len,dauer:I.code,fest:true,erledigt:false,route:m.route||"",link:m.link||""});geaendert=true}
+ }
+ if(geaendert)await speichern();
+}
 async function schuelerHtml(){
  if(S.ansicht==="geleistet")return await geleistetHtml();
  await ladeSchueler();
+ await autoPlatz();
  const wd=S.d.wochenDoc,p=S.d.plan;
  const offen=S.d.anfT.filter(a=>a.status==="offen").length;
  let h=`<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Mein Wochenplan</h1><p>Die Lehrkräfte führen ein – den Rest steuerst du selbst.</p></div><div class="wp-actions">${ansichtSwitch()}<button class="secondary" onclick="wp.inbox()">Anfragen${offen?` <span class="wp-badge">${offen}</span>`:""}</button><button class="secondary" onclick="wp.angebot()">Mein Angebot</button></div></div>`;
@@ -312,6 +326,7 @@ async function setze(pl,d,h){
  if(!pl)return;
  if(pl.kind==="move"){
   const e=S.d.plan.eintraege.find(x=>x.id===pl.id);if(!e)return;
+  if(e.fest)return fb.toast("Dieser Lernbaustein hat einen festen Termin.");
   if(!frei(d,h,e.len||1,e.id))return fb.toast("Dort ist nicht genug Platz.");
   e.d=d;e.h=h;await speichern();return neu();
  }
@@ -493,9 +508,9 @@ function info(kind,id){
  const m=e.moduleId?S.d.module.find(x=>x.id===e.moduleId):null;
  const ziel=e.route?`<button class="secondary" onclick="closeModal();go('${esc(e.route)}')">Öffnen</button>`:(e.link&&/^https:\/\//.test(e.link)?`<a class="secondary btn" href="${esc(e.link)}" target="_blank" rel="noopener">Link öffnen</a>`:"");
  const I=dauerInfo(e);
- modalOpen(`${e.mTyp?`<div class="wp-artband" style="${artStyle(e.mTyp)}">${esc(artOf(e.mTyp).l)}</div>`:""}<div class="kicker">${esc(FACH(e.fach).l)} · ${esc(dauerKurz(I))}</div><h2>${esc(e.titel)}</h2><p>${I.lang?esc(I.label):TAGEL[e.d]+", "+esc(zeitBereich(e.h,e.len||1))}</p>${m&&m.beschr?`<p>${esc(m.beschr)}</p>`:""}${anhHtml(m&&m.anhaenge)}
+ modalOpen(`${e.mTyp?`<div class="wp-artband" style="${artStyle(e.mTyp)}">${esc(artOf(e.mTyp).l)}</div>`:""}<div class="kicker">${esc(FACH(e.fach).l)} · ${esc(dauerKurz(I))}</div><h2>${esc(e.titel)}</h2><p>${I.lang?esc(I.label):TAGEL[e.d]+", "+esc(zeitBereich(e.h,e.len||1))}</p>${m&&m.beschr?`<p>${esc(m.beschr)}</p>`:""}${e.fest?`<p class="wp-hint">Fester Termin deiner Lehrkraft – dieser Lernbaustein ist für dich schon eingeplant.</p>`:""}${anhHtml(m&&m.anhaenge)}
  <label class="form"><span>Notiz (nur für dich)</span><textarea id="wpNotiz" rows="2" maxlength="300" onchange="wp.notiz('${e.id}',this.value)">${esc(e.note||"")}</textarea></label>
- <div class="form-actions"><button class="secondary" onclick="wp.entfernen('${e.id}')">Aus Plan nehmen</button>${ziel}<button class="primary" onclick="wp.erledigt('${e.id}')">${e.erledigt?"Wieder öffnen":"✓ Erledigt"}</button></div>`);
+ <div class="form-actions">${e.fest?"":`<button class="secondary" onclick="wp.entfernen('${e.id}')">Aus Plan nehmen</button>`}${ziel}<button class="primary" onclick="wp.erledigt('${e.id}')">${e.erledigt?"Wieder öffnen":"✓ Erledigt"}</button></div>`);
 }
 async function erledigt(id){const e=S.d.plan.eintraege.find(x=>x.id===id);if(!e)return;e.erledigt=!e.erledigt;e.doneAt=e.erledigt?Date.now():null;fb.closeModal();await speichern();if(e.erledigt)fb.toast("Stark – abgehakt!");neu()}
 async function entfernen(id){S.d.plan.eintraege=S.d.plan.eintraege.filter(x=>x.id!==id);fb.closeModal();await speichern();neu()}
@@ -574,7 +589,7 @@ function tabModule(){
  let h=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">＋ Neuer Lernbaustein</button><button class="secondary" onclick="wp.zeitenForm()">Stundenzeiten</button></div>${artLegende()}`;
  if(!mods.length)h+=`<div class="card"><p class="wp-leer">Für diese Woche gibt es noch keine Lernbausteine. Legt mit „Neuer Lernbaustein“ Check-outs, Einführungen, Projekte, Lernbausteine oder Kurse (z. B. Selbstlernkurs, Fachaufsatz-Training) an. Lernstandsgespräche setzt ihr als feste Termine im Reiter „Einführungen, Gespräche & Termine“.</p></div>`;
  [...ART_REIHE,...Object.keys(grp).filter(k=>!ART_REIHE.includes(k))].filter(k=>grp[k]).forEach(k=>{const a=artOf(k);
-  h+=`<div class="card wp-artcard" style="${artStyle(k)}"><h3><span class="wp-art" style="${artStyle(k)}">${esc(MTYP[k]?.l||a.l)}</span> <small>${grp[k].length}</small></h3><div class="wp-liste">${grp[k].map(m=>{const f=FACH(m.fach);return `<div><span class="wp-fl" style="--fc:${f.c};--fb:${f.bg}">${esc(f.l)}</span><b>${esc(m.titel)}</b><small>${esc(dauerInfo(m).label)}${m.pflicht?" · Pflicht":""}${m.woche===""?" · jede Woche":""}${(m.anhaenge||[]).length?" · "+m.anhaenge.length+" Anhang":""}</small>
+  h+=`<div class="card wp-artcard" style="${artStyle(k)}"><h3><span class="wp-art" style="${artStyle(k)}">${esc(MTYP[k]?.l||a.l)}</span> <small>${grp[k].length}</small></h3><div class="wp-liste">${grp[k].map(m=>{const f=FACH(m.fach);return `<div><span class="wp-fl" style="--fc:${f.c};--fb:${f.bg}">${esc(f.l)}</span><b>${esc(m.titel)}</b><small>${esc(dauerInfo(m).label)}${m.pflicht?" · Pflicht":""}${m.woche===""?" · jede Woche":""}${m.fixTag!=null&&m.fixTag!==""?" · fest: "+TAGE[m.fixTag]+", "+(m.fixStd||1)+". Std.":""}${(m.anhaenge||[]).length?" · "+m.anhaenge.length+" Anhang":""}</small>
   <span class="pill ${m.status==="live"?"ok":"warn"}">${m.status==="live"?"live":"Entwurf"}</span>
   <span class="wp-rowact"><button class="secondary" onclick="wp.modulForm('${m.id}')">Bearbeiten</button><button class="secondary" onclick="wp.modulKopie('${m.id}')" title="als Entwurf in die nächste Woche kopieren">→ Nächste Woche</button><button class="secondary" onclick="wp.modulWeg('${m.id}')">Löschen</button></span></div>`}).join("")}</div></div>`});
  return h;
@@ -590,6 +605,9 @@ function modulForm(id){
  <label>Fach<select id="mfFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===m.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
  <label>Art<select id="mfTyp" onchange="wp.artVorschau(this.value)">${Object.keys(MTYP).map(k=>`<option value="${k}" ${k===m.typ?"selected":""}>${MTYP[k].l}</option>`).join("")}</select></label>
  <label>Dauer<select id="mfLen">${DAUER_OPT.map(o=>`<option value="${o[0]}" ${o[0]===(dauerInfo(m).code||String(dauerInfo(m).min))?"selected":""}>${o[1]}</option>`).join("")}</select></label>
+ <label>Platzierung im Plan<select id="mfFixTag"><option value="">Frei wählbar (Schüler:innen planen selbst)</option>${TAGEL.map((t,i)=>`<option value="${i}" ${String(m.fixTag)===String(i)?"selected":""}>Fester Termin: ${t}</option>`).join("")}</select></label>
+ <label>… in der Stunde<select id="mfFixStd">${[...Array(10)].map((_,i)=>`<option value="${i+1}" ${(m.fixStd||1)===i+1?"selected":""}>${i+1}. Stunde (${esc(zeiten()[i]||"")})</option>`).join("")}</select></label>
+ <small class="wp-hint">Bei „Fester Termin“ erscheint der Lernbaustein automatisch an diesem Tag und dieser Stunde im Wochenplan aller Schüler:innen (bei Tages-/Wochenbausteinen zählt nur der Tag).</small>
  <label>Gilt für<select id="mfWoche">${wochenOptionen(m.woche)}</select></label>
  <label>Beschreibung<textarea id="mfBeschr" rows="3" maxlength="400">${esc(m.beschr||"")}</textarea></label>
  ${anhForm()}
@@ -603,7 +621,7 @@ function modulForm(id){
 async function modulSave(id){
  const titel=$("mfTitel").value.trim();if(titel.length<2)return fb.toast("Bitte einen Titel eingeben.");
  const link=$("mfLink").value.trim();if(link&&!/^https:\/\//.test(link))return fb.toast("Der Link muss mit https:// beginnen.");
- const d={titel,fach:$("mfFach").value,typ:$("mfTyp").value,dauer:dauerInfo({dauer:$("mfLen").value}).code,len:dauerInfo({dauer:$("mfLen").value}).len,anhaenge:S.anh||[],woche:$("mfWoche").value,beschr:$("mfBeschr").value.trim(),route:$("mfRoute").value,link,pflicht:$("mfPflicht").checked,mehrfach:$("mfMehr").checked,status:$("mfStatus").value,updatedAt:fb.serverTimestamp()};
+ const d={titel,fach:$("mfFach").value,typ:$("mfTyp").value,dauer:dauerInfo({dauer:$("mfLen").value}).code,len:dauerInfo({dauer:$("mfLen").value}).len,anhaenge:S.anh||[],fixTag:$("mfFixTag").value===""?null:Number($("mfFixTag").value),fixStd:Number($("mfFixStd").value)||1,woche:$("mfWoche").value,beschr:$("mfBeschr").value.trim(),route:$("mfRoute").value,link,pflicht:$("mfPflicht").checked,mehrfach:$("mfMehr").checked,status:$("mfStatus").value,updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpModule",id),d);else await fb.addDoc(col("wpModule"),{...d,createdBy:uid(),createdAt:fb.serverTimestamp()});fb.closeModal();fb.toast("Gespeichert.");neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
 async function modulWeg(id){if(!confirm("Diesen Lernbaustein löschen? Bereits eingeplante Einträge der Schüler:innen bleiben bestehen."))return;try{await fb.deleteDoc(ref("wpModule",id));neu()}catch(e){fb.toast("Nicht möglich.")}}
