@@ -34,6 +34,14 @@ service firebase.storage {
       allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
     }
 
+    // Anhänge zu Lernbausteinen und Einführungen im Wochenplan:
+    // PDF, Word, Bild, Video, Audio – nur Lehrkräfte laden hoch/löschen, alle lesen.
+    match /wpAnhaenge/{ordner}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isTeacher() && isUploader(fileName) && sizeOk();
+      allow delete: if isTeacher();
+    }
+
     // Blockberichte (Praktikum) – privat: nur die Person selbst und
     // Lehrkräfte sehen die Datei. Löschen: wer hochgeladen hat, oder eine Lehrkraft.
     match /praktikumsberichte/{ordner}/{fileName} {

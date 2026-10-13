@@ -1103,6 +1103,10 @@ service cloud.firestore {
     match /wpTeamPlan/{woche} {
       allow read, create, update, delete: if isTeacher();
     }
+    // Anwesenheit der Woche (Freitagsplanung) – nur Lehrkräfte
+    match /wpAnwesenheit/{woche} {
+      allow read, create, update, delete: if isTeacher();
+    }
     match /wpTeamChat/{id} {
       allow read: if isTeacher();
       allow create: if isTeacher() && request.resource.data.fromUid == request.auth.uid;

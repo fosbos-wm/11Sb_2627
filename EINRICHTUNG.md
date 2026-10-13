@@ -41,7 +41,7 @@ Siehe Export/Import mit `gcloud firestore export/import`. Schülerdaten nicht mi
 
 ## 8. Wochenplan (neu in 11Sb_2627)
 Alles liegt in `wochenplan.js` und `wochenplan.css`; die Firestore-Regeln dafür stehen am Ende von `firestore.rules` (Sammlungen `wp…`). Nach dem Veröffentlichen der Regeln:
-1. Als Lehrkraft **Mein Wochenplan → Module**: Stundenzeiten prüfen (⚙ Stundenzeiten, Voreinstellung 08:00 … 15:45 – an den echten Stundenplan anpassen).
-2. **Einführungen & Termine**: feste Einführungen der Fächer und Sprechzeiten anlegen (als Entwurf), **Module** anlegen, danach im Reiter **Klassenteam & Planung** „Woche für die Klasse freigeben“.
+1. Als Lehrkraft **Mein Wochenplan → Lernbausteine**: Stundenzeiten prüfen (⚙ Stundenzeiten, Voreinstellung 08:00 … 15:45 – an den echten Stundenplan anpassen).
+2. **Einführungen, Gespräche & Termine**: feste Einführungen der Fächer, **Lernstandsgespräche** (fester Termin, von der Lehrkraft gesetzt) und Sprechzeiten anlegen (als Entwurf), **Lernbausteine** (Art u. a. Einführung, Lernbaustein, Check-out) anlegen, danach im Reiter **Klassenteam & Planung** „Woche für die Klasse freigeben“.
 3. Schüler:innen sehen erst, was auf *live* steht. Entwürfe, Team-Chat und Team-Notizen sind nur für Lehrkräfte lesbar.
-4. Test: mit einem Schülerkonto Modul in den Plan ziehen, Termin buchen (zweites Schülerkonto darf denselben Termin nicht mehr buchen können), Tutor-Anfrage senden und annehmen.
+4. Test: mit einem Schülerkonto Lernbaustein in den Plan ziehen, Termin buchen (zweites Schülerkonto darf denselben Termin nicht mehr buchen können), Tutor-Anfrage senden und annehmen.

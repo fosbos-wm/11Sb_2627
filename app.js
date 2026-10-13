@@ -1,4 +1,4 @@
-let writeBatch, initializeApp, getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, deleteUser; let getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs, query, orderBy, limit, where, onSnapshot, serverTimestamp, arrayUnion, arrayRemove, increment; let getStorage, storageRef, uploadBytes, getDownloadURL, deleteObject; let storage=null; let firebaseReadyPromise = null; async function loadFirebase(){ if(firebaseReadyPromise) return firebaseReadyPromise; firebaseReadyPromise = import("./firebase-local.js?v=20261010b").then((fbMod)=>{ const appMod=fbMod, authMod=fbMod, fsMod=fbMod, storageMod={getStorage:fbMod.getStorage,ref:fbMod.ref,uploadBytes:fbMod.uploadBytes,getDownloadURL:fbMod.getDownloadURL,deleteObject:fbMod.deleteObject}; ({initializeApp}=appMod); ({getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,updateProfile,deleteUser}=authMod); ({getFirestore,collection,doc,addDoc,setDoc,updateDoc,deleteDoc,getDoc,getDocs,query,orderBy,limit,where,onSnapshot,serverTimestamp,arrayUnion,arrayRemove,increment,writeBatch}=fsMod); ({getStorage,ref:storageRef,uploadBytes,getDownloadURL,deleteObject}=storageMod); if(!app) app=initializeApp(firebaseConfig); if(!auth) auth=getAuth(app); if(!db) db=getFirestore(app); if(!storage) storage=getStorage(app); window.CampusFirebase={ get db(){return db}, get currentUser(){return currentUser}, collection,doc,addDoc,setDoc,updateDoc,deleteDoc,getDoc,getDocs, query,orderBy,limit,where,onSnapshot,serverTimestamp,arrayUnion,increment, modal,toast,pageHead,footer,render }; return true; }); return firebaseReadyPromise; } /*
+let writeBatch, initializeApp, getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendPasswordResetEmail, updateProfile, deleteUser; let getFirestore, collection, doc, addDoc, setDoc, updateDoc, deleteDoc, getDoc, getDocs, query, orderBy, limit, where, onSnapshot, serverTimestamp, arrayUnion, arrayRemove, increment; let getStorage, storageRef, uploadBytes, getDownloadURL, deleteObject; let storage=null; let firebaseReadyPromise = null; async function loadFirebase(){ if(firebaseReadyPromise) return firebaseReadyPromise; firebaseReadyPromise = import("./firebase-local.js?v=20261010b").then((fbMod)=>{ const appMod=fbMod, authMod=fbMod, fsMod=fbMod, storageMod={getStorage:fbMod.getStorage,ref:fbMod.ref,uploadBytes:fbMod.uploadBytes,getDownloadURL:fbMod.getDownloadURL,deleteObject:fbMod.deleteObject}; ({initializeApp}=appMod); ({getAuth,onAuthStateChanged,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,sendPasswordResetEmail,updateProfile,deleteUser}=authMod); ({getFirestore,collection,doc,addDoc,setDoc,updateDoc,deleteDoc,getDoc,getDocs,query,orderBy,limit,where,onSnapshot,serverTimestamp,arrayUnion,arrayRemove,increment,writeBatch}=fsMod); ({getStorage,ref:storageRef,uploadBytes,getDownloadURL,deleteObject}=storageMod); if(!app) app=initializeApp(firebaseConfig); if(!auth) auth=getAuth(app); if(!db){ db=getFirestore(app); try{ if(typeof db._setSettings==="function") db._setSettings({experimentalAutoDetectLongPolling:true}); }catch(e){ console.warn("Firestore-Verbindungseinstellung:",e); } } if(!storage) storage=getStorage(app); window.CampusFirebase={ get db(){return db}, get currentUser(){return currentUser}, collection,doc,addDoc,setDoc,updateDoc,deleteDoc,getDoc,getDocs, query,orderBy,limit,where,onSnapshot,serverTimestamp,arrayUnion,increment, modal,toast,pageHead,footer,render }; return true; }); return firebaseReadyPromise; } /*
  WICHTIG:
  Diese Werte werden nach dem Anlegen deiner Firebase-Web-App aus
  der Firebase Console hier eingesetzt.
@@ -15,7 +15,7 @@ let activeFach=null;
 let activePhaseDetail=null;
 let ppDirty=false; // Zeitstrahl nach Änderungen im Modal neu zeichnen
 function openFach(fach){activeFach=fach;activePhaseDetail=null;go("fach")}
-function closeFach(){activeFach=null;activePhaseDetail=null;go("faecher")}
+function closeFach(){activeFach=null;activePhaseDetail=null;go("lernwerkstatt")}
 function openPhaseDetail(phaseId){activePhaseDetail=phaseId;render()}
 function closePhaseDetail(){activePhaseDetail=null;render()}
 window.openFach=openFach;window.closeFach=closeFach;
@@ -94,7 +94,7 @@ function showImpressum(){
  DATENSCHUTZ: Erklärung, Datenauskunft/-export, Löschung
  ========================================================= */
 const DS_APP="F11Sb";
-const DS_HINWEIS_FREITEXT="🔒 Bitte hier keine sensiblen Daten eintragen (Gesundheit, Familie, Religion, Herkunft, Konflikte) – weder über dich noch über andere.";
+const DS_HINWEIS_FREITEXT="Bitte hier keine sensiblen Daten eintragen (Gesundheit, Familie, Religion, Herkunft, Konflikte) – weder über dich noch über andere.";
 function dsHinweis(){return`<small class="ds-hinweis"style="display:block;margin:4px 0 8px;color:var(--muted,#5b6b7a)">${DS_HINWEIS_FREITEXT}</small>`}
 
 /* Sammlungen mit personenbezogenen Daten: [Sammlung, Feld, selbst löschbar?]
@@ -239,9 +239,9 @@ function showDatenschutz(){
  <strong>Meine Daten</strong>
  <p style="margin:6px 0 10px">Lade alle deine gespeicherten Daten herunter oder lösche sie samt Konto.</p>
  <div class="form-actions"style="justify-content:flex-start;gap:8px;flex-wrap:wrap">
- <button class="secondary"type="button"onclick="dsExport()">⬇ Meine Daten herunterladen</button>
- <button class="secondary"type="button"onclick="dsMeineDatenLoeschen()">🗑 Meine Daten &amp; Konto löschen</button>
- ${isAdmin()?`<button class="secondary"type="button"onclick="dsKlasseLoeschen()">🗑 Schuljahresende: Klasse löschen (Admin)</button>`:""}
+ <button class="secondary"type="button"onclick="dsExport()">Meine Daten herunterladen</button>
+ <button class="secondary"type="button"onclick="dsMeineDatenLoeschen()">Meine Daten &amp; Konto löschen</button>
+ ${isAdmin()?`<button class="secondary"type="button"onclick="dsKlasseLoeschen()">Schuljahresende: Klasse löschen (Admin)</button>`:""}
  </div></div>`:""}
 
  <div class="form-actions"><button class="secondary"onclick="closeModal()">Schließen</button></div>
@@ -309,7 +309,7 @@ async function ensureProfile(user, displayName="", extra={}){
 role:"student",status:"pending",createdAt:serverTimestamp()
  });
  }
- const s=await getDoc(ref);profile=s.data();
+ profile=snap.exists()?snap.data():(await getDoc(ref)).data();
  notenLiveZuruecksetzen();try{deleteDoc(doc(db,"noten",user.uid)).catch(()=>{})}catch(e){}
  syncProfilPublic();if(isTeacher())syncProfilePublicAlle();
 }
@@ -655,7 +655,7 @@ const lernpfadStrategies={
  anders_ueben:{icon:"",label:"Anders üben"},
  frage_klaeren:{icon:"",label:"Frage klären"},
  jemanden_fragen:{icon:"",label:"Jemanden fragen"},
- pause:{icon:"⏸",label:"Pause machen"},
+ pause:{icon:"",label:"Pause machen"},
  erklaeren:{icon:"",label:"Anderen erklären"},
  zusammenfassen:{icon:"",label:"Zusammenfassen"},
  verknuepfen:{icon:"",label:"Mit Bekanntem verknüpfen"},
@@ -665,7 +665,7 @@ const lernpfadStrategies={
  visualisieren:{icon:"",label:"Visualisieren / skizzieren"},
  umgebung_wechseln:{icon:"",label:"Umgebung wechseln"},
  sinn_klaeren:{icon:"",label:"Sinn/Ziel klären"},
- bereit:{icon:"✅",label:"Bereit für das Nächste"}
+ bereit:{icon:"✓",label:"Bereit für das Nächste"}
 };
 
 function lernpfadStrategyLinkHTML(strategy){
@@ -674,7 +674,7 @@ function lernpfadStrategyLinkHTML(strategy){
  anders_ueben:["karteikarten","Zu den Karteikarten"],
  jemanden_fragen:["kompetenz","Zum Kompetenznetzwerk"],
  frage_klaeren:["forum","Im Campus-Forum fragen"],
- pause:["fokus-timer","⏱ Zum Fokus-Timer"],
+ pause:["fokus-timer","Zum Fokus-Timer"],
  zusammenfassen:["journal","Im Lernjournal festhalten"],
  beispiele_suchen:["ressourcen","Zu den Lernressourcen"],
  selbst_testen:["karteikarten","Zu den Karteikarten"],
@@ -1013,8 +1013,17 @@ $("menuBtn").onclick=()=>$("sidebar").classList.toggle("open");
 $("helpQuick").onclick=openHelpForm;
 $("modalBackdrop").addEventListener("click",e=>{if(e.target.id==="modalBackdrop")closeModal()});
 
+const GC_LAUFEND={};
 async function getCollection(name,sortField="createdAt",desc=true){
  if(!db) return [];
+ /* Gleiche Abfrage, die gerade schon läuft (z. B. Kalender auf der Startseite): nur einmal an Firestore schicken. */
+ const gcKey=name+"|"+sortField+"|"+desc;
+ if(GC_LAUFEND[gcKey])return (await GC_LAUFEND[gcKey]).map(x=>({...x}));
+ const gcP=getCollectionLaden(name,sortField,desc);
+ GC_LAUFEND[gcKey]=gcP;
+ try{return (await gcP).map(x=>({...x}))}finally{delete GC_LAUFEND[gcKey]}
+}
+async function getCollectionLaden(name,sortField,desc){
  const load=async()=>{
  try{
  const q=query(collection(db,name),orderBy(sortField,desc?"desc":"asc"),limit(300));
@@ -1465,9 +1474,8 @@ async function renderKlassenteam(){
  const myHeimatort=heimatEntries.find(e=>e.uid===currentUser.uid);
  window.mySteckbriefData=steckbriefe.find(s=>s.uid===currentUser.uid)||null;
  return`${pageHead("GEMEINSCHAFT","Unser Klassenteam","Einander kennenlernen und übers Jahr zusammenfinden.")}
- <div class="card">
- <div class="kicker">KENNENLERNEN</div>
- <h2 style="margin-top:4px">Wo unser Klassenteam zu Hause ist</h2>
+ <details class="card fold"style="--c:#4a90d9">
+ ${foldHead("KENNENLERNEN","Wo unser Klassenteam zu Hause ist")}
  <p style="color:var(--muted)">Trag deinen Heimatort ein – so seht ihr auf einen Blick, wer aus eurer Gegend kommt. Vielleicht ergeben sich daraus ja Fahrgemeinschaften oder gemeinsame Projekte übers Jahr.</p>
  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
  <select id="heimatOrtSelect"style="flex:1;min-width:200px">
@@ -1483,7 +1491,7 @@ async function renderKlassenteam(){
  <div class="list"style="margin-top:10px">${heimatEntries.map(e=>`<div class="list-item"><div><strong>${esc(e.name||"Campus-Mitglied")}</strong><small>${esc(e.ort||"")}</small></div><button class="secondary"onclick="removeHeimatortAsTeacher('${e.uid}','${esc(e.name||"")}')">Entfernen</button></div>`).join("")||`<div class="empty">Noch keine Einträge.</div>`}</div>
  ${heimatEntries.length?`<div class="form-actions"style="margin-top:10px"><button class="secondary"onclick="resetAlleHeimatorte()">Alle Einträge zurücksetzen</button></div>`:""}
  </details>`:""}
- </div>
+ </details>
 
  <div class="card"style="margin-top:16px">
  <div class="kicker">STECKBRIEFE</div>
@@ -1960,41 +1968,41 @@ function combinedTimeline(fach){
 // Aktionen Pause). Große Meilensteine (Woche geschafft, Check-out abgegeben)
 // zeigen immer eine größere Karte, selten (ca. 1 von 12) gibt es ein Extra mit
 // Konfetti. Gelobt wird der Einsatz, nie der Vergleich mit anderen.
-// Nur für Schüler:innen, abschaltbar über ✨ in der Kopfleiste. Damit sich
+// Nur für Schüler:innen, abschaltbar über in der Kopfleiste. Damit sich
 // Abhaken/Entfernen nicht „farmen“ lässt, zählt dieselbe Aktion (Schlüssel)
 // innerhalb von 60 Sekunden nur einmal.
 // Aufruf: showMotivationsBild(besonders, art, schluessel)
 //   art = haken | abgabe | lernen | team | mitmachen | reflexion | ich | planung
 const MOTIV_POOLS={
  allgemein:[
-  {e:"🔥",t:"Läuft bei dir!"},{e:"💪",t:"Nice, weiter so!"},{e:"🚀",t:"Das war stark!"},{e:"⭐",t:"Du rockst das!"},
-  {e:"🙌",t:"Sauber gemacht!"},{e:"🎯",t:"Ziel erreicht – auf zum nächsten!"},{e:"😎",t:"Genau so!"},{e:"🏆",t:"Top Leistung!"}],
+  {e:"",t:"Läuft bei dir!"},{e:"",t:"Nice, weiter so!"},{e:"",t:"Das war stark!"},{e:"",t:"Du rockst das!"},
+  {e:"",t:"Sauber gemacht!"},{e:"",t:"Ziel erreicht – auf zum nächsten!"},{e:"",t:"Genau so!"},{e:"",t:"Top Leistung!"}],
  haken:[
-  {e:"✅",t:"Erledigt – das zählt."},{e:"🌱",t:"Wieder ein Stück gewachsen."},{e:"🧩",t:"Ein Teil mehr im Puzzle."},
-  {e:"📈",t:"Stück für Stück nach vorn."},{e:"🎈",t:"Eins weniger auf der Liste!"},{e:"🪜",t:"Die nächste Stufe genommen."}],
+  {e:"✓",t:"Erledigt – das zählt."},{e:"",t:"Wieder ein Stück gewachsen."},{e:"",t:"Ein Teil mehr im Puzzle."},
+  {e:"",t:"Stück für Stück nach vorn."},{e:"",t:"Eins weniger auf der Liste!"},{e:"",t:"Die nächste Stufe genommen."}],
  abgabe:[
-  {e:"📤",t:"Abgegeben – das kostet Überwindung. Gut gemacht!"},{e:"🏁",t:"Geschafft und abgeschickt."},
-  {e:"🧗",t:"Dranbleiben zahlt sich aus."},{e:"🎓",t:"Das ist echte Arbeit. Danke für deinen Einsatz."},{e:"📦",t:"Fertig gemacht – stark."}],
+  {e:"",t:"Abgegeben – das kostet Überwindung. Gut gemacht!"},{e:"",t:"Geschafft und abgeschickt."},
+  {e:"",t:"Dranbleiben zahlt sich aus."},{e:"",t:"Das ist echte Arbeit. Danke für deinen Einsatz."},{e:"",t:"Fertig gemacht – stark."}],
  lernen:[
-  {e:"🧠",t:"Dein Gehirn sagt Danke."},{e:"📚",t:"Wieder etwas gelernt."},{e:"💡",t:"Da hat es Klick gemacht."},
-  {e:"🦉",t:"Clever gemacht."},{e:"🔍",t:"Genau hingeschaut – das lohnt sich."},{e:"🌟",t:"Wissen aufgebaut, das bleibt."}],
+  {e:"",t:"Dein Gehirn sagt Danke."},{e:"",t:"Wieder etwas gelernt."},{e:"",t:"Da hat es Klick gemacht."},
+  {e:"",t:"Clever gemacht."},{e:"",t:"Genau hingeschaut – das lohnt sich."},{e:"",t:"Wissen aufgebaut, das bleibt."}],
  team:[
-  {e:"🤝",t:"Gemeinsam kommt ihr weiter."},{e:"🌈",t:"Gut für die ganze Klasse."},{e:"🪁",t:"Du bringst das Team voran."},{e:"🎶",t:"Schön, dass du dich einbringst."}],
+  {e:"",t:"Gemeinsam kommt ihr weiter."},{e:"",t:"Gut für die ganze Klasse."},{e:"",t:"Du bringst das Team voran."},{e:"",t:"Schön, dass du dich einbringst."}],
  mitmachen:[
-  {e:"📊",t:"Deine Stimme zählt."},{e:"👋",t:"Danke fürs Mitmachen!"},{e:"💬",t:"Gut, dass du dabei bist."},{e:"📣",t:"Deine Meinung hilft."}],
+  {e:"",t:"Deine Stimme zählt."},{e:"",t:"Danke fürs Mitmachen!"},{e:"",t:"Gut, dass du dabei bist."},{e:"",t:"Deine Meinung hilft."}],
  reflexion:[
-  {e:"🪞",t:"Kurz innehalten – das ist Stärke."},{e:"🌿",t:"Gut für dich gesorgt."},{e:"🧘",t:"Nimm den Moment mit."},{e:"🌤",t:"Schön, dass du dir Zeit nimmst."}],
+  {e:"",t:"Kurz innehalten – das ist Stärke."},{e:"",t:"Gut für dich gesorgt."},{e:"",t:"Nimm den Moment mit."},{e:"",t:"Schön, dass du dir Zeit nimmst."}],
  ich:[
-  {e:"🌍",t:"Du gehörst dazu."},{e:"🎨",t:"Das macht dich aus."},{e:"🪴",t:"Schön, dass es dich hier gibt."}],
+  {e:"",t:"Du gehörst dazu."},{e:"",t:"Das macht dich aus."},{e:"",t:"Schön, dass es dich hier gibt."}],
  planung:[
-  {e:"🗓",t:"Der Plan steht – das entlastet."},{e:"🧭",t:"Mit Plan geht es leichter."},{e:"⏱",t:"Gut vorbereitet."}]
+  {e:"",t:"Der Plan steht – das entlastet."},{e:"",t:"Mit Plan geht es leichter."},{e:"",t:"Gut vorbereitet."}]
 };
 const MOTIV_BESONDERS=[
- {e:"🎉",t:"Ganze Woche geschafft – richtig stark!"},{e:"🥳",t:"Komplett abgeschlossen, weiter so!"},
- {e:"👑",t:"Das nenn ich Einsatz!"},{e:"🏅",t:"Meilenstein erreicht."}];
+ {e:"",t:"Ganze Woche geschafft – richtig stark!"},{e:"",t:"Komplett abgeschlossen, weiter so!"},
+ {e:"",t:"Das nenn ich Einsatz!"},{e:"",t:"Meilenstein erreicht."}];
 const MOTIV_BONUS=[
- {e:"🌟",t:"Extra-Stern für dich – weil du dranbleibst!"},{e:"🎁",t:"Überraschung! Dein Einsatz fällt auf."},
- {e:"🦄",t:"Selten und echt: richtig stark gemacht!"},{e:"🍀",t:"Glückstreffer – und du hast ihn dir verdient."}];
+ {e:"",t:"Extra-Stern für dich – weil du dranbleibst!"},{e:"",t:"Überraschung! Dein Einsatz fällt auf."},
+ {e:"",t:"Selten und echt: richtig stark gemacht!"},{e:"",t:"Glückstreffer – und du hast ihn dir verdient."}];
 const motivZustand={seit:0,keys:{},letzterText:""};
 function motivAn(){try{return localStorage.getItem("f12sb_motivation_aus")!=="1"}catch(e){return true}}
 function motivButtonAktualisieren(){
@@ -2012,7 +2020,7 @@ function motivUmschalten(){
  try{localStorage.setItem("f12sb_motivation_aus",an?"0":"1")}catch(e){}
  motivButtonAktualisieren();
  toast(an?"Motivations-Hinweise sind wieder an.":"Motivations-Hinweise sind aus.");
- if(an)motivZeigen({e:"✨",t:"Schön, dass du wieder dabei bist!"},"mini");
+ if(an)motivZeigen({e:"",t:"Schön, dass du wieder dabei bist!"},"mini");
 }
 function motivZeigen(pick,modus){
  document.querySelectorAll(".motivations-karte,.motiv-mini,.motiv-konfetti").forEach(x=>x.remove());
@@ -2266,7 +2274,7 @@ function msNaechster(ph,team,beitraege){
 }
 const MS_ZUSTAND={
  erreicht:{t:"erreicht",f:"#3fa66a",i:"✓"},
- wartet:{t:"alle Beiträge da – wartet auf Bestätigung der Lehrkraft",f:"#e0a324",i:"⏳"},
+ wartet:{t:"alle Beiträge da – wartet auf Bestätigung der Lehrkraft",f:"#e0a324",i:""},
  zurueck:{t:"von der Lehrkraft zurückgegeben – bitte überarbeiten",f:"#d9534f",i:"↩"},
  offen:{t:"offen",f:"#9fb0bd",i:"○"}
 };
@@ -2430,9 +2438,9 @@ async function openProjektGesamtcheck(){
   return`<td class="pg-zelle"onclick="openProjektSchuelerDetail('${s.uid}','${ph.id}')"title="Details öffnen"><span class="ampel-dot"style="background:${farbe}"></span>
    <small>Inhalte ${z.inh}/${z.inhG}<br>Beiträge ${z.eig.n}/${z.eig.g}<br>Team ${z.team?`${z.ms}/${z.msG}`:"–"}</small></td>`;}).join("")}</tr>`).join("");
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🔬 PROJEKT-GESAMTCHECK · NUR LEHRKRÄFTE</div>
+  <div class="kicker">PROJEKT-GESAMTCHECK · NUR LEHRKRÄFTE</div>
   <h2>Alle vier Projekte auf einen Blick</h2>
-  <h3 style="margin:10px 0 6px">⏳ Wartet auf deine Bestätigung (${warten.length})</h3>
+  <h3 style="margin:10px 0 6px">Wartet auf deine Bestätigung (${warten.length})</h3>
   <div class="list">${warten.map(w=>`<div class="list-item"style="flex-direction:column;align-items:stretch;gap:6px">
    <div><strong style="color:${ppFarbe(w.ph)}">${esc(w.ph.lb)} · Team „${esc(w.t.teamName||"")}“</strong><small>Meilenstein: ${esc(w.ph.meilensteine[w.i])}</small></div>
    <div class="ms-beitraege">${w.st.beitraege.map(b=>`<div><b>${esc(b.name||"")}:</b> ${esc(b.text||"")}${msLinksHTML(b)}</div>`).join("")}</div>
@@ -2508,6 +2516,16 @@ async function deleteLehrplanProdukt(id,fach,wocheId){
 }
 
 // ---- Persönlicher Fortschritt (Ziele erfüllt, Häkchen am Zeitstrahl) ---
+// Alle Fortschrittsdokumente der angemeldeten Person mit EINER Abfrage (statt eine pro Woche).
+async function getMeineLehrplanFortschritte(){
+ const map={};
+ if(!currentUser)return map;
+ try{
+  const snap=await getDocs(query(collection(db,"lehrplanFortschritt"),where("uid","==",currentUser.uid)));
+  snap.docs.forEach(d=>{const x=d.data();if(x.wocheId)map[x.wocheId]=x;});
+ }catch(e){console.error("Fortschritte laden:",e)}
+ return map;
+}
 async function getLehrplanFortschritt(wocheId){
  if(!currentUser)return {zieleErfuellt:{},abgeschlossen:false};
  try{
@@ -3279,316 +3297,41 @@ function wasFehltNochJahr(noten){
  return liste;
 }
 
-// ---- Praktikumsberichte (Blockberichte): Tätigkeitsnachweis + Einschätzungsbogen ----
-// Einschätzungsbogen ist nur bei den ersten beiden Blöcken je Ausbildungsrichtung
-// Pflicht (bestätigt: Erziehung pr1+pr2, Pflege pr5+pr6 – Abgabe 01.10./19.11.2026
-// bzw. 29.04./24.06.2027), Tätigkeitsnachweis bei allen 7 Blöcken.
-const EINSCHAETZUNG_PFLICHT_PHASEN=["pr2","pr5","pr6"];
-// Feste Abgabetermine für den Einschätzungsbogen, wo diese von der
-// "letzter Donnerstag des Blocks"-Formel abweichen (explizit vorgegeben).
-const EINSCHAETZUNG_FRIST_FIX={pr2:"2026-11-12",pr3:"2026-12-22"};
-function einschaetzungFrist(phaseId){
- return EINSCHAETZUNG_FRIST_FIX[phaseId]||letzterDonnerstagVorOrAm(PRAKTIKUMSPHASEN.find(x=>x.id===phaseId)?.end);
-}
-function praktikumsberichtTypenFuerPhase(phaseId){
- const typen=[{typ:"taetigkeit",label:"Tätigkeitsnachweis"}];
- if(EINSCHAETZUNG_PFLICHT_PHASEN.includes(phaseId))typen.push({typ:"einschaetzung",label:"Einschätzungsbogen"});
- return typen;
-}
-function praktikumsberichtFristISO(phaseId){
- const p=PRAKTIKUMSPHASEN.find(x=>x.id===phaseId);
- return p?letzterDonnerstagVorOrAm(p.end):null;
-}
 function ampelFarbe(ampel){
  if(ampel==="gruen")return"#3fa66a";
  if(ampel==="orange")return"#e0a324";
  if(ampel==="rot")return"#d9534f";
  return"#c7d0d6";
 }
-function ampelText(ampel){
- if(ampel==="gruen")return"Pünktlich & vollständig";
- if(ampel==="orange")return"Noch unvollständig";
- if(ampel==="rot")return"Zu spät / fehlerhaft";
- return"Noch nicht eingeschätzt";
+// ---- Praktikumsphasen (fpA): Aufträge je Block. Berichte werden nicht mehr hochgeladen. ----
+function praktikumPhasenHTML(auftraege){
+ const heute=new Date().toISOString().slice(0,10);
+ const tage=(a,b)=>Math.round((new Date(b+"T00:00:00")-new Date(a+"T00:00:00"))/86400000);
+ const status=p=>heute>=p.start&&heute<=p.end?"laufend":heute>p.end?"vorbei":"kommend";
+ const aktuell=PRAKTIKUMSPHASEN.find(p=>status(p)==="laufend");
+ const naechste=PRAKTIKUMSPHASEN.find(p=>p.start>heute);
+ const banner=aktuell
+  ?`<div class="pk-banner pk-b-laufend"><b>Praktikum läuft: ${esc(aktuell.titel)}</b><span>Tag ${tage(aktuell.start,heute)+1} von ${tage(aktuell.start,aktuell.end)+1} · bis ${esc(fmtDateOnly(aktuell.end))}</span></div>`
+  :naechste
+  ?`<div class="pk-banner"><b>Nächster Praktikumsblock: ${esc(naechste.titel)}</b><span>${tage(heute,naechste.start)===1?"beginnt morgen":"beginnt in "+tage(heute,naechste.start)+" Tagen"} (${esc(fmtDateOnly(naechste.start))})</span></div>`
+  :`<div class="pk-banner"><b>Alle Praktikumsblöcke dieses Schuljahres sind abgeschlossen.</b></div>`;
+ const gruppen=[["Erziehungsbereich","#3fa66a"],["Pflegebereich","#4a90d9"]];
+ return`${banner}<div class="pk-gruppen">${gruppen.map(([bereich,farbe])=>{
+  const liste=PRAKTIKUMSPHASEN.filter(p=>p.bereich===bereich);
+  return`<section class="pk-gruppe"style="--c:${farbe}"><h3>${bereich}</h3><div class="pk-blockreihe">${liste.map((p,i)=>{
+   const st=status(p),auf=auftraege&&auftraege[p.id];
+   const dauer=tage(p.start,p.end)+1,wochen=Math.max(1,Math.round(dauer/7));
+   const fort=st==="laufend"?Math.min(100,Math.round((tage(p.start,heute)+1)/dauer*100)):st==="vorbei"?100:0;
+   const chip=st==="laufend"?"läuft gerade":st==="vorbei"?"abgeschlossen":"kommt noch";
+   return`<article class="pk-block pk-${st}"><header><span class="pk-nr">Block ${i+1}</span><span class="pk-chip">${chip}</span></header>
+    <strong>${esc(fmtDateOnly(p.start))} – ${esc(fmtDateOnly(p.end))}</strong><small>${wochen} Woche${wochen===1?"":"n"}</small>
+    <div class="pk-balken"><i style="width:${fort}%"></i></div>
+    <p class="pk-auftrag">${auf?`<b>${esc(auf.titel)}</b>${auf.beschreibung?`<span>${esc(auf.beschreibung.slice(0,110))}${auf.beschreibung.length>110?" …":""}</span>`:""}`:`<em>Noch kein Auftrag eingetragen.</em>`}</p>
+    <button class="secondary"onclick="openPraktikumsphaseAuftragForm('${p.id}')">${isTeacher()?(auf?"Auftrag bearbeiten":"Auftrag eintragen"):"Auftrag ansehen"}</button>
+   </article>`;}).join("")}</div></section>`;
+ }).join("")}</div>`;
 }
-// Für die deutschen Ampel-Werte (gruen/orange/rot) der Praktikumsberichte –
-// bewusst getrennt von ampelDotHTML, das englische Lernstand-Werte erwartet.
-function praktikumsAmpelDotHTML(ampel){
- if(!ampel)return`<span class="ampel-dot ampel-none"title="Noch offen"></span>`;
- return`<span class="ampel-dot"style="background:${ampelFarbe(ampel)}"title="${ampelText(ampel)}"></span>`;
-}
-async function getMeinePraktikumsberichte(){
- try{
- const snap=await getDocs(query(collection(db,"praktikumsberichte"),where("uid","==",currentUser.uid)));
- const map={};
- snap.docs.forEach(d=>{const data=d.data();map[`${data.phaseId}_${data.typ}`]=data});
- return map;
- }catch(e){console.error("Praktikumsberichte laden:",e);return{}}
-}
-async function getAllePraktikumsberichte(){
- try{
- const snap=await getDocs(collection(db,"praktikumsberichte"));
- return snap.docs.map(d=>({id:d.id,...d.data()}));
- }catch(e){console.error("Praktikumsberichte (alle) laden:",e);return[]}
-}
-async function uploadPraktikumsbericht(phaseId,typ){
- const input=$(`pbFile_${phaseId}_${typ}`);
- const file=input?.files?.[0];
- if(!file){toast("Bitte zuerst eine Datei auswählen.");return}
- try{
- toast("Datei wird hochgeladen …");
- const up=await uploadCampusDatei(file,`praktikumsberichte/${phaseId}_${typ}`);
- const docId=`${currentUser.uid}_${phaseId}_${typ}`;
- await setDoc(doc(db,"praktikumsberichte",docId),{
- uid:currentUser.uid,name:profile?.displayName||currentUser.email||"Schüler/in",
- phaseId,typ,dateiUrl:up.url,dateiName:up.name,hochgeladenAm:serverTimestamp(),
- ampel:null,unterschriftBetreuer:null,stempelBetrieb:null,unterschriftSchueler:null,ausfuehrlichkeit:null
- },{merge:true});
- await openPraktikumsblockDetail(phaseId);
- showMotivationsBild(false,"abgabe");
- }catch(e){console.error("Bericht hochladen:",e);toast("Fehler: "+(e?.message||e));}
-}
-window.uploadPraktikumsbericht=uploadPraktikumsbericht;
-// Eigenen Blockbericht wieder löschen (z. B. falsche Datei hochgeladen).
-// Lehrkräfte dürfen ebenfalls löschen. Danach kann neu hochgeladen werden.
-async function deletePraktikumsbericht(phaseId,typ,uid){
- uid=uid||currentUser.uid;
- if(uid!==currentUser.uid&&!isTeacher())return;
- const ref=doc(db,"praktikumsberichte",`${uid}_${phaseId}_${typ}`);
- try{
-  const alt=await getDoc(ref);
-  if(!alt.exists()){toast("Datei ist schon gelöscht.");return}
-  const d=alt.data();
-  if(!confirm(d.ampel?"Diese Datei wurde schon bewertet. Trotzdem löschen? Die Bewertung geht dabei verloren.":"Diese Datei wirklich löschen?"))return;
-  await deleteDoc(ref);
-  await deleteCampusDatei(d.dateiUrl);
-  toast("Datei gelöscht – du kannst jetzt eine neue hochladen.");
-  if(uid===currentUser.uid)await openPraktikumsblockDetail(phaseId);else await openLehrkraftPraktikumsUebersicht(phaseId);
- }catch(e){console.error("Bericht löschen:",e);toast(e?.code==="permission-denied"?"Firebase verweigert das Löschen. Bitte die Firestore-Regeln prüfen.":"Konnte nicht gelöscht werden.");}
-}
-window.deletePraktikumsbericht=deletePraktikumsbericht;
-async function saveAmpelBewertung(uid,phaseId,typ){
- if(!isTeacher()){toast("Nur Lehrkräfte können bewerten.");return}
- const ub=$(`amp_ub_${uid}_${phaseId}_${typ}`)?.checked||false;
- const sb=$(`amp_sb_${uid}_${phaseId}_${typ}`)?.checked||false;
- const us=$(`amp_us_${uid}_${phaseId}_${typ}`)?.checked||false;
- const af=$(`amp_af_${uid}_${phaseId}_${typ}`)?.checked||false;
- const ampel=$(`amp_farbe_${uid}_${phaseId}_${typ}`)?.value||null;
- try{
- await updateDoc(doc(db,"praktikumsberichte",`${uid}_${phaseId}_${typ}`),{
- unterschriftBetreuer:ub,stempelBetrieb:sb,unterschriftSchueler:us,ausfuehrlichkeit:af,
- ampel,bewertetAm:serverTimestamp(),bewertetVon:currentUser.uid
- });
- toast("Bewertung gespeichert.");
- await openLehrkraftPraktikumsUebersicht(phaseId);
- }catch(e){console.error("Ampel-Bewertung speichern:",e);toast(e?.code==="permission-denied"?"Firebase verweigert das Speichern. Bitte die Firestore-Regeln prüfen.":"Konnte nicht gespeichert werden.");}
-}
-window.saveAmpelBewertung=saveAmpelBewertung;
-
-// Schnell-Ampel für die Kurzdurchsicht: setzt nur die Farbe, ohne die vier
-// Detailkriterien abzufragen. Lässt bereits gesetzte Kriterien unangetastet.
-async function schnellAmpel(uid,phaseId,typ,ampel){
- if(!isTeacher()){toast("Nur Lehrkräfte können bewerten.");return}
- try{
- await updateDoc(doc(db,"praktikumsberichte",`${uid}_${phaseId}_${typ}`),{
- ampel,bewertetAm:serverTimestamp(),bewertetVon:currentUser.uid
- });
- toast(`Ampel gesetzt: ${ampelText(ampel)}`);
- await openLehrkraftPraktikumsUebersicht(phaseId);
- }catch(e){console.error("Schnell-Ampel setzen:",e);toast(e?.code==="permission-denied"?"Firebase verweigert das Speichern. Bitte die Firestore-Regeln prüfen.":"Konnte nicht gespeichert werden.");}
-}
-window.schnellAmpel=schnellAmpel;
-
-async function openPraktikumsblockDetail(phaseId){
- const p=PRAKTIKUMSPHASEN.find(x=>x.id===phaseId);
- if(!p)return;
- const auftraege=await getPraktikumsAuftraege();
- const auftrag=auftraege[phaseId];
- const meineBerichte=await getMeinePraktikumsberichte();
- const frist=letzterDonnerstagVorOrAm(p.end);
- const typen=praktikumsberichtTypenFuerPhase(phaseId);
- const dateiNamen={taetigkeit:"taetigkeitsnachweis.pdf",einschaetzung:"einschaetzungsbogen.pdf"};
- modal(`<button class="modal-close"onclick="closeModal()">×</button>
- <div class="kicker">${p.icon} ${esc(p.bereich)} · ${esc(fmtDateOnly(p.start))}–${esc(fmtDateOnly(p.end))}</div>
- <h2>${esc(p.titel)}</h2>
- ${isTeacher()?`<div class="form"style="margin-bottom:16px">
- <label>Titel des Auftrags<input id="praktAuftragTitel"type="text"value="${esc(auftrag?.titel||"")}"placeholder="z. B. Beobachtungsauftrag Erziehungsstile"></label>
- <label>Beschreibung<textarea id="praktAuftragBeschreibung"rows="3"placeholder="Was sollen die Schüler:innen konkret tun?">${esc(auftrag?.beschreibung||"")}</textarea></label>
- <div class="form-actions">
- <button class="primary"onclick="savePraktikumsphaseAuftrag('${phaseId}')">Auftrag speichern</button>
- ${auftrag?`<button class="secondary"onclick="deletePraktikumsphaseAuftrag('${phaseId}')">Löschen</button>`:""}
- </div>
- </div>`
- :auftrag?`<div class="card"style="border-left:4px solid #4a90d9;margin-bottom:16px"><strong>${esc(auftrag.titel)}</strong>${auftrag.beschreibung?`<p style="margin:6px 0 0;white-space:pre-wrap">${esc(auftrag.beschreibung)}</p>`:""}</div>`
- :""}
-
- <h3 style="margin-bottom:2px"> Blockberichte</h3>
- <p style="font-size:12px;color:var(--muted);margin-top:0">Formular ausfüllen/unterschreiben lassen, dann hier als Foto/Scan hochladen. Jeweils bis 19:00 Uhr des Abgabetermins.</p>
- ${typen.map(t=>{
- const eintrag=meineBerichte[`${phaseId}_${t.typ}`];
- const terminDieserArt=t.typ==="einschaetzung"?einschaetzungFrist(phaseId):frist;
- return`<div class="card"style="margin-bottom:12px;background:${eintrag?"var(--soft-green)":"#f7fafc"}">
- <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
- <strong>${esc(t.label)}</strong>
- <span style="display:flex;gap:10px">
- <a href="${dateiNamen[t.typ]}"download style="font-size:11px">Formular als PDF herunterladen ↓</a>
- ${t.typ==="taetigkeit"?`<a href="fehlzeitentabelle.pdf"download style="font-size:11px"> + Anlage Fehlzeitentabelle ↓</a>`:""}
- </span>
- </div>
- <small style="display:block;color:var(--muted);margin-top:4px">Abgabe: ${esc(fmtDateOnly(terminDieserArt))}, 19:00 Uhr</small>
- ${eintrag?`<div style="margin-top:8px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
- <a href="${esc(eintrag.dateiUrl)}"target="_blank"rel="noopener"class="pill"> ${esc(eintrag.dateiName)}</a>
- <span style="display:flex;gap:8px;align-items:center"><span class="pill"style="background:${ampelFarbe(eintrag.ampel)};color:#fff">${esc(ampelText(eintrag.ampel))}</span>
- <button class="secondary"onclick="deletePraktikumsbericht('${phaseId}','${t.typ}')">Löschen</button></span>
- </div>`
- :`<div class="form-actions"style="margin-top:8px">
- <input id="pbFile_${phaseId}_${t.typ}"type="file"accept="image/*,.pdf"style="flex:1;min-width:160px">
- <button class="primary"onclick="uploadPraktikumsbericht('${phaseId}','${t.typ}')">＋ Hochladen</button>
- </div>`}
- </div>`;
- }).join("")}
- <div class="form-actions"style="margin-top:10px"><button class="secondary"onclick="closeModal()">Schließen</button></div>
- `);
-}
-window.openPraktikumsblockDetail=openPraktikumsblockDetail;
-
-async function openLehrkraftPraktikumsUebersicht(phaseId){
- if(!isTeacher()){toast("Nur Lehrkräfte können die Übersicht öffnen.");return}
- const p=PRAKTIKUMSPHASEN.find(x=>x.id===phaseId);
- if(!p)return;
- let students=[],alleBerichte=[];
- try{
- [students,alleBerichte]=await Promise.all([getAllUsersForLernstand(),getAllePraktikumsberichte()]);
- }catch(e){console.error("Praktikumsübersicht laden:",e);toast("Konnte nicht geladen werden.");return}
- const typen=praktikumsberichtTypenFuerPhase(phaseId);
- modal(`<button class="modal-close"onclick="closeModal()">×</button>
- <div class="kicker">KLASSENÜBERSICHT · NUR LEHRKRÄFTE</div>
- <h2>${p.icon} ${esc(p.titel)} – Blockberichte</h2>
- <p style="color:var(--muted);font-size:12px">${typen.map(t=>`Abgabefrist ${esc(t.label)}: ${esc(fmtDateOnly(t.typ==="einschaetzung"?einschaetzungFrist(phaseId):letzterDonnerstagVorOrAm(p.end)))}, 19:00 Uhr`).join(" · ")}</p>
- <div style="overflow-x:auto"><table class="ls-matrix">
- <thead><tr><th>Schüler:in</th>${typen.map(t=>`<th>${esc(t.label)}</th>`).join("")}</tr></thead>
- <tbody>${students.map(s=>`<tr>
- <td>${esc(s.displayName||s.email||"Schüler/in")}</td>
- ${typen.map(t=>{
- const eintrag=alleBerichte.find(b=>b.uid===s.uid&&b.phaseId===phaseId&&b.typ===t.typ);
- if(!eintrag)return`<td style="text-align:center;color:var(--muted)">–</td>`;
- const dot=(farbe,label)=>`<button type="button"onclick="schnellAmpel('${s.uid}','${phaseId}','${t.typ}','${farbe}')"title="${label}"style="width:16px;height:16px;border-radius:50%;background:${ampelFarbe(farbe)};border:2px solid ${eintrag.ampel===farbe?"#17384f":"transparent"};cursor:pointer;padding:0"></button>`;
- return`<td><div style="display:flex;gap:4px;align-items:center;justify-content:center">
- ${dot("gruen","Pünktlich & vollständig")}${dot("orange","Noch unvollständig")}${dot("rot","Zu spät/fehlerhaft")}
- <button type="button"class="secondary"style="padding:2px 6px;font-size:10px;margin-left:4px"onclick="openAmpelBewertungForm('${s.uid}','${phaseId}','${t.typ}')">Details</button>
- </div></td>`;
- }).join("")}
- </tr>`).join("")||`<tr><td colspan="${typen.length+1}">Keine Schüler:innen gefunden.</td></tr>`}</tbody>
- </table></div>
- <p style="font-size:10px;color:var(--muted);margin-top:8px"> Grün = pünktlich & vollständig · Orange = noch unvollständig · Rot = zu spät/fehlerhaft. Punkt anklicken für die Kurzdurchsicht, „Details" für die vier Einzelkriterien.</p>
- <div class="form-actions"style="margin-top:14px">
- <button class="secondary"onclick="openPraktikumsGesamtuebersicht()"> Gesamtübersicht alle Blöcke</button>
- <button class="secondary"onclick="closeModal()">Schließen</button>
- </div>
- `);
-}
-window.openLehrkraftPraktikumsUebersicht=openLehrkraftPraktikumsUebersicht;
-
-// Baut für jede/n Schüler:in und jeden Berichtstyp aller Blöcke die
-// Ampel-Matrix auf – gemeinsam genutzt von Bildschirmansicht und PDF.
-async function ladeGesamtAmpelMatrix(){
- const [students,alleBerichte]=await Promise.all([getAllUsersForLernstand(),getAllePraktikumsberichte()]);
- const spalten=[];
- PRAKTIKUMSPHASEN.forEach(p=>{
- praktikumsberichtTypenFuerPhase(p.id).forEach(t=>{
- spalten.push({phaseId:p.id,typ:t.typ,label:`${p.titel.replace("Praktikum – B-Block – ","")} · ${t.label==="Tätigkeitsnachweis"?"TN":"EB"}`});
- });
- });
- const zeilen=students.map(s=>({
- name:s.displayName||s.email||"Schüler/in",
- werte:spalten.map(sp=>alleBerichte.find(b=>b.uid===s.uid&&b.phaseId===sp.phaseId&&b.typ===sp.typ)?.ampel||null)
- }));
- return{spalten,zeilen};
-}
-
-async function openPraktikumsGesamtuebersicht(){
- if(!isTeacher()){toast("Nur Lehrkräfte können die Gesamtübersicht öffnen.");return}
- let spalten=[],zeilen=[];
- try{({spalten,zeilen}=await ladeGesamtAmpelMatrix())}
- catch(e){console.error("Gesamtübersicht laden:",e);toast("Konnte nicht geladen werden.");return}
- modal(`<button class="modal-close"onclick="closeModal()">×</button>
- <div class="kicker">KLASSENÜBERSICHT · ALLE BLÖCKE · NUR LEHRKRÄFTE</div>
- <h2> Ampel-Gesamtsicht Praktikumsberichte</h2>
- <p style="font-size:11px;color:var(--muted)">TN = Tätigkeitsnachweis, EB = Einschätzungsbogen.</p>
- <div style="overflow-x:auto"><table class="ls-matrix"style="font-size:11px">
- <thead><tr><th>Schüler:in</th>${spalten.map(sp=>`<th style="white-space:nowrap">${esc(sp.label)}</th>`).join("")}</tr></thead>
- <tbody>${zeilen.map(z=>`<tr><td>${esc(z.name)}</td>${z.werte.map(a=>`<td style="text-align:center">${praktikumsAmpelDotHTML(a)}</td>`).join("")}</tr>`).join("")||`<tr><td colspan="${spalten.length+1}">Keine Schüler:innen gefunden.</td></tr>`}</tbody>
- </table></div>
- <p style="font-size:10px;color:var(--muted);margin-top:8px"><span class="ampel-dot"style="background:#3fa66a"></span> pünktlich & vollständig <span class="ampel-dot"style="background:#e0a324"></span> unvollständig <span class="ampel-dot"style="background:#d9534f"></span> zu spät/fehlerhaft <span class="ampel-dot ampel-none"></span> noch offen</p>
- <div class="form-actions"style="margin-top:14px">
- <button class="primary"onclick="printPraktikumsGesamtPDF()"> Als PDF drucken</button>
- <button class="secondary"onclick="closeModal()">Schließen</button>
- </div>
- `);
-}
-window.openPraktikumsGesamtuebersicht=openPraktikumsGesamtuebersicht;
-
-async function printPraktikumsGesamtPDF(){
- const {spalten,zeilen}=await ladeGesamtAmpelMatrix();
- const win=window.open("","_blank");
- if(!win){toast("Bitte Pop-ups für diese Seite erlauben.");return}
- const escPDF=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
- const farbe=a=>a==="gruen"?"#3fa66a":a==="orange"?"#e0a324":a==="rot"?"#d9534f":"#e5e7eb";
- const rows=zeilen.map(z=>`<tr><td>${escPDF(z.name)}</td>${z.werte.map(a=>`<td style="background:${farbe(a)}"></td>`).join("")}</tr>`).join("");
- const head=spalten.map(sp=>`<th>${escPDF(sp.label)}</th>`).join("");
- win.document.write(`<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Praktikumsberichte – Ampel-Gesamtsicht</title>
- <style>
- @page{size:A4 landscape;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;color:#222;margin:0}
- h1{font-size:20px;margin:0 0 4px}.meta{color:#666;font-size:11px;margin-bottom:14px}
- table{width:100%;border-collapse:collapse}th,td{border:1px solid #999;padding:5px;text-align:center;font-size:10px}
- th{background:#f3f3f3;white-space:nowrap}td:first-child,th:first-child{text-align:left;white-space:nowrap}
- .legende{margin-top:12px;font-size:10px;color:#555}
- .print-note{background:#f3f3f3;padding:8px;border-radius:6px;margin-bottom:14px;font-size:11px}
- @media print{.print-note{display:none}}
- </style></head><body>
- <div class="print-note">Im Druckdialog „Als PDF sichern“ auswählen.</div>
- <h1>Praktikumsberichte – Ampel-Gesamtsicht F11Sb</h1>
- <div class="meta">TN = Tätigkeitsnachweis, EB = Einschätzungsbogen · Stand: ${new Date().toLocaleDateString("de-DE")}</div>
- <table><thead><tr><th>Schüler:in</th>${head}</tr></thead><tbody>${rows}</tbody></table>
- <div class="legende">🟩 pünktlich &amp; vollständig &nbsp; 🟧 unvollständig &nbsp; 🟥 zu spät/fehlerhaft &nbsp; ⬜ noch offen</div>
- <script>window.onload=function(){setTimeout(function(){window.print()},300)}<\/script>
- </body></html>`);
- win.document.close();
-}
-window.printPraktikumsGesamtPDF=printPraktikumsGesamtPDF;
-
-async function openAmpelBewertungForm(uid,phaseId,typ){
- const berichte=await getAllePraktikumsberichte();
- const eintrag=berichte.find(b=>b.uid===uid&&b.phaseId===phaseId&&b.typ===typ);
- if(!eintrag){toast("Noch keine Datei hochgeladen.");return}
- const p=PRAKTIKUMSPHASEN.find(x=>x.id===phaseId);
- const frist=typ==="einschaetzung"?einschaetzungFrist(phaseId):letzterDonnerstagVorOrAm(p.end);
- const hochgeladenAm=eintrag.hochgeladenAm?.seconds?new Date(eintrag.hochgeladenAm.seconds*1000):null;
- const fristDatum=new Date(frist+"T19:00:00");
- const verspaetet=hochgeladenAm&&hochgeladenAm>fristDatum;
- modal(`<button class="modal-close"onclick="closeModal()">×</button>
- <div class="kicker">${esc(eintrag.name)} · ${praktikumsberichtTypenFuerPhase(phaseId).find(t=>t.typ===typ)?.label}</div>
- <h2>Bewertung</h2>
- <a href="${esc(eintrag.dateiUrl)}"target="_blank"rel="noopener"class="pill"style="margin-bottom:10px;display:inline-block"> ${esc(eintrag.dateiName)} ansehen</a>
- ${hochgeladenAm?`<p style="font-size:12px;color:${verspaetet?"#d9534f":"var(--muted)"}">Hochgeladen: ${hochgeladenAm.toLocaleString("de-DE")}${verspaetet?" – NACH der Frist!":" – rechtzeitig"}</p>`:""}
- <div class="form"style="margin-top:10px">
- <label class="check"><input id="amp_ub_${uid}_${phaseId}_${typ}"type="checkbox"${eintrag.unterschriftBetreuer?"checked":""}> Unterschrift Betreuer:in vorhanden</label>
- <label class="check"><input id="amp_sb_${uid}_${phaseId}_${typ}"type="checkbox"${eintrag.stempelBetrieb?"checked":""}> Stempel des Betriebes vorhanden</label>
- <label class="check"><input id="amp_us_${uid}_${phaseId}_${typ}"type="checkbox"${eintrag.unterschriftSchueler?"checked":""}> Unterschrift Schüler:in vorhanden</label>
- <label class="check"><input id="amp_af_${uid}_${phaseId}_${typ}"type="checkbox"${eintrag.ausfuehrlichkeit?"checked":""}> Ausführlich & inhaltlich sinnvoll</label>
- <label>Ampel-Einschätzung<select id="amp_farbe_${uid}_${phaseId}_${typ}">
- <option value="gruen"${eintrag.ampel==="gruen"?"selected":""}> Grün – pünktlich & vollständig</option>
- <option value="orange"${eintrag.ampel==="orange"?"selected":""}> Orange – noch unvollständig</option>
- <option value="rot"${eintrag.ampel==="rot"?"selected":""}> Rot – zu spät/fehlerhaft</option>
- </select></label>
- <div class="form-actions">
- <button class="secondary"onclick="openLehrkraftPraktikumsUebersicht('${phaseId}')">Zurück</button>
- <button class="primary"onclick="saveAmpelBewertung('${uid}','${phaseId}','${typ}')">Speichern</button>
- </div>
- </div>
- `);
-}
-window.openAmpelBewertungForm=openAmpelBewertungForm;
+window.praktikumPhasenHTML=praktikumPhasenHTML;
 
 // ---- Wochen-/Monatsplanung -------------------------------------------
 async function getMeineWochenplanung(){
@@ -3716,60 +3459,18 @@ async function miniKalenderHTML(){
  </a>
  <small style="display:block;margin-top:6px;color:var(--muted);font-size:10px">Zum vollständigen Campus-Kalender →</small>`;
 }
-// ---- Startseite: „Das steht für dich an“ (nur Schüler:innen) ----
-// Sammelt aus vorhandenen Daten, was für die angemeldete Person offen ist:
-// P/P-Module bis einschließlich dieser Woche, fehlende Blockberichte, fällige Einträge der Wochenplanung.
-async function anstehendBoxHTML(wochenplan){
- if(!currentUser||!isApproved()||isTeacher())return"";
- const heute=new Date().toISOString().slice(0,10);
- const plusTage=(iso,n)=>{const d=new Date(iso+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);};
- const zeilen=[];
- // 1) P/P-Modulplan
- try{
-  await ppmLaden();await ppmMeineLaden();
-  if(!PPM.co)PPM.co=await ladeCheckoutDaten().catch(()=>null);
-  let jIdx=-1;SCHULWOCHEN_PP.forEach((w,i)=>{if(w.start<=heute)jIdx=i;});
-  const jw=SCHULWOCHEN_PP[jIdx],inWoche=!!(jw&&heute<=jw.end);
-  const offen=PPM.liste.map(m=>({m,p:ppmFort(m),i:ppmSwIndex(m.start)})).filter(x=>x.p&&!x.p.done&&x.i>=0&&x.i<=jIdx);
-  offen.slice(0,4).forEach(x=>{
-   const alt=!(inWoche&&x.i===jIdx),sw=swById(x.m.start),T=PPM_TYPEN[x.m.modul]||{};
-   zeilen.push({ord:alt?1:2,html:`<div class="an-zeile${alt?" spaet":""}"><span class="an-icon">${T.icon||"📘"}</span><div><b>${esc(ppmTitel(x.m)||T.name||"Modul")}</b><small>Pädagogik/Psychologie · ${alt?`noch offen aus KW ${sw?ppmKW(sw):""}`:"diese Woche"}${x.p.frac>0?` · ${Math.round(x.p.frac*100)} % geschafft`:""}</small></div><button type="button"class="secondary"data-ppm="oeffnen"data-id="${esc(x.m.id)}">Öffnen</button></div>`});
-  });
-  if(offen.length>4)zeilen.push({ord:3,html:`<div class="an-zeile"><span class="an-icon">➕</span><div><b>${offen.length-4} weitere Module offen</b><small>Pädagogik/Psychologie</small></div><button type="button"class="secondary"onclick="openFach('paedagogik')">Zum Modulplan</button></div>`});
- }catch(e){console.error("Anstehend (Module):",e);}
- // 2) Blockberichte: laufender Block und Block, der in den letzten 14 Tagen endete
- try{
-  const phasen=PRAKTIKUMSPHASEN.filter(p=>p.start<=heute&&plusTage(p.end,14)>=heute);
-  if(phasen.length){
-   const meine=await getMeinePraktikumsberichte();
-   phasen.forEach(p=>praktikumsberichtTypenFuerPhase(p.id).forEach(t=>{
-    if(meine[`${p.id}_${t.typ}`])return;
-    const frist=t.typ==="einschaetzung"?einschaetzungFrist(p.id):praktikumsberichtFristISO(p.id);
-    const spaet=!!frist&&frist<heute,bald=!!frist&&!spaet&&frist<=plusTage(heute,3);
-    zeilen.push({ord:spaet?0:(bald?1:2),html:`<div class="an-zeile${spaet?" spaet":""}"><span class="an-icon">${p.icon||"📄"}</span><div><b>${esc(t.label)} hochladen</b><small>${esc(p.titel)}${frist?` · ${spaet?"Frist war am":"Abgabe bis"} ${esc(fmtDateOnly(frist))}`:""}</small></div><button type="button"class="secondary"onclick="go('praktikum')">Zum Bericht</button></div>`});
-   }));
-  }
- }catch(e){console.error("Anstehend (Berichte):",e);}
- // 3) Wochenplanung: überfällig oder in den nächsten 7 Tagen fällig
- try{
-  (wochenplan||[]).filter(w=>!w.done&&w.dueDate&&w.dueDate<=plusTage(heute,7)).slice(0,3).forEach(w=>{
-   const spaet=w.dueDate<heute,fach=F11SB_FAECHER.find(f=>f.key===w.subject)?.label;
-   zeilen.push({ord:spaet?1:2,html:`<div class="an-zeile${spaet?" spaet":""}"><span class="an-icon">🗓️</span><div><b>${esc(w.title)}</b><small>Wochenplanung${fach?` · ${esc(fach)}`:""} · ${spaet?"war fällig am":"fällig am"} ${esc(fmtDateOnly(w.dueDate))}</small></div><button type="button"class="secondary"onclick="toggleWochenplanDone('${esc(w.id)}',false)">Erledigt ✓</button></div>`});
-  });
- }catch(e){console.error("Anstehend (Wochenplanung):",e);}
- zeilen.sort((a,b)=>a.ord-b.ord);
- let zu=false;try{zu=localStorage.getItem("f11sb_anstehend_zu")==="1";}catch(e){}
- const n=zeilen.length;
- return`<details class="card an-box"${zu?"":" open"} ontoggle="try{localStorage.setItem('f11sb_anstehend_zu',this.open?'0':'1')}catch(e){}"><summary><span><span class="kicker">DEIN ÜBERBLICK</span><h2>Das steht für dich an</h2></span><span class="pill${n?"":" green"}">${n?`${n} offen`:"alles erledigt ✓"}</span><span class="an-pfeil" aria-hidden="true">▾</span></summary>${n?zeilen.map(z=>z.html).join(""):`<p class="an-leer">Aktuell ist nichts offen. ✓</p>`}</details>`;
-}
 async function renderStart(){
- let tasks=[],projects=[],news=[],nextCalendar=null,birthdayInfo=null,wochenplan=[];
- try{[tasks,projects,news,nextCalendar,birthdayInfo,wochenplan]=await Promise.all([getCollection("tasks","deadline",false),getCollection("projects"),getCollection("news"),getUpcomingCampusCalendarEvent(),getUpcomingBirthdayInfo(),getMeineWochenplanung()])}catch(e){}
- const miniKalender=await miniKalenderHTML();
- const coBanner=await checkoutStartBannerHTML();
- const anstehend=await anstehendBoxHTML(wochenplan);
+ /* Alles, was die Startseite braucht, wird gleichzeitig geladen (nicht nacheinander). */
+ let news=[],nextCalendar=null,birthdayInfo=null,miniKalender="",coBanner="",praktikumsAuftraegeMap={};
+ try{[news,nextCalendar,birthdayInfo,miniKalender,coBanner,praktikumsAuftraegeMap]=await Promise.all([
+  getCollection("news"),
+  getUpcomingCampusCalendarEvent().catch(()=>null),
+  Promise.resolve(getUpcomingBirthdayInfo()).catch(()=>null),
+  miniKalenderHTML().catch(()=>""),
+  checkoutStartBannerHTML().catch(()=>""),
+  getPraktikumsAuftraege().catch(()=>({}))
+ ])}catch(e){console.error("Startseite:",e)}
  const praktikumsphase=aktuellePraktikumsphase();
- const praktikumsAuftraegeMap=await getPraktikumsAuftraege().catch(()=>({}));
  const aktuellerPraktikumsauftrag=(praktikumsphase?.status==="laufend")?praktikumsAuftraegeMap[praktikumsphase.id]:null;
  const upcomingDate=nextCalendar?.start||nextCalendar?.date||nextCalendar?.startDate;
  const upcomingDateText=upcomingDate?.seconds?new Date(upcomingDate.seconds*1000).toLocaleDateString("de-DE"):String(upcomingDate||"").slice(0,10);
@@ -3779,7 +3480,6 @@ async function renderStart(){
  return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 26/27</span><h1>Willkommen auf dem Campus.</h1><p>Hier
 verbinden wir Lernen, Projekte, Praxis und Gemeinschaft. Alle angemeldeten Mitglieder arbeiten am selben digitalen Campus.</p>
 </div><div class="actions">${isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
- ${anstehend}
  <div class="grid grid-3"style="gap:20px;margin-bottom:20px">
  <div class="card card-compact"style="border-left:4px solid #4a90d9"><h3> Campus-News</h3><div class="list">${news.slice(0,3).map(p=>`<div
 class="list-item"><div><strong>${esc(p.title||p.text)}</strong>${p.title?`<small>${esc(p.text)} · ${fmtDate(p.createdAt)}</small>`:`<small>${fmtDate(p.createdAt)}</small>`}</div><div style="display:flex;align-items:center;gap:8px"><span class="pill">Info</span>${isAdmin()?`<button class="secondary"onclick="deleteNews('${p.id}')">Löschen</button>`:""}</div>
@@ -3817,12 +3517,6 @@ class="list-item"><div><strong>${esc(p.title||p.text)}</strong>${p.title?`<small
  <div class="kicker">STUNDENPLAN</div>
  <h2 style="margin-top:4px">Aktueller Stundenplan</h2>
  ${webUntisEmbedHTML(300)}
- <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
- <input id="quickWpInput"type="text"maxlength="140"placeholder="Was steht diese Woche an? Kurz eintragen …"style="flex:1;min-width:220px">
- <button class="primary"onclick="quickAddWochenplan()">＋ Zur Wochenplanung</button>
- <button class="secondary"onclick="go('kompass')">Ausführlicher planen →</button>
- </div>
- ${wochenplan.length?`<div class="list"style="margin-top:10px">${wochenplan.filter(w=>!w.done).slice(0,3).map(w=>`<div class="list-item"><div><strong>${esc(w.title)}</strong>${w.subject?`<small>${esc(F11SB_FAECHER.find(f=>f.key===w.subject)?.label||"")}</small>`:""}</div><span class="pill">${w.scope==="monat"?"Monat":"Woche"}</span></div>`).join("")}</div>`:""}
  </div>
  <div class="card"style="margin-bottom:16px;text-align:center;border-left:4px solid #3fa66a">
  <h2 style="margin:0 0 8px"> FOSBOS-WM Jahresfokus: Solidarität und Zusammenhalt</h2>
@@ -3830,7 +3524,7 @@ class="list-item"><div><strong>${esc(p.title||p.text)}</strong>${p.title?`<small
  </div>
  ${pageHead("ÜBERSICHT","Unser Campus","Die wichtigsten Bereiche auf einen Blick.",newsAction)}
  <div class="grid grid-4">
- ${tile("🗓️","Mein Wochenplan","Lernbausteine einplanen, Termine buchen, Fortschritt sehen.","wochenplan")}
+ ${tile("","Mein Wochenplan","Lernbausteine einplanen, Termine buchen, Fortschritt sehen.","wochenplan")}
  ${tile(" ","Campus-Kompass","Dein persönlicher Lern- und Projektüberblick.","kompass")}
  ${tile(" ","Lernwerkstatt","Lernaufträge, Methoden, Tools und KI.","lernwerkstatt")}
  ${tile(" ","Campus-Forum","Austauschen, fragen, helfen und gemeinsam denken.","forum")}
@@ -3905,16 +3599,21 @@ function printWochenplanPDF(entries){
 }
 window.printNotenPDF=printNotenPDF;window.printWochenplanPDF=printWochenplanPDF;
 
+/* Einklappbarer Kasten: <details class="card fold"> + foldHead(...) als Kopfzeile. */
+function foldHead(kicker,titel,pill=""){
+ return`<summary><span>${kicker?`<span class="kicker">${kicker}</span>`:""}<h2>${titel}</h2></span>${pill}<span class="fold-pfeil"aria-hidden="true">▾</span></summary>`;
+}
 async function renderKompass(){
- const tasks=await getCollection("tasks","deadline",false), projects=await getCollection("projects");
- const projectDeadlines=projects.filter(p=>p.deadline).sort((a,b)=>String(a.deadline).localeCompare(String(b.deadline)));
- const todayStr=new Date().toISOString().slice(0,10);
- const [unreadCount,forumActivity,wochenplan,noten]=await Promise.all([
+ const [tasks,projects,unreadCount,forumActivity,wochenplan,noten]=await Promise.all([
+ getCollection("tasks","deadline",false),
+ getCollection("projects"),
  getUnreadMessageCount().catch(()=>0),
  getRecentForumActivityCount(3),
  getMeineWochenplanung(),
  getMeineNoten()
  ]);
+ const projectDeadlines=projects.filter(p=>p.deadline).sort((a,b)=>String(a.deadline).localeCompare(String(b.deadline)));
+ const todayStr=new Date().toISOString().slice(0,10);
  const bestehen=berechneBestehen(noten);
  const offenePlanung=wochenplan.filter(w=>!w.done);
  const erledigtePlanung=wochenplan.filter(w=>w.done);
@@ -3949,9 +3648,8 @@ async function renderKompass(){
  </details>`:""}
  </div>
 
- <div class="kicker"style="margin:22px 0 8px">PERSÖNLICH · NUR FÜR DICH SICHTBAR</div>
- <div class="card">
- <h2 style="margin-top:0"> Meine Noten</h2>
+ <details class="card fold"style="margin-top:22px;--c:#3fa66a">
+ ${foldHead("PERSÖNLICH · NUR FÜR DICH SICHTBAR","Meine Noten und Notenrechner")}
  <p style="color:var(--muted);font-size:12px">Halbjahresergebnis nach § 21 Abs. 1 FOBOSO. <strong>Live-Rechner: Es wird nichts gespeichert.</strong> Deine Eingaben bleiben nur, solange du die App geöffnet hast, und sind nach dem Neuladen oder Abmelden weg.</p>
 
  <div class="noten-split">
@@ -4028,7 +3726,7 @@ async function renderKompass(){
  </div>
  </details>
  </div>
- </div>
+ </details>
 
  <div class="kicker"style="margin:22px 0 8px">AUFGABEN & PROJEKTE</div>
  <div class="grid grid-3"><div class="card stat"><b>${tasks.filter(t=>t.ownerUid===currentUser.uid).length}</b><span>Meine
@@ -4191,7 +3889,7 @@ async function renderDidaktikKompass(){
  const phasen=[1,2,3].map(n=>{const p=PP12_PHASEN[n];return`<article class="dk-karte"><span class="pp12-phase pp12-ph${n}">${p.kurz}</span><h3>${esc(p.name)}</h3><p>${esc(p.was)}</p><p class="dk-rolle"><b>Deine Rolle:</b> ${esc(p.rolle)}</p><p><b>Ziel der Schüler:innen:</b> ${esc(p.ziel)}</p><p class="dk-app"><b>Das hilft in der App:</b> ${p.tools.map(t=>esc(t[0])).join(", ")}.</p></article>`;}).join("");
  const udl=DK_UDL.map(([zeile,felder])=>`<div class="dk-zeile"><div class="dk-label">${zeile}</div>${felder.map(([nr,k,t,f,b])=>`<div class="dk-feld"style="--c:${PP12_UDL[k].col}"><div class="dk-fkopf"><span>${nr}</span><b>${esc(t)}</b></div><p>${esc(f)}</p><p class="dk-bsp"><b>In der F11Sb:</b> ${esc(b)}</p></div>`).join("")}</div>`).join("");
  const kopfzeile=`<div class="dk-zeile dk-kopf"><div></div>${Object.values(PP12_UDL).map(v=>`<div class="dk-spalte"style="background:${v.col}"><b>${esc(v.name)}</b><small>${esc(v.leit)}</small></div>`).join("")}</div>`;
- return`<button class="secondary"onclick="go('faecher')">← Fächer 11. Klasse</button>
+ return`<button class="secondary"onclick="closeFach()">← Zurück zu den Lernplänen</button>
  ${pageHead("UNTERRICHT · ORIENTIERUNG FÜR LEHRKRÄFTE","Didaktik-Kompass","Zwei Modelle, ein Ziel: Alle Schüler:innen bekommen Zugang, Wahl und Tiefe im Lernen. Alles ist freiwillig und kann angepasst werden.",`<button class="secondary"onclick="pp12KompassDrucken()">Als A4 drucken</button>`)}
  <style>
   .dk-saetze{display:grid;gap:10px;margin:0 0 6px}.dk-satz{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:15px;line-height:1.45}
@@ -4298,7 +3996,7 @@ function ppTeilWochen(ph,teil){
  return(teil==="projekt"?ph.projektSchulwochen:ph.aptSchulwochen).map(swById);
 }
 function ppTeilName(teil,ph){return teil==="projekt"?(ph?.einstieg?"Einstieg":"Projekt"):"Abschlussprüfungs-Training";}
-function ppTeilIcon(teil,ph){return teil==="projekt"?(ph?.einstieg?"🧪":"🔬"):"🎓";}
+function ppTeilIcon(teil,ph){return teil==="projekt"?(ph?.einstieg?"":""):"";}
 
 // Einstieg (LB 1): Weg in 4 Schritten (Inhalt 1 → Inhalt 7/8 → interaktive Stunde → Abschluss Inhalt 9/10).
 // get(wocheId) liefert das Fortschrittsdokument der Person (Schüler:in-Map oder Lehrkraft-Liste).
@@ -4412,7 +4110,7 @@ function ppTeilKachelHTML(ph,teil,fortschrittMap,meinTeam,heute){
    <div class="pp-teil-art"style="color:${c}">${ppTeilName(teil,ph)}${jetzt?" · JETZT":""}</div>
    <div class="pp-teil-titel">${esc(teil==="projekt"?ph.titel:"Prüfungsinhalte "+ph.lb)}</div>
    <div class="pp-teil-meta">${detail}</div>
-   <div class="pp-budget">⏳ ${esc(budget.text)}</div>
+   <div class="pp-budget">${esc(budget.text)}</div>
    ${tempo?`<span class="pp-tempo"style="background:${tempo.farbe}">${esc(tempo.txt)}</span>`:""}
    ${ppWochenZellenHTML(wochen,c,heute)}
   </div>
@@ -4446,7 +4144,7 @@ function coFuerWoche(coDaten,w){
 function coAktionHTML(c,d){
  const a=d.meineAbgaben?.[c.id];
  if(isTeacher()){
-  const druck=`<button class="secondary"title="Test zum Ausdrucken (PDF)"onclick="coTestDruckId('${c.id}')">🖨 Ausdruck</button><button class="secondary"title="Test mit Lösung als PDF"onclick="coTestDruckId('${c.id}',true)">🖨 mit Lösung</button>`;
+  const druck=`<button class="secondary"title="Test zum Ausdrucken (PDF)"onclick="coTestDruckId('${c.id}')">Ausdruck</button><button class="secondary"title="Test mit Lösung als PDF"onclick="coTestDruckId('${c.id}',true)">mit Lösung</button>`;
   return druck+(c.status==="entwurf"?`<button class="secondary"onclick="openCheckoutEditor('${c.id}')">Bearbeiten</button><button class="primary"onclick="coLiveStarten('${c.id}')">▶ Live freischalten</button>`
    :c.status==="live"?`<button class="primary"onclick="openCheckoutMonitor('${c.id}')">Live-Übersicht</button>`
    :`<button class="secondary"onclick="openCheckoutErgebnisse('${c.id}')">Ergebnisse</button>`);
@@ -4478,11 +4176,11 @@ function ppKprimBereichHTML(ph,teil,coDaten,heute){
   if(co)rechts=coAktionHTML(co,d);
   else if(lehrer){
    const vls=CHECKOUT_VORLAGEN.filter(v=>v.datum===w.end);
-   rechts=vls.map((vl,k)=>`<button class="${k===0?"primary":"secondary"}"onclick="openCheckoutEditor(null,{datum:'${w.end}',lbNum:${ph.lbNum},vorlage:'${vl.id}'})">📋 Vorlage „${esc(vl.titel)}“ einsetzen</button>`).join("")
+   rechts=vls.map((vl,k)=>`<button class="${k===0?"primary":"secondary"}"onclick="openCheckoutEditor(null,{datum:'${w.end}',lbNum:${ph.lbNum},vorlage:'${vl.id}'})">Vorlage „${esc(vl.titel)}“ einsetzen</button>`).join("")
     +`<button class="${vls.length?"secondary":"primary"}"onclick="openCheckoutEditor(null,{datum:'${w.end}',lbNum:${ph.lbNum}})">＋ Check-out anlegen</button>`;
   }
   else rechts=`<small style="color:var(--muted)">${vorbei?"kein Check-out":"Deine Lehrkraft schaltet ihn am Freitag frei."}</small>`;
-  if(lehrer&&(co||CHECKOUT_VORLAGEN.some(v=>v.datum===w.end)))rechts=`<button class="secondary"onclick="openKprimVorschau(0,'${w.end}')">👁 Vorschau</button>`+rechts;
+  if(lehrer&&(co||CHECKOUT_VORLAGEN.some(v=>v.datum===w.end)))rechts=`<button class="secondary"onclick="openKprimVorschau(0,'${w.end}')">Vorschau</button>`+rechts;
   const st=co&&lehrer&&co.status==="beendet"&&stat[co.id]?` · ${stat[co.id].n} ausgewertet · Ø ${(stat[co.id].summe/stat[co.id].n).toFixed(1).replace(".",",")} Punkte`:"";
   return`<div class="co-zeile"><span class="co-lb">Fr ${fmtKurz(w.end)}</span>
    <div class="co-titel"><b>${co?esc(coTitelAnzeige(co)||"Check-out"):"Check-out"}</b><small>${co?`${(co.aufgaben||[]).length} K-Prim-Aufgaben${st}`:(()=>{const v0=CHECKOUT_VORLAGEN.find(v=>v.datum===w.end);return v0?`Vorlage: ${esc(coLabel(v0))} · ${(v0.aufgaben||[]).length} K-Prim-Aufgaben: ${esc(coVorlageInhalte(v0).join(" · "))}`:(CHECKOUT_MAX_AUFGABEN+" K-Prim-Aufgaben zu den Themen der Woche");})()}</small></div>
@@ -4497,7 +4195,7 @@ function ppKprimBereichHTML(ph,teil,coDaten,heute){
     <div class="co-titel"><b>${esc(coTitelAnzeige(c)||"Check-out")}</b><small>${coDatum(c.datum)} · ${t?`${t.n} ausgewertet · Ø ${(t.summe/t.n).toFixed(1).replace(".",",")} Punkte`:"noch keine Auswertung"}</small></div>
     <div class="co-aktion"><button class="secondary"onclick="openCheckoutErgebnisse('${c.id}')">Ergebnisse</button><button class="secondary"onclick="coPdfKlasse('${c.id}')">PDF Klasse</button></div></div>`;}).join("")||`<div class="empty">Noch kein Check-out beendet. Die Ergebnisse erscheinen hier, sobald du einen Test beendet hast.</div>`}</div>`;
   ersatz=`<div class="co-ersatz"><div><b>Kurzarbeit-Ersatz</b><small>Schüler:innen wählen ${d.einst.anzahlWaehlen} Tests aus ihrer Bibliothek · ${esc(coAuswahlStatus(d.einst).text)}</small></div>
-   <div class="co-aktion"><button class="primary"onclick="openKprimUebersicht()">🗂 Alle Freitage &amp; Vorschau</button><button class="secondary"onclick="openCheckoutEinstellungen()">Einstellungen</button><button class="secondary"onclick="openCheckoutKlassenuebersicht()">Ergebnisse je Schüler:in</button><button class="secondary"onclick="coPdfRespizienzKlasse()">PDF Respizienz Klasse</button></div></div>`;
+   <div class="co-aktion"><button class="primary"onclick="openKprimUebersicht()">Alle Freitage &amp; Vorschau</button><button class="secondary"onclick="openCheckoutEinstellungen()">Einstellungen</button><button class="secondary"onclick="openCheckoutKlassenuebersicht()">Ergebnisse je Schüler:in</button><button class="secondary"onclick="coPdfRespizienzKlasse()">PDF Respizienz Klasse</button></div></div>`;
  }else{
   const fertig=(d.checkouts||[]).filter(c=>d.meineAbgaben?.[c.id]?.abgegeben);
   mitte=`<div class="kicker pp-kp-h">MEINE ABGESCHLOSSENEN CHECK-OUTS (${fertig.length})</div>
@@ -4515,7 +4213,7 @@ function ppKprimBereichHTML(ph,teil,coDaten,heute){
    <div class="co-aktion">${aktion}${d.auswahl?`<button class="secondary"onclick="coPdfRespizienz()">PDF Auswahl</button>`:""}${fertig.length?`<button class="secondary"onclick="coPdfSchuelerAlle()">PDF alle Ergebnisse</button>`:""}</div></div>`;
  }
  return`<div class="card co-karte pp-kp">
-  <div class="co-kopf"><div><h3>🏁 K-Prim-Aufgaben · Check-out am Freitag</h3><small>Ein Test besteht aus einer Fallvignette und ${CHECKOUT_MAX_AUFGABEN} K-Prim-Aufgaben (je 4 Aussagen richtig oder falsch) zu den Themen der Woche${themen?` (${esc(themen)})`:""}. Deine Lehrkraft schaltet ihn live frei, ausgewertet wird in Notenpunkten nach dem P/P-Bewertungsschlüssel.</small></div></div>
+  <div class="co-kopf"><div><h3>K-Prim-Aufgaben · Check-out am Freitag</h3><small>Ein Test besteht aus einer Fallvignette und ${CHECKOUT_MAX_AUFGABEN} K-Prim-Aufgaben (je 4 Aussagen richtig oder falsch) zu den Themen der Woche${themen?` (${esc(themen)})`:""}. Deine Lehrkraft schaltet ihn live frei, ausgewertet wird in Notenpunkten nach dem P/P-Bewertungsschlüssel.</small></div></div>
   <div class="kicker pp-kp-h">FREITAGE IN DIESER ETAPPE</div>
   <div class="co-liste">${fr}</div>
   ${mitte}
@@ -4537,7 +4235,7 @@ function ppNaechsterSchrittHTML(fortschrittMap,heute){
   <div class="kicker">DEIN NÄCHSTER SCHRITT</div>
   ${e?`<button type="button"class="pp-next-btn"onclick="openLehrplanEinheit('paedagogik','${e.id}')"><span>${ppTeilIcon(aktuell.teil,aktuell.ph)}</span><span><small>${esc(aktuell.ph.lb)} · ${ppTeilName(aktuell.teil,aktuell.ph)}</small><strong>${esc(e.thema)}</strong></span><span>→</span></button>`
    :`<p style="margin:6px 0 0">Im aktuellen Abschnitt (${esc(aktuell.ph.lb)} · ${ppTeilName(aktuell.teil,aktuell.ph)}) ist alles erledigt. Stark!</p>`}
-  ${rueckstand.length?`<p style="font-size:12px;color:#b3541e;margin:10px 0 0">⚠︎ Noch offen aus früheren Abschnitten: ${rueckstand.map(x=>`<a href="javascript:void 0"onclick="openPhaseDetail('${x.ph.id}:${x.teil}')">${esc(x.ph.lb)} ${ppTeilName(x.teil,x.ph)} (${offen(x).length})</a>`).join(", ")}</p>`:""}
+  ${rueckstand.length?`<p style="font-size:12px;color:#b3541e;margin:10px 0 0">︎ Noch offen aus früheren Abschnitten: ${rueckstand.map(x=>`<a href="javascript:void 0"onclick="openPhaseDetail('${x.ph.id}:${x.teil}')">${esc(x.ph.lb)} ${ppTeilName(x.teil,x.ph)} (${offen(x).length})</a>`).join(", ")}</p>`:""}
  </div>`;
 }
 
@@ -5158,7 +4856,7 @@ async function renderPPModulplan(){
  const leer=!PPM.liste.length;
  const fehler=PPM.fehler?`<div class="empty"><strong>Der Modulplan konnte nicht geladen werden.</strong>${esc(PPM.fehler==="permission-denied"?"Firebase verweigert den Zugriff (permission-denied). Die Firestore-Regeln für den Modulplan sind noch nicht veröffentlicht.":"Fehler: "+PPM.fehler)}</div>`:"";
  const coBox=co?`${checkoutLiveBannerHTML(co)}<details class="ppm-box ppm-details"><summary>Check-outs (K-Prim-Tests)</summary><div style="margin-top:10px">${checkoutSektionHTML(co)}</div></details>`:"";
- return`<button class="secondary" onclick="closeFach()">← Zurück zu den Fächern</button>
+ return`<button class="secondary" onclick="closeFach()">← Zurück zu den Lernplänen</button>
  ${pageHead("PÄDAGOGIK/PSYCHOLOGIE","Modulplan",lehrer?"Plane Woche für Woche, welches Modul in welchem Lernbereich dran ist. Wähle unten ein Modul oder klicke bei einer Woche auf „＋ Modul“.":"Dein Plan durchs Schuljahr: Klicke ein Modul an, um loszulegen.",
   lehrer?`<button class="secondary" onclick="openProjektGesamtcheck()"> Projekt-Gesamtcheck</button> <button class="secondary" onclick="openFachaufsatzTrainingCheck()"> APT-Gesamtcheck</button>`:"")}
  ${PPM_CSS}${fehler}${coBox}${standBox}${legende}
@@ -5556,7 +5254,7 @@ function ppmKopf(m,unter,extraBtn){
  ${PPM_CSS}
  <div class="ppm-box ppm-kopf" style="--c:${c}"><div class="kicker" style="color:${c}">${T.icon} ${esc((T.art||T.kurz).toUpperCase())} · LB${m.lb} · ${zeit} · ${esc(ppmDauerDef(m).lang.toUpperCase())}</div>
   <h1 style="margin:4px 0 6px;font-size:26px">${esc(ppmTitel(m)||T.name)}</h1>${m.notiz?`<p>${esc(m.notiz)}</p>`:""}${unter||""}
-  ${isTeacher()?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button type="button" class="ppm-btn klein" data-ppm="bearbeiten" data-id="${esc(m.id)}">✎ Modul bearbeiten</button>${extraBtn||""}</div>`:""}</div>${lbModulBar(m)}${ppmMaterialBox(m)}`;
+  ${isTeacher()?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px"><button type="button" class="ppm-btn klein" data-ppm="bearbeiten" data-id="${esc(m.id)}">Modul bearbeiten</button>${extraBtn||""}</div>`:""}</div>${lbModulBar(m)}${ppmMaterialBox(m)}`;
 }
 // ---- Projekt ----
 async function ppmProjektSeite(m){
@@ -6575,12 +6273,12 @@ if(!window.__ppmDndGebunden){
 // Link in den QR-Codes: <App-Adresse>?lr=<Modul-ID>.<Stationscode>. Keine Karte, kein Offline-Modus.
 // ============================================================
 const LR_TYPEN={
- info:{icon:"ℹ️",name:"Info-Station",text:"Text zum Lesen, ohne Bewertung."},
- wahl:{icon:"🔘",name:"Auswahlfrage",text:"Eine richtige Antwort aus mehreren."},
- kprim:{icon:"✅",name:"K-Prim-Aufgabe",text:"Vier Aussagen: richtig oder falsch."},
- text:{icon:"✏️",name:"Kurze Antwort",text:"Ein Wort oder eine Zahl, automatisch geprüft."},
- zuordnen:{icon:"🔗",name:"Zuordnen",text:"Begriffe den passenden Erklärungen zuordnen."},
- frei:{icon:"💬",name:"Freitext",text:"Eigene Antwort schreiben, die Lehrkraft liest sie."}
+ info:{icon:"ℹ",name:"Info-Station",text:"Text zum Lesen, ohne Bewertung."},
+ wahl:{icon:"",name:"Auswahlfrage",text:"Eine richtige Antwort aus mehreren."},
+ kprim:{icon:"✓",name:"K-Prim-Aufgabe",text:"Vier Aussagen: richtig oder falsch."},
+ text:{icon:"",name:"Kurze Antwort",text:"Ein Wort oder eine Zahl, automatisch geprüft."},
+ zuordnen:{icon:"",name:"Zuordnen",text:"Begriffe den passenden Erklärungen zuordnen."},
+ frei:{icon:"",name:"Freitext",text:"Eigene Antwort schreiben, die Lehrkraft liest sie."}
 };
 const LR_PUNKTE_STD={info:0,wahl:10,kprim:12,text:10,zuordnen:10,frei:5};
 const LR_FREISCHALTUNG={offen:"Alle Stationen sind von Anfang an offen",reihe:"Die Stationen der Reihe nach",qr:"Mit QR-Code an der Station (Code scannen oder eingeben)"};
@@ -6741,11 +6439,11 @@ async function ppmRallyeSeite(m){
  const punkte=Object.values(stand.erg).reduce((n,x)=>n+(Number(x.p)||0),0);
  const zeilen=stationen.map((st,i)=>{
   const T=LR_TYPEN[st.typ]||LR_TYPEN.info,e=stand.erg[st.id],offen=lrOffen(m,stand,i);
-  const sub=e?`✓ ${e.p} von ${e.max} Punkten`:(offen?`${esc(T.name)} · ${Number(st.punkte)||0} Punkte`:(frei==="qr"?"🔒 Code an der Station scannen":"🔒 Erst die Station davor lösen"));
+  const sub=e?`✓ ${e.p} von ${e.max} Punkten`:(offen?`${esc(T.name)} · ${Number(st.punkte)||0} Punkte`:(frei==="qr"?"Code an der Station scannen":"Erst die Station davor lösen"));
   return`<div class="lr-st${e?" fertig":(offen?"":" zu")}"><span class="ppm-snr">${i+1}</span><span class="lr-ic">${T.icon}</span><div style="flex:1;min-width:150px"><b>${esc(offen?st.titel:(frei==="qr"?"Station "+(i+1):st.titel))}</b><br><small>${sub}</small></div>${offen?`<button type="button" class="ppm-btn${e?"":" primaer"}" data-lr="station" data-sid="${esc(st.id)}">${e?"Ansehen":"Öffnen"}</button>`:""}</div>`;
  }).join("");
  const codeBox=frei==="qr"?`<div class="ppm-box"><h2>Station freischalten</h2><p style="color:var(--muted);font-size:13px">Scanne den QR-Code an der Station oder gib den Code ein, der unter dem QR-Code steht.</p>
-  <div class="lr-code"><button type="button" class="ppm-btn primaer" data-lr="scan">📷 QR-Code scannen</button><input id="lrCode" maxlength="12" placeholder="LR-XXXXX" autocomplete="off" aria-label="Stationscode"><button type="button" class="ppm-btn" data-lr="code">Freischalten</button></div></div>`:"";
+  <div class="lr-code"><button type="button" class="ppm-btn primaer" data-lr="scan">QR-Code scannen</button><input id="lrCode" maxlength="12" placeholder="LR-XXXXX" autocomplete="off" aria-label="Stationscode"><button type="button" class="ppm-btn" data-lr="code">Freischalten</button></div></div>`:"";
  return`${LR_CSS}${kopf}
  <div class="ppm-box"><div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap"><div class="lr-punkte">${punkte}<small>von ${lrMax(m)} Punkten</small></div><div><b>${fo.f} von ${fo.n} Stationen</b>${modus==="team"?`<br><small style="color:var(--muted)">Team: ${esc(stand.team)}</small>`:""}</div>${fo.done?`<span class="ppm-status ok">Alle Stationen geschafft ✓</span>`:""}</div></div>
  ${codeBox}
@@ -6844,13 +6542,13 @@ function lrLehrerHTML(m){
    <button type="button" class="ppm-btn klein" data-lr="station" data-sid="${esc(st.id)}">Ausprobieren</button>
    <button type="button" class="ppm-btn klein" data-lr="st-auf" data-sid="${esc(st.id)}" title="Nach oben"${i===0?" disabled":""}>↑</button>
    <button type="button" class="ppm-btn klein" data-lr="st-ab" data-sid="${esc(st.id)}" title="Nach unten"${i===stationen.length-1?" disabled":""}>↓</button>
-   <button type="button" class="ppm-btn klein" data-lr="st-edit" data-sid="${esc(st.id)}" title="Station bearbeiten">✎</button>
+   <button type="button" class="ppm-btn klein" data-lr="st-edit" data-sid="${esc(st.id)}" title="Station bearbeiten"></button>
    <button type="button" class="ppm-btn klein" data-lr="st-weg" data-sid="${esc(st.id)}" title="Station löschen">✕</button></div>`;
  }).join("");
  return`<div class="ppm-box"><h2>Steuerung</h2>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="ppm-status${m.rAktiv?" ok":""}">${m.rAktiv?"Rallye läuft":"Rallye noch nicht gestartet"}</span>
    <button type="button" class="ppm-btn ${m.rAktiv?"":"primaer"}" data-lr="aktiv">${m.rAktiv?"Rallye beenden":"▶ Rallye starten"}</button>
-   <button type="button" class="ppm-btn" data-lr="auswertung">📊 Auswertung</button>${frei==="qr"?`<button type="button" class="ppm-btn" data-lr="qr-druck">🖨 QR-Codes drucken</button>`:""}</div>
+   <button type="button" class="ppm-btn" data-lr="auswertung">Auswertung</button>${frei==="qr"?`<button type="button" class="ppm-btn" data-lr="qr-druck">QR-Codes drucken</button>`:""}</div>
   <p style="color:var(--muted);font-size:13px;margin:8px 0 0">Freischaltung: ${esc(LR_FREISCHALTUNG[frei])}. Einstellungen änderst du über „Modul bearbeiten“. Schüler:innen sehen die Rallye erst, wenn du sie startest.</p></div>
  <div class="ppm-box"><h2>Stationen</h2>${zeilen||`<p class="ppm-leer">Noch keine Station. Lege die erste an.</p>`}
   <div class="ppm-zeile" style="border:0"><button type="button" class="ppm-btn primaer" data-lr="st-neu">＋ Station hinzufügen</button></div></div>`;
@@ -6894,7 +6592,7 @@ function lrStationDialog(m,sid){
   if(st.typ==="frei")typ=`<label>Frage</label><textarea id="lrsFrage" rows="2">${esc(st.frage||"")}</textarea>
    <p style="font-size:13px;color:var(--muted)">Für den Freitext gibt es die volle Punktzahl, sobald eine Antwort abgegeben ist. Du siehst die Antworten in der Auswertung.</p>`;
   modal(`${LR_CSS}<button class="modal-close" onclick="closeModal()">×</button>
-   <div class="kicker">🚩 LERNRALLYE</div><h2>${alt?"Station bearbeiten":"Neue Station"}</h2>
+   <div class="kicker">LERNRALLYE</div><h2>${alt?"Station bearbeiten":"Neue Station"}</h2>
    <div class="lr-form">
     <label>Titel der Station</label><input type="text" id="lrsTitel" maxlength="100" value="${esc(st.titel)}" placeholder="z. B. Am Eingang der Aula">
     <div style="display:grid;grid-template-columns:2fr 1fr;gap:10px"><div><label>Art der Station</label><select id="lrsTyp">${Object.entries(LR_TYPEN).map(([k,T])=>`<option value="${k}"${k===st.typ?" selected":""}>${T.icon} ${esc(T.name)}</option>`).join("")}</select></div>
@@ -6952,7 +6650,7 @@ async function lrAuswertungDialog(m){
   const antw=(st.typ==="frei"||st.typ==="text")?erg.map(x=>`<li><b>${esc(x.d.name||"")}:</b> ${esc(String(x.e.a||"")).replace(/\n/g,"<br>")}</li>`).join(""):"";
   return`<div style="margin:0 0 10px"><b>${i+1}. ${esc(st.titel)}</b> <small style="color:var(--muted)">${T.icon} ${esc(T.name)} · ${erg.length} Antwort${erg.length===1?"":"en"}${st.typ!=="info"&&st.typ!=="frei"?` · ${richtig} ganz richtig, ${falsch} nicht ganz richtig`:""}</small>${antw?`<ul style="margin:4px 0 0 18px;font-size:13px">${antw}</ul>`:""}</div>`;
  }).join("");
- modal(`${LR_CSS}<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">🚩 LERNRALLYE</div><h2>Auswertung</h2>
+ modal(`${LR_CSS}<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">LERNRALLYE</div><h2>Auswertung</h2>
   <div class="lr-form"><h3 style="margin:8px 0 4px;font-size:15px">Personen</h3>${personen}<h3 style="margin:14px 0 4px;font-size:15px">Stationen</h3>${proStation||`<p class="ppm-leer">Keine Stationen.</p>`}
   <div class="form-actions"><button class="secondary" type="button" onclick="closeModal()">Schließen</button></div></div>`);
 }
@@ -6979,7 +6677,7 @@ function lrQrDruck(m){
  .kl{font-size:14pt;color:#555}h1{font-size:34pt;margin:6mm 0 8mm}img{width:120mm;height:120mm}
  .un{font-size:14pt;margin:6mm 0 2mm}.cd{font-size:30pt;font-weight:700;letter-spacing:.08em;margin:0}
  .bar{background:#f3f3f3;padding:10px 12px;border-radius:8px;margin:8px;font-size:13px}@media print{.bar{display:none}}
- </style></head><body><div class="bar"><button onclick="window.print()" style="font-size:15px;padding:8px 14px">🖨 Drucken</button> Je eine Seite pro Station, die erste Seite ist der Start der Rallye. Die Stationen können auch kleiner ausgeschnitten werden.</div>${seiten.join("")}</body></html>`);
+ </style></head><body><div class="bar"><button onclick="window.print()" style="font-size:15px;padding:8px 14px">Drucken</button> Je eine Seite pro Station, die erste Seite ist der Start der Rallye. Die Stationen können auch kleiner ausgeschnitten werden.</div>${seiten.join("")}</body></html>`);
  win.document.close();
 }
 // ---- QR-Code scannen ----
@@ -6994,7 +6692,7 @@ async function lrScannen(m,stand){
  let stream=null,lauf=true;
  const ende=()=>{lauf=false;if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}window.__lrScanStop=null;};
  window.__lrScanStop=ende;
- modal(`${LR_CSS}<button class="modal-close" id="lrScanX">×</button><div class="kicker">📷 SCANNEN</div><h2>QR-Code an der Station scannen</h2><video id="lrVideo" class="lr-video" playsinline muted></video><canvas id="lrCanvas" hidden></canvas><p id="lrScanInfo" style="color:var(--muted);font-size:13px">Halte die Kamera auf den QR-Code. Der Browser fragt, ob die Kamera benutzt werden darf.</p><div class="form-actions"><button class="secondary" type="button" id="lrScanAb">Abbrechen</button></div>`);
+ modal(`${LR_CSS}<button class="modal-close" id="lrScanX">×</button><div class="kicker">SCANNEN</div><h2>QR-Code an der Station scannen</h2><video id="lrVideo" class="lr-video" playsinline muted></video><canvas id="lrCanvas" hidden></canvas><p id="lrScanInfo" style="color:var(--muted);font-size:13px">Halte die Kamera auf den QR-Code. Der Browser fragt, ob die Kamera benutzt werden darf.</p><div class="form-actions"><button class="secondary" type="button" id="lrScanAb">Abbrechen</button></div>`);
  const zu=()=>{ende();closeModal();};
  $("lrScanX").onclick=zu;$("lrScanAb").onclick=zu;
  try{stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});}
@@ -7136,7 +6834,7 @@ function ppPauseZwischen(nachDatum,vorDatum){
  const f=FERIEN_2026_27.find(x=>x.start>nachDatum&&x.start<vorDatum);
  if(!p&&!f)return null;
  const titel=[p&&p.titel.replace("Praktikum – B-Block – ","Praktikum "),f&&f.titel].filter(Boolean).join(" + ");
- return{icon:p?(p.icon||"🏥"):"🌴",titel};
+ return{icon:p?(p.icon||""):"",titel};
 }
 function ppStationHTML(x,i,teile,fortschrittMap,meineTeams,heute,aktIdx){
  const {ph,teil}=x,c=ppFarbe(ph);
@@ -7191,7 +6889,7 @@ function ppDieseWocheHTML(x,fortschrittMap,meineTeams,heute){
  let ms="";
  if(teil==="projekt"&&!isTeacher()&&ph.einstieg){
   const done=!!fortschrittMap[ph.stundeWocheId]?.experimentErledigt;
-  ms=`<div class="pp-dw-ms">🧪 Interaktive Stunde „Das Experiment“: ${done?"gemacht ✓":"noch nicht abgeschlossen"}<button class="secondary"style="margin-top:6px"onclick="openExperimentStunde()">${done?"Stunde wiederholen":"Stunde starten"}</button></div>`;
+  ms=`<div class="pp-dw-ms">Interaktive Stunde „Das Experiment“: ${done?"gemacht ✓":"noch nicht abgeschlossen"}<button class="secondary"style="margin-top:6px"onclick="openExperimentStunde()">${done?"Stunde wiederholen":"Stunde starten"}</button></div>`;
  }else if(teil==="projekt"&&!isTeacher()){
   const team=meineTeams[ph.id],nx=team?msNaechster(ph,team,team._beitraege):null;
   const meinFehlt=nx&&nx.i>0&&!nx.st.beitraege.some(b=>b.uid===currentUser.uid);
@@ -7238,13 +6936,13 @@ function renderPPJahresuebersicht(fortschrittMap,meineTeams,heute,coDaten){
  const gesamtProzent=gesamt.g?Math.round(gesamt.e/gesamt.g*100):0;
  const teile=ppAlleTeile(),aktIdx=ppAktuellerIndex(heute),akt=teile[aktIdx];
  const unter=isTeacher()?"Acht Stationen durchs Schuljahr: je Lernbereich ein Projekt und ein Prüfungstraining.":`Acht Stationen durchs Schuljahr. Der Ring zeigt, wie viel du geschafft hast – ${gesamtProzent} % deines Jahres.`;
- return`<button class="secondary"onclick="closeFach()">← Zurück zu den Fächern</button>
- ${pageHead("LERNPFAD","Pädagogik/Psychologie",unter,isTeacher()?`<button class="secondary"onclick="openProjektGesamtcheck()">🔬 Projekt-Gesamtcheck</button> <button class="secondary"onclick="openFachaufsatzTrainingCheck()">🎓 APT-Gesamtcheck</button>`:"")}
+ return`<button class="secondary"onclick="closeFach()">← Zurück zu den Lernplänen</button>
+ ${pageHead("LERNPFAD","Pädagogik/Psychologie",unter,isTeacher()?`<button class="secondary"onclick="openProjektGesamtcheck()">Projekt-Gesamtcheck</button> <button class="secondary"onclick="openFachaufsatzTrainingCheck()">APT-Gesamtcheck</button>`:"")}
  ${checkoutLiveBannerHTML(coDaten)}
  <div class="card pp-weg-card">
   <div class="pp-weg-lbs">${PROJEKT_PHASEN.map(ph=>{const c=ppFarbe(ph);return`<div style="background:${ppMix(c,.14)};color:${c}"><b>Lernbereich ${ph.lbNum}</b><span>${esc(ph.lbTitel)}</span></div>`}).join("")}</div>
   <div class="pp-weg">${teile.map((x,i)=>ppStationHTML(x,i,teile,fortschrittMap,meineTeams,heute,aktIdx)).join("")}</div>
-  <div class="pp-legende"><span>🔬 Projekt: Inhalte abhaken und Team-Meilensteine</span><span>🎓 Prüfungstraining: je Inhalt 4 Schritte bis zur umgesetzten Vorkorrektur</span><span>🏁 Check-out: K-Prim-Test am Ende der Woche</span><span>- - - Pause durch Praktikum 🏫🏥 oder Ferien 🌴</span></div>
+  <div class="pp-legende"><span>Projekt: Inhalte abhaken und Team-Meilensteine</span><span>Prüfungstraining: je Inhalt 4 Schritte bis zur umgesetzten Vorkorrektur</span><span>Check-out: K-Prim-Test am Ende der Woche</span><span>- - - Pause durch Praktikum oder Ferien </span></div>
  </div>
  <div class="pp-weg-karten${isTeacher()?" lehrkraft":""}">
   ${ppDieseWocheHTML(akt,fortschrittMap,meineTeams,heute)}
@@ -7287,13 +6985,13 @@ function renderPPTeilAnsicht(ph,teil,fortschrittMap,meineTeams,heute,extra={}){
    return`<div class="pp-einheit${fertig?" fertig":""}"style="--c:${c}"onclick="openLehrplanEinheit('paedagogik','${id}')">
     <span class="pp-einheit-haken">${fertig?"✓":i+1}</span>
     <div style="flex:1"><strong>${esc(e.thema)}</strong><small>Inhalt Nr. ${esc(e.nr)} · ${fertig?"abgeschlossen":begonnen?"in Arbeit":"noch offen"}</small>
-    ${apt.length?`<small class="pp-bezug">🎓 wird vertieft im Abschlussprüfungs-Training: ${apt.map(a=>`<a href="javascript:void 0"onclick="event.stopPropagation();openAptDetail('${a.id}')">${esc(a.thema)}</a>`).join(" · ")}</small>`:""}</div>
+    ${apt.length?`<small class="pp-bezug">wird vertieft im Abschlussprüfungs-Training: ${apt.map(a=>`<a href="javascript:void 0"onclick="event.stopPropagation();openAptDetail('${a.id}')">${esc(a.thema)}</a>`).join(" · ")}</small>`:""}</div>
     <span>→</span>
    </div>`;}).join("")}
   <div class="kicker"style="margin:18px 0 8px">PROJEKT-MEILENSTEINE ${meinTeam?`· TEAM „${esc(meinTeam.teamName)}“`:""}</div>
   ${meinTeam?`<p class="ms-info">Team-Meilensteine erreicht: <b>${msErreichtAnzahl(ph,meinTeam,meinTeam._beitraege)}/${ph.meilensteine.length}</b> · deine Beiträge: <b>${eig.n}/${eig.g}</b>. Ein Meilenstein ist erreicht, wenn alle aus dem Team ihren Beitrag eingetragen haben – bei „Lehrkraft bestätigt“ zusätzlich nach dem OK der Lehrkraft.</p>
    ${msListeHTML(ph,meinTeam,meinTeam._beitraege,"seite")}`
-  :isTeacher()?`<div class="empty">Die Meilensteine aller Teams siehst und bestätigst du im Projekt-Gesamtcheck. <button class="primary"style="margin-top:8px"onclick="openProjektGesamtcheck()">🔬 Projekt-Gesamtcheck</button></div>`
+  :isTeacher()?`<div class="empty">Die Meilensteine aller Teams siehst und bestätigst du im Projekt-Gesamtcheck. <button class="primary"style="margin-top:8px"onclick="openProjektGesamtcheck()">Projekt-Gesamtcheck</button></div>`
   :`<div class="empty">Du bist noch in keinem Projektteam. <button class="primary"style="margin-top:8px"onclick="openWocheDetail('paedagogik','${ph.notwendigeWochen[0]}','team')">Team gründen oder beitreten</button></div>`}`;
  }else{
   inhalt=`<div class="kicker"style="margin:18px 0 8px">PRÜFUNGSINHALTE – je Inhalt 4 Schritte</div>
@@ -7306,9 +7004,9 @@ function renderPPTeilAnsicht(ph,teil,fortschrittMap,meineTeams,heute,extra={}){
     <small style="color:${c};font-weight:800">Inhalt Nr. ${esc(e.nr)} · ${n}/${APT_TABS.length}</small>
     <strong>${esc(e.thema)}</strong>
     <div class="pp-schritte">${s.map((d,i)=>`<span class="${d?"done":""}"style="${d?`background:${c};border-color:${c}`:""}"title="${esc(APT_SCHRITT_LABELS[i])}">${d?"✓":i+1}</span>`).join("")}</div>
-    ${(e.bezug||[]).length?`<small class="pp-bezug">🔗 baut auf dem Projekt auf: ${(e.bezug||[]).map(b=>`<a href="javascript:void 0"onclick="event.stopPropagation();openWocheDetail('paedagogik','${b}')">${esc(lehrplanWocheById("paedagogik",b)?.thema||b)}</a>`).join(" · ")}</small>`:""}
+    ${(e.bezug||[]).length?`<small class="pp-bezug">baut auf dem Projekt auf: ${(e.bezug||[]).map(b=>`<a href="javascript:void 0"onclick="event.stopPropagation();openWocheDetail('paedagogik','${b}')">${esc(lehrplanWocheById("paedagogik",b)?.thema||b)}</a>`).join(" · ")}</small>`:""}
    </div>`;}).join("")}</div>
-  <p style="font-size:11px;color:var(--muted);margin-top:10px">① Prüfungsfrage · ② Inhalte & Aufgabeneingrenzung · ③ Basis-Check · ④ Lernprodukt hochladen & Vorkorrektur umsetzen. Den K-Prim-Test schreibst du als 🏁 Check-out am Ende der Woche.</p>`;
+  <p style="font-size:11px;color:var(--muted);margin-top:10px">① Prüfungsfrage · ② Inhalte & Aufgabeneingrenzung · ③ Basis-Check · ④ Lernprodukt hochladen & Vorkorrektur umsetzen. Den K-Prim-Test schreibst du als Check-out am Ende der Woche.</p>`;
  }
  return`<button class="secondary"onclick="closePhaseDetail()">← Zurück zum Unterrichtsplan</button>
  ${kopf}
@@ -7337,7 +7035,7 @@ function ppStundeKarteHTML(ph,fortschrittMap,c){
  const vorErl=vor.filter(x=>x.done).length;
  const hinweis=lehrer||!st||!vor.length?"":`<p class="pp-stunde-status">Vorher erledigt: ${vorErl} von ${vor.length}${!done&&vorErl<vor.length?" · empfohlen: erst die Schritte davor abschließen":""}</p>`;
  return`<div class="pp-stunde${done?" fertig":""}"style="--c:${c}">
-  <div class="pp-stunde-icon">🧪</div>
+  <div class="pp-stunde-icon"></div>
   <div style="flex:1;min-width:200px"><div class="kicker"style="color:${c};margin:0 0 2px">${st?`SCHRITT ${st.nr} · `:""}INTERAKTIVE STUNDE · ca. eine Doppelstunde</div><h3>Das Experiment</h3>
    <p>Kaugummi-Versuch in Kleingruppen, Klassenvergleich, Merkmale eines Experiments, Anwendungsaufgaben und Abschlussquiz.</p>
    ${lehrer?"":`<p class="pp-stunde-status">${done?"✓ Abgeschlossen":"Noch nicht abgeschlossen"}</p>`}${hinweis}</div>
@@ -7371,7 +7069,7 @@ function ppEinstiegInhaltHTML(ph,fortschrittMap,c,stunde){
  }
  return`<div class="kicker"style="margin:0 0 8px">SO GEHT'S · ${sch.length} SCHRITTE</div>
  <div class="pp-weg-liste">${weg}</div>
- <div class="pp-weiter"style="--c:${c}"><span>🎓</span><div><b>Weitere Inhalte</b><small>Die Pädagogik-Inhalte dieses Lernbereichs findest du im Abschlussprüfungs-Training.</small></div>
+ <div class="pp-weiter"style="--c:${c}"><span></span><div><b>Weitere Inhalte</b><small>Die Pädagogik-Inhalte dieses Lernbereichs findest du im Abschlussprüfungs-Training.</small></div>
   <button type="button"class="secondary"onclick="openPhaseDetail('${ph.id}:apt')">Zum Abschlussprüfungs-Training →</button></div>
  ${lehrer}`;
 }
@@ -7390,7 +7088,7 @@ window.ppMeilensteinSetzen=ppMeilensteinSetzen;
 async function stundeKarteHTML(f){
  const done=!!f?.experimentErledigt,lehrer=isTeacher();
  return`<div class="pp-stunde${done?" fertig":""}"style="--c:#3F7FC1;margin-bottom:14px">
-  <div class="pp-stunde-icon">🧪</div>
+  <div class="pp-stunde-icon"></div>
   <div style="flex:1;min-width:180px"><div class="kicker"style="color:#3F7FC1;margin:0 0 2px">INTERAKTIVE STUNDE</div><h3>Das Experiment</h3>
    ${lehrer?"":`<p class="pp-stunde-status">${done?"✓ Abgeschlossen":"Noch nicht abgeschlossen"}</p>`}</div>
   <div class="pp-stunde-akt"><button class="primary"onclick="openExperimentStunde()">${lehrer?"Stunde öffnen":done?"Stunde wiederholen":"Stunde starten"}</button></div>
@@ -7420,7 +7118,7 @@ function openExperimentStunde(teile){
  const quelle=EXPERIMENT_URL+(Array.isArray(teile)&&teile.length?`?teile=${encodeURIComponent(teile.join(","))}`:"");
  const ov=document.createElement("div");
  ov.id="experimentOverlay";ov.className="exp-overlay";
- ov.innerHTML=`<div class="exp-leiste"><b>🧪 Das Experiment · interaktive Stunde</b><button type="button"class="secondary"onclick="closeExperimentStunde()">✕ Schließen</button></div><iframe id="experimentFrame"title="Das Experiment – interaktive Stunde"src="${quelle}"></iframe>`;
+ ov.innerHTML=`<div class="exp-leiste"><b>Das Experiment · interaktive Stunde</b><button type="button"class="secondary"onclick="closeExperimentStunde()">✕ Schließen</button></div><iframe id="experimentFrame"title="Das Experiment – interaktive Stunde"src="${quelle}"></iframe>`;
  document.body.appendChild(ov);
  document.body.classList.add("exp-offen");
  if(experimentHandler){window.removeEventListener("message",experimentHandler);}
@@ -7682,7 +7380,7 @@ async function openAptDetail(wocheId,tab){
 
  // ③ Fachaufsatz üben
  const hatText=!!(fortschritt.aufsatzText||"").trim();
- const fobizzBtn=fobizzUrl?`<a class="secondary"style="text-decoration:none;display:inline-block;padding:9px 14px;border-radius:9px;border:1px solid var(--line)"href="${esc(fobizzUrl)}"target="_blank"rel="noopener noreferrer">🤖 Fobizz-Assistent öffnen ↗</a>`:`<small style="color:var(--muted)">Der Link zum Fobizz-Assistenten wird von deiner Lehrkraft hinterlegt.</small>`;
+ const fobizzBtn=fobizzUrl?`<a class="secondary"style="text-decoration:none;display:inline-block;padding:9px 14px;border-radius:9px;border:1px solid var(--line)"href="${esc(fobizzUrl)}"target="_blank"rel="noopener noreferrer">Fobizz-Assistent öffnen ↗</a>`:`<small style="color:var(--muted)">Der Link zum Fobizz-Assistenten wird von deiner Lehrkraft hinterlegt.</small>`;
  const s3=lehrer?`<p style="font-size:13px;color:var(--muted);margin:0 0 8px">Die Schüler:innen schreiben ihren Text hier, kopieren ihn und lassen ihn im Fobizz-Assistenten korrigieren.</p>
    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">${fobizzUrl?`<a href="${esc(fobizzUrl)}"target="_blank"rel="noopener noreferrer">${esc(fobizzUrl)}</a>`:`<small style="color:var(--muted)">Noch kein Fobizz-Link hinterlegt.</small>`}<button class="secondary"onclick="stundeFobizzLinkAendern('${wocheId}')">Fobizz-Link ${fobizzUrl?"ändern":"hinterlegen"}</button></div>`
   :`<p style="font-size:13px;color:var(--muted);margin:0 0 8px">Beantworte die Prüfungsfrage als Fachaufsatz, lass deinen Text von der KI korrigieren und arbeite die Rückmeldung ein.</p>
@@ -7694,14 +7392,14 @@ async function openAptDetail(wocheId,tab){
 
  // ④ Feedback
  const wunsch=!!fortschritt.besprechungGewuenscht&&!fortschritt.besprechungErledigt;
- const s4=lehrer?`<p style="font-size:13px;color:var(--muted);margin:0">Die Schüler:innen halten fest, was sie aus der Rückmeldung mitnehmen, und können eine Besprechung wünschen. Im Klassenstand oben siehst du das mit 💬. Dort kannst du auch eine Rückmeldung schreiben.</p>`
+ const s4=lehrer?`<p style="font-size:13px;color:var(--muted);margin:0">Die Schüler:innen halten fest, was sie aus der Rückmeldung mitnehmen, und können eine Besprechung wünschen. Im Klassenstand oben siehst du das mit . Dort kannst du auch eine Rückmeldung schreiben.</p>`
   :`${fortschritt.lehrerFeedback?`<div class="card"style="border-left:4px solid #3fa66a;padding:10px 12px;margin-bottom:10px"><div class="kicker">RÜCKMELDUNG DEINER LEHRKRAFT</div><p style="margin:4px 0 0;white-space:pre-wrap;font-size:13px">${esc(fortschritt.lehrerFeedback)}</p></div>`:""}
    <label style="display:block;font-weight:700;font-size:12px">Was nimmst du aus der Rückmeldung mit? Was hast du überarbeitet?<textarea id="stFeedback"rows="4"style="width:100%;margin-top:4px"placeholder="z. B. Operator „erläutern“ mit Beispiel ergänzt, Fachbegriffe genauer verwendet …">${esc(fortschritt.feedbackText||"")}</textarea></label>
    <div class="form-actions"style="margin-top:8px;flex-wrap:wrap;justify-content:flex-start">
     ${fortschritt.feedbackErledigt?`<span class="st-fertig">✓ Rückmeldung eingearbeitet <button class="text-button"style="font-size:11px"onclick="aptSetzen('${wocheId}',{feedbackErledigt:false,vorkorrekturUmgesetzt:false},{tab:'feedback'})">zurücknehmen</button></span>`
      :`<button class="primary"onclick="stundeFeedbackAbschliessen('${wocheId}')">Ich habe die Rückmeldung eingearbeitet</button>`}
-    ${wunsch?`<span class="st-wunsch">💬 Besprechung gewünscht${fortschritt.besprechungAm?` (${stDatum(fortschritt.besprechungAm)})`:""}</span><button class="secondary"onclick="aptSetzen('${wocheId}',{besprechungGewuenscht:false},{tab:'feedback'})">Zurücknehmen</button>`
-     :`<button class="secondary"onclick="aptSetzen('${wocheId}',{besprechungGewuenscht:true,besprechungErledigt:false,besprechungAm:serverTimestamp()},{tab:'feedback'})">💬 Besprechung mit der Lehrkraft wünschen</button>`}
+    ${wunsch?`<span class="st-wunsch">Besprechung gewünscht${fortschritt.besprechungAm?` (${stDatum(fortschritt.besprechungAm)})`:""}</span><button class="secondary"onclick="aptSetzen('${wocheId}',{besprechungGewuenscht:false},{tab:'feedback'})">Zurücknehmen</button>`
+     :`<button class="secondary"onclick="aptSetzen('${wocheId}',{besprechungGewuenscht:true,besprechungErledigt:false,besprechungAm:serverTimestamp()},{tab:'feedback'})">Besprechung mit der Lehrkraft wünschen</button>`}
    </div>`;
 
  const sek=(i,titel,body,extra="")=>`<details class="st-schritt${!lehrer&&schritte[i]?" done":""}"${i===oeffne?" open":""}style="--c:${c}"><summary><span class="st-nr">${!lehrer&&schritte[i]?"✓":i+1}</span><b>${esc(titel)}</b></summary><div class="st-body">${body}${extra}</div></details>`;
@@ -7719,11 +7417,11 @@ async function openAptDetail(wocheId,tab){
     return`<tr><td>${esc(st.displayName||st.email||"Schüler/in")}</td>
      <td><span class="apt-dots">${sc.map((d,i)=>`<span class="apt-dot${d?" an":""}"style="${d?`background:${c};border-color:${c}`:""}"title="${esc(APT_SCHRITT_LABELS[i])}">${d?"✓":i+1}</span>`).join("")}</span></td>
      <td style="font-size:12px">${f?.einarbeitungAbgeschlossen?`${esc(stDatum(f.einarbeitungAm))}${ea?.gesamt?` · ${ea.richtig}/${ea.gesamt}`:""}`:"–"}</td>
-     <td>${wu?`<span title="Besprechung gewünscht">💬</span>`:""}</td>
+     <td>${wu?`<span title="Besprechung gewünscht"></span>`:""}</td>
      <td><button class="secondary"style="font-size:11px"onclick="openStundeSchueler('${wocheId}','${st.uid}')">Ansehen</button></td></tr>`;}).join("");
    const fertigN=klasse.students.filter(st=>aptSchritte(klasse.fs[st.uid]).every(Boolean)).length;
    klassenHTML=`<h3 class="apt-h3">Klassenstand · ${fertigN} von ${klasse.students.length} fertig</h3>
-    <div style="overflow-x:auto"><table class="ls-matrix"><thead><tr><th>Schüler:in</th><th>Schritte</th><th>Einarbeitung (Datum · Aufgaben)</th><th>💬</th><th></th></tr></thead><tbody>${zeilen||`<tr><td colspan="5">Keine Schüler:innen gefunden.</td></tr>`}</tbody></table></div>
+    <div style="overflow-x:auto"><table class="ls-matrix"><thead><tr><th>Schüler:in</th><th>Schritte</th><th>Einarbeitung (Datum · Aufgaben)</th><th></th><th></th></tr></thead><tbody>${zeilen||`<tr><td colspan="5">Keine Schüler:innen gefunden.</td></tr>`}</tbody></table></div>
     <small style="color:var(--muted)">Ansehen zeigt, was die Person in dieser Stunde gemacht hat, samt Aufsatztext.</small>`;
   }
  }
@@ -7740,7 +7438,7 @@ async function openAptDetail(wocheId,tab){
    ${sek(2,"Fachaufsatz üben",s3)}
    ${sek(3,"Feedback",s4)}
   </div>
-  <div class="apt-hinweis-checkout">🏁 Den K-Prim-Test zu diesem Lernbereich schreibst du als <b>Check-out</b> am Ende der Woche. Deine Lehrkraft schaltet ihn live frei.</div>
+  <div class="apt-hinweis-checkout">Den K-Prim-Test zu diesem Lernbereich schreibst du als <b>Check-out</b> am Ende der Woche. Deine Lehrkraft schaltet ihn live frei.</div>
   <div class="wd-footer"><button class="secondary"onclick="closeModal()">Schließen</button><span style="flex:1"></span>
    ${!lehrer?`<button class="primary"onclick="closeModal();go('forum-nachrichten')">Lehrkraft fragen</button>`:""}</div>`);
 }
@@ -7799,7 +7497,7 @@ async function openStundeSchueler(wocheId,uid,zurueck){
    <div class="list">${sc.map((d,i)=>`<div class="list-item"><div><strong>${d?"✓":"○"} ${esc(APT_SCHRITT_LABELS[i])}</strong><small>${esc(info[i])}</small></div></div>`).join("")}</div>
    ${(f.aufsatzText||"").trim()?`<h3 class="apt-h3">Aufsatztext</h3><div class="card"style="padding:10px 14px;font-size:13px;white-space:pre-wrap;line-height:1.5">${esc(f.aufsatzText)}</div>`:""}
    ${f.feedbackText?`<h3 class="apt-h3">Was die Person aus der Rückmeldung mitnimmt</h3><div class="card"style="padding:10px 14px;font-size:13px;white-space:pre-wrap">${esc(f.feedbackText)}</div>`:""}
-   ${wunsch?`<div class="st-wunsch"style="margin:12px 0">💬 Besprechung gewünscht${f.besprechungAm?` (${esc(stDatum(f.besprechungAm))})`:""} <button class="secondary"style="margin-left:8px"onclick="stundeBesprechungErledigt('${wocheId}','${uid}')">Als besprochen markieren</button></div>`:""}
+   ${wunsch?`<div class="st-wunsch"style="margin:12px 0">Besprechung gewünscht${f.besprechungAm?` (${esc(stDatum(f.besprechungAm))})`:""} <button class="secondary"style="margin-left:8px"onclick="stundeBesprechungErledigt('${wocheId}','${uid}')">Als besprochen markieren</button></div>`:""}
    <h3 class="apt-h3">Deine Rückmeldung an die Person</h3>
    ${snap.exists()?`<div class="form"><textarea id="stLehrerFb"rows="4"placeholder="Kurze Rückmeldung, die die Person im Schritt „Feedback“ sieht.">${esc(f.lehrerFeedback||"")}</textarea>
     <div class="form-actions"><button class="primary"onclick="stundeLehrerFeedback('${wocheId}','${uid}')">Rückmeldung speichern</button></div></div>`:`<div class="empty">Diese Person hat in dieser Stunde noch nichts gemacht.</div>`}
@@ -7821,7 +7519,7 @@ function openEinarbeitung(wocheId){
  closeEinarbeitung(true);
  einarbeitungWoche=wocheId;einarbeitungGeaendert=false;
  const ov=document.createElement("div");ov.id="einarbeitungOverlay";ov.className="exp-overlay";
- ov.innerHTML=`<div class="exp-leiste"><b>📖 Einarbeitung</b><button type="button"class="secondary"onclick="closeEinarbeitung()">✕ Schließen</button></div><iframe id="einarbeitungFrame"title="Einarbeitung"src="einarbeitung/player.html?id=${encodeURIComponent(wocheId)}"></iframe>`;
+ ov.innerHTML=`<div class="exp-leiste"><b>Einarbeitung</b><button type="button"class="secondary"onclick="closeEinarbeitung()">✕ Schließen</button></div><iframe id="einarbeitungFrame"title="Einarbeitung"src="einarbeitung/player.html?id=${encodeURIComponent(wocheId)}"></iframe>`;
  document.body.appendChild(ov);document.body.classList.add("exp-offen");
  if(einarbeitungHandler){window.removeEventListener("message",einarbeitungHandler);}
  einarbeitungHandler=ev=>{einarbeitungNachricht(ev);};
@@ -8030,13 +7728,13 @@ async function openFachaufsatzTrainingCheck(lbId,filter){
  });
  const gefiltert=zeilen.filter(r=>aptCheckFilter==="hinterher"?r.hinterher:aptCheckFilter==="wartet"?r.wartet:aptCheckFilter==="umsetzen"?r.umsetzen:true);
  const dot=(done,i,z4)=>{
-  if(i===3&&!done&&z4==="wartet")return`<span class="apt-dot halb"title="Besprechung gewünscht">💬</span>`;
+  if(i===3&&!done&&z4==="wartet")return`<span class="apt-dot halb"title="Besprechung gewünscht"></span>`;
   if(i===3&&!done&&z4==="umsetzen")return`<span class="apt-dot umsetzen"title="Vorkorrektur da – noch nicht umgesetzt">!</span>`;
   return`<span class="apt-dot${done?" an":""}"style="${done?`background:${c};border-color:${c}`:""}"title="${esc(APT_SCHRITT_LABELS[i])}">${done?"✓":i+1}</span>`;
  };
  const warten=d.fortschritt.filter(f=>ph.trainingWochen.includes(f.wocheId)&&f.besprechungGewuenscht&&!f.besprechungErledigt);
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🎓 ABSCHLUSSPRÜFUNGS-TRAINING · GESAMTCHECK · NUR LEHRKRÄFTE</div>
+  <div class="kicker">ABSCHLUSSPRÜFUNGS-TRAINING · GESAMTCHECK · NUR LEHRKRÄFTE</div>
   <h2>Trainingsstand der Klasse</h2>
   <div class="apt-check-tabs">${PROJEKT_PHASEN.map(p=>`<button type="button"class="${p.id===ph.id?"aktiv":""}"style="--c:${ppFarbe(p)}"onclick="openFachaufsatzTrainingCheck('${p.id}')">${esc(p.lb)}</button>`).join("")}
    <select onchange="openFachaufsatzTrainingCheck(null,this.value)">
@@ -8044,14 +7742,14 @@ async function openFachaufsatzTrainingCheck(lbId,filter){
    </select>
    <button type="button"class="secondary"onclick="aptCheckDaten=null;openFachaufsatzTrainingCheck()">↻</button>
   </div>
-  <p style="color:var(--muted);font-size:12px;margin:6px 0">Je Inhalt 4 Schritte: ① Prüfungsfrage · ② Einarbeitung · ③ Fachaufsatz üben · ④ Feedback. 💬 = Besprechung gewünscht. Zelle antippen für Details. Zeitbudget: ${esc(budget.text)}.</p>
+  <p style="color:var(--muted);font-size:12px;margin:6px 0">Je Inhalt 4 Schritte: ① Prüfungsfrage · ② Einarbeitung · ③ Fachaufsatz üben · ④ Feedback. = Besprechung gewünscht. Zelle antippen für Details. Zeitbudget: ${esc(budget.text)}.</p>
   <div style="overflow-x:auto"><table class="ls-matrix apt-matrix">
    <thead><tr><th>Schüler:in</th>${ph.trainingWochen.map(id=>`<th title="${esc(lehrplanWocheById("paedagogik",id)?.thema||"")}">${esc(ppKurz(lehrplanWocheById("paedagogik",id)))}</th>`).join("")}<th>Stand</th></tr></thead>
    <tbody>${gefiltert.map(r=>`<tr><td>${esc(r.s.displayName||r.s.email||"Schüler/in")}</td>
     ${r.zellen.map(z=>`<td class="apt-zelle"onclick="openAptSchuelerDetail('${r.s.uid}','${z.id}')"><span class="apt-dots">${z.schritte.map((dn,i)=>dot(dn,i,z.z4)).join("")}</span></td>`).join("")}
     <td style="white-space:nowrap"><b>${r.prozent} %</b>${r.tempo?` <span class="pp-tempo"style="background:${r.tempo.farbe}">${esc(r.tempo.txt)}</span>`:""}</td></tr>`).join("")||`<tr><td colspan="${ph.trainingWochen.length+2}">Niemand in dieser Auswahl.</td></tr>`}</tbody>
   </table></div>
-  <h3 style="margin:18px 0 6px">💬 ${esc(ph.lb)}: Besprechung gewünscht (${warten.length})</h3>
+  <h3 style="margin:18px 0 6px">${esc(ph.lb)}: Besprechung gewünscht (${warten.length})</h3>
   <div class="list">${warten.map(f=>{const e=lehrplanWocheById("paedagogik",f.wocheId),st=d.students.find(x=>x.uid===f.uid);return`<div class="list-item"style="cursor:pointer"onclick="openAptSchuelerDetail('${f.uid}','${f.wocheId}')"><div><strong>${esc(st?.displayName||st?.email||"Schüler/in")}</strong><small>${esc(e?.thema||f.wocheId)}${f.besprechungAm?" · "+esc(stDatum(f.besprechungAm)):""}</small></div><span>→</span></div>`;}).join("")||`<div class="empty">Keine offenen Besprechungswünsche.</div>`}</div>
   <div class="form-actions"style="margin-top:14px"><button class="secondary"onclick="closeModal()">Schließen</button></div>`);
 }
@@ -8204,7 +7902,7 @@ function checkoutSektionHTML(d){
  let ersatz="";
  if(lehrer){
   ersatz=`<div class="co-ersatz"><div><b>Kurzarbeit-Ersatz</b><small>${pool.length} Check-outs beendet · Schüler:innen wählen ${d.einst.anzahlWaehlen} aus · ${esc(coAuswahlStatus(d.einst).text)}</small></div>
-   <div class="co-aktion"><button class="primary"onclick="openKprimUebersicht()">🗂 Alle Freitage &amp; Vorschau</button><button class="secondary"onclick="openCheckoutEinstellungen()">Einstellungen</button><button class="secondary"onclick="openCheckoutKlassenuebersicht()">Klassenübersicht</button></div></div>`;
+   <div class="co-aktion"><button class="primary"onclick="openKprimUebersicht()">Alle Freitage &amp; Vorschau</button><button class="secondary"onclick="openCheckoutEinstellungen()">Einstellungen</button><button class="secondary"onclick="openCheckoutKlassenuebersicht()">Klassenübersicht</button></div></div>`;
  }else{
   const aByCo=d.meineAbgaben;
   const gewertet=pool.filter(c=>aByCo[c.id]?.ausgewertet);
@@ -8213,7 +7911,7 @@ function checkoutSektionHTML(d){
    <div class="co-aktion">${coAuswahlStatus(d.einst).offen?`<button class="primary"onclick="openCheckoutAuswahl()">${d.auswahl?"Auswahl ändern":`${d.einst.anzahlWaehlen} auswählen`}</button>`:`<small style="color:var(--muted)">${esc(coAuswahlStatus(d.einst).text)}</small>`}${d.auswahl?`<button class="secondary"onclick="coPdfErsatzSchueler()">PDF</button>`:""}</div></div>`;
  }
  return`<div class="card co-karte">
-  <div class="co-kopf"><div><h3>🏁 Check-out – K-Prim-Test zum Wochenabschluss</h3><small>Am Ende der Woche schaltet deine Lehrkraft den Check-Out-Test live frei: eine Fallvignette mit ${CHECKOUT_MAX_AUFGABEN} K-Prim-Aufgaben. Die Bepunktung steht vorab im Test. Ausgewertet wird automatisch in FOSBOS-Notenpunkten.</small></div>
+  <div class="co-kopf"><div><h3>Check-out – K-Prim-Test zum Wochenabschluss</h3><small>Am Ende der Woche schaltet deine Lehrkraft den Check-Out-Test live frei: eine Fallvignette mit ${CHECKOUT_MAX_AUFGABEN} K-Prim-Aufgaben. Die Bepunktung steht vorab im Test. Ausgewertet wird automatisch in FOSBOS-Notenpunkten.</small></div>
    ${lehrer?`<button class="primary"onclick="openCheckoutEditor()">＋ Neuer Check-out</button>`:""}</div>
   <div class="co-liste">${zeilen||`<div class="empty">${lehrer?"Noch kein Check-out angelegt.":"Noch kein Check-out freigeschaltet."}</div>`}</div>
   ${ersatz}
@@ -10392,7 +10090,7 @@ function coPruefung(e){
  }
  return{pro,glob};
 }
-function coPruefChips(p){return p.hinweise.length?p.hinweise.map(h=>`<span class="co-hinweis">⚠ ${esc(h)}</span>`).join(""):`<span class="co-hinweis ok">✓ unauffällig</span>`;}
+function coPruefChips(p){return p.hinweise.length?p.hinweise.map(h=>`<span class="co-hinweis">${esc(h)}</span>`).join(""):`<span class="co-hinweis ok">✓ unauffällig</span>`;}
 async function openCheckoutEditor(id,vorgabe){
  if(!isTeacher())return;
  if(id){
@@ -10441,7 +10139,7 @@ function coEditorPruefen(){
  coEditorLesen();
  const p=coPruefung(coEditor);
  p.pro.forEach((x,i)=>{const el=$(`coHinw${i}`);if(el)el.innerHTML=`<b>${x.richtig} richtig · ${4-x.richtig} falsch</b> ${coPruefChips(x)}`;});
- const g=$("coHinwGlob");if(g)g.innerHTML=p.glob.map(t=>`<div class="co-hinweis">⚠ ${esc(t)}</div>`).join("");
+ const g=$("coHinwGlob");if(g)g.innerHTML=p.glob.map(t=>`<div class="co-hinweis">${esc(t)}</div>`).join("");
  const n=coEditor.checkliste.filter(Boolean).length,cs=$("coClStand");if(cs)cs.textContent=`${n}/${CO_CHECKLISTE.length} bestätigt`;
  coEditor.aufgaben.forEach((q,i)=>[0,1,2,3].forEach(j=>{const row=$(`coRow${i}_${j}`),sel=$(`coR${i}_${j}`);if(row&&sel){row.classList.toggle("co-aus-r",sel.value==="r");row.classList.toggle("co-aus-f",sel.value!=="r");}}));
 }
@@ -10456,7 +10154,7 @@ function coEditorRender(){
  const cl=CO_CHECKLISTE.map(([g,t],k)=>`${k===0||CO_CHECKLISTE[k-1][0]!==g?`<div class="co-cl-gruppe">${g}</div>`:""}<label class="co-cl"><input id="coCl${k}"type="checkbox"${e.checkliste[k]?" checked":""} onchange="coEditorPruefen()"> ${esc(t)}</label>`).join("");
  const bankOpt=coBankOptionen();
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 CHECK-OUT-TEST · ${e.id?"ENTWURF BEARBEITEN":"NEU ANLEGEN"} · NUR LEHRKRÄFTE</div>
+  <div class="kicker">CHECK-OUT-TEST · ${e.id?"ENTWURF BEARBEITEN":"NEU ANLEGEN"} · NUR LEHRKRÄFTE</div>
   <h2>K-Prim-Test anlegen</h2>
   <style>
    .co-legende{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px}
@@ -10480,7 +10178,7 @@ function coEditorRender(){
   <div class="co-legende"><span class="co-l-vig">1 Fallvignette</span><span class="co-l-stamm">2 Einleitungssatz</span><span class="co-l-aus">3 Die 4 Aussagen</span></div>
   <p class="co-ed-intro">Jeder Freitagstest besteht aus <b>einer Fallvignette</b> und genau <b>${CHECKOUT_MAX_AUFGABEN} K-Prim-Aufgaben</b>. Jede Aufgabe hat einen Einleitungssatz und 4 Aussagen. Wertung je Aufgabe: 4 richtig = ${be[0]} BE · 3 = ${be[1]} BE · 2 = ${be[2]} BE · sonst 0. Die Schüler:innen sehen diese Bepunktung vorab im Test.</p>
   <div class="form">
-   ${!e.id&&CHECKOUT_VORLAGEN.length?`<div class="co-ed-vorlage"><b>📋 Vorlage:</b> <select id="coVorlage"onchange="coVorlageWaehlen()"><option value="">Ganzen Test aus Vorlage einsetzen …</option>${CHECKOUT_VORLAGEN.map(v=>`<option value="${esc(v.id)}">${esc(coLabel(v))}${v.datum?" ("+esc(coDatum(v.datum))+")":""} – ${esc(coVorlageInhalte(v).join(" + "))}</option>`).join("")}</select></div>`:""}
+   ${!e.id&&CHECKOUT_VORLAGEN.length?`<div class="co-ed-vorlage"><b>Vorlage:</b> <select id="coVorlage"onchange="coVorlageWaehlen()"><option value="">Ganzen Test aus Vorlage einsetzen …</option>${CHECKOUT_VORLAGEN.map(v=>`<option value="${esc(v.id)}">${esc(coLabel(v))}${v.datum?" ("+esc(coDatum(v.datum))+")":""} – ${esc(coVorlageInhalte(v).join(" + "))}</option>`).join("")}</select></div>`:""}
    <div style="display:flex;gap:10px;flex-wrap:wrap">
     <label style="flex:2;min-width:200px">Titel<input id="coTitel"value="${esc(e.titel)}"placeholder="z. B. Alltags- und Wissenschaftstheorie"></label>
     <label style="flex:1;min-width:110px">Lernbereich<select id="coLb">${[1,2,3,4].map(n=>`<option value="${n}"${e.lbNum===n?" selected":""}>LB ${n}</option>`).join("")}</select></label>
@@ -10494,14 +10192,14 @@ function coEditorRender(){
    ${e.aufgaben.map((a,i)=>`<div class="card co-ed-aufgabe">
     <div class="co-ed-kopf"><b>Aufgabe ${i+1}</b><span id="coHinw${i}"><b>${p.pro[i].richtig} richtig · ${4-p.pro[i].richtig} falsch</b> ${coPruefChips(p.pro[i])}</span></div>
     <div class="co-bankleiste"><span>Aufgabe aus der Bank laden:</span><select id="coBank${i}"class="co-ed-bank"onchange="coBankEinsetzen(${i})">${bankOpt}</select></div>
-    ${a.pruefen?`<div class="co-hinweis">⚠ ${esc(a.pruefen)}</div>`:""}
+    ${a.pruefen?`<div class="co-hinweis">${esc(a.pruefen)}</div>`:""}
     ${(i===0||e.eigeneVig)?`<section class="co-sec co-sec-vig">
      <div class="co-sec-kopf"><span class="co-sec-nr">1</span>Fallvignette <small>${e.eigeneVig?"eigene Situation für diese Aufgabe":"gilt für alle Aufgaben: die Situation, auf die sich alle Aussagen beziehen"}</small></div>
      <label>Überschrift<input id="coVT${i}"value="${esc(a.vTitel)}"placeholder="z. B. Kindergarten „Wirbelwind“"></label>
      <label>Text<textarea id="coVX${i}"rows="6"placeholder="Situation ohne Hinweise auf die Lösung."oninput="coEditorPruefen()">${esc(a.vText)}</textarea></label>
      <label class="check"><input id="coVZ${i}"type="checkbox"${a.vZeilen?" checked":""}> Zeilen nummerieren (jeder Zeilenumbruch = neue Zeile, für Verweise wie „Z. 15–17“)</label>
-    </section>`:`<div class="co-hinweis ok"style="margin:8px 0">📖 Es gilt die Fallvignette von Aufgabe 1 (eine Fallvignette für den ganzen Test).</div>`}
-    <details class="co-ed-details"${a.mText?" open":""}><summary>📎 Material zu Aufgabe ${i+1} (optional, z. B. Studie oder Text)</summary>
+    </section>`:`<div class="co-hinweis ok"style="margin:8px 0">Es gilt die Fallvignette von Aufgabe 1 (eine Fallvignette für den ganzen Test).</div>`}
+    <details class="co-ed-details"${a.mText?" open":""}><summary>Material zu Aufgabe ${i+1} (optional, z. B. Studie oder Text)</summary>
      <label>Titel<input id="coMT${i}"value="${esc(a.mTitel)}"></label>
      <label>Text<textarea id="coMX${i}"rows="5">${esc(a.mText)}</textarea></label>
      <label>Quelle<input id="coMQ${i}"value="${esc(a.mQuelle)}"></label>
@@ -10517,7 +10215,7 @@ function coEditorRender(){
       <select id="coR${i}_${j}"onchange="coEditorPruefen()"><option value="r"${s.richtig?" selected":""}>richtig</option><option value="f"${!s.richtig?" selected":""}>falsch</option></select></div>`).join("")}
     </section>
    </div>`).join("")}
-   <div id="coHinwGlob">${p.glob.map(t=>`<div class="co-hinweis">⚠ ${esc(t)}</div>`).join("")}</div>
+   <div id="coHinwGlob">${p.glob.map(t=>`<div class="co-hinweis">${esc(t)}</div>`).join("")}</div>
    <div class="form-actions">
     <button class="secondary"onclick="coEditorVorschlag()">Vorschläge aus der App</button>
    </div>
@@ -10542,9 +10240,9 @@ AUFGABE: …</pre>
    </details>
    <div class="form-actions co-ed-fuss">
     ${e.id?`<button class="secondary"onclick="coLoeschen('${e.id}')">Löschen</button>`:""}
-    <button class="secondary"onclick="coEditorVorschau()">👁 Vorschau (Schüleransicht)</button>
-    <button class="secondary"onclick="coEditorLesen();coTestDruckEditor()">🖨 Test zum Ausdrucken (PDF)</button>
-    <button class="secondary"onclick="coEditorLesen();coTestDruckEditor(true)">🖨 Test mit Lösung (PDF)</button>
+    <button class="secondary"onclick="coEditorVorschau()">Vorschau (Schüleransicht)</button>
+    <button class="secondary"onclick="coEditorLesen();coTestDruckEditor()">Test zum Ausdrucken (PDF)</button>
+    <button class="secondary"onclick="coEditorLesen();coTestDruckEditor(true)">Test mit Lösung (PDF)</button>
     <button class="secondary"onclick="coEditorLesen();coPoolExport('pdf')">PDF für Aufgabenpool</button>
     <button class="secondary"onclick="coEditorLesen();coPoolExport('word')">Word für Aufgabenpool</button>
     <span style="flex:1"></span>
@@ -10616,12 +10314,12 @@ async function openKprimUebersicht(){
   const c=PP_FARBEN[x.ph.lbNum]||"#8a99a3";
   const idx=e.slice(0,k+1).filter(y=>y.hat).length-1;
   let akt="";
-  if(x.hat)akt+=`<button class="secondary"onclick="openKprimVorschau(0,'${x.w.end}')">👁 Vorschau</button>`;
+  if(x.hat)akt+=`<button class="secondary"onclick="openKprimVorschau(0,'${x.w.end}')">Vorschau</button>`;
   if(x.co){
-   akt+=x.co.status==="entwurf"?`<button class="secondary"onclick="openCheckoutEditor('${x.co.id}')">✎ Bearbeiten</button><button class="primary"onclick="coLiveStarten('${x.co.id}')">▶ Live freischalten</button>`
+   akt+=x.co.status==="entwurf"?`<button class="secondary"onclick="openCheckoutEditor('${x.co.id}')">Bearbeiten</button><button class="primary"onclick="coLiveStarten('${x.co.id}')">▶ Live freischalten</button>`
     :x.co.status==="live"?`<button class="primary"onclick="openCheckoutMonitor('${x.co.id}')">Live-Übersicht</button>`
     :`<button class="secondary"onclick="openCheckoutErgebnisse('${x.co.id}')">Ergebnisse</button>`;
-  }else if(x.vl)akt+=`<button class="primary"onclick="openCheckoutEditor(null,{datum:'${x.w.end}',lbNum:${x.ph.lbNum},vorlage:'${x.vl.id}'})">📋 Vorlage einsetzen</button>`;
+  }else if(x.vl)akt+=`<button class="primary"onclick="openCheckoutEditor(null,{datum:'${x.w.end}',lbNum:${x.ph.lbNum},vorlage:'${x.vl.id}'})">Vorlage einsetzen</button>`;
   else akt+=`<button class="secondary"onclick="openCheckoutEditor(null,{datum:'${x.w.end}',lbNum:${x.ph.lbNum}})">＋ Check-out anlegen</button>`;
   return`<div class="co-zeile"style="--c:${c}"><span class="co-lb">Fr ${fmtKurz(x.w.end)}</span>
    <div class="co-titel"><b>${esc(x.co?coTitelAnzeige(x.co):(x.vl?coLabel(x.vl):"Noch nichts angelegt"))}</b><small>${esc(kpvOrt(x))}${x.co&&x.vl&&coTitelAnzeige(x.co)!==coLabel(x.vl)?` · Vorlage: ${esc(coLabel(x.vl))}`:""}</small></div>
@@ -10629,10 +10327,10 @@ async function openKprimUebersicht(){
  }).join("");
  const mit=e.filter(x=>x.hat).length;
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 K-PRIM-TESTS · NUR LEHRKRÄFTE</div><h2>Alle Freitagstests im Überblick</h2>
-  <p style="font-size:13px;color:var(--muted);margin-top:0">${e.length} Freitage im Schuljahr, davon ${mit} mit Test oder Vorlage. Mit „👁 Vorschau“ siehst du jeden Test so, wie ihn Schüler:innen sehen, und blätterst mit ‹ › durch alle Freitage. Die Lösungen lassen sich einblenden.</p>
+  <div class="kicker">K-PRIM-TESTS · NUR LEHRKRÄFTE</div><h2>Alle Freitagstests im Überblick</h2>
+  <p style="font-size:13px;color:var(--muted);margin-top:0">${e.length} Freitage im Schuljahr, davon ${mit} mit Test oder Vorlage. Mit „Vorschau“ siehst du jeden Test so, wie ihn Schüler:innen sehen, und blätterst mit ‹ › durch alle Freitage. Die Lösungen lassen sich einblenden.</p>
   <div class="co-liste">${zeilen}</div>
-  <div class="form-actions"style="margin-top:14px"><button class="secondary"onclick="closeModal()">Schließen</button>${mit?`<button class="primary"onclick="openKprimVorschau(0)">👁 Alle nacheinander ansehen</button>`:""}</div>`);
+  <div class="form-actions"style="margin-top:14px"><button class="secondary"onclick="closeModal()">Schließen</button>${mit?`<button class="primary"onclick="openKprimVorschau(0)">Alle nacheinander ansehen</button>`:""}</div>`);
 }
 async function openKprimVorschau(idx,startDatum){
  if(!isTeacher())return;
@@ -10659,17 +10357,17 @@ async function kpvZeigen(){
   quelle="Vorlage der App · noch nicht gespeichert";
  }
  const n=kpv.liste.length;
- const aktion=x.co?(x.co.status==="entwurf"?"✎ Bearbeiten":x.co.status==="live"?"Live-Übersicht":"Ergebnisse"):"📋 Vorlage einsetzen";
+ const aktion=x.co?(x.co.status==="entwurf"?"Bearbeiten":x.co.status==="live"?"Live-Übersicht":"Ergebnisse"):"Vorlage einsetzen";
  const band=`<div class="kp-nav-band">
    <div class="kp-nav-zeile"><button class="secondary"type="button"onclick="kprimVorschauSpringe(-1)"aria-label="Vorheriger Freitag">‹ Zurück</button>
     <div class="kp-nav-mitte"><b>Fr ${fmtKurz(x.w.end)} · ${esc(kpvOrt(x))}</b><small>${esc(quelle)} · ${kpv.i+1} von ${n}</small></div>
     <button class="secondary"type="button"onclick="kprimVorschauSpringe(1)"aria-label="Nächster Freitag">Weiter ›</button></div>
    <div class="kp-nav-zeile kp-nav-aktionen">
     <select onchange="kprimVorschauSpringeZu(this.value)"aria-label="Zu einem Freitag springen">${kpv.liste.map((y,k)=>`<option value="${k}"${k===kpv.i?" selected":""}>Fr ${fmtKurz(y.w.end)} · ${esc(y.co?.titel||y.vl?.titel||"")}</option>`).join("")}</select>
-    <button class="secondary"type="button"id="kpvLsgBtn"onclick="kprimLoesungUmschalten()">${kpv.loesung?"🔑 Lösungen ausblenden":"🔑 Lösungen einblenden"}</button>
+    <button class="secondary"type="button"id="kpvLsgBtn"onclick="kprimLoesungUmschalten()">${kpv.loesung?"Lösungen ausblenden":"Lösungen einblenden"}</button>
     <button class="primary"type="button"onclick="kprimVorschauAktion()">${aktion}</button>
    </div>
-   <div class="kp-nav-hinweis">👁 Vorschau für Lehrkräfte: Antworten werden nicht gespeichert.</div></div>`;
+   <div class="kp-nav-hinweis">Vorschau für Lehrkräfte: Antworten werden nicht gespeichert.</div></div>`;
  modal(coTestInhaltHTML(co,"vorschau",{},PP_FARBEN[co.lbNum]||"#4a90d9",true,{loesung:loesung?.aufgaben||null,loesungAn:kpv.loesung,bandHTML:band,zurueckOnclick:"openKprimUebersicht()",zurueckLabel:"← Zur Übersicht"}));
  coStandAktualisieren(co);
 }
@@ -10678,7 +10376,7 @@ async function kprimVorschauSpringeZu(k){kpv.i=Math.max(0,Math.min(kpv.liste.len
 function kprimLoesungUmschalten(){
  kpv.loesung=!kpv.loesung;
  const t=$("coTest");if(t)t.classList.toggle("kp-lsg-an",kpv.loesung);
- const b=$("kpvLsgBtn");if(b)b.textContent=kpv.loesung?"🔑 Lösungen ausblenden":"🔑 Lösungen einblenden";
+ const b=$("kpvLsgBtn");if(b)b.textContent=kpv.loesung?"Lösungen ausblenden":"Lösungen einblenden";
 }
 function kprimVorschauAktion(){
  const x=kpv.liste[kpv.i];if(!x)return;
@@ -10797,8 +10495,8 @@ function coAbsaetzeHTML(t,pdf=false){const E=pdf?escPDF:esc;return String(t||"")
 function coFallHTML(q,pdf=false){
  const E=pdf?escPDF:esc;
  const v=q.vignette?.text?q.vignette:null,m=q.material?.text?q.material:null;
- return`${v?`<div class="kp-vig"><div class="kp-label">📖 Fallvignette${v.titel?` · ${E(v.titel)}`:""}</div>${coSituationHTML(v,pdf,!!v.zeilen,true)}</div>`:""}
-  ${m?`<div class="kp-mat"><div class="kp-label">📎 Material${m.titel?` · ${E(m.titel)}`:""}</div>${coAbsaetzeHTML(m.text,pdf)}${m.quelle?`<div class="kp-quelle">${E(m.quelle)}</div>`:""}</div>`:""}
+ return`${v?`<div class="kp-vig"><div class="kp-label">Fallvignette${v.titel?` · ${E(v.titel)}`:""}</div>${coSituationHTML(v,pdf,!!v.zeilen,true)}</div>`:""}
+  ${m?`<div class="kp-mat"><div class="kp-label">Material${m.titel?` · ${E(m.titel)}`:""}</div>${coAbsaetzeHTML(m.text,pdf)}${m.quelle?`<div class="kp-quelle">${E(m.quelle)}</div>`:""}</div>`:""}
   <div class="kp-frage">${q.kontext?`<div class="kp-kontext">${coAbsaetzeHTML(q.kontext,pdf)}</div>`:""}<strong class="kp-stamm">${E(q.stamm)}</strong>
   <div class="kp-anleitung">Entscheiden Sie bei den Aussagen 1–4, ob sie jeweils <b>richtig oder falsch</b> sind.</div></div>`;
 }
@@ -10861,7 +10559,7 @@ async function openCheckoutMonitor(id){
  if(!co){toast("Nicht gefunden.");return}
  const n=(co.aufgaben||[]).length*4;
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 CHECK-OUT · LIVE-ÜBERSICHT</div>
+  <div class="kicker">CHECK-OUT · LIVE-ÜBERSICHT</div>
   <h2>${esc(coTitelAnzeige(co))}</h2>
   <div id="coMonitor"><p style="color:var(--muted)">Lädt …</p></div>
   <div class="form-actions"style="margin-top:14px">
@@ -10932,7 +10630,7 @@ function coBepunktungHTML(n,vorschau){
  for(let i=0;i<n;i++){const t=new Set();summen.forEach(x=>[be[0],be[1],be[2],0].forEach(p=>t.add(x+p)));summen=t;}
  const np=[...summen].sort((a,b)=>b-a).map(x=>`<b>${x} BE</b> = ${notenpunkteAusProzent(Math.round(x/max*1000)/10)} NP`).join(" · ");
  return`<div class="kp-bep"style="background:#f4f9ff;border:1.5px solid #c9def4;border-radius:12px;padding:10px 14px;margin:10px 0;font-size:14px;line-height:1.5">
-  <b>📊 Bepunktung – bitte vorab lesen</b>
+  <b>Bepunktung – bitte vorab lesen</b>
   <p style="margin:6px 0 0">Der Test besteht aus <b>einer Fallvignette</b> und <b>${n} Aufgaben</b> mit je 4 Aussagen. Du entscheidest bei <b>jeder</b> Aussage, ob sie richtig oder falsch ist. Eine leere Aussage zählt als Fehler.${vorschau?"":" Deine Antworten werden automatisch gespeichert."}</p>
   <p class="kp-wertung"style="margin:6px 0 0"><b>Je Aufgabe:</b> 4 richtig = ${be[0]} BE · 3 richtig = ${be[1]} BE · 2 richtig = ${be[2]} BE · weniger = 0 BE</p>
   <p style="margin:6px 0 0"><b>Insgesamt:</b> bis zu ${max} BE. Umrechnung in Notenpunkte (NP) nach dem P/P-Bewertungsschlüssel: ${np}</p></div>`;
@@ -10951,19 +10649,19 @@ function coTestInhaltHTML(co,id,ant,c,vorschau,opt){
  const glob=coGemeinsameSituation(co)||gleich;
  const n=(co.aufgaben||[]).length;
  const lsg=opt.loesung||null;
- const band=vorschau?(opt.bandHTML||`<div class="kp-vorschau-band">👁 <b>Vorschau</b> · So sehen Schüler:innen den Test. Es wird nichts gespeichert. <button class="secondary"type="button"onclick="coEditorVorschauZurueck()">← Zurück zum Editor</button></div>`):"";
+ const band=vorschau?(opt.bandHTML||`<div class="kp-vorschau-band"><b>Vorschau</b> · So sehen Schüler:innen den Test. Es wird nichts gespeichert. <button class="secondary"type="button"onclick="coEditorVorschauZurueck()">← Zurück zum Editor</button></div>`):"";
  const zurueck=opt.zurueckOnclick||"coEditorVorschauZurueck()",zLabel=opt.zurueckLabel||"← Zurück zum Editor";
  return`<div id="coTest"class="kp-test${opt.loesungAn?" kp-lsg-an":""}">
   ${band}
-  <div class="kicker"style="color:${c}">🏁 CHECK-OUT · LB ${esc(co.lbNum)} · ${coDatum(co.datum)}</div>
+  <div class="kicker"style="color:${c}">CHECK-OUT · LB ${esc(co.lbNum)} · ${coDatum(co.datum)}</div>
   <h2>${esc(coTitelAnzeige(co))}</h2>
   <div class="kp-fortschritt"><div class="kp-balken"><i id="coBalken"style="background:${c}"></i></div><span id="coStand"></span></div>
   ${coBepunktungHTML(n,vorschau)}
-  ${glob?`<div class="kp-vig"style="border-left-color:${c}"><div class="kp-label">📖 Fallvignette${glob.titel&&gleich?` · ${esc(glob.titel)}`:""}</div>${coSituationHTML(glob,false,gleich?!!gleich.zeilen:true,!!gleich)}</div>`:""}
+  ${glob?`<div class="kp-vig"style="border-left-color:${c}"><div class="kp-label">Fallvignette${glob.titel&&gleich?` · ${esc(glob.titel)}`:""}</div>${coSituationHTML(glob,false,gleich?!!gleich.zeilen:true,!!gleich)}</div>`:""}
   ${(co.aufgaben||[]).map((q,i)=>`<section class="kp-karte"style="--c:${c}">
    <header class="kp-kopf"><span class="kp-nummer">${i+1}</span><div><b>Aufgabe ${i+1} von ${n}</b><small>bis zu ${CHECKOUT_BE_NACH_FEHLERN[0]} BE</small></div><span class="kp-fort">0/4</span></header>
    ${coFallHTML(gleich?{...q,vignette:null}:q)}
-   <div class="kp-liste">${(q.aussagen||[]).map((t,j)=>{const l=lsg?.[i];const r=l?.richtig?.[j];return`<div class="kp-zeile"><span class="kp-num">${j+1}</span>${l?`<div class="kp-text"><p style="margin:0">${esc(t)}</p><div class="kp-lsg ${r?"r":"f"}">🔑 <b>${r?"Richtig":"Falsch"}</b>${l.erklaerung?.[j]?` · ${esc(l.erklaerung[j])}`:""}</div></div>`:`<p class="kp-text">${esc(t)}</p>`}
+   <div class="kp-liste">${(q.aussagen||[]).map((t,j)=>{const l=lsg?.[i];const r=l?.richtig?.[j];return`<div class="kp-zeile"><span class="kp-num">${j+1}</span>${l?`<div class="kp-text"><p style="margin:0">${esc(t)}</p><div class="kp-lsg ${r?"r":"f"}"><b>${r?"Richtig":"Falsch"}</b>${l.erklaerung?.[j]?` · ${esc(l.erklaerung[j])}`:""}</div></div>`:`<p class="kp-text">${esc(t)}</p>`}
     <div class="kp-wahl"role="radiogroup"aria-label="Aussage ${j+1}">${[["r","✓ Richtig"],["f","✗ Falsch"]].map(([v,lab])=>`<label class="kp-opt ${v}"><input type="radio"name="coT${i}_${j}"value="${v}"aria-label="Aussage ${j+1}: ${v==="r"?"richtig":"falsch"}"${(ant||{})[`${i}_${j}`]===v?" checked":""} onchange="${vorschau?"coStandAktualisieren()":`coAntwort('${id}','${i}_${j}','${v}')`}"><span>${lab}</span></label>`).join("")}</div></div>`;}).join("")}</div>
   </section>`).join("")}
   <div class="co-test-fuss"><span id="coStand2"></span>${vorschau?`<button class="secondary"type="button"onclick="${zurueck}">${zLabel}</button>`:`<button class="primary"onclick="coAbgeben('${id}')">Abgeben</button>`}</div>
@@ -11012,11 +10710,11 @@ function coAufgabeErgebnisHTML(q,i,erg,pdf=false,mitFall=true){
    ${(q.aussagen||[]).map((t,j)=>`<tr><td>${j+1}. ${E(t)}</td><td style="text-align:center">${zeichen(r?.angekreuzt?.[j])}</td><td style="text-align:center">${r?(r.loesung?.[j]?"richtig":"falsch"):"–"}</td><td style="text-align:center">${r?(r.korrekt?.[j]?"✓":"✗"):""}</td>${hatErk?`<td>${E(r?.erklaerung?.[j]||"")}</td>`:""}</tr>`).join("")}
    </tbody></table></div>`;
  }
- const fall=mitFall&&(q.vignette?.text||q.material?.text)?`<details class="kp-fall"><summary>📖 Fallvignette${q.material?.text?" und Material":""} anzeigen</summary>${coFallHTML(q,false)}</details>`:`<div class="kp-frage"><strong class="kp-stamm">${E(q.stamm)}</strong></div>`;
+ const fall=mitFall&&(q.vignette?.text||q.material?.text)?`<details class="kp-fall"><summary>Fallvignette${q.material?.text?" und Material":""} anzeigen</summary>${coFallHTML(q,false)}</details>`:`<div class="kp-frage"><strong class="kp-stamm">${E(q.stamm)}</strong></div>`;
  return`<section class="kp-karte kp-erg"><header class="kp-kopf"><span class="kp-nummer">${i+1}</span><div><b>Aufgabe ${i+1}</b>${r?`<small>${r.fehler===0?"alles richtig":r.fehler+(r.fehler===1?" Fehler":" Fehler")}</small>`:""}</div>${r?`<span class="kp-be${r.be===CHECKOUT_BE_NACH_FEHLERN[0]?" voll":""}">${r.be} BE</span>`:""}</header>
   ${fall}
   <div class="kp-liste">${(q.aussagen||[]).map((t,j)=>{const ok=r?.korrekt?.[j];const ang=r?.angekreuzt?.[j];return`<div class="kp-zeile kp-ergz ${r?(ok?"ok":"nein"):""}"><span class="kp-num">${r?(ok?"✓":"✗"):j+1}</span>
-   <div class="kp-text"><p>${E(t)}</p>${r?`<div class="kp-chips"><span class="kp-chip">Deine Antwort: <b>${zeichen(ang)}</b></span><span class="kp-chip loes">Lösung: <b>${r.loesung?.[j]?"richtig":"falsch"}</b></span></div>${r.erklaerung?.[j]?`<div class="kp-erk">💡 ${E(r.erklaerung[j])}</div>`:""}`:""}</div></div>`;}).join("")}</div></section>`;
+   <div class="kp-text"><p>${E(t)}</p>${r?`<div class="kp-chips"><span class="kp-chip">Deine Antwort: <b>${zeichen(ang)}</b></span><span class="kp-chip loes">Lösung: <b>${r.loesung?.[j]?"richtig":"falsch"}</b></span></div>${r.erklaerung?.[j]?`<div class="kp-erk">${E(r.erklaerung[j])}</div>`:""}`:""}</div></div>`;}).join("")}</div></section>`;
 }
 function coSummeHTML(erg){return erg?.ausgewertet?`<b>${erg.be} von ${erg.maxBE} BE (${String(erg.prozent).replace(".",",")} %) · ${npText(erg.notenpunkte)}</b>`:"nicht ausgewertet";}
 async function openCheckoutMeinErgebnis(id){
@@ -11024,7 +10722,7 @@ async function openCheckoutMeinErgebnis(id){
   const [c,a]=await Promise.all([getDoc(doc(db,"checkouts",id)),getDoc(doc(db,"checkoutAbgaben",`${id}_${currentUser.uid}`))]);
   const co=c.data(),erg=a.exists()?a.data():null;
   modal(`<button class="modal-close"onclick="closeModal()">×</button>
-   <div class="kicker">🏁 CHECK-OUT · DEIN ERGEBNIS</div><h2>${esc(coTitelAnzeige(co))}</h2>
+   <div class="kicker">CHECK-OUT · DEIN ERGEBNIS</div><h2>${esc(coTitelAnzeige(co))}</h2>
    <div class="co-summe">${coSummeHTML(erg)}</div>
    ${coGemeinsameSituation(co)?`<div class="co-vignette"style="border-left-color:${PP_FARBEN[co.lbNum]||"#4a90d9"}">${coSituationHTML(co.vignette)}</div>`:""}
    ${(co.aufgaben||[]).map((q,i)=>coAufgabeErgebnisHTML(q,i,erg)).join("")}
@@ -11043,7 +10741,7 @@ async function openCheckoutErgebnisse(id){
  const erg=Object.values(abgaben).filter(a=>a.ausgewertet);
  const schnitt=erg.length?(erg.reduce((s,a)=>s+a.notenpunkte,0)/erg.length).toFixed(1).replace(".",","):"–";
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 CHECK-OUT · ERGEBNISSE · NUR LEHRKRÄFTE</div><h2>${esc(coTitelAnzeige(co))}</h2>
+  <div class="kicker">CHECK-OUT · ERGEBNISSE · NUR LEHRKRÄFTE</div><h2>${esc(coTitelAnzeige(co))}</h2>
   <p style="font-size:13px;color:var(--muted)">${coDatum(co.datum)} · ${erg.length} ausgewertet · Klassenschnitt ${schnitt} Punkte</p>
   <div style="overflow-x:auto"><table class="ls-matrix co-erg-matrix"><thead><tr><th>Schüler:in</th>${(co.aufgaben||[]).map((q,i)=>`<th>A${i+1}</th>`).join("")}<th>BE</th><th>Ergebnis</th></tr></thead>
   <tbody>${students.map(s=>{const a=abgaben[s.uid];
@@ -11060,7 +10758,7 @@ async function openCheckoutSchuelerErgebnis(id,uid){
  let d;try{d=await coLadeErgebnisse(id);}catch(e){return}
  const a=d.abgaben[uid],s=d.students.find(x=>x.uid===uid);
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 CHECK-OUT · ${esc(s?.displayName||s?.email||"")}</div><h2>${esc(coTitelAnzeige(d.co))}</h2>
+  <div class="kicker">CHECK-OUT · ${esc(s?.displayName||s?.email||"")}</div><h2>${esc(coTitelAnzeige(d.co))}</h2>
   <div class="co-summe">${coSummeHTML(a)}</div>
   ${(d.co.aufgaben||[]).map((q,i)=>coAufgabeErgebnisHTML(q,i,a)).join("")}
   <div class="form-actions"><button class="secondary"onclick="openCheckoutErgebnisse('${id}')">← Zurück</button><button class="secondary"onclick="coPdfSchueler('${id}','${uid}')">PDF</button></div>`);
@@ -11226,7 +10924,7 @@ async function openCheckoutAuswahl(){
  const pool=coPool(d.checkouts,d.einst).filter(c=>d.meineAbgaben[c.id]?.ausgewertet);
  const gewaehlt=new Set(d.auswahl?.ids||[]);
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 KURZARBEIT-ERSATZ</div><h2>Wähle ${d.einst.anzahlWaehlen} Tests aus deiner Bibliothek</h2>
+  <div class="kicker">KURZARBEIT-ERSATZ</div><h2>Wähle ${d.einst.anzahlWaehlen} Tests aus deiner Bibliothek</h2>
   <p style="font-size:13px;color:var(--muted);margin-top:0">Der Durchschnitt der Notenpunkte deiner Auswahl ersetzt eine Kurzarbeit. Ab ,5 wird aufgerundet.</p>
   ${pool.length<d.einst.anzahlWaehlen?`<div class="empty">Du hast erst ${pool.length} gewertete Check-outs – du brauchst mindestens ${d.einst.anzahlWaehlen}.</div>`:""}
   <div class="list"id="coAuswahlListe">${pool.map(c=>{const a=d.meineAbgaben[c.id];return`<label class="list-item co-wahl"><input type="checkbox"value="${c.id}"data-np="${a.notenpunkte}"${gewaehlt.has(c.id)?" checked":""} onchange="coAuswahlStand(${d.einst.anzahlWaehlen})"><div style="flex:1"><strong>${esc(coTitelAnzeige(c))}</strong><small>LB ${esc(c.lbNum)} · ${coDatum(c.datum)}</small></div><b>${npText(a.notenpunkte)}</b></label>`;}).join("")}</div>
@@ -11329,7 +11027,7 @@ async function openCheckoutEinstellungen(){
  const d=await ladeCheckoutDaten();const e=d.einst;
  const tag=t=>{const x=coTsDatum(t);return x?`${x.getFullYear()}-${String(x.getMonth()+1).padStart(2,"0")}-${String(x.getDate()).padStart(2,"0")}`:"";};
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 KURZARBEIT-ERSATZ · EINSTELLUNGEN</div><h2>Check-outs als Kurzarbeit-Ersatz</h2>
+  <div class="kicker">KURZARBEIT-ERSATZ · EINSTELLUNGEN</div><h2>Check-outs als Kurzarbeit-Ersatz</h2>
   <div class="form">
    <label>Wie viele Tests wählen die Schüler:innen aus ihrer Bibliothek aus?<input id="coEWaehlen"type="number"min="1"max="30"value="${e.anzahlWaehlen}"></label>
    <div style="display:flex;gap:10px;flex-wrap:wrap">
@@ -11364,7 +11062,7 @@ async function openCheckoutKlassenuebersicht(){
  let k;try{k=await coLadeKlasse();}catch(e){console.error(e);toast("Konnte nicht geladen werden.");return}
  const {pool,students,abgaben,auswahl,d}=k;
  modal(`<button class="modal-close"onclick="closeModal()">×</button>
-  <div class="kicker">🏁 CHECK-OUTS · ERGEBNISSE JE SCHÜLER:IN</div><h2>Ergebnisse und Kurzarbeit-Ersatz</h2>
+  <div class="kicker">CHECK-OUTS · ERGEBNISSE JE SCHÜLER:IN</div><h2>Ergebnisse und Kurzarbeit-Ersatz</h2>
   <p style="font-size:12px;color:var(--muted);margin-top:0">Zahlen = Notenpunkte je Check-out (Spalten nach Datum). Grün markiert = von der Schülerin / dem Schüler für den Ersatz gewählt (${d.einst.anzahlWaehlen} Tests). PDF Ergebnisse = alle Tests der Person, PDF Respizienz = die gewählten Tests mit allen Angaben zur Ablage.</p>
   <div style="overflow-x:auto"><table class="ls-matrix co-erg-matrix"><thead><tr><th>Schüler:in</th>${pool.map((c,i)=>`<th title="${esc(coTitelAnzeige(c))}">${i+1}</th>`).join("")}<th>Ersatz</th><th>PDF</th></tr></thead>
   <tbody>${students.map(s=>{const a=abgaben[s.uid]||{},w=new Set(auswahl[s.uid]?.ids||[]);const e=auswahl[s.uid]?coErsatz([...w],a):null;
@@ -11386,12 +11084,12 @@ Object.assign(window,{coBankEinsetzen,coVorlageWaehlen,coEditorPruefen,coEditorL
  openCheckoutAuswahl,coAuswahlStand,coAuswahlSpeichern,coPdfErsatzSchueler,openCheckoutEinstellungen,coEinstellungenSpeichern,openCheckoutKlassenuebersicht,coPdfErsatzKlasse,coPdfRespizienz,coPdfRespizienzKlasse,coPdfSchuelerAlle});
 
 async function renderFachDetail(){
- if(!activeFach)return await renderFaecherUebersicht();
+ if(!activeFach)return await renderLernwerkstatt();
  const fach=F11SB_LEHRPLAN_FAECHER.find(f=>f.key===activeFach);
  const timeline=combinedTimeline(activeFach);
  const wochenItems=timeline.filter(t=>t.kind==="woche");
- const fortschritte=await Promise.all(wochenItems.map(async w=>({id:w.id,f:await getLehrplanFortschritt(w.id)})));
- const fortschrittMap={};fortschritte.forEach(x=>fortschrittMap[x.id]=x.f);
+ const alleFortschritte=await getMeineLehrplanFortschritte();
+ const fortschrittMap={};wochenItems.forEach(w=>{fortschrittMap[w.id]=alleFortschritte[w.id]||{zieleErfuellt:{},abgeschlossen:false}});
  const praktikumsAuftraege=await getPraktikumsAuftraege();
  const heute=new Date().toISOString().slice(0,10);
  const erledigtCount=wochenItems.filter(w=>fortschrittMap[w.id]?.abgeschlossen).length;
@@ -11400,7 +11098,7 @@ async function renderFachDetail(){
 
  if(activeFach==="paedagogik")return await renderPaedagogikPhasenZeitstrahl(fach,fortschrittMap,heute);
 
- return`<button class="secondary"onclick="closeFach()">← Zurück zu den Fächern</button>
+ return`<button class="secondary"onclick="closeFach()">← Zurück zu den Lernplänen</button>
  ${pageHead("LERNPFAD",fach?.label||"Fach",`Dein Weg durchs Schuljahr – ${erledigtCount} von ${wochenItems.length} Wochen geschafft.`,isTeacher()?`<button class="secondary"onclick="openLehrplanKlassenuebersicht('${activeFach}')"> Klassenübersicht</button>`:"")}
  <style>
  .lernpfad{position:relative;margin:20px 0 10px;padding-left:44px}
@@ -11456,7 +11154,7 @@ async function renderFachDetail(){
  if(item.kind==="praktikum"){
  const auftrag=praktikumsAuftraege[item.id];
  return`${heuteMarkerHTML}<div class="lp-waypoint">
- <div class="lp-waypoint-punkt"><span>${item.icon||"🏥"}</span></div>
+ <div class="lp-waypoint-punkt"><span>${item.icon||""}</span></div>
  <div class="lp-waypoint-karte"onclick="openPraktikumsphaseAuftragForm('${item.id}')">
  <span class="lp-karte-date">${esc(fmtDateOnly(item.start))}–${esc(fmtDateOnly(item.end))}</span>
  <strong>${esc(item.titel)}</strong>
@@ -11547,7 +11245,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  <span class="pill"style="background:${woche.interaktiv?"#3F7FC1":woche.typ==="projekt"?"#3fa66a":"#e0a324"};color:#fff">${woche.interaktiv?"Interaktive Einstiegsstunde":woche.typ==="projekt"?"Projektarbeit":"Selbstlern-/Eigenarbeit"}</span>
  <p style="margin-top:10px;color:var(--muted)">${esc(woche.planung)}</p>
  ${woche.praxis?`<div class="card"style="border-left:4px solid #4a90d9;margin-top:10px;padding:10px 12px"><strong style="font-size:12px"> Praxistransfer</strong><small style="display:block;margin-top:4px">${esc(woche.praxis)}</small></div>`:""}
- ${aptLinks.length?`<div class="pp-bezug-box"style="--c:${lernbereichAkzentfarbe(woche.lb)}">🎓 <b>Wird im Abschlussprüfungs-Training vertieft:</b> ${aptLinks.map(a=>`<a href="javascript:void 0"onclick="openAptDetail('${a.id}')">${esc(a.thema)}</a>`).join(" · ")}</div>`:""}
+ ${aptLinks.length?`<div class="pp-bezug-box"style="--c:${lernbereichAkzentfarbe(woche.lb)}"><b>Wird im Abschlussprüfungs-Training vertieft:</b> ${aptLinks.map(a=>`<a href="javascript:void 0"onclick="openAptDetail('${a.id}')">${esc(a.thema)}</a>`).join(" · ")}</div>`:""}
 
  <div class="wd-stepper">
  ${schritte.map((s,i)=>`<div class="wd-step${s.done?" wd-step-done":""}${i===aktivIdx&&!s.done?" wd-step-aktiv":""}">
@@ -11587,7 +11285,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  :`<div class="card"style="border-left:4px solid #4a90d9"><strong>${esc(auftrag.titel)}</strong>${auftrag.beschreibung?`<p style="margin:6px 0 0;white-space:pre-wrap">${esc(auftrag.beschreibung)}</p>`:""}</div>`}
  ${!isTeacher()?`<label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:14px;font-weight:700;font-size:13px"><input type="checkbox"${fortschritt.auftragGelesen?"checked":""} onchange="toggleAuftragGelesen('${fach}','${wocheId}',this.checked)"><span> Auftrag gelesen, Ziele sind mir klar</span></label>`:""}
  <p style="font-size:11px;color:var(--muted);margin:16px 0 6px">Bevor es losgeht:</p>
- ${miniToolRow([["🧭","Lernpfad","lernpfad"],["🤔","Metakognition","metakognition"]])}
+ ${miniToolRow([["","Lernpfad","lernpfad"],["","Metakognition","metakognition"]])}
  </div>
 
  <div class="wd-panel"id="wdPanel_material">
@@ -11604,7 +11302,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  ${m.url?materialEmbedHTML(m):""}
  </div>`).join("")||`<div class="empty">Noch keine Lernmaterialien eingestellt.</div>`}</div>
  <p style="font-size:11px;color:var(--muted);margin-top:12px">Zum Bearbeiten des Materials:</p>
- ${miniToolRow([["🗂️","Karteikarten & Timer","lernwerkzeuge"],["🤖","KI zum Lernen","ki-lernen"],["🔗","Lernressourcen","ressourcen"],["⏱️","Uhr & Timer","uhr-timer"]])}
+ ${miniToolRow([["","Karteikarten & Timer","lernwerkzeuge"],["","KI zum Lernen","ki-lernen"],["","Lernressourcen","ressourcen"],["","Uhr & Timer","uhr-timer"]])}
  ${!isTeacher()?`<label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-top:14px;font-weight:700;font-size:13px"><input type="checkbox"${fortschritt.materialErhalten?"checked":""} onchange="toggleMaterialErhalten('${fach}','${wocheId}',this.checked)"><span> Materialien erhalten/gesichtet</span></label>`:""}
  </div>
 
@@ -11682,7 +11380,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  ${zeigtMeilensteine&&(inTeam||isTeacher())?`<div><button class="secondary"style="font-size:12px"onclick="openMeilensteinModal('${phase.id}','${t.id}',{fach:'${fach}',woche:'${wocheId}'})">★ Meilensteine & ${inTeam?"meine Beiträge":"Beiträge ansehen"}</button></div>`:""}
  </div>`}).join("")||`<div class="empty">Noch keine Teams gebildet.</div>`}</div>
  ${!meinTeam?`<div class="form-actions"style="margin-top:10px"><input id="neuTeamName"type="text"placeholder="Team-Name"style="flex:1"><button class="primary"onclick="createLehrplanTeam('${fach}','${wocheId}')">＋ Team gründen</button></div>`:""}
- ${miniToolRow([["🌟","Kompetenzwerkstatt","kompetenz"],["🤝","Kollaborations-Tools","kollaboration"]])}
+ ${miniToolRow([["","Kompetenzwerkstatt","kompetenz"],["","Kollaborations-Tools","kollaboration"]])}
  </div>
 
  <div class="wd-panel"id="wdPanel_produkte">
@@ -11691,7 +11389,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  ${p.dateiUrl?dateiEmbedHTML(p.dateiUrl,p.dateiName):""}
  </div>`).join("")||`<div class="empty">Noch keine Lernprodukte hochgeladen.</div>`}</div>
  <p style="font-size:11px;color:var(--muted);margin-top:12px">Zum Erstellen deines Produkts:</p>
- ${miniToolRow([["🔗","Lernressourcen","ressourcen"],["🤖","KI zum Lernen","ki-lernen"],["✍️","Fachaufsatz-Training","fachaufsatz"]])}
+ ${miniToolRow([["","Lernressourcen","ressourcen"],["","KI zum Lernen","ki-lernen"],["","Fachaufsatz-Training","fachaufsatz"]])}
  <div class="form-actions"style="margin-top:10px;flex-wrap:wrap">
  <input id="produktTitel"type="text"placeholder="Titel des Lernprodukts"style="flex:1;min-width:140px">
  <input id="produktInhalt"type="text"placeholder="Link oder kurze Beschreibung (optional)"style="flex:1;min-width:160px">
@@ -11709,7 +11407,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  return`<div class="list-item"><div><strong>${t.nr}. ${esc(t.title)}</strong><small>${count?`letzter Stand: ${latest.total}/${max} · Versuch ${latest.attempt}`:"noch nicht bearbeitet"}</small></div>
  <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
  ${latest?`<span class="pill ${lernstandStatus(latest.total,max)}">${lernstandStatusText(latest.total,max)}</span>`:""}
- ${count?`<button class="secondary"onclick="openLernstandResult('${t.id}')">🔓 Musterlösung</button>`:""}
+ ${count?`<button class="secondary"onclick="openLernstandResult('${t.id}')">Musterlösung</button>`:""}
  <button class="primary"onclick="openLernstand('${t.id}')">${count?"Weiter/ansehen":"Starten"} →</button>
  </div></div>`;
  }).join("")||`<div class="empty">Für ${esc(woche.lb)} sind noch keine Lernstandsmessungen hinterlegt.</div>`}</div>
@@ -11723,13 +11421,13 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  <button class="primary"${fortschritt.abgeschlossen?"disabled":""} onclick="markWocheAbgeschlossen('${fach}','${wocheId}')">${fortschritt.abgeschlossen?"✓ Woche abgeschlossen":alleErfuellt?"✓ Woche als abgeschlossen markieren":" Erst alle Ziele erfüllen"}</button>
  </div>`:""}
  <p style="font-size:11px;color:var(--muted);margin-top:16px">Zur Vertiefung deiner Reflexion:</p>
- ${miniToolRow([["🤔","Metakognition","metakognition"],["🧭","Lernpfad aktualisieren","lernpfad"],["💬","Lerncoaching","lerncoaching"]])}
+ ${miniToolRow([["","Metakognition","metakognition"],["","Lernpfad aktualisieren","lernpfad"],["","Lerncoaching","lerncoaching"]])}
  </div>
 
  <div class="wd-footer">
  <button class="secondary"onclick="closeModal()">Schließen</button>
  <span style="flex:1"></span>
- <button class="secondary"onclick="closeModal();go('forum-board')">❓ Im Forum fragen</button>
+ <button class="secondary"onclick="closeModal();go('forum-board')">Im Forum fragen</button>
  <button class="primary"onclick="closeModal();go('forum-nachrichten')"> Lehrkraft fragen</button>
  </div>
  `);
@@ -11846,7 +11544,27 @@ function qrLoeschen(){
 }
 window.qrLoeschen=qrLoeschen;window.qrErzeugen=qrErzeugen;window.qrHerunterladen=qrHerunterladen;window.qrKopieren=qrKopieren;
 
+function lernplaeneHTML(fortschritte){
+ const kachel=f=>{
+  const items=combinedTimeline(f.key).filter(t=>t.kind==="woche");
+  const c=personColor(f.key);
+  const heute=new Date().toISOString().slice(0,10);
+  const fertig=items.filter(w=>fortschritte[w.id]?.abgeschlossen).length;
+  const prozent=items.length?Math.round(fertig/items.length*100):0;
+  const punkte=items.slice(0,60).map(w=>{const ok=fortschritte[w.id]?.abgeschlossen;const jetzt=!ok&&w.start<=heute&&(w.end||w.start)>=heute;
+   return`<i title="${esc(w.titel||w.label||"Woche")}"style="width:9px;height:9px;border-radius:50%;display:inline-block;background:${ok?c.border:"#e2eaf0"};${jetzt?`outline:2px solid ${c.border};outline-offset:1px;`:""}"></i>`;}).join("");
+  const sub=items.length?`${fertig} von ${items.length} Wochen geschafft`:(f.key==="paedagogik"?"4 Lernbereiche · Projekt + Prüfungstraining":"Lehrplan-Zeitstrahl folgt");
+  return`<button class="card tile"style="background:#fff;border-left:4px solid ${c.border};text-align:left"onclick="openFach('${f.key}')">
+ <strong style="font-size:15px;color:${c.text}">${esc(f.label)}</strong>
+ <small style="display:block;margin-top:6px">${sub}</small>
+ ${items.length?`<div style="height:6px;border-radius:3px;background:#e2eaf0;margin-top:8px;overflow:hidden"><div style="height:100%;width:${prozent}%;background:${c.border}"></div></div><div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:8px">${punkte}</div>`:""}
+ </button>`;
+ };
+ return F11SB_FACHGRUPPEN.map(g=>`<div class="kicker"style="margin:18px 0 10px">${g.title}</div><div class="grid grid-4">${g.keys.map(k=>F11SB_LEHRPLAN_FAECHER.find(f=>f.key===k)).filter(Boolean).map(kachel).join("")}</div>`).join("")+
+  (isTeacher()?`<div style="margin-top:14px"><button class="secondary"type="button"onclick="go('didaktik')">Didaktik-Kompass</button></div>`:"");
+}
 async function renderLernwerkstatt(){
+ const fortschritte=await getMeineLehrplanFortschritte();
  // Ordnung nach Absicht der Lernenden (vier Gruppen, je mit einer Zwischenzeile in Ich-/Wir-Form).
  const groups=[
   {title:"Mein Lernen planen und verstehen",sub:"Ich will mein Lernen in die Hand nehmen.",color:"#4a90d9",items:[
@@ -11877,11 +11595,9 @@ async function renderLernwerkstatt(){
   ]}
  ];
  return`${pageHead("SELBSTSTÄNDIG LERNEN","Lernwerkstatt","Der offene Lernraum für Lernaufträge, Methoden, Tools und KI.",`<button class="primary"onclick="openPostForm('idea')">＋ Lernimpuls</button>`)}
- <div class="kicker"style="margin-bottom:10px">LEHRPLAN & LERNINHALTE</div>
- <a class="card tile"href="#faecher"style="background:#fff;border-left:4px solid #4a90d9;min-height:110px;margin-bottom:22px">
- <span class="emoji"></span><strong style="font-size:16px">Fächer 11. Klasse</strong>
- <small>Lehrplan-Zeitstrahl je Fach: Themen, Aufträge, Material, Teams und Produkte – Schritt für Schritt durchs Schuljahr.</small>
- </a>
+ <div class="kicker"style="margin-bottom:4px">LERNPLÄNE</div>
+ <p style="margin:0 0 10px;color:var(--muted)">Wähle ein Fach: Du siehst den Lehrplan-Zeitstrahl und deinen Fortschritt je Woche.</p>
+ ${lernplaeneHTML(fortschritte)}
  ${groups.map(g=>`<div class="kicker"style="margin:26px 0 2px">${g.title}</div><p style="margin:0 0 10px;color:var(--muted)">${g.sub}</p><div class="grid grid-4">${g.items.map(x=>`<a class="card tile"style="background:#fff;border-left:4px solid ${g.color}"href="#${x[3]}"><span class="emoji">${x[0]}</span>
 <strong>${x[1]}</strong><small>${x[2]}</small></a>`).join("")}</div>`).join("")}
  ${footer()}`;
@@ -12201,9 +11917,9 @@ async function renderWhiteboardUebersicht(modus){
   <small>${esc(b.description||"")||(b.art==="tafel"?"Tafel für den Unterricht.":"Gemeinsame Arbeitsfläche.")}</small>
   <small>${b.art==="tafel"?(b.einstieg?'<b class="wb-art-chip einstieg"style="margin:0 6px 0 0">Einstieg</b>':'<b class="wb-art-chip"style="margin:0 6px 0 0">Tafel</b>'):""}Angelegt von ${esc(b.createdByName||"Campus-Mitglied")} · ${esc(fmtDate(b.createdAt))}</small></div></button>
   ${isTeacher()?`<button type="button"class="wb-karte-del"title="${b.art==="tafel"?"Tafel":"Whiteboard"} löschen"aria-label="${b.art==="tafel"?"Tafel":"Whiteboard"} löschen"onclick="wbBoardLoeschen('${b.id}','${b.art==="tafel"?"tafel":"team"}')">${wbIcon("papierkorb",18)}</button>${b.art==="tafel"?`<button type="button"class="wb-karte-einst"title="${b.einstieg?"Zurück zu den Tafeln verschieben":"In die Einstiege verschieben"}"onclick="wbEinstiegSetzen('${b.id}',${b.einstieg?"false":"true"})">${b.einstieg?"→ zu Tafeln":"→ zu Einstiegen"}</button>`:""}`:""}</div>`;
- const einstiegBereich=istTafel?`<section class="wb-bereich wb-einstiege"><div class="wb-bereich-kopf"><div><h2>🚀 Einstiege</h2><small>Tafeln für den Stundeneinstieg: Impuls, Bild, Frage oder kurzes Spiel zum Ankommen.</small></div>${isTeacher()?`<button class="secondary"type="button"onclick="openWhiteboardForm('einstieg')">＋ Neuer Einstieg</button>`:""}</div>
+ const einstiegBereich=istTafel?`<section class="wb-bereich wb-einstiege"><div class="wb-bereich-kopf"><div><h2>Einstiege</h2><small>Tafeln für den Stundeneinstieg: Impuls, Bild, Frage oder kurzes Spiel zum Ankommen.</small></div>${isTeacher()?`<button class="secondary"type="button"onclick="openWhiteboardForm('einstieg')">＋ Neuer Einstieg</button>`:""}</div>
   ${einstiege.length?`<div class="wb-gitter">${einstiege.map(karte).join("")}</div>`:`<div class="empty"style="margin:0"><strong>Noch kein Einstieg.</strong>${isTeacher()?"Lege den ersten Einstieg an.":"Sobald deine Lehrkraft einen Einstieg anlegt, erscheint er hier."}</div>`}</section>
-  <div class="wb-bereich-kopf"style="margin-top:22px"><div><h2>🧑‍🏫 Tafeln</h2><small>Tafeln für den Unterricht.</small></div></div>`:"";
+  <div class="wb-bereich-kopf"style="margin-top:22px"><div><h2>Tafeln</h2><small>Tafeln für den Unterricht.</small></div></div>`:"";
  return`${WB_CSS}${kopf}${istTafel?`<style>.wb-bereich-kopf{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin:0 0 12px}.wb-bereich-kopf h2{margin:0;font-size:20px}.wb-bereich-kopf small{color:var(--muted)}.wb-einstiege{background:#fff7ec;border:1px solid #f1d6ad;border-left:6px solid #e08a1e;border-radius:16px;padding:16px;margin:0 0 6px}.wb-art-chip.einstieg{background:#e08a1e}.wb-karte-einst{position:absolute;right:52px;top:12px;height:30px;padding:0 12px;border-radius:15px;border:1px solid #f1d6ad;background:#fff;color:#a35f0c;font:inherit;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 2px 8px rgba(24,67,96,.15);z-index:2}.wb-karte-einst:hover{background:#fff7ec}</style>`:""}
  ${einstiegBereich}
  <div class="wb-gitter">${boards.map(karte).join("")}</div>
@@ -12671,7 +12387,7 @@ function wbPropsZeichnen(){
  let html=`<div class="wb-gruppe">${WB_FARBEN.map(f=>`<button type="button"class="wb-sw${f.k===aktFarbe?" on":""}"data-farbe="${f.k}"title="${f.k}"style="background:${f.soft};box-shadow:0 0 0 1px ${f.dark}55${f.k===aktFarbe?",0 0 0 3px #2f7fc6":""}"></button>`).join("")}</div>`;
  if(hatSw)html+=`<div class="wb-gruppe">${[[2,"Dünn"],[4,"Mittel"],[8,"Dick"]].map(([w,t])=>`<button type="button"class="wb-mini${aktSw===w?" on":""}"data-sw="${w}"title="${t}"><span style="display:block;width:16px;height:${Math.max(2,w/1.5)}px;background:currentColor;border-radius:4px"></span></button>`).join("")}</div>`;
  if(hatFs)html+=`<div class="wb-gruppe"><button type="button"class="wb-mini"data-fs="-2"title="Schrift kleiner">A−</button><button type="button"class="wb-mini"data-fs="2"title="Schrift größer">A+</button></div>`;
- if(hatPfeil)html+=`<div class="wb-gruppe"><button type="button"class="wb-mini${sel.some(i=>i.arrow)?" on":""}"data-pfeil="1"title="Pfeilspitze ein/aus">➜</button></div>`;
+ if(hatPfeil)html+=`<div class="wb-gruppe"><button type="button"class="wb-mini${sel.some(i=>i.arrow)?" on":""}"data-pfeil="1"title="Pfeilspitze ein/aus"></button></div>`;
  if(sel.length)html+=`<div class="wb-gruppe"><button type="button"class="wb-mini"data-aktion="dup"title="Duplizieren (Strg+D)">${wbIcon("copy",18)}</button><button type="button"class="wb-mini"data-aktion="vor"title="Nach vorn">${wbIcon("front",18)}</button><button type="button"class="wb-mini"data-aktion="zurueck"title="Nach hinten">${wbIcon("back",18)}</button><button type="button"class="wb-mini"data-aktion="del"title="Löschen (Entf)">${wbIcon("trash",18)}</button></div>`;
  box.innerHTML=html;box.hidden=false;
 }
@@ -13915,12 +13631,12 @@ async function renderKollaborationsTools(){
  ["","Kanban-Board","Aufgaben in Spalten Offen / In Arbeit / Fertig für Projektgruppen.","kanban",true],
  ["","Terminfindung","Zeitfenster vorschlagen und als Gruppe gemeinsam abstimmen.","terminfindung",true],
  ["","Team gesucht","Pinnwand für Gruppenfindung: Wer sucht noch Mitstreiter:innen?","teamgesucht",true],
- ["✅","Gemeinsame Checkliste","Meilensteine im Projekt oder Praktikum gemeinsam abhaken.","checkliste",true]
+ ["✓","Gemeinsame Checkliste","Meilensteine im Projekt oder Praktikum gemeinsam abhaken.","checkliste",true]
  ];
  const toolTile=t=>`<a class="card tile"href="#${t[3]}"><span class="emoji">${t[0]}</span>
 <strong>${t[1]}</strong><small>${t[2]}</small>${!t[4]?`<span class="badge"style="margin-top:8px">IN VORBEREITUNG</span>`:""}</a>`;
  return`${pageHead("ZUSAMMENARBEIT","Tools für Zusammenarbeit","Kostenlose, direkt in die F11Sb integrierte Tools für Gruppenarbeit, Brainstorming und Unterricht – ganz ohne externe Anmeldung.",`<button class="secondary"onclick="go('lernwerkstatt')">← Lernwerkstatt</button>`)}
- <h3 style="margin:0 0 10px">🔴 Live im Unterricht</h3>
+ <h3 style="margin:0 0 10px">Live im Unterricht</h3>
  <div class="grid grid-3">${liveTools.map(toolTile).join("")}</div>
  <h3 style="margin:22px 0 10px"> Projektorganisation</h3>
  <div class="grid grid-3">${orgaTools.map(toolTile).join("")}</div>
@@ -14778,7 +14494,7 @@ async function renderChecklisteUebersicht(){
  <button class="primary"onclick="openChecklistForm()">＋ Neue Checkliste</button>`)}
  <div class="grid grid-3">${lists.map(l=>`
  <div class="card tile"style="cursor:pointer;text-align:left"onclick="openChecklist('${l.id}')">
- <span class="emoji">✅</span>
+ <span class="emoji">✓</span>
  <strong>${esc(l.title||"Checkliste")}</strong>
  <small>${esc(l.description||"")||"Gemeinsame Meilensteine."}</small>
  </div>`).join("")||`<div class="empty"><strong>Noch keine Checkliste.</strong>Lege die erste Checkliste für dein Projekt an.</div>`}
@@ -14968,14 +14684,14 @@ async function deleteChecklistItem(id){
 }
 
 /* =========================================================
- VERSTÄNDNIS-AMPEL – Live-Feedback: 🟢 verstanden, 🟡 teilweise,
- 🔴 nicht verstanden. Collections: "ampelRounds" (eine Runde/
+ VERSTÄNDNIS-AMPEL – Live-Feedback: verstanden, teilweise,
+ nicht verstanden. Collections: "ampelRounds" (eine Runde/
  Frage) und"ampelResponses" (feste Doc-ID "<roundId>_<uid>",
  damit jede Person ihre Antwort jederzeit überschreiben kann).
  ========================================================= */
 let activeAmpelId=null;
 let liveUnsubscribe=null;
-const ampelOptions=[["green","🟢 Verstanden"],["yellow","🟡 Teilweise"],["red","🔴 Nicht verstanden"]];
+const ampelOptions=[["green","Verstanden"],["yellow","Teilweise"],["red","Nicht verstanden"]];
 
 async function getAmpelRounds(){return await getCollection("ampelRounds")}
 async function getAmpelResponses(roundId){
@@ -15034,10 +14750,10 @@ async function renderAmpelBoard(){
  </style>
  <div class="card">
  <p id="ampelTotalCount">${total} Antwort(en) insgesamt. Wähle, wie gut du es verstanden hast:</p>
- <div class="ampel-buttons">${ampelOptions.map(([key,label])=>`<button class="${myResponse?.value===key?"selected":""}"onclick="setAmpelResponse('${round.id}','${key}')">${label}</button>`).join("")}</div>
+ <div class="ampel-buttons">${ampelOptions.map(([key,label])=>`<button data-k="${key}" class="${myResponse?.value===key?"selected":""}"onclick="setAmpelResponse('${round.id}','${key}')">${label}</button>`).join("")}</div>
  </div>
  <div class="card"style="margin-top:12px">
- <h3 style="margin-top:0">Ergebnis <span class="pill"style="margin-left:6px">🔴 live</span></h3>
+ <h3 style="margin-top:0">Ergebnis <span class="pill"style="margin-left:6px">live</span></h3>
  <div class="ampel-bars"id="ampelBars">${ampelOptions.map(([key,label])=>{
  const count=responses.filter(r=>r.value===key).length;
  const pct=total?Math.round((count/total)*100):0;
@@ -15567,7 +15283,7 @@ async function deleteRandomList(id){
 async function renderLernWerkzeuge(){
  const tools=[
  ["","Karteikarten","Karten mit Frage und Antwort erstellen und zum Wiederholen durchklicken.","karteikarten",true],
- ["⏱","Fokus-Timer","Pomodoro-Technik: fokussiert arbeiten, dann bewusst Pause machen.","fokus-timer",true],
+ ["","Fokus-Timer","Pomodoro-Technik: fokussiert arbeiten, dann bewusst Pause machen.","fokus-timer",true],
  ["","Glossar","Gemeinsames Nachschlagewerk für Fachbegriffe – von der Klasse befüllt.","glossar",true]
  ];
  return`${pageHead("SELBSTSTÄNDIG LERNEN","Lern-Werkzeuge","Kostenlose Werkzeuge fürs eigene Lernen – Wiederholen, Fokussieren und Nachschlagen.",`<button class="secondary"onclick="go('lernwerkstatt')">← Lernwerkstatt</button>`)}
@@ -16248,7 +15964,7 @@ function renderFokusTimer(){
  <div class="pomo-display"id="pomodoroDisplay">${pomodoroFormat(pomodoroSecondsLeft)}</div>
  <div class="pomo-actions">
  <button class="primary"id="pomodoroStartBtn"onclick="startPomodoro()">${pomodoroRunning?"Läuft …":"▶ Start"}</button>
- <button class="secondary"onclick="pausePomodoro()">⏸ Pause</button>
+ <button class="secondary"onclick="pausePomodoro()">Pause</button>
  <button class="secondary"onclick="resetPomodoro()">↺ Zurücksetzen</button>
  </div>
  <div class="pomo-settings">
@@ -16494,9 +16210,9 @@ function essaySelfCheckStatus(entry,criteriaCount){
  if(!entry?.selfCheck)return {color:"",label:"Noch keine Selbsteinschätzung"};
  const vals=Array.from({length:criteriaCount},(_,i)=>!!entry.selfCheck[i]);
  const metCount=vals.filter(Boolean).length;
- if(metCount===criteriaCount)return {color:"green",label:`✅ Alle ${criteriaCount} Kriterien selbst erfüllt`};
- if(metCount===0)return {color:"red",label:"🔴 Noch keine Kriterien erfüllt (Selbsteinschätzung)"};
- return {color:"yellow",label:`🟡 ${metCount}/${criteriaCount} Kriterien selbst erfüllt`};
+ if(metCount===criteriaCount)return {color:"green",label:`✓ Alle ${criteriaCount} Kriterien selbst erfüllt`};
+ if(metCount===0)return {color:"red",label:"Noch keine Kriterien erfüllt (Selbsteinschätzung)"};
+ return {color:"yellow",label:`${metCount}/${criteriaCount} Kriterien selbst erfüllt`};
 }
 
 async function getEssayCases(){return await getCollection("essayCases")}
@@ -16605,8 +16321,8 @@ async function renderFachaufsatzBoard(){
  <div class="list">${teacherEntries.map(e=>{
  const st=essaySelfCheckStatus(e,ESSAY_KRITERIEN_FLAT.length);
  return`<div class="list-item">
- <div><strong>${esc(e.name||"Campus-Mitglied")}</strong><small>${e.feedbackRequested?"Rückmeldung angefragt":e.feedback?"✅ Rückmeldung gegeben":"Noch nicht eingereicht"}</small></div>
- <div style="display:flex;align-items:center;gap:8px">${st.color?`<span class="pill${st.color==="green"?"green":""}"style="${st.color==="yellow"?"background:#fdecb8;color:#916d0b":st.color==="red"?"background:#fad2d5;color:#b32b32":""}"title="${esc(st.label)}">${st.color==="green"?"🟢":st.color==="yellow"?"🟡":"🔴"}</span>`:`<span class="pill"title="Noch keine Selbsteinschätzung"></span>`}<button class="secondary"onclick="openTeacherFeedbackForm('${e.id}','${esc(e.name||"Campus-Mitglied")}','${esc(c.title||"Aufgabe")}','${esc(e.text||"")}','${esc(e.feedback||"")}')">${e.feedback?"Rückmeldung bearbeiten":"Antworten"}</button></div>
+ <div><strong>${esc(e.name||"Campus-Mitglied")}</strong><small>${e.feedbackRequested?"Rückmeldung angefragt":e.feedback?"✓ Rückmeldung gegeben":"Noch nicht eingereicht"}</small></div>
+ <div style="display:flex;align-items:center;gap:8px">${st.color?`<span class="pill${st.color==="green"?"green":""}"style="${st.color==="yellow"?"background:#fdecb8;color:#916d0b":st.color==="red"?"background:#fad2d5;color:#b32b32":""}"title="${esc(st.label)}"><i class="ampel-punkt" style="background:${st.color==="green"?"#3fa66a":st.color==="yellow"?"#e0a324":"#d6453d"}"></i></span>`:`<span class="pill"title="Noch keine Selbsteinschätzung"></span>`}<button class="secondary"onclick="openTeacherFeedbackForm('${e.id}','${esc(e.name||"Campus-Mitglied")}','${esc(c.title||"Aufgabe")}','${esc(e.text||"")}','${esc(e.feedback||"")}')">${e.feedback?"Rückmeldung bearbeiten":"Antworten"}</button></div>
  </div>`;
  }).join("")||`<div class="empty">Noch keine Abgaben.</div>`}</div>
  </div>`:""}
@@ -18519,7 +18235,7 @@ async function renderResilienz(){
  <div class="skill-suggest"id="resSkillSuggest"style="flex:1">
  <strong> Deine passenden Skills</strong>
  <p style="margin-bottom:8px">Stell den Regler ein – dann schlägt dir die App passende Übungen vor.</p>
- <div class="stress-hint"id="resStressHint"style="display:none"><strong>Stress-Level null? 😉</strong> Tiefenentspannt – wunderbar! Aber ein kleines Geheimnis: Ein bisschen Stress ist richtig nützlich. Eine mittlere Anspannung macht wach, fokussiert und bringt dich ins Tun – ganz ohne Dauerstress. Probier doch mal, den Regler Richtung 3 bis 5 zu schieben.</div>
+ <div class="stress-hint"id="resStressHint"style="display:none"><strong>Stress-Level null? </strong> Tiefenentspannt – wunderbar! Aber ein kleines Geheimnis: Ein bisschen Stress ist richtig nützlich. Eine mittlere Anspannung macht wach, fokussiert und bringt dich ins Tun – ganz ohne Dauerstress. Probier doch mal, den Regler Richtung 3 bis 5 zu schieben.</div>
  <div id="resSkillButtons"></div>
  </div>
  </div>
@@ -18810,7 +18526,7 @@ function toggleResonanzTimer(){
  const btn=$("breathStart");if(!btn)return;
  if(resonanzRunning){resonanzRunning=false;if(resonanzTimer){clearInterval(resonanzTimer);resonanzTimer=null}btn.textContent="▶ Weiter";return;}
  if(!resonanzEnd)resonanzEnd=Date.now()+120000;
- resonanzRunning=true;btn.textContent="⏸ Pause";updateResonanzTimer();
+ resonanzRunning=true;btn.textContent="Pause";updateResonanzTimer();
  resonanzTimer=setInterval(updateResonanzTimer,100);
 }
 function updateResonanzTimer(){
@@ -18879,18 +18595,13 @@ function renderPraxisProjekte(){
 }
 
 async function renderPraktikum(){
- let assignments=[], questions=[], projects=[];
- let challenges=[],solutions=[],results=[];
- try{assignments=await getCollection("practice","createdAt",true)}catch(e){console.error(e)}
- try{questions=await getCollection("fpaQuestions","createdAt",true)}catch(e){console.error(e)}
- try{projects=await getCollection("fpaProjects","createdAt",true)}catch(e){console.error(e)}
- try{challenges=await getCollection("kiChallenges","createdAt",true)}catch(e){console.error(e)}
- try{solutions=await getCollection("kiSolutions","createdAt",true)}catch(e){console.error(e)}
- try{results=await getCollection("kiResults","createdAt",true)}catch(e){console.error(e)}
-
- assignments=assignments.filter(p=>p.module==="fpa" && p.type==="teacherAssignment");
- const praktikumsAuftraege=await getPraktikumsAuftraege();
- const meineBerichte=isTeacher()?{}:await getMeinePraktikumsberichte();
+ /* Alles gleichzeitig laden (statt sieben Abfragen nacheinander). */
+ const [assignmentsAlle,questions,projects,challenges,solutions,results,praktikumsAuftraege]=await Promise.all([
+  getCollection("practice","createdAt",true),getCollection("fpaQuestions","createdAt",true),getCollection("fpaProjects","createdAt",true),
+  getCollection("kiChallenges","createdAt",true),getCollection("kiSolutions","createdAt",true),getCollection("kiResults","createdAt",true),
+  getPraktikumsAuftraege()
+ ]);
+ const assignments=assignmentsAlle.filter(p=>p.module==="fpa" && p.type==="teacherAssignment");
 
  return`${pageHead("SCHULE ↔ PRAXIS","fpA","Theorie-Praxis-Transfer-Aufträge und eigenständige Werkzeuge für die fachpraktische Ausbildung.",
  isTeacher()?`<button class="primary"onclick="openPracticeForm()">＋ Theorie-Praxis-Transfer-Auftrag</button>`:"")}
@@ -18941,48 +18652,8 @@ async function renderPraktikum(){
  .pk-body small{display:block;color:var(--muted);font-size:11px;line-height:1.6}
  </style>
 
- <div class="kicker">PRAKTIKUMSPHASEN & BLOCKBERICHTE 2026/27</div>
- <div class="pk-split">
- <div class="pk-zeitstrahl">${PRAKTIKUMSPHASEN.map(p=>{
- const heute=new Date().toISOString().slice(0,10);
- const status=heute>=p.start&&heute<=p.end?"laufend":heute>p.end?"vorbei":"kommend";
- const frist=letzterDonnerstagVorOrAm(p.end);
- const typen=praktikumsberichtTypenFuerPhase(p.id);
- const eigeneAmpeln=typen.map(t=>{
- const eintrag=meineBerichte[`${p.id}_${t.typ}`];
- return`<span class="pk-ampel-dot"style="background:${ampelFarbe(eintrag?.ampel)}"title="${t.label}: ${eintrag?ampelText(eintrag.ampel):"noch nicht hochgeladen"}"></span>`;
- }).join("");
- const rahmenfarbe=p.bereich==="Erziehungsbereich"?"#3fa66a":p.bereich==="Pflegebereich"?"#4a90d9":"#b8c4cc";
- return`<details class="pk-node pk-${status}"style="border-left:4px solid ${rahmenfarbe}">
- <summary class="pk-summary">
- <span class="pk-icon">${p.icon}</span>
- <div class="pk-info">
- <strong>${esc(p.titel)}</strong>
- <small>${esc(fmtDateOnly(p.start))}–${esc(fmtDateOnly(p.end))}</small>
- </div>
- ${isTeacher()?"":`<div class="pk-ampeln">${eigeneAmpeln}</div>`}
- </summary>
- <div class="pk-body">
- <small>Abgabe Blockbericht + Arbeitszeiten-Nachweis: <strong>${esc(fmtDateOnly(frist))}, 19 Uhr</strong></small>
- ${typen.length>1?`<small>Abgabe Einschätzungsbogen: <strong>${esc(fmtDateOnly(einschaetzungFrist(p.id)))}, 19 Uhr</strong></small>`:""}
- <button class="secondary"style="margin-top:8px;font-size:11px"onclick="${isTeacher()?`openLehrkraftPraktikumsUebersicht('${p.id}')`:`openPraktikumsblockDetail('${p.id}')`}">${isTeacher()?"Klassenübersicht öffnen":"Berichte hochladen/ansehen"} →</button>
- </div>
- </details>`;
- }).join("")}
- ${isTeacher()?`<div style="margin:10px 0 0 26px"><button class="secondary"onclick="openPraktikumsGesamtuebersicht()"style="font-size:11px"> Ampel-Gesamtübersicht (alle Blöcke) & PDF-Export</button></div>`:""}
- </div>
- <div class="pk-kennzahlen">
- <a class="card pk-kz"href="taetigkeitsnachweis.pdf"download style="text-decoration:none">
- <strong style="font-size:15px"> PDF</strong><small>Tätigkeitsnachweis</small>
- </a>
- <a class="card pk-kz"href="einschaetzungsbogen.pdf"download style="text-decoration:none">
- <strong style="font-size:15px"> PDF</strong><small>Einschätzungsbogen</small>
- </a>
- <a class="card pk-kz"href="fehlzeitentabelle.pdf"download style="text-decoration:none">
- <strong style="font-size:15px"> PDF</strong><small>Fehlzeitentabelle (Anlage zum Tätigkeitsnachweis)</small>
- </a>
- </div>
- </div>
+ <div class="kicker">PRAKTIKUMSPHASEN 2026/27</div>
+ ${praktikumPhasenHTML(praktikumsAuftraege)}
 
  <div class="grid grid-4"style="margin-bottom:22px;gap:10px">
  <button type="button"class="card pk-kz"onclick="closeModal();const el=document.getElementById('fpaAuftraegeAnker');if(el){el.open=true;el.scrollIntoView({behavior:'smooth'})}">
@@ -19972,7 +19643,7 @@ function renderMetaScenarios(){
  }
  return`<button type="button"class="pill"style="cursor:pointer;padding:6px 12px;${style}"onclick="answerScenario(${idx},'${ph}')" ${answered?"disabled":""}>${p.icon} ${esc(p.label)}</button>`;
  }).join("")}</div>
- ${answered?`<p style="margin:8px 0 0;font-size:12px;font-weight:700;color:${correct?"#24783c":"#b32b32"}">${correct?"✅ Richtig!":`❌ Das war eher ${META_PHASES[s.phase].icon} ${esc(META_PHASES[s.phase].label)}.`}</p>`:""}
+ ${answered?`<p style="margin:8px 0 0;font-size:12px;font-weight:700;color:${correct?"#24783c":"#b32b32"}">${correct?"✓ Richtig!":`✗ Das war eher ${META_PHASES[s.phase].icon} ${esc(META_PHASES[s.phase].label)}.`}</p>`:""}
  </div>`;
  }).join("");
 }
@@ -21040,7 +20711,7 @@ async function renderLernstand(){
  <section class="card ls-intro-card"><span class="badge">BIS ZU 15 PUNKTE</span><h2>Einheitliches Bewertungsschema</h2><p>Jede Kompetenzaufgabe wird mit bis zu <strong>3 Punkten</strong> bewertet. Die meisten Themen umfassen fünf Aufgaben (max. 15 Punkte), einzelne Themen können mehr Aufgaben enthalten.</p><div class="list"><div class="list-item"><strong>ab 80 %</strong><span class="pill green">Auf Kurs</span></div><div class="list-item"><strong>53–79 %</strong><span class="pill yellow">Klärungsbedarf</span></div><div class="list-item"><strong>unter 53 %</strong><span class="pill red">Handlungsbedarf</span></div></div></section>
  </div>
  <div class="card"style="margin-bottom:16px"><div class="kicker">KOMPETENZENTWICKLUNG</div><h2>Entwicklung über das Schuljahr</h2><p>Jede abgegebene und bewertete Messung wird dem eigenen Profil zugeordnet. Die fünf Kompetenzdimensionen können dadurch über mehrere Themen hinweg verglichen werden.</p><div class="ls-competence-grid">${LERNSTAND_COMPETENCIES.map(c=>{const series=lernstandCompetenceSeries(ownAttempts,c.id);const last=series.length?series[series.length-1]:null;return`<div class="ls-comp-card"><strong>${esc(c.label)}</strong><small>${last===null?"Noch kein Ergebnis":last+"/3 Punkte zuletzt"}</small>${last===null?"":lernstandBar(last,3)}</div>`}).join("")}</div>${latest?`<div class="notice"style="margin-top:14px"><strong>Letzter Lernstand: ${latest.total}/${lernstandMaxPoints(latest.taskId)} · ${lernstandStatusText(latest.total,lernstandMaxPoints(latest.taskId))}</strong><p style="margin-bottom:0">Versuch ${latest.attempt} bei „${esc(latest.title||"Lernstandsmessung")}".</p></div>`:`<div class="notice"style="margin-top:14px"><strong>Noch keine Lernstandsmessung abgeschlossen.</strong><p style="margin-bottom:0">Starte nach dem nächsten Thema mit der passenden Kompetenzüberprüfung.</p></div>`}</div>
- <div class="ls-area-grid">${["lb1","lb2","lb3","lb4"].map(areaId=>`<section class="card ls-area"><div class="ls-area-head"><div><span class="badge">${LERNSTAND_AREAS[areaId].icon} LERNBEREICH</span><h2>${esc(LERNSTAND_AREAS[areaId].title)}</h2></div><span class="pill">${byArea[areaId].length} Messungen</span></div>${byArea[areaId].map(t=>{const a=lernstandLatest(ownAttempts,t.id);const count=lernstandAttemptCount(ownAttempts,t.id);const max=lernstandMaxPoints(t.id);return`<div class="ls-item"><div class="ls-item-main"><strong>${t.nr}. ${esc(t.title)}</strong><small>${count?`letzter Stand: ${a.total}/${max} · Versuch ${a.attempt}`:"noch nicht bearbeitet"}</small></div><div class="ls-item-actions">${a?`<span class="pill ${lernstandStatus(a.total,max)}">${lernstandStatusText(a.total,max)}</span>`:""}${count?`<button class="secondary"onclick="openLernstandResult('${t.id}')">🔓 Musterlösung</button>`:""}<button class="secondary"onclick="openLernstand('${t.id}')">${a?"Weiter / ansehen":"Starten"} →</button></div></div>`}).join("")}</section>`).join("")}</div>${footer()}`;
+ <div class="ls-area-grid">${["lb1","lb2","lb3","lb4"].map(areaId=>`<section class="card ls-area"><div class="ls-area-head"><div><span class="badge">${LERNSTAND_AREAS[areaId].icon} LERNBEREICH</span><h2>${esc(LERNSTAND_AREAS[areaId].title)}</h2></div><span class="pill">${byArea[areaId].length} Messungen</span></div>${byArea[areaId].map(t=>{const a=lernstandLatest(ownAttempts,t.id);const count=lernstandAttemptCount(ownAttempts,t.id);const max=lernstandMaxPoints(t.id);return`<div class="ls-item"><div class="ls-item-main"><strong>${t.nr}. ${esc(t.title)}</strong><small>${count?`letzter Stand: ${a.total}/${max} · Versuch ${a.attempt}`:"noch nicht bearbeitet"}</small></div><div class="ls-item-actions">${a?`<span class="pill ${lernstandStatus(a.total,max)}">${lernstandStatusText(a.total,max)}</span>`:""}${count?`<button class="secondary"onclick="openLernstandResult('${t.id}')">Musterlösung</button>`:""}<button class="secondary"onclick="openLernstand('${t.id}')">${a?"Weiter / ansehen":"Starten"} →</button></div></div>`}).join("")}</section>`).join("")}</div>${footer()}`;
 }
 
 // Rendert eine einzelne Kompetenzaufgabe im Bearbeitungsformular: K-Prim als
@@ -21052,7 +20723,7 @@ function lernstandTaskInputHTML(q,i,priorAttempt){
  let feedbackHTML="";
  if(Array.isArray(priorAnswer)){
  const g=kprimGrade(q,priorAnswer);
- feedbackHTML=`<div class="notice ${g.allCorrect?"ls-fb-green":"ls-fb-red"}"style="margin:8px 0 12px"><strong>${g.allCorrect?`✅ Versuch ${priorAttempt.attempt}: Alles richtig!`:`❌ Versuch ${priorAttempt.attempt}: ${g.errors} von ${g.total} Aussagen falsch beurteilt`}</strong></div>`;
+ feedbackHTML=`<div class="notice ${g.allCorrect?"ls-fb-green":"ls-fb-red"}"style="margin:8px 0 12px"><strong>${g.allCorrect?`✓ Versuch ${priorAttempt.attempt}: Alles richtig!`:`✗ Versuch ${priorAttempt.attempt}: ${g.errors} von ${g.total} Aussagen falsch beurteilt`}</strong></div>`;
  }
  return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} <span class="ls-points">· ${q.points} P.</span></h4><p>${esc(q.intro||"")}</p>${feedbackHTML}<div class="ls-kprim-list">${(q.statements||[]).map((s,si)=>`<label class="ls-kprim-row"><input type="checkbox"data-kprim-task="${esc(q.id)}"data-kprim-index="${si}"><span>${esc(s.text)}</span></label>`).join("")}</div></div>`;
  }
@@ -21084,7 +20755,7 @@ async function downloadLernstandResultPDF(id){
  const scoreLine=latest?.status==="bewertet"?`Ergebnis: ${latest.total}/${max} Punkte (${lernstandStatusText(latest.total,max)})`:`Ergebnis: ${Number(latest?.total)||0}/${max} Punkte (K-Prim automatisch, offene Fragen ggf. noch nicht bewertet)`;
  const body=t.tasks.map((q,i)=>{
  if(q.type==="kprim"){
- const stmts=(q.statements||[]).map(s=>`<tr><td style="width:26px">${s.correct?"✅":"❌"}</td><td>${escPDF(s.text)}${s.explain?`<br><small>${escPDF(s.explain)}</small>`:""}</td></tr>`).join("");
+ const stmts=(q.statements||[]).map(s=>`<tr><td style="width:26px">${s.correct?"✓":"✗"}</td><td>${escPDF(s.text)}${s.explain?`<br><small>${escPDF(s.explain)}</small>`:""}</td></tr>`).join("");
  return`<div class="item"><strong>${escPDF(String(i+1)+"."+q.label)} · ${q.points} P.</strong><div>${escPDF(q.intro||"")}</div><table style="margin-top:8px">${stmts}</table>${q.solution?`<div style="margin-top:6px"><strong>${escPDF(q.solution)}</strong></div>`:""}</div>`;
  }
  return`<div class="item"><strong>${escPDF(String(i+1)+"."+q.label)} · ${q.points} P.</strong><div><em>Aufgabe:</em> ${escPDF(q.prompt||"")}</div><div style="margin-top:6px"><em>Musterlösung:</em><br>${escPDF(q.solution||"Noch keine Musterlösung hinterlegt.").replace(/\n/g,"<br>")}</div></div>`;
@@ -21098,7 +20769,7 @@ async function downloadLernstandResultPDF(id){
 function openLernstandResult(id){
  getLernstandTasks().then(async tasks=>{const t=tasks.find(x=>x.id===id);if(!t)return;const attempts=await getMyLernstandAttempts();const rows=attempts.filter(x=>x.taskId===id).sort((a,b)=>(a.attempt||0)-(b.attempt||0));const latest=rows[rows.length-1];const max=t.tasks.reduce((s,q)=>s+(Number(q.points)||0),0);modal(`<button class="modal-close"onclick="closeModal()">×</button><div class="kicker"> ERGEBNIS · ${t.nr}/26</div><h2>${esc(t.title)}</h2><div class="notice"><strong>${latest?.status==="bewertet"?`${latest.total}/${max} · ${lernstandStatusText(latest.total,max)}`:`${Number(latest?.total)||0}/${max} · K-Prim automatisch gewertet, offene Fragen noch nicht bewertet`}</strong><p style="margin-bottom:0">Hier sind die vollständigen Musterlösungen.</p></div>${t.tasks.map((q,i)=>{
  if(q.type==="kprim"){
- return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} · ${q.points} P.</h4><p>${esc(q.intro||"")}</p><div class="ls-kprim-list">${(q.statements||[]).map(s=>`<div class="ls-kprim-row"style="cursor:default"><span>${s.correct?"✅":"❌"}</span><span>${esc(s.text)}${s.explain?` — <em style="color:var(--muted)">${esc(s.explain)}</em>`:""}</span></div>`).join("")}</div>${q.solution?`<p style="margin-top:10px;font-weight:700">${esc(q.solution)}</p>`:""}</div>`;
+ return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} · ${q.points} P.</h4><p>${esc(q.intro||"")}</p><div class="ls-kprim-list">${(q.statements||[]).map(s=>`<div class="ls-kprim-row"style="cursor:default"><span>${s.correct?"✓":"✗"}</span><span>${esc(s.text)}${s.explain?` — <em style="color:var(--muted)">${esc(s.explain)}</em>`:""}</span></div>`).join("")}</div>${q.solution?`<p style="margin-top:10px;font-weight:700">${esc(q.solution)}</p>`:""}</div>`;
  }
  return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} · ${q.points} P.</h4><div class="ls-solution"><strong> Musterlösung</strong><p style="white-space:pre-wrap;margin-bottom:0">${esc(q.solution||"Noch keine Musterlösung hinterlegt.")}</p></div></div>`;
  }).join("")}<div class="form-actions"><button class="secondary"onclick="downloadLernstandResultPDF('${id}')"> Als PDF herunterladen</button><button class="secondary"onclick="closeModal()">Schließen</button></div>`)});
@@ -21138,9 +20809,9 @@ function showLernstandSubmitFeedback(t,kprimFeedback,attempt){
  const openTasks=t.tasks.filter(q=>q.type!=="kprim");
  const rows=kprimTasks.map(q=>{
  const g=kprimFeedback[q.id]||{};
- return`<div class="list-item"><div><strong>${esc(q.label)}</strong></div><span class="pill${g.allCorrect?"green":""}"style="${g.allCorrect?"":"background:#fad2d5;color:#b32b32"}">${g.allCorrect?"✅ Alles richtig":`❌ ${g.errors} von ${g.total} falsch`}</span></div>`;
+ return`<div class="list-item"><div><strong>${esc(q.label)}</strong></div><span class="pill${g.allCorrect?"green":""}"style="${g.allCorrect?"":"background:#fad2d5;color:#b32b32"}">${g.allCorrect?"✓ Alles richtig":`✗ ${g.errors} von ${g.total} falsch`}</span></div>`;
  }).join("");
- modal(`<button class="modal-close"onclick="closeModal();render()">×</button><div class="kicker">✅ VERSUCH ${attempt} ABGEGEBEN</div><h2>${esc(t.title)}</h2>${kprimTasks.length?`<div class="list">${rows}</div>`:""}${openTasks.length?`<div class="notice"style="margin-top:12px"><strong>Offene Fragen</strong><p style="margin-bottom:0">Deine ${openTasks.length===1?"offene Antwort wurde":"offenen Antworten wurden"} gespeichert und ${openTasks.length===1?"wird":"werden"} von deiner Lehrkraft bewertet.</p></div>`:""}<div class="form-actions"><button class="primary"onclick="closeModal();render()">Weiter</button></div>`);
+ modal(`<button class="modal-close"onclick="closeModal();render()">×</button><div class="kicker">✓ VERSUCH ${attempt} ABGEGEBEN</div><h2>${esc(t.title)}</h2>${kprimTasks.length?`<div class="list">${rows}</div>`:""}${openTasks.length?`<div class="notice"style="margin-top:12px"><strong>Offene Fragen</strong><p style="margin-bottom:0">Deine ${openTasks.length===1?"offene Antwort wurde":"offenen Antworten wurden"} gespeichert und ${openTasks.length===1?"wird":"werden"} von deiner Lehrkraft bewertet.</p></div>`:""}<div class="form-actions"><button class="primary"onclick="closeModal();render()">Weiter</button></div>`);
 }
 
 async function openLernstandTeacherOverview(){
@@ -21175,7 +20846,7 @@ async function downloadLernstandTeacherPDF(attemptId){
  if(q.type==="kprim"){
  const checked=Array.isArray(a.answers?.[q.id])?a.answers[q.id]:[];
  const fb=kprimFeedback[q.id]||{};
- const stmts=(q.statements||[]).map((s,si)=>{const wasChecked=!!checked[si];const isRight=wasChecked===!!s.correct;return`<tr><td style="width:26px">${wasChecked?"":""}</td><td style="width:26px">${isRight?"✅":"❌"}</td><td>${escPDF(s.text)}</td></tr>`}).join("");
+ const stmts=(q.statements||[]).map((s,si)=>{const wasChecked=!!checked[si];const isRight=wasChecked===!!s.correct;return`<tr><td style="width:26px">${wasChecked?"":""}</td><td style="width:26px">${isRight?"✓":"✗"}</td><td>${escPDF(s.text)}</td></tr>`}).join("");
  return`<div class="item"><strong>${escPDF(String(i+1)+"."+q.label)} · ${fb.points??competencies[q.id]??0}/${q.points} P. (automatisch)</strong><table style="margin-top:8px">${stmts}</table></div>`;
  }
  return`<div class="item"><strong>${escPDF(String(i+1)+"."+q.label)} · ${competencies[q.id]??"–"}/${q.points} P.</strong><div><em>Antwort:</em><br>${escPDF(a.answers?.[q.id]||"").replace(/\n/g,"<br>")}</div></div>`;
@@ -21197,7 +20868,7 @@ async function openLernstandTeacherAttempt(attemptId){
  if(q.type==="kprim"){
  const checked=Array.isArray(a.answers?.[q.id])?a.answers[q.id]:[];
  const fb=kprimFeedback[q.id]||{};
- return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} · ${fb.points??competencies[q.id]??0}/${q.points} P. (automatisch)</h4><div class="ls-kprim-list">${(q.statements||[]).map((s,si)=>{const wasChecked=!!checked[si];const isRight=wasChecked===!!s.correct;return`<div class="ls-kprim-row"style="cursor:default"><span>${wasChecked?"":""}</span><span>${esc(s.text)} ${isRight?"✅":"❌"}</span></div>`}).join("")}</div><p style="margin-top:8px;color:var(--muted);font-size:12px">Automatisch bewertet: ${fb.errors??0} von ${fb.total??(q.statements||[]).length} Aussagen falsch beurteilt.</p></div>`;
+ return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} · ${fb.points??competencies[q.id]??0}/${q.points} P. (automatisch)</h4><div class="ls-kprim-list">${(q.statements||[]).map((s,si)=>{const wasChecked=!!checked[si];const isRight=wasChecked===!!s.correct;return`<div class="ls-kprim-row"style="cursor:default"><span>${wasChecked?"":""}</span><span>${esc(s.text)} ${isRight?"✓":"✗"}</span></div>`}).join("")}</div><p style="margin-top:8px;color:var(--muted);font-size:12px">Automatisch bewertet: ${fb.errors??0} von ${fb.total??(q.statements||[]).length} Aussagen falsch beurteilt.</p></div>`;
  }
  return`<div class="ls-task-box"><h4>${i+1}. ${esc(q.label)} · ${q.points} P.</h4><div class="notice"><strong>Antwort des Schülers</strong><p style="white-space:pre-wrap;margin-bottom:0">${esc(a.answers?.[q.id]||"")}</p></div><label>Punkte (0–3)<input id="lsGrade_${q.id}"type="number"min="0"max="3"step="1"value="${Math.max(0,Math.min(3,Number(competencies[q.id]??0)))}"></label><details style="margin-top:8px"><summary>Musterlösung anzeigen</summary><div class="ls-solution"><p style="white-space:pre-wrap;margin-bottom:0">${esc(q.solution||"Noch keine Musterlösung hinterlegt.")}</p></div></details></div>`;
  }).join("")}<label>Rückmeldung an den Schüler<textarea id="lsTeacherFeedback"rows="4"placeholder="Kurze Rückmeldung …">${esc(a.feedback||"")}</textarea></label><div class="form-actions"><button class="secondary"onclick="downloadLernstandTeacherPDF('${a.id}')"> Als PDF herunterladen</button><button class="secondary"onclick="openLernstandStudent('${a.uid}')">Zurück</button><button class="primary"onclick="saveLernstandGrade('${a.id}')">Bewertung speichern</button></div></div>`);
@@ -21235,7 +20906,7 @@ async function openLernstandTaskEditor(id){
  const tasks=await getLernstandTasks(),t=tasks.find(x=>x.id===id);if(!t)return;
  modal(`<button class="modal-close"onclick="closeModal()">×</button><div class="kicker"> ${t.nr}/26 · ${esc(LERNSTAND_AREAS[t.learningArea].title)}</div><h2>${esc(t.title)}</h2><div class="form"><label>Kurzer Überblick / Beschreibung<textarea id="lsEditDescription"rows="3">${esc(t.description||"")}</textarea></label>${t.tasks.map(q=>{
  if(q.type==="kprim"){
- return`<div class="ls-task-box"><h4>${esc(q.label)} · ${q.points} Punkte (K-Prim, automatisch bewertet)</h4><p style="color:var(--muted);font-size:12px">${esc(q.intro||"")}</p><div class="ls-kprim-list">${(q.statements||[]).map(s=>`<div class="ls-kprim-row"style="cursor:default"><span>${s.correct?"✅":"❌"}</span><span>${esc(s.text)}</span></div>`).join("")}</div><p style="margin-top:8px;color:var(--muted);font-size:11px">K-Prim-Aufgaben werden aktuell nicht über dieses Formular bearbeitet – melde dich bei Bedarf, dann passe ich die Aussagen im Code an.</p></div>`;
+ return`<div class="ls-task-box"><h4>${esc(q.label)} · ${q.points} Punkte (K-Prim, automatisch bewertet)</h4><p style="color:var(--muted);font-size:12px">${esc(q.intro||"")}</p><div class="ls-kprim-list">${(q.statements||[]).map(s=>`<div class="ls-kprim-row"style="cursor:default"><span>${s.correct?"✓":"✗"}</span><span>${esc(s.text)}</span></div>`).join("")}</div><p style="margin-top:8px;color:var(--muted);font-size:11px">K-Prim-Aufgaben werden aktuell nicht über dieses Formular bearbeitet – melde dich bei Bedarf, dann passe ich die Aussagen im Code an.</p></div>`;
  }
  return`<div class="ls-task-box"><h4>${esc(q.label)} · ${q.points} Punkte</h4><label>Aufgabe<textarea id="lsEditPrompt_${q.id}"rows="5">${esc(q.prompt||"")}</textarea></label><label>Musterlösung<textarea id="lsEditSolution_${q.id}"rows="5">${esc(q.solution||"")}</textarea></label></div>`;
  }).join("")}<div class="form-actions"><button class="secondary"onclick="closeModal()">Abbrechen</button><button class="primary"onclick="saveLernstandTask('${t.id}')">Speichern</button></div></div>`);
@@ -21293,10 +20964,10 @@ async function render(){
  const seq=++__campusRenderSeq;
  const p=location.hash.replace("#","")||"start";
  navVerfolgen(p);
- if(["fach","faecher","kompass","start","klassenteam","lernwerkstatt"].includes(p)&&typeof ppmLaden==="function")await ppmLaden().catch(()=>{});
+ if(["fach","faecher","lernpfad"].includes(p)&&typeof ppmLaden==="function")await ppmLaden().catch(()=>{});
  const pages={
  start:renderStart,wochenplan:renderWochenplanSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
- faecher:renderFaecherUebersicht,fach:renderFachDetail,didaktik:renderDidaktikKompass,
+ faecher:renderLernwerkstatt,fach:renderFachDetail,didaktik:renderDidaktikKompass,
  whiteboard:renderWhiteboardUebersicht,tafel:renderTafelUebersicht,"whiteboard-board":renderWhiteboardBoard,
  ressourcen:renderRessourcenRoute,lernpfad:renderLernpfadRoute,forum:renderForum,"forum-board":renderForumBoard,"forum-nachrichten":renderForumMessages,
  pinnwand:renderPinnwandUebersicht,"pinnwand-board":renderPinnwandBoard,
@@ -21690,13 +21361,13 @@ window.CampusWP=(()=>{const o={};const g=(n,f)=>Object.defineProperty(o,n,{get:f
  g("collection",()=>collection);g("doc",()=>doc);g("addDoc",()=>addDoc);g("setDoc",()=>setDoc);g("updateDoc",()=>updateDoc);g("deleteDoc",()=>deleteDoc);
  g("getDoc",()=>getDoc);g("getDocs",()=>getDocs);g("query",()=>query);g("orderBy",()=>orderBy);g("limit",()=>limit);g("where",()=>where);
  g("onSnapshot",()=>onSnapshot);g("serverTimestamp",()=>serverTimestamp);g("writeBatch",()=>writeBatch);
- o.isTeacher=()=>isTeacher();o.isAdmin=()=>isAdmin();o.toast=toast;o.modal=modal;o.closeModal=closeModal;o.zkAnzeige=zkAnzeige;o.dsHinweis=dsHinweis;return o})();
+ o.upload=(f,pfad)=>uploadCampusDatei(f,pfad);o.schueler=()=>getAllUsersForLernstand();o.isTeacher=()=>isTeacher();o.isAdmin=()=>isAdmin();o.toast=toast;o.modal=modal;o.closeModal=closeModal;o.zkAnzeige=zkAnzeige;o.dsHinweis=dsHinweis;return o})();
 let wpModul=null;
 async function renderWochenplanSeite(){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261013b";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261013b");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261014b";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261014b");
   return await wpModul.wpRender();
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
@@ -21726,10 +21397,10 @@ async function addNews(){
 }
 
 // ---- Emoji-Picker (wiederverwendbar für Forum-Beiträge und Nachrichten) --
-const EMOJI_PICKER_LISTE=["😀","😂","🥰","😅","😉","🙂","😊","😍","🤔","😮","😢","😡","👍","👎","❤️","🔥","🎉","👏","🙏","💡","✅","❌","🤝","🚀","📚","🎓","😴","🥳","💪","👀"];
+const EMOJI_PICKER_LISTE=["😀","😂","🥰","😅","😉","🙂","😊","😍","🤔","😮","😢","😡","👍","👎","❤️","🔥","🎉","👏","🙏","💡","✓","✗","🤝","🚀","📚","🎓","😴","🥳","💪","👀"];
 function emojiPickerHTML(targetId,pickerId){
  return `<div style="position:relative;display:inline-block">
- <button type="button"class="secondary"onclick="toggleEmojiPicker('${pickerId}')"title="Emoji einfügen">😊</button>
+ <button type="button"class="secondary"onclick="toggleEmojiPicker('${pickerId}')"title="Emoji einfügen"></button>
  <div id="${pickerId}"class="emoji-picker"hidden>
  ${EMOJI_PICKER_LISTE.map(e=>`<button type="button"onclick="insertEmoji('${targetId}','${e}','${pickerId}')">${e}</button>`).join("")}
  </div>
@@ -22458,10 +22129,10 @@ async function lbOrdnerHtml(){
   const meine=lehrer?{}:Object.fromEntries(await Promise.all(liste.map(async b=>{try{const s=await getDoc(doc(db,"ppLernuebersicht",b.id+"_"+currentUser.uid));return[b.id,s.exists()];}catch(e){return[b.id,false];}})));
   const karten=liste.map(b=>`<div style="position:relative"><button type="button" class="card" style="width:100%;height:100%;box-sizing:border-box;text-align:left;cursor:pointer;border-left:4px solid #2f7fc6;font:inherit${lehrer?";padding-right:52px":""}" onclick="lbOrdnerOeffnen('${esc(b.id)}')">
    <strong>${esc(String(b.title||"Lernübersicht").replace(/\s*–\s*Lernübersicht$/,""))}</strong><br>
-   <small style="color:var(--muted)">${lehrer?"Vorlage öffnen und bearbeiten":(meine[b.id]?"Meine Kopie weiterbearbeiten ✓":"Eigene Kopie anlegen und ergänzen")}</small></button>${lehrer?`<button type="button" class="secondary" title="Lernübersicht löschen" aria-label="Lernübersicht löschen" style="position:absolute;top:8px;right:8px;min-height:36px;padding:0 10px" onclick="lbOrdnerLoeschen('${esc(b.id)}')">🗑</button>`:""}</div>`).join("");
-  return`<section class="resource-section" id="lernuebersichten"><div class="section-head"><div><div class="kicker">📁 ORDNER</div><h2>Lernübersichten</h2></div><span class="pill">${liste.length}</span></div>
+   <small style="color:var(--muted)">${lehrer?"Vorlage öffnen und bearbeiten":(meine[b.id]?"Meine Kopie weiterbearbeiten ✓":"Eigene Kopie anlegen und ergänzen")}</small></button>${lehrer?`<button type="button" class="secondary" title="Lernübersicht löschen" aria-label="Lernübersicht löschen" style="position:absolute;top:8px;right:8px;min-height:36px;padding:0 10px" onclick="lbOrdnerLoeschen('${esc(b.id)}')"></button>`:""}</div>`).join("");
+  return`<section class="resource-section" id="lernuebersichten"><div class="section-head"><div><div class="kicker">ORDNER</div><h2>Lernübersichten</h2></div><span class="pill">${liste.length}</span></div>
   <p style="color:var(--muted);margin:0 0 10px">Hier liegen alle Lernübersichten als Whiteboard. ${lehrer?"Du gestaltest sie, die Schüler:innen ergänzen sie in ihrer eigenen Kopie.":"Beim Öffnen bekommst du deine eigene Kopie: ergänze Notizen, Bilder und Zeichnungen und speichere sie als PDF."}</p>
-  ${lehrer?`<div class="form-actions" style="margin:0 0 12px"><button type="button" class="secondary" onclick="lbOrdnerNeu(false)">＋ Neue Lernübersicht (5 Bausteine)</button><button type="button" class="secondary" onclick="lbOrdnerNeu(true)">＋ Beispiel: Starkes und schwaches Ich</button><button type="button" class="primary" onclick="lbBereitstellen()">⬇ Lernübersichten aus Datei bereitstellen</button></div>`:""}
+  ${lehrer?`<div class="form-actions" style="margin:0 0 12px"><button type="button" class="secondary" onclick="lbOrdnerNeu(false)">＋ Neue Lernübersicht (5 Bausteine)</button><button type="button" class="secondary" onclick="lbOrdnerNeu(true)">＋ Beispiel: Starkes und schwaches Ich</button><button type="button" class="primary" onclick="lbBereitstellen()">Lernübersichten aus Datei bereitstellen</button></div>`:""}
   ${liste.length?`<div class="grid grid-3">${karten}</div>`:`<div class="card empty"><strong>Noch keine Lernübersicht.</strong><p>${lehrer?"Lege oben eine neue an oder hänge sie an eine Stunde bzw. ein Modul.":"Deine Lehrkraft legt sie nach und nach an."}</p></div>`}</section>`;
  }catch(err){console.warn("Ordner Lernübersichten:",err);return"";}
 }
@@ -22527,7 +22198,7 @@ function lbZRender(){
  const z=window.__lbZ,el=$("lbZInner");if(!z||!el)return;
  const tabs=LB_Z_TABS.filter(t=>t[0]!=="wb");const tab=z.tab,liste=z.daten[tab]||[],aktuell=lbZAktuell(tab),name=(LB_Z_TABS.find(t=>t[0]===tab)||[])[1];
  el.innerHTML=`<div style="display:flex;gap:6px;flex-wrap:wrap;margin:0 0 10px">${tabs.map(t=>{const n=lbZAktuell(t[0])?" ✓":"";return`<button type="button" class="${t[0]===tab?"primary":"secondary"}" onclick="lbZTab('${t[0]}')">${t[1]}${n} <small>(${z.daten[t[0]].length})</small></button>`}).join("")}</div>
-  ${tab==="tafel"?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px"><button type="button" class="secondary" onclick="lbZRf('pdf')">📄 PDF anhängen</button><button type="button" class="secondary" onclick="lbZRf('web')">🌐 Webseite einbetten</button></div>`:""}
+  ${tab==="tafel"?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px"><button type="button" class="secondary" onclick="lbZRf('pdf')">PDF anhängen</button><button type="button" class="secondary" onclick="lbZRf('web')">Webseite einbetten</button></div>`:""}
   ${tab==="lern"&&!aktuell?`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:0 0 10px"><button type="button" class="secondary" onclick="lbZLernNeu()">＋ Neue leere Lernübersicht anlegen</button></div>`:""}
   <input type="search" placeholder="Suchen …" oninput="lbZFilter(this.value)" style="width:100%;box-sizing:border-box;min-height:40px;padding:0 12px;border:1px solid var(--line);border-radius:10px;font:inherit;margin:0 0 10px">
   <div id="lbZListe" style="display:grid;gap:8px;max-height:44vh;overflow:auto">${liste.map(b=>`<button type="button" class="secondary" data-t="${esc(b.titel.toLowerCase())}" style="text-align:left${b.id===aktuell?";border:2px solid #075a9d":""}" onclick="lbZuordnenSetzen('${esc(b.id)}')">${b.id===aktuell?"✓ ":""}${esc(b.titel)}</button>`).join("")||`<p class="ppm-leer">Noch kein vorbereitetes Board dieser Art vorhanden.</p>`}</div>
@@ -22742,8 +22413,8 @@ function lbRfDialog(q,ref){
   <p style="color:var(--muted);font-size:13px">Schüler:innen können ihn nur ansehen, nicht verändern.</p>
   <div style="display:grid;gap:8px">
    <button type="button" class="secondary" style="text-align:left" onclick="lbRfWahl('tafel')">▦ Digitale Tafel anlegen</button>
-   <button type="button" class="secondary" style="text-align:left" onclick="lbRfWahl('pdf')">📄 PDF anhängen</button>
-   <button type="button" class="secondary" style="text-align:left" onclick="lbRfWahl('web')">🌐 Webseite einbetten</button>
+   <button type="button" class="secondary" style="text-align:left" onclick="lbRfWahl('pdf')">PDF anhängen</button>
+   <button type="button" class="secondary" style="text-align:left" onclick="lbRfWahl('web')">Webseite einbetten</button>
   </div>
   <div class="form-actions" style="margin-top:12px"><button class="secondary" type="button" onclick="closeModal()">Abbrechen</button></div>`);
 }
@@ -22808,7 +22479,7 @@ function lbRfOeffnen(m){
  if(!src){toast("Der Rote Faden hat keine gültige Adresse.");return;}
  window.__lbRfUrl=src;
  const ov=document.createElement("div");ov.id="lbRfOverlay";ov.className="exp-overlay";
- ov.innerHTML=`<div class="exp-leiste"><b>${pdf?"📄":"🌐"} ${esc(m.rfTitel||"Roter Faden")}</b><span style="display:flex;gap:8px"><button type="button" class="secondary" onclick="lbRfNeuerTab()">↗ In neuem Tab</button><button type="button" class="secondary" onclick="lbRfSchliessen()">✕ Schließen</button></span></div><iframe title="${esc(m.rfTitel||"Roter Faden")}" src="${esc(src)}"${pdf?"":` sandbox="${wbEmbedSandbox(src)}" allow="fullscreen" allowfullscreen`}></iframe>`;
+ ov.innerHTML=`<div class="exp-leiste"><b>${pdf?"":""} ${esc(m.rfTitel||"Roter Faden")}</b><span style="display:flex;gap:8px"><button type="button" class="secondary" onclick="lbRfNeuerTab()">↗ In neuem Tab</button><button type="button" class="secondary" onclick="lbRfSchliessen()">✕ Schließen</button></span></div><iframe title="${esc(m.rfTitel||"Roter Faden")}" src="${esc(src)}"${pdf?"":` sandbox="${wbEmbedSandbox(src)}" allow="fullscreen" allowfullscreen`}></iframe>`;
  document.body.appendChild(ov);document.body.classList.add("exp-offen");
 }
 function lbRfSchliessen(){const o=document.getElementById("lbRfOverlay");if(o)o.remove();document.body.classList.remove("exp-offen");}

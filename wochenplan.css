@@ -132,3 +132,41 @@ body:has(.wp-armed) .wp-c{cursor:copy;background:#f4faf0}
 }
 @media print{.wp-leiste,.wp-actions,.wp-bar2,.wp-unten,.wp-prog,.wp-rueck,.wp-tage{display:none!important}.wp-grid{box-shadow:none}}
 .wp-b b,.wp-tile b{padding-right:16px}
+
+/* ===== Farbsystem je Art (überall gleich) ===== */
+.wp-art{display:inline-block;padding:3px 11px;border-radius:999px;background:var(--ab);color:#26323a;border:1.5px solid var(--ac);font-size:12px;font-weight:700;line-height:1.3}
+.wp-legende{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 10px}
+.wp-b.art{background:var(--ab)!important;border-left:4px solid var(--ac)!important}
+.wp-b.einf.art.entwurf{border:1px dashed var(--ac)!important;border-left:4px solid var(--ac)!important}
+.wp-tile.art{background:var(--ab)!important;border:1px solid transparent!important;border-left:4px solid var(--ac)!important}
+.wp-artcard{border-left:6px solid var(--ac)}
+.wp-artcard h3{display:flex;align-items:center;gap:8px}
+.wp-artband{margin:-4px 0 12px;padding:8px 14px;border-radius:10px;background:var(--ab);border-left:6px solid var(--ac);color:#26323a;font-weight:800;font-size:13px;letter-spacing:.03em}
+/* Länger laufende Lernbausteine */
+.wp-langbox{margin:12px 0}
+.wp-langliste{display:flex;flex-wrap:wrap;gap:8px}
+.wp-lang{flex:1 1 220px;max-width:340px;padding:8px 12px;border-radius:9px;background:var(--ab);border-left:5px solid var(--ac);cursor:pointer;display:flex;flex-direction:column;position:relative}
+.wp-lang small{color:#5d7280;font-size:11px}.wp-lang.done b{text-decoration:line-through}.wp-lang.done{opacity:.75}
+/* Anhänge */
+.wp-anh{margin:12px 0;display:flex;flex-direction:column;gap:8px}
+.wp-anh img{max-width:100%;max-height:260px;border-radius:8px}.wp-anh video{max-width:100%;border-radius:8px}.wp-anh audio{width:100%}
+.wp-datei{display:inline-block;padding:7px 12px;border-radius:8px;background:#eef3f7;border:1px solid #d5e0e8;color:#17384f;text-decoration:none;font-weight:600;word-break:break-all}
+.wp-anhform{display:flex;flex-direction:column;gap:6px;padding:10px 12px;border:1px dashed #b8c8d4;border-radius:10px;background:#f8fbfd}
+.wp-anhz{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+
+/* ===== Klassenteam: ausklappbar + Freitagsplanung ===== */
+.wp-fold{margin:12px 0}.wp-fold>summary{cursor:pointer;list-style:none;font-size:15px;display:flex;align-items:center;gap:8px}
+.wp-fold>summary::-webkit-details-marker{display:none}.wp-fold>summary::before{content:"▸";color:#6b7f8c;transition:.15s}
+.wp-fold[open]>summary::before{transform:rotate(90deg)}.wp-fold[open]>summary{margin-bottom:12px}
+.wp-anwtab{overflow-x:auto}.wp-anwtab table{border-collapse:collapse;width:100%;font-size:13px}
+.wp-anwtab th,.wp-anwtab td{padding:5px 8px;border-bottom:1px solid #e2eaf0;text-align:center}.wp-anwtab th:first-child,.wp-anwtab td:first-child{text-align:left}
+.wp-anwtab th small{display:block;font-weight:400;color:#6b7f8c}
+.wp-anw{min-width:34px;height:30px;border-radius:7px;border:1px solid #cfd9e0;background:#fff;font-weight:800;cursor:pointer;color:#6b7f8c}
+.wp-anw.z-a{background:#e5f2e2;border-color:#5aa85a;color:#2f6b2f}.wp-anw.z-f{background:#fae3e0;border-color:#d6675c;color:#a1352b}.wp-anw.z-e{background:#fbecd5;border-color:#d9922e;color:#8a5a12}
+
+/* Formulare komplett in der Farbe der Art */
+.wp-artform{background:var(--ab);border:2px solid var(--ac);border-radius:16px;padding:16px 18px;margin-top:6px}
+.wp-artform .wp-artband{background:var(--ac);color:#fff;border-left:0;margin:-4px 0 12px}
+.wp-artform .kicker,.wp-artform label{color:#26323a}
+.wp-artform input,.wp-artform select,.wp-artform textarea{border-color:var(--ac);background:#fff}
+.wp-artform .primary{background:var(--ac);border-color:var(--ac);color:#fff}
