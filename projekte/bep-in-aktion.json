@@ -1,0 +1,562 @@
+{
+ "id": "bep-in-aktion",
+ "titel": "Projekt „BEP in Aktion“",
+ "kurz": "BEP in Aktion",
+ "untertitel": "Wir entwickeln kreative Angebote zum Bayerischen Bildungs- und Erziehungsplan",
+ "lb": 2,
+ "dauerEmpfohlen": "w2",
+ "auftrag": "Im Unterricht haben Sie den Bayerischen Bildungs- und Erziehungsplan (BayBEP) kennengelernt. Jetzt bringen Sie ihn in die Praxis: Sie entwickeln in Ihrer Praktikumseinrichtung (Krippe oder Kindergarten) ein eigenes, kreatives Angebot zu einem Bildungsbereich des BayBEP, führen es mit den Kindern durch und werten es aus.",
+ "teamText": "Sie arbeiten im Bildungsbereich-Team (2–3 Personen). Das Team erarbeitet gemeinsam „seinen“ Bildungsbereich im BayBEP und sammelt Ideen. Jede/r plant und führt aber ein eigenes Angebot in der eigenen Praktikumsstelle durch und schreibt eine eigene Ausarbeitung.",
+ "worauf": "Es geht nicht um die perfekte Planung oder eine fehlerfreie Durchführung. Bewertet wird vor allem, wie gründlich Sie sich mit dem BayBEP auseinandersetzen, wie kreativ Ihre Idee ist und wie ehrlich und fachlich Sie über Ihr Angebot nachdenken. Ein Angebot, das nicht wie geplant geklappt hat, kann trotzdem eine sehr gute Note bekommen, wenn Sie gut begründen, warum.",
+ "beispiel": "Team „Umwelt“: Lena plant in ihrer Krippe eine Fühlstraße mit Naturmaterialien aus dem Garten, Tom entwickelt im Kindergarten eine „Müll-Detektive“-Rallye mit selbst gebauten Sortierstationen.",
+ "blick": [
+  {
+   "titel": "4 Wochen",
+   "text": "Schulwoche (Analyse, Grobplanung) → Praktikumsblock (Feinplanung, Durchführung) → Schulwoche (Ausarbeitung, BEP-Messe)"
+  },
+  {
+   "titel": "Team mit 2–3 Personen",
+   "text": "Ein Bildungsbereich pro Team, aber jede/r macht ein eigenes Angebot"
+  },
+  {
+   "titel": "Ergebnis",
+   "text": "Eigenes Angebot in der Praktikumsstelle, Ausarbeitung (6–8 Seiten) und ein Messestand im Team"
+  },
+  {
+   "titel": "Bewertung",
+   "text": "Ausarbeitung bis 40 Punkte (Einzelnote für die fpA), Messe bis 5 Bonuspunkte"
+  }
+ ],
+ "bereiche": [
+  {
+   "kap": "7.1",
+   "name": "Werteorientierung und Religiosität",
+   "gruppe": "Wertorientiert und verantwortungsvoll handelnde Kinder"
+  },
+  {
+   "kap": "7.2",
+   "name": "Emotionalität, soziale Beziehungen und Konflikte",
+   "gruppe": "Wertorientiert und verantwortungsvoll handelnde Kinder"
+  },
+  {
+   "kap": "7.3",
+   "name": "Sprache und Literacy",
+   "gruppe": "Sprach- und medienkompetente Kinder"
+  },
+  {
+   "kap": "7.4",
+   "name": "Digitale Medien und Technologien",
+   "gruppe": "Sprach- und medienkompetente Kinder"
+  },
+  {
+   "kap": "7.5",
+   "name": "Mathematik",
+   "gruppe": "Fragende und forschende Kinder"
+  },
+  {
+   "kap": "7.6",
+   "name": "Naturwissenschaften und Technik",
+   "gruppe": "Fragende und forschende Kinder"
+  },
+  {
+   "kap": "7.7",
+   "name": "Umwelt",
+   "gruppe": "Fragende und forschende Kinder"
+  },
+  {
+   "kap": "7.8",
+   "name": "Ästhetik, Kunst und Kultur",
+   "gruppe": "Künstlerisch aktive Kinder"
+  },
+  {
+   "kap": "7.9",
+   "name": "Musik",
+   "gruppe": "Künstlerisch aktive Kinder"
+  },
+  {
+   "kap": "7.10",
+   "name": "Bewegung, Rhythmik, Tanz und Sport",
+   "gruppe": "Starke Kinder"
+  },
+  {
+   "kap": "7.11",
+   "name": "Gesundheit",
+   "gruppe": "Starke Kinder"
+  }
+ ],
+ "bereichHinweis": "Die elf Bereiche werden gleichmäßig auf die Klasse verteilt: Jeder Bereich ist im BayBEP gleich aufgebaut (Leitgedanken → Bildungs- und Erziehungsziele → Anregungen und Beispiele zur Umsetzung). Jedes Kapitel nennt Querverbindungen zu anderen Bereichen. Nutzen Sie sie für Ihre Idee!",
+ "teamGroesse": {
+  "min": 2,
+  "max": 3
+ },
+ "rollen": [
+  "Zeitwächter/in",
+  "Materialverantwortliche/r",
+  "Messe-Organisator/in"
+ ],
+ "einrichtungen": [
+  "Krippe",
+  "Kindergarten"
+ ],
+ "meilensteine": [
+  {
+   "kurz": "M1",
+   "titel": "BEP-Steckbrief",
+   "wer": "Team",
+   "text": "1 Seite für den Bildungsbereich des Teams",
+   "inhalt": [
+    "Bildungsbereich und Kapitel im BayBEP",
+    "Leitgedanken des Bereichs",
+    "Bildungs- und Erziehungsziele",
+    "Anregungen und Beispiele zur Umsetzung",
+    "Querverbindungen zu anderen Bereichen"
+   ],
+   "beitragHinweis": "Welchen Teil des BayBEP-Kapitels hast du ausgewertet? Füge den Steckbrief als Datei oder Link hinzu (der Steckbrief ist ein Teamergebnis).",
+   "faellig": [
+    "w1",
+    2
+   ]
+  },
+  {
+   "kurz": "M2",
+   "titel": "Ideenskizze",
+   "wer": "je Person",
+   "text": "½ Seite, aus 10 Teamideen deine 2 Favoriten",
+   "inhalt": [
+    "Brainstorming im Team: 10 Ideen pro Team",
+    "Jede Person wählt 2 Favoriten",
+    "Skizze: Was? Für wen? Welches BEP-Ziel?"
+   ],
+   "beitragHinweis": "Deine Ideenskizze in 2–3 Sätzen (Datei oder Link zur halben Seite): Was? Für wen? Welches BEP-Ziel?",
+   "faellig": [
+    "w1",
+    3
+   ]
+  },
+  {
+   "kurz": "M3",
+   "titel": "Grobplanung, von der Lehrkraft abgezeichnet",
+   "wer": "je Person",
+   "bestaetigung": "lehrkraft",
+   "text": "Ideenskizze ausformulieren und kurzes Feedback einholen",
+   "inhalt": [
+    "Was? Für wen? Welches BEP-Ziel?",
+    "Feedback der Lehrkraft einholen",
+    "Fragen für die Praxisanleitung notieren"
+   ],
+   "beitragHinweis": "Deine ausformulierte Grobplanung (Datei oder Link) und deine Fragen für die Praxisanleitung. Deine Lehrkraft zeichnet sie ab oder gibt sie mit einer Rückmeldung zurück.",
+   "faellig": [
+    "w1",
+    4
+   ]
+  },
+  {
+   "kurz": "M4",
+   "titel": "Feinplanung, von der Praxisanleitung gegengelesen",
+   "wer": "je Person",
+   "text": "Planung nach Beobachtung der Kinder und Absprache mit der Anleitung",
+   "inhalt": [
+    "Rahmen: Datum, Dauer, Ort, Kinderzahl, Alter",
+    "Ziele des Angebots (Grob- und Feinziele)",
+    "Ablauf: Einstieg – Hauptteil – Abschluss, mit Begründung",
+    "Material, Sicherheit, Plan B",
+    "Beobachtungen und Beteiligung der Kinder (Partizipation)"
+   ],
+   "beitragHinweis": "Deine Feinplanung als Datei oder Link. Schreibe dazu, wer sie wann gegengelesen hat (Praxisanleitung).",
+   "faellig": [
+    "p1",
+    4
+   ]
+  },
+  {
+   "kurz": "M5",
+   "titel": "Durchführung, Dokumentation und Rückmeldung der Anleitung",
+   "wer": "je Person",
+   "text": "Angebot durchführen, dokumentieren und mit der Anleitung reflektieren",
+   "inhalt": [
+    "Notizen direkt nach dem Angebot",
+    "Fotos ohne erkennbare Kindergesichter, Werke der Kinder",
+    "Reflexionsgespräch mit der Praxisanleitung (notieren)",
+    "Unterschriebene Rückmeldung der Anleitung"
+   ],
+   "beitragHinweis": "Kurz: Wann hast du das Angebot durchgeführt und wie lief es? Lade die Dokumentation (ohne erkennbare Gesichter) und die Rückmeldung der Anleitung hoch.",
+   "faellig": [
+    "pEnde",
+    0
+   ]
+  },
+  {
+   "kurz": "M6",
+   "titel": "Abgabe der Ausarbeitung",
+   "wer": "je Person",
+   "bestaetigung": "lehrkraft",
+   "text": "Schriftliche Ausarbeitung, 6–8 Seiten (Einzelnote)",
+   "inhalt": [
+    "Digital als PDF und ausgedruckt",
+    "Anhang mit Material, Fotos und Werken der Kinder",
+    "Unterschriebene Rückmeldung der Anleitung im Anhang"
+   ],
+   "beitragHinweis": "Lade deine Ausarbeitung als PDF hoch. Die ausgedruckte Fassung gibst du zusätzlich ab. Deine Lehrkraft bestätigt den Eingang.",
+   "faellig": [
+    "wL",
+    3
+   ]
+  },
+  {
+   "kurz": "M7",
+   "titel": "Präsentation auf der BEP-Messe",
+   "wer": "Team",
+   "bestaetigung": "lehrkraft",
+   "text": "Messestand zum Bildungsbereich, 10 Minuten pro Stand",
+   "inhalt": [
+    "Stand im gewählten Format aufbauen",
+    "BEP-Ziel-Karte am Stand (Pflicht)",
+    "Andere Stände besuchen und Feedback geben",
+    "Kurzes Feedback zum Projekt ausfüllen"
+   ],
+   "beitragHinweis": "Welches Format hatte euer Stand und was war dein Beitrag zum Stand?",
+   "faellig": [
+    "wL",
+    4
+   ]
+  }
+ ],
+ "phasen": [
+  {
+   "nr": 1,
+   "name": "Start und Analyse",
+   "ort": "schule",
+   "wer": "Team",
+   "zeit": {
+    "von": [
+     "w1",
+     0
+    ],
+    "bis": [
+     "w1",
+     4
+    ]
+   },
+   "aufgaben": [
+    "Bildungsbereich und Team erhalten",
+    "BayBEP-Kapitel gemeinsam lesen und arbeitsteilig auswerten: Leitgedanken, Ziele, Anregungen",
+    "„BEP-Steckbrief“ des Bereichs erstellen",
+    "Brainstorming: 10 Ideen pro Team, dann je Person 2 Favoriten"
+   ],
+   "ms": [
+    1,
+    2
+   ]
+  },
+  {
+   "nr": 2,
+   "name": "Grobplanung",
+   "ort": "schule",
+   "wer": "einzeln, Team berät",
+   "zeit": {
+    "von": [
+     "w1",
+     0
+    ],
+    "bis": [
+     "w1",
+     4
+    ]
+   },
+   "aufgaben": [
+    "Ideenskizze ausformulieren: Was? Für wen? Welches BEP-Ziel?",
+    "Kurzes Feedback der Lehrkraft einholen",
+    "Fragen für die Praxisanleitung notieren"
+   ],
+   "ms": [
+    3
+   ]
+  },
+  {
+   "nr": 3,
+   "name": "Beobachten und Feinplanung",
+   "ort": "praktikum",
+   "wer": "einzeln",
+   "zeit": {
+    "von": [
+     "p1",
+     0
+    ],
+    "bis": [
+     "p1",
+     4
+    ]
+   },
+   "aufgaben": [
+    "Idee mit der Praxisanleitung absprechen (Termin, Raum, Gruppe, Material, Fotoerlaubnis)",
+    "Kinder beobachten: Interessen, Entwicklungsstand, Bedarf, dann die Idee anpassen",
+    "Kinder beteiligen: Ideen, Wünsche und Fragen der Kinder aufnehmen",
+    "Feinplanung schreiben, Material besorgen oder herstellen, Probelauf"
+   ],
+   "ms": [
+    4
+   ]
+  },
+  {
+   "nr": 4,
+   "name": "Durchführung und Dokumentation",
+   "ort": "praktikum",
+   "wer": "einzeln",
+   "zeit": {
+    "von": [
+     "p1",
+     7
+    ],
+    "bis": [
+     "pEnde",
+     0
+    ]
+   },
+   "aufgaben": [
+    "Angebot durchführen (gegebenenfalls mehrmals oder in mehreren Teilen)",
+    "Dokumentieren: Notizen direkt danach, Fotos ohne erkennbare Kindergesichter, Werke der Kinder",
+    "Reflexionsgespräch mit der Praxisanleitung führen und notieren"
+   ],
+   "ms": [
+    5
+   ]
+  },
+  {
+   "nr": 5,
+   "name": "Auswertung und Abgabe",
+   "ort": "schule",
+   "wer": "einzeln und Team",
+   "zeit": {
+    "von": [
+     "wL",
+     0
+    ],
+    "bis": [
+     "wL",
+     3
+    ]
+   },
+   "aufgaben": [
+    "Schriftliche Ausarbeitung fertigstellen (Gliederung siehe unten)",
+    "Präsentationsformat im Team vorbereiten (Formate siehe unten)",
+    "Ausarbeitung abgeben"
+   ],
+   "ms": [
+    6
+   ]
+  },
+  {
+   "nr": 6,
+   "name": "Präsentation: BEP-Messe",
+   "ort": "schule",
+   "wer": "Team",
+   "zeit": {
+    "von": [
+     "wL",
+     4
+    ],
+    "bis": [
+     "wL",
+     4
+    ]
+   },
+   "aufgaben": [
+    "Messestand aufbauen und präsentieren",
+    "Andere Stände besuchen, Feedback geben",
+    "Kurzes Feedback zum Projekt ausfüllen"
+   ],
+   "ms": [
+    7
+   ]
+  }
+ ],
+ "verschiebung": "Liegt Ihr Praktikumsblock zeitlich anders, verschieben sich die Phasen 3 und 4 entsprechend. Wichtig ist nur die Reihenfolge.",
+ "teamEinzeln": {
+  "gemeinsam": [
+   "BayBEP-Kapitel auswerten und BEP-Steckbrief erstellen",
+   "Ideen sammeln und sich gegenseitig beraten („kritische Freunde“)",
+   "Einen Messestand gestalten, der alle Angebote des Teams zeigt",
+   "Rollen verteilen: Zeitwächter/in, Materialverantwortliche/r, Messe-Organisator/in"
+  ],
+  "einzeln": [
+   "Eigenes Angebot in der eigenen Praktikumsstelle planen und durchführen",
+   "Absprachen mit der eigenen Praxisanleitung",
+   "Eigene schriftliche Ausarbeitung (Einzelnote)",
+   "Eigenen Beitrag zum Messestand vorbereiten und präsentieren"
+  ]
+ },
+ "datenschutz": [
+  "Fotos und Videos nur mit Erlaubnis der Einrichtung. Keine erkennbaren Gesichter, keine Namen der Kinder. Fotografieren Sie lieber Hände, Werke und Material.",
+  "Verwenden Sie in der Ausarbeitung Kürzel oder ausgedachte Namen statt der echten Namen (z. B. „Kind A, 4;2 Jahre“).",
+  "Material vorher auf Sicherheit prüfen: Verschluckungsgefahr bei Krippenkindern, Allergien bei Lebensmitteln, Scheren und Werkzeug nur unter Aufsicht."
+ ],
+ "material": [
+  {
+   "titel": "Bayerischer Bildungs- und Erziehungsplan (BayBEP), 11. Auflage 2024",
+   "text": "Kapitel 7 (dein Bildungsbereich) und Kapitel 5 (Basiskompetenzen). Für die Ausarbeitung brauchst du Seitenzahlen.",
+   "phase": "ab Phase 1"
+  },
+  {
+   "titel": "Zettel oder digitale Notizen für den Steckbrief und die Ideensammlung",
+   "text": "Der Aufbau des Steckbriefs steht bei Meilenstein M1. Ein Blatt (1 Seite) pro Team.",
+   "phase": "Phase 1"
+  },
+  {
+   "titel": "Fragen an die Praxisanleitung",
+   "text": "In der Schule notieren, im Praktikum mitbringen: Termin, Raum, Gruppe, Material, Fotoerlaubnis.",
+   "phase": "Phase 2 und 3"
+  },
+  {
+   "titel": "Beobachtungsnotizen zu den Kindern",
+   "text": "Interessen, Entwicklungsstand, Bedarf, Wünsche und Fragen der Kinder. Ohne echte Namen aufschreiben.",
+   "phase": "Phase 3"
+  },
+  {
+   "titel": "Material für dein Angebot",
+   "text": "Besorgen oder selbst herstellen, vorher auf Sicherheit prüfen (Verschluckungsgefahr, Allergien, Werkzeug nur unter Aufsicht). Dazu ein Probelauf und ein Plan B.",
+   "phase": "Phase 3 und 4"
+  },
+  {
+   "titel": "Kamera oder Handy für die Dokumentation",
+   "text": "Nur mit Erlaubnis der Einrichtung. Keine erkennbaren Gesichter: Hände, Werke und Material fotografieren.",
+   "phase": "Phase 4"
+  },
+  {
+   "titel": "Rückmeldung der Praxisanleitung (unterschrieben)",
+   "text": "Kommt in den Anhang der Ausarbeitung. Bitte rechtzeitig ansprechen.",
+   "phase": "Phase 4 und 5"
+  },
+  {
+   "titel": "Textverarbeitung für die Ausarbeitung",
+   "text": "6–8 Seiten Text, Schrift 11–12 pt, Zeilenabstand 1,5, dazu der Anhang. Abgabe als PDF und ausgedruckt.",
+   "phase": "Phase 5"
+  },
+  {
+   "titel": "Material für den Messestand",
+   "text": "Je nach Format zum Beispiel Schuhkarton, Plakat, Tablet oder Book Creator beziehungsweise Canva. Dazu die BEP-Ziel-Karte.",
+   "phase": "Phase 5 und 6"
+  }
+ ],
+ "ausarbeitung": {
+  "umfang": "6–8 Seiten Text (Schrift 11–12 pt, Zeilenabstand 1,5), dazu ein Anhang mit Material, Fotos und Werken der Kinder.",
+  "teile": [
+   {
+    "teil": "1 Einleitung",
+    "inhalt": "Welcher Bildungsbereich? Warum diese Idee? Kurze Beschreibung der Einrichtung und der Gruppe (anonymisiert).",
+    "umfang": "½ S."
+   },
+   {
+    "teil": "2 BEP-Bezug",
+    "inhalt": "Kernstück! Leitgedanken des Bereichs mit eigenen Worten. Welche Bildungs- und Erziehungsziele verfolgt Ihr Angebot, mit Seitenangabe aus dem BayBEP? Welche Basiskompetenzen (Kap. 5) werden gestärkt? Welche Querverbindungen zu anderen Bereichen gibt es?",
+    "umfang": "1½–2 S."
+   },
+   {
+    "teil": "3 Bedarfsanalyse",
+    "inhalt": "Was haben Sie bei den Kindern beobachtet (Interessen, Entwicklungsstand)? Wie wurden die Kinder an der Idee beteiligt (Partizipation)?",
+    "umfang": "½–1 S."
+   },
+   {
+    "teil": "4 Planung",
+    "inhalt": "Rahmen: Datum, Dauer, Ort, Kinderzahl, Alter. Ziele des Angebots (Grob- und Feinziele). Ablauf in Phasen: Einstieg – Hauptteil – Abschluss, mit Begründung. Material, Sicherheit, Plan B.",
+    "umfang": "1½ S."
+   },
+   {
+    "teil": "5 Durchführung",
+    "inhalt": "Was ist tatsächlich passiert? Wie haben die Kinder reagiert? Was lief anders als geplant? (sachlich beschreiben)",
+    "umfang": "1 S."
+   },
+   {
+    "teil": "6 Reflexion",
+    "inhalt": "Wurden die Ziele erreicht? Woran erkennen Sie das? Was würden Sie beim nächsten Mal ändern, und warum? Rückmeldung der Praxisanleitung. Was haben Sie gelernt? Wie hat Ihnen der BayBEP geholfen?",
+    "umfang": "1–1½ S."
+   },
+   {
+    "teil": "7 Quellen & Anhang",
+    "inhalt": "BayBEP (11. Aufl. 2024) mit Seitenzahlen, weitere Quellen; Fotos, Material, Kinderwerke, Feinplanung, unterschriebene Rückmeldung der Anleitung.",
+    "umfang": "–"
+   }
+  ]
+ },
+ "messe": {
+  "text": "In Woche 4 verwandelt sich das Klassenzimmer in eine Messe. Jedes Team gestaltet einen Stand zu seinem Bildungsbereich. Die Besucher (Mitschüler, gern auch Praxisanleitungen oder die Parallelklasse) gehen von Stand zu Stand, probieren aus und geben Feedback. Pro Stand stehen 10 Minuten zur Verfügung. Das Team wählt eines der folgenden Formate (oder schlägt ein eigenes vor).",
+  "formate": [
+   {
+    "k": "A",
+    "name": "Ideenkiste",
+    "text": "Ein Schuhkarton pro Angebot mit Original-Material, Anleitungskarte (A5) und Foto-Collage. Die Kisten bleiben danach als „Ideenbank“ in der Klasse."
+   },
+   {
+    "k": "B",
+    "name": "Mitmach-Station",
+    "text": "Die Besucher probieren das Angebot selbst aus, wie die Kinder. Dazu ein Plakat mit BEP-Zielen."
+   },
+   {
+    "k": "C",
+    "name": "Erklärvideo oder Podcast",
+    "text": "3–4 Minuten: Idee, BEP-Bezug, Highlights der Durchführung. Keine Kinder filmen oder aufnehmen!"
+   },
+   {
+    "k": "D",
+    "name": "Seite im Klassen-Praxisbuch",
+    "text": "Jede/r gestaltet eine Doppelseite (zum Beispiel mit Book Creator oder Canva). Am Ende entsteht ein gemeinsames Buch für alle Praktikumsstellen."
+   },
+   {
+    "k": "E",
+    "name": "Comic oder Fotostory",
+    "text": "Ablauf des Angebots als Bildergeschichte mit Sprechblasen. Nur Hände, Material und Werke zeigen."
+   }
+  ],
+  "pflicht": "BEP-Ziel-Karte (Pflicht für alle): Eine Karte am Stand mit den Fragen: Welches Kapitel? Welche 2–3 Ziele aus dem BayBEP? Welche Basiskompetenzen?"
+ },
+ "abgabe": [
+  "Schriftliche Ausarbeitung (einzeln, digital als PDF und ausgedruckt)",
+  "Messestand im gewählten Format (Team)",
+  "Rückmeldung der Praxisanleitung zu deinem Angebot (unterschrieben, im Anhang der Ausarbeitung)"
+ ],
+ "bewertung": {
+  "text": "Die schriftliche Ausarbeitung wird mit maximal 40 Punkten bewertet und geht als Note in die fpA ein. Die Präsentation auf der BEP-Messe fließt mit bis zu 5 Bonuspunkten ein.",
+  "kriterien": [
+   {
+    "k": "BEP-Bezug",
+    "text": "Leitgedanken richtig wiedergegeben; passende Bildungsziele ausgewählt und begründet; Seitenangaben; Basiskompetenzen und Querverbindungen erkannt",
+    "p": 14
+   },
+   {
+    "k": "Kreativität und Idee",
+    "text": "Eigene, originelle Idee; passend zu Alter und Bedarf der Kinder; Kinder werden beteiligt (Partizipation)",
+    "p": 8
+   },
+   {
+    "k": "Planung",
+    "text": "Ziele klar; Ablauf mit Einstieg – Hauptteil – Abschluss begründet; Material und Sicherheit bedacht",
+    "p": 6
+   },
+   {
+    "k": "Durchführung und Reflexion",
+    "text": "Sachliche Beschreibung; ehrliche, begründete Reflexion; konkrete Verbesserungsideen; eigener Lernzuwachs",
+    "p": 8
+   },
+   {
+    "k": "Form",
+    "text": "Gliederung, Sprache, Rechtschreibung, Quellenangaben, Anhang, Datenschutz beachtet",
+    "p": 4
+   },
+   {
+    "k": "Bonus: BEP-Messe",
+    "text": "Anschaulicher Stand, BEP-Ziel-Karte, sichere Präsentation",
+    "p": 5,
+    "bonus": true
+   }
+  ]
+ },
+ "checkliste": [
+  "Ich habe das BayBEP-Kapitel meines Bildungsbereichs gelesen und zitiere es mit Seitenzahlen.",
+  "Ich habe mindestens zwei Bildungs- und Erziehungsziele aus dem BayBEP ausgewählt und erklärt, wie mein Angebot sie fördert.",
+  "Ich habe beschrieben, was ich bei den Kindern beobachtet habe und wie sie beteiligt wurden.",
+  "Mein Ablauf hat Einstieg, Hauptteil und Abschluss, mit Begründung.",
+  "Ich habe ehrlich reflektiert, was gut lief, was nicht und was ich ändern würde.",
+  "Keine echten Namen, keine erkennbaren Gesichter auf Fotos.",
+  "Die Rückmeldung meiner Praxisanleitung liegt im Anhang."
+ ],
+ "punkt": "Eine gute Reflexion zählt mehr als eine perfekte Durchführung. Mut zur Idee!"
+}
