@@ -31,21 +31,28 @@ const FAECHER=[
  {k:"fachuebergreifend",l:"Fachübergreifend",c:"#8a9499",bg:"#eef1f2"}
 ];
 const FACH=k=>FAECHER.find(f=>f.k===k)||FAECHER[FAECHER.length-1];
-const MTYP={checkout:{l:"Check-out",i:""},einfuehrung:{l:"Einführung",i:""},baustein:{l:"Kurs / Training",i:""},lernen:{l:"Lernbaustein",i:""},vertiefung:{l:"Vertiefung",i:""},projekt:{l:"Projekt",i:""}};
+const MTYP={selbstlern:{l:"Selbstlernkurs"},checkout:{l:"Check-out"},fachaufsatz:{l:"Fachaufsatztraining"},lernrallye:{l:"Lernrallye"},einfuehrung:{l:"Einführung"},baustein:{l:"Kurs / Training"},lernen:{l:"Lernbaustein"},vertiefung:{l:"Vertiefung"},projekt:{l:"Projekt"}};
+const MODUL_ARTEN=["selbstlern","checkout","fachaufsatz","lernrallye"]; /* von Schüler:innen einplanbar */
 /* Feste Termine der Lehrkräfte (Collection wpEinfuehrungen, Feld art) */
 const TART={einfuehrung:{l:"Einführung",i:"",kick:"EINFÜHRUNG",neu:"Neue Einführung",edit:"Einführung bearbeiten",ph:"z. B. Einführung Lernbereich 2",hint:"Fester Termin – die Lehrkraft führt ein, danach steuerst du selbst.",weg:"Diese Einführung löschen?"},lernstand:{l:"Lernstandsgespräch",i:"",kick:"LERNSTANDSGESPRÄCH",neu:"Neues Lernstandsgespräch",edit:"Lernstandsgespräch bearbeiten",ph:"z. B. Lernstandsgespräch Gruppe A",hint:"Fester Termin – deine Lehrkraft spricht mit dir über deinen Lernstand. Bereite dich mit deinem Lernjournal vor.",weg:"Dieses Lernstandsgespräch löschen?"}};
+TART.projekt={l:"Projekt",i:"",kick:"PROJEKT",neu:"Neues Projekt",edit:"Projekt bearbeiten",ph:"z. B. Projektstart Lernbereich 2",hint:"Fester Termin – die Lehrkraft setzt das Projekt, danach arbeitet ihr in euren Teams.",weg:"Dieses Projekt löschen?"};
+TART.gruppenuebung={l:"Gruppenübung",i:"",kick:"GRUPPENÜBUNG",neu:"Neue Gruppenübung",edit:"Gruppenübung bearbeiten",ph:"z. B. Gruppenübung Fallbeispiel",hint:"Fester Termin – die Lehrkraft legt die Gruppenübung fest. Ihr arbeitet gemeinsam in Gruppen.",weg:"Diese Gruppenübung löschen?"};
 const tart=e=>TART[e&&e.art]||TART.einfuehrung;
+const artKey=a=>TART[a]?a:"einfuehrung";
 const ROUTEN=[["","— keine —"],["fachaufsatz","Fachaufsatz-Training"],["lernwerkzeuge","Lern-Werkzeuge"],["karteikarten","Karteikarten"],["lernstand","Lernstandsmessung"],["kompetenz","Kompetenzwerkstatt"],["projekte","Projekte"],["praktikum","fpA"],["journal","Lernjournal"],["lernpfad","Lernpfad"],["faecher","Fächer & Lernbereiche"],["methoden","Lernmethoden"],["resilienz","Resilienz & Respressi"],["fokus-timer","Fokus-Timer"]];
 const TAGE=["Mo","Di","Mi","Do","Fr"],TAGEL=["Montag","Dienstag","Mittwoch","Donnerstag","Freitag"];
 const ZEITEN_STD=["08:00","08:45","09:45","10:30","11:30","12:15","13:15","14:00","15:00","15:45"];
 const DAUER=45; /* Minuten je Unterrichtsstunde */
 /* Flexible Dauer der Lernbausteine: 15–45 Min. im 5-Min.-Takt, dann 60/90/120, Tag(e), Wochen */
 const DAUER_OPT=[["15","15 Minuten"],["20","20 Minuten"],["25","25 Minuten"],["30","30 Minuten"],["35","35 Minuten"],["40","40 Minuten"],["45","45 Minuten"],["60","60 Minuten"],["90","90 Minuten"],["120","120 Minuten"],["tag","Ein Tag"],["2tage","Zwei Tage"],["1w","Eine Woche"],["2w","Zwei Wochen"],["3w","Drei Wochen"]];
-const LANG_WOCHEN={tag:1,"2tage":1,"1w":1,"2w":2,"3w":3};
+const LANG_WOCHEN={tag:1,"2tage":1,"3tage":1,"4tage":1,"1w":1,"2w":2,"3w":3};
+const LANG_TAGE={tag:1,"2tage":2,"3tage":3,"4tage":4};
+/* Eigene Lernzeit (z. B. Prüfungsvorbereitung): zusätzlich 3/4 Std. und mehrere Tage */
+const DAUER_EIGEN=[...DAUER_OPT.slice(0,10),["180","3 Stunden"],["240","4 Stunden"],["tag","Ein Tag"],["2tage","Zwei Tage"],["3tage","Drei Tage"],["4tage","Vier Tage"],["1w","Eine Woche"],["2w","Zwei Wochen"],["3w","Drei Wochen"]];
 function dauerInfo(x){
  const c=x&&x.dauer?String(x.dauer):"";
  if(!c){const len=(x&&x.len)||1;return {code:"",label:len*DAUER+" Minuten",min:len*DAUER,len,lang:false,wochen:1}}
- const o=DAUER_OPT.find(o=>o[0]===c)||DAUER_OPT[6];
+ const o=DAUER_OPT.find(o=>o[0]===c)||DAUER_EIGEN.find(o=>o[0]===c)||DAUER_OPT[6];
  if(LANG_WOCHEN[c])return {code:c,label:o[1],min:0,len:0,lang:true,wochen:LANG_WOCHEN[c]};
  const min=Number(c)||45;return {code:c,label:o[1],min,len:Math.max(1,Math.ceil(min/DAUER)),lang:false,wochen:1};
 }
@@ -59,12 +66,19 @@ const ARTEN={
  vertiefung:{l:"Vertiefung",c:"#d9922e",bg:"#fbecd5"},
  baustein:{l:"Kurs / Training",c:"#8a68c9",bg:"#ece6f7"},
  checkout:{l:"Check-out",c:"#d6675c",bg:"#fae3e0"},
- lernstand:{l:"Lernstandsgespräch",c:"#c0568f",bg:"#f6e2ed"}
+ lernstand:{l:"Lernstandsgespräch",c:"#c0568f",bg:"#f6e2ed"},
+ gruppenuebung:{l:"Gruppenübung",c:"#5c6bc0",bg:"#e5e8f7"},
+ selbstlern:{l:"Selbstlernkurs",c:"#5aa85a",bg:"#e5f2e2"},
+ fachaufsatz:{l:"Fachaufsatztraining",c:"#8a68c9",bg:"#ece6f7"},
+ lernrallye:{l:"Lernrallye",c:"#d9922e",bg:"#fbecd5"},
+ eigen:{l:"Eigene Lernzeit",c:"#6b7f8c",bg:"#eef1f2"},
+ frage:{l:"Fachliche Frage",c:"#a8744a",bg:"#f3e6da"}
 };
-const ART_REIHE=["einfuehrung","lernen","projekt","vertiefung","baustein","checkout","lernstand"];
+const ART_REIHE=["einfuehrung","projekt","lernstand","gruppenuebung","selbstlern","checkout","fachaufsatz","lernrallye","frage"];
+const ART_SCHUELER=["selbstlern","checkout","fachaufsatz","frage"];
 const artOf=t=>ARTEN[t]||ARTEN.lernen;
 const artStyle=t=>`--ac:${artOf(t).c};--ab:${artOf(t).bg}`;
-function artLegende(){return `<div class="wp-legende" aria-label="Farben der Lernbausteine">${ART_REIHE.map(k=>`<span class="wp-art" style="${artStyle(k)}">${esc(artOf(k).l)}</span>`).join("")}</div>`}
+function artLegende(liste,prefix){return `<div class="wp-legende" aria-label="Farben der Lernbausteine">${prefix?`<b>${esc(prefix)}</b>`:""}${(liste||ART_REIHE).map(k=>`<span class="wp-art" style="${artStyle(k)}">${esc(artOf(k).l)}</span>`).join("")}</div>`}
 /* Anhänge (Storage: wpAnhaenge/…): PDF, Word, Bild, Video, Audio */
 const ANH_ERLAUBT=/\.(pdf|docx?|png|jpe?g|gif|webp|heic|mp4|mov|webm|m4v|mp3|m4a|wav|ogg|aac)$/i;
 function anhArt(a){const n=String(a.name||"").toLowerCase();if(/\.(png|jpe?g|gif|webp|heic)$/.test(n))return "bild";if(/\.(mp4|mov|webm|m4v)$/.test(n))return "video";if(/\.(mp3|m4a|wav|ogg|aac)$/.test(n))return "audio";return "datei"}
@@ -181,9 +195,9 @@ function blockHtml0(b){
  const f=FACH(b.fach),st=`grid-column:${b.d+2};grid-row:${b.h+1}/span ${b.len||1}`;
  if(b.k==="einf"){
   const attr=isT()?`onclick="wp.einfBearbeiten('${b.id}')"`:`onclick="wp.info('einf','${b.id}')"`;
-  return `<div class="wp-b einf art ${b.art==="lernstand"?"lernstand":""}${b.entwurf?" entwurf":""}" style="${st};--fc:${f.c};--fb:${f.bg};${artStyle(b.art==="lernstand"?"lernstand":"einfuehrung")}" ${attr}><span class="wp-lock" title="Fester Termin der Lehrkraft">${tart(b).i}</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}${b.entwurf?" · Entwurf":""}</small></div>`}
+  return `<div class="wp-b einf art ${b.art==="lernstand"?"lernstand":""}${b.entwurf?" entwurf":""}" style="${st};--fc:${f.c};--fb:${f.bg};${artStyle(artKey(b.art))}" ${attr}><span class="wp-lock" title="Fester Termin der Lehrkraft">${tart(b).i}</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}${b.entwurf?" · Entwurf":""}</small></div>`}
  if(b.k==="slot"){return `<div class="wp-b termin${b.entwurf?" entwurf":""}" style="${st}" onclick="wp.slotBearbeiten('${b.id}')"><span class="wp-ic"></span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
- if(b.k==="termin"){return `<div class="wp-b termin" style="${st}" onclick="wp.info('termin','${b.id}')"><span class="wp-ic"></span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
+ if(b.k==="termin"){return `<div class="wp-b termin art" style="${st};--fc:${f.c};${artStyle("frage")}" onclick="wp.info('termin','${b.id}')"><span class="wp-ic"></span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
  if(b.k==="tutor"){return `<div class="wp-b tutor${b.offen?" offen":""}" style="${st}" onclick="wp.info('tutor','${b.id}')"><span class="wp-ic"></span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
  const t=b.typ,cls="wp-b plan "+t+(b.mTyp?" m-"+b.mTyp:"")+(t==="modul"&&b.mTyp?" art":"")+(b.erledigt?" done":"");
  const ic=t==="auszeit"?"":t==="eigen"?"":(MTYP[b.mTyp]?.i||"");
@@ -199,7 +213,7 @@ function rasterHtml(opts){
  for(let r=1;r<=10;r++){
   h+=`<div class="wp-time" style="grid-column:1;grid-row:${r+1}"><b>${r}</b><small>${esc(zeiten()[r-1]||"")}</small></div>`;
   for(let d=0;d<5;d++){if(cov.has(d+"-"+r))continue;
-   h+=`<div class="wp-c${d===S.tag?" tag-on":""}" style="grid-column:${d+2};grid-row:${r+1}" ondragover="wp.over(event)" ondragleave="wp.leave(event)" ondrop="wp.drop(event,${d},${r})" onclick="wp.zelle(${d},${r})"></div>`}
+   h+=`<div class="wp-c${d===S.tag?" tag-on":""}" style="grid-column:${d+2};grid-row:${r+1}" ondragover="wp.over(event)" ondragleave="wp.leave(event)" ondrop="wp.drop(event,${d},${r})" onclick="wp.zelle(${d},${r})">${opts.teacher?"":lkChips(d,r)}</div>`}
  }
  bl.forEach(b=>{h+=blockHtml(b)});
  return h+"</div>";
@@ -211,7 +225,7 @@ function wochenKopf(){
 
 /* ---------- Modulleiste ---------- */
 const SONDER=[
- {typ:"termin",ic:"",t:"Termin bei Lehrkraft",s:"fachliche Frage"},
+ {typ:"termin",ic:"",t:"Fachliche Frage",s:"Lehrkraft buchen"},
  {typ:"tutor",ic:"",t:"Tutor:in buchen",s:"Mitschüler:in hilft"},
  {typ:"kompetenz",ic:"",t:"Kompetenz anfragen",s:"fürs Projekt"},
  {typ:"auszeit",ic:"",t:"Auszeit",s:"kurz regenerieren"},
@@ -226,7 +240,7 @@ function modulTile(m){
 function leisteHtml(){
  const mods=S.d.module.filter(m=>S.filter==="alle"||m.fach===S.filter);
  const fs=[...new Set(S.d.module.map(m=>m.fach))];
- let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Lernbausteine nach Fächern</h3>${artLegende()}<div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
+ let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Lernbausteine nach Fächern</h3>${artLegende(ART_SCHUELER,"Lernbausteine:")}<div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
  if(!S.d.module.length)h+=`<p class="wp-leer">Für diese Woche hat dein Team noch keine Lernbausteine freigegeben.</p>`;
  const grp={};mods.forEach(m=>(grp[m.fach]=grp[m.fach]||[]).push(m));
  h+=`<div class="wp-zeilen">`;
@@ -238,7 +252,7 @@ function langHtml(){
  const own=S.d.plan.eintraege.filter(e=>e.lang),fr=S.d.laufend||[];
  if(!own.length&&!fr.length)return "";
  const row=(e,fremd)=>{const I=dauerInfo(e),von=e.woche||S.woche,bis=iso(addD(parse(von),7*(I.wochen-1)));
-  const zeit=I.wochen>1?"KW "+kwNr(parse(von))+"–"+kwNr(parse(bis)):(e.startTag>=0?TAGE[e.startTag]+(I.code==="2tage"?" + "+TAGE[Math.min(4,e.startTag+1)]:""):"diese Woche");
+  const zeit=I.wochen>1?"KW "+kwNr(parse(von))+"–"+kwNr(parse(bis)):(e.startTag>=0?TAGE[e.startTag]+((LANG_TAGE[I.code]||1)>1?" – "+TAGE[Math.min(4,e.startTag+LANG_TAGE[I.code]-1)]:""):"diese Woche");
   return `<div class="wp-lang art${e.erledigt?" done":""}" style="--fc:${FACH(e.fach).c};${artStyle(e.mTyp)}" ${fremd?`title="Hier abhaken: Woche ab ${esc(wochenText(von))}"`:`onclick="wp.info('plan','${e.id}')"`}><b>${esc(e.titel)}</b><small>${esc(FACH(e.fach).l)} · ${esc(I.label)} · ${esc(zeit)}${fremd?" · läuft noch":""}</small>${e.erledigt?'<span class="wp-ok">✓</span>':""}</div>`};
  return `<div class="card wp-langbox"><h3>Länger laufende Lernbausteine</h3><div class="wp-langliste">${own.map(e=>row(e,false)).join("")}${fr.map(e=>row(e,true)).join("")}</div></div>`;
 }
@@ -250,7 +264,7 @@ function fortschrittHtml(){
 }
 function startHtml(){
  const k=kennzahlen();
- return `<div class="wp-unten"><div class="card"><h3>So startest du</h3><ol class="wp-steps"><li><b>Feste Termine ansehen.</b> Die Einführungen und Lernstandsgespräche deiner Lehrkräfte stehen schon im Plan.</li><li><b>Lernbausteine einplanen.</b> Ziehe einen Lernbaustein aus der Leiste auf einen freien Platz – oder tippe erst den Lernbaustein, dann den Platz.</li><li><b>Hilfe & Pausen mitdenken.</b> Termin, Tutor:in oder Auszeit sind eigene Bausteine.</li><li><b>Abhaken.</b> Tippe auf einen Eintrag und markiere ihn als erledigt.</li></ol></div>
+ return `<div class="wp-unten"><div class="card"><h3>So startest du</h3><ol class="wp-steps"><li><b>Feste Termine ansehen.</b> Einführungen, Projekte, Lernstandsgespräche und Gruppenübungen deiner Lehrkräfte stehen schon im Plan. Die Kürzel im Raster zeigen, wann welche Lehrkraft für fachliche Fragen da ist.</li><li><b>Lernbausteine einplanen.</b> Ziehe einen Lernbaustein aus der Leiste auf einen freien Platz – oder tippe erst den Lernbaustein, dann den Platz.</li><li><b>Hilfe & Pausen mitdenken.</b> Termin, Tutor:in oder Auszeit sind eigene Bausteine.</li><li><b>Abhaken.</b> Tippe auf einen Eintrag und markiere ihn als erledigt.</li></ol></div>
  <div class="card"><h3>Meine Woche in Zahlen</h3><div class="wp-zahlen">
  <div><b>${std(k.geplantMin)}</b><small>Lernzeit geplant</small></div><div><b>${std(k.erledigtMin)}</b><small>davon erledigt</small></div>
  <div><b>${k.modGeplant}/${k.modGesamt}</b><small>Lernbausteine eingeplant</small></div><div><b>${k.checkouts}</b><small>Check-outs erledigt</small></div>
@@ -282,7 +296,7 @@ async function schuelerHtml(){
  h+=`<div class="wp-bar2">${wochenKopf()}<label class="wp-ziel">Wochenziel <input id="wpZiel" maxlength="120" value="${esc(p.ziel||"")}" placeholder="Was willst du diese Woche schaffen?" onchange="wp.ziel(this.value)"></label></div>`;
  if(wd&&wd.impuls)h+=`<div class="wp-impuls"><b>Impuls deines Teams:</b> ${esc(wd.impuls)}</div>`;
  if(S.armed)h+=`<div class="wp-armed">Ausgewählt: <b>${esc(armedName())}</b> – tippe auf einen freien Platz im Plan. <button class="secondary" onclick="wp.arm(null)">Abbrechen</button></div>`;
- h+=langHtml()+tageTabs()+rasterHtml()+leisteHtml()+fortschrittHtml()+startHtml();
+ h+=langHtml()+tageTabs()+rasterHtml()+lkLegende()+leisteHtml()+fortschrittHtml()+startHtml();
  h+=`<div class="card wp-rueck"><h3>Wochenrückblick <small>nur für dich</small></h3><textarea id="wpRueck" maxlength="600" rows="2" placeholder="Was lief gut? Was nehme ich mit in die nächste Woche?" onchange="wp.rueck(this.value)">${esc(p.rueckblick||"")}</textarea>
  <label class="wp-share"><input type="checkbox" ${p.geteilt?"checked":""} onchange="wp.teilen(this.checked)"> Meinen Plan dieser Woche mit meiner Lernbegleitung teilen (sonst sehen Lehrkräfte nur Kennzahlen)</label>${fb.dsHinweis()}</div>`;
  return h;
@@ -354,6 +368,27 @@ async function setze(pl,d,h){
   if(pl.id==="eigen")return modalEigen(d,h);
  }
 }
+function kuerzel(s){
+ if(s&&s.kuerzel)return s.kuerzel;
+ const w=String((s&&s.lehrkraft)||"Lk").replace(/\b(Frau|Herr|Dr\.?|Prof\.?|StR|OStR|StRin)\b/gi,"").trim().split(/\s+/).filter(Boolean);
+ return (w[w.length-1]||"Lk").slice(0,3).toUpperCase();
+}
+function lkChips(d,r){
+ return (S.d.slots||[]).filter(x=>x.d===d&&x.h<=r&&r<x.h+(x.len||1)).map(x=>{const bel=S.d.belegt.has(x.id),mein=S.d.buch.some(b=>b.id===x.id);
+  return `<button type="button" class="wp-lk${bel?" bel":""}${mein?" mein":""}" title="${esc((x.lehrkraft||"Lehrkraft")+" · "+FACH(x.fach).l+(bel?" · vergeben":" · anwesend, für fachliche Fragen buchbar"))}" onclick="event.stopPropagation();wp.slotModal('${x.id}')">${esc(kuerzel(x))}</button>`}).join("");
+}
+function lkLegende(){
+ const sl=S.d.slots||[];if(!sl.length)return "";
+ const m=new Map();sl.forEach(x=>{const k=kuerzel(x);if(!m.has(k))m.set(k,(x.lehrkraft||"Lehrkraft"))});
+ return `<div class="wp-lkleg"><b>Lehrkräfte im Plan:</b> ${[...m].map(([k,n])=>`<span><i class="wp-lk">${esc(k)}</i> ${esc(n)}</span>`).join("")}<small>Tippe auf ein Kürzel, um die Lehrkraft für eine fachliche Frage zu buchen.</small></div>`;
+}
+function slotModal(id){
+ const s=S.d.slots.find(x=>x.id===id);if(!s)return;
+ const bel=S.d.belegt.has(s.id),mein=S.d.buch.some(b=>b.id===s.id),platz=frei(s.d,s.h,s.len||1),eigene=S.d.buch.length;
+ modalOpen(`<div class="wp-artband" style="${artStyle("frage")}">Fachliche Frage</div><div class="kicker">${esc(FACH(s.fach).l)}</div><h2>${esc(s.lehrkraft||"Lehrkraft")} (${esc(kuerzel(s))})</h2><p>${TAGEL[s.d]}, ${esc(dm(addD(parse(S.woche),s.d)))} · ${esc(zeitBereich(s.h,s.len||1))}</p>
+ ${mein?'<p class="wp-hint">Diesen Termin hast du gebucht.</p>':bel?'<p class="wp-hint">Dieser Termin ist schon vergeben.</p>':!platz?'<p class="wp-hint">Bei dir ist zu dieser Zeit schon etwas geplant.</p>':`<label class="form"><span>Deine Frage (kurz)</span><textarea id="wpFrage" maxlength="200" rows="2" placeholder="Worum geht es?"></textarea></label>${fb.dsHinweis()}${eigene>=2?'<p class="wp-warn">Du hast diese Woche schon 2 Termine gebucht. Sage erst einen ab.</p>':""}`}
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button>${!mein&&!bel&&platz?`<button class="primary" ${eigene>=2?"disabled":""} onclick="wp.buche('${s.id}')">Buchen</button>`:""}</div>`);
+}
 function einplanen(kind,id){
  if(isT())return;
  const m=kind==="modul"?S.d.module.find(x=>x.id===id):null;
@@ -388,13 +423,15 @@ function modalEigen(d,h){
  modalOpen(`<div class="kicker">EIGENE LERNZEIT</div><h2>Eigene Lernzeit einplanen</h2>
  <div class="form"><label>Was willst du tun?<input id="egTitel" maxlength="60" placeholder="z. B. Vokabeln wiederholen"></label>
  <label>Fach<select id="egFach">${FAECHER.map(f=>`<option value="${f.k}">${esc(f.l)}</option>`).join("")}</select></label>
- <label>Dauer<select id="egLen"><option value="1">45 Minuten</option>${frei(d,h,2)?'<option value="2">90 Minuten</option>':""}</select></label>${fb.dsHinweis()}
+ <label>Dauer (auch länger, z. B. für eine Prüfungsvorbereitung)<select id="egLen">${DAUER_EIGEN.filter(o=>LANG_WOCHEN[o[0]]||frei(d,h,dauerInfo({dauer:o[0]}).len)).map(o=>`<option value="${o[0]}" ${o[0]==="45"?"selected":""}>${o[1]}${LANG_WOCHEN[o[0]]?" (Zeitraum)":""}</option>`).join("")}</select></label>${fb.dsHinweis()}
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.eigenSetzen(${d},${h})">Einplanen</button></div></div>`);
 }
 async function eigenSetzen(d,h){
  const t=$("egTitel").value.trim();if(t.length<2)return fb.toast("Bitte beschreibe kurz, was du tun willst.");
- const len=Number($("egLen").value)||1;if(!frei(d,h,len))return fb.toast("Dort ist nicht genug Platz.");
- S.d.plan.eintraege.push({id:nextId(),typ:"eigen",titel:t,fach:$("egFach").value,d,h,len,erledigt:false});
+ const I=dauerInfo({dauer:$("egLen").value});
+ if(I.lang){S.d.plan.eintraege.push({id:nextId(),typ:"eigen",mTyp:"eigen",titel:t,fach:$("egFach").value,d:-1,h:0,len:0,lang:true,dauer:I.code,startTag:d,woche:S.woche,erledigt:false});fb.closeModal();await speichern();return neu()}
+ if(!frei(d,h,I.len))return fb.toast("Dort ist nicht genug Platz.");
+ S.d.plan.eintraege.push({id:nextId(),typ:"eigen",titel:t,fach:$("egFach").value,d,h,len:I.len,dauer:I.code,erledigt:false});
  fb.closeModal();await speichern();neu();
 }
 /* ---------- Termin bei Lehrkraft ---------- */
@@ -499,7 +536,7 @@ async function ausKompetenzwerkstatt(){
 /* ---------- Eintrag ansehen ---------- */
 function info(kind,id){
  if(kind==="einf"){const e=S.d.einf.find(x=>x.id===id);if(!e)return;
-  return modalOpen(`<div class="wp-artband" style="${artStyle(e.art==="lernstand"?"lernstand":"einfuehrung")}">${esc(tart(e).l)}</div><div class="kicker">${esc(FACH(e.fach).l)}</div><h2>${esc(e.titel)}</h2><p>${TAGEL[e.d]}, ${esc(zeitBereich(e.h,e.len||1))}${e.lehrkraft?" · "+esc(e.lehrkraft):""}${e.raum?" · Raum "+esc(e.raum):""}</p><p class="wp-hint">${tart(e).hint}</p>${anhHtml(e.anhaenge)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`)}
+  return modalOpen(`<div class="wp-artband" style="${artStyle(artKey(e.art))}">${esc(tart(e).l)}</div><div class="kicker">${esc(FACH(e.fach).l)}</div><h2>${esc(e.titel)}</h2><p>${TAGEL[e.d]}, ${esc(zeitBereich(e.h,e.len||1))}${e.lehrkraft?" · "+esc(e.lehrkraft):""}${e.raum?" · Raum "+esc(e.raum):""}</p><p class="wp-hint">${tart(e).hint}</p>${anhHtml(e.anhaenge)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`)}
  if(kind==="termin"){const b=S.d.buch.find(x=>x.id===id);if(!b)return;
   return modalOpen(`<div class="kicker">MEIN TERMIN</div><h2>${esc(b.lehrkraft||"Lehrkraft")}</h2><p>${TAGEL[b.d]}, ${esc(zeitBereich(b.h,b.len||1))}</p><p><b>Meine Frage:</b> ${esc(b.frage)}</p><div class="form-actions"><button class="secondary" onclick="wp.terminAbsagen('${b.id}')">Termin absagen</button><button class="primary" onclick="closeModal()">Schließen</button></div>`)}
  if(kind==="tutor"){const a=[...S.d.anfV,...S.d.anfT].find(x=>x.id===id);if(!a)return;const ich=a.tutorUid===uid();
@@ -536,7 +573,7 @@ const wpPublic={
 /* =========================================================
    LEHRKRAFT-ANSICHT
    ========================================================= */
-const TABS=[["uebersicht","Klassenübersicht"],["module","Lernbausteine"],["plan","Einführungen, Gespräche & Termine"],["team","Klassenteam & Freitagsplanung"],["anfragen","Hilfe in der Klasse"]];
+const TABS=[["uebersicht","Klassenübersicht"],["module","Lernbausteine"],["plan","Feste Termine & Sprechzeiten"],["team","Klassenteam & Freitagsplanung"],["anfragen","Hilfe in der Klasse"]];
 function lTabs(){return `<div class="wp-seg wp-ltabs">${TABS.map(t=>`<button class="${S.tab===t[0]?"on":""}" onclick="wp.ltab('${t[0]}')">${t[1]}</button>`).join("")}</div>`}
 async function lehrerHtml(){
  if(S.tab!=="team")window.__wpStop();
@@ -587,7 +624,7 @@ function tabModule(){
  const mods=S.d.module;
  const grp={};mods.forEach(m=>(grp[m.typ]=grp[m.typ]||[]).push(m));
  let h=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">＋ Neuer Lernbaustein</button><button class="secondary" onclick="wp.zeitenForm()">Stundenzeiten</button></div>${artLegende()}`;
- if(!mods.length)h+=`<div class="card"><p class="wp-leer">Für diese Woche gibt es noch keine Lernbausteine. Legt mit „Neuer Lernbaustein“ Check-outs, Einführungen, Projekte, Lernbausteine oder Kurse (z. B. Selbstlernkurs, Fachaufsatz-Training) an. Lernstandsgespräche setzt ihr als feste Termine im Reiter „Einführungen, Gespräche & Termine“.</p></div>`;
+ if(!mods.length)h+=`<div class="card"><p class="wp-leer">Für diese Woche gibt es noch keine Lernbausteine. Legt mit „Neuer Lernbaustein“ Selbstlernkurse, Check-outs, Fachaufsatztrainings oder Lernrallyes an, die Schüler:innen selbst einplanen. Einführungen, Projekte, Lernstandsgespräche und Gruppenübungen setzt ihr als feste Termine im Reiter „Feste Termine & Sprechzeiten“.</p></div>`;
  [...ART_REIHE,...Object.keys(grp).filter(k=>!ART_REIHE.includes(k))].filter(k=>grp[k]).forEach(k=>{const a=artOf(k);
   h+=`<div class="card wp-artcard" style="${artStyle(k)}"><h3><span class="wp-art" style="${artStyle(k)}">${esc(MTYP[k]?.l||a.l)}</span> <small>${grp[k].length}</small></h3><div class="wp-liste">${grp[k].map(m=>{const f=FACH(m.fach);return `<div><span class="wp-fl" style="--fc:${f.c};--fb:${f.bg}">${esc(f.l)}</span><b>${esc(m.titel)}</b><small>${esc(dauerInfo(m).label)}${m.pflicht?" · Pflicht":""}${m.woche===""?" · jede Woche":""}${m.fixTag!=null&&m.fixTag!==""?" · fest: "+TAGE[m.fixTag]+", "+(m.fixStd||1)+". Std.":""}${(m.anhaenge||[]).length?" · "+m.anhaenge.length+" Anhang":""}</small>
   <span class="pill ${m.status==="live"?"ok":"warn"}">${m.status==="live"?"live":"Entwurf"}</span>
@@ -598,12 +635,12 @@ function wochenOptionen(sel){
  const a=parse(S.woche);return [[S.woche,"Diese Woche ("+wochenText(S.woche).split(" · ")[0]+")"],[iso(addD(a,7)),"Nächste Woche"],["","Jede Woche verfügbar"]].map(o=>`<option value="${o[0]}" ${o[0]===sel?"selected":""}>${o[1]}</option>`).join("")
 }
 function modulForm(id){
- const m=id?S.d.module.find(x=>x.id===id):{titel:"",fach:"deutsch",typ:"lernen",len:1,woche:S.woche,beschr:"",route:"",link:"",pflicht:false,mehrfach:false,status:"entwurf"};
+ const m=id?S.d.module.find(x=>x.id===id):{titel:"",fach:"deutsch",typ:"selbstlern",len:1,woche:S.woche,beschr:"",route:"",link:"",pflicht:false,mehrfach:false,status:"entwurf"};
  S.anh=[...(m.anhaenge||[])];
  modalOpen(`<div id="mfWrap" class="wp-artform" style="${artStyle(m.typ)}"><div id="mfBand" class="wp-artband" style="${artStyle(m.typ)}">${esc(artOf(m.typ).l)}</div><div class="kicker">LERNBAUSTEIN</div><h2>${id?"Lernbaustein bearbeiten":"Neuer Lernbaustein"}</h2><div class="form">
  <label>Titel<input id="mfTitel" maxlength="80" value="${esc(m.titel)}"></label>
  <label>Fach<select id="mfFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===m.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
- <label>Art<select id="mfTyp" onchange="wp.artVorschau(this.value)">${Object.keys(MTYP).map(k=>`<option value="${k}" ${k===m.typ?"selected":""}>${MTYP[k].l}</option>`).join("")}</select></label>
+ <label>Art<select id="mfTyp" onchange="wp.artVorschau(this.value)">${[...MODUL_ARTEN,...(MODUL_ARTEN.includes(m.typ)?[]:[m.typ])].map(k=>`<option value="${k}" ${k===m.typ?"selected":""}>${esc(MTYP[k]?.l||artOf(k).l)}</option>`).join("")}</select></label>
  <label>Dauer<select id="mfLen">${DAUER_OPT.map(o=>`<option value="${o[0]}" ${o[0]===(dauerInfo(m).code||String(dauerInfo(m).min))?"selected":""}>${o[1]}</option>`).join("")}</select></label>
  <label>Platzierung im Plan<select id="mfFixTag"><option value="">Frei wählbar (Schüler:innen planen selbst)</option>${TAGEL.map((t,i)=>`<option value="${i}" ${String(m.fixTag)===String(i)?"selected":""}>Fester Termin: ${t}</option>`).join("")}</select></label>
  <label>… in der Stunde<select id="mfFixStd">${[...Array(10)].map((_,i)=>`<option value="${i+1}" ${(m.fixStd||1)===i+1?"selected":""}>${i+1}. Stunde (${esc(zeiten()[i]||"")})</option>`).join("")}</select></label>
@@ -640,7 +677,7 @@ async function zeitenSave(){
 /* ---------- Einführungen & Termine ---------- */
 async function tabPlan(){
  const bu=await qdocs("wpBuchungen",W("woche",S.woche)).catch(()=>[]);S.d.buchungen=Object.fromEntries(bu.map(b=>[b.id,b]));
- let h=`<div class="card"><p class="wp-hint">Tippt auf einen freien Platz, um eine <b>Einführung</b> (feste Stunde eines Fachs), ein <b>Lernstandsgespräch</b> (fester Termin, den ihr setzt) oder eine <b>Sprechzeit</b> (buchbarer Termin für fachliche Fragen) anzulegen. Entwürfe sind gestrichelt und für Schüler:innen unsichtbar.</p></div>`;
+ let h=`<div class="card"><p class="wp-hint">Tippt auf einen freien Platz, um eine <b>Einführung</b>, ein <b>Projekt</b>, ein <b>Lernstandsgespräch</b> oder eine <b>Gruppenübung</b> (feste Termine, die ihr setzt) oder eine <b>Anwesenheit/Sprechzeit</b> anzulegen. Schüler:innen sehen eure Anwesenheit als Kürzel im Plan und buchen dort fachliche Fragen. Entwürfe sind gestrichelt und für Schüler:innen unsichtbar.</p></div>`;
  h+=tageTabs()+rasterHtml({teacher:true});
  const sl=[...S.d.slots].sort((a,b)=>a.d-b.d||a.h-b.h);
  h+=`<div class="card"><h3>Sprechzeiten dieser Woche</h3>${sl.length?`<div class="wp-liste">${sl.map(s=>{const b=S.d.buchungen[s.id];
@@ -650,13 +687,13 @@ async function tabPlan(){
 function teacherZelle(d,h){
  if(S.tab!=="plan")return;
  if(!frei(d,h,1))return;
- modalOpen(`<div class="kicker">${TAGEL[d]} · ${h}. Stunde</div><h2>Was soll hier stehen?</h2><div class="wp-wahl"><button class="primary" onclick="wp.einfForm(null,${d},${h},'einfuehrung')">Einführung (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${d},${h},'lernstand')">Lernstandsgespräch (fester Termin)</button><button class="secondary" onclick="wp.slotForm(null,${d},${h})">Sprechzeit (buchbar)</button></div><div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button></div>`);
+ modalOpen(`<div class="kicker">${TAGEL[d]} · ${h}. Stunde</div><h2>Was soll hier stehen?</h2><div class="wp-wahl"><button class="primary" onclick="wp.einfForm(null,${d},${h},'einfuehrung')">Einführung (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${d},${h},'projekt')">Projekt (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${d},${h},'lernstand')">Lernstandsgespräch (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${d},${h},'gruppenuebung')">Gruppenübung (fester Termin)</button><button class="secondary" onclick="wp.slotForm(null,${d},${h})">Anwesenheit / Sprechzeit (buchbar für fachliche Fragen)</button></div><div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button></div>`);
 }
 function einfForm(id,d,h,art){
- const e=id?S.d.einf.find(x=>x.id===id):{fach:"deutsch",titel:art==="lernstand"?"Lernstandsgespräch":"",art:art==="lernstand"?"lernstand":"einfuehrung",d,h,len:1,lehrkraft:fb.profile?.displayName||"",raum:"",status:"entwurf"};
+ const e=id?S.d.einf.find(x=>x.id===id):{fach:"deutsch",titel:art==="lernstand"?"Lernstandsgespräch":"",art:artKey(art),d,h,len:1,lehrkraft:fb.profile?.displayName||"",raum:"",status:"entwurf"};
  const T=tart(e);
  S.anh=[...(e.anhaenge||[])];
- modalOpen(`<div class="wp-artform" style="${artStyle(e.art==="lernstand"?"lernstand":"einfuehrung")}"><div class="wp-artband" style="${artStyle(e.art==="lernstand"?"lernstand":"einfuehrung")}">${esc(T.l)}</div><div class="kicker">${T.kick}</div><h2>${id?T.edit:T.neu}</h2><div class="form">
+ modalOpen(`<div class="wp-artform" style="${artStyle(artKey(e.art))}"><div class="wp-artband" style="${artStyle(artKey(e.art))}">${esc(T.l)}</div><div class="kicker">${T.kick}</div><h2>${id?T.edit:T.neu}</h2><div class="form">
  <label>Fach<select id="efFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===e.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
  <label>${e.art==="lernstand"?"Titel":"Thema / Titel"}<input id="efTitel" maxlength="80" value="${esc(e.titel)}" placeholder="${esc(T.ph)}"></label>
  <label>Tag<select id="efD">${TAGEL.map((t,i)=>`<option value="${i}" ${i===e.d?"selected":""}>${t}</option>`).join("")}</select></label>
@@ -671,7 +708,7 @@ async function einfSave(id,art){
  const d=Number($("efD").value),h=Number($("efH").value),len=Number($("efLen").value)||1,titel=$("efTitel").value.trim();
  if(titel.length<2)return fb.toast(art==="lernstand"?"Bitte einen Titel eingeben.":"Bitte ein Thema eingeben.");
  if(!frei(d,h,len,id))return fb.toast("Zu dieser Zeit ist schon etwas eingetragen (oder die Stunde reicht über den Tag hinaus).");
- const data={woche:S.woche,d,h,len,art:art==="lernstand"?"lernstand":"einfuehrung",fach:$("efFach").value,titel,lehrkraft:$("efLk").value.trim(),raum:$("efRaum").value.trim(),anhaenge:S.anh||[],status:$("efStatus").value,updatedAt:fb.serverTimestamp()};
+ const data={woche:S.woche,d,h,len,art:artKey(art),fach:$("efFach").value,titel,lehrkraft:$("efLk").value.trim(),raum:$("efRaum").value.trim(),anhaenge:S.anh||[],status:$("efStatus").value,updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpEinfuehrungen",id),data);else await fb.addDoc(col("wpEinfuehrungen"),{...data,createdBy:uid(),createdAt:fb.serverTimestamp()});fb.closeModal();neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
 async function einfWeg(id){if(!confirm(tart(S.d.einf.find(x=>x.id===id)).weg))return;try{await fb.deleteDoc(ref("wpEinfuehrungen",id));fb.closeModal();neu()}catch(e){fb.toast("Nicht möglich.")}}
@@ -679,6 +716,7 @@ function slotForm(id,d,h){
  const s=id?S.d.slots.find(x=>x.id===id):{fach:"deutsch",d,h,len:1,lehrkraft:fb.profile?.displayName||"",status:"entwurf"};
  modalOpen(`<div class="kicker">SPRECHZEIT</div><h2>${id?"Sprechzeit bearbeiten":"Neue Sprechzeit"}</h2><p class="wp-hint">Schüler:innen können diesen Termin für eine fachliche Frage buchen (ein Platz).</p><div class="form">
  <label>Lehrkraft<input id="slLk" maxlength="60" value="${esc(s.lehrkraft||"")}"></label>
+ <label>Kürzel im Wochenplan (2–4 Buchstaben)<input id="slK" maxlength="4" value="${esc(s.kuerzel||kuerzel(s))}"></label>
  <label>Fach<select id="slFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===s.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
  <label>Tag<select id="slD">${TAGEL.map((t,i)=>`<option value="${i}" ${i===s.d?"selected":""}>${t}</option>`).join("")}</select></label>
  <label>Beginn (Stunde)<select id="slH">${[...Array(10)].map((_,i)=>`<option value="${i+1}" ${i+1===s.h?"selected":""}>${i+1}. Stunde (${esc(zeiten()[i])})</option>`).join("")}</select></label>
@@ -689,7 +727,7 @@ function slotForm(id,d,h){
 async function slotSave(id){
  const d=Number($("slD").value),h=Number($("slH").value),len=Number($("slLen").value)||1;
  if(!frei(d,h,len,id))return fb.toast("Zu dieser Zeit ist schon etwas eingetragen.");
- const data={woche:S.woche,d,h,len,fach:$("slFach").value,lehrkraft:$("slLk").value.trim(),lehrkraftUid:uid(),status:$("slStatus").value,updatedAt:fb.serverTimestamp()};
+ const data={woche:S.woche,d,h,len,fach:$("slFach").value,lehrkraft:$("slLk").value.trim(),kuerzel:($("slK").value.trim().toUpperCase().slice(0,4))||kuerzel({lehrkraft:$("slLk").value}),lehrkraftUid:uid(),status:$("slStatus").value,updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpSlots",id),data);else await fb.addDoc(col("wpSlots"),{...data,createdAt:fb.serverTimestamp()});fb.closeModal();neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
 async function slotWeg(id){
@@ -801,7 +839,7 @@ async function angebotMod(id){if(!confirm("Dieses Angebot entfernen?"))return;tr
    ========================================================= */
 Object.assign(wpPublic,{
  ltab:t=>{S.tab=t;neu()},
- einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
+ slotModal,einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod
 });

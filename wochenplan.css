@@ -181,3 +181,14 @@ body:has(.wp-armed) .wp-c{cursor:copy;background:#f4faf0}
 .wp-plan-btn{margin-top:6px;padding:4px 8px;border-radius:7px;border:1.5px solid var(--ac,#6b7f8c);background:#fff;color:#17384f;font-size:11px;font-weight:700;cursor:pointer;align-self:stretch}
 .wp-plan-btn:hover{background:var(--ac,#6b7f8c);color:#fff}
 .wp-tile.s-termin,.wp-tile.s-tutor,.wp-tile.s-kompetenz,.wp-tile.s-auszeit,.wp-tile.sonder{--ac:#6b7f8c}
+
+/* Lehrkräfte-Kürzel im Raster */
+.wp-c{position:relative}
+.wp-lk{display:inline-block;padding:1px 6px;margin:2px 2px 0 0;border-radius:6px;border:1.5px solid #a8744a;background:#f3e6da;color:#5a3b22;font-size:10.5px;font-weight:800;letter-spacing:.03em;cursor:pointer;line-height:1.4;font-style:normal}
+.wp-lk.bel{opacity:.45;text-decoration:line-through;cursor:default}.wp-lk.mein{background:#a8744a;color:#fff}
+.wp-c .wp-lk{position:relative;z-index:1}
+.wp-lkleg{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:8px 2px 12px;font-size:12px;color:#44586a}
+.wp-lkleg small{flex-basis:100%;color:#6b7f8c}
+.wp-legende b{align-self:center;margin-right:2px;font-size:12px;color:#44586a}
+.wp-b.termin.art{background:var(--ab)!important}
+.wp-tile.s-termin{background:#f3e6da!important;border-left-color:#a8744a!important}
