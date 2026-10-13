@@ -1,0 +1,1185 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Das Experiment – interaktive Lerneinheit</title>
+<style>
+:root{
+  --paper:#f3f8fc; --card:#FFFFFF; --ink:#17384f; --soft:#6c8190;
+  --line:#dce7ef; --accent:#1688cf; --accent-ink:#FFFFFF; --accent-soft:#e8f3fc;
+  --hl:#cfe8fb; --hl-ink:#075a9d; --margin:#82b83b; --blue-dark:#075a9d;
+  --ok:#2f8f4e; --ok-bg:#e3f4e8; --bad:#d92c34; --bad-bg:#fdecea; --sel:#fff6d8;
+  --shadow:0 8px 24px rgba(24,67,96,.08);
+  --grid:rgba(0,0,0,0);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;min-height:100%;color:var(--ink);background-color:var(--paper);
+  font:400 16px/1.55 Arial,Helvetica,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+}
+[hidden]{display:none!important}
+h1,h2,h3{font-family:Arial,Arial,system-ui,sans-serif;line-height:1.15;margin:0 0 .6em;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800}
+h2{font-size:clamp(1.5rem,3.6vw,2rem);font-weight:800}
+h3{font-size:1.2rem;font-weight:600}
+p{margin:0 0 .9em;max-width:68ch}
+.hl{background:linear-gradient(transparent 55%,var(--hl) 55%,var(--hl) 92%,transparent 92%);padding:0 .15em;color:var(--ink)}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+.app{display:grid;grid-template-columns:250px minmax(0,1fr);gap:0;max-width:1120px;margin:0 auto;min-height:100vh}
+nav.tabs{position:sticky;top:0;align-self:start;padding:28px 18px 24px 14px;height:100vh;overflow:auto}
+.brand{font:800 1.15rem/1.1 Arial,system-ui,sans-serif;margin:0 0 4px}
+.brand-sub{font-size:.85rem;color:var(--soft);margin:0 0 18px}
+.tab{display:block;width:100%;text-align:left;font:inherit;font-size:.95rem;color:var(--ink);background:var(--card);
+  border:1.5px solid var(--line);border-right-width:0;border-radius:10px 0 0 10px;padding:9px 12px 9px 14px;margin:0 0 8px;cursor:pointer;
+  transform:translateX(0);transition:transform .15s ease,background .15s ease}
+.tab:hover{transform:translateX(-4px)}
+.tab[aria-current="page"]{background:var(--hl);color:var(--hl-ink);font-weight:700;border-color:var(--ink);transform:translateX(-8px)}
+.tab .done{float:right;color:var(--ok);font-weight:700}
+.meter{height:6px;background:var(--line);border-radius:3px;margin:16px 0 6px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s}
+.meter-l{font-size:.8rem;color:var(--soft)}
+
+main{padding:34px 28px 80px 34px;border-left:2px solid var(--margin);background:linear-gradient(90deg,color-mix(in srgb,var(--paper) 88%,transparent),transparent 40%);min-width:0}
+.sec{max-width:760px}
+.title{margin-bottom:.5em}
+.two{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
+.art{width:min(220px,34vw);height:auto;color:var(--ink)}
+.lead{font-size:1.05rem}
+
+.btn{font:700 1rem/1 Arial,system-ui,sans-serif;background:var(--accent);color:var(--accent-ink);border:2px solid var(--accent);
+  border-radius:8px;padding:12px 18px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .1s,box-shadow .1s}
+.btn:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;box-shadow:none;transform:none}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--ink);box-shadow:none}
+.btn.small{font-size:.9rem;padding:9px 13px;box-shadow:2px 2px 0 var(--ink)}
+.btn.big{font-size:1.15rem;padding:18px 22px;width:100%;text-align:center;line-height:1.3}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:18px 0 0}
+
+.card{background:var(--card);border:1.5px solid var(--ink);border-radius:6px;padding:18px 20px;margin:0 0 18px;box-shadow:4px 4px 0 var(--line)}
+.note{background:var(--accent-soft);border:1.5px solid var(--accent);border-radius:14px 14px 14px 3px;padding:12px 16px;margin:0 0 16px;max-width:68ch}
+.note strong{color:var(--ink)}
+.soft{color:var(--soft);font-size:.92rem}
+details{margin:22px 0 0;border:1.5px dashed var(--line);border-radius:6px;padding:10px 14px;background:var(--card)}
+summary{cursor:pointer;font-weight:700}
+ul.clean{margin:0 0 .9em;padding-left:1.2em}
+ul.clean li{margin:.25em 0}
+
+/* Dialog */
+.scene{font-style:italic;color:var(--soft)}
+.chat{display:flex;flex-direction:column;gap:12px;margin:18px 0}
+.bubble{max-width:82%;padding:12px 16px;border:1.5px solid var(--accent);background:var(--accent-soft);border-radius:16px 16px 16px 3px;animation:pop .25s ease-out}
+.bubble.r{align-self:flex-end;border-radius:16px 16px 3px 16px;background:var(--card);border-color:var(--ink)}
+.bubble b{display:block;font-size:.8rem;color:var(--soft);margin-bottom:2px}
+@keyframes pop{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+
+/* Stepper */
+.steps{display:flex;gap:0;margin:0 0 22px;border:1.5px solid var(--ink);border-radius:6px;overflow:hidden;background:var(--card)}
+.steps li{list-style:none;flex:1;padding:8px 10px;font-size:.9rem;text-align:center;border-right:1.5px solid var(--ink);color:var(--soft)}
+.steps li:last-child{border-right:0}
+.steps li.on{background:var(--hl);color:var(--hl-ink);font-weight:700}
+.steps li.past{color:var(--ok);font-weight:700}
+.steps{padding:0;margin-left:0}
+
+.choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 6px}
+.gbtn{font:inherit;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:8px;padding:14px 16px;cursor:pointer;color:var(--ink)}
+.gbtn b{display:block;font-size:1.05rem}
+.gbtn[aria-pressed="true"]{border-color:var(--ink);background:var(--sel);box-shadow:3px 3px 0 var(--ink)}
+.check{display:flex;gap:10px;align-items:flex-start;margin:6px 0}
+.check input{width:20px;height:20px;margin-top:3px;accent-color:var(--accent)}
+
+/* Timer */
+.timer{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.ringbox{position:relative;width:150px;height:150px;flex:none}
+.ring{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:9}
+.ring-bg{stroke:var(--line)}
+.ring-fg{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset .25s linear}
+.time{position:absolute;inset:0;display:grid;place-items:center;font:800 2rem Arial,system-ui,sans-serif;font-variant-numeric:tabular-nums}
+.words{list-style:none;margin:0;padding:0;columns:2;column-gap:44px;font:600 1.5rem/1.7 Arial,system-ui,sans-serif}
+.words li{break-inside:avoid}
+.banner{border:2px solid var(--ink);background:var(--sel);border-radius:6px;padding:10px 14px;font-weight:700;margin:0 0 16px}
+textarea{width:100%;min-height:170px;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:4px;padding:12px;resize:vertical;line-height:1.7;
+  background-image:repeating-linear-gradient(transparent,transparent 1.65em,var(--grid) 1.65em,var(--grid) calc(1.65em + 1px));background-attachment:local}
+textarea[readonly]{opacity:.85}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}
+.chip{font:inherit;font-size:.95rem;padding:4px 12px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink)}
+.chip.hit{background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.chip.miss{background:transparent;border-style:dashed;color:var(--soft)}
+.big-n{font:800 3rem/1 Arial,system-ui,sans-serif}
+
+/* Ergebnisse */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grp h3{display:flex;justify-content:space-between;align-items:baseline}
+.grp .avg{font:800 1.8rem/1 Arial,system-ui,sans-serif}
+.bar{height:22px;background:var(--line);border-radius:3px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .4s}
+.grp.b .bar i{background:var(--margin)}
+.chip.x{cursor:pointer}
+.chip.x:hover{text-decoration:line-through}
+.addrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}
+select,input[type=number]{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:4px;padding:8px 10px}
+input[type=number]{width:5.5em}
+
+/* Slides */
+.deck{border:1.5px solid var(--ink);border-radius:6px;background:var(--card);box-shadow:5px 5px 0 var(--line);margin:8px 0 18px;overflow:hidden}
+.slide{padding:26px 26px 22px;min-height:340px}
+.prog{display:flex;gap:2px;padding:0;background:var(--ink)}
+.prog i{flex:1;height:8px;background:var(--line);opacity:.35}
+.prog i.on{background:var(--hl);opacity:1}
+.deckbar{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1.5px solid var(--ink);font-size:.9rem}
+.slide h2{margin-bottom:.4em}
+.icon{width:110px;height:110px;color:var(--accent);flex:none}
+.split{display:flex;gap:24px;align-items:center;justify-content:space-between}
+.flip{width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--accent-soft);border:2px dashed var(--accent);border-radius:8px;padding:18px;cursor:pointer;margin:8px 0}
+.flip.open{border-style:solid;background:var(--sel)}
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cols2 .card{margin:0;box-shadow:none}
+
+/* Tasks */
+.task{margin:6px 0 0}
+.q-text{font-weight:700;max-width:none;font-size:1.05rem}
+.opts{display:grid;gap:8px;margin:10px 0 12px}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border:1.5px solid var(--line);border-radius:8px;background:var(--paper);cursor:pointer}
+.opt:hover{border-color:var(--ink)}
+.opt input{margin-top:5px;width:18px;height:18px;accent-color:var(--accent)}
+.opt.ok{background:var(--ok-bg);border-color:var(--ok)}
+.opt.bad{background:var(--bad-bg);border-color:var(--bad)}
+.fb{min-height:1.4em;margin:8px 0 0;font-weight:700}
+.fb.good{color:var(--ok)}.fb.wrong{color:var(--bad)}.fb.warn{color:var(--soft)}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 0}
+.gaptext{line-height:2.5;max-width:none}
+.gap{display:inline-block;vertical-align:middle;min-width:9.5em;min-height:2.2rem;margin:0 3px;border:2px dashed var(--soft);border-radius:6px;background:var(--paper);padding:0;text-align:center;line-height:1.5}
+.gap.over{background:var(--sel)}
+.gap.ok{border-style:solid;border-color:var(--ok)}
+.gap.bad{border-style:solid;border-color:var(--bad)}
+.gap .tok{margin:2px}
+.bank,.items{display:flex;flex-wrap:wrap;gap:8px;min-height:2.6rem;padding:10px;border:1.5px solid var(--line);border-radius:6px;background:var(--paper);margin:12px 0 0}
+.tok{font:700 .95rem/1.3 Arial,system-ui,sans-serif;color:var(--ink);background:var(--card);border:1.5px solid var(--ink);border-radius:6px;padding:6px 11px;cursor:grab;box-shadow:2px 2px 0 var(--line);text-align:left}
+.tok.sel{background:var(--sel);box-shadow:0 0 0 3px var(--accent)}
+.tok.drag{opacity:.4}
+.tok.ok{background:var(--ok-bg);border-color:var(--ok)}
+.tok.bad{background:var(--bad-bg);border-color:var(--bad)}
+.tok.st{font-weight:400;font-size:.92rem;max-width:100%}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+.zone{border:2px dashed var(--soft);border-radius:6px;padding:10px;min-height:150px;background:var(--paper)}
+.zone.over{background:var(--sel)}
+.zone h3{font-size:1rem;margin-bottom:8px}
+.zone .items{border:0;background:transparent;padding:0;margin:0;flex-direction:column;align-items:stretch}
+.sumtab{width:100%;border-collapse:collapse;margin:8px 0}
+.sumtab td{padding:8px 4px;border-bottom:1px solid var(--line)}
+.sumtab td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+.total{display:flex;align-items:center;gap:12px;margin:12px 0}
+.total .bar{flex:1;margin:0}
+.choose{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0 20px}
+.cbtn{font:inherit;text-align:center;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:20px 12px;cursor:pointer;box-shadow:4px 4px 0 var(--line)}
+.cbtn .n{display:grid;place-items:center;width:52px;height:52px;margin:0 auto 8px;border:3px solid var(--ink);border-radius:50%;font:800 1.6rem Arial,system-ui,sans-serif}
+.cbtn[aria-pressed="true"]{background:var(--sel)}
+.scen{margin:0 0 16px}
+.scen .card{margin:0}
+.solution{background:var(--accent-soft);border:1.5px solid var(--accent);border-radius:6px;padding:14px 16px;margin:14px 0}
+.solution h3{font-size:1.05rem}
+.pts{font:800 1.4rem Arial,system-ui,sans-serif}
+.done-card{background:var(--accent-soft);border:2px solid var(--accent);border-radius:8px;padding:22px 24px;margin:20px 0}
+.done-card h2{margin-bottom:.3em}
+.qpart{margin:0 0 26px}
+.qpart>h3{margin-top:22px}
+.qitem{margin:0 0 16px;padding:0 0 14px;border-bottom:1px solid var(--line)}
+.qitem:last-child{border-bottom:0}
+
+/* App-Look (wie die F11Sb-WebApp): heller Grund, weiße Karten, weiche Schatten, keine Rasterlinien */
+h1,h2,h3{letter-spacing:0;color:var(--ink)}
+.hl{background:linear-gradient(transparent 64%,var(--hl) 64%);padding:0 .1em}
+main{border-left:0;background:none;padding:30px 30px 80px}
+main:focus,main:focus-visible{outline:none}
+nav.tabs{border-right:1px solid var(--line);background:#fff}
+.brand{color:var(--blue-dark);font-size:1.15rem}
+.tab{border:1px solid var(--line);border-radius:10px;transform:none!important;box-shadow:none}
+.tab:hover{border-color:var(--accent);background:#f3f9ff}
+.tab[aria-current="page"]{background:var(--hl);color:var(--hl-ink);border-color:var(--accent)}
+.meter{background:var(--line)}
+.btn{border:1px solid var(--accent);border-radius:10px;box-shadow:none;transform:none!important;font-size:.95rem;padding:12px 18px}
+.btn:hover{filter:brightness(.94)}
+.btn[disabled]{filter:none}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn.small{font-size:.85rem;padding:9px 13px;box-shadow:none}
+.btn.big{font-size:1.05rem;padding:16px 20px}
+.card{border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.note{border:1px solid #b9d9f1;border-radius:12px}
+.banner{border:1px solid #f0d28a;border-radius:12px;background:var(--sel)}
+details{border:1px dashed #b9c8d6;border-radius:12px}
+.steps{border:1px solid var(--line);border-radius:12px}
+.steps li{border-right:1px solid var(--line)}
+.steps li:last-child{border-right:0}
+.gbtn{border:1.5px solid var(--line);border-radius:12px}
+.gbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);box-shadow:none}
+textarea{background-image:none;border:1px solid var(--line);border-radius:10px;line-height:1.55}
+select,input[type=number]{border:1px solid var(--line);border-radius:8px}
+.chip{border:1px solid var(--line)}
+.bar{border-radius:6px}
+.deck{border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.prog{background:var(--line)}
+.prog i{background:#fff;opacity:1}
+.prog i.on{background:var(--accent)}
+.deckbar{border-top:1px solid var(--line)}
+.flip{border:1.5px dashed var(--accent);border-radius:12px}
+.flip.open{border-style:solid}
+.cols2 .card{box-shadow:none}
+.opt{border:1px solid var(--line);border-radius:10px}
+.opt:hover{border-color:var(--accent)}
+.gap{border:2px dashed #9db0c0;border-radius:8px}
+.bank,.items{border:1px solid var(--line);border-radius:10px}
+.tok{border:1px solid #b9c8d6;border-radius:8px;box-shadow:none}
+.tok.sel{box-shadow:0 0 0 3px #b9d9f1}
+.zone{border:2px dashed #b9c8d6;border-radius:10px}
+.cbtn{border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+.cbtn .n{border:3px solid var(--accent);color:var(--blue-dark)}
+.cbtn[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.solution{border:1px solid #b9d9f1;border-radius:12px}
+.done-card{border:1px solid #9fd3ae;background:var(--ok-bg);border-radius:14px}
+.ring-fg{stroke:var(--accent)}
+.grp.b .bar i{background:var(--margin)}
+
+@media (max-width:820px){
+  .app{grid-template-columns:1fr}
+  nav.tabs{position:static;height:auto;padding:14px 14px 4px;overflow:visible}
+  .tabs-list{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;-webkit-overflow-scrolling:touch}
+  .tab{width:auto;white-space:nowrap;margin:0;border-right-width:1.5px;border-radius:999px;transform:none!important}
+  .tab .done{float:none;margin-left:6px}
+  .brand-sub,.meter,.meter-l{display:none}
+  main{border-left:0;border-top:0;padding:22px 16px 70px;background:none}
+  .two{grid-template-columns:1fr}
+  .art{display:none}
+  .cmp,.zones,.cols2,.choice,.choose{grid-template-columns:1fr}
+  .words{columns:1}
+  .bubble{max-width:94%}
+  .split{flex-direction:column;align-items:flex-start}
+  .steps li{font-size:.75rem;padding:8px 4px}
+  .gap{min-width:7em}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.skizze{width:100%;table-layout:fixed;overflow-wrap:anywhere;border-collapse:collapse;margin:8px 0 4px;font-size:.95rem;background:#fff}
+.skizze th,.skizze td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.skizze th{background:var(--accent-soft);color:var(--ink)}
+.skizze th:first-child,.skizze td:first-child{width:28%}.skizze td:first-child{font-weight:700}
+.skizze ul{margin:0;padding-left:1.1em}.skizze li{margin:2px 0}
+.skizze tr.skopt td{background:#fafcfd}
+.skizze .tag{display:inline-block;font-size:.75rem;font-weight:700;color:var(--hl-ink);background:var(--hl);border-radius:999px;padding:1px 8px;margin-left:4px}
+.dl-card{display:flex;flex-wrap:wrap;align-items:center;gap:14px;background:#fff;border:1.5px solid var(--accent);border-radius:12px;padding:14px 18px;margin:18px 0}
+.dl-card p{margin:0;flex:1 1 260px}
+.dl-card a.btn{text-decoration:none;display:inline-block}
+@media (max-width:820px){.app{grid-template-columns:minmax(0,1fr)}nav.tabs{min-width:0;max-width:100%}.tabs-list{max-width:100%}main{min-width:0}}
+</style>
+</head>
+<body>
+<noscript><p style="padding:24px">Diese Lerneinheit benötigt JavaScript.</p></noscript>
+<div class="app">
+  <nav class="tabs" aria-label="Abschnitte">
+    <p class="brand">Das Experiment</p>
+    <p class="brand-sub">Pädagogik/Psychologie · Wissenschaftliche Methoden</p>
+    <div class="tabs-list" id="tabs"></div>
+    <div class="meter" aria-hidden="true"><i id="meter"></i></div>
+    <div class="meter-l" id="meterl"></div>
+  </nav>
+  <main id="main" tabindex="-1">
+
+    <!-- START -->
+    <section class="sec" id="s-start">
+      <h1 class="title"><span class="hl">Das Experiment</span></h1>
+      <div class="two">
+        <div>
+          <p class="lead">Willkommen im Kurs „Das Experiment“.</p>
+          <p>In diesem Kurs lernen Sie die Merkmale eines wissenschaftlichen Experiments kennen.</p>
+          <p>Sie werden mithilfe von Buttons durch den Kurs geleitet, können aber auch die Abschnittsnavigation nutzen, um zu einem Abschnitt zu springen.</p>
+          <p>Viel Spaß!</p>
+          <div class="row"><button class="btn" data-go="einstieg" type="button">Start</button></div>
+        </div>
+        <svg class="art" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="92" cy="86" r="58"/>
+          <path d="M66 96c-6-16 4-30 18-30 4-8 22-8 26 2 14-2 22 12 14 24-4 10-16 12-24 8-6 8-24 6-26-4-4 2-8 2-8 0z" stroke-width="4"/>
+          <path d="M92 70v30M78 84c6 4 10 4 14 0M106 78c-4 4-8 4-14 6" stroke-width="3"/>
+          <path d="M134 128l46 46" stroke-width="9"/>
+          <path d="M166 148l14-14M158 156l16-16" stroke-width="4"/>
+        </svg>
+      </div>
+      <details>
+        <summary>Hinweise für Lehrkräfte</summary>
+        <ul class="clean">
+          <li>Dauer: etwa eine Doppelstunde. Das Wörter-Experiment selbst braucht rund 15 Minuten.</li>
+          <li>Material: Kaugummi für Gruppe B, ein Timer ist in der Einheit eingebaut.</li>
+          <li>Kleingruppen mit gerader Personenzahl; jede Person nutzt ein eigenes Gerät und wählt Gruppe A oder B.</li>
+          <li>Im Abschnitt „Experiment durchführen“ gibt es einen Testlauf-Schalter, der die Zeiten stark verkürzt.</li>
+          <li>Im Abschnitt „Ergebnisse vergleichen“ präsentieren Sie den Klassenvergleich. In der F11Sb-App senden die Schüler:innen ihr Ergebnis anonym (nur Gruppe und Wörterzahl) und der Vergleich aktualisiert sich automatisch; als eigenständige Datei tragen Sie die Einzelwerte von Hand ein (oder laden Beispieldaten).</li>
+          <li>Ergebnisse der Aufgaben und Quizantworten werden nur im Browser der jeweiligen Person gespeichert. In der F11Sb-App gilt die Stunde als gemacht, sobald das Abschlussquiz vollständig bearbeitet ist.</li>
+        </ul>
+      </details>
+    </section>
+
+    <!-- EINSTIEG -->
+    <section class="sec" id="s-einstieg" hidden>
+      <h2><span class="hl">Lernsituation</span></h2>
+      <p class="scene">Lena und Amira besuchen zusammen die Berufliche Oberschule. Es ist Freistunde am späten Nachmittag.</p>
+      <div class="chat" id="chat" aria-live="polite"></div>
+      <div class="row">
+        <button class="btn" id="chat-next" type="button">Weiterlesen</button>
+        <button class="btn" id="chat-go" data-go="experiment" type="button" hidden>Experiment durchführen</button>
+      </div>
+    </section>
+
+    <!-- EXPERIMENT -->
+    <section class="sec" id="s-experiment" hidden>
+      <h2><span class="hl">Experiment durchführen</span></h2>
+      <p>Sie wollen herausfinden, ob Kaugummikauen wirklich beim Lernen hilft? Probieren Sie es aus!</p>
+      <ol class="steps" id="steps"></ol>
+      <div id="xp"></div>
+    </section>
+
+    <!-- ERGEBNISSE -->
+    <section class="sec" id="s-ergebnisse" hidden>
+      <h2><span class="hl">Ergebnisse vergleichen</span></h2>
+      <p id="cmp-intro">Bitten Sie nun Ihre Lehrkraft, die Ergebnisse zu <strong>präsentieren</strong>. Tragen Sie die Einzelwerte der beiden Gruppen ein: Wie viele der 10 Wörter hat jede Person behalten?</p>
+      <div id="cmp"></div>
+      <div class="note"><strong>Vergleichen Sie:</strong> Welche Gruppe konnte sich im Schnitt an mehr Wörter erinnern?</div>
+      <textarea id="ref1" aria-label="Ihre Antwort zum Vergleich" style="min-height:90px" placeholder="Ihre Beobachtung …"></textarea>
+      <div class="note" style="margin-top:16px"><strong>Kann man die Ergebnisse nun verallgemeinern?</strong></div>
+      <textarea id="ref2" aria-label="Ihre Antwort zur Verallgemeinerung" style="min-height:90px" placeholder="Ihre Überlegung …"></textarea>
+      <div class="row"><button class="btn ghost small" id="hint-btn" type="button">Denkanstoß anzeigen</button></div>
+      <div class="solution" id="hint" hidden>
+        <h3>Was gegen eine Verallgemeinerung spricht</h3>
+        <ul class="clean">
+          <li>Die Gruppen sind klein. Schon der Zufall kann einen Unterschied von ein bis zwei Wörtern erzeugen.</li>
+          <li>Störfaktoren waren nicht ganz ausgeschlossen: Vorwissen, Tagesform, Kaugummisorte, Ablenkung im Raum.</li>
+          <li>Es wurde nur eine einzige Wortliste verwendet, und die Gruppen wurden nicht überall zufällig eingeteilt.</li>
+        </ul>
+        <p>Um solche Einwände zu prüfen, muss ein Experiment bestimmte Voraussetzungen erfüllen. Welche das sind, sehen Sie im nächsten Abschnitt.</p>
+      </div>
+      <div class="row"><button class="btn" data-go="merkmale" type="button">Voraussetzungen ansehen</button></div>
+    </section>
+
+    <!-- MERKMALE -->
+    <section class="sec" id="s-merkmale" hidden>
+      <h2><span class="hl">Merkmale des Experiments</span></h2>
+      <div class="note">In den nachfolgenden Folien können Sie sich zu den Merkmalen eines Experiments informieren und durch kleine Aufgaben Ihr Wissen direkt überprüfen.</div>
+      <div class="deck">
+        <div class="prog" id="prog" aria-hidden="true"></div>
+        <div id="slides"></div>
+        <div class="deckbar">
+          <button class="btn ghost small" id="prev" type="button">Zurück</button>
+          <span id="pos" aria-live="polite"></span>
+          <button class="btn small" id="next" type="button">Weiter</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANWENDUNG -->
+    <section class="sec" id="s-anwendung" hidden>
+      <h2><span class="hl">Anwendung</span></h2>
+      <p>Wenden Sie Ihr Wissen an. Wählen Sie eine Aufgabe:</p>
+      <div class="choose">
+        <button class="cbtn" id="choose1" aria-pressed="false" type="button"><span class="n">1</span>Situationsbasierte Aufgabe</button>
+        <button class="cbtn" id="choose2" aria-pressed="false" type="button"><span class="n">2</span>Entscheidungsbasierte Aufgabe</button>
+      </div>
+      <div id="task1" hidden></div>
+      <div id="task2" hidden></div>
+      <p style="margin-top:26px">Sie haben alles erledigt? Super! Zum Abschluss können Sie noch ein kleines Abschlussquiz machen.</p>
+      <div class="row"><button class="btn" data-go="abschluss" type="button">Zum Abschlussquiz</button></div>
+    </section>
+
+    <!-- ABSCHLUSS -->
+    <section class="sec" id="s-abschluss" hidden>
+      <h2><span class="hl">Abschlussquiz</span></h2>
+      <div id="final"></div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+/* ---------- Helfer ---------- */
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+function h(tag,attrs={},...kids){
+  const e=document.createElement(tag);
+  for(const [k,v] of Object.entries(attrs||{})){
+    if(v==null) continue;
+    if(typeof v==='boolean'&&k.startsWith('aria-')){ e.setAttribute(k,String(v)); continue; }
+    if(v===false) continue;
+    if(k==='class') e.className=v;
+    else if(k==='html') e.innerHTML=v;
+    else if(k.startsWith('on')) e.addEventListener(k.slice(2),v);
+    else e.setAttribute(k,v===true?'':v);
+  }
+  for(const kid of kids.flat()){ if(kid==null||kid===false) continue; e.append(kid.nodeType?kid:document.createTextNode(kid)); }
+  return e;
+}
+function downloadKarte(){
+  return h('div',{class:'dl-card'},
+    h('p',{html:'<strong>Zusammenfassung zum Mitnehmen:</strong> Das Wichtigste zum Experiment (Definition, drei Merkmale, Beispiel, Grenzen, Aufbau des Fachaufsatzes) auf einer Seite.'}),
+    h('a',{class:'btn',href:'zusammenfassung-experiment.pdf',download:'Zusammenfassung-Experiment.pdf',target:'_blank',rel:'noopener'},'Zusammenfassung herunterladen (PDF)'));
+}
+const store={
+  get(k,d){try{const v=localStorage.getItem('experiment:'+k);return v==null?d:JSON.parse(v);}catch(e){return d;}},
+  set(k,v){try{localStorage.setItem('experiment:'+k,JSON.stringify(v));}catch(e){}}
+};
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const fmt=n=>(Math.round(n*10)/10).toFixed(1).replace('.',',');
+/* Bewertungsschlüssel P/P (FOSBOS Bayern): Notenpunkte aus Prozent */
+const KEY=[[96,15],[91,14],[86,13],[81,12],[76,11],[71,10],[66,9],[61,8],[56,7],[51,6],[46,5],[41,4],[34,3],[27,2],[20,1]];
+function notenpunkte(p,max){const pct=max?p/max*100:0;for(const [t,n] of KEY) if(pct>=t-1e-9) return n;return 0;}
+
+/* ---------- Navigation ---------- */
+const ALLE_SECTIONS=[
+  ['start','Start'],['einstieg','Einstieg'],['experiment','Experiment durchführen'],
+  ['ergebnisse','Ergebnisse vergleichen'],['merkmale','Merkmale des Experiments'],['anwendung','Anwendung'],['abschluss','Abschluss']
+];
+// Teile wählbar: ?teile=einstieg,experiment,merkmale … (ohne Angabe: alle Teile). „Start“ ist immer dabei.
+const TEILE=(new URLSearchParams(location.search).get('teile')||'').split(',').map(x=>x.trim()).filter(Boolean);
+const SECTIONS=TEILE.length?ALLE_SECTIONS.filter(([id])=>id==='start'||TEILE.includes(id)):ALLE_SECTIONS;
+const IST_AKTIV=id=>SECTIONS.some(x=>x[0]===id);
+let visited=new Set(store.get('visited',[]));
+let current='start';
+function go(id){
+  if(!IST_AKTIV(id)){
+    const i=ALLE_SECTIONS.findIndex(x=>x[0]===id);
+    const naechster=ALLE_SECTIONS.slice(i+1).find(x=>IST_AKTIV(x[0]));
+    if(naechster) id=naechster[0]; else { einheitAbschliessen(); return; }
+  }
+  current=id;
+  ALLE_SECTIONS.forEach(([s])=>{const el=$('#s-'+s); if(el) el.hidden=(s!==id);});
+  visited.add(id); store.set('visited',[...visited]);
+  renderTabs();
+  if(id==='ergebnisse'){ renderCompare(); if(LINK.aktiv) toParent({type:'experiment:klasse-laden'}); }
+  if(id==='experiment') renderXP();
+  if(id!=='experiment') stopTimer();
+  if(id==='merkmale') showSlide(slideIdx);
+  abschlussKnopf(id);
+  window.scrollTo({top:0});
+  const m=$('#main'); if(m) m.focus({preventScroll:true});
+}
+// Ohne den Abschnitt „Abschluss“ (Quiz) beendet ein Knopf am Ende des letzten Abschnitts die Einheit.
+function einheitAbschliessen(){
+  if(EMBED&&LINK.aktiv&&LINK.rolle!=='lehrkraft'&&!store.get('erledigtOk',false)) toParent({type:'experiment:erledigt'});
+  const box=$('#fertig-hinweis');
+  if(box){ box.hidden=false; box.scrollIntoView({block:'center'}); }
+}
+function abschlussKnopf(id){
+  if(IST_AKTIV('abschluss')) return;
+  const letzte=SECTIONS[SECTIONS.length-1][0];
+  const sec=$('#s-'+id); if(!sec) return;
+  let wrap=$('#fertig-wrap');
+  if(wrap&&wrap.parentElement!==sec) wrap.remove(), wrap=null;
+  if(id===letzte&&!wrap){
+    wrap=h('div',{id:'fertig-wrap',class:'row',style:'margin-top:22px;flex-direction:column;align-items:flex-start;gap:10px'},
+      downloadKarte(),
+      h('button',{class:'btn',type:'button',onclick:einheitAbschliessen},'Einheit abschließen ✓'),
+      h('div',{id:'fertig-hinweis',class:'note',hidden:true},'Geschafft: Diese Einheit ist abgeschlossen. Du kannst das Fenster schließen.'));
+    sec.append(wrap);
+  }
+}
+function renderTabs(){
+  const box=$('#tabs'); box.replaceChildren();
+  SECTIONS.forEach(([id,label])=>{
+    const b=h('button',{class:'tab',type:'button','aria-current':id===current?'page':false,onclick:()=>go(id)},label,
+      (visited.has(id)&&id!==current)?h('span',{class:'done','aria-label':'besucht'},'✓'):null);
+    box.append(b);
+  });
+  const n=SECTIONS.filter(([id])=>visited.has(id)).length;
+  $('#meter').style.width=(n/SECTIONS.length*100)+'%';
+  $('#meterl').textContent=n+' von '+SECTIONS.length+' Abschnitten besucht';
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]'); if(b) go(b.dataset.go);});
+
+/* ---------- Einstieg: Dialog ---------- */
+const DIALOG=[
+  ['Lena','„Ich kann nicht mehr, Amira. Wir sind jetzt seit zwei Wochen auf der Schule und mein Kopf fühlt sich an wie ein nasser Schwamm. Ich habe das Gefühl, ich lerne den ganzen Tag nur neue Sachen, aber es bleibt nichts hängen.“'],
+  ['Amira','„Willkommen im Club. Die Lehrkräfte haben uns gewarnt, dass das Tempo anzieht, aber das hier ist ja ein Marathon im Sprint. Allein der Stoffumfang in Pädagogik/Psychologie … Wir müssen uns dringend etwas überlegen. So geht das nicht weiter, Lena.“'],
+  ['Lena','„Es muss doch irgendeinen Trick geben, eine Technik, mit der man den Kopf austricksen kann?“'],
+  ['Amira','„Ich hab vor Kurzem ein TikTok gesehen, da ging es um Lerntipps. Da hieß es, dass das Kaugummikauen die Durchblutung des Gehirns fördert. Und das soll dann beim Lernen helfen.“']
+];
+let chatN=0;
+function chatNext(){
+  if(chatN<DIALOG.length){
+    const [who,txt]=DIALOG[chatN];
+    $('#chat').append(h('div',{class:'bubble'+(chatN%2?' r':'')},h('b',{},who),txt));
+    chatN++;
+  }
+  if(chatN>=DIALOG.length){
+    $('#chat-next').hidden=true; $('#chat-go').hidden=false;
+    if(!$('#chat-end')) $('#chat').append(h('p',{id:'chat-end',class:'lead'},'Ob das wirklich hilft??? Probieren Sie es doch aus!'));
+  }
+}
+$('#chat-next').addEventListener('click',chatNext);
+chatNext();
+
+/* ---------- Timer ---------- */
+let activeTimer=null;
+function stopTimer(){ if(activeTimer){clearInterval(activeTimer);activeTimer=null;} }
+function beep(){
+  try{
+    const C=window.AudioContext||window.webkitAudioContext; const c=new C();
+    [0,.28,.56].forEach(t=>{const o=c.createOscillator(),g=c.createGain();o.frequency.value=880;g.gain.value=.15;o.connect(g);g.connect(c.destination);o.start(c.currentTime+t);o.stop(c.currentTime+t+.16);});
+  }catch(e){}
+}
+const CIRC=2*Math.PI*52;
+function ringEl(){
+  const wrap=h('div',{class:'ringbox',role:'timer','aria-label':'Verbleibende Zeit'});
+  wrap.innerHTML='<svg class="ring" viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-bg" cx="60" cy="60" r="52"/><circle class="ring-fg" cx="60" cy="60" r="52" stroke-dasharray="'+CIRC+'" stroke-dashoffset="0"/></svg><div class="time">0:00</div>';
+  return wrap;
+}
+function runTimer(ring,seconds,onDone){
+  stopTimer();
+  const fg=$('.ring-fg',ring), tx=$('.time',ring);
+  const end=Date.now()+seconds*1000;
+  const tick=()=>{
+    const left=Math.max(0,Math.ceil((end-Date.now())/1000));
+    tx.textContent=Math.floor(left/60)+':'+String(left%60).padStart(2,'0');
+    fg.style.strokeDashoffset=String(CIRC*(1-left/seconds));
+    if(left<=0){stopTimer();beep();onDone();}
+  };
+  tick(); activeTimer=setInterval(tick,200);
+}
+
+/* ---------- Experiment ---------- */
+const WORDS=['Regenschirm','Tastatur','Unsinn','Versprechen','Leuchtturm','Vertrieb','Schublade','Entschluss','Spaziergang','Geduld'];
+const PHASES=['Vorbereitung','Lernphase','Pause','Auswertung'];
+const XP={phase:0,group:store.get('group',null),fast:false,result:store.get('myResult',null)};
+function dur(kind){ return kind==='learn'?(XP.fast?12:180):(XP.fast?6:60); }
+function setPhase(i){XP.phase=i;renderXP();window.scrollTo({top:0});}
+
+function renderXP(){
+  stopTimer();
+  $('#steps').replaceChildren(...PHASES.map((p,i)=>h('li',{class:i===XP.phase?'on':(i<XP.phase?'past':'')},(i<XP.phase?'✓ ':'')+p)));
+  const box=$('#xp'); box.replaceChildren();
+  [xpPrep,xpLearn,xpPause,xpEval][XP.phase](box);
+}
+
+function xpPrep(box){
+  box.append(
+    h('p',{},h('strong',{},'Führen Sie das Experiment durch! '),'Bilden Sie Kleingruppen mit einer geraden Anzahl an Personen.'),
+    h('p',{},h('em',{},'Ziel: Überprüfen, ob das Kauen von Kaugummi während der Lernphase die Gedächtnisleistung verbessert.')),
+    h('div',{class:'note'},h('strong',{},'Vorbereitung (5 Minuten)')),
+    h('p',{},h('strong',{},'Gruppen bilden: '),'Ihre Kleingruppe wird in zwei gleich große Gruppen geteilt. Wenn Ihre Kleingruppe eine ungerade Größe hat, fragen Sie Ihre Lehrkraft nach der Zuteilung.')
+  );
+  const choice=h('div',{class:'choice',role:'group','aria-label':'Gruppe wählen'});
+  [['A','Gruppe A (Kontrolle)','Lernt und testet ohne Kaugummi.'],['B','Gruppe B (Experimentell)','Lernt und testet mit Kaugummi.']].forEach(([k,t,d])=>{
+    const b=h('button',{class:'gbtn',type:'button','aria-pressed':XP.group===k,onclick:()=>{XP.group=k;store.set('group',k);renderXP();}},h('b',{},t),d);
+    choice.append(b);
+  });
+  box.append(choice,h('p',{class:'soft'},'Wählen Sie die Gruppe, in die Sie eingeteilt wurden.'));
+  box.append(
+    h('p',{},h('strong',{},'Material besorgen:')),
+    h('label',{class:'check'},h('input',{type:'checkbox'}),h('span',{},'Holen Sie sich von Ihrer Lehrkraft Kaugummi für Ihre Gruppe.')),
+    h('label',{class:'check'},h('input',{type:'checkbox'}),h('span',{},'Legen Sie ein Handy oder Tablet bereit, um bei Bedarf einen zweiten Timer zu stellen.'))
+  );
+  const fast=h('input',{type:'checkbox',id:'fast'}); fast.checked=XP.fast; fast.addEventListener('change',()=>{XP.fast=fast.checked;});
+  box.append(h('div',{class:'row'},
+    h('button',{class:'btn',type:'button',disabled:!XP.group,onclick:()=>setPhase(1)},'Experiment durchführen'),
+    XP.group?null:h('span',{class:'soft'},'Wählen Sie zuerst Ihre Gruppe.')));
+  box.append(h('label',{class:'check soft',style:'margin-top:18px'},fast,h('span',{},'Testlauf für Lehrkräfte: Zeiten stark verkürzen')));
+}
+
+function xpLearn(box){
+  box.append(
+    h('h3',{},'Durchführung'),
+    h('p',{},'Das Experiment geht nun los.'),
+    h('ul',{class:'clean'},
+      h('li',{},'Beginnen Sie in Ihrer Gruppe ',h('strong',{},'gemeinsam'),'.'),
+      h('li',{},h('strong',{},'Gruppe B'),' beginnt mit dem ',h('strong',{},'Kaugummikauen'),'.'),
+      h('li',{},'Sie haben ',h('strong',{},XP.fast?'12 Sekunden (Testlauf)':'3 Minuten'),' Zeit, sich möglichst viele Wörter zu merken. Notizen sind nicht erlaubt.'))
+  );
+  const stage=h('div',{});
+  const start=h('button',{class:'btn big',type:'button'},'Sobald Sie in Ihrer Kleingruppe gemeinsam den Timer starten, klicken Sie hier.');
+  start.addEventListener('click',()=>{
+    stage.replaceChildren();
+    if(XP.group==='B') stage.append(h('div',{class:'banner'},'Gruppe B: Kaugummi kauen!'));
+    const ring=ringEl();
+    stage.append(h('div',{class:'card'},h('div',{class:'timer'},ring,h('ul',{class:'words'},WORDS.map(w=>h('li',{},w))))));
+    runTimer(ring,dur('learn'),()=>{
+      stage.replaceChildren(h('div',{class:'note'},h('strong',{},'Zeit abgelaufen. '),'Die Wörter werden ausgeblendet. Gleich folgt die Pause.'));
+      setTimeout(()=>{ if(XP.phase===1&&current==='experiment') setPhase(2); },1800);
+    });
+  });
+  stage.append(start);
+  box.append(stage);
+}
+
+function xpPause(box){
+  box.append(h('h3',{},'Pause'));
+  const ring=ringEl();
+  box.append(h('div',{class:'card'},h('div',{class:'timer'},ring,h('div',{},
+    h('p',{class:'lead'},h('strong',{},XP.fast?'Kurze Pause (Testlauf).':'Machen Sie 1 Minute Pause.')),
+    h('p',{class:'soft'},'Schauen Sie nicht mehr auf die Wörter und sprechen Sie nicht darüber. Danach folgt die Auswertung.')))));
+  runTimer(ring,dur('pause'),()=>{ if(XP.phase===2&&current==='experiment') setPhase(3); });
+  box.append(h('div',{class:'row'},h('button',{class:'btn ghost small',type:'button',onclick:()=>setPhase(3)},'Pause überspringen')));
+}
+
+/* Wörter zuordnen (Tippfehler bis 1 Zeichen bei längeren Wörtern erlaubt) */
+function normWord(s){return s.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z]/g,'');}
+function lev(a,b){const m=a.length,n=b.length;const d=Array.from({length:m+1},(_,i)=>[i,...Array(n).fill(0)]);for(let j=1;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+function matchWords(text){
+  const toks=[...new Set(text.split(/[\n,;.:]+|\s+/).map(normWord).filter(Boolean))];
+  return WORDS.map(w=>{const nw=normWord(w);return toks.some(t=>t===nw||(nw.length>=7&&lev(t,nw)<=1));});
+}
+function xpEval(box){
+  box.append(h('h3',{},'Auswertung'));
+  if(XP.group==='B') box.append(h('div',{class:'banner'},'Gruppe B: Kauen Sie beim Aufschreiben weiter.'));
+  box.append(h('div',{class:'note'},'Tragen Sie hier alle Wörter ein, an die Sie sich erinnern. Klicken Sie anschließend auf „Überprüfen“ und ',h('strong',{},'merken'),' Sie sich die ',h('strong',{},'Anzahl'),' der richtigen Wörter.'));
+  const ta=h('textarea',{'aria-label':'Erinnerte Wörter',placeholder:'Ein Wort pro Zeile …'});
+  const out=h('div',{});
+  const btn=h('button',{class:'btn',type:'button'},'Überprüfen');
+  btn.addEventListener('click',()=>{
+    const hits=matchWords(ta.value); const n=hits.filter(Boolean).length;
+    ta.readOnly=true; btn.hidden=true;
+    XP.result={group:XP.group,score:n}; store.set('myResult',XP.result);
+    out.replaceChildren(
+      h('div',{class:'card'},
+        h('div',{class:'big-n'},n+' / 10'),
+        h('p',{},'Richtig erinnerte Wörter. Merken Sie sich diese Zahl, Sie brauchen sie gleich.'),
+        h('div',{class:'chips','aria-label':'Ergebnis je Wort'},WORDS.map((w,i)=>h('span',{class:'chip '+(hits[i]?'hit':'miss')},(hits[i]?'✓ ':'')+w)))),
+      h('div',{class:'row'},
+        h('button',{class:'btn',type:'button','data-go':'ergebnisse'},'Ergebnisse vergleichen'),
+        h('button',{class:'btn ghost small',type:'button',onclick:()=>{XP.result=null;store.set('myResult',null);setPhase(0);}},'Experiment neu starten'))
+    );
+  });
+  box.append(ta,h('div',{class:'row'},btn),out);
+}
+
+/* ---------- Anbindung an die F11Sb-App (optional) ----------
+   Läuft die Seite als iframe in der App, tauscht sie per postMessage Daten aus:
+   anonymer Klassenvergleich (nur Gruppe + Wörterzahl) und „Stunde gemacht“.
+   Als eigenständige Datei bleibt alles wie bisher lokal (Werte von Hand eintragen). */
+const EMBED=window.parent!==window;
+const LINK={aktiv:false,rolle:'schueler',klasse:{A:[],B:[]},fehler:'',gesendet:!!store.get('sent',false)};
+function toParent(o){try{window.parent.postMessage(o,location.origin);}catch(e){}}
+window.addEventListener('message',ev=>{
+  if(!EMBED||ev.source!==window.parent||ev.origin!==location.origin) return;
+  const m=ev.data||{}; if(typeof m.type!=='string'||!m.type.startsWith('experiment:')) return;
+  const neu=()=>{ if(current==='ergebnisse') renderCompare(); };
+  if(m.type==='experiment:init'){ LINK.aktiv=true; LINK.rolle=m.rolle||'schueler'; if(m.erledigt) store.set('erledigtOk',true); neu(); toParent({type:'experiment:klasse-laden'}); }
+  else if(m.type==='experiment:klasse'){
+    LINK.klasse=m.werte||{A:[],B:[]}; LINK.fehler='';
+    // Hat die Lehrkraft zurückgesetzt, darf man erneut senden.
+    if(LINK.gesendet&&LINK.klasse.A.length+LINK.klasse.B.length===0){ LINK.gesendet=false; store.set('sent',false); }
+    neu();
+  }
+  else if(m.type==='experiment:gesendet'){ LINK.gesendet=true; store.set('sent',true); neu(); }
+  else if(m.type==='experiment:erledigt-gespeichert'){ store.set('erledigtOk',true); }
+  else if(m.type==='experiment:fehler'){ LINK.fehler=m.text||'Das hat nicht geklappt.'; neu(); }
+});
+if(EMBED){
+  toParent({type:'experiment:bereit'});
+  setInterval(()=>{ if(LINK.aktiv&&current==='ergebnisse'&&!document.hidden) toParent({type:'experiment:klasse-laden'}); },8000);
+}
+function renderCompareKlasse(){
+  const intro=$('#cmp-intro');
+  if(intro) intro.innerHTML='Senden Sie Ihr Ergebnis <strong>anonym</strong> an die Klasse. Ihre Lehrkraft präsentiert den Vergleich, die Werte aktualisieren sich automatisch.';
+  const box=$('#cmp'); box.replaceChildren();
+  const K=LINK.klasse, sum=a=>a.reduce((x,y)=>x+y,0);
+  const cols=h('div',{class:'cmp'});
+  ['A','B'].forEach(g=>{
+    const arr=K[g]||[]; const avg=arr.length?sum(arr)/arr.length:null;
+    cols.append(h('div',{class:'card grp '+(g==='B'?'b':'')},
+      h('h3',{},'Gruppe '+g+(g==='A'?' (ohne Kaugummi)':' (mit Kaugummi)'),h('span',{class:'avg',title:'Durchschnitt'},avg==null?'–':fmt(avg))),
+      h('div',{class:'bar','aria-hidden':'true'},h('i',{style:'width:'+(avg==null?0:avg*10)+'%'})),
+      h('div',{class:'soft'},arr.length?arr.length+' Werte der Klasse, Durchschnitt von 10 Wörtern':'Noch keine Werte gesendet'),
+      h('div',{class:'chips'},arr.slice().sort((a,b)=>a-b).map(v=>h('span',{class:'chip'},String(v))))));
+  });
+  box.append(cols);
+  const row=h('div',{class:'addrow'});
+  if(XP.result){
+    if(LINK.gesendet) row.append(h('span',{class:'soft'},'✓ Ihr Ergebnis wurde anonym gesendet.'));
+    else row.append(h('button',{class:'btn small',type:'button',onclick:()=>toParent({type:'experiment:senden',gruppe:XP.result.group||'A',woerter:XP.result.score})},'Mein Ergebnis anonym senden ('+XP.result.score+' Wörter, Gruppe '+(XP.result.group||'A')+')'));
+  } else row.append(h('span',{class:'soft'},'Führen Sie zuerst das Experiment durch, dann können Sie Ihr Ergebnis senden.'));
+  row.append(h('button',{class:'btn ghost small',type:'button',onclick:()=>toParent({type:'experiment:klasse-laden'})},'Aktualisieren'));
+  if(LINK.rolle==='lehrkraft') row.append(h('button',{class:'btn ghost small',type:'button',onclick:()=>toParent({type:'experiment:zuruecksetzen'})},'Klassenwerte zurücksetzen'));
+  box.append(row);
+  box.append(h('p',{class:'soft'},'Gespeichert werden nur Gruppe und Wörterzahl, ohne Namen und ohne Zuordnung zu Ihnen. Ihre Quizergebnisse bleiben auf Ihrem Gerät.'));
+  if(LINK.fehler) box.append(h('div',{class:'note'},LINK.fehler));
+  if(K.A.length&&K.B.length){
+    const a=sum(K.A)/K.A.length,b=sum(K.B)/K.B.length,d=Math.abs(a-b);
+    box.append(h('p',{class:'lead'},d<0.05?'Beide Gruppen erreichen im Schnitt gleich viele Wörter.':
+      'Im Schnitt erinnerte sich Gruppe '+(a>b?'A (ohne Kaugummi)':'B (mit Kaugummi)')+' an '+fmt(d)+' Wörter mehr.'));
+  }
+}
+
+/* ---------- Ergebnisse vergleichen ---------- */
+const RES=store.get('results',{A:[],B:[]});
+function saveRes(){store.set('results',RES);}
+function renderCompare(){
+  if(LINK.aktiv) return renderCompareKlasse();
+  const box=$('#cmp'); box.replaceChildren();
+  const cols=h('div',{class:'cmp'});
+  ['A','B'].forEach(g=>{
+    const arr=RES[g]; const avg=arr.length?arr.reduce((a,b)=>a+b,0)/arr.length:null;
+    const col=h('div',{class:'card grp '+(g==='B'?'b':'')},
+      h('h3',{},'Gruppe '+g+(g==='A'?' (ohne Kaugummi)':' (mit Kaugummi)'),h('span',{class:'avg',title:'Durchschnitt'},avg==null?'–':fmt(avg))),
+      h('div',{class:'bar','aria-hidden':'true'},h('i',{style:'width:'+(avg==null?0:avg*10)+'%'})),
+      h('div',{class:'soft'},arr.length?arr.length+' Werte, Durchschnitt von 10 Wörtern':'Noch keine Werte eingetragen'),
+      h('div',{class:'chips'},arr.map((v,i)=>h('button',{class:'chip x',type:'button',title:'Wert entfernen','aria-label':'Wert '+v+' entfernen',onclick:()=>{arr.splice(i,1);saveRes();renderCompare();}},String(v))))
+    );
+    cols.append(col);
+  });
+  box.append(cols);
+  const sel=h('select',{'aria-label':'Gruppe'},h('option',{value:'A'},'Gruppe A'),h('option',{value:'B'},'Gruppe B'));
+  const num=h('input',{type:'number',min:'0',max:'10',step:'1',value:'',placeholder:'0–10','aria-label':'Anzahl richtiger Wörter'});
+  const add=()=>{const v=parseInt(num.value,10); if(isNaN(v)||v<0||v>10){num.focus();return;} RES[sel.value].push(v); saveRes(); renderCompare();};
+  num.addEventListener('keydown',e=>{if(e.key==='Enter')add();});
+  const row=h('div',{class:'addrow'},sel,num,h('button',{class:'btn small',type:'button',onclick:add},'Wert hinzufügen'));
+  if(XP.result && !RES._mine){
+    row.append(h('button',{class:'btn ghost small',type:'button',onclick:()=>{RES[XP.result.group||'A'].push(XP.result.score);RES._mine=true;saveRes();renderCompare();}},'Mein Ergebnis ('+XP.result.score+', Gruppe '+(XP.result.group||'A')+') übernehmen'));
+  }
+  row.append(h('button',{class:'btn ghost small',type:'button',onclick:()=>{RES.A=[4,5,6,5,4,5];RES.B=[5,7,6,5,7,6];delete RES._mine;saveRes();renderCompare();}},'Beispieldaten laden'));
+  row.append(h('button',{class:'btn ghost small',type:'button',onclick:()=>{RES.A=[];RES.B=[];delete RES._mine;saveRes();renderCompare();}},'Alles leeren'));
+  box.append(row);
+  if(RES.A.length&&RES.B.length){
+    const a=RES.A.reduce((x,y)=>x+y,0)/RES.A.length, b=RES.B.reduce((x,y)=>x+y,0)/RES.B.length; const d=Math.abs(a-b);
+    box.append(h('p',{class:'lead'},d<0.05?'Beide Gruppen erreichen im Schnitt gleich viele Wörter.':
+      'Im Schnitt erinnerte sich Gruppe '+(a>b?'A (ohne Kaugummi)':'B (mit Kaugummi)')+' an '+fmt(d)+' Wörter mehr.'));
+  }
+}
+$('#hint-btn').addEventListener('click',()=>{const el=$('#hint');el.hidden=!el.hidden;$('#hint-btn').textContent=el.hidden?'Denkanstoß anzeigen':'Denkanstoß ausblenden';});
+['ref1','ref2'].forEach(id=>{const t=$('#'+id);t.value=store.get(id,'');t.addEventListener('input',()=>store.set(id,t.value));});
+
+/* ---------- Drag&Drop / Tipp-Zuordnung ---------- */
+function dnd({pool,zones,tokens,onClear}){
+  const loc={},btn={};let sel=null,locked=false;
+  const holder=id=>id==='pool'?pool:zones[id].el;
+  const api={loc,btn,onClear};
+  function refresh(){tokens.forEach(t=>btn[t.id].classList.toggle('sel',sel===t.id));}
+  function clear(){tokens.forEach(t=>btn[t.id].classList.remove('ok','bad'));api.onClear&&api.onClear();}
+  function place(tid,zid){
+    if(zid!=='pool'){
+      const cap=zones[zid].cap;
+      if(cap){const occ=tokens.filter(t=>loc[t.id]===zid&&t.id!==tid);
+        while(occ.length>=cap){const ev=occ.shift();loc[ev.id]='pool';pool.append(btn[ev.id]);}}
+    }
+    loc[tid]=zid;holder(zid).append(btn[tid]);sel=null;clear();refresh();
+  }
+  tokens.forEach(t=>{
+    const b=h('button',{class:'tok'+(t.st?' st':''),type:'button',draggable:'true'},t.text);
+    btn[t.id]=b;loc[t.id]='pool';pool.append(b);
+    b.addEventListener('click',e=>{
+      e.stopPropagation();if(locked)return;
+      const at=loc[t.id];
+      if(at==='pool'){sel=sel===t.id?null:t.id;refresh();}
+      else if(sel){place(sel,at);}
+      else place(t.id,'pool');
+    });
+    b.addEventListener('dragstart',e=>{if(locked){e.preventDefault();return;}e.dataTransfer.setData('text/plain',t.id);e.dataTransfer.effectAllowed='move';b.classList.add('drag');});
+    b.addEventListener('dragend',()=>b.classList.remove('drag'));
+  });
+  Object.entries(zones).forEach(([zid,z])=>{
+    const hit=z.hit||z.el;
+    hit.addEventListener('click',()=>{if(!locked&&sel)place(sel,zid);});
+    hit.addEventListener('dragover',e=>{if(!locked){e.preventDefault();hit.classList.add('over');}});
+    hit.addEventListener('dragleave',()=>hit.classList.remove('over'));
+    hit.addEventListener('drop',e=>{e.preventDefault();hit.classList.remove('over');if(locked)return;const id=e.dataTransfer.getData('text/plain');if(btn[id])place(id,zid);});
+  });
+  pool.addEventListener('dragover',e=>{if(!locked)e.preventDefault();});
+  pool.addEventListener('drop',e=>{e.preventDefault();if(locked)return;const id=e.dataTransfer.getData('text/plain');if(btn[id])place(id,'pool');});
+  api.place=place;
+  api.lock=v=>{locked=v;tokens.forEach(t=>{btn[t.id].draggable=!v;btn[t.id].style.cursor=v?'default':'';});};
+  api.reset=()=>{tokens.forEach(t=>{loc[t.id]='pool';pool.append(btn[t.id]);});sel=null;clear();refresh();};
+  api.mark=(tid,ok)=>btn[tid].classList.add(ok?'ok':'bad');
+  return api;
+}
+
+/* ---------- Aufgabentypen ---------- */
+let uid=0;
+function ctlRow(t,{retry=true,solve=true}){
+  const bCheck=h('button',{class:'btn',type:'button',onclick:()=>t.check()},'Überprüfen');
+  const bSolve=h('button',{class:'btn ghost',type:'button',hidden:true,onclick:()=>t.solve()},'Lösung anzeigen');
+  const bAgain=h('button',{class:'btn ghost',type:'button',hidden:true,onclick:()=>t.reset()},'Wiederholen');
+  t._ui=(checked)=>{bCheck.hidden=checked;bSolve.hidden=!(checked&&solve);bAgain.hidden=!(checked&&retry);};
+  t._ui(false);
+  return h('div',{class:'ctl'},bCheck,bSolve,bAgain);
+}
+function mcTask({q,opts,correct,why,mix=true,retry=true,solve=true,onCheck}){
+  const name='mc'+(++uid);
+  const order=mix?shuffle(opts.map((_,i)=>i)):opts.map((_,i)=>i);
+  const el=h('div',{class:'task'});
+  if(q) el.append(h('p',{class:'q-text'},q));
+  const group=h('div',{class:'opts',role:'radiogroup','aria-label':q||'Antworten'});
+  const labels=order.map(i=>{
+    const id=name+'-'+i; const inp=h('input',{type:'radio',name,id,value:i});
+    const lab=h('label',{class:'opt',for:id},inp,h('span',{},opts[i])); group.append(lab); return {i,inp,lab};
+  });
+  const fb=h('p',{class:'fb',role:'status','aria-live':'polite'});
+  const t={el,max:1,score:0,checked:false};
+  t.check=()=>{
+    const s=labels.find(l=>l.inp.checked);
+    if(!s){fb.textContent='Wählen Sie zuerst eine Antwort.';fb.className='fb warn';return;}
+    t.checked=true;t.score=s.i===correct?1:0;
+    labels.forEach(l=>{l.inp.disabled=true;l.lab.classList.toggle('ok',l.i===correct&&(t.score===1||t._shown));l.lab.classList.toggle('bad',l===s&&s.i!==correct);});
+    fb.className='fb '+(t.score?'good':'wrong');
+    fb.textContent=(t.score?'Richtig. ':'Nicht ganz. ')+(why||'');
+    t._ui(true);onCheck&&onCheck(t);
+  };
+  t.solve=()=>{ if(!t.checked) t.check(); if(!t.checked) return; t._shown=true; labels.forEach(l=>l.lab.classList.toggle('ok',l.i===correct)); fb.textContent='Richtige Antwort markiert. '+(why||''); };
+  t.reset=()=>{t.checked=false;t.score=0;t._shown=false;labels.forEach(l=>{l.inp.disabled=false;l.inp.checked=false;l.lab.classList.remove('ok','bad');});fb.textContent='';fb.className='fb';t._ui(false);onCheck&&onCheck(t);};
+  el.append(group,ctlRow(t,{retry,solve}),fb);
+  return t;
+}
+function gapTask({tpl,bank,accepts,retry=true,solve=true,onCheck}){
+  const el=h('div',{class:'task'});
+  const p=h('p',{class:'gaptext'});
+  const zones={},ids=[];
+  tpl.split(/\[\[(\d+)\]\]/).forEach((s,i)=>{
+    if(i%2===0){ s.split('<br>').forEach((seg,k)=>{ if(k) p.append(h('br')); if(seg) p.append(seg); }); return; }
+    const n=+s; const g=h('span',{class:'gap',role:'button',tabindex:'0','aria-label':'Lücke '+(n+1)});
+    g.addEventListener('keydown',e=>{ if(e.target===g&&(e.key==='Enter'||e.key===' ')){e.preventDefault();g.click();} });
+    zones['g'+n]={el:g,cap:1}; ids.push(n); p.append(g);
+  });
+  const pool=h('div',{class:'bank','aria-label':'Wortvorrat'});
+  const tokens=shuffle(bank).map((text,i)=>({id:'t'+i,text}));
+  const eng=dnd({pool,zones,tokens,onClear:()=>Object.values(zones).forEach(z=>z.el.classList.remove('ok','bad'))});
+  const fb=h('p',{class:'fb',role:'status','aria-live':'polite'});
+  const t={el,max:ids.length,score:0,checked:false};
+  const tokenIn=n=>tokens.find(x=>eng.loc[x.id]==='g'+n);
+  t.check=()=>{
+    if(ids.every(n=>!tokenIn(n))){fb.textContent='Ziehen Sie zuerst Wörter in die Lücken. Am Handy: Wort antippen, dann die Lücke antippen.';fb.className='fb warn';return;}
+    let sc=0;
+    ids.forEach(n=>{const tok=tokenIn(n);const ok=!!tok&&accepts[n].includes(tok.text);if(ok)sc++;zones['g'+n].el.classList.add(ok?'ok':'bad');if(tok)eng.mark(tok.id,ok);});
+    t.checked=true;t.score=sc;eng.lock(true);
+    fb.className='fb '+(sc===t.max?'good':'wrong');fb.textContent=sc+' von '+t.max+' Lücken richtig.';
+    t._ui(true);onCheck&&onCheck(t);
+  };
+  t.solve=()=>{
+    if(!t.checked) t.check(); if(!t.checked) return;
+    eng.lock(false);eng.reset();
+    ids.forEach(n=>{const tok=tokens.find(x=>eng.loc[x.id]==='pool'&&accepts[n].includes(x.text));if(tok)eng.place(tok.id,'g'+n);});
+    ids.forEach(n=>{zones['g'+n].el.classList.add('ok');const tok=tokenIn(n);if(tok)eng.mark(tok.id,true);});
+    eng.lock(true);fb.className='fb good';fb.textContent='Lösung eingeblendet. Ihr Ergebnis: '+t.score+' von '+t.max+'.';
+  };
+  t.reset=()=>{eng.lock(false);eng.reset();t.checked=false;t.score=0;fb.textContent='';fb.className='fb';t._ui(false);onCheck&&onCheck(t);};
+  el.append(h('p',{class:'soft'},'Ziehen Sie die Wörter in die Lücken. Am Handy: Wort antippen, dann die Lücke antippen. Ein gesetztes Wort tippen Sie an, um es zurückzulegen.'),p,pool,ctlRow(t,{retry,solve}),fb);
+  return t;
+}
+function sortTask({items,cats,retry=true,solve=true,onCheck}){
+  const el=h('div',{class:'task'});
+  const zones={},zwrap=h('div',{class:'zones'});
+  cats.forEach(c=>{
+    const list=h('div',{class:'items'});
+    const col=h('div',{class:'zone',tabindex:'0','aria-label':c.label},h('h3',{},c.label),list);
+    col.addEventListener('keydown',e=>{if(e.target===col&&(e.key==='Enter'||e.key===' ')){e.preventDefault();col.click();}});
+    zones[c.id]={el:list,hit:col,cap:0};zwrap.append(col);
+  });
+  const pool=h('div',{class:'bank','aria-label':'Aussagen'});
+  const tokens=shuffle(items).map((it,i)=>({id:'s'+i,text:it.text,cat:it.cat,st:true}));
+  const eng=dnd({pool,zones,tokens,onClear:()=>{}});
+  const fb=h('p',{class:'fb',role:'status','aria-live':'polite'});
+  const t={el,max:items.length,score:0,checked:false};
+  t.check=()=>{
+    if(tokens.some(x=>eng.loc[x.id]==='pool')){fb.textContent='Ordnen Sie zuerst alle Aussagen einer Kategorie zu.';fb.className='fb warn';return;}
+    let sc=0;tokens.forEach(x=>{const ok=eng.loc[x.id]===x.cat;if(ok)sc++;eng.mark(x.id,ok);});
+    t.checked=true;t.score=sc;eng.lock(true);
+    fb.className='fb '+(sc===t.max?'good':'wrong');fb.textContent=sc+' von '+t.max+' Aussagen richtig zugeordnet.';
+    t._ui(true);onCheck&&onCheck(t);
+  };
+  t.solve=()=>{ if(!t.checked) t.check(); if(!t.checked) return; eng.lock(false);tokens.forEach(x=>eng.place(x.id,x.cat));tokens.forEach(x=>eng.mark(x.id,true));eng.lock(true);fb.className='fb good';fb.textContent='Lösung eingeblendet. Ihr Ergebnis: '+t.score+' von '+t.max+'.'; };
+  t.reset=()=>{eng.lock(false);eng.reset();t.checked=false;t.score=0;fb.textContent='';fb.className='fb';t._ui(false);onCheck&&onCheck(t);};
+  el.append(h('p',{class:'soft'},'Ziehen Sie die Aussagen in die passende Kategorie. Am Handy: Aussage antippen, dann die Kategorie antippen.'),zwrap,pool,ctlRow(t,{retry,solve}),fb);
+  return t;
+}
+
+/* ---------- Merkmale: Folien ---------- */
+const bulb='<svg class="icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M50 12c-15 0-26 11-26 25 0 9 5 15 10 20 3 3 4 6 4 10h24c0-4 1-7 4-10 5-5 10-11 10-20 0-14-11-25-26-25z"/><path d="M40 72h20M42 80h16M45 88h10"/><path d="M8 32l9 3M92 32l-9 3M14 12l7 7M86 12l-7 7"/></svg>';
+const cycle='<svg class="icon" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 44a30 30 0 0 1 52-14"/><path d="M78 14v18H60"/><path d="M78 56a30 30 0 0 1-52 14"/><path d="M22 86V68h18"/></svg>';
+const T={};
+const onTask=()=>refreshSummary();
+
+function slide(...kids){return h('div',{class:'slide'},...kids);}
+const deckTasks=[];
+const slides=[
+  // 1
+  slide(h('div',{style:'display:grid;place-items:center;min-height:290px'},h('h2',{style:'font-size:clamp(2rem,6vw,3.2rem)'},h('span',{class:'hl'},'Das Experiment')))),
+  // 2
+  (()=>{const s=slide(h('div',{class:'split'},h('div',{},
+      h('p',{html:'Ein Experiment ist eine wissenschaftliche Methode, mit der man überprüft, ob ein <strong>bestimmter Einflussfaktor</strong> wirklich eine <strong>Wirkung</strong> hat. In der Psychologie dient es dazu, Verhalten und Erleben gezielt zu untersuchen, statt sich nur auf Beobachtungen oder Meinungen zu verlassen.'}),
+      h('div',{class:'note',html:'<strong>Merke:</strong> Ein Experiment ist das absichtliche und planmäßige Herbeiführen eines Vorgangs, um ihn gezielt zu beobachten. Nur das Experiment kann Ursache-Wirkung-Zusammenhänge (Kausalzusammenhänge) klären.'})),
+      h('div',{html:bulb})));return s;})(),
+  // 3 Wiederholung
+  (()=>{const card=h('button',{class:'flip',type:'button','aria-expanded':'false'},
+      h('strong',{},'Aussagen, die für viele Menschen gelten und durch Untersuchungen bestätigt wurden, nennt man …'),
+      h('div',{class:'ans',hidden:true,style:'margin-top:10px',html:'<strong>wissenschaftliche Theorie.</strong>'}),
+      h('div',{class:'soft tip',style:'margin-top:8px'},'Antippen zum Aufdecken'));
+    card.addEventListener('click',()=>{const a=$('.ans',card),o=a.hidden;a.hidden=!o;card.classList.toggle('open',o);card.setAttribute('aria-expanded',String(o));$('.tip',card).hidden=o;});
+    return slide(h('h2',{},'Eine kleine Wiederholung …'),h('p',{},'Überlegen Sie zuerst selbst, dann decken Sie die Antwort auf.'),card);})(),
+  // 4
+  slide(h('div',{class:'split'},h('div',{},
+    h('p',{html:'Stellen Sie sich vor, Sie wollen wissen, ob <strong>Musik beim Lernen</strong> die Merkfähigkeit verbessert. Sie lassen zwei Gruppen dieselbe Lernaufgabe bearbeiten:'}),
+    h('ul',{class:'clean'},h('li',{},'eine Gruppe hört dabei Musik,'),h('li',{},'die andere lernt in Stille.')),
+    h('p',{},'Am Ende vergleichen Sie, wie viele Wörter sich die Gruppen merken konnten.'),
+    h('p',{html:'Damit dieses Vorgehen als Experiment gilt, müssen <strong>drei Merkmale</strong> erfüllt sein: Willkürlichkeit, Variierbarkeit und Wiederholbarkeit.'})))),
+  // 5
+  slide(h('h2',{},h('span',{class:'hl'},'1. Willkürlichkeit')),
+    h('p',{},'Die Forscherinnen und Forscher legen die Bedingungen selbst fest. Sie entscheiden,'),
+    h('ul',{class:'clean'},h('li',{},'wer Musik hört,'),h('li',{},'welche Musik gespielt wird,'),h('li',{},'wie lange gelernt wird'),h('li',{},'und welche Aufgaben gestellt werden.')),
+    h('p',{},'Diese bewusste Steuerung unterscheidet das Experiment von einer bloßen Beobachtung im Alltag. Der Forscher bestimmt Bedingungen, Situation, Ort und Zeit selbst.')),
+  // 6 Lückentext
+  (()=>{T.gap=gapTask({
+      tpl:'Im Experiment legen die Forschenden bewusst fest, wer in der [[0]] und wer in der [[1]] ist. Sie bestimmen außerdem, [[2]] gelernt wird, [[3]] bearbeitet werden und [[4]] verwendet werden.',
+      bank:['Kaugummi-Gruppe','Vergleichsgruppe','wie lange','welche Lernaufgaben','welche Kaugummis','welche Personen','welche Farben','Beobachtungsgruppe','Zufallsgruppe'],
+      accepts:[['Kaugummi-Gruppe','Vergleichsgruppe'],['Vergleichsgruppe','Kaugummi-Gruppe'],['wie lange'],['welche Lernaufgaben'],['welche Kaugummis']],onCheck:onTask});
+    return slide(h('h2',{},'Was bedeutet Willkürlichkeit beim Kaugummi-Experiment?'),T.gap.el);})(),
+  // 7
+  slide(h('h2',{},h('span',{class:'hl'},'2. Variierbarkeit')),
+    h('p',{html:'Im Experiment wird gezielt <strong>eine</strong> Variable verändert, während alle anderen Bedingungen <strong>gleich bleiben</strong>. Hier ist die veränderte Variable die Musik beim Lernen. Die gemessene Variable ist die Merkfähigkeit.'}),
+    h('p',{},'Wenn sich die Gruppen in ihrer Leistung unterscheiden, kann man daraus schließen, dass die Musik einen Einfluss hatte.')),
+  // 8
+  (()=>{T.mc=mcTask({q:'Welche Aussage beschreibt am besten das Merkmal Variierbarkeit?',
+      opts:['Die Forschenden beobachten das Verhalten der Lernenden, ohne etwas zu verändern.','Die Teilnehmenden können selbst entscheiden, ob sie Kaugummi kauen möchten oder nicht.','Die Forschenden verändern gezielt einen Faktor, nämlich ob beim Lernen Kaugummi gekaut wird oder nicht, und beobachten, wie sich das auf die Merkfähigkeit auswirkt.','Das Experiment kann später unter denselben Bedingungen wiederholt werden, um die Ergebnisse zu überprüfen.','Die Forschenden legen fest, wie lange gelernt wird und welche Aufgaben bearbeitet werden.'],
+      correct:2,why:'Variierbarkeit heißt: Die Bedingung, deren Wirkung beobachtet werden soll, wird gezielt verändert.',onCheck:onTask});
+    return slide(h('h2',{},'Was bedeutet Variierbarkeit im Kaugummi-Experiment?'),T.mc.el);})(),
+  // 9
+  slide(h('div',{class:'split'},h('div',{},
+    h('h2',{},h('span',{class:'hl'},'3. Wiederholbarkeit')),
+    h('p',{html:'Das Experiment muss so angelegt sein, dass andere Forschende es <strong>unter denselben Bedingungen wiederholen</strong> können. Wenn sie zu ähnlichen Ergebnissen kommen, stärkt das die Aussagekraft der Untersuchung.'})),
+    h('div',{html:cycle}))),
+  // 10
+  (()=>{T.sort=sortTask({cats:[{id:'w',label:'Wiederholbar'},{id:'n',label:'Nicht wiederholbar'}],
+      items:[
+        {text:'Der Ablauf und die Materialien sind genau dokumentiert.',cat:'w'},
+        {text:'Der Versuch wird mit neuen Teilnehmenden unter denselben Bedingungen durchgeführt und zeigt ähnliche Ergebnisse.',cat:'w'},
+        {text:'Mehrere Gruppen können das Experiment eigenständig nachmachen.',cat:'w'},
+        {text:'Nur eine Person kann das Experiment durchführen, weil sie alle Schritte im Kopf hat.',cat:'n'},
+        {text:'Die Ergebnisse hängen stark davon ab, wer das Experiment durchführt.',cat:'n'},
+        {text:'Die Forschenden ändern bei jedem Durchgang Kaugummi-Sorte und Lernzeit.',cat:'n'}],onCheck:onTask});
+    return slide(h('h2',{},'Wiederholbarkeit erkennen'),T.sort.el);})(),
+  // 11 Labor/Feld
+  (()=>{const card=h('button',{class:'flip',type:'button','aria-expanded':'false'},
+      h('strong',{},'War Ihr Kaugummi-Experiment im Klassenzimmer ein Labor- oder ein Feldexperiment?'),
+      h('div',{class:'ans',hidden:true,style:'margin-top:10px',html:'Es fand in der natürlichen Lernumgebung statt, also im Klassenzimmer: ein <strong>Feldexperiment</strong>. Die Kontrolle von Störfaktoren ist dort geringer als im Labor, dafür sagt es echtes Alltagsverhalten genauer voraus.'}),
+      h('div',{class:'soft tip',style:'margin-top:8px'},'Antippen zum Aufdecken'));
+    card.addEventListener('click',()=>{const a=$('.ans',card),o=a.hidden;a.hidden=!o;card.classList.toggle('open',o);card.setAttribute('aria-expanded',String(o));$('.tip',card).hidden=o;});
+    return slide(h('h2',{},'Wo findet ein Experiment statt?'),
+      h('div',{class:'cols2'},
+        h('div',{class:'card'},h('h3',{},'Laborexperiment'),h('p',{},'Findet unter kontrollierten Bedingungen im Labor statt. Beispiel: Personen werden ins Labor eingeladen, um ihr Schlafverhalten zu untersuchen.'),h('p',{class:'soft'},'Vorteil: bessere Kontrolle von Störfaktoren.')),
+        h('div',{class:'card'},h('h3',{},'Feldexperiment'),h('p',{},'Findet in der natürlichen Umgebung statt. Beispiel: An Schulen wird untersucht, wie sich Pausen aufs Lernen auswirken.'),h('p',{class:'soft'},'Vorteil: genauere Vorhersage für echtes Alltagsverhalten.'))),
+      h('div',{style:'margin-top:14px'}),card);})(),
+  // 12 Auswertung
+  (()=>{const s=slide(h('h2',{},'Ihre Ergebnisse'),h('div',{id:'sum'}));return s;})()
+];
+let slideIdx=0;
+function showSlide(i){
+  slideIdx=Math.max(0,Math.min(slides.length-1,i));
+  slides.forEach((s,k)=>s.hidden=(k!==slideIdx));
+  $$('#prog i').forEach((d,k)=>d.classList.toggle('on',k<=slideIdx));
+  $('#pos').textContent=(slideIdx+1)+' / '+slides.length;
+  $('#prev').disabled=slideIdx===0;
+  const last=slideIdx===slides.length-1;
+  $('#next').textContent=last?'Weiter zur Anwendung':'Weiter';
+  if(last) refreshSummary();
+}
+function refreshSummary(){
+  const box=$('#sum'); if(!box) return;
+  const rows=[['Lückentext: Willkürlichkeit',T.gap],['Multiple Choice: Variierbarkeit',T.mc],['Zuordnung: Wiederholbarkeit',T.sort]];
+  const got=rows.reduce((a,[,t])=>a+t.score,0), max=rows.reduce((a,[,t])=>a+t.max,0);
+  const open=rows.some(([,t])=>!t.checked);
+  box.replaceChildren(
+    h('table',{class:'sumtab'},h('tbody',{},rows.map(([n,t])=>h('tr',{},h('td',{},n),h('td',{},t.checked?t.score+' / '+t.max:'offen ('+t.max+')'))))),
+    h('div',{class:'total'},h('span',{},'Gesamtpunktzahl'),h('div',{class:'bar'},h('i',{style:'width:'+(got/max*100)+'%'})),h('span',{class:'pts'},got+' / '+max)),
+    open?h('p',{class:'soft'},'Bearbeiten Sie die Aufgaben auf den Folien 6, 8 und 10, um alle Punkte zu erhalten.'):null,
+    h('div',{class:'ctl'},
+      h('button',{class:'btn ghost',type:'button',onclick:()=>{rows.forEach(([,t])=>{if(t.checked)t.solve();});refreshSummary();}},'Lösungen anzeigen'),
+      h('button',{class:'btn ghost',type:'button',onclick:()=>{rows.forEach(([,t])=>t.reset());refreshSummary();}},'Wiederholen'))
+  );
+}
+(function initDeck(){
+  const host=$('#slides'); slides.forEach(s=>host.append(s));
+  $('#prog').append(...slides.map(()=>h('i')));
+  $('#prev').addEventListener('click',()=>{showSlide(slideIdx-1);});
+  $('#next').addEventListener('click',()=>{ if(slideIdx===slides.length-1) go('anwendung'); else showSlide(slideIdx+1); });
+  showSlide(0);
+})();
+
+/* ---------- Anwendung ---------- */
+function buildTask1(){
+  const box=h('div',{});
+  box.append(
+    h('h3',{},'Situationsbasierte Aufgabe'),
+    h('div',{class:'card'},
+      h('p',{},'Der Pädagogik/Psychologie-Lehrer Herr Freude möchte wissen, ob das systematische Nutzen von Farbe beim Anfertigen von Notizen die Gedächtnisleistung seiner Schülerinnen und Schüler verbessern kann. Dazu macht er ein kleines Experiment mit seiner Klasse.'),
+      h('p',{},'Zunächst wählt Herr Freude einen Fachtext aus dem Schulbuch, der den Gegenstand der Psychologie (Erleben und Verhalten) detailliert erläutert und der Klasse bisher unbekannt ist. Die 20 teilnehmenden Schülerinnen und Schüler seiner 11. Klasse teilt er per Zufall in zwei gleich große Gruppen ein.'),
+      h('p',{},'Beide Gruppen erhalten dieselben Anweisungen, den Text in einem vorgegebenen Zeitraum von 20 Minuten durchzulesen und sich parallel Notizen dazu zu machen. Er achtet streng darauf, dass die äußeren Bedingungen (der Raum, die Beleuchtung, der Lärmpegel und natürlich der Ausgangstext) für alle identisch sind.'),
+      h('p',{},'Der entscheidende Unterschied liegt im Schreibwerkzeug:'),
+      h('ul',{class:'clean'},
+        h('li',{},h('strong',{},'Gruppe A'),' erhält die Anweisung, ihre Notizen ausschließlich mit einem blauen oder schwarzen Stift anzufertigen.'),
+        h('li',{},h('strong',{},'Gruppe B'),' erhält dieselbe Aufgabe, jedoch mit der strikten Vorgabe, ein von Herrn Freude vorab festgelegtes Farbsystem zu verwenden: Zum Beispiel müssen zentrale Definitionen immer in Rot, wichtige Beispiele immer in Grün und Schlüsselbegriffe immer in Blau markiert oder notiert werden.')),
+      h('p',{},'Nach Ablauf der 20 Minuten werden die Texte und Notizen eingesammelt. Es folgt eine 5-minütige Pause. Im Anschluss schreibt die gesamte Klasse einen identischen, objektiven Wissenstest über den Inhalt des gelesenen Textes. Herr Freude vergleicht anschließend die durchschnittlich erreichten Punkte der Gruppe A mit denen der Gruppe B. Dabei hält er genau fest, welches Farbschema genau verwendet wurde, wie der Test aufgebaut war und welche Instruktionen die Schüler zu Beginn erhalten haben.'),
+      h('p',{},h('strong',{},'Verdeutlichen Sie die Merkmale eines Experiments am Beispiel von Herrn Freudes Experiment.'),' Schreiben Sie Ihre Ausführungen in das Textfeld.'))
+  );
+  const ta=h('textarea',{'aria-label':'Ihre Aufgabenlösung',style:'min-height:240px',placeholder:'Ihre Ausführungen …'});
+  ta.value=store.get('t1','');
+  ta.addEventListener('input',()=>store.set('t1',ta.value));
+  const fb=h('p',{class:'fb warn',role:'status'});
+  const sol=h('div',{hidden:true});
+  const btn=h('button',{class:'btn',type:'button'},'Musterlösung und Selbsteinschätzung');
+  const btnL=h('button',{class:'btn ghost',type:'button'},'Lösung anzeigen');
+  btn.addEventListener('click',()=>{
+    if(ta.value.trim().length<120){fb.textContent='Schreiben Sie zuerst Ihre eigene Lösung (mindestens ein paar Sätze). Wenn Sie nicht weiterkommen, können Sie sich auch direkt die Lösung anzeigen lassen.';return;}
+    fb.textContent='';sol.hidden=false;btn.hidden=true;btnL.hidden=true;buildSolution(sol,true);sol.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  btnL.addEventListener('click',()=>{
+    fb.textContent='';sol.hidden=false;btn.hidden=true;btnL.hidden=true;buildSolution(sol,false);sol.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+  box.append(ta,h('p',{class:'soft'},'Tipp: Schreiben Sie zuerst Ihre eigene Lösung, das bringt am meisten. Wenn Sie nicht weiterkommen, können Sie sich die Lösung auch direkt anzeigen lassen.'),h('div',{class:'row'},btn,btnL),fb,sol);
+  return box;
+}
+function buildSolution(sol,withCheck){
+  const rows=[
+    ['angestrebter Erkenntnisgewinn',h('p',{style:'margin:0'},'Verbesserung der Gedächtnisleistung unter den Lernenden durch das Nutzen von Farben beim Anfertigen von Notizen.')],
+    ['Willkürlichkeit',h('div',{},
+      h('p',{style:'margin:0 0 4px'},'Erläuterung, dass Herr Freude das Setting kontrolliert festlegt und damit aktiv in den Ablauf eingreift:'),
+      h('ul',{},
+        h('li',{},'Gruppengröße: 20 Lernende seiner Klasse'),
+        h('li',{},'Einteilung der Gruppen: zufällig'),
+        h('li',{},'Experimentalgruppe (Gruppe B mit Farbsystem) und Kontrollgruppe (Gruppe A mit normalem Stift) mit gleicher Größe'),
+        h('li',{},'Raum, Licht und Lärmpegel als äußere Bedingungen sind in beiden Gruppen gleich'),
+        h('li',{},'bisher unbekannter Text über den Gegenstand der Psychologie'),
+        h('li',{},'20 Minuten Bearbeitungszeit inklusive Anfertigen von Notizen, mit anschließender 5-minütiger Pause'),
+        h('li',{},'von Herrn Freude erstellter, identischer Wissenstest über den Gegenstand der Psychologie')))],
+    ['Variierbarkeit',h('ul',{},
+      h('li',{},'unabhängige Variable: Farbsystem beim Anfertigen der Notizen'),
+      h('li',{},'abhängige Variable: Ergebnis beim Wissenstest'),
+      h('li',{},'Störvariablen (Raum, Lärm, Text) werden konstant gehalten')) ],
+    ['Wiederholbarkeit',h('p',{style:'margin:0'},'Verweis darauf, dass Herr Freude alle Schritte (Farbschema, Testaufbau, Instruktionen) dokumentiert hat, um anderen Forschenden eine exakte Replikation des Experiments zu ermöglichen.')],
+    ['optional: Kritische Reflexion zur Validität des Versuchsaufbaus',h('ul',{},
+      h('li',{},'Kritische Auseinandersetzung, ob durch die bewusste Steuerung (Willkürlichkeit) tatsächlich eine wissenschaftliche Aussage über das Gedächtnis möglich ist.'),
+      h('li',{},'Kognitive Überlastung: Das Farbsystem könnte den Lerneffekt durch das System selbst überlagern. Die Lernenden in Gruppe B müssen sich nicht nur den Textinhalt merken, sondern auch die Regeln des Farbsystems (Rot = Definition, Grün = Beispiel, Blau = Schlüsselbegriff).'),
+      h('li',{},'Was genau wird getestet? Wissen (Faktenreproduktion) oder Verständnis (Transfer)?'),
+      h('li',{},'Da nur eine Klasse untersucht wird, ist die Stichprobe sehr klein. Eine einzelne Person, die an diesem Tag besonders gut oder schlecht drauf war, kann den Durchschnittswert der Gruppe stark verfälschen. Die Ergebnisse sind daher kaum verallgemeinerbar.'))]
+  ];
+  const tbl=h('table',{class:'skizze'},
+    h('thead',{},h('tr',{},h('th',{},'Theorieaspekt'),h('th',{},'Anwendung'))),
+    h('tbody',{},rows.map(([k,v],i)=>h('tr',{class:i===rows.length-1?'skopt':''},h('td',{},k),h('td',{},v)))));
+  sol.replaceChildren(h('div',{class:'solution'},h('h3',{},'Lösungsskizze'),tbl));
+  if(!withCheck) return;
+  const crit=[
+    'Ich habe den angestrebten Erkenntnisgewinn benannt (Wirkung von Farbe beim Notieren auf die Gedächtnisleistung).',
+    'Ich habe die Willkürlichkeit benannt und erklärt (Forschende bestimmen Bedingungen, Situation, Ort und Zeit selbst).',
+    'Ich habe die Willkürlichkeit am Beispiel belegt (z. B. Zufallseinteilung, 20 Minuten, gleiche Raumbedingungen, vorgegebenes Farbsystem).',
+    'Ich habe die Variierbarkeit benannt und erklärt (eine Bedingung gezielt verändern, Wirkung beobachten).',
+    'Ich habe die Variierbarkeit am Beispiel belegt (Farbsystem als unabhängige Variable, Testergebnis als abhängige Variable, Störvariablen konstant).',
+    'Ich habe die Wiederholbarkeit benannt und erklärt (Vorgang beliebig oft durchführbar, Ergebnisse überprüfbar).',
+    'Ich habe die Wiederholbarkeit am Beispiel belegt (Dokumentation von Farbschema, Testaufbau und Instruktionen).'
+  ];
+  const out=h('div',{class:'total'});
+  const upd=()=>{const n=$$('input',list).filter(i=>i.checked).length;const np=notenpunkte(n,crit.length);
+    out.replaceChildren(h('span',{class:'pts'},n+' / '+crit.length+' Punkte'),h('span',{},'entspricht laut P/P-Bewertungsschlüssel '),h('span',{class:'pts'},np+' Notenpunkte'));};
+  const list=h('div',{},crit.map(c=>{const i=h('input',{type:'checkbox'});i.addEventListener('change',upd);return h('label',{class:'check'},i,h('span',{},c));}));
+  const opt=h('label',{class:'check'},h('input',{type:'checkbox'}),h('span',{},'Zusatz (optional, zählt nicht mit): Ich habe den Versuchsaufbau kritisch reflektiert (z. B. kognitive Überlastung, kleine Stichprobe, Wissen oder Verständnis).'));
+  sol.append(h('div',{class:'card'},h('h3',{},'Selbsteinschätzung'),h('p',{class:'soft'},'Vergleichen Sie Ihre Lösung mit der Lösungsskizze und haken Sie ab, was Sie erfüllt haben. Das ist eine Orientierung, keine Note.'),list,opt,out));
+  upd();
+}
+
+const SCEN=[
+  {t:'Eine Forscherin sitzt in einer Freistunde im Aufenthaltsraum und notiert, welche Schülerinnen und Schüler wie lange lernen. Sie greift nicht ein.',c:1,
+   w:'Sie beobachtet nur eine vorhandene Situation. Sie führt nichts selbst herbei und legt keine Bedingungen fest, also fehlt die Willkürlichkeit.'},
+  {t:'Ein Lehrer teilt seine Klasse per Los in zwei Gruppen. Beide lernen denselben Text 15 Minuten im selben Raum, nur Gruppe 1 hört dabei Musik. Ablauf, Playlist und Testaufgaben hält er schriftlich fest, danach schreiben alle denselben Test.',c:0,
+   w:'Er bestimmt die Bedingungen selbst (Willkürlichkeit), verändert gezielt nur die Musik (Variierbarkeit) und dokumentiert alles, sodass andere es wiederholen können (Wiederholbarkeit).'},
+  {t:'Ein Forscher legt Ort, Zeit und Aufgaben genau fest. Alle 30 Teilnehmenden lernen unter denselben Bedingungen mit Kaugummi und schreiben danach einen Test. Er schließt: „Kaugummi verbessert das Lernen.“',c:2,
+   w:'Es wird keine Bedingung verändert und es gibt keine Vergleichsgruppe ohne Kaugummi. Ohne Variierbarkeit lässt sich keine Wirkung nachweisen.'},
+  {t:'Eine Lehrerin teilt zwei Gruppen per Zufall ein: Gruppe 1 lernt mit Musik, Gruppe 2 ohne. Sie schreibt aber nichts auf, weder welche Musik lief noch wie lange gelernt wurde, und kann den Ablauf später selbst nicht mehr rekonstruieren.',c:3,
+   w:'Ohne Dokumentation kann weder sie noch jemand anderes den Versuch unter denselben Bedingungen wiederholen. Die Wiederholbarkeit fehlt.'}
+];
+function buildTask2(){
+  const box=h('div',{});
+  box.append(h('h3',{},'Entscheidungsbasierte Aufgabe'),
+    h('p',{},'Entscheiden Sie bei jeder Untersuchung: Ist sie ein Experiment im wissenschaftlichen Sinn? Wenn nicht, welches Merkmal fehlt?'));
+  const tally=h('div',{class:'total'});
+  const tasks=[];
+  const upd=()=>{const done=tasks.filter(t=>t.checked).length;const s=tasks.reduce((a,t)=>a+t.score,0);
+    tally.replaceChildren(h('span',{class:'pts'},s+' / '+tasks.length),h('span',{},done<tasks.length?'richtig ('+done+' von '+tasks.length+' bearbeitet)':'richtig'));};
+  SCEN.forEach((s,i)=>{
+    const t=mcTask({q:null,mix:false,solve:false,retry:true,
+      opts:['Experiment: alle drei Merkmale sind erfüllt','Kein Experiment: Willkürlichkeit fehlt','Kein Experiment: Variierbarkeit fehlt','Kein Experiment: Wiederholbarkeit fehlt'],
+      correct:s.c,why:s.w,onCheck:upd});
+    tasks.push(t);
+    box.append(h('div',{class:'scen'},h('div',{class:'card'},h('p',{},h('strong',{},'Fall '+(i+1)+': '),s.t),t.el)));
+  });
+  box.append(tally);upd();
+  return box;
+}
+(function initAnwendung(){
+  const b1=$('#choose1'),b2=$('#choose2'),t1=$('#task1'),t2=$('#task2');
+  t1.append(buildTask1());t2.append(buildTask2());
+  const open=n=>{t1.hidden=n!==1;t2.hidden=n!==2;b1.setAttribute('aria-pressed',n===1);b2.setAttribute('aria-pressed',n===2);};
+  b1.addEventListener('click',()=>open(1));b2.addEventListener('click',()=>open(2));
+})();
+
+/* ---------- Abschlussquiz ---------- */
+(function initFinal(){
+  const box=$('#final');
+  const parts=[];
+  const status=h('div',{});
+  const upd=()=>{
+    const all=parts.flat();
+    const done=all.filter(t=>t.checked).length, s=all.reduce((a,t)=>a+t.score,0), max=all.reduce((a,t)=>a+t.max,0);
+    status.replaceChildren();
+    if(done<all.length){
+      status.append(h('p',{class:'soft'},done+' von '+all.length+' Aufgaben bearbeitet.'));
+    } else {
+      if(EMBED&&LINK.aktiv&&LINK.rolle!=='lehrkraft'&&!store.get('erledigtOk',false)) toParent({type:'experiment:erledigt'});
+      const np=notenpunkte(s,max);
+      status.append(
+        h('div',{class:'total'},h('span',{class:'pts'},s+' / '+max+' Punkte'),h('div',{class:'bar'},h('i',{style:'width:'+(s/max*100)+'%'})),h('span',{class:'pts'},np+' NP')),
+        h('p',{class:'soft'},'Notenpunkte (NP) nach dem P/P-Bewertungsschlüssel, nur als Orientierung.'),
+        h('div',{class:'done-card'},
+          h('h2',{},'Geschafft: Sie sind jetzt Experiment-Profi!'),
+          h('p',{},'Herzlichen Glückwunsch! Sie haben den Kurs zum Thema Experiment abgeschlossen.'),
+          h('p',{},h('strong',{},'Sie können nun erklären,')),
+          h('ul',{class:'clean'},
+            h('li',{},'was ein Experiment ist und wie es sich von einer Beobachtung unterscheidet,'),
+            h('li',{},'welche drei Merkmale ein Experiment ausmachen (Willkürlichkeit, Variierbarkeit, Wiederholbarkeit),'),
+            h('li',{},'wie Sie diese Merkmale an einem Beispiel wie dem Farb-Experiment von Herrn Freude erkennen und begründen.')),
+          downloadKarte(),
+          h('div',{class:'ctl'},h('button',{class:'btn ghost',type:'button',onclick:()=>{all.forEach(t=>t.reset());}},'Quiz wiederholen')))
+      );
+    }
+  };
+  // Teil 1: Wahr/Falsch
+  const tfIntro='Herr Freude möchte mit seinem Experiment im Pädagogik/Psychologie-Unterricht die Gedächtnisleistung untersuchen. Die Ergebnisse dieses Versuchs entsprächen den Anforderungen an eine wissenschaftliche Theorie, wenn …';
+  const TF=[
+    ['… Herr Freude den Versuchsaufbau, das Farbschema und die Instruktionen so detailliert dokumentiert, dass eine andere Lehrkraft das Experiment unter exakt denselben Bedingungen an einer anderen Schule wiederholen und überprüfen kann.',0,'Genau das ist Wiederholbarkeit: Eine genaue Dokumentation macht die Überprüfung durch andere möglich.'],
+    ['… eine andere Lehrkraft, die den durchgeführten Wissenstest unabhängig von Herrn Freude auswertet, auf Basis des Bewertungsschlüssels zu exakt denselben Testergebnissen und Punktwerten gelangt.',0,'Gleiche Auswertung unabhängig von der Person spricht für einen objektiven, überprüfbaren Test.'],
+    ['… Herr Freude die Untersuchungsschritte (Zufallseinteilung, Kontrolle von Störvariablen wie Lärm und Licht, Standardisierung der Zeit) methodisch geplant und strukturiert durchgeführt hat, anstatt sich auf zufällige Alltagsbeobachtungen im Unterricht zu verlassen.',0,'Planmäßiges, kontrolliertes Vorgehen unterscheidet ein Experiment von bloßer Alltagsbeobachtung.'],
+    ['… Herr Freude aus dem Ergebnis seiner 20 Schülerinnen und Schüler schlussfolgert, dass die positive Wirkung des Farbsystems ausnahmslos und ausschließlich für diese konkrete Klasse gilt und keine Aussagekraft für andere Lernende besitzt.',1,'Eine wissenschaftliche Theorie soll für viele Menschen gelten. Ein Ergebnis, das nur für diese eine Klasse gilt, erfüllt das nicht.']
+  ];
+  const p1=TF.map(([t,c,w])=>mcTask({q:t,opts:['Wahr','Falsch'],correct:c,why:w,mix:false,retry:false,solve:false,onCheck:upd}));
+  parts.push(p1);
+  box.append(h('div',{class:'qpart'},h('h3',{},'Teil 1: Wahr oder falsch?'),h('div',{class:'note'},'Kreuzen Sie bei den Aussagen 1–4 an, ob diese jeweils richtig oder falsch sind.'),h('p',{},h('em',{},tfIntro)),
+    p1.map((t,i)=>h('div',{class:'qitem'},h('p',{class:'soft'},'Aussage '+(i+1)),t.el))));
+  // Teil 2: MC
+  const p2=[
+    mcTask({q:'Welches Merkmal beschreibt, dass Forschende die Versuchsbedingungen (z. B. Dauer, Gruppeneinteilung, Material) bewusst und gezielt festlegen und kontrollieren können?',opts:['Wiederholbarkeit','Variierbarkeit','Willkürlichkeit'],correct:2,why:'Das Festlegen von Bedingungen, Situation, Ort und Zeit nennt man Willkürlichkeit.',retry:false,solve:false,onCheck:upd}),
+    mcTask({q:'Was ist das Hauptziel des Merkmals „Variierbarkeit“ in einem Experiment?',opts:['Eine Variable gezielt zu verändern, während alle anderen Bedingungen konstant gehalten werden.','So viele Variablen wie möglich zu verändern, um interessante Ergebnisse zu erzielen.','Das Experiment in möglichst vielen verschiedenen Laboren gleichzeitig durchzuführen.','Die Ergebnisse zu schätzen, bevor man mit dem Experiment beginnt.'],correct:0,why:'Nur wenn eine Bedingung verändert wird und der Rest gleich bleibt, lässt sich die Wirkung eindeutig zuordnen.',retry:false,solve:false,onCheck:upd}),
+    mcTask({q:'Das Merkmal der „Wiederholbarkeit“ (Replizierbarkeit) ist erfüllt, wenn …',opts:['… andere Forschende das Experiment anhand der Dokumentation unter exakt denselben Bedingungen reproduzieren und zu ähnlichen Ergebnissen kommen können.','… das Experiment besonders spannend für die Öffentlichkeit ist.','… die Forschenden das Experiment am nächsten Tag mit denselben Probanden wiederholen.','… die Ergebnisse des Experiments statistisch signifikant sind.'],correct:0,why:'Entscheidend ist, dass der Vorgang so genau beschrieben ist, dass andere ihn wiederholen und überprüfen können.',retry:false,solve:false,onCheck:upd}),
+    mcTask({q:'Was unterscheidet ein Experiment von einer Beobachtung?',opts:['Die Forschenden führen die Situation absichtlich selbst herbei.','Die Forschenden schauen nur zu und greifen nicht ein.','Es gibt keine Kategorien und keine Skala.','Es wird immer im Labor durchgeführt.'],correct:0,why:'Ein Experiment ist das absichtliche und planmäßige Herbeiführen eines Vorgangs, um ihn gezielt zu beobachten.',retry:false,solve:false,onCheck:upd})
+  ];
+  parts.push(p2);
+  box.append(h('div',{class:'qpart'},h('h3',{},'Teil 2: Multiple Choice'),p2.map(t=>h('div',{class:'qitem'},t.el))));
+  // Teil 3: Lückentext
+  const g=gapTask({
+    tpl:'Ein Experiment ist eine [[0]] Methode der Erkenntnisgewinnung. Es unterscheidet sich von der bloßen Beobachtung durch drei zentrale [[1]].<br><br>Das erste Merkmal ist die [[2]]. Sie bedeutet, dass die Forschenden die [[3]] aktiv steuern und bestimmen, wer welche [[4]] erhält.<br><br>Das zweite Merkmal ist die [[5]]. Hierbei wird die unabhängige Variable (der Einflussfaktor, z. B. das Farbschema) gezielt [[6]], während die restlichen Bedingungen [[7]] bleiben. Die abhängige Variable (die gemessene Wirkung, z. B. die Testnote) wird dann untersucht.<br><br>Das dritte Merkmal, die [[8]], sorgt dafür, dass die Ergebnisse [[9]] sind. Dazu ist eine detaillierte [[10]] aller Schritte notwendig, damit andere Teams das Vorgehen unter [[11]] Umständen wiederholen können.',
+    bank:['Variierbarkeit','gleich','wissenschaftliche','identischen','gleich gelassen','Dokumentation','verändert','Durchführung','Merkmale','Wiederholbarkeit','besondere','konstant','Versuchsbedingungen','anderen','Aufgabe','Willkürlichkeit','überprüfbar','Bedingung'],
+    accepts:[['wissenschaftliche','besondere'],['Merkmale'],['Willkürlichkeit'],['Versuchsbedingungen'],['Bedingung'],['Variierbarkeit'],['verändert'],['konstant','gleich'],['Wiederholbarkeit'],['überprüfbar'],['Dokumentation'],['identischen']],
+    retry:false,solve:false,onCheck:upd});
+  parts.push([g]);
+  box.append(h('div',{class:'qpart'},h('h3',{},'Teil 3: Lückentext'),g.el));
+  box.append(status);
+  upd();
+})();
+
+/* ---------- Start ---------- */
+renderTabs();
+go('start');
+</script>
+</body>
+</html>
