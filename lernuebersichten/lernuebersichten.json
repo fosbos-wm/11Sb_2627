@@ -1,0 +1,6236 @@
+[
+ {
+  "id": "f11-lb1-psy-paed-ueberblick",
+  "thema": "Psychologie und Pädagogik: zwei Blicke auf den Menschen",
+  "unter": "LB 1 · Nr. 1 · Gegenstand der Psychologie und Gegenstand der Pädagogik",
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Psychologie und Pädagogik: zwei Blicke auf den Menschen"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Nr. 1 · Gegenstand der Psychologie und Gegenstand der Pädagogik"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 170,
+    "c": "gruen",
+    "text": "① EIN MENSCH, ZWEI FRAGEN"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 960,
+    "h": 100,
+    "c": "blau",
+    "fs": 21,
+    "text": "PSYCHOLOGIE fragt: Wie erleben und verhalten sich Menschen, und warum?"
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -525,
+    "w": 960,
+    "h": 100,
+    "c": "rosa",
+    "fs": 21,
+    "text": "PÄDAGOGIK fragt: Wie können Erziehende die Entwicklung junger Menschen fördern, und welche Ziele und Bedingungen spielen dabei eine Rolle?"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -390,
+    "w": 980,
+    "h": 700,
+    "c": "blau",
+    "text": "② PSYCHOLOGIE · die Wissenschaft vom Verhalten und Erleben"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -335,
+    "w": 940,
+    "h": 125,
+    "c": "gruen",
+    "fs": 19,
+    "text": "MERKE\nPsychologie ist die Wissenschaft vom Verhalten und Erleben. Der Begriff „Seele“ ist wissenschaftlich nicht fassbar und kann deshalb selbst nicht Gegenstand der Psychologie sein."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -200,
+    "w": 465,
+    "h": 215,
+    "c": "blau",
+    "fs": 18,
+    "text": "VERHALTEN\nDie Gesamtheit aller von außen beobachtbaren Äußerungen eines Lebewesens.\n\n• Fremdbeobachtung\n• z. B. Körperbewegungen, Sprechen, Arbeiten"
+   },
+   {
+    "type": "note",
+    "x": -505,
+    "y": -200,
+    "w": 465,
+    "h": 215,
+    "c": "rosa",
+    "fs": 18,
+    "text": "ERLEBEN\nVon außen nicht beobachtbare Vorgänge im Menschen, die der Mensch nur an sich selbst wahrnehmen kann.\n\n• Selbstbeobachtung\n• z. B. Denkabläufe, Erinnerungen, Träumen"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -700,
+    "y": 30,
+    "w": 380,
+    "h": 95,
+    "c": "gelb",
+    "fs": 20,
+    "text": "WECHSELWIRKUNG"
+   },
+   {
+    "type": "line",
+    "x": -760,
+    "y": 18,
+    "x2": -640,
+    "y2": 45,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -270,
+    "y": 18,
+    "x2": -390,
+    "y2": 45,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 145,
+    "w": 940,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 19,
+    "text": "BEISPIEL\nWer sich freut (Erleben), reißt gleichzeitig die Arme hoch (Verhalten): beide sind Ausdruck dieser Freude. Verhalten und Erleben sind eins im psychischen Geschehen."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": -390,
+    "w": 990,
+    "h": 700,
+    "c": "rosa",
+    "text": "③ PÄDAGOGIK · Erziehungspraxis und Erziehungswissenschaft"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": -335,
+    "w": 950,
+    "h": 65,
+    "c": "gruen",
+    "fs": 19,
+    "text": "PÄDAGOGIK = Oberbegriff für Erziehungspraxis und Erziehungswissenschaft"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": -260,
+    "w": 470,
+    "h": 160,
+    "c": "gelb",
+    "fs": 18,
+    "text": "ERZIEHUNGSPRAXIS\nmeint das tatsächliche erzieherische Handeln. Dahinter steht jeweils eine erzieherische Absicht."
+   },
+   {
+    "type": "note",
+    "x": 510,
+    "y": -260,
+    "w": 470,
+    "h": 160,
+    "c": "rosa",
+    "fs": 18,
+    "text": "ERZIEHUNGSWISSENSCHAFT\nuntersucht, wie Erziehung abläuft und wirkt. Sie fragt nach Zusammenhängen und begründet Theorien."
+   },
+   {
+    "type": "text",
+    "x": 30,
+    "y": -88,
+    "w": 950,
+    "h": 28,
+    "fs": 17,
+    "text": "FÜNF GEGENSTANDSBEREICHE · fünf Blickwinkel auf dieselbe Erziehungswirklichkeit"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": -50,
+    "w": 310,
+    "h": 165,
+    "c": "gelb",
+    "fs": 16,
+    "text": "1 · VORSTELLUNGEN ÜBER ERZIEHUNG\noft abhängig vom Menschenbild"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": -50,
+    "w": 310,
+    "h": 165,
+    "c": "rosa",
+    "fs": 16,
+    "text": "2 · BEZIEHUNG zwischen Erzieher und zu Erziehendem\nkeine Einbahnstraße"
+   },
+   {
+    "type": "note",
+    "x": 670,
+    "y": -50,
+    "w": 310,
+    "h": 165,
+    "c": "gruen",
+    "fs": 16,
+    "text": "3 · ZIELE UND HANDLUNGEN\nz. B. Selbstständigkeit; Methoden, Regeln, Lob"
+   },
+   {
+    "type": "note",
+    "x": 190,
+    "y": 125,
+    "w": 310,
+    "h": 170,
+    "c": "blau",
+    "fs": 16,
+    "text": "4 · VORAUSSETZUNGEN UND BEDINGUNGEN\nAnlagen und Umwelt"
+   },
+   {
+    "type": "note",
+    "x": 510,
+    "y": 125,
+    "w": 310,
+    "h": 170,
+    "c": "lila",
+    "fs": 16,
+    "text": "5 · EINRICHTUNGEN DER ERZIEHUNG\nz. B. Kita, Schule, Jugendzentrum"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 330,
+    "w": 2000,
+    "h": 215,
+    "c": "gruen",
+    "text": "④ DIE BRÜCKE · gleiche Situation, zwei Blickwinkel"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 385,
+    "w": 620,
+    "h": 145,
+    "c": "gelb",
+    "fs": 19,
+    "text": "SITUATION\nEin Kind wirft wütend seinen Turnbeutel in die Ecke."
+   },
+   {
+    "type": "note",
+    "x": -350,
+    "y": 385,
+    "w": 660,
+    "h": 145,
+    "c": "blau",
+    "fs": 19,
+    "text": "PSYCHOLOGIE\nWas erlebt das Kind gerade, und warum verhält es sich so?"
+   },
+   {
+    "type": "note",
+    "x": 320,
+    "y": 385,
+    "w": 660,
+    "h": 145,
+    "c": "rosa",
+    "fs": 19,
+    "text": "PÄDAGOGIK\nWie kann die Erzieherin reagieren, und welches Ziel verfolgt sie damit?"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 565,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ TESTE DICH"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 620,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "a) „Warum bekommt Lina vor Schulaufgaben Herzklopfen?“\nPsychologie oder Pädagogik?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 755,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 620,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "b) „Wie kann eine Lehrkraft Lina helfen, selbstständiger zu lernen?“\nPsychologie oder Pädagogik?"
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 755,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 620,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "c) Jonas denkt: „Das ist unfair!“\nVerhalten oder Erleben?"
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 755,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 620,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "d) Eine Studie untersucht, wie Lob wirkt.\nErziehungspraxis oder Erziehungswissenschaft?"
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 755,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 823,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Lösung (erst selbst überlegen!): a) Psychologie · b) Pädagogik · c) Erleben · d) Erziehungswissenschaft"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 565,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 620,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• Psychologie definieren, Verhalten und Erleben unterscheiden\n• Erziehungspraxis und Erziehungswissenschaft erklären\n• die fünf Gegenstandsbereiche nennen\n• Psychologie und Pädagogik voneinander abgrenzen"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 780,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb1-alltag-wissenschaft",
+  "thema": "Alltagstheorie und wissenschaftliche Theorie: der Spiegel-Vergleich",
+  "unter": "LB 1 · Alltagstheorie und Merkmale wissenschaftlicher Aussagen",
+  "modul": [
+   "LB1 · Nr. 3, 4 · Wissenschaftliche und alltagspsychologische Aussagen",
+   "Wissenschaftliche und alltagspsychologische Aussagen"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Alltagstheorie und wissenschaftliche Theorie: der Spiegel-Vergleich"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Pädagogik und Psychologie als Wissenschaften · Alltagstheorie und Merkmale wissenschaftlicher Aussagen"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 215,
+    "c": "gruen",
+    "text": "① ZWEI WEGE ZUM WISSEN"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 960,
+    "h": 145,
+    "c": "gelb",
+    "fs": 20,
+    "text": "ALLTAGSTHEORIE (oft auch Privattheorie)\nMenschen sammeln durch eigene Erfahrungen Wissen über Psychologie und Erziehung und erklären sich damit die Welt."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -525,
+    "w": 960,
+    "h": 145,
+    "c": "blau",
+    "fs": 19,
+    "text": "WISSENSCHAFTLICHE THEORIE\nstützt sich auf wissenschaftliche Methoden. Wissenschaftliche Pädagogik und Psychologie unterscheiden sich von der Alltagstheorie vor allem darin, wie sie zu ihren Erkenntnissen kommen."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -345,
+    "w": 2000,
+    "h": 585,
+    "c": "orange",
+    "text": "② DER SPIEGEL · vier Merkmale im direkten Vergleich"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": -292,
+    "w": 800,
+    "h": 28,
+    "fs": 18,
+    "text": "ALLTAGSTHEORIE ist in der Regel …"
+   },
+   {
+    "type": "text",
+    "x": 180,
+    "y": -292,
+    "w": 800,
+    "h": 28,
+    "fs": 18,
+    "text": "WISSENSCHAFTLICHE ERKENNTNISSE sind …"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -960,
+    "y": -255,
+    "w": 560,
+    "h": 105,
+    "c": "gelb",
+    "fs": 19,
+    "text": "subjektiv"
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": -203,
+    "x2": -250,
+    "y2": -203,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -250,
+    "y": -203,
+    "x2": -390,
+    "y2": -203,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -240,
+    "y": -255,
+    "w": 380,
+    "h": 105,
+    "c": "rosa",
+    "fs": 18,
+    "text": "OBJEKTIV"
+   },
+   {
+    "type": "note",
+    "x": 160,
+    "y": -255,
+    "w": 820,
+    "h": 105,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Verschiedene Forscher kommen bei gleichem Sachverhalt und gleichen Bedingungen zum gleichen Ergebnis."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -960,
+    "y": -133,
+    "w": 560,
+    "h": 105,
+    "c": "gelb",
+    "fs": 19,
+    "text": "nicht überprüfbar"
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": -81,
+    "x2": -250,
+    "y2": -81,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -250,
+    "y": -81,
+    "x2": -390,
+    "y2": -81,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -240,
+    "y": -133,
+    "w": 380,
+    "h": 105,
+    "c": "blau",
+    "fs": 18,
+    "text": "ÜBERPRÜFBAR"
+   },
+   {
+    "type": "note",
+    "x": 160,
+    "y": -133,
+    "w": 820,
+    "h": 105,
+    "c": "blau",
+    "fs": 18,
+    "text": "Andere können die Aussage und ihren Weg dorthin jederzeit nachvollziehen und wiederholen."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -960,
+    "y": -11,
+    "w": 560,
+    "h": 105,
+    "c": "gelb",
+    "fs": 19,
+    "text": "nicht systematisch gewonnen"
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": 41,
+    "x2": -250,
+    "y2": 41,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -250,
+    "y": 41,
+    "x2": -390,
+    "y2": 41,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -240,
+    "y": -11,
+    "w": 380,
+    "h": 105,
+    "c": "lila",
+    "fs": 18,
+    "text": "SYSTEMATISCH GEWONNEN"
+   },
+   {
+    "type": "note",
+    "x": 160,
+    "y": -11,
+    "w": 820,
+    "h": 105,
+    "c": "lila",
+    "fs": 18,
+    "text": "Sie entstehen nach klaren Regeln und Methoden, geplant und organisiert."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -960,
+    "y": 111,
+    "w": 560,
+    "h": 105,
+    "c": "gelb",
+    "fs": 19,
+    "text": "oft mit unzulässigen Verallgemeinerungen"
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": 163,
+    "x2": -250,
+    "y2": 163,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -250,
+    "y": 163,
+    "x2": -390,
+    "y2": 163,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -240,
+    "y": 111,
+    "w": 380,
+    "h": 105,
+    "c": "gruen",
+    "fs": 18,
+    "text": "ALLGEMEINGÜLTIG"
+   },
+   {
+    "type": "note",
+    "x": 160,
+    "y": 111,
+    "w": 820,
+    "h": 105,
+    "c": "gruen",
+    "fs": 18,
+    "text": "Die Aussage trifft auf alle genannten Personen oder Gruppen zu."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 260,
+    "w": 980,
+    "h": 300,
+    "c": "lila",
+    "text": "③ WOZU DANN ALLTAGSTHEORIEN?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 315,
+    "w": 300,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "ORIENTIERUNG\n\nhilft, andere schnell einzuschätzen"
+   },
+   {
+    "type": "note",
+    "x": -665,
+    "y": 315,
+    "w": 300,
+    "h": 150,
+    "c": "rosa",
+    "fs": 17,
+    "text": "ERKLÄRUNGEN\n\nhilft, Alltagsprobleme zu lösen"
+   },
+   {
+    "type": "note",
+    "x": -350,
+    "y": 315,
+    "w": 300,
+    "h": 150,
+    "c": "blau",
+    "fs": 17,
+    "text": "SICHERHEIT\n\nwie verhalte ich mich richtig? Angst und Unsicherheit werden verringert"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 475,
+    "w": 940,
+    "h": 72,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "Sprichwort-Duell: „Gleich und gleich gesellt sich gern.“  ⚔  „Gegensätze ziehen sich an.“ – beide klingen überzeugend."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 260,
+    "w": 990,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "④ KEIN ENTWEDER-ODER"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 315,
+    "w": 950,
+    "h": 125,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Die Grenze zwischen wissenschaftlicher Theorie und Alltagstheorie ist nicht absolut. Es ist kein reines Entweder-oder. Ganz absolute Aussagen über Menschen sind kaum möglich. Deshalb spricht man von Wahrscheinlichkeitsaussagen: Einzelne Ausnahmen bleiben möglich."
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 450,
+    "w": 950,
+    "h": 97,
+    "c": "rosa",
+    "fs": 17,
+    "text": "BEISPIEL: Frau Rudolfs bemerkt im Urlaub, dass Franzosen gemütlicher wirken als Deutsche, und folgert: Franzosen sind generell gemütlicher. Das ist eine unzulässige Verallgemeinerung."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 580,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ VOM ALLTAG ZUR WISSENSCHAFT · was fehlt, was müsste man tun?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 635,
+    "w": 412,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "a) „Alle Jugendlichen hängen nur am Handy – das sehe ich jeden Tag.“\nWelche Merkmale der Alltagstheorie erkennst du?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 770,
+    "w": 412,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 635,
+    "w": 412,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "b) Ein Forscherteam legt Fragestellung und Methode vorab fest, untersucht 500 Kinder und veröffentlicht den Ablauf.\nWelche Merkmale sind erfüllt?"
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 770,
+    "w": 412,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 635,
+    "w": 412,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "c) Wie könnte man Aussage a) wissenschaftlich überprüfen?"
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 770,
+    "w": 412,
+    "h": 55,
+    "c": "grau",
+    "fs": 17,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 838,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Lösung: a) subjektiv, unzulässige Verallgemeinerung · b) systematisch gewonnen, überprüfbar · c) z. B. viele Jugendliche nach festen Regeln befragen"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 580,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 635,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• Alltagstheorie und wissenschaftliche Theorie erklären und abgrenzen\n• die vier Merkmalspaare gegenüberstellen\n• zwei Aufgaben der Alltagstheorie nennen\n• erklären, was Wahrscheinlichkeitsaussagen sind"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 795,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-psy-gegenstand",
+  "thema": "Gegenstand der Psychologie: Verhalten und Erleben",
+  "unter": "LB 1 · Objektbereiche der Psychologie",
+  "modul": [
+   "LB1 · Nr. 1 · Gegenstand der Psychologie: Erleben und Verhalten",
+   "Gegenstand der Psychologie: Erleben und Verhalten"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Gegenstand der Psychologie: Verhalten und Erleben"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Grundfragen der Pädagogik und Psychologie · Objektbereiche der Psychologie"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 250,
+    "c": "blau",
+    "text": "① WORUM GEHT ES?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 960,
+    "h": 185,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Psychologie¹ heißt wörtlich übersetzt: die Wissenschaft von der Seele. Der Begriff „Seele“ ist jedoch wissenschaftlich nicht fassbar und kann deshalb selbst nicht Gegenstand der Psychologie sein. Es lassen sich jedoch wissenschaftliche Aussagen formulieren, wie sich das Seelenleben eines Menschen äußert.\n\n¹ psyche (griech.): die Seele; logos (griech.): die Lehre, die Wissenschaft"
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -525,
+    "w": 960,
+    "h": 185,
+    "c": "gruen",
+    "fs": 22,
+    "text": "MERKE\nPsychologie ist die Wissenschaft vom Verhalten und Erleben.\n\nDas Seelenleben eines Menschen äußert sich einerseits in seinem Verhalten, andererseits in seinem Erleben."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -300,
+    "w": 2000,
+    "h": 400,
+    "c": "orange",
+    "text": "② ZWEI SEITEN EINER MEDAILLE"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -245,
+    "w": 620,
+    "h": 335,
+    "c": "blau",
+    "fs": 21,
+    "text": "VERHALTEN\nDie Gesamtheit aller von außen beobachtbaren Äußerungen eines Lebewesens.\n\n• wird durch Fremdbeobachtung erschlossen\n• z. B. Körperbewegungen, Sprechen, Arbeiten, Ausdrucksformen"
+   },
+   {
+    "type": "note",
+    "x": 360,
+    "y": -245,
+    "w": 620,
+    "h": 335,
+    "c": "rosa",
+    "fs": 21,
+    "text": "ERLEBEN\nVon außen nicht beobachtbare Vorgänge im Menschen, Vorgänge, die der Mensch nur an sich selbst wahrnehmen kann.\n\n• ist Gegenstand der Selbstbeobachtung\n• z. B. Denkabläufe, Erinnerungen, Träumen"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -290,
+    "y": -215,
+    "w": 580,
+    "h": 200,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Wechselwirkung:\nVerhalten und Erleben sind eins im psychischen Geschehen"
+   },
+   {
+    "type": "line",
+    "x": -360,
+    "y": -150,
+    "x2": -290,
+    "y2": -150,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -290,
+    "y": -80,
+    "x2": -360,
+    "y2": -80,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": 290,
+    "y": -150,
+    "x2": 360,
+    "y2": -150,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": 360,
+    "y": -80,
+    "x2": 290,
+    "y2": -80,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -340,
+    "y": 15,
+    "w": 680,
+    "h": 70,
+    "c": "tuerkis",
+    "fs": 17,
+    "text": "Wer sich freut (Erleben), reißt gleichzeitig die Arme hoch (Verhalten): beide sind Ausdruck dieser Freude."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 130,
+    "w": 980,
+    "h": 340,
+    "c": "lila",
+    "text": "③ BRETTSPIEL: WAS SIEHT MAN – WAS NICHT?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 185,
+    "w": 470,
+    "h": 275,
+    "c": "blau",
+    "fs": 19,
+    "text": "Der Zuschauer sieht (Verhalten)\nDie Spieler richten ihre Blicke auf das Brett, ein Spieler würfelt, alle schauen auf den Würfel, ein Mitspieler seufzt, ein weiterer macht eine Bemerkung."
+   },
+   {
+    "type": "note",
+    "x": -490,
+    "y": 185,
+    "w": 450,
+    "h": 275,
+    "c": "rosa",
+    "fs": 19,
+    "text": "Verborgen bleibt (Erleben)\nWas in den Spielern innerlich vor sich geht: ob sie sich freuen oder wütend sind, was sie denken und überlegen. Diese Zugänglichkeit können uns nur die Personen selbst ermöglichen."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 130,
+    "w": 990,
+    "h": 340,
+    "c": "gruen",
+    "text": "④ ZWEI BETRACHTUNGSWEISEN · Ursache oder Ziel?"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 185,
+    "w": 950,
+    "h": 120,
+    "c": "gruen",
+    "fs": 20,
+    "text": "Verhalten und Erleben können durch bestimmte Ursachen bedingt sein oder von den Zielvorstellungen, den Absichten des Menschen bestimmt sein."
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 315,
+    "w": 465,
+    "h": 145,
+    "c": "blau",
+    "fs": 19,
+    "text": "URSACHE\nDas Kind ist wütend, weil die Mutter etwas verboten hat."
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": 315,
+    "w": 475,
+    "h": 145,
+    "c": "rosa",
+    "fs": 19,
+    "text": "ZIEL\nDas Kind ist wütend, damit die Mutter das Verbot aufhebt."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 500,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ TESTE DICH · Verhalten oder Erleben?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 555,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "a) Jonas ballt die Faust."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 690,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 555,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "b) Jonas denkt: „Das ist unfair!“"
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 690,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 555,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "c) Jonas ruft laut: „Nein!“"
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 690,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 555,
+    "w": 306,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "d) Jonas ärgert sich über seine Note."
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 690,
+    "w": 306,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 758,
+    "w": 1260,
+    "h": 30,
+    "fs": 16,
+    "text": "Lösung (erst selbst überlegen!): a) Verhalten · b) Erleben · c) Verhalten · d) Erleben"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 500,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 555,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Das kann ich am Ende:\n• Verhalten und Erleben definieren und je ein Beispiel nennen\n• erklären, warum nicht die Seele selbst untersucht wird\n• den Zusammenhang von Verhalten und Erleben erklären"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 715,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 20,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-paed-gegenstand",
+  "thema": "Gegenstand der Pädagogik: das Haus der Erziehung",
+  "unter": "LB 1 · Erziehungspraxis, Erziehungswissenschaft, fünf Gegenstandsbereiche",
+  "modul": [
+   "LB1 · Nr. 2 · Gegenstand der Pädagogik: Erziehungspraxis, Erziehungswissenschaft und die fünf Gegenstandsbereiche",
+   "Gegenstand der Pädagogik: Erziehungspraxis, Erziehungswissenschaft und die fünf Gegenstandsbereiche"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Gegenstand der Pädagogik: das Haus der Erziehung"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Erziehungspraxis, Erziehungswissenschaft und die fünf Gegenstandsbereiche"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 430,
+    "c": "blau",
+    "text": "① DAS DACH UND ZWEI SÄULEN · was heißt „Pädagogik“?"
+   },
+   {
+    "type": "note",
+    "x": -300,
+    "y": -525,
+    "w": 600,
+    "h": 95,
+    "c": "gruen",
+    "fs": 21,
+    "text": "PÄDAGOGIK\nOberbegriff für Erziehungspraxis und Erziehungswissenschaft."
+   },
+   {
+    "type": "line",
+    "x": -150,
+    "y": -430,
+    "x2": -480,
+    "y2": -360,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": 150,
+    "y": -430,
+    "x2": 480,
+    "y2": -360,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -350,
+    "w": 770,
+    "h": 185,
+    "c": "gelb",
+    "fs": 19,
+    "text": "ERZIEHUNGSPRAXIS\nSie meint das tatsächliche erzieherische Handeln, zum Beispiel wenn Eltern Regeln erklären, Lehrkräfte Rückmeldung geben oder Trainerinnen Verantwortung übertragen. Dahinter steht jeweils eine erzieherische Absicht."
+   },
+   {
+    "type": "note",
+    "x": 210,
+    "y": -350,
+    "w": 770,
+    "h": 185,
+    "c": "rosa",
+    "fs": 19,
+    "text": "ERZIEHUNGSWISSENSCHAFT\nSie untersucht, wie Erziehung abläuft und wirkt. Sie fragt nach Zusammenhängen, begründet Theorien und hilft dabei, Erziehung besser zu verstehen und zu gestalten."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -120,
+    "w": 2000,
+    "h": 500,
+    "c": "orange",
+    "text": "② DIE FÜNF RÄUME · Gegenstandsbereiche der Pädagogik (verschiedene Blickwinkel auf dieselbe Erziehungswirklichkeit)"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -45,
+    "w": 380,
+    "h": 415,
+    "c": "gelb",
+    "fs": 17,
+    "text": "1 · VORSTELLUNGEN ÜBER ERZIEHUNG\n\nUnterschiedliche Vorstellungen, was Erziehung leisten soll – oft abhängig vom Menschenbild.\n\n• gezielt anleiten und „formen“\n• oder möglichst wenig eingreifen, weil Menschen eigene Wachstumsmöglichkeiten mitbringen"
+   },
+   {
+    "type": "note",
+    "x": -585,
+    "y": -45,
+    "w": 380,
+    "h": 415,
+    "c": "rosa",
+    "fs": 17,
+    "text": "2 · BEZIEHUNG ZWISCHEN ERZIEHER UND ZU ERZIEHENDEM\n\nErziehung geschieht zwischen Menschen und ist keine Einbahnstraße.\n\nVertrauen, Respekt, Nähe, klare Grenzen und Autorität prägen die Beziehung."
+   },
+   {
+    "type": "note",
+    "x": -190,
+    "y": -45,
+    "w": 380,
+    "h": 415,
+    "c": "gruen",
+    "fs": 17,
+    "text": "3 · ZIELE UND HANDLUNGEN DER ERZIEHUNG\n\nErziehung verfolgt immer Ziele, z. B. Selbstständigkeit, Verantwortungsbewusstsein, Teamfähigkeit.\n\nAus den Zielen ergeben sich Handlungen: Methoden, Gespräche, Regeln, Lob, Konsequenzen, Projekte."
+   },
+   {
+    "type": "note",
+    "x": 205,
+    "y": -45,
+    "w": 380,
+    "h": 415,
+    "c": "blau",
+    "fs": 17,
+    "text": "4 · VORAUSSETZUNGEN UND BEDINGUNGEN\n\nWie erziehbar und lernfähig sind Menschen? Meist: Zusammenspiel von Anlagen und Umwelt.\n\nBedingungen: Familiensituation, finanzielle Möglichkeiten, Kultur, gesellschaftliche Erwartungen."
+   },
+   {
+    "type": "note",
+    "x": 600,
+    "y": -45,
+    "w": 380,
+    "h": 415,
+    "c": "lila",
+    "fs": 17,
+    "text": "5 · EINRICHTUNGEN DER ERZIEHUNG\n\nErziehung passiert in Einrichtungen, nicht nur in der Familie.\n\nz. B. Kindertagesstätten, Schulen, Wohngruppen oder Heime, Jugendzentren, Sportvereine, Erwachsenenbildung."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 410,
+    "w": 980,
+    "h": 370,
+    "c": "gruen",
+    "text": "③ PÄDAGOGIK UND PSYCHOLOGIE IM VERGLEICH"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 465,
+    "w": 460,
+    "h": 175,
+    "c": "blau",
+    "fs": 19,
+    "text": "PSYCHOLOGIE fragt: Wie erleben und verhalten sich Menschen, und warum?\n\nSie untersucht Erleben und Verhalten."
+   },
+   {
+    "type": "note",
+    "x": -500,
+    "y": 465,
+    "w": 460,
+    "h": 175,
+    "c": "rosa",
+    "fs": 19,
+    "text": "PÄDAGOGIK fragt: Wie können Erziehende die Entwicklung junger Menschen fördern, und welche Ziele und Bedingungen spielen dabei eine Rolle?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 650,
+    "w": 940,
+    "h": 115,
+    "c": "gelb",
+    "fs": 18,
+    "text": "MERKE: Pädagogik beschäftigt sich mit Erziehung und allem, was dabei wichtig ist – mit der Erziehungswirklichkeit. Die Psychologie liefert Wissen über Erleben und Verhalten, die Pädagogik nutzt es für das erzieherische Handeln."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 410,
+    "w": 990,
+    "h": 370,
+    "c": "lila",
+    "text": "④ TESTE DICH · welcher Gegenstandsbereich?"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 465,
+    "w": 305,
+    "h": 110,
+    "c": "gelb",
+    "fs": 15,
+    "text": "a) Eine Lehrerin fragt sich, ob Menschen eigene Wachstumsmöglichkeiten mitbringen und sich am besten entfalten, wenn man möglichst wenig eingreift."
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 465,
+    "w": 305,
+    "h": 110,
+    "c": "gelb",
+    "fs": 15,
+    "text": "b) Eine Mutter merkt: Ihr Sohn nimmt Ratschläge eher an, seit er ihr vertraut."
+   },
+   {
+    "type": "note",
+    "x": 670,
+    "y": 465,
+    "w": 305,
+    "h": 110,
+    "c": "gelb",
+    "fs": 15,
+    "text": "c) Ein Erzieher will Teamfähigkeit fördern und plant ein gemeinsames Bauprojekt."
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 585,
+    "w": 305,
+    "h": 110,
+    "c": "gelb",
+    "fs": 15,
+    "text": "d) Kinder wachsen in Familien mit sehr unterschiedlichen finanziellen Möglichkeiten auf."
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 585,
+    "w": 305,
+    "h": 110,
+    "c": "gelb",
+    "fs": 15,
+    "text": "e) Kindergarten und Grundschule stimmen den Übergang der Kinder ab."
+   },
+   {
+    "type": "note",
+    "x": 670,
+    "y": 585,
+    "w": 310,
+    "h": 110,
+    "c": "grau",
+    "fs": 16,
+    "text": "Meine Zuordnung:\na ___ b ___ c ___\nd ___ e ___"
+   },
+   {
+    "type": "text",
+    "x": 30,
+    "y": 725,
+    "w": 950,
+    "h": 30,
+    "fs": 15,
+    "text": "Lösung (erst selbst überlegen!): a) Vorstellungen · b) Beziehung · c) Ziele und Handlungen · d) Voraussetzungen und Bedingungen · e) Einrichtungen"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 810,
+    "w": 2000,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 865,
+    "w": 1960,
+    "h": 150,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Das kann ich am Ende:\n• Erziehungspraxis und Erziehungswissenschaft erklären, Oberbegriff nennen\n• die fünf Gegenstandsbereiche nennen und je mit einem Beispiel erklären\n• Pädagogik und Psychologie unterscheiden"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 1025,
+    "w": 1960,
+    "h": 70,
+    "c": "grau",
+    "fs": 20,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-alltagstheorie",
+  "thema": "Alltagstheorie: Das Wissen aus dem eigenen Leben",
+  "unter": "LB 1 · Pädagogik und Psychologie als Wissenschaften",
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Alltagstheorie: Das Wissen aus dem eigenen Leben"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Pädagogik und Psychologie als Wissenschaften · 3.1 Die Alltagstheorie"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 300,
+    "c": "blau",
+    "text": "① WAS IST EINE ALLTAGSTHEORIE?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 960,
+    "h": 235,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Menschen sammeln durch eigene Erfahrungen Wissen über Psychologie und Erziehung und erklären sich damit die Welt. Dieses Wissen heißt Alltagstheorie (oft auch Privattheorie).\n\nIhr gegenüber steht die wissenschaftliche Theorie, die sich auf wissenschaftliche Methoden stützt."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -525,
+    "w": 960,
+    "h": 235,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "BEISPIEL\nFrau Rudolfs bemerkt im Urlaub, dass Franzosen gemütlicher wirken als Deutsche. Das ist eine Alltagstheorie, denn sie stammt aus persönlicher Erfahrung. Dann folgert sie: Franzosen sind generell gemütlicher und größere Genießer als Deutsche. Das ist eine unzulässige Verallgemeinerung: Nicht alle Franzosen sind so, und nicht alle Deutschen sind das Gegenteil."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -250,
+    "w": 1000,
+    "h": 330,
+    "c": "orange",
+    "text": "② ERKENNUNGSMERKMALE · die Alltagstheorie ist in der Regel …"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -970,
+    "y": -195,
+    "w": 470,
+    "h": 115,
+    "c": "rosa",
+    "fs": 20,
+    "text": "subjektiv"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -480,
+    "y": -195,
+    "w": 470,
+    "h": 115,
+    "c": "gelb",
+    "fs": 20,
+    "text": "nicht überprüfbar"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -970,
+    "y": -65,
+    "w": 470,
+    "h": 115,
+    "c": "gruen",
+    "fs": 20,
+    "text": "nicht systematisch gewonnen"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -480,
+    "y": -65,
+    "w": 470,
+    "h": 115,
+    "c": "lila",
+    "fs": 20,
+    "text": "oft mit unzulässigen Verallgemeinerungen"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 48,
+    "w": 960,
+    "h": 30,
+    "fs": 16,
+    "text": "Auch Sprichwörter gehören dazu: Sie klingen überzeugend, passen aber nicht immer zur Wirklichkeit."
+   },
+   {
+    "type": "frame",
+    "x": 30,
+    "y": -250,
+    "w": 970,
+    "h": 330,
+    "c": "lila",
+    "text": "③ SPRICHWORT-DUELL"
+   },
+   {
+    "type": "note",
+    "x": 50,
+    "y": -195,
+    "w": 430,
+    "h": 75,
+    "c": "gelb",
+    "fs": 16,
+    "text": "„Gleich und gleich gesellt sich gern.“"
+   },
+   {
+    "type": "text",
+    "x": 485,
+    "y": -175,
+    "w": 60,
+    "h": 40,
+    "fs": 24,
+    "text": "⚔"
+   },
+   {
+    "type": "note",
+    "x": 550,
+    "y": -195,
+    "w": 430,
+    "h": 75,
+    "c": "rosa",
+    "fs": 16,
+    "text": "„Gegensätze ziehen sich an.“"
+   },
+   {
+    "type": "note",
+    "x": 50,
+    "y": -107,
+    "w": 430,
+    "h": 75,
+    "c": "gelb",
+    "fs": 16,
+    "text": "„Wer rastet, der rostet.“"
+   },
+   {
+    "type": "text",
+    "x": 485,
+    "y": -87,
+    "w": 60,
+    "h": 40,
+    "fs": 24,
+    "text": "⚔"
+   },
+   {
+    "type": "note",
+    "x": 550,
+    "y": -107,
+    "w": 430,
+    "h": 75,
+    "c": "rosa",
+    "fs": 16,
+    "text": "„In der Ruhe liegt die Kraft.“"
+   },
+   {
+    "type": "note",
+    "x": 50,
+    "y": -19,
+    "w": 430,
+    "h": 75,
+    "c": "gelb",
+    "fs": 16,
+    "text": "„Was Hänschen nicht lernt, lernt Hans nimmermehr.“"
+   },
+   {
+    "type": "text",
+    "x": 485,
+    "y": 1,
+    "w": 60,
+    "h": 40,
+    "fs": 24,
+    "text": "⚔"
+   },
+   {
+    "type": "note",
+    "x": 550,
+    "y": -19,
+    "w": 430,
+    "h": 75,
+    "c": "rosa",
+    "fs": 16,
+    "text": "„Man lernt nie aus.“"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 110,
+    "w": 1000,
+    "h": 250,
+    "c": "gruen",
+    "text": "④ WOZU BRAUCHEN WIR SIE DANN?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 165,
+    "w": 310,
+    "h": 180,
+    "c": "gelb",
+    "fs": 18,
+    "text": "ORIENTIERUNG\n\nhilft, andere schnell einzuschätzen"
+   },
+   {
+    "type": "note",
+    "x": -655,
+    "y": 165,
+    "w": 310,
+    "h": 180,
+    "c": "rosa",
+    "fs": 18,
+    "text": "ERKLÄRUNGEN\n\nhilft, Alltagsprobleme zu lösen"
+   },
+   {
+    "type": "note",
+    "x": -330,
+    "y": 165,
+    "w": 310,
+    "h": 180,
+    "c": "blau",
+    "fs": 18,
+    "text": "SICHERHEIT\n\nwie verhalte ich mich richtig? Angst und Unsicherheit werden verringert"
+   },
+   {
+    "type": "frame",
+    "x": 30,
+    "y": 110,
+    "w": 970,
+    "h": 250,
+    "c": "tuerkis",
+    "text": "⑤ ALLTAGSTHEORIE ODER WISSENSCHAFT?"
+   },
+   {
+    "type": "note",
+    "x": 50,
+    "y": 165,
+    "w": 300,
+    "h": 140,
+    "c": "gelb",
+    "fs": 16,
+    "text": "a) „Alle Jugendlichen hängen nur am Handy – das sehe ich jeden Tag.“"
+   },
+   {
+    "type": "note",
+    "x": 360,
+    "y": 165,
+    "w": 300,
+    "h": 140,
+    "c": "gelb",
+    "fs": 14,
+    "text": "b) Ein Forscherteam legt Fragestellung und Methode vorab fest, untersucht 500 Kinder und veröffentlicht den Ablauf, damit andere ihn wiederholen können."
+   },
+   {
+    "type": "note",
+    "x": 670,
+    "y": 165,
+    "w": 300,
+    "h": 140,
+    "c": "gelb",
+    "fs": 16,
+    "text": "c) „Wer rastet, der rostet.“"
+   },
+   {
+    "type": "text",
+    "x": 50,
+    "y": 315,
+    "w": 930,
+    "h": 30,
+    "fs": 15,
+    "text": "Lösung: a) Alltagstheorie (subjektiv, Verallgemeinerung) · b) wissenschaftliches Vorgehen (systematisch, überprüfbar) · c) Alltagstheorie (Sprichwort)"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 390,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑥ ZUM NACHDENKEN"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 445,
+    "w": 640,
+    "h": 150,
+    "c": "gelb",
+    "fs": 20,
+    "text": "„Gesunder Menschenverstand ist eine Sammlung von Vorurteilen, die man bis zum achtzehnten Lebensjahr erworben hat.“"
+   },
+   {
+    "type": "note",
+    "x": -330,
+    "y": 445,
+    "w": 610,
+    "h": 150,
+    "c": "rosa",
+    "fs": 19,
+    "text": "Der Lehrer sagt: „Ihr alle seid ein bisschen Psychologen und Pädagogen.“ Stimmt das – im Alltag? Im wissenschaftlichen Sinn?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 605,
+    "w": 1240,
+    "h": 75,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Meinung (mit Begründung):  "
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 390,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 445,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Das kann ich am Ende:\n• erklären, was eine Alltagstheorie ist, und sie von der wissenschaftlichen Theorie abgrenzen\n• die Eigenschaften der Alltagstheorie nennen\n• zwei Aufgaben der Alltagstheorie erklären"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 605,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 20,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-merkmale-wissenschaft",
+  "thema": "Merkmale wissenschaftlicher Aussagen",
+  "unter": "LB 1 · Merkmale der wissenschaftlichen Pädagogik und Psychologie",
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Merkmale wissenschaftlicher Aussagen: das Vier-Siegel-Prüfzeichen"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Merkmale der wissenschaftlichen Pädagogik und Psychologie"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 170,
+    "c": "blau",
+    "text": "① WORAUF KOMMT ES AN?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 1960,
+    "h": 105,
+    "c": "gelb",
+    "fs": 20,
+    "text": "Wissenschaftliche Pädagogik und Psychologie unterscheiden sich von der Alltagstheorie vor allem darin, wie sie zu ihren Erkenntnissen kommen. Wissenschaftliche Erkenntnisse sind allgemeingültig, überprüfbar, objektiv und systematisch gewonnen."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -380,
+    "w": 2000,
+    "h": 490,
+    "c": "orange",
+    "text": "② DIE VIER SIEGEL"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -950,
+    "y": -325,
+    "w": 370,
+    "h": 95,
+    "c": "gruen",
+    "fs": 18,
+    "text": "ALLGEMEINGÜLTIG"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -210,
+    "w": 470,
+    "h": 310,
+    "c": "gruen",
+    "fs": 19,
+    "text": "DEFINITION\nDie Aussage trifft auf alle genannten Personen oder Gruppen zu.\n\nPrüffrage: Gilt es für alle, die genannt werden?"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -465,
+    "y": -325,
+    "w": 370,
+    "h": 95,
+    "c": "blau",
+    "fs": 18,
+    "text": "ÜBERPRÜFBAR"
+   },
+   {
+    "type": "note",
+    "x": -490,
+    "y": -210,
+    "w": 470,
+    "h": 310,
+    "c": "blau",
+    "fs": 19,
+    "text": "DEFINITION\nAndere können die Aussage und ihren Weg dorthin jederzeit nachvollziehen und wiederholen.\n\nPrüffrage: Kann man es nachprüfen?"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 20,
+    "y": -325,
+    "w": 370,
+    "h": 95,
+    "c": "rosa",
+    "fs": 18,
+    "text": "OBJEKTIV"
+   },
+   {
+    "type": "note",
+    "x": 0,
+    "y": -210,
+    "w": 470,
+    "h": 310,
+    "c": "rosa",
+    "fs": 19,
+    "text": "DEFINITION\nVerschiedene Forscher kommen bei gleichem Sachverhalt und gleichen Bedingungen zum gleichen Ergebnis.\n\nPrüffrage: Kommt jeder zum selben Ergebnis?"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 505,
+    "y": -325,
+    "w": 370,
+    "h": 95,
+    "c": "lila",
+    "fs": 18,
+    "text": "SYSTEMATISCH GEWONNEN"
+   },
+   {
+    "type": "note",
+    "x": 490,
+    "y": -210,
+    "w": 470,
+    "h": 310,
+    "c": "lila",
+    "fs": 19,
+    "text": "DEFINITION\nSie entstehen nach klaren Regeln und Methoden, geplant und organisiert.\n\nPrüffrage: Wurde planvoll vorgegangen?"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 140,
+    "w": 1000,
+    "h": 300,
+    "c": "lila",
+    "text": "③ KEIN ENTWEDER-ODER"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 195,
+    "w": 960,
+    "h": 115,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Die Grenze zwischen wissenschaftlicher Theorie und Alltagstheorie ist nicht absolut. Es ist kein reines Entweder-oder. Ganz absolute Aussagen über Menschen sind kaum möglich. Deshalb spricht man von Wahrscheinlichkeitsaussagen: Einzelne Ausnahmen bleiben möglich."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 320,
+    "w": 960,
+    "h": 110,
+    "c": "tuerkis",
+    "fs": 17,
+    "text": "BEISPIEL: Die Aussage „Autoritär erzogene Menschen werden schüchtern und ängstlich“ müsste auf alle autoritär erzogenen Menschen zutreffen (allgemeingültig). Egal, wer die Untersuchung durchführt, müsste dasselbe herauskommen (objektiv)."
+   },
+   {
+    "type": "frame",
+    "x": 30,
+    "y": 140,
+    "w": 970,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "④ WELCHES SIEGEL FEHLT?"
+   },
+   {
+    "type": "note",
+    "x": 50,
+    "y": 195,
+    "w": 465,
+    "h": 95,
+    "c": "gelb",
+    "fs": 14,
+    "text": "a) Eine Lehrerin schließt von ihrer Klasse auf alle Schüler Deutschlands."
+   },
+   {
+    "type": "note",
+    "x": 530,
+    "y": 195,
+    "w": 465,
+    "h": 95,
+    "c": "gelb",
+    "fs": 14,
+    "text": "b) Ein Forscher beschreibt seine Methode nicht; niemand kann die Studie wiederholen."
+   },
+   {
+    "type": "note",
+    "x": 50,
+    "y": 300,
+    "w": 465,
+    "h": 95,
+    "c": "gelb",
+    "fs": 14,
+    "text": "c) Zwei Forscher untersuchen unter gleichen Bedingungen dieselbe Frage, kommen aber zu gegensätzlichen Ergebnissen, weil jeder seine Lieblingsmeinung bestätigen will."
+   },
+   {
+    "type": "note",
+    "x": 530,
+    "y": 300,
+    "w": 465,
+    "h": 95,
+    "c": "gelb",
+    "fs": 14,
+    "text": "d) Jemand fragt spontan ein paar Leute und zieht daraus Schlüsse."
+   },
+   {
+    "type": "text",
+    "x": 50,
+    "y": 405,
+    "w": 930,
+    "h": 28,
+    "fs": 14,
+    "text": "Lösung: a) allgemeingültig · b) überprüfbar · c) objektiv · d) systematisch gewonnen"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 470,
+    "w": 1300,
+    "h": 230,
+    "c": "lila",
+    "text": "⑤ ZUM NACHDENKEN"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 525,
+    "w": 1260,
+    "h": 80,
+    "c": "rosa",
+    "fs": 20,
+    "text": "„Wissenschaftliche Aussagen über Menschen sind wertlos, weil es immer Ausnahmen gibt.“ Stimmt das?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 615,
+    "w": 1260,
+    "h": 75,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort (Argument, Gegenargument, Urteil):  "
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 470,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 525,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Das kann ich am Ende:\n• die vier Merkmale wissenschaftlicher Aussagen nennen und erklären\n• erkennen, welches Merkmal in einem Beispiel erfüllt ist oder fehlt\n• erklären, was Wahrscheinlichkeitsaussagen sind"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 685,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 20,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-experiment",
+  "thema": "Das Experiment",
+  "unter": "LB 1 · Empirische Methoden",
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Das Experiment: Ursache und Wirkung auf der Spur"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Empirische Methoden · Merkmale eines Experiments"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 280,
+    "c": "blau",
+    "text": "① WAS IST EIN EXPERIMENT?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 960,
+    "h": 215,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Ein Experiment ist eine wissenschaftliche Methode, mit der überprüft wird, ob ein bestimmter Einflussfaktor wirklich eine Wirkung hat.\n\nMERKE: Ein Experiment ist das absichtliche und planmäßige Herbeiführen eines Vorgangs, um ihn gezielt zu beobachten. Nur das Experiment kann Ursache-Wirkung-Zusammenhänge (Kausalzusammenhänge) klären."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -525,
+    "w": 470,
+    "h": 215,
+    "c": "rosa",
+    "fs": 20,
+    "text": "EXPERIMENT\nDie Forschenden führen die Situation absichtlich selbst herbei."
+   },
+   {
+    "type": "note",
+    "x": 510,
+    "y": -525,
+    "w": 470,
+    "h": 215,
+    "c": "gruen",
+    "fs": 20,
+    "text": "BEOBACHTUNG\nDie Forschenden schauen nur zu und greifen nicht ein."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -270,
+    "w": 2000,
+    "h": 450,
+    "c": "orange",
+    "text": "② DIE DREI MERKMALE · Reagenzgläser des Experiments"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -950,
+    "y": -215,
+    "w": 500,
+    "h": 80,
+    "c": "gelb",
+    "fs": 20,
+    "text": "WILLKÜRLICHKEIT"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -120,
+    "w": 640,
+    "h": 285,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Die Forschenden legen Bedingungen, Situation, Ort und Zeit selbst fest und steuern den Ablauf aktiv.\n\nBeispiel (Farbsystem-Experiment): per Zufall zwei gleich große Gruppen; gleicher Raum, gleiche Beleuchtung; unbekannter Text; identischer Wissenstest."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -290,
+    "y": -215,
+    "w": 500,
+    "h": 80,
+    "c": "rosa",
+    "fs": 20,
+    "text": "VARIIERBARKEIT"
+   },
+   {
+    "type": "note",
+    "x": -320,
+    "y": -120,
+    "w": 640,
+    "h": 285,
+    "c": "rosa",
+    "fs": 17,
+    "text": "Gezielt eine Bedingung wird verändert (unabhängige Variable), alle anderen bleiben gleich (Störvariablen konstant). Gemessen wird die Wirkung (abhängige Variable).\n\nBeispiel: Verändert wird das Notieren: normaler Stift (Gruppe A) gegenüber Farbsystem (Gruppe B). Gemessen wird das Ergebnis im Wissenstest."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 370,
+    "y": -215,
+    "w": 500,
+    "h": 80,
+    "c": "gruen",
+    "fs": 20,
+    "text": "WIEDERHOLBARKEIT"
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": -120,
+    "w": 640,
+    "h": 285,
+    "c": "gruen",
+    "fs": 17,
+    "text": "Der Versuch ist so genau dokumentiert, dass andere ihn unter denselben Bedingungen wiederholen können. Ähnliche Ergebnisse stärken die Aussagekraft.\n\nBeispiel: Herr Freude hält Farbschema, Testaufbau und Instruktionen fest, damit eine andere Lehrkraft das Experiment genau nachmachen kann."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 210,
+    "w": 980,
+    "h": 330,
+    "c": "lila",
+    "text": "③ WO FINDET ES STATT?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 265,
+    "w": 470,
+    "h": 265,
+    "c": "blau",
+    "fs": 19,
+    "text": "LABOREXPERIMENT\nunter kontrollierten Bedingungen im Labor.\n\nVorteil: bessere Kontrolle von Störfaktoren."
+   },
+   {
+    "type": "note",
+    "x": -490,
+    "y": 265,
+    "w": 450,
+    "h": 265,
+    "c": "gruen",
+    "fs": 19,
+    "text": "FELDEXPERIMENT\nin der natürlichen Umgebung, zum Beispiel im Klassenzimmer.\n\nVorteil: genauere Vorhersage für echtes Alltagsverhalten. Die Kontrolle von Störfaktoren ist geringer."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 210,
+    "w": 990,
+    "h": 330,
+    "c": "tuerkis",
+    "text": "④ WERKZEUGKASTEN · empirische Methoden"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 265,
+    "w": 470,
+    "h": 135,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Zu den wichtigsten empirischen Methoden gehören Beobachtung, Experiment, Test und Befragung bzw. Interview."
+   },
+   {
+    "type": "note",
+    "x": 520,
+    "y": 265,
+    "w": 460,
+    "h": 135,
+    "c": "rosa",
+    "fs": 17,
+    "text": "KATEGORIENSYSTEM fasst zusammen, welche Merkmale beobachtet werden sollen.\nSKALA macht die Werte einer Untersuchung vergleichbar."
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 410,
+    "w": 950,
+    "h": 120,
+    "c": "gruen",
+    "fs": 17,
+    "text": "GRENZEN: Bei kleinen Gruppen kann schon der Zufall einen Unterschied erzeugen; Störfaktoren (Vorwissen, Ablenkung, Tagesform) sind nicht immer ganz ausgeschlossen; bei einer einzigen Klasse sind die Ergebnisse kaum verallgemeinerbar."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 570,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ WELCHES MERKMAL STECKT DAHINTER?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 625,
+    "w": 412,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "a) Der Forscher legt fest: Dienstag, 3. Stunde, Raum 12, 10 Minuten Bearbeitungszeit."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 760,
+    "w": 412,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 625,
+    "w": 412,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "b) Er verändert nur die Beleuchtung (hell/gedimmt); alles andere bleibt gleich."
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 760,
+    "w": 412,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 625,
+    "w": 412,
+    "h": 125,
+    "c": "gelb",
+    "fs": 19,
+    "text": "c) Er hält Ablauf und Material so genau fest, dass ein anderes Team es wiederholen kann."
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 760,
+    "w": 412,
+    "h": 55,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Antwort:  "
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 828,
+    "w": 1260,
+    "h": 30,
+    "fs": 16,
+    "text": "Lösung (erst selbst überlegen!): a) Willkürlichkeit · b) Variierbarkeit · c) Wiederholbarkeit"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 570,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 625,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Das kann ich am Ende:\n• Experiment und Beobachtung unterscheiden\n• die drei Merkmale eines Experiments erklären und erkennen\n• Labor- und Feldexperiment mit Vorteil nennen"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 785,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 20,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-soziale-beziehung",
+  "thema": "Erziehung als soziale Beziehung",
+  "unter": "LB 3 · Merkmale von Erziehung · soziale Interaktion und Beziehung",
+  "modul": [
+   "LB3 · Nr. 1 · Erziehung als soziale Beziehung",
+   "Erziehung als soziale Beziehung"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Erziehung als soziale Beziehung: das Ping-Pong der Erziehung"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · Merkmale von Erziehung · 1. Erziehung als soziale Beziehung"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 350,
+    "c": "blau",
+    "text": "① ZWEI GEHÖREN IMMER DAZU · Erziehung spielt sich ab zwischen …"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 500,
+    "h": 160,
+    "c": "gelb",
+    "fs": 22,
+    "text": "ERZIEHER\n\nwill Lernprozesse herbeiführen und unterstützen"
+   },
+   {
+    "type": "note",
+    "x": 480,
+    "y": -525,
+    "w": 500,
+    "h": 160,
+    "c": "rosa",
+    "fs": 22,
+    "text": "ZU ERZIEHENDER\n\nsoll Lernprozesse vollbringen"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -300,
+    "y": -530,
+    "w": 600,
+    "h": 170,
+    "c": "gruen",
+    "fs": 20,
+    "text": "wechselseitige Beeinflussung und Steuerung\n= SOZIALE INTERAKTION"
+   },
+   {
+    "type": "line",
+    "x": -475,
+    "y": -475,
+    "x2": -305,
+    "y2": -475,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -305,
+    "y": -415,
+    "x2": -475,
+    "y2": -415,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": 305,
+    "y": -475,
+    "x2": 475,
+    "y2": -475,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": 475,
+    "y": -415,
+    "x2": 305,
+    "y2": -415,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -350,
+    "w": 1960,
+    "h": 105,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Zur Erziehung gehören immer mindestens zwei Personen: ein Erzieher, der bestimmte Lernprozesse auslösen oder unterstützen will, und ein zu Erziehender, der diese Lernprozesse bewältigen muss. Erziehung findet immer im zwischenmenschlichen Kontakt statt. Erzieher und zu Erziehender stehen in einer Beziehung und beeinflussen sich gegenseitig – das nennt man soziale Interaktion."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -210,
+    "w": 2000,
+    "h": 310,
+    "c": "orange",
+    "text": "② PING-PONG · Aktion und Reaktion am Beispiel"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -155,
+    "w": 445,
+    "h": 105,
+    "c": "gelb",
+    "fs": 18,
+    "text": "1 · AKTION\nDer Erzieher schimpft, weil das Kind ein Glas hat fallen lassen."
+   },
+   {
+    "type": "line",
+    "x": -529,
+    "y": -103,
+    "x2": -481,
+    "y2": -103,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -475,
+    "y": -155,
+    "w": 445,
+    "h": 105,
+    "c": "rosa",
+    "fs": 18,
+    "text": "2 · REAKTION\nDas Kind weint."
+   },
+   {
+    "type": "line",
+    "x": -24,
+    "y": -103,
+    "x2": 24,
+    "y2": -103,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": -155,
+    "w": 445,
+    "h": 105,
+    "c": "gelb",
+    "fs": 18,
+    "text": "3 · AKTION\nDer Erzieher nimmt es in den Arm."
+   },
+   {
+    "type": "line",
+    "x": 481,
+    "y": -103,
+    "x2": 529,
+    "y2": -103,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 535,
+    "y": -155,
+    "w": 445,
+    "h": 105,
+    "c": "rosa",
+    "fs": 18,
+    "text": "4 · REAKTION\nDas Kind hört auf zu weinen."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -35,
+    "w": 1960,
+    "h": 120,
+    "c": "gruen",
+    "fs": 19,
+    "text": "DEFINITION\nSoziale Interaktion beschreibt das wechselseitig aufeinander bezogene Verhalten zwischen Menschen, das Geschehen zwischen Personen, die agieren und wechselseitig aufeinander reagieren, die sich gegenseitig beeinflussen und steuern."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 120,
+    "w": 980,
+    "h": 390,
+    "c": "lila",
+    "text": "③ BEIDE VERÄNDERN SICH"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 175,
+    "w": 940,
+    "h": 110,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Erziehung ist ein Wechselspiel von Aktion und Reaktion. Der Erzieher orientiert sich am Alter, den Interessen und Fähigkeiten des zu Erziehenden – und verändert dabei auch sich selbst, da er seine Handlungen auf das Verhalten des zu Erziehenden abstimmt."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 295,
+    "w": 940,
+    "h": 90,
+    "c": "gruen",
+    "fs": 19,
+    "text": "MERKE\nDer Prozess der Erziehung verändert sowohl den zu Erziehenden als auch den Erzieher selbst."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 395,
+    "w": 940,
+    "h": 90,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Erziehung ist also soziale Interaktion, die durch wechselseitiges Verhalten zwischen Erzieher und zu Erziehendem ein bestimmtes Ziel – ein Erziehungsziel – erreichen will."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 120,
+    "w": 990,
+    "h": 390,
+    "c": "rosa",
+    "text": "④ OHNE BEZIEHUNG GEHT ES NICHT"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 175,
+    "w": 950,
+    "h": 95,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Der zu Erziehende braucht von Anfang an eine positive emotionale Beziehung zum Erzieher. Davon hängt der Erfolg der Erziehung in hohem Maße ab."
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 280,
+    "w": 470,
+    "h": 215,
+    "c": "tuerkis",
+    "fs": 19,
+    "text": "„Bindung ist emotionale Nahrung, die uns am Leben hält. […] Wenn kleine Kinder keine Bindung haben, gedeihen sie nicht.“\n\n(Brisch; in: Ustorf, 2014, S. 22)"
+   },
+   {
+    "type": "note",
+    "x": 510,
+    "y": 280,
+    "w": 470,
+    "h": 215,
+    "c": "rosa",
+    "fs": 19,
+    "text": "MERKE\nWo die Beziehung nicht stimmt, hat die Erziehung wenig Chancen.\n\nWie auch immer die Beziehung geartet ist: Erziehung ist immer auch soziale Beziehung."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 530,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ DEIN PING-PONG · schreibe die Kette weiter"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 585,
+    "w": 306,
+    "h": 95,
+    "c": "gelb",
+    "fs": 17,
+    "text": "START (Aktion)\nEine Schülerin kommt zu spät und knallt die Tür zu."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 690,
+    "w": 306,
+    "h": 85,
+    "c": "grau",
+    "fs": 17,
+    "text": ""
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 585,
+    "w": 306,
+    "h": 95,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Reaktion der Lehrkraft – was könnte sie tun?"
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 690,
+    "w": 306,
+    "h": 85,
+    "c": "grau",
+    "fs": 17,
+    "text": ""
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 585,
+    "w": 306,
+    "h": 95,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Reaktion der Schülerin darauf?"
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 690,
+    "w": 306,
+    "h": 85,
+    "c": "grau",
+    "fs": 17,
+    "text": ""
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 585,
+    "w": 306,
+    "h": 95,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Wer hat hier wen beeinflusst und gesteuert?"
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 690,
+    "w": 306,
+    "h": 85,
+    "c": "grau",
+    "fs": 17,
+    "text": ""
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 788,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Es gibt mehrere richtige Ketten. Vergleiche: Wie verändert eine andere Reaktion der Lehrkraft den weiteren Verlauf?"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 530,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 585,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• soziale Interaktion definieren\n• an einem Beispiel Aktion und Reaktion zeigen\n• erklären, warum Erziehung beide verändert\n• die Bedeutung der emotionalen Beziehung begründen"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 745,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-kommunikation",
+  "thema": "Erziehung als Austausch von Informationen",
+  "unter": "LB 3 · Merkmale von Erziehung · soziale Kommunikation und Symbole",
+  "modul": [
+   "LB3 · Nr. 2 · Erziehung als Austausch von Informationen",
+   "Erziehung als Austausch von Informationen"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Erziehung als Austausch von Informationen: der Symbol-Decoder"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · Merkmale von Erziehung · 2. Erziehung als soziale Kommunikation"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 255,
+    "c": "blau",
+    "text": "① JEDE INTERAKTION SENDET ETWAS"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 640,
+    "h": 185,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Wer einen anderen beeinflusst, teilt ihm auch gleichzeitig etwas mit. Bei jeder sozialen Interaktion werden Informationen vermittelt, aufgenommen und ausgetauscht – das nennt man soziale Kommunikation."
+   },
+   {
+    "type": "note",
+    "x": -320,
+    "y": -525,
+    "w": 640,
+    "h": 185,
+    "c": "gruen",
+    "fs": 19,
+    "text": "DEFINITION\nSoziale Kommunikation ist derjenige Teil einer sozialen Interaktion, in welchem Informationen zwischen zwei oder mehreren Personen vermittelt, aufgenommen und ausgetauscht werden."
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": -525,
+    "w": 640,
+    "h": 185,
+    "c": "rosa",
+    "fs": 19,
+    "text": "Erziehung ist immer auch soziale Kommunikation: Jedes Verhalten in einer Beziehung sagt etwas aus – selbst Schweigen oder Wegschauen teilt dem anderen etwas mit."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -305,
+    "w": 2000,
+    "h": 385,
+    "c": "orange",
+    "text": "② SYMBOLE · die gemeinsame Sprache (symbolischer Interaktionismus)"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -250,
+    "w": 540,
+    "h": 170,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Manche Erziehungswissenschaftler, wie Klaus Mollenhauer, sehen Erziehung als symbolischen Interaktionismus: Menschen kommunizieren über Symbole, die für alle Beteiligten die gleiche Bedeutung haben."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -70,
+    "w": 540,
+    "h": 135,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Nach George H. Mead ist soziales Handeln ein Prozess, bei dem Menschen über Symbole wechselseitig Bedeutung austauschen."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -420,
+    "y": -250,
+    "w": 265,
+    "h": 85,
+    "c": "gelb",
+    "fs": 20,
+    "text": "Sprache"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -139,
+    "y": -250,
+    "w": 265,
+    "h": 85,
+    "c": "rosa",
+    "fs": 20,
+    "text": "Mimik"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 142,
+    "y": -250,
+    "w": 265,
+    "h": 85,
+    "c": "gruen",
+    "fs": 20,
+    "text": "Gestik"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 423,
+    "y": -250,
+    "w": 265,
+    "h": 85,
+    "c": "blau",
+    "fs": 20,
+    "text": "Körperkontakt"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 704,
+    "y": -250,
+    "w": 265,
+    "h": 85,
+    "c": "lila",
+    "fs": 20,
+    "text": "Musik"
+   },
+   {
+    "type": "note",
+    "x": -420,
+    "y": -145,
+    "w": 310,
+    "h": 95,
+    "c": "gelb",
+    "fs": 16,
+    "text": "SYMBOL\nDas Wort „Hund“"
+   },
+   {
+    "type": "line",
+    "x": -104,
+    "y": -98,
+    "x2": -56,
+    "y2": -98,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -50,
+    "y": -145,
+    "w": 325,
+    "h": 95,
+    "c": "gruen",
+    "fs": 16,
+    "text": "BEDEUTUNG\nsteht für eine bestimmte Tierart"
+   },
+   {
+    "type": "note",
+    "x": 285,
+    "y": -145,
+    "w": 310,
+    "h": 95,
+    "c": "gelb",
+    "fs": 16,
+    "text": "SYMBOL\nein „Fingerzeig“"
+   },
+   {
+    "type": "line",
+    "x": 601,
+    "y": -98,
+    "x2": 649,
+    "y2": -98,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 655,
+    "y": -145,
+    "w": 325,
+    "h": 95,
+    "c": "gruen",
+    "fs": 16,
+    "text": "BEDEUTUNG\nsteht für eine Belehrung"
+   },
+   {
+    "type": "note",
+    "x": -420,
+    "y": -40,
+    "w": 310,
+    "h": 95,
+    "c": "gelb",
+    "fs": 16,
+    "text": "SYMBOL\nein grimmiges Gesicht des Erziehers"
+   },
+   {
+    "type": "line",
+    "x": -104,
+    "y": 7,
+    "x2": -56,
+    "y2": 7,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -50,
+    "y": -40,
+    "w": 325,
+    "h": 95,
+    "c": "gruen",
+    "fs": 16,
+    "text": "BEDEUTUNG\nzeigt, dass er ein Verhalten nicht gutheißt"
+   },
+   {
+    "type": "note",
+    "x": 285,
+    "y": -40,
+    "w": 310,
+    "h": 95,
+    "c": "gelb",
+    "fs": 16,
+    "text": "SYMBOL\ngeschlossene Augen mit nach oben gerichteten Daumen"
+   },
+   {
+    "type": "line",
+    "x": 601,
+    "y": 7,
+    "x2": 649,
+    "y2": 7,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 655,
+    "y": -40,
+    "w": 325,
+    "h": 95,
+    "c": "gruen",
+    "fs": 16,
+    "text": "BEDEUTUNG\nbedeuten „toll, gut gemacht“"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 100,
+    "w": 2000,
+    "h": 265,
+    "c": "lila",
+    "text": "③ KOCHTOPF-SZENE · senden, deuten, antworten"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 155,
+    "w": 445,
+    "h": 100,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Das Kind schlägt auf den Kochtopf."
+   },
+   {
+    "type": "line",
+    "x": -529,
+    "y": 205,
+    "x2": -481,
+    "y2": 205,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -475,
+    "y": 155,
+    "w": 445,
+    "h": 100,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Die Mutter macht ein grimmiges Gesicht."
+   },
+   {
+    "type": "line",
+    "x": -24,
+    "y": 205,
+    "x2": 24,
+    "y2": 205,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 155,
+    "w": 445,
+    "h": 100,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Das Kind versteht und legt den Kochlöffel weg."
+   },
+   {
+    "type": "line",
+    "x": 481,
+    "y": 205,
+    "x2": 529,
+    "y2": 205,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 535,
+    "y": 155,
+    "w": 445,
+    "h": 100,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Die Mutter dreht sich wieder weg und zeigt damit: Jetzt ist alles wieder in Ordnung."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 265,
+    "w": 1960,
+    "h": 85,
+    "c": "gruen",
+    "fs": 19,
+    "text": "So entsteht zwischen Erzieher und zu Erziehendem ein ständiger wechselseitiger Interpretationsprozess: Jede Handlung muss vom anderen gedeutet und verstanden werden."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 385,
+    "w": 2000,
+    "h": 190,
+    "c": "tuerkis",
+    "text": "④ SO SAGT ES DIE WISSENSCHAFT"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 440,
+    "w": 970,
+    "h": 120,
+    "c": "tuerkis",
+    "fs": 17,
+    "text": "„Erziehung muss verstanden werden als ein kommunikatives Handeln, dessen Ziel darin liegt, eine Kommunikationsstruktur zu etablieren, die den Erwerb von Fähigkeiten […] ermöglicht.“\n(Mollenhauer, 1974, S. 67 f.)"
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": 440,
+    "w": 970,
+    "h": 120,
+    "c": "tuerkis",
+    "fs": 17,
+    "text": "„Erziehung ist symbolische Interaktion der Handelnden, ein 'symbolisch vermitteltes kommunikatives Handeln.'“\n(Mollenhauer, 1974, S. 168)"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 595,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ DECODER-TRAINING · was teilt das mit?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 650,
+    "w": 412,
+    "h": 85,
+    "c": "gelb",
+    "fs": 17,
+    "text": "a) Die Erzieherin schweigt und schaut weg, als Tim etwas erzählt."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 745,
+    "w": 412,
+    "h": 95,
+    "c": "grau",
+    "fs": 17,
+    "text": "Ich deute das als:"
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 650,
+    "w": 412,
+    "h": 85,
+    "c": "gelb",
+    "fs": 17,
+    "text": "b) Der Vater legt seiner Tochter die Hand auf die Schulter."
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 745,
+    "w": 412,
+    "h": 95,
+    "c": "grau",
+    "fs": 17,
+    "text": "Ich deute das als:"
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 650,
+    "w": 412,
+    "h": 85,
+    "c": "gelb",
+    "fs": 17,
+    "text": "c) Die Lehrerin zieht die Augenbrauen hoch."
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 745,
+    "w": 412,
+    "h": 95,
+    "c": "grau",
+    "fs": 17,
+    "text": "Ich deute das als:"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 853,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Vergleiche mit deinem Nachbarn: Habt ihr das Symbol gleich gedeutet? Nur dann wird es so verstanden, wie es gemeint ist."
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 595,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 650,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• soziale Kommunikation definieren\n• erklären, was Symbole sind, und Beispiele nennen\n• den wechselseitigen Interpretationsprozess am Beispiel zeigen\n• Mead und Mollenhauer zuordnen"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 810,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-lernhilfe",
+  "thema": "Erziehung als beabsichtigte Lernhilfe",
+  "unter": "LB 3 · Merkmale von Erziehung · Erziehungsziel und wertorientiertes Handeln",
+  "modul": [
+   "LB3 · Nr. 3 · Erziehung als beabsichtigte Lernhilfe",
+   "Erziehung als beabsichtigte Lernhilfe"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Erziehung als beabsichtigte Lernhilfe: das Erziehungs-Dreieck"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · Merkmale von Erziehung · 3. Erziehung als beabsichtigte Lernhilfe"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 215,
+    "c": "blau",
+    "text": "① OHNE ABSICHT KEINE BEZIEHUNG"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 970,
+    "h": 145,
+    "c": "gelb",
+    "fs": 20,
+    "text": "Wenn Menschen miteinander in Beziehung treten, verfolgen sie immer eine bestimmte Absicht, ein Ziel. Um dieses Ziel zu erreichen, tauschen sie Informationen aus und beeinflussen sich gegenseitig."
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": -525,
+    "w": 970,
+    "h": 145,
+    "c": "gruen",
+    "fs": 20,
+    "text": "MERKE\nMenschen treten miteinander in Beziehung, um eine bestimmte Absicht, ein bestimmtes Ziel zu erreichen.\nAuch in der Erziehung werden Ziele verfolgt."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -345,
+    "w": 2000,
+    "h": 570,
+    "c": "orange",
+    "text": "② DAS ERZIEHUNGS-DREIECK · Erziehung geschieht im Wechselspiel zwischen …"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -310,
+    "y": -290,
+    "w": 620,
+    "h": 135,
+    "c": "gruen",
+    "fs": 21,
+    "text": "ERZIEHUNGSZIEL\ndas der Erzieher vor Augen hat"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -960,
+    "y": -60,
+    "w": 430,
+    "h": 100,
+    "c": "gelb",
+    "fs": 22,
+    "text": "ERZIEHER"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": 530,
+    "y": -60,
+    "w": 430,
+    "h": 100,
+    "c": "rosa",
+    "fs": 22,
+    "text": "ZU ERZIEHENDER"
+   },
+   {
+    "type": "line",
+    "x": -700,
+    "y": -65,
+    "x2": -230,
+    "y2": -175,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "line",
+    "x": 700,
+    "y": -65,
+    "x2": 230,
+    "y2": -175,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "line",
+    "x": -520,
+    "y": -25,
+    "x2": 520,
+    "y2": -25,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": 520,
+    "y": 5,
+    "x2": -520,
+    "y2": 5,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 60,
+    "w": 640,
+    "h": 150,
+    "c": "gelb",
+    "fs": 19,
+    "text": "der Erzieher, der diese Lernprozesse absichtlich herbeiführt, auslöst oder unterstützt und damit das Verhalten des zu Erziehenden dauerhaft ändern will"
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": 60,
+    "w": 640,
+    "h": 150,
+    "c": "rosa",
+    "fs": 19,
+    "text": "der zu Erziehende, der bestimmte Lernprozesse bewältigen muss"
+   },
+   {
+    "type": "note",
+    "x": -310,
+    "y": 60,
+    "w": 620,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 19,
+    "text": "ZIEL\nDas Ziel ist eine relativ dauerhafte Änderung des Verhaltens und Erlebens des zu Erziehenden."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 245,
+    "w": 980,
+    "h": 290,
+    "c": "lila",
+    "text": "③ WERTORIENTIERTES HANDELN"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 300,
+    "w": 940,
+    "h": 220,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Erziehung ist ohne Erziehungsziel undenkbar: Hätte der Erzieher kein Ziel mehr vor Augen, würde er auch nicht mehr auf den zu Erziehenden einwirken.\n\nMan spricht deshalb auch von Erziehung als wertorientiertem Handeln – erzieherische Handlungen sind immer bestimmten Werten und Normen verpflichtet."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 245,
+    "w": 990,
+    "h": 290,
+    "c": "gruen",
+    "text": "④ BEISPIEL · heute und später"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 300,
+    "w": 440,
+    "h": 220,
+    "c": "blau",
+    "fs": 20,
+    "text": "HEUTE\n\nEin Kind kann noch nicht laufen und nicht sprechen."
+   },
+   {
+    "type": "line",
+    "x": 476,
+    "y": 410,
+    "x2": 534,
+    "y2": 410,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 540,
+    "y": 300,
+    "w": 440,
+    "h": 220,
+    "c": "gruen",
+    "fs": 20,
+    "text": "ZIEL DES ERZIEHERS\n\nDas Kind kann das zu einem späteren Zeitpunkt."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 555,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ ZIEL-WERKSTATT · welches Erziehungsziel steckt dahinter?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 610,
+    "w": 412,
+    "h": 85,
+    "c": "gelb",
+    "fs": 17,
+    "text": "a) Eine Mutter übt mit ihrem Sohn jeden Abend das Schuhebinden."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 705,
+    "w": 412,
+    "h": 95,
+    "c": "grau",
+    "fs": 17,
+    "text": "Ziel:"
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 610,
+    "w": 412,
+    "h": 85,
+    "c": "gelb",
+    "fs": 17,
+    "text": "b) Ein Erzieher lässt die Kinder ihren Streit zuerst selbst klären."
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 705,
+    "w": 412,
+    "h": 95,
+    "c": "grau",
+    "fs": 17,
+    "text": "Ziel:"
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 610,
+    "w": 412,
+    "h": 85,
+    "c": "gelb",
+    "fs": 17,
+    "text": "c) Eine Lehrerin überträgt ihrer Klasse die Planung des Wandertags."
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 705,
+    "w": 412,
+    "h": 95,
+    "c": "grau",
+    "fs": 17,
+    "text": "Ziel:"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 813,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Mögliche Ziele (erst selbst überlegen!): a) Selbstständigkeit · b) Konfliktfähigkeit · c) Verantwortungsbewusstsein"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 555,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 610,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• die drei Ecken des Dreiecks nennen und erklären\n• begründen, warum Erziehung ohne Ziel undenkbar ist\n• „wertorientiertes Handeln“ erklären\n• das Ziel von Erziehung formulieren"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 770,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-soziales-handeln",
+  "thema": "Erziehung als soziales Handeln",
+  "unter": "LB 3 · Merkmale von Erziehung · pädagogisches Handeln, sechs Merkmale, Definition",
+  "modul": [
+   "LB3 · Nr. 4 · Erziehung als soziales Handeln",
+   "Erziehung als soziales Handeln"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Erziehung als soziales Handeln: das Erziehungs-Rad"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · Merkmale von Erziehung · 4. Erziehung als soziales Handeln und Zusammenfassung"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 235,
+    "c": "blau",
+    "text": "① HANDELN · mehr als bloßes Tun"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 640,
+    "h": 165,
+    "c": "gruen",
+    "fs": 19,
+    "text": "DEFINITION\nHandeln meint jede menschliche Aktivität, mit welcher bewusst und überlegt eine bestimmte Absicht, ein bestimmtes Ziel verfolgt wird."
+   },
+   {
+    "type": "note",
+    "x": -320,
+    "y": -525,
+    "w": 640,
+    "h": 165,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Erziehung ist soziales Handeln, das im zwischenmenschlichen Kontakt von Erzieher und zu Erziehendem stattfindet. Pädagogisches Handeln ist bewusst und willentlich auf andere Menschen bezogen und zielt auf deren Veränderung ab."
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": -525,
+    "w": 640,
+    "h": 165,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "BEISPIEL\nDie Mutter führt ein Gespräch mit ihrer Tochter, lobt oder ermahnt sie, stellt ihr Belohnungen in Aussicht – damit die Tochter in der Schule mitlernt."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -325,
+    "w": 2000,
+    "h": 560,
+    "c": "orange",
+    "text": "② DAS ERZIEHUNGS-RAD · sechs Merkmale, eine Definition"
+   },
+   {
+    "type": "note",
+    "x": -330,
+    "y": -240,
+    "w": 660,
+    "h": 400,
+    "c": "gruen",
+    "fs": 22,
+    "text": "DEFINITION ERZIEHUNG\n\nErziehung ist ein soziales Handeln, welches bestimmte Lernprozesse bewusst und absichtlich herbeiführen und unterstützen will, um relativ dauerhafte Veränderungen des Verhaltens und Erlebens zu erreichen, die bestimmten Erziehungszielen entsprechen."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -270,
+    "w": 590,
+    "h": 150,
+    "c": "gelb",
+    "fs": 18,
+    "text": "BEABSICHTIGTE LERNHILFE\nDer Erzieher will bewusst und absichtlich Lernprozesse herbeiführen, die der zu Erziehende bewältigen muss."
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": -195,
+    "x2": -335,
+    "y2": -100,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "note",
+    "x": 390,
+    "y": -270,
+    "w": 590,
+    "h": 150,
+    "c": "lila",
+    "fs": 18,
+    "text": "SOZIALE INTERAKTION\nErzieher und zu Erziehender reagieren wechselseitig aufeinander und beeinflussen sich gegenseitig."
+   },
+   {
+    "type": "line",
+    "x": 390,
+    "y": -195,
+    "x2": 335,
+    "y2": -100,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -105,
+    "w": 590,
+    "h": 150,
+    "c": "rosa",
+    "fs": 18,
+    "text": "ZIELGERICHTET\nSie strebt dauerhafte Veränderungen an, die bestimmten Erziehungszielen entsprechen."
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": -30,
+    "x2": -335,
+    "y2": -40,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "note",
+    "x": 390,
+    "y": -105,
+    "w": 590,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "SOZIALE BEZIEHUNG\nDer Erfolg der Erziehung hängt stark von der persönlichen Beziehung zwischen Erzieher und zu Erziehendem ab."
+   },
+   {
+    "type": "line",
+    "x": 390,
+    "y": -30,
+    "x2": 335,
+    "y2": -40,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 60,
+    "w": 590,
+    "h": 150,
+    "c": "blau",
+    "fs": 18,
+    "text": "SOZIALES HANDELN\nSie ist auf andere Menschen bezogen und geschieht bewusst und überlegt."
+   },
+   {
+    "type": "line",
+    "x": -390,
+    "y": 135,
+    "x2": -335,
+    "y2": 20,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "note",
+    "x": 390,
+    "y": 60,
+    "w": 590,
+    "h": 150,
+    "c": "gelb",
+    "fs": 18,
+    "text": "SOZIALE KOMMUNIKATION\nInformationen werden mithilfe von Symbolen ausgetauscht, die für alle Beteiligten die gleiche Bedeutung haben."
+   },
+   {
+    "type": "line",
+    "x": 390,
+    "y": 135,
+    "x2": 335,
+    "y2": 20,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 255,
+    "w": 980,
+    "h": 335,
+    "c": "lila",
+    "text": "③ PÄDAGOGISCHES HANDELN = „VERSUCHSHANDELN“"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 310,
+    "w": 940,
+    "h": 120,
+    "c": "gruen",
+    "fs": 18,
+    "text": "DEFINITION\nPädagogisches Handeln ist eine beabsichtigte Aktivität in einer Erziehungssituation, welche ein bestimmtes Ziel erreichen will. Sein Ergebnis ist „offen“, sein Ausgang lässt sich nicht vorhersehen."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 440,
+    "w": 440,
+    "h": 135,
+    "c": "gelb",
+    "fs": 18,
+    "text": "„Versuchshandeln“ deshalb, weil der Ausgang offen ist und sich nicht vorhersagen lässt."
+   },
+   {
+    "type": "note",
+    "x": -530,
+    "y": 440,
+    "w": 490,
+    "h": 135,
+    "c": "rosa",
+    "fs": 15,
+    "text": "VERANTWORTUNG\nMeist ist das Verhältnis zwischen Erzieher und zu Erziehendem ungleich. Deshalb trägt der Erzieher die pädagogische Verantwortung und muss sich ständig fragen, welche Folgen sein Handeln hat."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 255,
+    "w": 990,
+    "h": 335,
+    "c": "tuerkis",
+    "text": "④ NICHT ALLES LERNEN IST ERZIEHUNG"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 310,
+    "w": 950,
+    "h": 85,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Erziehung meint also nicht jede Art des kindlichen und jugendlichen Lernens, sondern nur das, was bewusst und planmäßig zu diesem Zweck organisiert wird."
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 405,
+    "w": 500,
+    "h": 170,
+    "c": "tuerkis",
+    "fs": 14,
+    "text": "„Soziales Handeln ist eine besondere Art des Handelns, die sich durch eine bestimmte Intention von anderen Arten unterscheidet: es ist bewusst und willentlich auf andere Menschen bezogen; es ist sinnhaft orientiert am vergangenen, gegenwärtigen oder für künftig erwarteten Verhalten anderer.“ (Brezinka, 1990, S. 75)"
+   },
+   {
+    "type": "note",
+    "x": 540,
+    "y": 405,
+    "w": 440,
+    "h": 170,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "„Erziehung meint also immer nur das, was bewusst und planvoll zum Zwecke der optimalen kindlichen Entwicklung geschieht.“\n(Giesecke, 2004, S. 71)"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 610,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "⑤ ERZIEHUNG ODER NICHT?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 665,
+    "w": 412,
+    "h": 100,
+    "c": "gelb",
+    "fs": 17,
+    "text": "a) Ein Kind schaut sich beim großen Bruder zufällig ab, wie man pfeift."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 775,
+    "w": 412,
+    "h": 80,
+    "c": "grau",
+    "fs": 17,
+    "text": "Erziehung? Weil:"
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 665,
+    "w": 412,
+    "h": 100,
+    "c": "gelb",
+    "fs": 17,
+    "text": "b) Der Vater zeigt seiner Tochter Schritt für Schritt, wie man sicher über die Straße geht."
+   },
+   {
+    "type": "note",
+    "x": -556,
+    "y": 775,
+    "w": 412,
+    "h": 80,
+    "c": "grau",
+    "fs": 17,
+    "text": "Erziehung? Weil:"
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 665,
+    "w": 412,
+    "h": 100,
+    "c": "gelb",
+    "fs": 17,
+    "text": "c) Eine Erzieherin plant ein Spiel, damit die Kinder lernen abzuwarten, bis sie an der Reihe sind."
+   },
+   {
+    "type": "note",
+    "x": -132,
+    "y": 775,
+    "w": 412,
+    "h": 80,
+    "c": "grau",
+    "fs": 17,
+    "text": "Erziehung? Weil:"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 868,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Lösung (erst selbst überlegen!): a) keine Erziehung – nicht bewusst und planmäßig organisiert · b) und c) Erziehung – bewusst, mit Ziel"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 610,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 665,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• Handeln und pädagogisches Handeln definieren\n• die sechs Merkmale von Erziehung nennen und erklären\n• die Definition von Erziehung wiedergeben\n• Erziehung von zufälligem Lernen abgrenzen"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 825,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-erziehungsstile",
+  "thema": "Erziehungsstile nach Baumrind",
+  "unter": "LB 3 · Erziehungsstile · Wärme und Anforderung, vier Stile",
+  "modul": [
+   "LB3 · Nr. 5 · Erziehungsstile nach Baumrind",
+   "Erziehungsstile nach Baumrind"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Erziehungsstile nach Baumrind: der Erziehungs-Kompass"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · 5. Erziehungsstile · zwei Dimensionen, vier Stile"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 215,
+    "c": "blau",
+    "text": "① ZWEI DIMENSIONEN · Diana Baumrind, 1960er-Jahre"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 640,
+    "h": 145,
+    "c": "gelb",
+    "fs": 18,
+    "text": "Die amerikanische Entwicklungspsychologin Diana Baumrind untersuchte in den 1960er-Jahren, wie sich das Erziehungsverhalten von Eltern auf die Entwicklung ihrer Kinder auswirkt."
+   },
+   {
+    "type": "note",
+    "x": -320,
+    "y": -525,
+    "w": 640,
+    "h": 145,
+    "c": "rosa",
+    "fs": 18,
+    "text": "RESPONSIVITÄT · elterliche Wärme\nWärme, Zuwendung, Unterstützung\n= wie viel emotionale Unterstützung und Zuwendung Eltern geben"
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": -525,
+    "w": 640,
+    "h": 145,
+    "c": "blau",
+    "fs": 18,
+    "text": "ANFORDERUNG · Kontrolle\nRegeln, Kontrolle, Konsequenz\n= wie viele Regeln und Erwartungen Eltern stellen und wie konsequent sie diese durchsetzen"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -345,
+    "w": 2000,
+    "h": 815,
+    "c": "orange",
+    "text": "② DER KOMPASS · vier Erziehungsstile (gleiches Beispiel: Das Kind möchte abends länger aufbleiben)"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": -292,
+    "w": 960,
+    "h": 28,
+    "fs": 17,
+    "text": "← HOHE WÄRME"
+   },
+   {
+    "type": "text",
+    "x": 20,
+    "y": -292,
+    "w": 960,
+    "h": 28,
+    "fs": 17,
+    "text": "NIEDRIGE WÄRME →"
+   },
+   {
+    "type": "line",
+    "x": 0,
+    "y": -260,
+    "x2": 0,
+    "y2": 40,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "line",
+    "x": 0,
+    "y": 125,
+    "x2": 0,
+    "y2": 425,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "line",
+    "x": -980,
+    "y": 82,
+    "x2": -300,
+    "y2": 82,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "line",
+    "x": 300,
+    "y": 82,
+    "x2": 980,
+    "y2": 82,
+    "c": "grau",
+    "sw": 4,
+    "arrow": false
+   },
+   {
+    "type": "note",
+    "x": -290,
+    "y": 52,
+    "w": 580,
+    "h": 62,
+    "c": "orange",
+    "fs": 15,
+    "text": "↑ oben: HOHE Anforderung   ·   ↓ unten: NIEDRIGE Anforderung"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -260,
+    "w": 960,
+    "h": 135,
+    "c": "gruen",
+    "fs": 17,
+    "text": "AUTORITATIV · hohe Wärme + hohe Anforderung\nDer autoritative Erziehungsstil verbindet hohe emotionale Wärme mit klaren, konsequent durchgesetzten Regeln. Eltern erklären ihre Erwartungen und beziehen das Kind in Entscheidungen mit ein."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -115,
+    "w": 475,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "BEISPIEL\nDie Eltern erklären, warum eine feste Schlafenszeit wichtig ist, hören sich den Wunsch des Kindes an und einigen sich gemeinsam auf eine Ausnahme am Wochenende."
+   },
+   {
+    "type": "note",
+    "x": -495,
+    "y": -115,
+    "w": 475,
+    "h": 150,
+    "c": "grau",
+    "fs": 16,
+    "text": "FOLGEN\nKinder gelten in Baumrinds Forschung häufig als selbstbewusst, sozial kompetent und leistungsbereit."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -260,
+    "w": 960,
+    "h": 135,
+    "c": "rosa",
+    "fs": 17,
+    "text": "AUTORITÄR · niedrige Wärme + hohe Anforderung\nDer autoritäre Erziehungsstil ist von strengen Regeln und hohen Anforderungen bei gleichzeitig geringer emotionaler Wärme geprägt. Gehorsam wird eingefordert, ohne dass Entscheidungen erklärt werden."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": -115,
+    "w": 475,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "BEISPIEL\nDie Eltern antworten knapp: „Weil ich es sage. Ab ins Bett.“ Eine Begründung oder ein Gespräch findet nicht statt."
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": -115,
+    "w": 475,
+    "h": 150,
+    "c": "grau",
+    "fs": 16,
+    "text": "FOLGEN\nKinder zeigen in Studien häufiger Unsicherheit und ein geringeres Selbstwertgefühl oder – je nach Temperament – trotzig-aggressives Verhalten."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 130,
+    "w": 960,
+    "h": 135,
+    "c": "gelb",
+    "fs": 17,
+    "text": "PERMISSIV · hohe Wärme + niedrige Anforderung\nDer permissive Erziehungsstil ist von hoher Wärme, aber wenigen Regeln und geringen Anforderungen geprägt. Eltern vermeiden Konflikte und setzen Grenzen selten konsequent durch."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 275,
+    "w": 475,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "BEISPIEL\nDie Eltern lassen es gewähren, ohne eine feste Schlafenszeit durchzusetzen."
+   },
+   {
+    "type": "note",
+    "x": -495,
+    "y": 275,
+    "w": 475,
+    "h": 150,
+    "c": "grau",
+    "fs": 16,
+    "text": "FOLGEN\nKindern fällt es häufig schwerer, sich an Regeln zu halten, Frustration auszuhalten oder eigene Impulse zu steuern."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": 130,
+    "w": 960,
+    "h": 135,
+    "c": "lila",
+    "fs": 17,
+    "text": "VERNACHLÄSSIGEND (auch: unbeteiligt) · niedrige Wärme + niedrige Anforderung\nDer vernachlässigende Erziehungsstil ist durch geringe Wärme und geringe Anforderungen gekennzeichnet. Eltern nehmen am Leben ihres Kindes kaum Anteil."
+   },
+   {
+    "type": "note",
+    "x": 20,
+    "y": 275,
+    "w": 475,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "BEISPIEL\nDas Kind kommt abends, wann es möchte, ohne dass die Eltern nachfragen oder sich dafür interessieren, was es tagsüber erlebt hat."
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": 275,
+    "w": 475,
+    "h": 150,
+    "c": "grau",
+    "fs": 16,
+    "text": "FOLGEN\nDieser Stil gilt in der Forschung als am stärksten mit negativen Entwicklungsfolgen verbunden, etwa mit geringem Selbstwertgefühl, Schulproblemen oder Verhaltensauffälligkeiten."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 490,
+    "w": 2000,
+    "h": 150,
+    "c": "gruen",
+    "text": "③ GUT ZU WISSEN"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 545,
+    "w": 970,
+    "h": 82,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Baumrind selbst beschrieb zunächst drei Stile; den vierten – den vernachlässigenden Stil – ergänzten später die Forscher Eleanor Maccoby und John Martin."
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": 545,
+    "w": 970,
+    "h": 82,
+    "c": "gruen",
+    "fs": 17,
+    "text": "Der autoritative Stil gilt in der Forschung als besonders günstig für die kindliche Entwicklung, der vernachlässigende als am ungünstigsten."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 660,
+    "w": 1300,
+    "h": 300,
+    "c": "lila",
+    "text": "④ WELCHER STIL? · Thema Hausaufgaben"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 715,
+    "w": 306,
+    "h": 120,
+    "c": "gelb",
+    "fs": 17,
+    "text": "a) „Du machst jetzt Hausaufgaben, und zwar ohne Diskussion!“"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 845,
+    "w": 306,
+    "h": 60,
+    "c": "grau",
+    "fs": 17,
+    "text": "Stil:"
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 715,
+    "w": 306,
+    "h": 120,
+    "c": "gelb",
+    "fs": 17,
+    "text": "b) „Mach ruhig, wie du willst, Schatz – Hauptsache, wir streiten nicht.“"
+   },
+   {
+    "type": "note",
+    "x": -662,
+    "y": 845,
+    "w": 306,
+    "h": 60,
+    "c": "grau",
+    "fs": 17,
+    "text": "Stil:"
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 715,
+    "w": 306,
+    "h": 120,
+    "c": "gelb",
+    "fs": 17,
+    "text": "c) „Erst die Hausaufgaben, dann das Handy – ich erkläre dir, warum. Wann willst du anfangen?“"
+   },
+   {
+    "type": "note",
+    "x": -344,
+    "y": 845,
+    "w": 306,
+    "h": 60,
+    "c": "grau",
+    "fs": 17,
+    "text": "Stil:"
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 715,
+    "w": 306,
+    "h": 120,
+    "c": "gelb",
+    "fs": 17,
+    "text": "d) Die Eltern wissen nicht, ob ihr Kind Hausaufgaben aufhat, und fragen auch nicht."
+   },
+   {
+    "type": "note",
+    "x": -26,
+    "y": 845,
+    "w": 306,
+    "h": 60,
+    "c": "grau",
+    "fs": 17,
+    "text": "Stil:"
+   },
+   {
+    "type": "text",
+    "x": -980,
+    "y": 918,
+    "w": 1260,
+    "h": 30,
+    "fs": 15,
+    "text": "Lösung (erst selbst überlegen!): a) autoritär · b) permissiv · c) autoritativ · d) vernachlässigend"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 660,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 715,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• die zwei Dimensionen nach Baumrind erklären\n• die vier Stile in den Kompass einordnen\n• jeden Stil mit Beispiel und Folgen beschreiben\n• autoritativ und autoritär sicher unterscheiden"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 875,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-kindergarten",
+  "thema": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+  "unter": "LB 3 · Kita, Kindergarten, Träger, Fachpersonal",
+  "modul": [
+   "LB3 · Nr. 6 · Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "Der Kindergarten als Erziehungs- und Bildungseinrichtung"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Der Kindergarten: ein Blick ins Kita-Haus"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · 6. Der Kindergarten als Erziehungs- und Bildungseinrichtung · Kita, Träger, Fachpersonal"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 420,
+    "c": "blau",
+    "text": "① DAS KITA-HAUS · ein Dach, drei Einrichtungen"
+   },
+   {
+    "type": "note",
+    "x": -800,
+    "y": -525,
+    "w": 1600,
+    "h": 105,
+    "c": "gruen",
+    "fs": 17,
+    "text": "DACH: KINDERTAGESSTÄTTE (KITA) · Oberbegriff\nKindertagesstätten sind außerschulische Einrichtungen auf freiwilliger Basis für Kinder bis zum zwölften Lebensjahr, die dort halb-, ganztags oder nachts von pädagogischem Fachpersonal betreut werden. Kindertagesstätten ergänzen die Familienerziehung."
+   },
+   {
+    "type": "note",
+    "x": -800,
+    "y": -385,
+    "w": 500,
+    "h": 110,
+    "c": "gelb",
+    "fs": 20,
+    "text": "KINDERKRIPPE\nfür die Kleinsten (unter 3 Jahren)"
+   },
+   {
+    "type": "line",
+    "x": -550,
+    "y": -420,
+    "x2": -550,
+    "y2": -388,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -250,
+    "y": -385,
+    "w": 500,
+    "h": 110,
+    "c": "rosa",
+    "fs": 20,
+    "text": "KINDERGARTEN\nca. 3 bis 6 Jahre, bis zur Einschulung"
+   },
+   {
+    "type": "line",
+    "x": 0,
+    "y": -420,
+    "x2": 0,
+    "y2": -388,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 300,
+    "y": -385,
+    "w": 500,
+    "h": 110,
+    "c": "blau",
+    "fs": 20,
+    "text": "KINDERHORT\nfür Schulkinder, Betreuung nach der Schule"
+   },
+   {
+    "type": "line",
+    "x": 550,
+    "y": -420,
+    "x2": 550,
+    "y2": -388,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -260,
+    "w": 1960,
+    "h": 85,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Wichtig: Die Kita ersetzt die Familie nicht, sondern ergänzt und unterstützt die Erziehung zu Hause. Deshalb nennt man sie eine familienergänzende Einrichtung. Anders als im Heim übernachten die Kinder nicht dauerhaft dort."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -140,
+    "w": 980,
+    "h": 340,
+    "c": "orange",
+    "text": "② WARUM WERDEN KITAS IMMER WICHTIGER?"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -85,
+    "w": 465,
+    "h": 125,
+    "c": "gelb",
+    "fs": 17,
+    "text": "BERUFSTÄTIGKEIT\nImmer öfter arbeiten beide Eltern – oder ein Kind wächst bei nur einem Elternteil auf."
+   },
+   {
+    "type": "note",
+    "x": -505,
+    "y": -85,
+    "w": 465,
+    "h": 125,
+    "c": "rosa",
+    "fs": 17,
+    "text": "VERÄNDERTE GESELLSCHAFT\nDie Familie kann – vor allem in der Stadt – vieles nicht mehr allein bieten, was Kinder brauchen."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 50,
+    "w": 940,
+    "h": 135,
+    "c": "tuerkis",
+    "fs": 17,
+    "text": "„Die Familie kann dem Kind in der Stadt oft keinen freien, sicheren Spielraum, keine Gleichaltrigen und keine vielfältigen Spiel- und Sozialerfahrungen mehr bieten.“\nsinngemäß nach Klaus Mollenhauer (2001, S. 154)"
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": -140,
+    "w": 990,
+    "h": 340,
+    "c": "lila",
+    "text": "③ SCHULE ODER KINDERGARTEN?"
+   },
+   {
+    "type": "note",
+    "x": 290,
+    "y": -92,
+    "w": 335,
+    "h": 44,
+    "c": "blau",
+    "fs": 15,
+    "text": "SCHULE"
+   },
+   {
+    "type": "note",
+    "x": 635,
+    "y": -92,
+    "w": 345,
+    "h": 44,
+    "c": "rosa",
+    "fs": 15,
+    "text": "KINDERGARTEN"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": -42,
+    "w": 250,
+    "h": 70,
+    "c": "grau",
+    "fs": 16,
+    "text": "Pflicht?"
+   },
+   {
+    "type": "note",
+    "x": 290,
+    "y": -42,
+    "w": 335,
+    "h": 70,
+    "c": "blau",
+    "fs": 16,
+    "text": "Ja – gesetzliche Schulpflicht"
+   },
+   {
+    "type": "note",
+    "x": 635,
+    "y": -42,
+    "w": 345,
+    "h": 70,
+    "c": "rosa",
+    "fs": 16,
+    "text": "Nein – Besuch ist freiwillig"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 36,
+    "w": 250,
+    "h": 70,
+    "c": "grau",
+    "fs": 16,
+    "text": "Wann beginnt der Besuch?"
+   },
+   {
+    "type": "note",
+    "x": 290,
+    "y": 36,
+    "w": 335,
+    "h": 70,
+    "c": "blau",
+    "fs": 16,
+    "text": "feste Altersregel"
+   },
+   {
+    "type": "note",
+    "x": 635,
+    "y": 36,
+    "w": 345,
+    "h": 70,
+    "c": "rosa",
+    "fs": 16,
+    "text": "Eltern entscheiden je nach Entwicklungsstand des Kindes"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 114,
+    "w": 250,
+    "h": 70,
+    "c": "grau",
+    "fs": 16,
+    "text": "Wie oft / wie lange?"
+   },
+   {
+    "type": "note",
+    "x": 290,
+    "y": 114,
+    "w": 335,
+    "h": 70,
+    "c": "blau",
+    "fs": 16,
+    "text": "jeden Tag, feste Zeiten"
+   },
+   {
+    "type": "note",
+    "x": 635,
+    "y": 114,
+    "w": 345,
+    "h": 70,
+    "c": "rosa",
+    "fs": 16,
+    "text": "nicht zwingend täglich; Zeiten flexibel nach Absprache"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 220,
+    "w": 2000,
+    "h": 345,
+    "c": "gruen",
+    "text": "④ WER BETREIBT IHN, WER ARBEITET DORT? · Träger = die Organisation, die einen Kindergarten betreibt und verantwortet"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 275,
+    "w": 480,
+    "h": 155,
+    "c": "gelb",
+    "fs": 17,
+    "text": "FREIE TRÄGER · die meisten\nvor allem kirchliche Wohlfahrtsverbände: Diakonisches Werk (evangelisch), Caritasverband (katholisch)"
+   },
+   {
+    "type": "note",
+    "x": -490,
+    "y": 275,
+    "w": 480,
+    "h": 155,
+    "c": "blau",
+    "fs": 17,
+    "text": "ÖFFENTLICHE TRÄGER · ca. 30 %\nz. B. Städte und Gemeinden (Kommunen)"
+   },
+   {
+    "type": "note",
+    "x": 0,
+    "y": 275,
+    "w": 480,
+    "h": 155,
+    "c": "rosa",
+    "fs": 16,
+    "text": "SONSTIGE TRÄGER · zahlenmäßig kaum\nDeutsches Rotes Kreuz, Paritätischer Wohlfahrtsverband; private Träger: Betriebe, Krankenhäuser, Studentenwerke"
+   },
+   {
+    "type": "note",
+    "x": 490,
+    "y": 275,
+    "w": 490,
+    "h": 155,
+    "c": "lila",
+    "fs": 15,
+    "text": "FACHPERSONAL\nErzieher/-innen und Kinderpfleger/-innen. Die frühere Bezeichnung „Kindergärtner/-in“ wird heute nicht mehr verwendet.\nAufsicht: Jugendämter und Regierungen"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 440,
+    "w": 1960,
+    "h": 110,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "SUBSIDIARITÄTSPRINZIP\nÖffentliche Träger (z. B. die Stadt) gründen erst dann selbst einen Kindergarten, wenn kein freier Träger dafür bereitsteht. Die Regel stammt aus dem Jugendwohlfahrtsgesetz (JWG, 1922, neu gefasst 1961). Heute gilt das Kinder- und Jugendhilfegesetz (KJHG) von 1990/91, das als Sozialgesetzbuch VIII in das Sozialrecht eingefügt wurde."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 585,
+    "w": 980,
+    "h": 320,
+    "c": "orange",
+    "text": "⑤ MERKSATZ UND DENKFALLE"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 640,
+    "w": 940,
+    "h": 160,
+    "c": "gruen",
+    "fs": 15,
+    "text": "MERKSATZ\nDer Kindergarten ist eine familienergänzende Einrichtung auf freiwilliger Basis für Kinder zwischen dem vierten und sechsten Lebensjahr. Pflege und Erziehung werden in der Regel von ausgebildeten Erziehern und Kinderpflegern geleistet. Der Kindergarten wird von Wohlfahrtsverbänden, Kommunen, Kirchen oder Vereinen getragen und untersteht der Aufsicht von Jugendämtern und Regierungen."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 810,
+    "w": 940,
+    "h": 80,
+    "c": "orange",
+    "fs": 17,
+    "text": "ACHTUNG, DENKFALLE: Das „vierte Lebensjahr“ beginnt mit dem 3. Geburtstag. Gemeint ist also dasselbe Alter: etwa 3 bis 6 Jahre."
+   },
+   {
+    "type": "frame",
+    "x": 10,
+    "y": 585,
+    "w": 990,
+    "h": 320,
+    "c": "tuerkis",
+    "text": "⑥ MEIN LERNANKER · meine Praktikumsstelle"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 640,
+    "w": 950,
+    "h": 105,
+    "c": "gelb",
+    "fs": 16,
+    "text": "Das kann ich am Ende:\n• Kita, Krippe, Kindergarten und Hort unterscheiden · „familienergänzend“ erklären\n• Trägergruppen und Subsidiaritätsprinzip erklären · Schule und Kindergarten vergleichen"
+   },
+   {
+    "type": "note",
+    "x": 30,
+    "y": 755,
+    "w": 470,
+    "h": 135,
+    "c": "grau",
+    "fs": 17,
+    "text": "Träger meiner Praktikumseinrichtung:\n\nTrägergruppe:"
+   },
+   {
+    "type": "note",
+    "x": 510,
+    "y": 755,
+    "w": 470,
+    "h": 135,
+    "c": "grau",
+    "fs": 17,
+    "text": "Zwei Gründe, warum Kitas wichtiger werden (mit Mollenhauer):"
+   }
+  ]
+ },
+ {
+  "id": "f11-lb3-baybep",
+  "thema": "BayBEP: Digitale Medien, Umwelt, Gesundheit",
+  "unter": "LB 3 · Bayerischer Bildungs- und Erziehungsplan · Kap. 7.4, 7.7, 7.11",
+  "modul": [
+   "LB3 · Nr. 7 · Der Bayerische Bildungs- und Erziehungsplan",
+   "Der Bayerische Bildungs- und Erziehungsplan"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "BayBEP: drei Beete, ein Garten"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · 7. Der Bayerische Bildungs- und Erziehungsplan · Digitale Medien, Umwelt, Gesundheit"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 235,
+    "c": "blau",
+    "text": "① DER BAYBEP · Orientierungsrahmen, kein Stundenplan · jeder Bildungsbereich ist gleich aufgebaut"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 720,
+    "h": 165,
+    "c": "gelb",
+    "fs": 15,
+    "text": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP) beschreibt, was Kinder in Kindertageseinrichtungen (Krippe, Kindergarten) von der Geburt bis zur Einschulung lernen sollen und wie pädagogische Fachkräfte sie dabei begleiten. Er sieht das Kind als aktiven Gestalter seiner Bildung, der von Geburt an mit anderen lernt (Ko-Konstruktion). Bildung soll ganzheitlich und alltagsintegriert stattfinden."
+   },
+   {
+    "type": "note",
+    "x": -230,
+    "y": -525,
+    "w": 370,
+    "h": 165,
+    "c": "gruen",
+    "fs": 17,
+    "text": "LEITGEDANKEN\n\nWarum ist das Thema wichtig?"
+   },
+   {
+    "type": "line",
+    "x": 146,
+    "y": -443,
+    "x2": 184,
+    "y2": -443,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 190,
+    "y": -525,
+    "w": 370,
+    "h": 165,
+    "c": "rosa",
+    "fs": 17,
+    "text": "BILDUNGS- UND ERZIEHUNGSZIELE\n\nWas soll das Kind können?"
+   },
+   {
+    "type": "line",
+    "x": 566,
+    "y": -443,
+    "x2": 604,
+    "y2": -443,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": 610,
+    "y": -525,
+    "w": 370,
+    "h": 165,
+    "c": "lila",
+    "fs": 17,
+    "text": "ANREGUNGEN UND BEISPIELE ZUR UMSETZUNG\n\nWie gelingt das im Kita-Alltag?"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -325,
+    "w": 646,
+    "h": 800,
+    "c": "lila",
+    "text": "② DIGITALE MEDIEN · Kap. 7.4"
+   },
+   {
+    "type": "note",
+    "x": -985,
+    "y": -270,
+    "w": 616,
+    "h": 135,
+    "c": "gruen",
+    "fs": 16,
+    "text": "LEITZIEL\nEin kreativer, kritischer und sicherer – also mündiger – Umgang mit digitalen Medien. Digitale Kompetenz gilt als „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen."
+   },
+   {
+    "type": "note",
+    "x": -985,
+    "y": -125,
+    "w": 616,
+    "h": 95,
+    "c": "blau",
+    "fs": 16,
+    "text": "KINDERRECHTE in der digitalen Welt\nZugang und Teilhabe · Schutz und Sicherheit · Bildung und Befähigung"
+   },
+   {
+    "type": "note",
+    "x": -985,
+    "y": -20,
+    "w": 616,
+    "h": 240,
+    "c": "gelb",
+    "fs": 15,
+    "text": "GRUNDSÄTZE\n• Kein Medienkonsum: Gestalten und Lernen (Bildung mit Medien und Bildung über Medien)\n• Informatik entdecken: Wie funktioniert das? Wie nutze ich das? Wie wirkt das?\n• Primat der Pädagogik: Die Technik wird in den Dienst der Pädagogik gestellt.\n• Gezielte Technikauswahl: Qualität, nicht Quantität\n• Intelligentes Risikomanagement"
+   },
+   {
+    "type": "note",
+    "x": -985,
+    "y": 230,
+    "w": 616,
+    "h": 100,
+    "c": "tuerkis",
+    "fs": 15,
+    "text": "„Das Digitale ersetzt nicht das Analoge, sondern ergänzt, unterstützt und bereichert es.“\nsinngemäß nach BayBEP, 11. Aufl. 2024, Kap. 7.4"
+   },
+   {
+    "type": "note",
+    "x": -985,
+    "y": 340,
+    "w": 616,
+    "h": 125,
+    "c": "rosa",
+    "fs": 15,
+    "text": "BEISPIEL\nKinder fotografieren mit dem Tablet Pflanzen im Garten, bestimmen sie mit einer App und gestalten ein digitales Pflanzenbuch. Danach sprechen sie darüber, ob man allen Informationen aus dem Internet trauen kann."
+   },
+   {
+    "type": "frame",
+    "x": -323,
+    "y": -325,
+    "w": 646,
+    "h": 800,
+    "c": "gruen",
+    "text": "③ UMWELT · Kap. 7.7"
+   },
+   {
+    "type": "note",
+    "x": -308,
+    "y": -270,
+    "w": 616,
+    "h": 155,
+    "c": "gruen",
+    "fs": 16,
+    "text": "ZIEL\nDas Kind lernt, die Umwelt mit allen Sinnen zu erfahren und sie als unersetzlich und verletzbar wahrzunehmen. Es entwickelt ein ökologisches Verantwortungsgefühl und will die Umwelt – auch gemeinsam mit anderen – für nachfolgende Generationen schützen."
+   },
+   {
+    "type": "note",
+    "x": -308,
+    "y": -105,
+    "w": 616,
+    "h": 80,
+    "c": "gelb",
+    "fs": 15,
+    "text": "STUFE 1 · NATURBEGEGNUNG\nKinder erleben Tiere, Pflanzen und Naturmaterialien."
+   },
+   {
+    "type": "note",
+    "x": -308,
+    "y": -15,
+    "w": 616,
+    "h": 100,
+    "c": "gelb",
+    "fs": 15,
+    "text": "STUFE 2 · UMWELTSCHUTZ UND WERTHALTUNGEN\nWas ist Umwelt für mich? Welchen Wert hat sie? Welche Rolle habe ich?"
+   },
+   {
+    "type": "note",
+    "x": -308,
+    "y": 95,
+    "w": 616,
+    "h": 125,
+    "c": "gelb",
+    "fs": 15,
+    "text": "STUFE 3 · BILDUNG FÜR NACHHALTIGE ENTWICKLUNG (BNE)\nkein „Reparaturbetrieb“ mehr, denkt nach vorne: Zusammenspiel von Ökologie, Ökonomie und Sozialem (Agenda 21, Rio 1992)"
+   },
+   {
+    "type": "note",
+    "x": -308,
+    "y": 230,
+    "w": 616,
+    "h": 125,
+    "c": "blau",
+    "fs": 15,
+    "text": "WICHTIG\nKinder tragen für Umweltprobleme kaum Verantwortung. Ihr Handlungsbereich ist ihr unmittelbarer Alltag. Ziel: Zuversicht, Hoffnung und Durchhaltevermögen – „Ich kann etwas tun!“"
+   },
+   {
+    "type": "note",
+    "x": -308,
+    "y": 365,
+    "w": 616,
+    "h": 100,
+    "c": "rosa",
+    "fs": 15,
+    "text": "BEISPIEL: Projekt „Lebensraum Wasser“ – einen Bach untersuchen, Wassertiere beobachten, mit Wasser experimentieren, überlegen, wo die Kita Wasser sparen kann."
+   },
+   {
+    "type": "frame",
+    "x": 354,
+    "y": -325,
+    "w": 646,
+    "h": 800,
+    "c": "orange",
+    "text": "④ GESUNDHEIT · Kap. 7.11"
+   },
+   {
+    "type": "note",
+    "x": 369,
+    "y": -270,
+    "w": 616,
+    "h": 105,
+    "c": "tuerkis",
+    "fs": 15,
+    "text": "„Gesundheit ist ein Zustand von körperlichem, seelischem, geistigem und sozialem Wohlbefinden.“\nBayBEP, Kap. 7.11, nach der Definition der WHO"
+   },
+   {
+    "type": "note",
+    "x": 369,
+    "y": -155,
+    "w": 616,
+    "h": 90,
+    "c": "blau",
+    "fs": 15,
+    "text": "LEITFRAGE\n„Was lässt Kinder auch bei Belastungen gesund bleiben?“ – statt: „Was macht Kinder krank?“"
+   },
+   {
+    "type": "note",
+    "x": 369,
+    "y": -55,
+    "w": 616,
+    "h": 110,
+    "c": "gruen",
+    "fs": 16,
+    "text": "ZIEL\nDas Kind lernt, selbstbestimmt Verantwortung für sein eigenes Wohlergehen, seinen Körper und seine Gesundheit zu übernehmen."
+   },
+   {
+    "type": "note",
+    "x": 369,
+    "y": 65,
+    "w": 616,
+    "h": 150,
+    "c": "gelb",
+    "fs": 15,
+    "text": "SCHWERPUNKTE\n• Eigenverantwortung für Körper und Gesundheit\n• Umgang mit Stress – sichere Bindungserfahrungen stärken die Stressresistenz\n• Gesundheit und soziale Lage\n• Suchtprävention: stärkt Lebenskompetenzen (WHO)"
+   },
+   {
+    "type": "note",
+    "x": 369,
+    "y": 225,
+    "w": 616,
+    "h": 105,
+    "c": "lila",
+    "fs": 15,
+    "text": "SCHUTZFAKTOREN GEGEN SUCHT\nSicherheit und Halt · Beziehung und Anerkennung · Lebensweise und Perspektive"
+   },
+   {
+    "type": "note",
+    "x": 369,
+    "y": 340,
+    "w": 616,
+    "h": 105,
+    "c": "rosa",
+    "fs": 15,
+    "text": "BEISPIEL: Kinder decken gemeinsam den Frühstückstisch, probieren unbekanntes Gemüse und sprechen über den Unterschied zwischen Hunger und Appetit."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 495,
+    "w": 1300,
+    "h": 340,
+    "c": "tuerkis",
+    "text": "⑤ PROJEKT „UNSER GEMÜSEGARTEN“ · die Bildungsbereiche hängen zusammen"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 550,
+    "w": 1260,
+    "h": 80,
+    "c": "gelb",
+    "fs": 16,
+    "text": "Kita „Sonnenblume“: Die Vorschulkinder haben ein neues Hochbeet bekommen. Mia (5) fragt: „Warum wachsen Tomaten eigentlich rot?“ Jonas (6) will wissen, ob man aus dem Gemüse „echtes Essen“ machen kann. Frau Yilmaz möchte Umwelt, Gesundheit und Digitale Medien miteinander verbinden."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 640,
+    "w": 410,
+    "h": 180,
+    "c": "grau",
+    "fs": 16,
+    "text": "UMWELT (7.7)\nMeine Aktivität:\n\n\nZiel laut BayBEP:"
+   },
+   {
+    "type": "note",
+    "x": -555,
+    "y": 640,
+    "w": 410,
+    "h": 180,
+    "c": "grau",
+    "fs": 16,
+    "text": "GESUNDHEIT (7.11)\nMeine Aktivität:\n\n\nZiel laut BayBEP:"
+   },
+   {
+    "type": "note",
+    "x": -130,
+    "y": 640,
+    "w": 410,
+    "h": 180,
+    "c": "grau",
+    "fs": 16,
+    "text": "DIGITALE MEDIEN (7.4)\nMeine Aktivität:\n\n\nZiel laut BayBEP:"
+   },
+   {
+    "type": "frame",
+    "x": 330,
+    "y": 495,
+    "w": 670,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 550,
+    "w": 630,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "Das kann ich am Ende:\n• den Aufbau jedes Bildungsbereichs nennen (Leitgedanken, Ziele, Umsetzung)\n• zu Digitale Medien, Umwelt und Gesundheit je Ziel und Beispiel erklären\n• den Gesundheitsbegriff der WHO wiedergeben\n• zeigen, wie die Bereiche in einem Projekt zusammenhängen"
+   },
+   {
+    "type": "note",
+    "x": 350,
+    "y": 710,
+    "w": 630,
+    "h": 70,
+    "c": "grau",
+    "fs": 18,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
+  "id": "f11-fa-jugend-gesamt",
+  "thema": "Fachaufsatz am Fall „Die Jugend von heute“",
+  "unter": "LB 1 · Bauplan, Muster, Baustein und Transfer, Formulierungen",
+  "modul": [
+   "Basiskurs Fachaufsatztraining: Der Aufbau eines Fachaufsatzes · Selbstlernkurs · LB1",
+   "Basiskurs Fachaufsatztraining: Der Aufbau eines Fachaufsatzes",
+   "Fachaufsatz am Fall: Die Jugend von heute",
+   "LB1 · Fachaufsatz am Fall: Die Jugend von heute",
+   "Fachaufsatz am Fall: Die Jugend von heute · Selbstlernkurs · LB1"
+  ],
+  "items": [
+   {
+    "type": "text",
+    "x": -2150,
+    "y": -1050,
+    "w": 4300,
+    "h": 90,
+    "fs": 56,
+    "text": "Lernübersicht: Fachaufsatz am Fall „Die Jugend von heute“"
+   },
+   {
+    "type": "text",
+    "x": -2150,
+    "y": -950,
+    "w": 4300,
+    "h": 44,
+    "fs": 24,
+    "text": "Lesereihenfolge: 1 Bauplan (links oben) · 2 Muster am Fall (rechts oben) · 3 Baustein und Transfer (links unten) · 4 Formulierungen und Checkliste (rechts unten)"
+   },
+   {
+    "type": "text",
+    "x": -2150,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Teil 1: Der Bauplan"
+   },
+   {
+    "type": "text",
+    "x": -2150,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Basiskurs Fachaufsatztraining · Einleitung, Hauptteil, Schluss"
+   },
+   {
+    "type": "frame",
+    "x": -2150,
+    "y": -580,
+    "w": 2000,
+    "h": 230,
+    "c": "blau",
+    "text": "① KERNFRAGE · Was ist das Thema?"
+   },
+   {
+    "type": "frame",
+    "x": -2150,
+    "y": -320,
+    "w": 1180,
+    "h": 600,
+    "c": "gruen",
+    "text": "② KERNWISSEN · Was muss ich wissen?"
+   },
+   {
+    "type": "frame",
+    "x": -950,
+    "y": -320,
+    "w": 800,
+    "h": 600,
+    "c": "orange",
+    "text": "③ ZUSAMMENHÄNGE · Wie hängt es zusammen?"
+   },
+   {
+    "type": "frame",
+    "x": -2150,
+    "y": 310,
+    "w": 1180,
+    "h": 430,
+    "c": "lila",
+    "text": "④ BEISPIEL / FALL · Wie sieht es in der Praxis aus?"
+   },
+   {
+    "type": "frame",
+    "x": -950,
+    "y": 310,
+    "w": 800,
+    "h": 430,
+    "c": "tuerkis",
+    "text": "⑤ LERNANKER · Was muss ich am Ende aus dem Kopf können?"
+   },
+   {
+    "type": "note",
+    "x": -2130,
+    "y": -520,
+    "w": 1960,
+    "h": 150,
+    "c": "gelb",
+    "fs": 26,
+    "text": "Wie baue ich einen Fachaufsatz in Pädagogik/Psychologie auf, und wie bringe ich Theorie und Fall zusammen?"
+   },
+   {
+    "type": "note",
+    "x": -2130,
+    "y": -250,
+    "w": 366,
+    "h": 520,
+    "c": "blau",
+    "fs": 20,
+    "text": "EINLEITUNG\n• knappe, allgemeine Hinführung zum Thema\n• zentrale Fachbegriffe definieren (je ein Kasten)\n• Überleitung: Aufgabenstellung aufgreifen und Vorgehen nennen"
+   },
+   {
+    "type": "note",
+    "x": -1744,
+    "y": -250,
+    "w": 366,
+    "h": 520,
+    "c": "gruen",
+    "fs": 20,
+    "text": "HAUPTTEIL\n• kurze Einordnung des Themas\n• je Aspekt: Nennung → Erläuterung → Transfer\n• Transfer mit Textbeleg (Z. …), im Wechsel (Reißverschlussverfahren)"
+   },
+   {
+    "type": "note",
+    "x": -1358,
+    "y": -250,
+    "w": 366,
+    "h": 520,
+    "c": "rosa",
+    "fs": 20,
+    "text": "SCHLUSS\n• kurzer (!) Verweis auf die Gesamttheorie\n• Rückgriff auf die Aufgabenstellung\n• Ausblick"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -660,
+    "y": -80,
+    "w": 220,
+    "h": 120,
+    "c": "blau",
+    "fs": 20,
+    "text": "Fachaufsatz"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -920,
+    "y": -250,
+    "w": 230,
+    "h": 100,
+    "c": "rosa",
+    "fs": 20,
+    "text": "Einleitung"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -410,
+    "y": -250,
+    "w": 230,
+    "h": 100,
+    "c": "lila",
+    "fs": 20,
+    "text": "Hauptteil"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -660,
+    "y": 90,
+    "w": 220,
+    "h": 90,
+    "c": "tuerkis",
+    "fs": 20,
+    "text": "Schluss"
+   },
+   {
+    "type": "line",
+    "x": -630,
+    "y": -55,
+    "x2": -750,
+    "y2": -150,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -470,
+    "y": -55,
+    "x2": -350,
+    "y2": -150,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -550,
+    "y": 40,
+    "x2": -550,
+    "y2": 90,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -930,
+    "y": 195,
+    "w": 760,
+    "h": 80,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Die Einleitung führt zur Frage, der Hauptteil beantwortet sie Aspekt für Aspekt, der Schluss rundet ab."
+   },
+   {
+    "type": "note",
+    "x": -2130,
+    "y": 370,
+    "w": 1140,
+    "h": 340,
+    "c": "gelb",
+    "fs": 23,
+    "text": "Beispiel „Die Jugend von heute“ (LB 11.1):\nNennung: Ein Merkmal der Alltagstheorie ist die Subjektivität.\nErläuterung: Verschiedene Personen kommen beim selben Sachverhalt zu unterschiedlichen Erkenntnissen. Wissenschaftliche Aussagen sind dagegen objektiv.\nTransfer: Die Aussage der älteren Damen, Jugendliche hätten keinen Respekt (Z. 9), ist eine Meinung. Die Shell-Studie kam dagegen unabhängig zum gleichen Ergebnis (Z. 14f.)."
+   },
+   {
+    "type": "note",
+    "x": -935,
+    "y": 370,
+    "w": 250,
+    "h": 340,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Ich kann die drei Teile eines Fachaufsatzes nennen und sagen, was in jedem steht."
+   },
+   {
+    "type": "note",
+    "x": -675,
+    "y": 370,
+    "w": 250,
+    "h": 340,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Ich kann einen Aspekt in Nennung, Erläuterung und Transfer aufteilen."
+   },
+   {
+    "type": "note",
+    "x": -415,
+    "y": 370,
+    "w": 250,
+    "h": 340,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Ich kann Textbelege mit Zeilenangabe nennen und mit dem Fachbegriff deuten."
+   },
+   {
+    "type": "text",
+    "x": 150,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Teil 2: Das Muster am Fall „Die Jugend von heute“"
+   },
+   {
+    "type": "text",
+    "x": 150,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "Fachaufsatz · LB 1 · Alltagstheorie und wissenschaftliche Theorie · so steckt der Bauplan in der Lösungsskizze"
+   },
+   {
+    "type": "frame",
+    "x": 150,
+    "y": -580,
+    "w": 2000,
+    "h": 200,
+    "c": "blau",
+    "text": "1 EINLEITUNG"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": -530,
+    "w": 640,
+    "h": 140,
+    "c": "gelb",
+    "fs": 19,
+    "text": "1.1 Hinführung: Jeder Mensch ist „psychologisch“ tätig. Diesem Vorgehen stehen wissenschaftliche Aussagen gegenüber."
+   },
+   {
+    "type": "note",
+    "x": 830,
+    "y": -530,
+    "w": 640,
+    "h": 140,
+    "c": "gelb",
+    "fs": 19,
+    "text": "1.2 Begriffsbestimmung: Alltagstheorie (Wissen aus persönlichen Erfahrungen, auch Privattheorie) und wissenschaftliche Theorie (methodisches Vorgehen), je im Kasten."
+   },
+   {
+    "type": "note",
+    "x": 1490,
+    "y": -530,
+    "w": 640,
+    "h": 140,
+    "c": "gelb",
+    "fs": 19,
+    "text": "1.3 Vorgehen: Die Merkmale beider Theorien werden an der Lernsituation verdeutlicht."
+   },
+   {
+    "type": "frame",
+    "x": 150,
+    "y": -360,
+    "w": 2000,
+    "h": 1180,
+    "c": "gruen",
+    "text": "2 HAUPTTEIL"
+   },
+   {
+    "type": "text",
+    "x": 170,
+    "y": -312,
+    "w": 1960,
+    "h": 40,
+    "fs": 20,
+    "text": "Einordnung: Beide Psychologien geben Orientierung und Ordnung im Sinne von Sicherheit. Die Unterschiede sind jedoch vielfältig, hier in vier Merkmalen (je Merkmal: Nennung, Erläuterung, Transfer im Wechsel):"
+   },
+   {
+    "type": "text",
+    "x": 170,
+    "y": -262,
+    "w": 470,
+    "h": 56,
+    "fs": 18,
+    "text": "Alltagstheorie: Nennung + Erläuterung"
+   },
+   {
+    "type": "text",
+    "x": 660,
+    "y": -262,
+    "w": 470,
+    "h": 56,
+    "fs": 18,
+    "text": "Wissenschaftliche Theorie: Nennung + Erläuterung"
+   },
+   {
+    "type": "text",
+    "x": 1150,
+    "y": -262,
+    "w": 470,
+    "h": 56,
+    "fs": 18,
+    "text": "Transfer: die älteren Damen (Alltagstheorie am Fall)"
+   },
+   {
+    "type": "text",
+    "x": 1640,
+    "y": -262,
+    "w": 470,
+    "h": 56,
+    "fs": 18,
+    "text": "Transfer: Shell-Studie (Wissenschaft am Fall)"
+   },
+   {
+    "type": "text",
+    "x": 170,
+    "y": -200,
+    "w": 1960,
+    "h": 34,
+    "fs": 22,
+    "text": "2.1 Subjektivität vs. Objektivität"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": -162,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "subjektiv: Verschiedene Personen kommen beim selben Sachverhalt zu unterschiedlichen Erkenntnissen."
+   },
+   {
+    "type": "note",
+    "x": 660,
+    "y": -162,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "objektiv: Verschiedene Forscher erzielen bei gleichen Bedingungen gleiche Ergebnisse."
+   },
+   {
+    "type": "note",
+    "x": 1150,
+    "y": -162,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Die Aussage, die Jugendlichen hätten keinen Respekt mehr vor Gesetz und Ordnung (Z. 9), ist eine Meinung, die andere Personen nicht teilen müssen."
+   },
+   {
+    "type": "note",
+    "x": 1640,
+    "y": -162,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Mit standardisierten Fragebögen und Interviews kommt die Shell-Studie zum Ergebnis, dass den meisten Jugendlichen Gesetz und Ordnung wichtig ist (Z. 14f., 16f.)."
+   },
+   {
+    "type": "text",
+    "x": 170,
+    "y": 50,
+    "w": 1960,
+    "h": 34,
+    "fs": 22,
+    "text": "2.2 persönliche Erfahrung vs. systematische Gewinnung"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 88,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "persönliche Erfahrung: unsystematisch und zufällig gewonnen, ohne geplantes methodisches Vorgehen."
+   },
+   {
+    "type": "note",
+    "x": 660,
+    "y": 88,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "systematisch: nach bestimmten Regeln durch wissenschaftliche Methoden, geplant und organisiert."
+   },
+   {
+    "type": "note",
+    "x": 1150,
+    "y": 88,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Beruht auf einer Einzelbeobachtung: Iris geht bei Rot über die Ampel (Z. 4f.), nicht auf vielen geplanten Beobachtungen."
+   },
+   {
+    "type": "note",
+    "x": 1640,
+    "y": 88,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Standardisierte Fragebögen und Interviews (Z. 16f.); Alter der Befragten und Vorgehen sind genau angegeben (Z. 15)."
+   },
+   {
+    "type": "text",
+    "x": 170,
+    "y": 300,
+    "w": 1960,
+    "h": 34,
+    "fs": 22,
+    "text": "2.3 unzulässige Verallgemeinerung vs. Allgemeingültigkeit"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 338,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "unzulässig verallgemeinert: von „einmal auf immer“, von einem oder wenigen Fällen auf „alle“."
+   },
+   {
+    "type": "note",
+    "x": 660,
+    "y": 338,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "allgemeingültig: Die Feststellung lässt sich mit hoher Wahrscheinlichkeit auf viele Fälle übertragen."
+   },
+   {
+    "type": "note",
+    "x": 1150,
+    "y": 338,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Von einem Fall (Iris, Z. 4f.) wird auf alle Jugendlichen geschlossen (Z. 6–9)."
+   },
+   {
+    "type": "note",
+    "x": 1640,
+    "y": 338,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Befragt wurden 2.572 Jugendliche im Alter von 12 bis 25 Jahren (Z. 15): eine große Stichprobe, das Ergebnis gilt mit hoher Wahrscheinlichkeit für viele."
+   },
+   {
+    "type": "text",
+    "x": 170,
+    "y": 550,
+    "w": 1960,
+    "h": 34,
+    "fs": 22,
+    "text": "2.4 nicht überprüfbar vs. überprüfbar und wiederholbar"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 588,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "nicht überprüfbar: Der Vorgang, der zur Aussage führte, lässt sich nicht noch einmal durchführen."
+   },
+   {
+    "type": "note",
+    "x": 660,
+    "y": 588,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "überprüfbar, wiederholbar: Aussage und Gewinnung sind jederzeit nachvollziehbar."
+   },
+   {
+    "type": "note",
+    "x": 1150,
+    "y": 588,
+    "w": 470,
+    "h": 196,
+    "c": "rosa",
+    "fs": 18,
+    "text": "Der Gang über die rote Ampel (Z. 4f.) ist nicht wiederholbar; weitere Beobachtungen oder Befragungen gab es nicht."
+   },
+   {
+    "type": "note",
+    "x": 1640,
+    "y": 588,
+    "w": 470,
+    "h": 196,
+    "c": "tuerkis",
+    "fs": 18,
+    "text": "Ergebnisse und Vorgehen sind auf der Homepage nachlesbar (Z. 13f.), Fragebögen und Interviews sind beschrieben (Z. 16f.): nachvollziehbar und wiederholbar."
+   },
+   {
+    "type": "frame",
+    "x": 150,
+    "y": 850,
+    "w": 2000,
+    "h": 170,
+    "c": "lila",
+    "text": "3 SCHLUSS"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 900,
+    "w": 1960,
+    "h": 100,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Es wurde deutlich, dass sich die beiden älteren Damen der Alltagstheorie bedienen, während die Shell-Jugendstudie eine wissenschaftliche Theorie darstellt."
+   },
+   {
+    "type": "text",
+    "x": -2150,
+    "y": 1300,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Teil 3: Baustein und Transfer"
+   },
+   {
+    "type": "text",
+    "x": -2150,
+    "y": 1368,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 1 · Fachaufsatz · Reißverschlussverfahren"
+   },
+   {
+    "type": "frame",
+    "x": -2150,
+    "y": 1420,
+    "w": 2000,
+    "h": 230,
+    "c": "blau",
+    "text": "① KERNFRAGE · Was ist das Thema?"
+   },
+   {
+    "type": "frame",
+    "x": -2150,
+    "y": 1680,
+    "w": 1180,
+    "h": 600,
+    "c": "gruen",
+    "text": "② KERNWISSEN · Was muss ich wissen?"
+   },
+   {
+    "type": "frame",
+    "x": -950,
+    "y": 1680,
+    "w": 800,
+    "h": 600,
+    "c": "orange",
+    "text": "③ ZUSAMMENHÄNGE · Wie hängt es zusammen?"
+   },
+   {
+    "type": "frame",
+    "x": -2150,
+    "y": 2310,
+    "w": 1180,
+    "h": 430,
+    "c": "lila",
+    "text": "④ BEISPIEL / FALL · Wie sieht es in der Praxis aus?"
+   },
+   {
+    "type": "frame",
+    "x": -950,
+    "y": 2310,
+    "w": 800,
+    "h": 430,
+    "c": "tuerkis",
+    "text": "⑤ LERNANKER · Was muss ich am Ende aus dem Kopf können?"
+   },
+   {
+    "type": "note",
+    "x": -2130,
+    "y": 1480,
+    "w": 1960,
+    "h": 150,
+    "c": "gelb",
+    "fs": 26,
+    "text": "Wie bearbeite ich einen Aspekt der Aufgabe im Hauptteil, damit Theorie und Fall sauber zusammenkommen?"
+   },
+   {
+    "type": "note",
+    "x": -2130,
+    "y": 1750,
+    "w": 366,
+    "h": 520,
+    "c": "lila",
+    "fs": 20,
+    "text": "NENNUNG\nDas Merkmal oder den Fachbegriff benennen und im Text hervorheben (Kasten oder Unterstreichen)."
+   },
+   {
+    "type": "note",
+    "x": -1744,
+    "y": 1750,
+    "w": 366,
+    "h": 520,
+    "c": "gruen",
+    "fs": 20,
+    "text": "ERLÄUTERUNG\nDie dahinterliegende Theorie in eigenen Worten darstellen: Begriff nennen und definieren, bei Bedarf weitere Erläuterungen."
+   },
+   {
+    "type": "note",
+    "x": -1358,
+    "y": 1750,
+    "w": 366,
+    "h": 520,
+    "c": "orange",
+    "fs": 20,
+    "text": "TRANSFER\nTheorie auf das Fallbeispiel anwenden und mit Textbeleg (Z. …) untermauern, im Wechsel: erst Alltagstheorie, dann Wissenschaft."
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -660,
+    "y": 1920,
+    "w": 220,
+    "h": 120,
+    "c": "blau",
+    "fs": 20,
+    "text": "Aspekt"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -920,
+    "y": 1750,
+    "w": 230,
+    "h": 100,
+    "c": "rosa",
+    "fs": 20,
+    "text": "Nennung"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -410,
+    "y": 1750,
+    "w": 230,
+    "h": 100,
+    "c": "lila",
+    "fs": 20,
+    "text": "Erläuterung"
+   },
+   {
+    "type": "shape",
+    "shape": "ellipse",
+    "x": -660,
+    "y": 2090,
+    "w": 220,
+    "h": 90,
+    "c": "tuerkis",
+    "fs": 20,
+    "text": "Transfer"
+   },
+   {
+    "type": "line",
+    "x": -630,
+    "y": 1945,
+    "x2": -750,
+    "y2": 1850,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -470,
+    "y": 1945,
+    "x2": -350,
+    "y2": 1850,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "line",
+    "x": -550,
+    "y": 2040,
+    "x2": -550,
+    "y2": 2090,
+    "c": "grau",
+    "sw": 4,
+    "arrow": true
+   },
+   {
+    "type": "note",
+    "x": -930,
+    "y": 2195,
+    "w": 760,
+    "h": 80,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Erst benennen, dann die Theorie erklären, dann am Fall mit Zeile belegen und deuten."
+   },
+   {
+    "type": "note",
+    "x": -2130,
+    "y": 2370,
+    "w": 1140,
+    "h": 340,
+    "c": "gelb",
+    "fs": 23,
+    "text": "Beispiel „Die Jugend von heute“, Merkmal Überprüfbarkeit:\nNennung: Wissenschaftliche Aussagen sind überprüfbar und wiederholbar.\nErläuterung: Aussage und Art der Gewinnung sind jederzeit nachvollziehbar und in der Realität wiederholbar.\nTransfer: Fragebogen und Interviewfragen der Shell-Studie sind veröffentlicht (Z. 13f., 16f.), die Studie wird regelmäßig wiederholt. Der Gang von Iris über die rote Ampel (Z. 4f.) lässt sich dagegen nicht wiederholen."
+   },
+   {
+    "type": "note",
+    "x": -935,
+    "y": 2370,
+    "w": 250,
+    "h": 340,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Ich kann zu einem Merkmal Nennung, Erläuterung und Transfer in der richtigen Reihenfolge schreiben."
+   },
+   {
+    "type": "note",
+    "x": -675,
+    "y": 2370,
+    "w": 250,
+    "h": 340,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Ich kann Alltagstheorie und Wissenschaft abwechselnd anwenden (Reißverschlussverfahren)."
+   },
+   {
+    "type": "note",
+    "x": -415,
+    "y": 2370,
+    "w": 250,
+    "h": 340,
+    "c": "gelb",
+    "fs": 21,
+    "text": "Ich erzähle den Fall nicht nach: Jede Zeilenangabe bekommt eine Deutung mit dem Fachbegriff."
+   },
+   {
+    "type": "text",
+    "x": 150,
+    "y": 1300,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "Teil 4: Formulierungshilfen und Checkliste"
+   },
+   {
+    "type": "text",
+    "x": 150,
+    "y": 1368,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "Fachaufsatz · Satzanfänge aus den Lösungsskizzen (LB 11.1 und 12.1) zum Einprägen, rechts die Kontrolle vor der Abgabe"
+   },
+   {
+    "type": "frame",
+    "x": 150,
+    "y": 1420,
+    "w": 1180,
+    "h": 1300,
+    "c": "gruen",
+    "text": "SATZANFÄNGE ZUM EINPRÄGEN"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 1490,
+    "w": 560,
+    "h": 400,
+    "c": "blau",
+    "fs": 21,
+    "text": "EINLEITUNG\n\n„Jeder Mensch ist … tätig, indem … Diesem Vorgehen stehen … gegenüber.“\n\n„Im Folgenden werden die Merkmale … an der Lernsituation verdeutlicht.“"
+   },
+   {
+    "type": "note",
+    "x": 750,
+    "y": 1490,
+    "w": 560,
+    "h": 400,
+    "c": "lila",
+    "fs": 21,
+    "text": "DEFINITION\n\n„Unter dem Begriff … versteht man …“\n\n„… bezeichnet dabei …“\n\n„… meint alle …“"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 1910,
+    "w": 560,
+    "h": 400,
+    "c": "gelb",
+    "fs": 21,
+    "text": "NENNUNG UND ERLÄUTERUNG\n\n„Ein Merkmal der … ist die … (= Nennung).“\n\n„Diese meint, dass … (= Erläuterung).“"
+   },
+   {
+    "type": "note",
+    "x": 750,
+    "y": 1910,
+    "w": 560,
+    "h": 400,
+    "c": "orange",
+    "fs": 21,
+    "text": "FALLBEZUG\n\n„Die Aussage …, dass … (Z. …), ist …, da …“\n\n„Im Gegensatz dazu …“ (Reißverschluss: zweite Seite)\n\n„Hierzu sind der Fallbeschreibung keinerlei Daten zu entnehmen.“"
+   },
+   {
+    "type": "note",
+    "x": 170,
+    "y": 2330,
+    "w": 560,
+    "h": 400,
+    "c": "tuerkis",
+    "fs": 21,
+    "text": "WEITERES MERKMAL / WECHSELWIRKUNG\n\n„Ein weiteres Merkmal ist, dass …“\n\n„Das letzte Merkmal besteht darin, dass …“\n\n„Ohne … hätte sich … nicht so entfalten können.“ (12. Klasse)"
+   },
+   {
+    "type": "note",
+    "x": 750,
+    "y": 2330,
+    "w": 560,
+    "h": 400,
+    "c": "rosa",
+    "fs": 21,
+    "text": "SCHLUSS\n\n„In den Ausführungen wurde deutlich, dass …“\n\nKurzer (!) Verweis auf die Gesamttheorie, Rückgriff auf die Aufgabenstellung, Ausblick."
+   },
+   {
+    "type": "frame",
+    "x": 1350,
+    "y": 1420,
+    "w": 800,
+    "h": 1300,
+    "c": "orange",
+    "text": "CHECKLISTE VOR DER ABGABE"
+   },
+   {
+    "type": "note",
+    "x": 1370,
+    "y": 1490,
+    "w": 760,
+    "h": 900,
+    "c": "gelb",
+    "fs": 24,
+    "text": "1. Einleitung knapp und allgemein, ohne Fall\n\n2. Lernbereich eingegrenzt, zentraler Begriff definiert\n\n3. Überleitung nennt Person, Frage und Vorgehen\n\n4. Jeder Fachbegriff ist definiert, bevor er angewendet wird\n\n5. Jeder Aspekt: Nennung, Erläuterung, Transfer\n\n6. Jede Anwendung hat Zeilenangabe und Deutung\n\n7. Transfer im Reißverschlussverfahren (abwechselnd)\n\n8. Schluss kurz, mit Rückgriff auf die Aufgabenstellung"
+   },
+   {
+    "type": "note",
+    "x": 1370,
+    "y": 2410,
+    "w": 760,
+    "h": 290,
+    "c": "tuerkis",
+    "fs": 23,
+    "text": "Lerntipp: Pro Lernbereich eine Karteikarte je Fachbegriff mit Definition, Theorie und einer Fallbezug-Frage."
+   }
+  ]
+ }
+]
