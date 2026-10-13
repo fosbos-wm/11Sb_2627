@@ -19,15 +19,16 @@ const nid=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36).slic
 
 /* ---------- Stammdaten ---------- */
 const FAECHER=[
- {k:"deutsch",l:"Deutsch",c:"#5aa5d6",bg:"#e3f0f9"},
- {k:"mathematik",l:"Mathematik",c:"#d99a4a",bg:"#fbefdb"},
- {k:"englisch",l:"Englisch",c:"#a88bd3",bg:"#eee7f7"},
- {k:"paedagogik",l:"Pä/Psy",c:"#6bbbae",bg:"#e0f2ee"},
- {k:"sozialwirtschaft",l:"SWR",c:"#cf7ba0",bg:"#f7e5ee"},
- {k:"geschichte",l:"Geschichte",c:"#c4a35a",bg:"#f6eed7"},
- {k:"chemie",l:"Chemie",c:"#7aa86b",bg:"#e6f1e0"},
- {k:"fpa",l:"fpA / Projekte",c:"#8f9bb3",bg:"#e9ecf3"},
- {k:"fachuebergreifend",l:"Fachübergreifend",c:"#9aa5a8",bg:"#eef1f2"}
+ {k:"deutsch",l:"Deutsch",c:"#2f6fb0",bg:"#e3f0f9"},
+ {k:"mathematik",l:"Mathematik",c:"#d17a1f",bg:"#fbefdb"},
+ {k:"englisch",l:"Englisch",c:"#8250b8",bg:"#eee7f7"},
+ {k:"paedagogik",l:"Pä/Psy",c:"#1f9a8a",bg:"#e0f2ee"},
+ {k:"sozialwirtschaft",l:"SWR",c:"#c2477f",bg:"#f7e5ee"},
+ {k:"geschichte",l:"Geschichte",c:"#9a7b2c",bg:"#f6eed7"},
+ {k:"chemie",l:"Chemie",c:"#5e9a38",bg:"#e6f1e0"},
+ {k:"fpa",l:"fpA / Projekte",c:"#5f6f91",bg:"#e9ecf3"},
+ {k:"foerder",l:"Förderunterricht",c:"#b5573c",bg:"#f7e6e0"},
+ {k:"fachuebergreifend",l:"Fachübergreifend",c:"#8a9499",bg:"#eef1f2"}
 ];
 const FACH=k=>FAECHER.find(f=>f.k===k)||FAECHER[FAECHER.length-1];
 const MTYP={checkout:{l:"Check-out",i:""},einfuehrung:{l:"Einführung",i:""},baustein:{l:"Kurs / Training",i:""},lernen:{l:"Lernbaustein",i:""},vertiefung:{l:"Vertiefung",i:""},projekt:{l:"Projekt",i:""}};
@@ -238,7 +239,7 @@ function langHtml(){
  if(!own.length&&!fr.length)return "";
  const row=(e,fremd)=>{const I=dauerInfo(e),von=e.woche||S.woche,bis=iso(addD(parse(von),7*(I.wochen-1)));
   const zeit=I.wochen>1?"KW "+kwNr(parse(von))+"–"+kwNr(parse(bis)):(e.startTag>=0?TAGE[e.startTag]+(I.code==="2tage"?" + "+TAGE[Math.min(4,e.startTag+1)]:""):"diese Woche");
-  return `<div class="wp-lang art${e.erledigt?" done":""}" style="${artStyle(e.mTyp)}" ${fremd?`title="Hier abhaken: Woche ab ${esc(wochenText(von))}"`:`onclick="wp.info('plan','${e.id}')"`}><b>${esc(e.titel)}</b><small>${esc(FACH(e.fach).l)} · ${esc(I.label)} · ${esc(zeit)}${fremd?" · läuft noch":""}</small>${e.erledigt?'<span class="wp-ok">✓</span>':""}</div>`};
+  return `<div class="wp-lang art${e.erledigt?" done":""}" style="--fc:${FACH(e.fach).c};${artStyle(e.mTyp)}" ${fremd?`title="Hier abhaken: Woche ab ${esc(wochenText(von))}"`:`onclick="wp.info('plan','${e.id}')"`}><b>${esc(e.titel)}</b><small>${esc(FACH(e.fach).l)} · ${esc(I.label)} · ${esc(zeit)}${fremd?" · läuft noch":""}</small>${e.erledigt?'<span class="wp-ok">✓</span>':""}</div>`};
  return `<div class="card wp-langbox"><h3>Länger laufende Lernbausteine</h3><div class="wp-langliste">${own.map(e=>row(e,false)).join("")}${fr.map(e=>row(e,true)).join("")}</div></div>`;
 }
 function fortschrittHtml(){

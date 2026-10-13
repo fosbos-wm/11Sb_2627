@@ -1408,6 +1408,9 @@ function personColorHue(uid){
  for(let i=0;i<str.length;i++){hash=(hash*31+str.charCodeAt(i))>>>0}
  return 80+(hash%180);
 }
+// Feste Fächerfarben (gleiche Palette wie im Wochenplan, dort als Rand)
+const FACH_FARBEN={"deutsch":"#2f6fb0","mathematik":"#d17a1f","englisch":"#8250b8","paedagogik":"#1f9a8a","sozialwirtschaft":"#c2477f","geschichte":"#9a7b2c","chemie":"#5e9a38","foerder":"#b5573c","fpa":"#5f6f91","fachuebergreifend":"#8a9499"};
+function fachFarbe(key){const c=FACH_FARBEN[key];if(!c)return personColor(key);const h=c.slice(1).match(/../g).map(v=>parseInt(v,16));return{bg:`rgba(${h},.10)`,text:c,border:c}}
 function personColor(uid){
  const hue=personColorHue(uid);
  return {bg:`hsl(${hue},55%,93%)`,text:`hsl(${hue},60%,30%)`,border:`hsl(${hue},45%,55%)`};
@@ -3948,7 +3951,7 @@ Object.assign(window,{pp12HinweiseSchalter,pp12KompassDrucken});
 async function renderFaecherUebersicht(){
  const kachel=f=>{
   const wochen=LEHRPLAN_WOCHEN[f.key]||[];
-  const c=personColor(f.key);
+  const c=fachFarbe(f.key);
   return`<button class="card tile"style="background:#fff;border-left:4px solid ${c.border};text-align:left"onclick="openFach('${f.key}')">
  <strong style="font-size:15px;color:${c.text}">${f.label}</strong>
  <small style="display:block;margin-top:6px">${f.key==="paedagogik"?"4 Lernbereiche · Projekt + Abschlussprüfungs-Training":wochen.length?`${wochen.length} Lehrplan-Wochen hinterlegt`:f.key==="foerder"?"Förderunterricht · Lehrplan-Zeitstrahl folgt":"Lehrplan-Zeitstrahl folgt"}</small>
@@ -11547,14 +11550,14 @@ window.qrLoeschen=qrLoeschen;window.qrErzeugen=qrErzeugen;window.qrHerunterladen
 function lernplaeneHTML(fortschritte){
  const kachel=f=>{
   const items=combinedTimeline(f.key).filter(t=>t.kind==="woche");
-  const c=personColor(f.key);
+  const c=fachFarbe(f.key);
   const heute=new Date().toISOString().slice(0,10);
   const fertig=items.filter(w=>fortschritte[w.id]?.abgeschlossen).length;
   const prozent=items.length?Math.round(fertig/items.length*100):0;
   const punkte=items.slice(0,60).map(w=>{const ok=fortschritte[w.id]?.abgeschlossen;const jetzt=!ok&&w.start<=heute&&(w.end||w.start)>=heute;
    return`<i title="${esc(w.titel||w.label||"Woche")}"style="width:9px;height:9px;border-radius:50%;display:inline-block;background:${ok?c.border:"#e2eaf0"};${jetzt?`outline:2px solid ${c.border};outline-offset:1px;`:""}"></i>`;}).join("");
   const sub=items.length?`${fertig} von ${items.length} Wochen geschafft`:(f.key==="paedagogik"?"4 Lernbereiche · Projekt + Prüfungstraining":"Lehrplan-Zeitstrahl folgt");
-  return`<button class="card tile"style="background:#fff;border-left:4px solid ${c.border};text-align:left"onclick="openFach('${f.key}')">
+  return`<button class="card tile"style="background:#fff;border:2px solid ${c.border};border-left-width:8px;text-align:left"onclick="openFach('${f.key}')">
  <strong style="font-size:15px;color:${c.text}">${esc(f.label)}</strong>
  <small style="display:block;margin-top:6px">${sub}</small>
  ${items.length?`<div style="height:6px;border-radius:3px;background:#e2eaf0;margin-top:8px;overflow:hidden"><div style="height:100%;width:${prozent}%;background:${c.border}"></div></div><div style="display:flex;flex-wrap:wrap;gap:3px;margin-top:8px">${punkte}</div>`:""}
@@ -21366,8 +21369,8 @@ let wpModul=null;
 async function renderWochenplanSeite(){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261014b";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261014b");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261014c";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261014c");
   return await wpModul.wpRender();
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }

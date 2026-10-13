@@ -170,3 +170,9 @@ body:has(.wp-armed) .wp-c{cursor:copy;background:#f4faf0}
 .wp-artform .kicker,.wp-artform label{color:#26323a}
 .wp-artform input,.wp-artform select,.wp-artform textarea{border-color:var(--ac);background:#fff}
 .wp-artform .primary{background:var(--ac);border-color:var(--ac);color:#fff}
+
+/* Farbsystem: Fläche = Art, Rand = Fach (gleiche Fächerfarben wie in den Lernplänen) */
+.wp-b.art,.wp-tile.art,.wp-lang.art{border:2px solid var(--fc,#8a9499)!important;box-shadow:inset 5px 0 0 var(--ac)}
+.wp-b.einf.art.entwurf{border:2px dashed var(--fc,#8a9499)!important}
+.wp-fl{background:#fff!important;border:2px solid var(--fc,#8a9499)!important;color:#26323a}
+.wp-notiz{border-left-color:var(--fc)}
