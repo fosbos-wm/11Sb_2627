@@ -1,0 +1,587 @@
+{
+ "titel": "Der Bayerische Bildungs- und Erziehungsplan",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "7",
+ "einleitung": "Geschätzte Dauer: 90 Minuten (gern in zwei Etappen).",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Bildung in der Kita: Digitale Medien – Umwelt – Gesundheit"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können erklären, was der **BayBEP** ist und wie seine Bildungsbereiche aufgebaut sind.\n- Sie können die Grundsätze früher **digitaler Bildung** und die Kinderrechte in der digitalen Welt erläutern.\n- Sie können die Entwicklung der **Umweltbildung** bis zur Bildung für nachhaltige Entwicklung beschreiben.\n- Sie können den **Gesundheitsbegriff der WHO** und den Ansatz der Suchtprävention erklären.\n- Sie können die drei Bereiche in einem Kita-Projekt verknüpfen."
+    },
+    {
+     "typ": "situation",
+     "label": "Einstieg: Ein Hochbeet für die Kita",
+     "text": "Die Vorschulkinder der Kita „Sonnenblume“ haben ein neues Hochbeet bekommen. Mia (5) fragt: „Warum wachsen Tomaten eigentlich rot?“ Jonas (6) will wissen, ob man aus dem Gemüse „echtes Essen“ machen kann. Die Erzieherin Frau Yilmaz möchte daraus ein Projekt **„Unser Gemüsegarten“** machen – und dabei die Bildungsbereiche **Umwelt**, **Gesundheit** und **Digitale Medien** verbinden.\nAm Ende dieses Kurses planen Sie dieses Projekt selbst."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Was ist der BayBEP?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der **Bayerische Bildungs- und Erziehungsplan (BayBEP)** beschreibt, was Kinder in Kindertageseinrichtungen (Krippe, Kindergarten) von der Geburt bis zur Einschulung lernen sollen und wie pädagogische Fachkräfte sie dabei begleiten. Herausgeber sind das Bayerische Familienministerium und das Staatsinstitut für Frühpädagogik und Medienkompetenz (IFP). Die aktuelle **11. Auflage (2024)** wurde vor allem im Kapitel „Digitale Medien und Technologien“ komplett neu geschrieben."
+    },
+    {
+     "typ": "text",
+     "text": "Der BayBEP ist kein Stundenplan, sondern ein **Orientierungsrahmen**: Er sieht das Kind als aktiven Gestalter seiner Bildung, der von Geburt an mit anderen lernt (**Ko-Konstruktion**). Bildung soll **ganzheitlich** und **alltagsintegriert** stattfinden – also beim Spielen, Essen, Draußensein und in Projekten."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Jeder Bildungsbereich im BayBEP ist gleich aufgebaut: **Leitgedanken** (Warum ist das Thema wichtig?) → **Bildungs- und Erziehungsziele** (Was soll das Kind können?) → **Anregungen und Beispiele zur Umsetzung** (Wie gelingt das im Kita-Alltag?)."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Digitale Medien und Technologien (Kap. 7.4 · „Sprach- und medienkompetente Kinder“)",
+       "text": "kreativ, kritisch und sicher · Gestalten statt Konsumieren · Informatik entdecken · Kinderrechte in der digitalen Welt",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Umwelt (Kap. 7.7 · „Fragende und forschende Kinder“)",
+       "text": "Natur mit allen Sinnen erfahren · praktischer Umweltschutz · Bildung für nachhaltige Entwicklung · Verantwortung & Zuversicht",
+       "farbe": "blau"
+      },
+      {
+       "label": "Gesundheit (Kap. 7.11 · „Starke Kinder“)",
+       "text": "Gesundheit = Wohlbefinden (WHO) · Ernährung, Bewegung, Hygiene · Umgang mit Stress · Suchtprävention durch Lebenskompetenzen",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Drei Bildungsbereiche im Überblick"
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "In welcher Reihenfolge ist jeder Bildungsbereich im BayBEP aufgebaut?",
+     "absaetze": [
+      "Leitgedanken",
+      "Bildungs- und Erziehungsziele",
+      "Anregungen und Beispiele zur Umsetzung"
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Der BayBEP ist ein verbindlicher Stundenplan für jeden Kita-Tag.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Bildung soll laut BayBEP alltagsintegriert stattfinden.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Die 11. Auflage erschien 2024.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Der BayBEP gilt für Kinder bis zum Ende der Grundschule.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Der BayBEP ist ein Orientierungsrahmen für Kinder in Tageseinrichtungen bis zur Einschulung."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Digitale Medien und Technologien",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Kinder wachsen heute in einer Welt auf, die von **Digitalität** geprägt ist: Smartphones, Sprachassistenten, Streaming und künstliche Intelligenz sind selbstverständlicher Teil des Alltags. Analoges und Digitales lassen sich kaum noch trennen. Studien zeigen, dass Kinder im Durchschnitt schon mit etwa einem Jahr zu Hause zum ersten Mal digitale Medien nutzen – meist **passiv-konsumierend** (Videos schauen, Musik hören)."
+    },
+    {
+     "typ": "text",
+     "text": "Der BayBEP bezeichnet **digitale Kompetenz** als **„vierte Kulturtechnik“** neben Lesen, Schreiben und Rechnen. Sie ist Voraussetzung dafür, gleichberechtigt an der Gesellschaft teilzuhaben. Leitziel ist ein **kreativer, kritischer und sicherer** – also mündiger – Umgang mit digitalen Medien."
+    },
+    {
+     "typ": "text",
+     "text": "Orientierung geben die **Kinderrechte**: Kinder haben in der digitalen Welt gleichermaßen ein Recht auf **Zugang und Teilhabe**, auf **Schutz und Sicherheit** sowie auf **Bildung und Befähigung**. Die Kita soll deshalb die Chancen nutzen und die Risiken „intelligent managen“."
+    },
+    {
+     "typ": "text",
+     "text": "**Grundsätze früher digitaler Bildung**"
+    },
+    {
+     "typ": "text",
+     "text": "- **Kein Medienkonsum:** Es geht ums Gestalten und Lernen – eigene Fotos, Hörspiele oder Trickfilme erstellen (Bildung **mit** Medien) und darüber sprechen, wie Medien wirken (Bildung **über** Medien).\n- **Informatik entdecken:** Wie funktioniert das? Wie nutze ich das? Wie wirkt das? Kinder lernen spielerisch, oft sogar ohne Computer, was Algorithmen, Programmieren oder Roboter sind.\n- **Primat der Pädagogik:** Nicht die Technik bestimmt die Pädagogik, sondern die Technik wird in den Dienst der Pädagogik gestellt.\n- **Gezielte Technikauswahl:** Bei Apps zählt Qualität, nicht Quantität.\n- **Intelligentes Risikomanagement:** klare Regeln für Mediennutzung und Fotos, Datenschutz, Schutzeinstellungen."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Die Kinder fotografieren mit dem Tablet Pflanzen im Garten, bestimmen sie mit einer Naturbestimmungs-App und gestalten daraus ein digitales Pflanzenbuch. Danach sprechen sie darüber, ob man allen Informationen aus dem Internet trauen kann."
+    },
+    {
+     "typ": "zitat",
+     "text": "Das Digitale ersetzt nicht das Analoge, sondern ergänzt, unterstützt und bereichert es.",
+     "quelle": "sinngemäß nach BayBEP, 11. Aufl. 2024, Kap. 7.4"
+    },
+    {
+     "typ": "merke",
+     "label": "Merksatz: Bereiche digitaler Kompetenz (BayBEP)",
+     "text": "**Bedienen und Anwenden** · **Suchen, Verarbeiten und Aufbewahren** · **Produzieren und Präsentieren** · **Problemlösen und Handeln** · **Kommunizieren und Kooperieren** · **Analysieren und Reflektieren** · **Schützen und sicher agieren**"
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Auf welche drei Gruppen von Kinderrechten stützt sich der BayBEP in der digitalen Welt? (mehrere richtig) Entscheide bei jeder Aussage, ob sie zutrifft.",
+     "aussagen": [
+      {
+       "text": "Zugang und Teilhabe",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Schutz und Sicherheit",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Bildung und Befähigung",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "unbegrenzte Bildschirmzeit",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "eigenes Smartphone ab drei Jahren",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Bildung **mit** oder **über** digitale Medien?",
+     "kategorien": [
+      {
+       "name": "Bildung mit Medien",
+       "items": [
+        "Kinder nehmen mit dem Tablet ein eigenes Hörspiel auf.",
+        "Kinder betrachten Insekten mit einem Digitalmikroskop."
+       ]
+      },
+      {
+       "name": "Bildung über Medien",
+       "items": [
+        "Kinder sprechen darüber, ob ein Foto echt oder bearbeitet ist.",
+        "Kinder überlegen, was eine Werbung von ihnen will."
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Ein Vater sagt beim Elternabend: „Tablets haben im Kindergarten nichts verloren – die Kinder hängen zu Hause schon genug vor dem Bildschirm!“ Nehmen Sie aus Sicht des BayBEP begründet Stellung.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "- Verständnis zeigen: Die Sorge um zu viel Bildschirmzeit ist berechtigt; Risiken nennt auch der BayBEP.\n- BayBEP: In der Kita geht es **nicht um Konsum**, sondern um aktives Gestalten und Reflektieren; digitale Kompetenz gilt als **vierte Kulturtechnik** und Voraussetzung für Teilhabe.\n- Kinderrecht auf Zugang und Teilhabe: Die Kita kann einer **digitalen Kluft** zwischen Kindern entgegenwirken.\n- Das Digitale **ergänzt** das Analoge, ersetzt es nicht; **Primat der Pädagogik**; klare Regeln und Risikomanagement.\n- Fazit: Tablets haben ihren Platz, wenn sie gezielt, begleitet und zeitlich begrenzt eingesetzt werden; Eltern einbeziehen."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Umwelt",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Weil sich die Umwelt weltweit verändert, wird ein **verantwortungsvoller Umgang mit der Natur und ihren Ressourcen** immer wichtiger. Umweltbildung berührt viele Lebensbereiche: Naturerlebnisse, Gesundheit, Werte, Freizeit und Konsum."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "1 Naturbegegnung",
+       "text": "Tiere, Pflanzen, Naturmaterialien erleben; Fantasie und Kreativität",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "↓",
+       "text": "→",
+       "farbe": "gelb"
+      },
+      {
+       "label": "2 Umweltschutz & Werthaltungen",
+       "text": "Was ist Umwelt für mich? Welche Rolle habe ich?",
+       "farbe": "blau"
+      },
+      {
+       "label": "↓",
+       "text": "→",
+       "farbe": "gelb"
+      },
+      {
+       "label": "3 Bildung für nachhaltige Entwicklung",
+       "text": "Ökologie, Ökonomie und Soziales zusammendenken",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Drei Stufen der Umweltbildung (laut BayBEP)"
+    },
+    {
+     "typ": "text",
+     "text": "Die dritte Stufe geht auf die **Agenda 21** (Konferenz der Vereinten Nationen, Rio de Janeiro 1992) zurück: Umweltbildung ist kein „Reparaturbetrieb“ mehr, sondern denkt nach vorne – damit auch künftige Generationen gut leben können."
+    },
+    {
+     "typ": "text",
+     "text": "Wichtig: Kinder tragen für Umweltprobleme kaum Verantwortung. Ihr Handlungsbereich ist ihr unmittelbarer Alltag (z. B. Müll trennen, Wasser sparen). Ziel ist, dass sie trotz Problemen **Zuversicht, Hoffnung und Durchhaltevermögen** entwickeln und erleben: „Ich kann etwas tun!“"
+    },
+    {
+     "typ": "merke",
+     "label": "Merksatz: Bildungs- und Erziehungsziel Umwelt",
+     "text": "Das Kind lernt, die Umwelt **mit allen Sinnen** zu erfahren und sie als **unersetzlich und verletzbar** wahrzunehmen. Es entwickelt ein **ökologisches Verantwortungsgefühl** und will die Umwelt – auch gemeinsam mit anderen – für nachfolgende Generationen schützen."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Im Projekt „Lebensraum Wasser“ untersuchen Kinder einen Bach, beobachten Wassertiere, experimentieren mit Wasser und überlegen, wo sie in der Kita Wasser sparen können."
+    },
+    {
+     "typ": "text",
+     "text": "Umweltbildung ist ein **Querschnittsbereich**: Sie überschneidet sich z. B. mit Werteorientierung, Naturwissenschaften, Ästhetik (Wahrnehmen mit allen Sinnen), Bewegung (Aufenthalte in der Natur) und Gesundheit."
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Bringen Sie die drei Stufen der Umweltbildung in die richtige Reihenfolge.",
+     "absaetze": [
+      "Naturbegegnung",
+      "Umweltschutz und Werthaltungen",
+      "Bildung für nachhaltige Entwicklung"
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie das Bildungsziel.",
+     "text": "Das Kind lernt, die Umwelt mit allen {{Sinnen}} zu erfahren und sie als unersetzlich und {{verletzbar}} wahrzunehmen. Es entwickelt ein {{ökologisches}} Verantwortungsgefühl.",
+     "woerter": [
+      "Sinnen",
+      "verletzbar",
+      "ökonomisches",
+      "ökologisches",
+      "politisches"
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Erklären Sie, warum der BayBEP großen Wert darauf legt, dass Kinder bei Umweltthemen Zuversicht und Hoffnung entwickeln. Beziehen Sie den Begriff Selbstwirksamkeit ein.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "- Kinder sind für Umweltprobleme kaum verantwortlich; Angst und Ohnmacht würden sie überfordern und lähmen.\n- Das Erleben „Ich kann etwas tun“ (Müll trennen, Wasser sparen) stärkt **Selbstwirksamkeit** und Motivation.\n- Nur wer Lösungsmöglichkeiten sieht, entwickelt dauerhaft umweltbewusstes Handeln und Durchhaltevermögen."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 4",
+   "titel": "Gesundheit",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der BayBEP stützt sich auf die Definition der **Weltgesundheitsorganisation (WHO)**: Gesundheit ist mehr als das Fehlen von Krankheit."
+    },
+    {
+     "typ": "zitat",
+     "text": "Gesundheit ist ein Zustand von körperlichem, seelischem, geistigem und sozialem Wohlbefinden.",
+     "quelle": "BayBEP, Kap. 7.11, nach der Definition der WHO"
+    },
+    {
+     "typ": "text",
+     "text": "Statt zu fragen „Was macht Kinder krank?“, fragt der BayBEP: **„Was lässt Kinder auch bei Belastungen gesund bleiben?“** Gesundheitsbildung soll Kindern helfen, **mehr Selbstbestimmung über ihre Gesundheit** zu gewinnen (Ottawa-Charta, 1986). Gewohnheiten für gesundes oder ungesundes Verhalten entstehen schon in den **ersten Lebensjahren** und bleiben oft lebenslang."
+    },
+    {
+     "typ": "text",
+     "text": "- **Eigenverantwortung für Körper und Gesundheit:** Übergewicht beginnt oft schon im Vorschulalter; Hauptgründe sind falsche Ernährung und Bewegungsmangel.\n- **Umgang mit Stress:** Auch Kinder reagieren auf Überforderung und Reizüberflutung mit Stress (z. B. Bauchweh, Schlafprobleme). Sichere **Bindungserfahrungen** stärken die Stressresistenz.\n- **Gesundheit und soziale Lage:** Kinder aus sozial benachteiligten Familien sind häufiger ungesund ernährt, übergewichtig und weniger aktiv.\n- **Suchtprävention:** Sie hat im Kindesalter wenig mit Suchtmitteln zu tun. Sie stärkt **Lebenskompetenzen** (WHO) wie Selbstwahrnehmung, Einfühlungsvermögen, Umgang mit Stress und Gefühlen, Kommunikation und Problemlösen."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Halt (Sicherheit)",
+       "text": "psychische Sicherheit · Freiraum und Beständigkeit",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Anerkennung (Beziehung)",
+       "text": "Anerkennung und Bestätigung · Freunde und eine verständnisvolle Umwelt · realistische Vorbilder",
+       "farbe": "blau"
+      },
+      {
+       "label": "Perspektive (Lebensweise)",
+       "text": "ausreichend Bewegung und gesunde Ernährung · Lebensziele",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Schutzfaktoren gegen Sucht (nach BayBEP)"
+    },
+    {
+     "typ": "merke",
+     "label": "Merksatz: Bildungs- und Erziehungsziel Gesundheit",
+     "text": "Das Kind lernt, **selbstbestimmt Verantwortung** für sein eigenes Wohlergehen, seinen Körper und seine Gesundheit zu übernehmen. Bereiche: Bewusstsein seiner selbst · Ernährung · Körperpflege und Hygiene · Körper- und Gesundheitsbewusstsein · Sexualität · Sicherheit und Schutz."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Kinder decken gemeinsam den Frühstückstisch, probieren unbekanntes Gemüse, sprechen über den Unterschied zwischen Hunger und Appetit und lernen eine kurze Entspannungsübung für Momente, in denen sie wütend sind."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Welche Bereiche umfasst Gesundheit nach der WHO? (mehrere richtig) Entscheide bei jeder Aussage, ob sie zutrifft.",
+     "aussagen": [
+      {
+       "text": "körperliches Wohlbefinden",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "seelisches Wohlbefinden",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "geistiges Wohlbefinden",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "soziales Wohlbefinden",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "finanzielles Wohlbefinden",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Suchtprävention im Kindergarten bedeutet vor allem Aufklärung über Drogen.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Starke Lebenskompetenzen senken das Risiko, später süchtig zu werden.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Gesundheitsgewohnheiten entstehen erst im Jugendalter.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Sichere Bindungserfahrungen stärken die Stressresistenz.",
+       "richtig": true,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Suchtprävention im Kindesalter ist „sucht(mittel)unspezifisch“: Sie stärkt Schutzfaktoren und Lebenskompetenzen."
+    },
+    {
+     "typ": "frei",
+     "frage": "Ordnen Sie zwei Schutzfaktoren aus dem Schaubild jeweils einer konkreten Situation im Kita-Alltag zu.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "- **Anerkennung und Bestätigung:** Die Erzieherin lobt ein Kind konkret für seine Ausdauer beim Turmbau.\n- **Psychische Sicherheit:** Eine feste Bezugsperson tröstet ein Kind beim Abschied von den Eltern.\n- **Bewegung:** tägliche Zeit im Garten.\n- **Realistische Vorbilder:** Fachkräfte essen selbst gesund und gehen bewusst mit dem Handy um."
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Transfer: Projekt „Unser Gemüsegarten“",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der BayBEP betont, dass die Bildungsbereiche **nicht isoliert** stehen. Umwelt und Gesundheit hängen eng zusammen (z. B. Gesundheitsgefahren durch die Umwelt, ökologischer Anbau von Lebensmitteln). Und im Gesundheitskapitel heißt es, Kinder sollen einen **gesunden und verantwortungsvollen Umgang mit Medien** lernen – etwa durch gemeinsam aufgestellte Medienregeln."
+    },
+    {
+     "typ": "situation",
+     "label": "Zurück zur Kita „Sonnenblume“",
+     "text": "Frau Yilmaz möchte das Projekt **„Unser Gemüsegarten“** planen und dabei die Bereiche Umwelt, Gesundheit und Digitale Medien verbinden."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Zu welchem Bildungsbereich passt die Projektaktivität am besten?",
+     "kategorien": [
+      {
+       "name": "Umwelt",
+       "items": [
+        "Regenwasser sammeln und damit das Beet gießen",
+        "einen Kompost anlegen"
+       ]
+      },
+      {
+       "name": "Gesundheit",
+       "items": [
+        "gemeinsam eine Gemüsesuppe kochen und probieren",
+        "über den Unterschied zwischen Hunger und Appetit sprechen"
+       ]
+      },
+      {
+       "name": "Digitale Medien",
+       "items": [
+        "das Pflanzenwachstum mit Tablet-Fotos dokumentieren",
+        "mit einer Kindersuchmaschine herausfinden, warum Tomaten rot werden"
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Planen Sie für Frau Yilmaz zu jedem der drei Bildungsbereiche eine konkrete Aktivität und begründen Sie sie mit einem Ziel aus dem BayBEP.",
+     "hinweis": "Schreiben Sie für jeden Bereich: Aktivität – Ziel laut BayBEP.",
+     "muster": "- **Umwelt:** Säen, Gießen, Wachstum beobachten; Regenwasser sammeln; Kompost → Natur mit allen Sinnen erfahren, Pflanzenwachstum beobachten, Wasserkreislauf/Müllvermeidung verstehen, Verantwortung übernehmen.\n- **Gesundheit:** Gemüse ernten, gemeinsam Salat/Suppe zubereiten → Essen als Genuss mit allen Sinnen, Wissen über gesunde Ernährung, Erfahrungen mit Zubereitung, Grundverständnis über die Produktion von Lebensmitteln.\n- **Digitale Medien:** Wachstum per Tablet-Fotos festhalten, Pflanzen per App bestimmen, digitales Gartentagebuch → Produzieren und Präsentieren, Suchen und Verarbeiten, Medien als Werkzeug; Recht am eigenen Bild beachten."
+    },
+    {
+     "typ": "frei",
+     "frage": "Beurteilen Sie, inwiefern ein solches Projekt dem Grundsatz einer ganzheitlichen, alltagsintegrierten Bildung entspricht. Gehen Sie auch auf mögliche Grenzen ein.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "**Pro:** knüpft an Kinderfragen an (Partizipation, Ko-Konstruktion); alltagsintegriert; mehrere Bildungsbereiche gleichzeitig; sinnliches, handelndes Lernen; Digitales ergänzt Analoges. **Grenzen:** Zeit, Personal, Ausstattung (Tablets, Gartenfläche); Datenschutz und Einwilligung der Eltern bei Fotos; Gefahr, dass Technik zum Selbstzweck wird; Witterung/Jahreszeit; unterschiedliche Voraussetzungen der Kinder. **Fazit** mit eigener begründeter Gewichtung."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Was ist der BayBEP?",
+     "optionen": [
+      "ein Orientierungsrahmen für Bildung in bayerischen Kitas bis zur Einschulung",
+      "der Lehrplan der bayerischen Grundschule",
+      "ein Gesetz zur Kita-Finanzierung",
+      "eine Elternzeitschrift"
+     ],
+     "richtig": 0
+    },
+    {
+     "typ": "mc",
+     "frage": "Als was bezeichnet der BayBEP digitale Kompetenz?",
+     "optionen": [
+      "als Aufgabe ausschließlich der Eltern",
+      "als vierte Kulturtechnik",
+      "als Freizeitbeschäftigung",
+      "als Risiko, das vermieden werden muss"
+     ],
+     "richtig": 1
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Laut BayBEP soll das Digitale das Analoge ersetzen.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Primat der Pädagogik heißt: Die Technik steht im Dienst der Pädagogik.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Bildung für nachhaltige Entwicklung geht auf die Agenda 21 (Rio 1992) zurück.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Gesundheit ist nach WHO das bloße Fehlen von Krankheit.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie das Ziel dem Bildungsbereich zu.",
+     "paare": [
+      [
+       "Umwelt als unersetzlich und verletzbar wahrnehmen",
+       "Umwelt"
+      ],
+      [
+       "selbstbestimmt Verantwortung für den eigenen Körper übernehmen",
+       "Gesundheit"
+      ],
+      [
+       "kreativ, kritisch und sicher mit Medien umgehen",
+       "Digitale Medien"
+      ]
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Worauf setzt Suchtprävention im Kindesalter laut BayBEP?",
+     "optionen": [
+      "auf Aufklärung über Drogen",
+      "auf die Stärkung von Lebenskompetenzen und Schutzfaktoren",
+      "auf Abschreckung durch Bilder",
+      "auf Verbote"
+     ],
+     "richtig": 1
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Reihenfolge der Stufen der Umweltbildung:",
+     "absaetze": [
+      "Naturbegegnung",
+      "Umweltschutz und Werthaltungen",
+      "Bildung für nachhaltige Entwicklung"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "Der **BayBEP** ist der Orientierungsrahmen für Bildung in bayerischen Kitas; jeder Bereich gliedert sich in Leitgedanken, Ziele und Umsetzungsbeispiele. **Digitale Medien (7.4):** kreativ, kritisch und sicher – Gestalten statt Konsumieren; das Digitale ergänzt das Analoge, ersetzt es aber nicht. **Umwelt (7.7):** Natur mit allen Sinnen erleben, Verantwortung übernehmen und Zuversicht entwickeln – im Sinne einer Bildung für nachhaltige Entwicklung. **Gesundheit (7.11):** Gesundheit als ganzheitliches Wohlbefinden (WHO); Lebenskompetenzen stärken schützt auch vor Sucht. Die Bereiche sind **eng vernetzt** und werden am besten gemeinsam in Projekten und im Alltag umgesetzt."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann erklären, was der BayBEP ist und wie seine Bildungsbereiche aufgebaut sind.\n- Ich kann die Grundsätze früher digitaler Bildung und die Kinderrechte in der digitalen Welt nennen.\n- Ich kann Bildung mit und über Medien unterscheiden.\n- Ich kann die drei Stufen der Umweltbildung beschreiben.\n- Ich kann den Gesundheitsbegriff der WHO und den Ansatz der Suchtprävention erklären.\n- Ich kann ein Kita-Projekt planen, das mehrere Bildungsbereiche verbindet."
+    },
+    {
+     "typ": "fussnote",
+     "text": "Quelle: Bayerisches Staatsministerium für Familie, Arbeit und Soziales & Staatsinstitut für Frühpädagogik und Medienkompetenz (IFP) (Hrsg.) (2024). Der Bayerische Bildungs- und Erziehungsplan für Kinder in Tageseinrichtungen bis zur Einschulung (11. Aufl.). Kap. 7.4, 7.7, 7.11. Online lesbar über www.ifp.bayern."
+    }
+   ]
+  }
+ ]
+}

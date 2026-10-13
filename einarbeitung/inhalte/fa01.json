@@ -1,0 +1,415 @@
+{
+ "titel": "Basiskurs Fachaufsatztraining: Der Aufbau eines Fachaufsatzes",
+ "modulart": "selbstlern",
+ "lb": 1,
+ "einleitung": "In diesem Basiskurs lernst du am Thema **Gegenstand der Psychologie**, wie ein Fachaufsatz aufgebaut ist. Du arbeitest selbstständig, Seite für Seite. Die Aufgaben geben dir sofort Rückmeldung. Plane etwa 45 bis 60 Minuten ein.",
+ "abschnitte": [
+  {
+   "kicker": "Basiskurs Fachaufsatztraining",
+   "titel": "Die Ausgangssituation",
+   "bloecke": [
+    {
+     "typ": "situation",
+     "label": "Situation",
+     "text": "Nicht nur der erste Schultag an der Beruflichen Oberschule bleibt Ihnen in Erinnerung. Zu Beginn des Schuljahres finden auch Teamentwicklungs- und/oder Wandertage statt.\n\nIhre Mitschülerin Avleen berichtet wie folgt vom Ausflug in den Kletterwald:"
+    },
+    {
+     "typ": "zitat",
+     "text": "„Ich freute mich riesig auf den Ausflug in den Kletterwald. Als wir ankamen, fragte mich ein Betreuer gleich, ob ich es kaum erwarten könne, da ich so lächeln würde. Mir war das gar nicht klar.“",
+     "quelle": "Avleen"
+    },
+    {
+     "typ": "situation",
+     "label": "Arbeitsauftrag",
+     "text": "Erläutern Sie den Gegenstand der Psychologie am Beispiel von Avleen."
+    },
+    {
+     "typ": "text",
+     "text": "Prüfungsaufgaben sind in der Sie-Form formuliert. Damit du dich daran gewöhnst, steht der Arbeitsauftrag hier genauso wie in der Prüfung."
+    },
+    {
+     "typ": "text",
+     "text": "Du sollst nicht nur sagen, **was** der Gegenstand der Psychologie ist, sondern ihn auch **am Beispiel** zeigen. Das Ergebnis ist ein Fachaufsatz: ein zusammenhängender Text, der in Absätzen aufgebaut ist."
+    },
+    {
+     "typ": "text",
+     "text": "**Das lernst du in diesem Kurs:**"
+    },
+    {
+     "typ": "text",
+     "text": "- aus welchen Bausteinen ein Fachaufsatz besteht und in welcher Reihenfolge sie stehen\n- Theorie und Anwendung zu unterscheiden\n- wozu Überleitungen da sind\n- einen eigenen Fachaufsatz mit Strukturhilfe zu schreiben"
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Ein Fachaufsatz besteht aus **Bausteinen**. Wer die Bausteine kennt, weiß bei jeder Aufgabe, was als Nächstes kommt."
+    }
+   ]
+  },
+  {
+   "kicker": "Erster Versuch",
+   "titel": "Aufgabe 1: Ordne die Absätze",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Unten stehen die Absätze eines Fachaufsatzes zum Arbeitsauftrag von der letzten Seite. Sie sind durcheinander geraten. Du kennst die Bausteine noch nicht? Das ist in Ordnung. Überlege, was ein Leser zuerst wissen muss und was auf wessen Ergebnis aufbaut."
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Bringe die Absätze in die richtige Reihenfolge, um einen strukturierten Fachaufsatz zu erhalten.",
+     "hinweis": "Verschiebe die Absätze mit den Pfeilen. Nach dem Überprüfen siehst du, welche Absätze schon richtig stehen.",
+     "absaetze": [
+      "Im Folgenden soll der Gegenstand der Psychologie am Beispiel von Avleen erläutert werden.",
+      "Die Psychologie als Wissenschaft heißt aus dem Griechischen übersetzt „die Lehre von der menschlichen Seele“. Konkret beschäftigt sich die Psychologie mit dem Erleben und Verhalten des Menschen.",
+      "Erleben meint alle innerpsychischen Vorgänge. Dieses Erleben ist nicht von außen beobachtbar. Es lässt sich nur durch Selbstbeobachtung erschließen. Zum Erleben gehören zum Beispiel menschliche Emotionen und Denkprozesse.",
+      "Im Beispiel wird das Erleben von Avleen deutlich durch die Freude, die sie formuliert. Diese Freude ist eine Emotion. Zunächst ist nur Avleen in der Lage, diese Emotion präzise zu benennen, da sie diese an sich wahrnimmt.",
+      "Das menschliche Erleben äußert sich im Verhalten.",
+      "Mit Verhalten werden alle Aktivitäten des Menschen beschrieben, die von außen wahrnehmbar sind. Dazu gehören zum Beispiel Körperbewegungen sowie Mimik und Gestik.",
+      "Avleens Verhalten zeigt sich in ihrem Lächeln. Der Betreuer merkt durch seine Beobachtung von Avleen sofort, welche Emotion sie in sich trägt."
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Auflösung",
+   "titel": "So ist ein Fachaufsatz aufgebaut",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Hier siehst du denselben Fachaufsatz in der richtigen Reihenfolge. Die farbige Überschrift nennt den **Baustein**, den der Absatz erfüllt. Die Farbe zeigt, zu welchem Gegenstandsbereich er gehört."
+    },
+    {
+     "typ": "aufbau",
+     "legende": [
+      {
+       "name": "Einleitung und Überleitungen",
+       "farbe": "pfirsich"
+      },
+      {
+       "name": "Erleben",
+       "farbe": "blau"
+      },
+      {
+       "name": "Verhalten",
+       "farbe": "gelb"
+      }
+     ],
+     "zeilen": [
+      {
+       "label": "Themafrage aufgreifen",
+       "farbe": "pfirsich",
+       "text": "Im Folgenden soll der Gegenstand der Psychologie am Beispiel von Avleen erläutert werden."
+      },
+      {
+       "label": "Definition des Begriffs „Psychologie“",
+       "farbe": "pfirsich",
+       "text": "Die Psychologie als Wissenschaft heißt aus dem Griechischen übersetzt „die Lehre von der menschlichen Seele“. Konkret beschäftigt sich die Psychologie mit dem Erleben und Verhalten des Menschen."
+      },
+      {
+       "label": "Theorieaspekte zum Erleben",
+       "farbe": "blau",
+       "text": "Erleben meint alle innerpsychischen Vorgänge. Dieses Erleben ist nicht von außen beobachtbar. Es lässt sich nur durch Selbstbeobachtung erschließen. Zum Erleben gehören zum Beispiel menschliche Emotionen und Denkprozesse."
+      },
+      {
+       "label": "Anwendung und Rückbezug zum Erleben",
+       "farbe": "blau",
+       "text": "Im Beispiel wird das Erleben von Avleen deutlich durch die Freude, die sie formuliert. Diese Freude ist eine Emotion. Zunächst ist nur Avleen in der Lage, diese Emotion präzise zu benennen, da sie diese an sich wahrnimmt."
+      },
+      {
+       "label": "Überleitung zum Verhalten",
+       "farbe": "pfirsich",
+       "text": "Das menschliche Erleben äußert sich im Verhalten."
+      },
+      {
+       "label": "Theorieaspekte zum Verhalten",
+       "farbe": "gelb",
+       "text": "Mit Verhalten werden alle Aktivitäten des Menschen beschrieben, die von außen wahrnehmbar sind. Dazu gehören zum Beispiel Körperbewegungen sowie Mimik und Gestik."
+      },
+      {
+       "label": "Anwendung und Rückbezug zum Verhalten",
+       "farbe": "gelb",
+       "text": "Avleens Verhalten zeigt sich in ihrem Lächeln. Der Betreuer merkt durch seine Beobachtung von Avleen sofort, welche Emotion sie in sich trägt."
+      }
+     ]
+    },
+    {
+     "typ": "text",
+     "text": "**Drei Dinge fallen auf:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Der Aufsatz **beginnt** mit der Themafrage und einer Definition. So weiß der Leser, worum es geht.\n- Zu **jedem Gegenstandsbereich** (Erleben, Verhalten) gehört ein Paar: erst die **Theorie**, dann die **Anwendung mit Rückbezug** auf das Beispiel.\n- **Überleitungen** verbinden die Bereiche, damit ein zusammenhängender Gedankengang entsteht."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Aufbau: Themafrage aufgreifen → Definition → für jeden Bereich: Theorie → Anwendung und Rückbezug → Überleitung zum nächsten Bereich."
+    }
+   ]
+  },
+  {
+   "kicker": "Üben",
+   "titel": "Aufgabe 2: Bausteine erkennen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Jetzt bestimmst du selbst, welche Aufgabe ein Satz im Fachaufsatz hat. Die Sätze stammen aus dem Aufsatz zu Avleen."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Welchem Baustein gehört der Satz an?",
+     "hinweis": "Ordne jede Aussage dem passenden Baustein zu.",
+     "kategorien": [
+      {
+       "name": "Themafrage",
+       "items": [
+        "Im Folgenden soll der Gegenstand der Psychologie am Beispiel von Avleen erläutert werden."
+       ]
+      },
+      {
+       "name": "Definition",
+       "items": [
+        "Die Psychologie als Wissenschaft heißt aus dem Griechischen übersetzt „die Lehre von der menschlichen Seele“."
+       ]
+      },
+      {
+       "name": "Theorie",
+       "items": [
+        "Erleben meint alle innerpsychischen Vorgänge.",
+        "Mit Verhalten werden alle Aktivitäten des Menschen beschrieben, die von außen wahrnehmbar sind."
+       ]
+      },
+      {
+       "name": "Anwendung",
+       "items": [
+        "Avleens Verhalten zeigt sich in ihrem Lächeln.",
+        "Zunächst ist nur Avleen in der Lage, diese Emotion präzise zu benennen, da sie diese an sich wahrnimmt."
+       ]
+      },
+      {
+       "name": "Überleitung",
+       "items": [
+        "Das menschliche Erleben äußert sich im Verhalten."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Vertiefen",
+   "titel": "Theorie und Anwendung unterscheiden",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Die meisten Punkte gehen in Prüfungen verloren, weil Theorie und Anwendung vermischt werden. Dabei sind die Unterschiede klar:"
+    },
+    {
+     "typ": "text",
+     "text": "- **Theorie:** allgemein, gilt für alle Menschen, nutzt Fachbegriffe, nennt keine Namen aus der Situation.\n- **Anwendung mit Rückbezug:** konkret, bezieht sich auf die Person in der Situation und zeigt, **wo im Beispiel** der Fachbegriff erkennbar wird."
+    },
+    {
+     "typ": "merke",
+     "label": "Formulierungen für den Rückbezug",
+     "text": "„Im Beispiel wird … deutlich durch …“ · „… zeigt sich in …“ · „In der Situation wird … darin deutlich, dass …“"
+    },
+    {
+     "typ": "text",
+     "text": "**Woran erkennst du, dass eine Anwendung gefragt ist?** Achte auf die Wörter „am Beispiel“. Sie stehen in vielen Aufgabenstellungen:"
+    },
+    {
+     "typ": "text",
+     "text": "- „Erläutern Sie den Gegenstand der Psychologie **am Beispiel von** Avleen.“\n- „Zeigen Sie das Erleben als Gegenstandsbereich der Psychologie **am Beispiel einer Schülerin** … auf.“\n- „Verdeutlichen Sie den Gegenstand der Psychologie **am Beispiel eines Schülers** …“"
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Beurteile die Aussagen zum Aufbau eines Fachaufsatzes.",
+     "aussagen": [
+      {
+       "text": "Ein Theorieabsatz gilt allgemein und kommt ohne den Namen der Person aus der Situation aus.",
+       "richtig": true,
+       "erklaerung": "Die Theorie ist unabhängig vom Beispiel und gilt für alle Menschen."
+      },
+      {
+       "text": "Steht in der Aufgabe „am Beispiel von Avleen“, genügt es, die Theorie vollständig zu schreiben.",
+       "richtig": false,
+       "erklaerung": "„Am Beispiel“ verlangt zusätzlich die Anwendung mit Rückbezug auf die Situation."
+      },
+      {
+       "text": "Beim Rückbezug zeige ich, woran man den Fachbegriff im Beispiel erkennt.",
+       "richtig": true,
+       "erklaerung": "Der Rückbezug verknüpft Theorie und Beispiel, zum Beispiel: „Im Beispiel wird das Erleben deutlich durch die Freude.“"
+      },
+      {
+       "text": "Die Anwendung wiederholt einfach die Definition mit anderen Worten.",
+       "richtig": false,
+       "erklaerung": "Die Anwendung bleibt konkret: Sie nennt, was die Person in der Situation erlebt oder tut."
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche Aufgabe hat eine Überleitung im Fachaufsatz?",
+     "optionen": [
+      "Sie fasst den gesamten Aufsatz noch einmal zusammen.",
+      "Sie verbindet den bisherigen Gegenstandsbereich mit dem nächsten und macht den roten Faden sichtbar.",
+      "Sie ersetzt die Theorie, wenn man den Fachbegriff nicht mehr weiß.",
+      "Sie liefert ein weiteres Beispiel aus dem Alltag."
+     ],
+     "richtig": 1,
+     "erklaerung": "Der Satz „Das menschliche Erleben äußert sich im Verhalten“ führt vom Erleben zum Verhalten. So liest sich der Text als zusammenhängender Gedankengang und nicht wie eine Aufzählung."
+    }
+   ]
+  },
+  {
+   "kicker": "Fachsprache",
+   "titel": "Theorie sicher beherrschen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Für den Theorie-Baustein brauchst du die Fachbegriffe **vollständig und fachsprachlich**. Teste dich:"
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordne jedem Begriff die passende Erklärung zu.",
+     "paare": [
+      [
+       "Psychologie",
+       "Wissenschaft, die sich mit dem Erleben und Verhalten des Menschen beschäftigt"
+      ],
+      [
+       "Erleben",
+       "alle innerpsychischen Vorgänge; von außen nicht beobachtbar, nur durch Selbstbeobachtung erschließbar"
+      ],
+      [
+       "Verhalten",
+       "alle von außen wahrnehmbaren Aktivitäten, zum Beispiel Körperbewegungen, Mimik und Gestik"
+      ]
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänze den Anwendungsabsatz zum Erleben. Achte darauf, wie der Rückbezug zur Theorie hergestellt wird.",
+     "text": "Im Beispiel wird das {{Erleben}} von Avleen deutlich durch die {{Freude}}, die sie formuliert. Diese Freude ist eine {{Emotion}}. Zunächst ist {{nur Avleen}} in der Lage, diese Emotion präzise zu benennen, da sie diese an sich {{wahrnimmt}}.",
+     "woerter": [
+      "Erleben",
+      "Freude",
+      "Emotion",
+      "nur Avleen",
+      "wahrnimmt",
+      "Verhalten",
+      "der Betreuer",
+      "beobachtet"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Selbst schreiben",
+   "titel": "Einen Baustein selbst schreiben",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Du schreibst jetzt zum ersten Mal selbst: ein Baustein-Paar aus **Theorie** und **Anwendung mit Rückbezug**."
+    },
+    {
+     "typ": "situation",
+     "label": "Aufgabenstellung",
+     "text": "Zeigen Sie das **ERLEBEN** als Gegenstandsbereich der Psychologie am Beispiel einer Schülerin auf, die im Klassenzimmer voller Vorfreude auf die erste Unterrichtsstunde in Pädagogik/Psychologie wartet und sich dabei an den Infoabend zurückerinnert, an dem bereits gesagt wurde, dass man durch den Unterricht auch viele Erkenntnisse über sich selbst erhalten würde."
+    },
+    {
+     "typ": "frei",
+     "frage": "Formulieren Sie das ERLEBEN als Gegenstandsbereich der Psychologie aus. Achten Sie darauf, zunächst den Theorieaspekt vollständig und fachsprachlich wiederzugeben. Im zweiten Schritt erfolgt die Anwendung mit Rückbezug zum Theorieaspekt.",
+     "hinweis": "Schreibe in ganzen Sätzen, erst die Theorie, dann die Anwendung. Danach siehst du eine Musterlösung und prüfst dich mit acht Fragen.",
+     "muster": "Mit dem Erleben sind alle innerpsychischen Vorgänge des Menschen gemeint. Das Erleben ist von außen nicht beobachtbar. Der Mensch kann nur durch Selbstbeobachtung auf sein Erleben schließen. Zum Erleben gehören zum Beispiel Denkprozesse, Emotionen und Erinnerungen. Hier im Beispiel sind es zum einen Emotionen, die das Erleben deutlich machen. Es handelt sich um Vorfreude, die zunächst nur der Mensch in dieser Situation an sich wahrnehmen kann. Gleiches gilt für die hier erwähnte Erinnerung an den schulischen Infoabend. Diese Erinnerung kann sonst keine außenstehende Person wahrnehmen.",
+     "kriterien": [
+      "Ich habe den **Gegenstandsbereich** genannt: das Erleben (alle innerpsychischen Vorgänge).",
+      "Ich habe gesagt, **wo** Erleben stattfindet: im Inneren des Menschen (innerpsychisch).",
+      "Ich habe erklärt, **wie beobachtbar** das Erleben ist: von außen nicht beobachtbar.",
+      "Ich habe gesagt, **wer** das Erleben erschließen kann: nur die Person selbst durch Selbstbeobachtung.",
+      "Ich habe ein **Beispiel** für Erleben genannt (zum Beispiel Emotionen oder Denkprozesse).",
+      "Ich habe ein **weiteres Beispiel** für Erleben genannt (zum Beispiel Erinnerungen).",
+      "Ich habe ein **Anwendungsbeispiel** für die Emotion gefunden: die Vorfreude der Schülerin.",
+      "Ich habe ein **Anwendungsbeispiel** für die Erinnerung gefunden: der Infoabend."
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Der ganze Fachaufsatz",
+   "titel": "Aufgabe 3: Fachaufsatz mit Strukturstreifen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Jetzt kommt alles zusammen. Du schreibst einen vollständigen Fachaufsatz. Die farbigen Streifen zeigen dir den Aufbau, genau wie auf der Auflösungsseite. Die Farben bedeuten: **Blau** = Erleben, **Gelb** = Verhalten, **Pfirsich** = Einleitung und Überleitung."
+    },
+    {
+     "typ": "strukturstreifen",
+     "titel": "Formulieren Sie einen Fachaufsatz zum Gegenstand der Psychologie aus.",
+     "aufgabe": "Verdeutlichen Sie den Gegenstand der Psychologie am Beispiel eines Schülers, der sich abends auf seine erste Kurzarbeit an der FOS/BOS vorbereitet.",
+     "felder": [
+      {
+       "titel": "Aufgreifen der Themafrage",
+       "farbe": "pfirsich",
+       "hilfe": "Greife die Aufgabenstellung in einem Satz mit eigenen Worten auf: Was soll woran gezeigt werden?",
+       "muster": "Im Folgenden soll der Gegenstand der Psychologie am Beispiel eines Schülers verdeutlicht werden, der sich abends auf seine erste Kurzarbeit an der FOS/BOS vorbereitet."
+      },
+      {
+       "titel": "Definition des Begriffs „Psychologie“",
+       "farbe": "pfirsich",
+       "hilfe": "Gib die Herkunft des Wortes an (Griechisch) und nenne, womit sich die Psychologie konkret beschäftigt.",
+       "muster": "Die Psychologie als Wissenschaft heißt aus dem Griechischen übersetzt „die Lehre von der menschlichen Seele“. Konkret beschäftigt sich die Psychologie mit dem Erleben und Verhalten des Menschen."
+      },
+      {
+       "titel": "Theorieaspekte zum Erleben",
+       "farbe": "blau",
+       "hilfe": "Was ist Erleben? Wo findet es statt? Wie beobachtbar ist es, und wer kann es erschließen? Nenne Beispiele.",
+       "muster": "Erleben meint alle innerpsychischen Vorgänge eines Menschen. Es ist von außen nicht beobachtbar und lässt sich nur durch Selbstbeobachtung erschließen. Zum Erleben gehören zum Beispiel Emotionen, Denkprozesse und Erinnerungen."
+      },
+      {
+       "titel": "Anwendung und Rückbezug zum Erleben",
+       "farbe": "blau",
+       "hilfe": "Welche inneren Vorgänge hat der Schüler? Benenne sie mit Fachbegriff und knüpfe an die Theorie an („Im Beispiel wird … deutlich durch …“).",
+       "muster": "Im Beispiel wird das Erleben des Schülers deutlich durch seine Nervosität. Diese Emotion nimmt zunächst nur er selbst an sich wahr. Auch seine Gedanken, ob er genug gelernt hat, sind innere Vorgänge, die niemand von außen beobachten kann."
+      },
+      {
+       "titel": "Überleitung zum Verhalten",
+       "farbe": "pfirsich",
+       "hilfe": "Ein Satz, der vom Erleben zum Verhalten führt: Wie zeigt sich das Innere nach außen?",
+       "muster": "Das Erleben des Schülers bleibt jedoch nicht verborgen, denn es äußert sich in seinem Verhalten."
+      },
+      {
+       "titel": "Theorieaspekte zum Verhalten",
+       "farbe": "gelb",
+       "hilfe": "Was ist Verhalten? Wie beobachtbar ist es? Nenne Beispiele.",
+       "muster": "Mit Verhalten werden alle Aktivitäten des Menschen beschrieben, die von außen wahrnehmbar sind. Dazu gehören zum Beispiel Körperbewegungen sowie Mimik und Gestik."
+      },
+      {
+       "titel": "Anwendung und Rückbezug zum Verhalten",
+       "farbe": "gelb",
+       "hilfe": "Welche von außen wahrnehmbaren Aktivitäten zeigt der Schüler? Wer könnte sie beobachten, und was erkennt er daran?",
+       "muster": "Das Verhalten des Schülers zeigt sich darin, dass er unruhig mit dem Stift klopft und beim Lesen seiner Unterlagen die Stirn runzelt. Eine Person, die ihn beobachtet, bemerkt dadurch sofort, dass er angespannt ist."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Erkläre es in eigenen Worten",
+   "bloecke": [
+    {
+     "typ": "frei",
+     "frage": "Erkläre in eigenen Worten: Warum folgt im Fachaufsatz auf jeden Theorieaspekt ein Absatz mit Anwendung und Rückbezug? Und wozu braucht der Text Überleitungen?",
+     "hinweis": "Schreibe drei bis fünf Sätze.",
+     "muster": "Mit dem Theorieaspekt zeige ich, dass ich den Fachbegriff vollständig und fachsprachlich verstanden habe. Mit der Anwendung und dem Rückbezug beweise ich, dass ich ihn auf den konkreten Fall übertragen kann. Genau das verlangt die Formulierung „am Beispiel“ in der Aufgabenstellung. Die Überleitungen verbinden die Gegenstandsbereiche zu einem zusammenhängenden Gedankengang, damit der Aufsatz nicht wie eine bloße Aufzählung wirkt."
+    },
+    {
+     "typ": "merke",
+     "label": "Das nimmst du mit",
+     "text": "Jeder Fachaufsatz folgt demselben Grundgerüst: **Themafrage aufgreifen → Definition → Theorie → Anwendung und Rückbezug → Überleitung** (und das für jeden Teilaspekt der Aufgabe). Im Abschlussprüfungs-Training wendest du dieses Gerüst auf weitere Themen an."
+    }
+   ]
+  }
+ ]
+}

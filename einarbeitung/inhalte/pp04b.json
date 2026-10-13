@@ -1,0 +1,464 @@
+{
+ "titel": "Erziehung als Austausch von Informationen",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "2",
+ "einleitung": "Geschätzte Dauer: 45 Minuten.",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Soziale Kommunikation und symbolischer Interaktionismus"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können den Begriff **soziale Kommunikation** definieren und von sozialer Interaktion abgrenzen.\n- Sie können erklären, warum jedes Verhalten in einer Beziehung etwas mitteilt.\n- Sie können den **symbolischen Interaktionismus** (Mead, Mollenhauer) mit eigenen Worten beschreiben.\n- Sie können Erziehungssituationen als wechselseitigen Interpretationsprozess analysieren."
+    },
+    {
+     "typ": "situation",
+     "label": "Einstieg: Ein Blick sagt mehr …",
+     "text": "Der dreijährige Ben trommelt mit dem Kochlöffel auf einen Topf. Seine Mutter dreht sich um und schaut ihn mit gerunzelter Stirn an – sie sagt kein Wort. Ben legt den Kochlöffel weg. Die Mutter dreht sich wieder zum Herd.\n**Überlegen Sie:** Die Mutter hat nichts gesagt. Hat sie Ben trotzdem etwas mitgeteilt? Woher „wusste“ Ben, was gemeint war?"
+    },
+    {
+     "typ": "frei",
+     "frage": "Notieren Sie Ihre Vermutung.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Ja: Der Blick (Mimik) ist eine Botschaft – „Das will ich nicht!“. Ben versteht sie, weil er die Bedeutung dieses Gesichtsausdrucks schon kennt. Beide teilen also dieselbe Bedeutung eines Zeichens (Symbols). Auch das Wegdrehen sagt etwas: „Jetzt ist es wieder gut.“"
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Soziale Kommunikation",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wer einen anderen beeinflusst, teilt ihm gleichzeitig auch etwas mit. Bei jeder sozialen Interaktion werden **Informationen vermittelt, aufgenommen und ausgetauscht** – das nennt man **soziale Kommunikation**."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Soziale Kommunikation ist derjenige Teil einer sozialen Interaktion, in welchem Informationen zwischen zwei oder mehreren Personen vermittelt, aufgenommen und ausgetauscht werden."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Soziale Interaktion (der Oberbegriff)",
+       "text": "wechselseitiges Verhalten · gegenseitige Beeinflussung und Steuerung",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Soziale Kommunikation (ein Teil davon)",
+       "text": "Informationen werden vermittelt, aufgenommen und ausgetauscht",
+       "farbe": "blau"
+      }
+     ],
+     "beschriftung": "Schaubild: Interaktion und Kommunikation"
+    },
+    {
+     "typ": "text",
+     "text": "Erziehung ist deshalb immer auch soziale Kommunikation: **Jedes Verhalten in einer Beziehung sagt etwas aus** – selbst Schweigen oder Wegschauen teilt dem anderen etwas mit."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Ein Jugendlicher kommt zu spät nach Hause. Der Vater sagt nichts und schaut demonstrativ auf die Uhr. Auch ohne Worte ist die Botschaft klar."
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie den Merksatz.",
+     "text": "Soziale Kommunikation ist derjenige {{Teil}} einer sozialen Interaktion, in welchem {{Informationen}} zwischen zwei oder mehreren Personen vermittelt, aufgenommen und {{ausgetauscht}} werden.",
+     "woerter": [
+      "Teil",
+      "Informationen",
+      "verschwiegen",
+      "ausgetauscht",
+      "bewertet"
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Soziale Kommunikation ist ein Teil der sozialen Interaktion.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Wenn jemand schweigt, teilt er nichts mit.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Wegschauen kann eine Botschaft sein.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Kommunikation findet nur mit Worten statt.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "In einer Beziehung sagt jedes Verhalten etwas aus – auch Schweigen und Wegschauen."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Erziehung als kommunikatives Handeln",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der Erziehungswissenschaftler **Klaus Mollenhauer** betont, dass Erziehung im Kern Kommunikation ist. Ziel ist es, eine Form des Miteinander-Redens und -Umgehens aufzubauen, in der der zu Erziehende Neues lernen kann."
+    },
+    {
+     "typ": "zitat",
+     "text": "Erziehung muss verstanden werden als ein kommunikatives Handeln, dessen Ziel darin liegt, eine Kommunikationsstruktur zu etablieren, die den Erwerb von Fähigkeiten […] ermöglicht.",
+     "quelle": "Mollenhauer, 1974, S. 67 f."
+    },
+    {
+     "typ": "merke",
+     "label": "Begriff erklärt: Kommunikationsstruktur",
+     "text": "Damit ist gemeint, wie in einer Beziehung kommuniziert wird: Wer darf sprechen? Wird zugehört? Werden Entscheidungen erklärt? Eine gute Kommunikationsstruktur macht Lernen möglich."
+    },
+    {
+     "typ": "mc",
+     "frage": "Was ist nach Mollenhauer das Ziel erzieherischen Handelns?",
+     "optionen": [
+      "dafür zu sorgen, dass Kinder nicht widersprechen",
+      "Kommunikation durch klare Befehle zu ersetzen",
+      "eine Kommunikationsstruktur aufzubauen, die den Erwerb von Fähigkeiten ermöglicht",
+      "möglichst viel Wissen in kurzer Zeit zu vermitteln"
+     ],
+     "richtig": 2
+    },
+    {
+     "typ": "frei",
+     "frage": "Beschreiben Sie, wie eine Erzieherin im Kindergarten eine „gute Kommunikationsstruktur“ schaffen kann. Nennen Sie zwei konkrete Beispiele.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "- Morgenkreis, in dem jedes Kind zu Wort kommt und die anderen zuhören (Gesprächsregeln).\n- Regeln gemeinsam besprechen und begründen statt nur vorgeben.\n- Auf Augenhöhe gehen, nachfragen, aktiv zuhören.\n- Kinderfragen ernst nehmen und gemeinsam nach Antworten suchen."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Symbole und Bedeutungen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Manche Erziehungswissenschaftler wie Klaus Mollenhauer sehen Erziehung als **symbolischen Interaktionismus**: Menschen kommunizieren über **Symbole**, die für alle Beteiligten **die gleiche Bedeutung** haben."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Sprache",
+       "text": "Wörter, Sätze",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Mimik",
+       "text": "Gesichtsausdruck",
+       "farbe": "blau"
+      },
+      {
+       "label": "Gestik",
+       "text": "Handbewegungen, Zeichen",
+       "farbe": "gruen"
+      },
+      {
+       "label": "Körperkontakt",
+       "text": "Umarmung, Hand auf der Schulter",
+       "farbe": "gelb"
+      },
+      {
+       "label": "Musik",
+       "text": "Lied, Melodie",
+       "farbe": "rot"
+      }
+     ],
+     "beschriftung": "Schaubild: Arten von Symbolen"
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Das Wort „Hund“ steht für eine bestimmte Tierart, ein erhobener Zeigefinger („Fingerzeig“) für eine Belehrung."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Ein grimmiges Gesicht des Erziehers zeigt, dass er ein Verhalten nicht gutheißt. Ein nach oben gerichteter Daumen bedeutet „toll, gut gemacht“."
+    },
+    {
+     "typ": "merke",
+     "label": "Wichtig",
+     "text": "Ein Symbol funktioniert nur, wenn beide seine Bedeutung kennen. Kleine Kinder müssen die Bedeutung vieler Symbole erst lernen – auch das ist Teil der Erziehung."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie jedes Beispiel der Art des Symbols zu.",
+     "paare": [
+      [
+       "„Super gemacht!“",
+       "Sprache"
+      ],
+      [
+       "gerunzelte Stirn",
+       "Mimik"
+      ],
+      [
+       "Daumen nach oben",
+       "Gestik"
+      ],
+      [
+       "tröstende Umarmung",
+       "Körperkontakt"
+      ],
+      [
+       "das Aufräumlied im Kindergarten",
+       "Musik"
+      ]
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Wann kann ein Symbol in der Kommunikation „funktionieren“?",
+     "optionen": [
+      "nur wenn es gesprochen wird",
+      "wenn der Erzieher es erfunden hat",
+      "wenn es für alle Beteiligten die gleiche Bedeutung hat",
+      "wenn es möglichst laut ist"
+     ],
+     "richtig": 2
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 4",
+   "titel": "Der wechselseitige Interpretationsprozess",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Nach dem Sozialpsychologen **George H. Mead** ist soziales Handeln ein Prozess, bei dem Menschen **über Symbole wechselseitig Bedeutung austauschen**."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Eine Mutter macht ein grimmiges Gesicht, als ihr Kind auf den Kochtopf schlägt. Das Kind versteht und legt den Kochlöffel weg. Dreht sich die Mutter wieder weg, zeigt sie damit: Jetzt ist alles wieder in Ordnung."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Erzieher",
+       "text": "sendet Symbol und deutet die Reaktion",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "↓",
+       "text": "⇄ Symbole werden gedeutet",
+       "farbe": "gelb"
+      },
+      {
+       "label": "zu Erziehender",
+       "text": "deutet das Symbol und reagiert",
+       "farbe": "blau"
+      }
+     ],
+     "beschriftung": "Schaubild: Deuten und Verstehen"
+    },
+    {
+     "typ": "text",
+     "text": "So entsteht zwischen Erzieher und zu Erziehendem ein **ständiger wechselseitiger Interpretationsprozess**: Jede Handlung muss vom anderen gedeutet und verstanden werden."
+    },
+    {
+     "typ": "zitat",
+     "text": "Erziehung ist symbolische Interaktion der Handelnden, ein ‚symbolisch vermitteltes kommunikatives Handeln.‘",
+     "quelle": "Mollenhauer, 1974, S. 168"
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Bringen Sie den Interpretationsprozess aus dem Beispiel in die richtige Reihenfolge.",
+     "absaetze": [
+      "Das Kind schlägt auf den Kochtopf.",
+      "Die Mutter macht ein grimmiges Gesicht.",
+      "Das Kind deutet den Gesichtsausdruck als „Hör auf!“.",
+      "Das Kind legt den Kochlöffel weg.",
+      "Die Mutter dreht sich wieder weg – „alles in Ordnung“."
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Erklären Sie, was passieren kann, wenn ein Symbol vom anderen falsch gedeutet wird. Finden Sie ein Beispiel aus dem Erziehungsalltag.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Wird ein Symbol unterschiedlich verstanden, entstehen Missverständnisse und die Erziehung verfehlt ihr Ziel. Beispiel: Ein Erzieher lächelt, während er ein Kind ermahnt – das Kind deutet das Lächeln als „ist nicht so ernst gemeint“ und macht weiter. Oder: In manchen Kulturen bedeuten Gesten etwas anderes (z. B. Blickkontakt als Respekt oder als Respektlosigkeit). Erzieher müssen deshalb auf eindeutige Signale achten und prüfen, wie ihre Botschaft ankommt."
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Übung & Wiederholung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wiederholen Sie die Fachbegriffe mit den Lernkarten."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Lernkarten: Begriff und Erklärung",
+     "paare": [
+      [
+       "soziale Kommunikation",
+       "Teil der sozialen Interaktion, in dem Informationen vermittelt, aufgenommen und ausgetauscht werden."
+      ],
+      [
+       "Symbol",
+       "Zeichen (Sprache, Mimik, Gestik, Körperkontakt, Musik), das für alle Beteiligten die gleiche Bedeutung hat."
+      ],
+      [
+       "symbolischer Interaktionismus",
+       "Menschen tauschen über Symbole wechselseitig Bedeutungen aus (Mead, Mollenhauer)."
+      ],
+      [
+       "Interpretationsprozess",
+       "Jede Handlung muss vom anderen gedeutet und verstanden werden."
+      ],
+      [
+       "Mollenhauer",
+       "Erziehung als kommunikatives, symbolisch vermitteltes Handeln."
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Analysieren Sie die Einstiegssituation (Ben und der Kochtopf) mit den Begriffen soziale Kommunikation, Symbol und Interpretationsprozess.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Zwischen Mutter und Ben findet **soziale Kommunikation** statt: Informationen werden ausgetauscht, obwohl kein Wort fällt. Die gerunzelte Stirn ist ein **Symbol** (Mimik), dessen Bedeutung („Hör auf damit!“) beide kennen. Ben deutet das Symbol richtig und legt den Löffel weg; die Mutter deutet sein Verhalten als Einlenken und signalisiert durch Wegdrehen, dass alles wieder gut ist. Es läuft also ein **wechselseitiger Interpretationsprozess** ab."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Soziale Kommunikation ist …",
+     "optionen": [
+      "das Gegenteil von sozialer Interaktion.",
+      "nur das gesprochene Wort.",
+      "eine Form der Bestrafung.",
+      "ein Teil der sozialen Interaktion."
+     ],
+     "richtig": 3
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Auch Schweigen teilt etwas mit.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Symbole haben für jeden Menschen automatisch eine andere Bedeutung.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Nach Mead tauschen Menschen über Symbole wechselseitig Bedeutungen aus.",
+       "richtig": true,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie zu.",
+     "paare": [
+      [
+       "Erziehung als „symbolisch vermitteltes kommunikatives Handeln“",
+       "Mollenhauer"
+      ],
+      [
+       "soziales Handeln als Austausch von Bedeutungen über Symbole",
+       "Mead"
+      ]
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Welche Beispiele sind Symbole im Sinne des symbolischen Interaktionismus? (mehrere richtig) Entscheide bei jeder Aussage, ob sie zutrifft.",
+     "aussagen": [
+      {
+       "text": "ein Lächeln",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "das Wort „Hund“",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "ein erhobener Daumen",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "der Herzschlag eines Menschen",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Zwischen Erzieher und zu Erziehendem entsteht ein ständiger wechselseitiger {{Interpretationsprozess}}: Jede Handlung muss vom anderen gedeutet und verstanden werden.",
+     "woerter": [
+      "Interpretationsprozess"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "Bei jeder sozialen Interaktion werden Informationen ausgetauscht: **soziale Kommunikation**. In einer Beziehung **sagt jedes Verhalten etwas aus** – auch Schweigen oder Wegschauen. Nach **Mollenhauer** ist Erziehung kommunikatives Handeln, das eine lernförderliche Kommunikationsstruktur aufbauen will. Menschen kommunizieren über **Symbole** (Sprache, Mimik, Gestik, Körperkontakt, Musik) mit gemeinsamer Bedeutung – **symbolischer Interaktionismus** (Mead). Erziehung ist ein ständiger **wechselseitiger Interpretationsprozess**."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann soziale Kommunikation definieren und von sozialer Interaktion abgrenzen.\n- Ich kann erklären, warum auch nonverbales Verhalten kommuniziert.\n- Ich kann den symbolischen Interaktionismus an einem Beispiel erklären.\n- Ich kann die Aussagen von Mollenhauer und Mead zuordnen."
+    },
+    {
+     "typ": "text",
+     "text": "**Weiterdenken:** Wozu treten Erzieher überhaupt mit Kindern in Beziehung und tauschen Informationen aus? Um ein **Ziel** zu erreichen. Darum geht es im nächsten Kurs: Erziehung als beabsichtigte Lernhilfe."
+    }
+   ]
+  }
+ ]
+}

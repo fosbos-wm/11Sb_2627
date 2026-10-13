@@ -1,0 +1,503 @@
+{
+ "titel": "Gegenstand der Pädagogik: Erziehungspraxis, Erziehungswissenschaft und die fünf Gegenstandsbereiche",
+ "modulart": "selbstlern",
+ "lb": 1,
+ "nr": "2",
+ "einleitung": "Im ersten Teil hast du den Gegenstand der Psychologie kennengelernt. Jetzt geht es um die Pädagogik: Was bedeutet das Wort, womit beschäftigt sie sich, und welche fünf Bereiche gehören zu ihrem Gegenstand?",
+ "abschnitte": [
+  {
+   "titel": "Die Pädagogik: Wo stehen wir?",
+   "bloecke": [
+    {
+     "typ": "situation",
+     "label": "Lernsituation",
+     "text": "In deiner Klasse wurde diskutiert, was Pädagogik und Psychologie sind. Die Psychologie hast du dir schon erarbeitet. Nun willst du wissen, was die Pädagogik ausmacht und wie sie sich von der Psychologie unterscheidet."
+    },
+    {
+     "typ": "text",
+     "text": "Zu Beginn zählt deine eigene Vorstellung. Du darfst falsch liegen. Am Ende des Kurses schaust du noch einmal auf deine erste Einschätzung zurück."
+    }
+   ]
+  },
+  {
+   "titel": "Was denken andere über die Pädagogik?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Lies die drei Aussagen aus der Klassendiskussion. Welcher würdest du zustimmen, welcher eher nicht?"
+    },
+    {
+     "typ": "notizen",
+     "beschriftung": "Aussagen aus der Klassendiskussion",
+     "items": [
+      "„Ich denke, Pädagogik hat mit Erziehung zu tun, sei es zu Hause, im Kindergarten oder in der Schule. Pädagogik und Erziehung sind für mich so gut wie das Gleiche.“",
+      "„Pädagogik bedeutet für mich die Erziehung von Kindern, denn Kinder brauchen die Hilfe ihrer Eltern, damit sie erwachsen werden und in dieser Gesellschaft bestehen können.“",
+      "„Ich glaube, Pädagogik beschäftigt sich mit der Bildung. Dabei denke ich an Eltern und Lehrer, die einen bilden wollen. Deshalb nennt man sie auch Pädagogen.“"
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Erste Einschätzung: Entscheide, ob die Aussage richtig oder falsch ist.",
+     "aussagen": [
+      {
+       "text": "Pädagogik und Erziehung bedeuten genau dasselbe.",
+       "richtig": false,
+       "erklaerung": "Pädagogik ist der Oberbegriff für die Erziehungspraxis und die Erziehungswissenschaft. Das schaust du dir gleich genauer an."
+      },
+      {
+       "text": "Erziehung findet nur in der Familie statt.",
+       "richtig": false,
+       "erklaerung": "Erziehung geschieht auch in Kita, Schule, Wohngruppen, Jugendzentren und Sportvereinen."
+      },
+      {
+       "text": "Die Pädagogik beschäftigt sich mit Erziehung und mit allem, was dabei wichtig ist.",
+       "richtig": true,
+       "erklaerung": "So lässt sich Pädagogik zusammenfassen. Was dazugehört, siehst du in den fünf Gegenstandsbereichen."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "2. Was ist Pädagogik?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Pädagogik beschäftigt sich mit Erziehung und mit allem, was dabei wichtig ist. Das Wort kann **zwei Seiten** meinen: das konkrete **Handeln im Alltag** und das **wissenschaftliche Nachdenken** darüber."
+    },
+    {
+     "typ": "text",
+     "text": "**Erziehungspraxis:** Sie meint das tatsächliche erzieherische Handeln, zum Beispiel wenn Eltern Regeln erklären, Lehrkräfte Rückmeldung geben oder Trainerinnen Verantwortung übertragen. Dahinter steht jeweils eine erzieherische Absicht."
+    },
+    {
+     "typ": "text",
+     "text": "**Erziehungswissenschaft:** Sie untersucht, wie Erziehung abläuft und wirkt. Sie fragt nach Zusammenhängen, begründet Theorien und hilft dabei, Erziehung besser zu verstehen und zu gestalten."
+    },
+    {
+     "typ": "schema",
+     "links": "Erziehungspraxis",
+     "rechts": "Erziehungswissenschaft",
+     "mitte": [
+      "Pädagogik",
+      "(Oberbegriff für beides)"
+     ],
+     "beschriftung": "Abbildung: Pädagogik ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Pädagogik ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.**"
+    }
+   ]
+  },
+  {
+   "titel": "Praxis oder Wissenschaft?",
+   "bloecke": [
+    {
+     "typ": "zuordnung",
+     "titel": "Ordne zu.",
+     "paare": [
+      [
+       "Erziehungspraxis",
+       "das tatsächliche erzieherische Handeln mit einer erzieherischen Absicht"
+      ],
+      [
+       "Erziehungswissenschaft",
+       "untersucht, wie Erziehung abläuft und wirkt, und begründet Theorien"
+      ],
+      [
+       "Pädagogik",
+       "Oberbegriff für Erziehungspraxis und Erziehungswissenschaft"
+      ]
+     ]
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Was gehört wohin?",
+     "kategorien": [
+      {
+       "name": "Erziehungspraxis",
+       "items": [
+        "Eltern erklären ihrem Kind eine Regel",
+        "Eine Lehrkraft gibt Rückmeldung zu einer Arbeit",
+        "Eine Trainerin überträgt einem Jugendlichen Verantwortung"
+       ]
+      },
+      {
+       "name": "Erziehungswissenschaft",
+       "items": [
+        "Ein Forschungsteam untersucht, wie Erziehung wirkt",
+        "Eine Theorie begründet, warum Vertrauen das Lernen erleichtert",
+        "Eine Studie vergleicht verschiedene Vorstellungen von Erziehung"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Grundbegriffe festigen",
+   "bloecke": [
+    {
+     "typ": "lueckentext",
+     "titel": "Lückentext: Pädagogik",
+     "text": "Pädagogik ist der {{Oberbegriff}} für {{Erziehungspraxis}} und {{Erziehungswissenschaft}}. Hinter dem erzieherischen Handeln steht jeweils eine erzieherische {{Absicht}}.",
+     "woerter": [
+      "Oberbegriff",
+      "Unterbegriff",
+      "Erziehungspraxis",
+      "Erziehungswissenschaft",
+      "Absicht",
+      "Zufall",
+      "Psychologie",
+      "Experiment"
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche Aussage beschreibt die Erziehungswissenschaft am besten?",
+     "optionen": [
+      "Sie meint das tatsächliche erzieherische Handeln im Alltag.",
+      "Sie untersucht, wie Erziehung abläuft und wirkt, und begründet Theorien.",
+      "Sie beschreibt, wie Menschen erleben und sich verhalten."
+     ],
+     "richtig": 1,
+     "erklaerung": "Die Erziehungswissenschaft ist das wissenschaftliche Nachdenken über Erziehung. Das Handeln selbst ist die Erziehungspraxis, Erleben und Verhalten sind Gegenstand der Psychologie."
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "2.2 Die fünf Gegenstandsbereiche der Pädagogik",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Erziehungswissenschaftlerinnen und Erziehungswissenschaftler beschäftigen sich mit **fünf Bereichen**. Zusammen helfen sie, die **Erziehungswirklichkeit** aus verschiedenen Blickwinkeln zu verstehen."
+    },
+    {
+     "typ": "text",
+     "text": "- **1. Vorstellungen über Erziehung**\n- **2. Beziehung zwischen Erzieher und zu Erziehendem**\n- **3. Ziele und Handlungen der Erziehung**\n- **4. Voraussetzungen und Bedingungen der Erziehung**\n- **5. Einrichtungen der Erziehung**"
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Die Pädagogik beschäftigt sich mit der Erziehungswirklichkeit.** Die fünf Bereiche sind verschiedene Blickwinkel auf dieselbe Wirklichkeit."
+    },
+    {
+     "typ": "text",
+     "text": "Die Bereiche 2, 3 und 5 vertiefst du in eigenen Einheiten später noch genauer."
+    }
+   ]
+  },
+  {
+   "titel": "Bereich 1: Vorstellungen über Erziehung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Menschen haben unterschiedliche Vorstellungen davon, was Erziehung leisten soll. Diese Vorstellungen hängen oft vom **Menschenbild** ab, also davon, wie man Entwicklung und Freiheit eines Menschen einschätzt."
+    },
+    {
+     "typ": "text",
+     "text": "- **Eine Position:** Kinder sollen durch Erziehung gezielt angeleitet und „geformt“ werden, damit sie mit sich selbst und dem Zusammenleben in der Gesellschaft gut zurechtkommen.\n- **Die Gegenposition:** Menschen bringen eigene Wachstumsmöglichkeiten mit und entfalten sich am besten, wenn Erwachsene möglichst wenig eingreifen."
+    },
+    {
+     "typ": "text",
+     "text": "Die Pädagogik vergleicht solche Positionen und fragt, welche Folgen sie für den Umgang mit jungen Menschen haben."
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche Aussage passt zur Gegenposition („Erwachsene greifen möglichst wenig ein“)?",
+     "optionen": [
+      "Kinder müssen gezielt angeleitet und geformt werden.",
+      "Menschen bringen eigene Wachstumsmöglichkeiten mit und entfalten sich von selbst am besten.",
+      "Erziehung ist für die Entwicklung unwichtig, weil alles festgelegt ist."
+     ],
+     "richtig": 1,
+     "erklaerung": "Die Gegenposition betont die eigenen Wachstumsmöglichkeiten des Menschen. Erwachsene sollen deshalb möglichst wenig eingreifen."
+    }
+   ]
+  },
+  {
+   "titel": "Bereich 2: Beziehung zwischen Erzieher und zu Erziehendem",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Erziehung geschieht immer **zwischen Menschen** und ist deshalb **keine Einbahnstraße**. Erwachsene beeinflussen junge Menschen, reagieren aber auch auf deren Verhalten, Wünsche und Widerstand."
+    },
+    {
+     "typ": "text",
+     "text": "Vertrauen, Respekt, Nähe, klare Grenzen und Autorität prägen diese Beziehung. Wenn eine Schülerin einer Lehrkraft vertraut, nimmt sie Kritik oder Unterstützung oft eher an. Bei Angst oder Abwertung kann Lernen dagegen schwerer werden."
+    },
+    {
+     "typ": "text",
+     "text": "Die Pädagogik untersucht, welche Beziehungen Entwicklung fördern und wie Macht fair und verantwortungsvoll eingesetzt werden kann."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Entscheide, ob die Aussage richtig oder falsch ist.",
+     "aussagen": [
+      {
+       "text": "Erziehung ist eine Einbahnstraße: Nur die Erwachsenen beeinflussen die jungen Menschen.",
+       "richtig": false,
+       "erklaerung": "Erwachsene reagieren auch auf das Verhalten, die Wünsche und den Widerstand der jungen Menschen."
+      },
+      {
+       "text": "Wenn eine Schülerin ihrer Lehrkraft vertraut, nimmt sie Kritik oft eher an.",
+       "richtig": true,
+       "erklaerung": "Vertrauen erleichtert es, Kritik und Unterstützung anzunehmen."
+      },
+      {
+       "text": "Bei Angst oder Abwertung kann Lernen schwerer werden.",
+       "richtig": true,
+       "erklaerung": "Eine belastende Beziehung erschwert das Lernen."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Bereich 3: Ziele und Handlungen der Erziehung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Erziehung verfolgt **immer Ziele**, auch wenn sie nicht ausdrücklich ausgesprochen werden. Ziele können zum Beispiel Selbstständigkeit, Verantwortungsbewusstsein, Teamfähigkeit oder ein respektvoller Umgang mit anderen sein. Die Pädagogik macht solche Ziele sichtbar und fragt, ob sie gut begründet und gerecht sind."
+    },
+    {
+     "typ": "text",
+     "text": "Aus den Zielen ergeben sich konkrete **Handlungen**: Unterrichtsmethoden, Gespräche, Regeln, Lob, Konsequenzen oder Projekte."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Eine Maßnahme ist nicht schon gut, weil sie bequem ist. Sie sollte zum **Ziel**, zur **Person** und zur **Situation** passen."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Welche Handlung passt zu welchem Ziel?",
+     "paare": [
+      [
+       "Selbstständigkeit",
+       "Jugendliche planen eine Aufgabe selbst"
+      ],
+      [
+       "Teamfähigkeit",
+       "Eine Gruppe arbeitet gemeinsam an einem Projekt"
+      ],
+      [
+       "Verantwortungsbewusstsein",
+       "Eine Trainerin überträgt einem Jugendlichen eine Aufgabe"
+      ],
+      [
+       "Respektvoller Umgang",
+       "Klasse und Lehrkraft vereinbaren Gesprächsregeln"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Bereich 4: Voraussetzungen und Bedingungen der Erziehung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Dieser Bereich fragt zuerst, **wie erziehbar und lernfähig** Menschen sind: Ist Entwicklung weitgehend genetisch festgelegt oder wird sie stark durch Erfahrungen beeinflusst? Heute geht man meist von einem **Zusammenspiel von Anlagen und Umwelt** aus."
+    },
+    {
+     "typ": "text",
+     "text": "Außerdem fragt die Pädagogik, **warum Menschen überhaupt Erziehung brauchen**: Im Gegensatz zu vielen Tieren sind sie weniger durch feste Instinkte geleitet und müssen Sprache, Regeln und Zusammenleben lernen."
+    },
+    {
+     "typ": "text",
+     "text": "Erziehung findet nie losgelöst statt, sondern unter konkreten **Bedingungen** wie der Familiensituation, den finanziellen Möglichkeiten, der Kultur oder gesellschaftlichen Erwartungen. Ein Jugendlicher mit ruhigem Lernplatz und Unterstützung zu Hause erlebt andere Chancen als jemand, der viel Verantwortung oder Stress tragen muss."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Voraussetzungen oder Bedingungen?",
+     "kategorien": [
+      {
+       "name": "Voraussetzungen (Mensch)",
+       "items": [
+        "Menschen sind erziehbar und lernfähig",
+        "Anlagen und Umwelt wirken zusammen",
+        "Menschen müssen Sprache und Regeln lernen, weil sie weniger durch Instinkte geleitet sind"
+       ]
+      },
+      {
+       "name": "Bedingungen (Umfeld)",
+       "items": [
+        "Ein ruhiger Lernplatz und Unterstützung zu Hause",
+        "Die finanziellen Möglichkeiten der Familie",
+        "Kultur und gesellschaftliche Erwartungen"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Bereich 5: Einrichtungen der Erziehung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Erziehung passiert in bestimmten **Einrichtungen** und nicht nur in der Familie. Dazu gehören zum Beispiel Kindertagesstätten, Schulen, Wohngruppen oder Heime, Jugendzentren, Sportvereine und Angebote der Erwachsenenbildung. Jede Einrichtung hat eigene Aufgaben, Regeln und Zielgruppen."
+    },
+    {
+     "typ": "text",
+     "text": "Die Pädagogik untersucht, wie diese Einrichtungen auf Kinder, Schülerinnen und Schüler, Jugendliche, Menschen mit Behinderung oder Erwachsene einwirken und wie sie gut zusammenarbeiten können."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Welcher Schwerpunkt passt zu welcher Einrichtung?",
+     "paare": [
+      [
+       "Kindertagesstätte",
+       "frühe Entwicklung steht im Mittelpunkt"
+      ],
+      [
+       "Schule",
+       "verbindet Bildung mit Erziehung"
+      ],
+      [
+       "Jugendarbeit",
+       "schafft Räume für Mitbestimmung und Freizeit"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Die fünf Bereiche im Überblick",
+   "bloecke": [
+    {
+     "typ": "zuordnung",
+     "titel": "Welcher Gegenstandsbereich ist gemeint?",
+     "paare": [
+      [
+       "Es wird verglichen, ob Kinder gezielt angeleitet oder möglichst frei gelassen werden sollen.",
+       "Vorstellungen über Erziehung"
+      ],
+      [
+       "Eine Schülerin vertraut ihrer Lehrkraft und nimmt Kritik an.",
+       "Beziehung zwischen Erzieher und zu Erziehendem"
+      ],
+      [
+       "Eine Lehrkraft will Selbstständigkeit fördern und lässt Aufgaben selbst planen.",
+       "Ziele und Handlungen der Erziehung"
+      ],
+      [
+       "Ein Jugendlicher hat keinen ruhigen Lernplatz zu Hause.",
+       "Voraussetzungen und Bedingungen der Erziehung"
+      ],
+      [
+       "Eine Kita legt Wert auf frühe Entwicklung.",
+       "Einrichtungen der Erziehung"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "Pädagogik und Psychologie im Vergleich",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Die **Psychologie** fragt: Wie erleben und verhalten sich Menschen, und warum? Die **Pädagogik** fragt: Wie können Erziehende die Entwicklung junger Menschen fördern, und welche Ziele und Bedingungen spielen dabei eine Rolle?"
+    },
+    {
+     "typ": "schema",
+     "links": "Psychologie",
+     "rechts": "Pädagogik",
+     "mitte": [
+      "Wechselwirkung:",
+      "Wissen und Handeln"
+     ],
+     "beschriftung": "Abbildung: Die Psychologie liefert Wissen über Erleben und Verhalten, die Pädagogik nutzt es für das erzieherische Handeln."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Psychologie** untersucht Erleben und Verhalten. **Pädagogik** beschäftigt sich mit Erziehung und allem, was dabei wichtig ist."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Welche Fragestellung gehört wohin?",
+     "kategorien": [
+      {
+       "name": "Psychologie",
+       "items": [
+        "Warum zieht sich ein Kind bei Kritik zurück?",
+        "Wie erlebt ein Kind Angst vor einer neuen Situation?"
+       ]
+      },
+      {
+       "name": "Pädagogik",
+       "items": [
+        "Wie kann die Fachkraft das Kind ermutigen?",
+        "Welche Ziele sollen in der Kita verfolgt werden?"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Praxisbeispiel",
+   "bloecke": [
+    {
+     "typ": "kprim",
+     "stamm": "In der Kita beobachtet eine Erzieherin, dass der vierjährige Leon beim Basteln nicht mehr mitmacht und still am Rand sitzt. Sie setzt sich zu ihm, fragt nach und zeigt ihm, wie er mit der Schere beginnen kann. Entscheide, ob die Aussagen richtig oder falsch sind.",
+     "aussagen": [
+      {
+       "text": "Dass Leon still am Rand sitzt, ist Verhalten.",
+       "richtig": true,
+       "erklaerung": "Es ist von außen beobachtbar."
+      },
+      {
+       "text": "Was Leon dabei fühlt, ist für die Erzieherin direkt sichtbar.",
+       "richtig": false,
+       "erklaerung": "Erleben ist nicht direkt zu beobachten. Die Erzieherin kann nur nachfragen oder vorsichtig darauf schließen."
+      },
+      {
+       "text": "Wenn die Erzieherin Leon bewusst unterstützt, handelt sie erzieherisch.",
+       "richtig": true,
+       "erklaerung": "Sie handelt mit einer erzieherischen Absicht. Das ist Erziehungspraxis."
+      },
+      {
+       "text": "Dass die Kita Leon beim Basteln begleitet, gehört zum Bereich „Einrichtungen der Erziehung“.",
+       "richtig": true,
+       "erklaerung": "Die Kita ist eine Einrichtung der Erziehung mit eigenen Aufgaben, Regeln und Zielgruppen."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Zurück zur ersten Einschätzung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Schau noch einmal auf die drei Aussagen vom Anfang. Würdest du jetzt anders urteilen?"
+    },
+    {
+     "typ": "frei",
+     "frage": "Wähle eine der drei Aussagen aus der Klassendiskussion und stelle sie richtig oder ergänze sie. Verwende die Begriffe Pädagogik, Erziehungspraxis und Erziehungswissenschaft.",
+     "hinweis": "Schreibe 3 bis 5 Sätze. Die Musterlösung erscheint danach zum Vergleichen.",
+     "muster": "Zum Beispiel zur Aussage „Pädagogik und Erziehung sind das Gleiche“: Pädagogik ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft. Die Erziehungspraxis ist das tatsächliche erzieherische Handeln, zum Beispiel wenn Eltern Regeln erklären oder Lehrkräfte Rückmeldung geben. Die Erziehungswissenschaft untersucht, wie Erziehung abläuft und wirkt, und begründet Theorien. Pädagogik meint also mehr als das einzelne Erziehen: Sie beschäftigt sich mit Erziehung und mit allem, was dabei wichtig ist."
+    }
+   ]
+  },
+  {
+   "titel": "Prüfungsfrage",
+   "bloecke": [
+    {
+     "typ": "frei",
+     "frage": "Grenzen Sie die Erziehungswissenschaft von der Erziehungspraxis ab und erläutern Sie an einem Beispiel aus Ihrem Praktikum, wie sich beide Bereiche gegenseitig beeinflussen. Ordnen Sie Ihr Beispiel einem der fünf Gegenstandsbereiche der Pädagogik zu.",
+     "hinweis": "Schreibe in ganzen Sätzen. Nimm ein eigenes Beispiel aus dem Praktikum.",
+     "muster": "Die Erziehungspraxis ist das tatsächliche erzieherische Handeln mit einer erzieherischen Absicht, zum Beispiel in der Kita. Die Erziehungswissenschaft untersucht, wie Erziehung abläuft und wirkt, und begründet Theorien. Beide beeinflussen sich: Eine Theorie über Vertrauen in der Beziehung kann eine Fachkraft anleiten, Kindern behutsam zu begegnen. Umgekehrt zeigen Erfahrungen aus der Praxis, welche Fragen die Wissenschaft untersuchen sollte. Beispiel: Eine Erzieherin setzt sich zu einem Kind, das beim Basteln nicht mehr mitmacht, und fragt nach. Das gehört zum Bereich „Beziehung zwischen Erzieher und zu Erziehendem“, weil Vertrauen und ein respektvoller Umgang den Kontakt prägen. Außerdem verfolgt sie ein Ziel (Teilhabe), das zu den „Zielen und Handlungen der Erziehung“ zählt."
+    }
+   ]
+  }
+ ]
+}

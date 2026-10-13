@@ -1,0 +1,479 @@
+{
+ "titel": "Erziehung als soziale Beziehung",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "1",
+ "einleitung": "Geschätzte Dauer: 45 Minuten.",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Warum Erziehung immer zwischen Menschen geschieht"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können die beiden Beteiligten im Erziehungsprozess benennen und ihre Rollen beschreiben.\n- Sie können den Begriff **soziale Interaktion** definieren und an Beispielen erklären.\n- Sie können erläutern, warum Erziehung auch den Erzieher verändert.\n- Sie können begründen, warum eine positive emotionale Beziehung (Bindung) für den Erziehungserfolg entscheidend ist."
+    },
+    {
+     "typ": "situation",
+     "label": "Einstieg: Ein ganz normaler Nachmittag",
+     "text": "Im Kindergarten lässt die fünfjährige Emma beim Mittagessen ihr Glas fallen. Es zerbricht. Die Erzieherin sagt laut: „Emma, pass doch auf!“ Emma fängt an zu weinen. Die Erzieherin kniet sich zu ihr, nimmt sie in den Arm und sagt: „Ist ja nicht schlimm, wir räumen das zusammen weg.“ Emma hört auf zu weinen und holt den Handfeger.\n**Überlegen Sie:** Wer hat hier wen beeinflusst? Nur die Erzieherin das Kind – oder auch umgekehrt?"
+    },
+    {
+     "typ": "frei",
+     "frage": "Notieren Sie Ihre spontane Antwort auf die Frage oben in zwei bis drei Sätzen.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Beide beeinflussen sich: Die Erzieherin löst mit ihrem Schimpfen das Weinen aus. Das Weinen des Kindes bringt wiederum die Erzieherin dazu, ihr Verhalten zu ändern und Emma zu trösten. Erziehung ist also keine Einbahnstraße – genau darum geht es in diesem Kurs."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Zwei Beteiligte",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zur Erziehung gehören immer **mindestens zwei Personen**: ein **Erzieher**, der bestimmte Lernprozesse auslösen oder unterstützen will, und ein **zu Erziehender**, der diese Lernprozesse bewältigen muss."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Erzieher",
+       "text": "will Lernprozesse herbeiführen und unterstützen",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "↓",
+       "text": "Erziehung",
+       "farbe": "gelb"
+      },
+      {
+       "label": "zu Erziehendem",
+       "text": "soll Lernprozesse vollbringen",
+       "farbe": "blau"
+      }
+     ],
+     "beschriftung": "Schaubild: Erziehung spielt sich ab zwischen …"
+    },
+    {
+     "typ": "text",
+     "text": "„Erzieher“ meint dabei nicht nur den Beruf. Auch Eltern, Großeltern, Lehrkräfte oder Trainer können in einer Situation die Rolle des Erziehers einnehmen."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Ein Vater übt mit seinem Sohn Fahrradfahren. Der Vater ist Erzieher (er will den Lernprozess unterstützen), der Sohn ist zu Erziehender (er muss das Fahrradfahren selbst lernen)."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Ordnen Sie die Beschreibungen der richtigen Rolle zu.",
+     "kategorien": [
+      {
+       "name": "Erzieher",
+       "items": [
+        "will Lernprozesse auslösen oder unterstützen",
+        "die Trainerin, die einer Spielerin eine neue Technik zeigt"
+       ]
+      },
+      {
+       "name": "zu Erziehender",
+       "items": [
+        "muss Lernprozesse selbst bewältigen",
+        "das Kleinkind, das lernt, mit dem Löffel zu essen"
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche Aussage trifft zu?",
+     "optionen": [
+      "Für Erziehung braucht man mindestens zwei Personen.",
+      "Erziehung kann auch ganz allein stattfinden, z. B. beim Lesen eines Buches.",
+      "Nur ausgebildete Fachkräfte können Erzieher sein.",
+      "Der zu Erziehende ist beim Lernen völlig passiv."
+     ],
+     "richtig": 0,
+     "erklaerung": "Erziehung braucht immer mindestens einen Erzieher und einen zu Erziehenden. Die Lernprozesse muss der zu Erziehende aktiv selbst bewältigen."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Soziale Interaktion",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Erziehung findet immer im **zwischenmenschlichen Kontakt** statt. Erzieher und zu Erziehender stehen in einer Beziehung und **beeinflussen sich gegenseitig** – das nennt man **soziale Interaktion**."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Der Erzieher schimpft, weil das Kind ein Glas hat fallen lassen. Das Kind weint. Der Erzieher nimmt es in den Arm – das Kind hört auf zu weinen."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Soziale Interaktion beschreibt das wechselseitig aufeinander bezogene Verhalten zwischen Menschen, das Geschehen zwischen Personen, die agieren und wechselseitig aufeinander reagieren, die sich gegenseitig beeinflussen und steuern."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Erzieher",
+       "text": "",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "↓",
+       "text": "⇄ wechselseitige Beeinflussung und Steuerung",
+       "farbe": "gelb"
+      },
+      {
+       "label": "zu Erziehender",
+       "text": "",
+       "farbe": "blau"
+      }
+     ],
+     "beschriftung": "Schaubild: Wechselspiel von Aktion und Reaktion"
+    },
+    {
+     "typ": "text",
+     "text": "Erziehung ist also ein **Wechselspiel von Aktion und Reaktion**: Jedes Verhalten des einen ist zugleich eine Reaktion auf den anderen und löst beim anderen wieder eine Reaktion aus."
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie den Merksatz.",
+     "text": "Soziale Interaktion beschreibt das {{wechselseitig}} aufeinander bezogene Verhalten zwischen Menschen. Die Personen agieren und reagieren aufeinander, sie {{beeinflussen}} sich gegenseitig und {{steuern}} sich.",
+     "woerter": [
+      "einseitig",
+      "wechselseitig",
+      "zufällig",
+      "beeinflussen",
+      "steuern"
+     ],
+     "erklaerung": "Entscheidend ist das Wort „wechselseitig“: Beide Seiten beeinflussen und steuern sich."
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Bringen Sie die Situation aus dem Beispiel in die richtige Reihenfolge (Aktion → Reaktion).",
+     "absaetze": [
+      "Das Kind lässt ein Glas fallen.",
+      "Der Erzieher schimpft.",
+      "Das Kind weint.",
+      "Der Erzieher nimmt das Kind in den Arm.",
+      "Das Kind hört auf zu weinen."
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Handelt es sich um soziale Interaktion? (richtig = „ja“, falsch = „nein“)",
+     "aussagen": [
+      {
+       "text": "Eine Mutter lächelt ihr Baby an, das Baby lächelt zurück, die Mutter freut sich und spricht mit ihm.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Ein Schüler liest allein zu Hause einen Roman.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Zwei Freundinnen streiten sich per Messenger und versöhnen sich danach.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Ein Jugendlicher schaut alleine ein Video auf seinem Handy an.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Soziale Interaktion setzt voraus, dass Personen wechselseitig aufeinander reagieren."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Erziehung verändert beide",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der Erzieher orientiert sich am **Alter**, an den **Interessen** und an den **Fähigkeiten** des zu Erziehenden. Weil er seine Handlungen auf das Verhalten des zu Erziehenden abstimmt, **verändert er dabei auch sich selbst**."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Eine junge Mutter lernt mit der Zeit, am Weinen ihres Babys zu erkennen, ob es Hunger hat oder müde ist. Sie wird geduldiger und gelassener. Das Baby hat also auch die Mutter „erzogen“."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Der Prozess der Erziehung verändert sowohl den zu Erziehenden als auch den Erzieher selbst."
+    },
+    {
+     "typ": "text",
+     "text": "Erziehung ist also **soziale Interaktion**, die durch wechselseitiges Verhalten zwischen Erzieher und zu Erziehendem ein bestimmtes Ziel – ein **Erziehungsziel** – erreichen will."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Woran orientiert sich ein Erzieher, wenn er sein Verhalten auf den zu Erziehenden abstimmt? (mehrere richtig) Entscheide bei jeder Aussage, ob sie zutrifft.",
+     "aussagen": [
+      {
+       "text": "am Alter des zu Erziehenden",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "an seinen Interessen",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "an seinen Fähigkeiten",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "ausschließlich an seiner eigenen Laune",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Alter, Interessen und Fähigkeiten des zu Erziehenden bestimmen, wie der Erzieher handelt."
+    },
+    {
+     "typ": "frei",
+     "frage": "Beschreiben Sie eine Situation aus Ihrem Praktikum oder Alltag, in der sich ein Erwachsener durch den Umgang mit einem Kind verändert hat.",
+     "hinweis": "Denken Sie an Geduld, Sprache (z. B. einfacher sprechen), Gewohnheiten oder Einstellungen.",
+     "muster": "Mögliche Beispiele: Eine Praktikantin spricht nach einigen Wochen automatisch langsamer und in einfacheren Sätzen. Ein Vater lernt, bei Wutanfällen ruhig zu bleiben. Ein Erzieher verändert seine Angebote, weil die Kinder sich für Dinosaurier interessieren. Wichtig ist der Bezug: Der Erwachsene stimmt sein Verhalten auf das Kind ab – und verändert sich dadurch selbst."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 4",
+   "titel": "Die Bedeutung der Beziehung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der zu Erziehende braucht **von Anfang an eine positive emotionale Beziehung** zum Erzieher. Davon hängt der Erfolg der Erziehung in hohem Maße ab."
+    },
+    {
+     "typ": "zitat",
+     "text": "Bindung ist emotionale Nahrung, die uns am Leben hält. […] Wenn kleine Kinder keine Bindung haben, gedeihen sie nicht.",
+     "quelle": "Karl Heinz Brisch, in: Ustorf, 2014, S. 22"
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Wo die Beziehung nicht stimmt, hat die Erziehung wenig Chancen."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Eine Lehrkraft, die von ihrer Klasse respektiert und gemocht wird, erreicht mit einer Ermahnung oft mehr als eine Lehrkraft, zu der die Schüler kein Vertrauen haben."
+    },
+    {
+     "typ": "text",
+     "text": "Wie auch immer die Beziehung zwischen Erzieher und zu Erziehendem aussieht: **Erziehung ist immer auch soziale Beziehung.**"
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Der Erfolg der Erziehung hängt stark von der emotionalen Beziehung ab.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Eine gute Beziehung ist erst im Jugendalter wichtig.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Nach Brisch gedeihen kleine Kinder ohne Bindung nicht.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Wenn die Regeln klar sind, spielt die Beziehung keine Rolle.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Erläutern Sie das Zitat von Brisch mit eigenen Worten und beurteilen Sie, was daraus für die Arbeit im Kindergarten folgt.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "**Erläuterung:** Bindung wird mit Nahrung verglichen: So wie der Körper Nahrung braucht, braucht die Seele eine sichere emotionale Beziehung. Fehlt sie, entwickeln sich Kinder schlechter (z. B. emotional, sozial, auch körperlich). **Folgerungen:** Fachkräfte sollten feste Bezugspersonen sein, eine behutsame Eingewöhnung gestalten, feinfühlig auf Bedürfnisse reagieren, Zeit für Zuwendung einplanen und Beziehungsabbrüche (häufige Personalwechsel) vermeiden. Erst auf dieser Grundlage wirken Erziehungsmaßnahmen."
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Übung & Wiederholung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wiederholen Sie die wichtigsten Begriffe mit den Lernkarten. Erklären Sie jeden Begriff zuerst laut oder im Kopf – dann drehen Sie die Karte um."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Lernkarten: Begriff und Erklärung",
+     "paare": [
+      [
+       "Erzieher",
+       "Person, die bestimmte Lernprozesse auslösen oder unterstützen will."
+      ],
+      [
+       "zu Erziehender",
+       "Person, die Lernprozesse selbst bewältigen muss."
+      ],
+      [
+       "soziale Interaktion",
+       "wechselseitig aufeinander bezogenes Verhalten; Personen beeinflussen und steuern sich gegenseitig."
+      ],
+      [
+       "Erziehungsziel",
+       "das Ziel, das durch das wechselseitige Verhalten erreicht werden soll."
+      ],
+      [
+       "Bindung",
+       "positive emotionale Beziehung – „emotionale Nahrung“ (Brisch)."
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Analysieren Sie die Einstiegssituation (Emma und das Glas) mithilfe der Begriffe Erzieher, zu Erziehender, soziale Interaktion und Beziehung.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Die Erzieherin ist der **Erzieher**, Emma die **zu Erziehende**. Es findet **soziale Interaktion** statt: Das Schimpfen löst Weinen aus, das Weinen löst Trost aus, der Trost beendet das Weinen. Beide beeinflussen und steuern sich wechselseitig. Die Erzieherin stimmt ihr Verhalten auf Emmas Reaktion ab. Durch das Trösten stärkt sie die positive **Beziehung** – das ist Voraussetzung dafür, dass Emma das Ziel (vorsichtig sein, Verantwortung übernehmen: Handfeger holen) annimmt."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Wie viele Personen gehören mindestens zur Erziehung?",
+     "optionen": [
+      "eine",
+      "zwei",
+      "drei",
+      "eine ganze Gruppe"
+     ],
+     "richtig": 1
+    },
+    {
+     "typ": "mc",
+     "frage": "Was versteht man unter sozialer Interaktion?",
+     "optionen": [
+      "ein Gespräch, bei dem nur einer spricht",
+      "wechselseitig aufeinander bezogenes Verhalten zwischen Menschen",
+      "einseitige Anweisungen eines Erziehers",
+      "das Lernen mit digitalen Medien"
+     ],
+     "richtig": 1
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Erziehung verändert nur den zu Erziehenden.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Der Erzieher orientiert sich an Alter, Interessen und Fähigkeiten des zu Erziehenden.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Erziehung ist ein Wechselspiel von Aktion und Reaktion.",
+       "richtig": true,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Wo die {{Beziehung}} nicht stimmt, hat die Erziehung wenig Chancen.",
+     "woerter": [
+      "Beziehung"
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie zu.",
+     "paare": [
+      [
+       "„Bindung ist emotionale Nahrung …“",
+       "Brisch"
+      ],
+      [
+       "will Lernprozesse herbeiführen",
+       "Erzieher"
+      ],
+      [
+       "soll Lernprozesse vollbringen",
+       "zu Erziehender"
+      ]
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche Aussage fasst den Kurs am besten zusammen?",
+     "optionen": [
+      "Erziehung ist immer auch soziale Beziehung.",
+      "Erziehung ist vor allem Wissensvermittlung.",
+      "Erziehung gelingt am besten ohne Gefühle.",
+      "Erziehung findet nur in Institutionen statt."
+     ],
+     "richtig": 0
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "Zur Erziehung gehören mindestens zwei: ein **Erzieher** und ein **zu Erziehender**. Erziehung ist **soziale Interaktion**: Beide beeinflussen und steuern sich wechselseitig (Aktion ⇄ Reaktion). Erziehung verändert **beide Seiten** – auch den Erzieher. Eine **positive emotionale Beziehung (Bindung)** entscheidet maßgeblich über den Erziehungserfolg. Erziehung ist immer auch **soziale Beziehung**."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann die beiden Beteiligten im Erziehungsprozess und ihre Rollen nennen.\n- Ich kann soziale Interaktion definieren und ein eigenes Beispiel geben.\n- Ich kann erklären, warum sich auch der Erzieher durch Erziehung verändert.\n- Ich kann die Bedeutung der Bindung mit dem Zitat von Brisch begründen."
+    },
+    {
+     "typ": "text",
+     "text": "**Weiterdenken:** Im nächsten Kurs geht es darum, **was** in der Interaktion eigentlich ausgetauscht wird: **Informationen**. Erziehung ist nämlich auch Kommunikation."
+    }
+   ]
+  }
+ ]
+}

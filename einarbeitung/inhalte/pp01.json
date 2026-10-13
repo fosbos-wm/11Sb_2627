@@ -1,0 +1,298 @@
+{
+ "titel": "Gegenstand der Psychologie: Erleben und Verhalten",
+ "nr": "1",
+ "abschnitte": [
+  {
+   "kicker": "Grundfragen der Pädagogik und Psychologie",
+   "titel": "1.2 Die Objektbereiche der Psychologie und der Pädagogik",
+   "bloecke": [
+    {
+     "typ": "situation",
+     "label": "Lernsituation",
+     "text": "In Ihrer Klasse wird darüber diskutiert, was Pädagogik und Psychologie sein könnten. Sie möchten nun wissen, was Pädagogik und Psychologie wirklich sind und womit sie sich beschäftigen."
+    }
+   ]
+  },
+  {
+   "titel": "Was denken andere über Pädagogik und Psychologie?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Lies die Aussagen aus der Klassendiskussion. Welchen würdest du zustimmen, welchen eher nicht?"
+    },
+    {
+     "typ": "notizen",
+     "beschriftung": "Aussagen aus der Klassendiskussion",
+     "items": [
+      "„Ich denke, Pädagogik hat mit Erziehung zu tun, sei es zu Hause, im Kindergarten oder in der Schule. Pädagogik und Erziehung sind für mich so gut wie das Gleiche.“",
+      "„Pädagogik bedeutet für mich die Erziehung von Kindern, denn Kinder brauchen die Hilfe ihrer Eltern, damit sie erwachsen werden und in dieser Gesellschaft bestehen können.“",
+      "„Ich glaube, Pädagogik beschäftigt sich mit der Bildung. Dabei denke ich an Eltern und Lehrer, die einen bilden wollen. Deshalb nennt man sie auch Pädagogen.“",
+      "„Psychologie verbinde ich mit ‚Couch‘, ‚Beratung‘, ‚Therapie‘; ich denke, die Psychologie hilft mir, persönliche Probleme zu lösen.“",
+      "„Psychologie ist für mich die Wissenschaft vom Unbewussten. Dabei versucht sie, Hypnose oder Traumdeutung anzuwenden, um über unser Unbewusstes Auskunft zu erlangen.“",
+      "„Wenn ich Psychologie höre, bekomme ich ein wenig Angst: Ich habe Angst, dass mich ein Psychologe durchschaut und auch sofort weiß, wer ich bin und was mich bewegt.“",
+      "„Psychologie hat meiner Meinung nach mit der Seele zu tun, z. B. mit dem Geist oder den Gefühlen.“"
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Erste Einschätzung",
+   "bloecke": [
+    {
+     "typ": "sortieren",
+     "titel": "Erste Einschätzung: Was gehört wohin?",
+     "kategorien": [
+      {
+       "name": "Pädagogik",
+       "items": [
+        "Pädagogen im Kindergarten oder in der Schule",
+        "Lehre vom Lernen",
+        "Kindern etwas beibringen",
+        "Es geht um Erziehung"
+       ]
+      },
+      {
+       "name": "Psychologie",
+       "items": [
+        "Hat mit der Seele zu tun",
+        "Couch beim Therapeuten",
+        "Psychologen helfen bei Problemen"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "1.2.1 Der Gegenstand der Psychologie",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Psychologie¹ heißt wörtlich übersetzt: die Wissenschaft von der Seele. Der Begriff „Seele“ ist jedoch wissenschaftlich nicht fassbar und kann deshalb selbst nicht Gegenstand der Psychologie sein. Es lassen sich jedoch wissenschaftliche Aussagen formulieren, wie sich das Seelenleben eines Menschen äußert."
+    },
+    {
+     "typ": "text",
+     "text": "Solche Äußerungsformen sind zum Beispiel Denkabläufe eines Menschen, Gefühle wie Freude, Trauer, Ärger, Wut oder Träumen, Bewegungen, Aktivitäten, Ausdruck und dergleichen."
+    },
+    {
+     "typ": "fussnote",
+     "text": "¹ psyche (griech.): die Seele; logos (griech.): die Lehre, die Wissenschaft"
+    }
+   ]
+  },
+  {
+   "titel": "Verhalten und Erleben",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Das **Seelenleben eines Menschen äußert sich einerseits in seinem Verhalten, andererseits in seinem Erleben.** Während mit Verhalten alle von Außenstehenden beobachtbaren Äußerungen eines Lebewesens gemeint sind, bezeichnet man mit Erleben Vorgänge im Menschen, die nicht „von außen“ beobachtet werden können, sondern die der Mensch nur an sich selbst wahrnehmen kann."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiele",
+     "text": "Verhaltensweisen sind beispielsweise Körperbewegungen, Sprechen, Arbeiten oder Ausdrucksformen; sie sind von Außenstehenden beobachtbar. Erlebensweisen sind Denkabläufe, Erinnerungen, Träumen; diese kann der Mensch nur an sich selbst wahrnehmen."
+    },
+    {
+     "typ": "text",
+     "text": "Tierisches Erleben kann durch Beobachtung nicht erschlossen werden, allenfalls durch Glauben, Interpretieren oder Spekulieren. Dabei handelt es sich jedoch um unwissenschaftliche „Methoden“. Aus diesem Grund wird in der wissenschaftlichen Psychologie der Begriff „Erleben“ auf das menschliche Leben eingeengt."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Unter Verhalten** versteht man die Gesamtheit aller von außen beobachtbaren Äußerungen eines Lebewesens.\n**Mit Erleben** werden von außen nicht beobachtbare Vorgänge im Menschen bezeichnet, Vorgänge, die der Mensch nur an sich selbst wahrnehmen kann."
+    }
+   ]
+  },
+  {
+   "titel": "Grundbegriffe festigen",
+   "bloecke": [
+    {
+     "typ": "lueckentext",
+     "titel": "Lückentext: Die Grundbegriffe verstehen",
+     "text": "Unter {{Verhalten}} versteht man die Gesamtheit aller von {{außen}} beobachtbaren Äußerungen eines Lebewesens. Mit {{Erleben}} werden von außen nicht beobachtbare Vorgänge im {{Menschen}} bezeichnet, Vorgänge, die der Mensch nur an {{sich selbst}} wahrnehmen kann.",
+     "woerter": [
+      "Verhalten",
+      "außen",
+      "Erleben",
+      "Menschen",
+      "sich selbst",
+      "Handeln",
+      "innen",
+      "Tieren"
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Fremdbeobachtung und Selbstbeobachtung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Das Verhalten wird durch **Fremdbeobachtung** erschlossen, das Erleben ist Gegenstand der **Selbstbeobachtung**. Diese beiden grundsätzlich verschiedenen Erfahrungsweisen haben sich heute in der Psychologie durchgesetzt."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel Brettspiel",
+     "text": "Am Beispiel eines Brettspiels - etwa „Mensch ärgere dich nicht®“ - kann der Unterschied zwischen Verhalten und Erleben verdeutlicht werden. Für einen Zuschauer ist das Verhalten der Spieler wahrnehmbar: Sie richten ihre Blicke auf das Brett, ein Spieler würfelt, alle schauen auf den Würfel, der Spieler macht einen Zug und lehnt sich zurück; ein anderer Mitspieler seufzt, ein weiterer macht eine Bemerkung, wieder ein anderer würfelt usw. Was aber in den Spielern innerlich vor sich geht, das Erleben, bleibt dem Zuschauer verborgen. Er weiß nicht, was den einen oder den anderen Spieler gerade bewegt, ob sie sich freuen oder wütend sind, was sie denken und überlegen. Diese Zugänglichkeit zu ihrem Innenleben können uns nur die Personen selbst ermöglichen."
+    }
+   ]
+  },
+  {
+   "titel": "Verhalten oder Erleben?",
+   "bloecke": [
+    {
+     "typ": "sortieren",
+     "titel": "Verhalten oder Erleben?",
+     "kategorien": [
+      {
+       "name": "Verhalten (von außen beobachtbar)",
+       "items": [
+        "Spieler würfelt",
+        "Einem Freund winken",
+        "Jemand seufzt laut",
+        "Augenbrauen hochziehen"
+       ]
+      },
+      {
+       "name": "Erleben (nur selbst wahrnehmbar)",
+       "items": [
+        "Über den nächsten Spielzug nachdenken",
+        "Wütend sein (rausgeworfen)",
+        "An den letzten Urlaub erinnern",
+        "Über eine gewürfelte Sechs freuen"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Innere Prozesse",
+   "bloecke": [
+    {
+     "typ": "zitat",
+     "text": "Manche Autoren, wie zum Beispiel Hans-Peter Nolting und Peter Paulus (2015³, S. 34), sprechen oftmals von **inneren Prozessen** statt von Erleben, um dem Missverständnis vorzubeugen, dass mit der „Innenwelt“ nicht nur klar bewusste Vorgänge gemeint seien, sondern auch weniger bewusste bzw. unbewusste."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Psychologie ist die Wissenschaft vom Verhalten und Erleben.**"
+    }
+   ]
+  },
+  {
+   "titel": "1.2.2 Betrachtungsweisen des Gegenstandes der Psychologie",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der Mensch ist einerseits ein Teil der Natur und funktioniert als Naturwesen nach Naturgesetzen. Andererseits hat er als geistiges Wesen Kultur geschaffen und kann zielgerichtet handeln."
+    },
+    {
+     "typ": "zitat",
+     "text": "„Der Mensch ist ein Naturwesen, das nur als Kulturwesen seine Bestimmung findet.“",
+     "quelle": "(Mittelstraß, 2008, S. 80)"
+    },
+    {
+     "typ": "text",
+     "text": "Diesen beiden Aspekten muss die Psychologie als Wissenschaft gerecht werden: Verhalten und Erleben können zum einen bedingt sein durch bestimmte Ursachen, zum anderen können sie von den Zielvorstellungen, von den Absichten des handelnden Menschen bestimmt sein."
+    },
+    {
+     "typ": "text",
+     "text": "Wenn zum Beispiel ein Kind sehr wütend ist, so kann dies einmal daran liegen, dass die Mutter dem Kind etwas verboten hat, das es unbedingt haben will. Die Ursache für das Wütendsein des Kindes liegt im Verhalten der Mutter. Auf der anderen Seite kann es möglich sein, dass das Kind mit seiner Wut erreichen will, dass die Mutter ihr Verbot aufhebt. Das Ziel des Wütendseins des Kindes ist die Änderung des Verhaltens der Mutter."
+    },
+    {
+     "typ": "text",
+     "text": "Jede menschliche Aktivität, mit welcher bewusst und überlegt ein bestimmter Sinn verbunden, ein bestimmtes Ziel verfolgt wird, bezeichnet man als Handeln. Erleben und Verhalten sind der übergeordnete Begriff, der das Handeln miteinschließt. Durch diese Unterscheidung trägt die Psychologie vor allem der Tatsache Rechnung, dass der Mensch überlegt handeln kann und keineswegs als reines „Reaktionswesen“ anzusehen ist."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Handeln bezeichnet jede menschliche Aktivität, mit welcher bewusst und überlegt eine bestimmte Absicht verfolgt wird.**"
+    }
+   ]
+  },
+  {
+   "titel": "Handeln oder nicht?",
+   "bloecke": [
+    {
+     "typ": "kprim",
+     "stamm": "Entscheide, ob die Aussage richtig oder falsch ist.",
+     "aussagen": [
+      {
+       "text": "Wenn ein Schüler lernt, um eine gute Note zu bekommen, ist das Handeln.",
+       "richtig": true,
+       "erklaerung": "Der Schüler verfolgt bewusst und überlegt ein Ziel (gute Note). Das ist Handeln."
+      },
+      {
+       "text": "Handeln bedeutet immer, dass man ein bestimmtes Ziel verfolgt.",
+       "richtig": true,
+       "erklaerung": "Handeln ist bewusst und überlegt mit einer bestimmten Absicht verbunden."
+      },
+      {
+       "text": "Jedes Verhalten ist automatisch auch ein Handeln.",
+       "richtig": false,
+       "erklaerung": "Verhalten umfasst alle beobachtbaren Äußerungen, auch unbewusste. Handeln ist nur das bewusste, zielgerichtete Verhalten."
+      },
+      {
+       "text": "Wenn man im Schlaf spricht, ist das ein Beispiel für Handeln.",
+       "richtig": false,
+       "erklaerung": "Sprechen im Schlaf ist Verhalten, aber nicht bewusst und ohne Absicht. Es ist also kein Handeln."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "1.2.3 Der Zusammenhang der Gegenstandsbereiche der Psychologie",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Verhalten und Erleben sind nicht unabhängig voneinander, sondern stehen zueinander in Wechselwirkung: Verhalten ist einerseits immer Anzeichen für bestimmte Vorgänge im Menschen, andererseits äußern sich verschiedene Erlebensweisen im Verhalten eines Menschen."
+    },
+    {
+     "typ": "text",
+     "text": "Wenn beispielsweise eine Person ihr Gesicht verzieht und sich krümmt (Verhalten), so hat sie möglicherweise Schmerzen (Erleben); wer sich freut (Erleben), springt etwa in die Luft oder stößt einen Schrei aus (Verhalten)."
+    },
+    {
+     "typ": "schema",
+     "links": "Verhalten",
+     "rechts": "Erleben",
+     "mitte": [
+      "sind abhängig",
+      "voneinander"
+     ],
+     "beschriftung": "Verhalten und Erleben sind abhängig voneinander"
+    },
+    {
+     "typ": "text",
+     "text": "Diese Wechselwirkung darf jedoch nicht so verstanden werden, dass der Mensch zunächst erlebt und sich dann verhält bzw. umgekehrt, Erleben und Verhalten sind vielmehr eins im psychischen Geschehen. Es ist nicht so, dass der Mensch etwa Freude empfindet und diese sich dann im Verhalten (Arme hochreißen) zeigt. Er freut sich und reißt gleichzeitig die Arme hoch: Verhalten und gezeigte Geste zusammen sind Ausdruck dieser Freude. Das eine geht also nicht aus dem anderen hervor, beide sind eines (vgl. Geuter, 2015, S. 80)."
+    }
+   ]
+  },
+  {
+   "titel": "In eigenen Worten erklärt",
+   "bloecke": [
+    {
+     "typ": "frei",
+     "frage": "Erkläre in deinen eigenen Worten, was mit der „Wechselwirkung“ zwischen Verhalten und Erleben gemeint ist. Warum sind Verhalten und Erleben wie zwei Seiten einer Medaille? Nenne ein eigenes Beispiel, das nicht im Text vorkommt.",
+     "hinweis": "Schreibe mehrere Sätze. Die Musterlösung erscheint danach zum Vergleichen.",
+     "muster": "Verhalten und Erleben stehen in Wechselwirkung: Am Verhalten (z. B. Gesicht verziehen, sich krümmen) erkennt man Anzeichen für Vorgänge im Menschen (Schmerzen), und Erlebensweisen (z. B. Freude) äußern sich im Verhalten (in die Luft springen). Wie zwei Seiten einer Medaille gehören beide zusammen: Man kann sie unterscheiden, aber nicht trennen. Sie sind eins im psychischen Geschehen, es ist nicht so, dass zuerst das eine kommt und danach das andere. Eigenes Beispiel: Eine Schülerin ist vor ihrer Präsentation nervös (Erleben), knetet dabei ihre Hände und spricht schneller (Verhalten). Beides zusammen ist Ausdruck ihrer Nervosität."
+    },
+    {
+     "typ": "frei",
+     "frage": "Beschreibe eine Alltagssituation, in der du das Verhalten einer Person beobachten kannst, aber ihr Erleben nicht sicher kennst. Erkläre, welche Vermutungen man machen könnte und warum man trotzdem nicht sicher sein kann.",
+     "hinweis": "Beschreibe zuerst die Situation, dann die Vermutungen und zuletzt, warum sie unsicher bleiben.",
+     "muster": "Beispiel: Ein Mitschüler sitzt in der Pause allein, schaut auf den Boden und sagt kaum etwas (Verhalten). Man könnte vermuten, dass er traurig, müde oder einfach in Gedanken ist (Erleben). Sicher weiß man es nicht, denn das Erleben kann nur der Mitschüler selbst an sich wahrnehmen. Dasselbe Verhalten kann ganz verschiedene Ursachen haben. Erst seine eigene Auskunft, etwa auf Nachfrage, kann Klarheit bringen."
+    },
+    {
+     "typ": "frei",
+     "frage": "Nenne zwei Beispiele: (1) Ein Verhalten, aus dem man häufig auf ein bestimmtes Erleben schließt, und (2) ein Erleben, das sich oft in einem bestimmten Verhalten ausdrückt. Erkläre jeweils kurz den Zusammenhang.",
+     "hinweis": "Nummeriere deine beiden Beispiele.",
+     "muster": "(1) Ein Kind weint und klammert sich an die Erzieherin. Aus diesem Verhalten schließt man häufig auf Trennungsangst (Erleben). Das Verhalten ist ein Anzeichen für einen Vorgang im Menschen, der Schluss bleibt aber eine Vermutung. (2) Wer sich sehr freut (Erleben), springt in die Luft oder jubelt (Verhalten). Das Erleben äußert sich im Verhalten, beides geschieht zugleich."
+    }
+   ]
+  }
+ ]
+}

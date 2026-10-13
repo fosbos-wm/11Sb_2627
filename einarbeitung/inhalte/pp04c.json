@@ -1,0 +1,341 @@
+{
+ "titel": "Erziehung als beabsichtigte Lernhilfe",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "3",
+ "einleitung": "Geschätzte Dauer: 30–45 Minuten.",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Ohne Ziel keine Erziehung"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können erklären, warum Erziehung ohne Erziehungsziel undenkbar ist.\n- Sie können Erziehung als **wertorientiertes Handeln** beschreiben.\n- Sie können das Wechselspiel zwischen Erzieher, zu Erziehendem und Erziehungsziel darstellen.\n- Sie können zwischen beabsichtigtem und unbeabsichtigtem Lernen unterscheiden."
+    },
+    {
+     "typ": "situation",
+     "label": "Einstieg: Gelernt ist gelernt?",
+     "text": "**Situation A:** Ein Vater übt jeden Abend mit seiner Tochter das Schleifebinden, weil sie es bis zur Einschulung können soll.\n**Situation B:** Ein Kind hört zufällig, wie der Vater beim Autofahren flucht – und benutzt das Schimpfwort am nächsten Tag im Kindergarten.\n**Überlegen Sie:** In beiden Fällen lernt das Kind etwas. Ist beides „Erziehung“?"
+    },
+    {
+     "typ": "mc",
+     "frage": "Ihre erste Einschätzung: In welcher Situation handelt es sich um Erziehung im engeren Sinn?",
+     "optionen": [
+      "nur in Situation A",
+      "nur in Situation B",
+      "in beiden Situationen",
+      "in keiner der Situationen"
+     ],
+     "richtig": 0,
+     "erklaerung": "Nur in Situation A verfolgt der Vater bewusst ein Ziel. In Situation B lernt das Kind zwar, aber unbeabsichtigt – das ist keine Erziehung im engeren Sinn."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Beziehungen haben ein Ziel",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wenn Menschen miteinander in Beziehung treten, verfolgen sie immer eine bestimmte **Absicht**, ein **Ziel**. Um dieses Ziel zu erreichen, tauschen sie Informationen aus und beeinflussen sich gegenseitig."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Menschen treten miteinander in Beziehung, um eine bestimmte Absicht, ein bestimmtes Ziel zu erreichen."
+    },
+    {
+     "typ": "text",
+     "text": "Auch in der Erziehung werden Ziele verfolgt."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Ein Kind kann noch nicht laufen und nicht sprechen. Der Erzieher hat das Ziel, dass es das zu einem späteren Zeitpunkt kann."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Welches Ziel verfolgt der Erzieher jeweils?",
+     "paare": [
+      [
+       "Die Mutter liest jeden Abend ein Bilderbuch vor.",
+       "Sprachentwicklung fördern"
+      ],
+      [
+       "Die Erzieherin lässt die Kinder ihren Teller selbst abräumen.",
+       "Selbstständigkeit fördern"
+      ],
+      [
+       "Der Trainer lobt faires Verhalten nach dem Spiel.",
+       "Fairness und Rücksichtnahme"
+      ],
+      [
+       "Der Vater erklärt, warum man an der roten Ampel wartet.",
+       "Sicherheit im Straßenverkehr"
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Erziehung ist wertorientiert",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "**Erziehung ist ohne Erziehungsziel undenkbar**: Hätte der Erzieher kein Ziel mehr vor Augen, würde er auch nicht mehr auf den zu Erziehenden einwirken."
+    },
+    {
+     "typ": "text",
+     "text": "Man spricht deshalb auch von Erziehung als **wertorientiertem Handeln** – erzieherische Handlungen sind immer bestimmten **Werten und Normen** verpflichtet."
+    },
+    {
+     "typ": "merke",
+     "label": "Begriffe erklärt",
+     "text": "**Werte** sind Vorstellungen davon, was wünschenswert und gut ist (z. B. Ehrlichkeit, Hilfsbereitschaft, Selbstständigkeit). · **Normen** sind konkrete Verhaltensregeln, die sich aus Werten ableiten (z. B. „Man sagt die Wahrheit.“, „Man hilft anderen.“)."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Weil Eltern Ehrlichkeit wichtig finden (Wert), besprechen sie mit ihrem Sohn, dass er zugeben soll, wenn er etwas kaputt gemacht hat (Norm)."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Wert oder Norm? Ordnen Sie zu.",
+     "kategorien": [
+      {
+       "name": "Wert",
+       "items": [
+        "Hilfsbereitschaft",
+        "Selbstständigkeit"
+       ]
+      },
+      {
+       "name": "Norm",
+       "items": [
+        "„Vor dem Essen wäscht man sich die Hände.“",
+        "„Man lässt andere ausreden.“"
+       ]
+      }
+     ],
+     "erklaerung": "Werte sind allgemeine Leitvorstellungen, Normen konkrete Regeln."
+    },
+    {
+     "typ": "frei",
+     "frage": "Erklären Sie mit eigenen Worten, warum Erziehung ohne Ziel „undenkbar“ ist.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Erziehen heißt, bewusst auf jemanden einzuwirken, damit er etwas lernt. Dieses Einwirken braucht eine Richtung: Ohne Ziel wüsste der Erzieher nicht, was er fördern oder verändern soll – und hätte auch keinen Grund mehr, überhaupt einzugreifen. Die Ziele ergeben sich aus Werten und Normen, die der Erzieher für wichtig hält."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Das Erziehungsdreieck",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Erziehung geschieht im Wechselspiel zwischen dem zu Erziehenden, der bestimmte Lernprozesse bewältigen muss, · dem Erzieher, der diese Lernprozesse absichtlich herbeiführt, auslöst oder unterstützt und damit das Verhalten des zu Erziehenden dauerhaft ändern will, und · dem Erziehungsziel, das der Erzieher vor Augen hat."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Erzieher",
+       "text": "führt Lernprozesse **absichtlich** herbei, löst sie aus oder unterstützt sie",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Erziehungsziel",
+       "text": "das, was der Erzieher vor Augen hat · ist an Werte und Normen gebunden",
+       "farbe": "blau"
+      },
+      {
+       "label": "zu Erziehender",
+       "text": "muss die Lernprozesse selbst bewältigen",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Drei Elemente der Erziehung"
+    },
+    {
+     "typ": "text",
+     "text": "Das Ziel ist eine **relativ dauerhafte Änderung des Verhaltens und Erlebens** des zu Erziehenden."
+    },
+    {
+     "typ": "merke",
+     "label": "Warum „relativ dauerhaft“?",
+     "text": "Erziehung will nicht nur kurzfristig etwas erreichen (z. B. dass ein Kind jetzt still ist), sondern eine Veränderung, die bleibt (z. B. dass es lernt, andere ausreden zu lassen). „Relativ“ heißt: Auch Gelerntes kann sich später wieder ändern."
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Der Erzieher führt Lernprozesse {{absichtlich}} herbei. Der zu Erziehende muss diese Lernprozesse selbst {{bewältigen}}. Ziel ist eine relativ {{dauerhafte}} Änderung des {{Verhaltens}} und Erlebens.",
+     "woerter": [
+      "zufällig",
+      "absichtlich",
+      "unbewusst",
+      "bewältigen",
+      "dauerhafte",
+      "Verhaltens"
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche Situation erfüllt alle Merkmale von Erziehung als beabsichtigter Lernhilfe?",
+     "optionen": [
+      "Eine Mutter sagt einmalig „Sei still!“, weil sie telefoniert.",
+      "Ein Jugendlicher übernimmt unbemerkt die Ausdrucksweise seines Lieblings-YouTubers.",
+      "Eine Erzieherin übt mit einem Kind über Wochen das selbstständige Anziehen, damit es im Winter allein in den Garten gehen kann.",
+      "Ein Kind schaut sich von älteren Kindern ab, wie man auf einen Baum klettert."
+     ],
+     "richtig": 2,
+     "erklaerung": "Nur hier gibt es einen Erzieher, ein bewusstes Ziel und eine angestrebte dauerhafte Veränderung."
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Übung & Wiederholung",
+   "bloecke": [
+    {
+     "typ": "zuordnung",
+     "titel": "Lernkarten: Begriff und Erklärung",
+     "paare": [
+      [
+       "Erziehungsziel",
+       "Das, was der Erzieher beim zu Erziehenden erreichen will – ohne Ziel keine Erziehung."
+      ],
+      [
+       "wertorientiertes Handeln",
+       "Erzieherisches Handeln ist immer bestimmten Werten und Normen verpflichtet."
+      ],
+      [
+       "Wert",
+       "Vorstellung davon, was wünschenswert ist (z. B. Ehrlichkeit)."
+      ],
+      [
+       "Norm",
+       "konkrete Verhaltensregel (z. B. „Man sagt die Wahrheit.“)."
+      ],
+      [
+       "Ziel der Erziehung",
+       "relativ dauerhafte Änderung des Verhaltens und Erlebens"
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Greifen Sie die Einstiegssituation wieder auf: Begründen Sie mithilfe der Merkmale aus diesem Kurs, warum nur Situation A Erziehung im engeren Sinn ist. Ist Situation B trotzdem pädagogisch bedeutsam?",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "**Situation A:** Der Vater führt den Lernprozess absichtlich herbei, er hat ein klares Ziel (Schleife binden bis zur Einschulung) und strebt eine dauerhafte Verhaltensänderung an → Erziehung als beabsichtigte Lernhilfe. **Situation B:** Das Kind lernt, aber ohne Absicht und ohne Ziel des Vaters → keine Erziehung im engeren Sinn. Pädagogisch bedeutsam ist die Situation trotzdem: Kinder lernen viel durch Nachahmung, Erwachsene wirken also immer auch unbeabsichtigt als Vorbilder."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Was passiert laut Text, wenn ein Erzieher kein Ziel mehr vor Augen hat?",
+     "optionen": [
+      "Er erzieht besonders frei und erfolgreich.",
+      "Das Kind setzt sich selbst die Ziele.",
+      "Nichts – Ziele sind für Erziehung unwichtig.",
+      "Er wirkt nicht mehr auf den zu Erziehenden ein."
+     ],
+     "richtig": 3
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Erzieherische Handlungen sind immer Werten und Normen verpflichtet.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Der Erzieher bewältigt die Lernprozesse für den zu Erziehenden.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Erziehung strebt eine relativ dauerhafte Veränderung an.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Jedes Lernen eines Kindes ist automatisch Erziehung.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie die drei Elemente ihrer Beschreibung zu.",
+     "paare": [
+      [
+       "führt Lernprozesse absichtlich herbei",
+       "Erzieher"
+      ],
+      [
+       "muss Lernprozesse bewältigen",
+       "zu Erziehender"
+      ],
+      [
+       "das, was der Erzieher vor Augen hat",
+       "Erziehungsziel"
+      ]
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Man spricht von Erziehung als {{wertorientiertem}} Handeln.",
+     "woerter": [
+      "wertorientiertem"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "Menschen treten miteinander in Beziehung, um ein **Ziel** zu erreichen – auch in der Erziehung. **Ohne Erziehungsziel keine Erziehung.** Erziehung ist **wertorientiertes Handeln**: Sie ist Werten und Normen verpflichtet. Erziehung ist ein Wechselspiel aus **Erzieher**, **zu Erziehendem** und **Erziehungsziel**. Ziel ist eine **relativ dauerhafte Änderung des Verhaltens und Erlebens**."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann begründen, warum Erziehung ein Ziel braucht.\n- Ich kann Werte und Normen unterscheiden und Beispiele nennen.\n- Ich kann die drei Elemente der Erziehung und ihr Zusammenspiel erklären.\n- Ich kann beabsichtigtes Lernen (Erziehung) von unbeabsichtigtem Lernen abgrenzen."
+    },
+    {
+     "typ": "text",
+     "text": "**Weiterdenken:** Wenn Erziehung bewusst und zielgerichtet ist, dann ist sie eine besondere Form des **Handelns**. Im nächsten Kurs fügen Sie alle Merkmale zu einer Definition von Erziehung zusammen."
+    }
+   ]
+  }
+ ]
+}

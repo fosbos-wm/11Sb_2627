@@ -1,0 +1,496 @@
+{
+ "titel": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "6",
+ "einleitung": "Geschätzte Dauer: 45 Minuten.",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Kita – Kindergarten – Träger – Fachpersonal"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können den Begriff **Kindertagesstätte** definieren und ihre Einrichtungen (Krippe, Kindergarten, Hort) unterscheiden.\n- Sie können erklären, was eine **familienergänzende Einrichtung** ist.\n- Sie können Gründe nennen, warum Kitas immer wichtiger werden (u. a. nach Mollenhauer).\n- Sie können den Kindergarten von der Schule abgrenzen und seine **Träger**, sein **Fachpersonal** und die **Aufsicht** benennen."
+    },
+    {
+     "typ": "situation",
+     "label": "Lernsituation: Vorstellung an der Praktikumsstelle",
+     "text": "Sie sind gerade in die 11. Klasse der FOS gekommen und starten bald ins Praktikum. Am Nachmittag stellen Sie sich im Kindergarten „Frühlingsschein e. V.“ vor. Die Leiterin führt Sie herum, erklärt Ihnen, wie Sie sich verhalten sollen, und erzählt auch von typischen Problemen im Erziehungsalltag.\nDanach brummt Ihnen der Kopf – vom Kinderlärm und von den vielen neuen Infos. Sie wollen das ordnen und fragen sich: **Welche Aufgaben hat ein Kindergarten eigentlich? Und welche Probleme können bei der Arbeit dort auftreten?**"
+    },
+    {
+     "typ": "frei",
+     "frage": "Was wissen Sie schon? Notieren Sie, welche Aufgaben ein Kindergarten Ihrer Meinung nach hat.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Mögliche Ideen: Kinder betreuen, während Eltern arbeiten; Kinder fördern (Sprache, Bewegung, Sozialverhalten); auf die Schule vorbereiten; Kontakt zu Gleichaltrigen ermöglichen; Eltern unterstützen und beraten. Im Kurs erfahren Sie, warum der Kindergarten die Familie **ergänzt**, aber nicht ersetzt."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Die Kindertagesstätte",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der Begriff **„Kindertagesstätte“** – kurz **„Kita“** – wird nicht überall gleich verwendet. Manchmal meint man damit nur einen Ganztagskindergarten. Meistens aber ist „Kita“ ein **Oberbegriff** für verschiedene Einrichtungen für Kinder unter einem Dach."
+    },
+    {
+     "typ": "text",
+     "text": "Kitas (auch **Ganztags-** oder **Tageseinrichtungen** genannt) sind **außerschulische Einrichtungen**. Dort werden Kinder vom zweiten bis etwa zum zwölften Lebensjahr halbtags, ganztags oder teilweise auch nachts betreut. Anders als im Heim übernachten die Kinder aber nicht dauerhaft dort. Betreut werden sie von **pädagogischem Fachpersonal** (Sozialpädagogen, Erzieher, Kinderpfleger)."
+    },
+    {
+     "typ": "text",
+     "text": "Wichtig: Die Kita **ersetzt die Familie nicht**, sondern **ergänzt und unterstützt** die Erziehung zu Hause. Deshalb nennt man sie eine **familienergänzende Einrichtung**."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Kindertagesstätten sind außerschulische Einrichtungen auf freiwilliger Basis für Kinder bis zum zwölften Lebensjahr, die dort halb-, ganztags oder nachts von pädagogischem Fachpersonal betreut werden. Kindertagesstätten ergänzen die Familienerziehung."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Kinderkrippe (Einrichtung 1)",
+       "text": "für die Kleinsten (unter 3 Jahren)",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Kindergarten (Einrichtung 2)",
+       "text": "ca. 3 bis 6 Jahre · bis zur Einschulung · → Thema dieses Kurses",
+       "farbe": "blau"
+      },
+      {
+       "label": "Kinderhort (Einrichtung 3)",
+       "text": "für Schulkinder · Betreuung nach der Schule",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Die Einrichtungen einer Kita"
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "In welche Einrichtung gehen die Kinder?",
+     "paare": [
+      [
+       "Paul, 14 Monate, beide Eltern arbeiten",
+       "Kinderkrippe"
+      ],
+      [
+       "Sophie, 4 Jahre",
+       "Kindergarten"
+      ],
+      [
+       "Ali, 8 Jahre, braucht nach der Schule Betreuung",
+       "Kinderhort"
+      ]
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Kitas sind außerschulische Einrichtungen.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Kinder übernachten in der Kita dauerhaft – wie im Heim.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Kitas ersetzen die Erziehung in der Familie.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "„Kita“ ist meist ein Oberbegriff für mehrere Einrichtungen.",
+       "richtig": true,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Kitas ergänzen die Familienerziehung – sie ersetzen sie nicht. Anders als im Heim bleiben die Kinder nicht dauerhaft über Nacht."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Warum Kitas immer wichtiger werden",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "- **Berufstätigkeit:** Immer öfter arbeiten beide Eltern – oder ein Kind wächst bei nur einem Elternteil auf.\n- **Veränderte Gesellschaft:** Laut dem Erziehungswissenschaftler **Klaus Mollenhauer** kann die Familie – vor allem in der Stadt – vieles nicht mehr allein bieten, was Kinder brauchen."
+    },
+    {
+     "typ": "zitat",
+     "text": "Die Familie kann dem Kind in der Stadt oft keinen freien, sicheren Spielraum, keine Gleichaltrigen und keine vielfältigen Spiel- und Sozialerfahrungen mehr bieten.",
+     "quelle": "sinngemäß nach Klaus Mollenhauer (2001, S. 154)"
+    },
+    {
+     "typ": "text",
+     "text": "Der Staat stellt deshalb Geld bereit, um das Netz an Kitas weiter auszubauen."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Lena (4) wohnt mit ihrer Mutter in einer Stadtwohnung an einer Hauptstraße. Draußen allein spielen geht nicht, Nachbarskinder in ihrem Alter gibt es kaum. Im Kindergarten findet sie Freunde, einen Garten und viele Spielideen."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Was kann die Familie nach Mollenhauer heute oft nicht mehr ausreichend bieten? (mehrere richtig) Entscheide bei jeder Aussage, ob sie zutrifft.",
+     "aussagen": [
+      {
+       "text": "freien und sicheren Spielraum",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Gleichaltrige",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "vielfältige Spiel- und Sozialerfahrungen",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Liebe und Geborgenheit",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Liebe und Geborgenheit nennt Mollenhauer nicht – sie bleiben eine zentrale Aufgabe der Familie."
+    },
+    {
+     "typ": "frei",
+     "frage": "Erläutern Sie am Beispiel von Lena, inwiefern der Kindergarten die Familie ergänzt.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Lenas Mutter kann ihr Liebe, Geborgenheit und Zuwendung geben – aber in der Stadtwohnung fehlen sicherer Spielraum und gleichaltrige Spielpartner. Genau diese Lücke schließt der Kindergarten: Lena findet Freunde (soziale Erfahrungen), einen Garten (Spielraum) und Anregungen (Spielideen). Die Erziehung zu Hause wird nicht ersetzt, sondern um das ergänzt, was die Familie allein nicht bieten kann."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Kindergarten oder Schule?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Auch der Kindergarten will die Erziehung der Familie **unterstützen und ergänzen**. Im Unterschied zur Schule gibt es aber **keine Pflicht**, ihn zu besuchen:"
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Pflicht?",
+       "text": "**Schule:** Ja – gesetzliche Schulpflicht **Kindergarten:** **Nein** – Besuch ist **freiwillig**",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Wann beginnt der Besuch?",
+       "text": "**Schule:** feste Altersregel **Kindergarten:** Eltern entscheiden je nach **Entwicklungsstand** des Kindes",
+       "farbe": "blau"
+      },
+      {
+       "label": "Wie oft / wie lange?",
+       "text": "**Schule:** jeden Tag, feste Zeiten **Kindergarten:** nicht zwingend täglich; Zeiten **flexibel** nach Absprache",
+       "farbe": "gruen"
+      }
+     ]
+    },
+    {
+     "typ": "text",
+     "text": "Kindergärten sind in der Regel für Kinder **zwischen drei und fünf bzw. sechs Jahren** da."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Schule oder Kindergarten?",
+     "kategorien": [
+      {
+       "name": "Schule",
+       "items": [
+        "Der Besuch ist gesetzlich vorgeschrieben.",
+        "Der Besuch ist jeden Tag zu festen Zeiten Pflicht."
+       ]
+      },
+      {
+       "name": "Kindergarten",
+       "items": [
+        "Eltern entscheiden je nach Entwicklungsstand über den Beginn.",
+        "Die Zeiten können flexibel abgesprochen werden."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 4",
+   "titel": "Träger, Personal und Aufsicht",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der **Träger** ist die Organisation, die einen Kindergarten betreibt und verantwortet."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Freie Träger (die meisten)",
+       "text": "vor allem kirchliche Wohlfahrtsverbände: **Diakonisches Werk** (evangelisch), **Caritasverband** (katholisch)",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Öffentliche Träger (ca. 30 %)",
+       "text": "z. B. Städte und Gemeinden (Kommunen)",
+       "farbe": "blau"
+      },
+      {
+       "label": "Sonstige Träger (zahlenmäßig kaum)",
+       "text": "Deutsches Rotes Kreuz, Paritätischer Wohlfahrtsverband · private Träger: Betriebe, Krankenhäuser, Studentenwerke",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Die Träger von Kindergärten"
+    },
+    {
+     "typ": "text",
+     "text": "Warum gibt es so viele freie Träger? Das Gesetz legt fest, dass öffentliche Träger (z. B. die Stadt) erst dann selbst einen Kindergarten gründen, wenn **kein freier Träger** dafür bereitsteht (**Subsidiaritätsprinzip**). Diese Regel stammt aus dem Jugendwohlfahrtsgesetz (JWG, 1922, neu gefasst 1961). Heute gilt das **Kinder- und Jugendhilfegesetz (KJHG)** von 1990/91, das als **Sozialgesetzbuch VIII** in das Sozialrecht eingefügt wurde."
+    },
+    {
+     "typ": "text",
+     "text": "**Wer arbeitet im Kindergarten?**"
+    },
+    {
+     "typ": "text",
+     "text": "Pflege und Erziehung übernehmen **ausgebildete Erzieher/-innen** und **Kinderpfleger/-innen**. Die frühere Berufsbezeichnung „Kindergärtner/-in“ wird heute nicht mehr verwendet – sie wurde durch **„Erzieher/-in“** ersetzt."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Der Kindergarten ist eine familienergänzende Einrichtung auf freiwilliger Basis für Kinder zwischen dem **vierten** und sechsten Lebensjahr. Pflege und Erziehung werden in der Regel von ausgebildeten Erziehern und Kinderpflegern geleistet. Der Kindergarten wird von Wohlfahrtsverbänden, Kommunen, Kirchen oder Vereinen getragen und untersteht der Aufsicht von Jugendämtern und Regierungen."
+    },
+    {
+     "typ": "merke",
+     "label": "Achtung, Denkfalle",
+     "text": "Das „vierte Lebensjahr“ beginnt mit dem 3. Geburtstag. Gemeint ist also dasselbe Alter wie oben: etwa 3 bis 6 Jahre."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Ordnen Sie die Träger der richtigen Gruppe zu.",
+     "kategorien": [
+      {
+       "name": "freier Träger (kirchlich)",
+       "items": [
+        "Caritasverband",
+        "Diakonisches Werk"
+       ]
+      },
+      {
+       "name": "öffentlicher Träger",
+       "items": [
+        "Stadt Augsburg"
+       ]
+      },
+      {
+       "name": "privater Träger",
+       "items": [
+        "Betriebskindergarten eines Autoherstellers"
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Öffentliche Träger werden erst aktiv, wenn kein {{freier}} Träger bereitsteht. Dieses Prinzip heißt {{Subsidiaritätsprinzip}}. Heute gilt das Kinder- und Jugendhilfegesetz, das als Sozialgesetzbuch {{VIII}} eingefügt wurde. Die Aufsicht über Kindergärten haben {{Jugendämter}} und Regierungen.",
+     "woerter": [
+      "freier",
+      "Subsidiaritätsprinzip",
+      "V",
+      "VIII",
+      "XII",
+      "Jugendämter"
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Ein Kind ist im „vierten Lebensjahr“. Wie alt ist es?",
+     "optionen": [
+      "3 Jahre",
+      "4 Jahre",
+      "5 Jahre",
+      "2 Jahre"
+     ],
+     "richtig": 0,
+     "erklaerung": "Das erste Lebensjahr ist die Zeit von der Geburt bis zum 1. Geburtstag. Das vierte Lebensjahr beginnt also mit dem 3. Geburtstag."
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Übung & Praxisbezug",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Verknüpfen Sie das Gelernte mit Ihrer eigenen Praktikumsstelle."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Lernkarten: Begriff und Erklärung",
+     "paare": [
+      [
+       "Kita",
+       "Oberbegriff für Krippe, Kindergarten und Hort; außerschulisch, freiwillig, familienergänzend"
+      ],
+      [
+       "familienergänzend",
+       "unterstützt und ergänzt die Familienerziehung, ersetzt sie aber nicht"
+      ],
+      [
+       "Träger",
+       "Organisation, die eine Einrichtung betreibt und verantwortet"
+      ],
+      [
+       "Subsidiaritätsprinzip",
+       "öffentliche Träger werden erst tätig, wenn kein freier Träger bereitsteht"
+      ],
+      [
+       "SGB VIII",
+       "Kinder- und Jugendhilfegesetz (KJHG), seit 1990/91"
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Recherchieren Sie für Ihre Praktikumseinrichtung: Wer ist der Träger? Zu welcher Trägergruppe gehört er? Welche Fachkräfte arbeiten dort? Wie viele Kinder in welchem Alter werden betreut?",
+     "hinweis": "Schauen Sie auf die Homepage der Einrichtung oder fragen Sie die Leitung.",
+     "muster": "Individuelle Antwort. Prüfen Sie: Haben Sie den Träger der richtigen Gruppe zugeordnet (frei/kirchlich, öffentlich, sonstige/privat)? Haben Sie die Berufsgruppen korrekt benannt (Erzieher/-innen, Kinderpfleger/-innen, ggf. Sozialpädagogen)? Passt die Altersangabe zu Krippe, Kindergarten oder Hort?"
+    },
+    {
+     "typ": "frei",
+     "frage": "Zurück zur Lernsituation: Beantworten Sie die Frage „Welche Aufgaben hat ein Kindergarten?“ jetzt mithilfe der Fachbegriffe aus dem Kurs.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Der Kindergarten ist eine **familienergänzende** Erziehungs- und Bildungseinrichtung: Er unterstützt die Familie, wenn Eltern berufstätig sind, und bietet, was Familien heute oft nicht mehr allein bieten können – Gleichaltrige, sicheren Spielraum und vielfältige Spiel- und Sozialerfahrungen (Mollenhauer). Pflege, Erziehung und Bildung übernimmt ausgebildetes Fachpersonal. Der Besuch ist freiwillig und flexibel."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Was ist eine Kindertagesstätte?",
+     "optionen": [
+      "eine Einrichtung nur für Babys",
+      "eine außerschulische, freiwillige, familienergänzende Einrichtung für Kinder bis 12 Jahre",
+      "eine Pflichtschule für Kinder ab 6 Jahren",
+      "ein Heim, in dem Kinder dauerhaft wohnen"
+     ],
+     "richtig": 1
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie zu.",
+     "paare": [
+      [
+       "unter 3 Jahren",
+       "Kinderkrippe"
+      ],
+      [
+       "ca. 3 bis 6 Jahre",
+       "Kindergarten"
+      ],
+      [
+       "Schulkinder nach dem Unterricht",
+       "Kinderhort"
+      ]
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Es gibt eine gesetzliche Pflicht, den Kindergarten zu besuchen.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Die meisten Kindergärten sind in freier Trägerschaft.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Etwa 30 % der Kindergärten haben öffentliche Träger.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Die Berufsbezeichnung lautet heute „Kindergärtnerin“.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Wer hat die Aufsicht über Kindergärten?",
+     "optionen": [
+      "die Elternbeiräte",
+      "die Kirchen allein",
+      "Jugendämter und Regierungen",
+      "die Grundschulen"
+     ],
+     "richtig": 2
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Die Kita ersetzt die Familie nicht, sondern ist eine {{familienergänzende}} Einrichtung.",
+     "woerter": [
+      "familienergänzende"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "**Kita** ist der Oberbegriff für Kinderkrippe, Kindergarten und Kinderhort. Kitas sind **außerschulisch, freiwillig** und **familienergänzend** – sie ersetzen die Familie nicht. Kitas werden wichtiger, weil Eltern häufiger berufstätig sind und Familien Kindern nicht mehr alle nötigen Spiel- und Sozialerfahrungen bieten können (Mollenhauer). Der **Kindergarten** ist für Kinder von ca. 3 bis 6 Jahren; anders als die Schule ist der Besuch **keine Pflicht**. Die meisten Kindergärten haben **freie Träger** (v. a. Caritas, Diakonie), ca. 30 % **öffentliche Träger**. Es arbeiten **Erzieher/-innen** und **Kinderpfleger/-innen**; die Aufsicht haben **Jugendämter und Regierungen**."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann Kita, Krippe, Kindergarten und Hort unterscheiden.\n- Ich kann erklären, was „familienergänzend“ bedeutet.\n- Ich kann zwei Gründe nennen, warum Kitas wichtiger werden.\n- Ich kann den Kindergarten von der Schule abgrenzen.\n- Ich kann Träger, Fachpersonal und Aufsicht eines Kindergartens benennen."
+    },
+    {
+     "typ": "text",
+     "text": "**Weiterdenken:** Was genau sollen Kinder im Kindergarten lernen? In Bayern beschreibt das der **Bayerische Bildungs- und Erziehungsplan (BayBEP)** – Thema des nächsten Kurses."
+    }
+   ]
+  }
+ ]
+}

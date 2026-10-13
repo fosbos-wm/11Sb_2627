@@ -1,0 +1,541 @@
+{
+ "titel": "Erziehungsstile nach Baumrind",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "5",
+ "einleitung": "Geschätzte Dauer: 60 Minuten.",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wärme und Anforderung – vier Stile und ihre Folgen"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können die beiden Dimensionen **Wärme/Responsivität** und **Anforderung/Kontrolle** erklären.\n- Sie können die vier Erziehungsstile beschreiben und im Vierfelder-Schema einordnen.\n- Sie können typische Auswirkungen der Stile auf die kindliche Entwicklung nennen.\n- Sie können Erziehungssituationen einem Stil zuordnen und den Stil begründet beurteilen."
+    },
+    {
+     "typ": "situation",
+     "label": "Einstieg: „Darf ich noch aufbleiben?“",
+     "text": "Vier Kinder fragen abends ihre Eltern, ob sie länger aufbleiben dürfen. Die Antworten:\n- **Familie A:** „Weil ich es sage. Ab ins Bett.“\n- **Familie B:** „Klar, mach, was du willst.“\n- **Familie C:** „Unter der Woche brauchst du deinen Schlaf, weil du morgen früh raus musst. Aber am Samstag können wir eine Ausnahme machen – was meinst du?“\n- **Familie D:** Niemand antwortet. Die Eltern sind nicht da oder interessieren sich nicht dafür.\n**Überlegen Sie:** In welcher Familie würden Sie gern aufwachsen? Warum?"
+    },
+    {
+     "typ": "frei",
+     "frage": "Begründen Sie Ihre spontane Wahl in zwei bis drei Sätzen.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Die meisten wählen Familie C: Dort wird das Kind ernst genommen (Wärme), gleichzeitig gibt es eine klare, begründete Regel (Anforderung). Genau diese Kombination beschreibt Baumrind als **autoritativen** Stil. Familie A = autoritär, B = permissiv, D = vernachlässigend. Im Kurs lernen Sie, woran man die Stile erkennt."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Zwei Dimensionen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Die amerikanische Entwicklungspsychologin **Diana Baumrind** untersuchte in den 1960er-Jahren, wie sich das Erziehungsverhalten von Eltern auf die Entwicklung ihrer Kinder auswirkt. Dabei unterschied sie verschiedene Erziehungsstile anhand **zweier Dimensionen**."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Baumrind unterscheidet Erziehungsstile anhand von zwei Dimensionen: der elterlichen **Wärme und Responsivität** (wie viel emotionale Unterstützung und Zuwendung Eltern geben) und der elterlichen **Anforderung und Kontrolle** (wie viele Regeln und Erwartungen Eltern stellen und wie konsequent sie diese durchsetzen)."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Responsivität (Dimension 1)",
+       "text": "Wärme, Zuwendung, Unterstützung · Eingehen auf die Bedürfnisse des Kindes",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Anforderung (Dimension 2)",
+       "text": "Regeln, Kontrolle, Konsequenz · Erwartungen an das Kind",
+       "farbe": "blau"
+      }
+     ],
+     "beschriftung": "Schaubild: Zwei Dimensionen der Erziehung nach Baumrind"
+    },
+    {
+     "typ": "merke",
+     "label": "Begriff erklärt: Responsivität",
+     "text": "Von engl. to respond = antworten. Responsive Eltern „antworten“ auf ihr Kind: Sie bemerken seine Bedürfnisse und gehen feinfühlig darauf ein."
+    },
+    {
+     "typ": "text",
+     "text": "Aus der Kombination dieser beiden Dimensionen ergeben sich **vier Erziehungsstile**. Baumrind selbst beschrieb zunächst drei Stile; den vierten – den vernachlässigenden Stil – ergänzten später die Forscher **Eleanor Maccoby** und **John Martin**."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Zu welcher Dimension gehört das Elternverhalten?",
+     "kategorien": [
+      {
+       "name": "Wärme / Responsivität",
+       "items": [
+        "tröstet das Kind, wenn es traurig ist",
+        "hört aufmerksam zu, wenn das Kind erzählt"
+       ]
+      },
+      {
+       "name": "Anforderung / Kontrolle",
+       "items": [
+        "legt eine feste Schlafenszeit fest",
+        "achtet darauf, dass die Hausaufgaben erledigt werden",
+        "setzt eine angekündigte Konsequenz auch wirklich um"
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Wer ergänzte den vierten Erziehungsstil?",
+     "optionen": [
+      "Diana Baumrind allein",
+      "Klaus Mollenhauer",
+      "Wolfgang Brezinka",
+      "Eleanor Maccoby und John Martin"
+     ],
+     "richtig": 3
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Autoritativ und autoritär",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Achtung, Verwechslungsgefahr!",
+     "text": "**Autoritativ** und **autoritär** klingen fast gleich, bedeuten aber etwas sehr Unterschiedliches. Merkhilfe: Das längere Wort auto**ritativ** hat „mehr drin“ – nämlich zusätzlich zu den Regeln auch **Wärme**. Auto**ritär** ist kurz und knapp – wie die Ansagen dieser Eltern."
+    },
+    {
+     "typ": "text",
+     "text": "**Autoritativer Erziehungsstil**"
+    },
+    {
+     "typ": "text",
+     "text": "Eltern mit autoritativem Erziehungsstil zeigen **viel Wärme und Verständnis** und stellen gleichzeitig **klare Regeln und Erwartungen**. Sie begründen ihre Entscheidungen, hören ihrem Kind zu und beziehen es in angemessenem Maß in Entscheidungen ein."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Ein Kind möchte abends länger aufbleiben. Die Eltern erklären, warum eine feste Schlafenszeit wichtig ist, hören sich den Wunsch des Kindes an und einigen sich gemeinsam auf eine Ausnahme am Wochenende."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Der autoritative Erziehungsstil verbindet hohe emotionale Wärme mit klaren, konsequent durchgesetzten Regeln. Eltern erklären ihre Erwartungen und beziehen das Kind in Entscheidungen mit ein."
+    },
+    {
+     "typ": "text",
+     "text": "**Folgen:** Kinder, die autoritativ erzogen werden, gelten in Baumrinds Forschung häufig als **selbstbewusst, sozial kompetent und leistungsbereit**."
+    },
+    {
+     "typ": "text",
+     "text": "**Autoritärer Erziehungsstil**"
+    },
+    {
+     "typ": "text",
+     "text": "Eltern mit autoritärem Erziehungsstil stellen ebenfalls **hohe Anforderungen und strenge Regeln**, zeigen dabei aber **wenig Wärme und Verständnis**. Gehorsam wird erwartet, Entscheidungen werden selten erklärt oder diskutiert."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Auf die Bitte, länger aufzubleiben, antworten die Eltern knapp: „Weil ich es sage. Ab ins Bett.“ Eine Begründung oder ein Gespräch findet nicht statt."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Der autoritäre Erziehungsstil ist von strengen Regeln und hohen Anforderungen bei gleichzeitig geringer emotionaler Wärme geprägt. Gehorsam wird eingefordert, ohne dass Entscheidungen erklärt werden."
+    },
+    {
+     "typ": "text",
+     "text": "**Folgen:** Kinder aus autoritär geprägten Familien zeigen in Studien häufiger **Unsicherheit und ein geringeres Selbstwertgefühl** oder – je nach Temperament – **trotzig-aggressives Verhalten**."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Autoritativ oder autoritär? Ordnen Sie zu.",
+     "kategorien": [
+      {
+       "name": "autoritativ",
+       "items": [
+        "„Wir haben die Regel, weil … – was meinst du dazu?“",
+        "Regeln werden begründet, das Kind darf mitreden."
+       ]
+      },
+      {
+       "name": "autoritär",
+       "items": [
+        "„Keine Diskussion!“",
+        "Gehorsam wird ohne Erklärung erwartet."
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Was haben der autoritative und der autoritäre Stil gemeinsam?",
+     "optionen": [
+      "hohe Wärme",
+      "geringe Anforderung",
+      "Sie haben nichts gemeinsam.",
+      "hohe Anforderung / Kontrolle"
+     ],
+     "richtig": 3,
+     "erklaerung": "Beide stellen klare Regeln und hohe Anforderungen. Der Unterschied liegt in der Wärme."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Permissiv und vernachlässigend",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "**Permissiver Erziehungsstil**"
+    },
+    {
+     "typ": "text",
+     "text": "Eltern mit permissivem Erziehungsstil sind **warmherzig und zugewandt**, stellen aber **wenige Regeln und Anforderungen**. Sie vermeiden Konflikte und lassen dem Kind weitgehend freie Hand."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Das Kind möchte länger aufbleiben. Die Eltern lassen es gewähren, ohne eine feste Schlafenszeit durchzusetzen."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Der permissive Erziehungsstil ist von hoher Wärme, aber wenigen Regeln und geringen Anforderungen geprägt. Eltern vermeiden Konflikte und setzen Grenzen selten konsequent durch."
+    },
+    {
+     "typ": "text",
+     "text": "**Folgen:** Kindern aus permissiv geprägten Familien fällt es häufig schwerer, **sich an Regeln zu halten, Frustration auszuhalten oder eigene Impulse zu steuern**."
+    },
+    {
+     "typ": "text",
+     "text": "**Vernachlässigender Erziehungsstil**"
+    },
+    {
+     "typ": "text",
+     "text": "Beim vernachlässigenden (auch: **unbeteiligten**) Erziehungsstil zeigen Eltern **weder Wärme noch stellen sie Anforderungen**. Sie kümmern sich kaum um die Bedürfnisse, Aktivitäten oder Probleme ihres Kindes."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Das Kind kommt abends, wann es möchte, ohne dass die Eltern nachfragen oder sich dafür interessieren, was es tagsüber erlebt hat."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Der vernachlässigende Erziehungsstil ist durch geringe Wärme und geringe Anforderungen gekennzeichnet. Eltern nehmen am Leben ihres Kindes kaum Anteil."
+    },
+    {
+     "typ": "text",
+     "text": "**Folgen:** Dieser Stil gilt in der Forschung als **am stärksten mit negativen Entwicklungsfolgen** verbunden, etwa mit geringem Selbstwertgefühl, Schulproblemen oder Verhaltensauffälligkeiten."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie die typischen Folgen dem Erziehungsstil zu.",
+     "paare": [
+      [
+       "selbstbewusst, sozial kompetent, leistungsbereit",
+       "autoritativ"
+      ],
+      [
+       "unsicher, geringes Selbstwertgefühl oder trotzig-aggressiv",
+       "autoritär"
+      ],
+      [
+       "Schwierigkeiten, Regeln einzuhalten und Frustration auszuhalten",
+       "permissiv"
+      ],
+      [
+       "stärkste negative Folgen, z. B. Schulprobleme",
+       "vernachlässigend"
+      ]
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Was unterscheidet den permissiven vom vernachlässigenden Stil?",
+     "optionen": [
+      "Es gibt keinen Unterschied.",
+      "Permissive Eltern zeigen viel Wärme, vernachlässigende kaum.",
+      "Permissive Eltern stellen mehr Regeln auf.",
+      "Vernachlässigende Eltern sind besonders streng."
+     ],
+     "richtig": 1
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 4",
+   "titel": "Das Vierfelder-Schema",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Ordnet man die beiden Dimensionen als Achsen an, ergibt sich ein Schema mit vier Feldern:"
+    },
+    {
+     "typ": "text",
+     "text": "Das Vierfelder-Schema ordnet die Erziehungsstile nach **Wärme** (hoch/niedrig) und **Anforderung** (hoch/niedrig):"
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Autoritativ",
+       "text": "viel Wärme + klare Regeln",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Autoritär",
+       "text": "wenig Wärme + strenge Regeln",
+       "farbe": "blau"
+      },
+      {
+       "label": "Permissiv",
+       "text": "viel Wärme + wenige Regeln",
+       "farbe": "gruen"
+      },
+      {
+       "label": "Vernachlässigend",
+       "text": "wenig Wärme + wenige Regeln",
+       "farbe": "gelb"
+      }
+     ],
+     "beschriftung": "Vierfelder-Schema der Erziehungsstile"
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Autoritativ",
+       "text": "**Wärme / Responsivität:** hoch **Anforderung / Kontrolle:** hoch",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "Autoritär",
+       "text": "**Wärme / Responsivität:** niedrig **Anforderung / Kontrolle:** hoch",
+       "farbe": "blau"
+      },
+      {
+       "label": "Permissiv",
+       "text": "**Wärme / Responsivität:** hoch **Anforderung / Kontrolle:** niedrig",
+       "farbe": "gruen"
+      },
+      {
+       "label": "Vernachlässigend",
+       "text": "**Wärme / Responsivität:** niedrig **Anforderung / Kontrolle:** niedrig",
+       "farbe": "gelb"
+      }
+     ]
+    },
+    {
+     "typ": "merke",
+     "label": "Kritisch betrachtet",
+     "text": "Die Stile sind **Idealtypen**. Reale Eltern zeigen oft Mischformen und verhalten sich je nach Situation, Stress oder Kind unterschiedlich. Außerdem zeigen die Studien **Zusammenhänge** (Korrelationen) – das Temperament des Kindes, die Kultur und die Lebensumstände spielen ebenfalls eine Rolle."
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie die Tabelle in Worten.",
+     "text": "Der autoritative Stil verbindet {{hohe}} Wärme mit {{hoher}} Anforderung. Der autoritäre Stil hat {{niedrige}} Wärme und {{hohe}} Anforderung. Der permissive Stil hat {{hohe}} Wärme und {{niedrige}} Anforderung. Beim vernachlässigenden Stil sind beide Dimensionen {{niedrig}}.",
+     "woerter": [
+      "hohe",
+      "niedrige",
+      "hoher",
+      "niedriger",
+      "hoch",
+      "niedrig"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Übung: Stile erkennen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Lesen Sie die Fallbeispiele genau und achten Sie auf beide Dimensionen: Wie viel **Wärme**? Wie viel **Anforderung**?"
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Welcher Erziehungsstil liegt vor?",
+     "paare": [
+      [
+       "Tom (15) möchte auf eine Party. Die Mutter fragt, wer dort ist, erklärt ihre Sorgen und sie vereinbaren gemeinsam, dass er um 23 Uhr abgeholt wird.",
+       "autoritativ"
+      ],
+      [
+       "Mia (8) hat ihr Zimmer nicht aufgeräumt. Der Vater schreit: „Du hast zu gehorchen! Eine Woche Fernsehverbot!“ – ohne nachzufragen.",
+       "autoritär"
+      ],
+      [
+       "Jonas (6) will vor dem Abendessen Süßigkeiten. Die Mutter seufzt: „Na gut, mein Schatz“ – wie jeden Tag.",
+       "permissiv"
+      ],
+      [
+       "Lara (12) hat seit Wochen keine Hausaufgaben gemacht. Zu Hause merkt das niemand; beim Abendessen ist sie meist allein.",
+       "vernachlässigend"
+      ]
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Lernkarten: Begriff und Erklärung",
+     "paare": [
+      [
+       "autoritativ",
+       "hohe Wärme + hohe Anforderung → selbstbewusst, sozial kompetent"
+      ],
+      [
+       "autoritär",
+       "niedrige Wärme + hohe Anforderung → unsicher oder trotzig-aggressiv"
+      ],
+      [
+       "permissiv",
+       "hohe Wärme + niedrige Anforderung → Mühe mit Regeln und Frustration"
+      ],
+      [
+       "vernachlässigend",
+       "niedrige Wärme + niedrige Anforderung → ungünstigste Folgen"
+      ],
+      [
+       "Responsivität",
+       "Wärme, Zuwendung, feinfühliges Eingehen auf das Kind"
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Ein Vater sagt: „Mich hat man früher auch streng erzogen, und aus mir ist doch was geworden!“ Nehmen Sie mithilfe von Baumrinds Erkenntnissen Stellung.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "- Einordnung: Der Vater beschreibt vermutlich einen **autoritären** Stil (hohe Anforderung, wenig Wärme).\n- Baumrinds Forschung: Autoritär erzogene Kinder zeigen **häufiger** Unsicherheit, geringes Selbstwertgefühl oder trotzig-aggressives Verhalten; günstiger ist der **autoritative** Stil.\n- Einschränkung: Studien zeigen Wahrscheinlichkeiten, keine Gesetzmäßigkeit – ein Einzelfall widerlegt sie nicht. Auch andere Faktoren (Temperament, weitere Bezugspersonen, Resilienz) wirken.\n- Fazit: Regeln und Konsequenz sind sinnvoll – aber verbunden mit Wärme, Erklärungen und Mitsprache."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Welche beiden Dimensionen verwendet Baumrind?",
+     "optionen": [
+      "Intelligenz und Leistung",
+      "Sprache und Bewegung",
+      "Wärme/Responsivität und Anforderung/Kontrolle",
+      "Strenge und Strafe"
+     ],
+     "richtig": 2
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie die Kombination dem Stil zu.",
+     "paare": [
+      [
+       "hohe Wärme + hohe Anforderung",
+       "autoritativ"
+      ],
+      [
+       "niedrige Wärme + hohe Anforderung",
+       "autoritär"
+      ],
+      [
+       "hohe Wärme + niedrige Anforderung",
+       "permissiv"
+      ],
+      [
+       "niedrige Wärme + niedrige Anforderung",
+       "vernachlässigend"
+      ]
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welcher Stil gilt in der Forschung als besonders günstig für die Entwicklung?",
+     "optionen": [
+      "autoritativ",
+      "autoritär",
+      "permissiv",
+      "vernachlässigend"
+     ],
+     "richtig": 0
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Den vernachlässigenden Stil hat Baumrind schon in ihrer ersten Studie beschrieben.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Permissive Eltern vermeiden Konflikte.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Autoritär erziehende Eltern begründen ihre Entscheidungen ausführlich.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Der vernachlässigende Stil ist am stärksten mit negativen Folgen verbunden.",
+       "richtig": true,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "„Weil ich es sage. Ab ins Bett.“ – Welcher Stil?",
+     "optionen": [
+      "autoritär",
+      "autoritativ",
+      "permissiv",
+      "vernachlässigend"
+     ],
+     "richtig": 0
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "Baumrind unterscheidet Erziehungsstile anhand der Dimensionen **Wärme (Responsivität)** und **Anforderung (Kontrolle)**. Der **autoritative** Stil (hohe Wärme + hohe Anforderung) gilt in der Forschung als besonders günstig für die kindliche Entwicklung. Der **autoritäre** Stil (niedrige Wärme + hohe Anforderung) und der **permissive** Stil (hohe Wärme + niedrige Anforderung) bergen jeweils eigene Risiken. Der **vernachlässigende** Stil (niedrige Wärme + niedrige Anforderung) gilt als am ungünstigsten für die kindliche Entwicklung."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann die beiden Dimensionen nach Baumrind erklären.\n- Ich kann die vier Stile beschreiben und im Vierfelder-Schema einordnen.\n- Ich kann autoritativ und autoritär sicher unterscheiden.\n- Ich kann typische Folgen der vier Stile nennen.\n- Ich kann Fallbeispiele einem Stil zuordnen und das begründen."
+    },
+    {
+     "typ": "text",
+     "text": "**Weiterdenken:** Erziehung findet nicht nur in der Familie statt. Im nächsten Kurs lernen Sie den **Kindergarten** als familienergänzende Einrichtung kennen – vielleicht auch Ihre Praktikumsstelle."
+    }
+   ]
+  }
+ ]
+}

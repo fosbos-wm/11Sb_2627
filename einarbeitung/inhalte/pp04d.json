@@ -1,0 +1,530 @@
+{
+ "titel": "Erziehung als soziales Handeln",
+ "modulart": "selbstlern",
+ "lb": 3,
+ "nr": "4",
+ "einleitung": "Geschätzte Dauer: 45–60 Minuten.",
+ "abschnitte": [
+  {
+   "kicker": "Lernziele und Einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Vom Handeln zur Definition von Erziehung"
+    },
+    {
+     "typ": "text",
+     "text": "**Lernziele:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Sie können die Begriffe **Handeln**, **soziales Handeln** und **pädagogisches Handeln** definieren und voneinander abgrenzen.\n- Sie können die Positionen von **Brezinka** und **Giesecke** wiedergeben.\n- Sie können erklären, warum pädagogisches Handeln „Versuchshandeln“ ist und Verantwortung erfordert.\n- Sie können die sechs Merkmale von Erziehung nennen und die **Definition von Erziehung** wiedergeben und anwenden."
+    },
+    {
+     "typ": "situation",
+     "label": "Einstieg: Die Mathe-Note",
+     "text": "Lea (14) hat in Mathe eine Fünf geschrieben. Ihre Mutter setzt sich am Abend mit ihr zusammen, fragt, woran es lag, lobt sie für ihre Fortschritte in Englisch, ermahnt sie, mehr zu üben, und verspricht ihr einen Kinobesuch, wenn die nächste Arbeit besser wird.\n**Überlegen Sie:** Was haben all diese Handlungen der Mutter gemeinsam?"
+    },
+    {
+     "typ": "frei",
+     "frage": "Notieren Sie Ihre Antwort in ein bis zwei Sätzen.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Alle Handlungen (Gespräch, Lob, Ermahnung, Belohnung in Aussicht stellen) sind **bewusst**, auf **Lea bezogen** und verfolgen **dasselbe Ziel**: Lea soll in Mathe besser mitlernen. Genau das macht Erziehung als soziales Handeln aus."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 1",
+   "titel": "Was ist Handeln?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Mit Erziehung ist immer ein **Handeln** verbunden, mit dem der Erzieher ein bestimmtes Ziel – ein Erziehungsziel – erreichen will."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Die Mutter führt ein Gespräch mit ihrer Tochter, lobt oder ermahnt sie, stellt ihr Belohnungen in Aussicht – damit die Tochter in der Schule mitlernt."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Handeln meint jede menschliche Aktivität, mit welcher bewusst und überlegt eine bestimmte Absicht, ein bestimmtes Ziel verfolgt wird."
+    },
+    {
+     "typ": "merke",
+     "label": "Abgrenzung: Handeln und Verhalten",
+     "text": "Nicht jedes Verhalten ist Handeln. Reflexe (z. B. Blinzeln) oder unbewusste Gewohnheiten sind Verhalten, aber kein Handeln – ihnen fehlen **Bewusstsein** und **Absicht**."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Handelt es sich um **Handeln** im Sinne des Merksatzes? (richtig = „ja“, falsch = „nein“)",
+     "aussagen": [
+      {
+       "text": "Eine Schülerin lernt für die Prüfung, um eine gute Note zu bekommen.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Ein Mann zuckt zusammen, als hinter ihm eine Tür knallt.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Ein Erzieher plant ein Bewegungsangebot, um die Motorik der Kinder zu fördern.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Jemand gähnt, weil er müde ist.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Handeln ist bewusst, überlegt und zielgerichtet. Reflexe und körperliche Reaktionen gehören nicht dazu."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 2",
+   "titel": "Soziales Handeln",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Erziehung ist **soziales Handeln**, das im zwischenmenschlichen Kontakt von Erzieher und zu Erziehendem stattfindet. Pädagogisches Handeln ist **bewusst und willentlich auf andere Menschen bezogen** und zielt auf deren **Veränderung** ab."
+    },
+    {
+     "typ": "zitat",
+     "text": "Soziales Handeln ist eine besondere Art des Handelns, die sich durch eine bestimmte Intention von anderen Arten unterscheidet: es ist bewusst und willentlich auf andere Menschen bezogen; es ist sinnhaft orientiert am vergangenen, gegenwärtigen oder für künftig erwarteten Verhalten anderer.",
+     "quelle": "Wolfgang Brezinka, 1990, S. 75"
+    },
+    {
+     "typ": "merke",
+     "label": "Brezinka in einfachen Worten",
+     "text": "Soziales Handeln richtet sich **absichtlich an andere Menschen**. Dabei bezieht man sich darauf, wie der andere sich **verhalten hat**, **gerade verhält** oder **verhalten wird**."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Weil ein Kind gestern gehauen hat (vergangen), bespricht die Erzieherin heute (gegenwärtig) mit ihm, wie es seinen Ärger anders zeigen kann – damit es morgen nicht wieder haut (künftig erwartet)."
+    },
+    {
+     "typ": "text",
+     "text": "Erziehung meint also **nicht jede Art des kindlichen und jugendlichen Lernens**, sondern nur das, was **bewusst und planmäßig** zu diesem Zweck organisiert wird."
+    },
+    {
+     "typ": "zitat",
+     "text": "Erziehung meint also immer nur das, was bewusst und planvoll zum Zwecke der optimalen kindlichen Entwicklung geschieht.",
+     "quelle": "Hermann Giesecke, 2004, S. 71"
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Ordnen Sie die Aussagen dem richtigen Autor zu.",
+     "kategorien": [
+      {
+       "name": "Brezinka",
+       "items": [
+        "Soziales Handeln ist bewusst und willentlich auf andere Menschen bezogen.",
+        "Soziales Handeln orientiert sich am vergangenen, gegenwärtigen oder künftig erwarteten Verhalten anderer."
+       ]
+      },
+      {
+       "name": "Giesecke",
+       "items": [
+        "Erziehung ist nur das, was bewusst und planvoll zum Zweck der optimalen kindlichen Entwicklung geschieht."
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Was unterscheidet soziales Handeln von „einfachem“ Handeln?",
+     "optionen": [
+      "Es ist bewusst und willentlich auf andere Menschen bezogen.",
+      "Es geschieht ohne Ziel.",
+      "Es findet nur in Institutionen statt.",
+      "Es ist immer erfolgreich."
+     ],
+     "richtig": 0
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 3",
+   "titel": "Pädagogisches Handeln als Versuchshandeln",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Ein beabsichtigtes „Versuchshandeln“, das ein bestimmtes Ziel erreichen will, wird als **pädagogisches Handeln** bezeichnet. „Versuchshandeln“ deshalb, weil **der Ausgang offen ist** und sich nicht vorhersagen lässt."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Pädagogisches Handeln ist eine beabsichtigte Aktivität in einer Erziehungssituation, welche ein bestimmtes Ziel erreichen will. Sein Ergebnis ist „offen“, sein Ausgang lässt sich nicht vorhersehen."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Ein Lehrer lobt einen stillen Schüler für seine Wortmeldung, damit er sich öfter beteiligt. Ob der Schüler sich daraufhin wirklich mehr meldet – oder ob ihm das Lob vor der Klasse peinlich ist –, kann der Lehrer nicht sicher wissen."
+    },
+    {
+     "typ": "text",
+     "text": "**Pädagogische Verantwortung**"
+    },
+    {
+     "typ": "text",
+     "text": "Meist ist das Verhältnis zwischen Erzieher und zu Erziehendem **ungleich** (z. B. in Wissen, Erfahrung, Macht). Deshalb trägt der Erzieher die **pädagogische Verantwortung** und muss sich ständig fragen, welche Folgen sein Handeln hat."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "Handeln",
+       "text": "bewusst, überlegt, zielgerichtet",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "↓",
+       "text": "→",
+       "farbe": "gelb"
+      },
+      {
+       "label": "soziales Handeln",
+       "text": "+ auf andere Menschen bezogen",
+       "farbe": "blau"
+      },
+      {
+       "label": "↓",
+       "text": "→",
+       "farbe": "gelb"
+      },
+      {
+       "label": "pädagogisches Handeln",
+       "text": "+ in einer Erziehungssituation, Ausgang offen",
+       "farbe": "gruen"
+      }
+     ],
+     "beschriftung": "Schaubild: Vom Handeln zum pädagogischen Handeln"
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänzen Sie.",
+     "text": "Pädagogisches Handeln heißt „{{Versuchshandeln}}“, weil sein Ausgang {{offen}} ist. Da das Verhältnis zwischen Erzieher und zu Erziehendem meist {{ungleich}} ist, trägt der Erzieher die pädagogische {{Verantwortung}}.",
+     "woerter": [
+      "Versuchshandeln",
+      "sicher",
+      "offen",
+      "geplant",
+      "ungleich",
+      "Verantwortung"
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Erläutern Sie an einem eigenen Beispiel, warum pädagogisches Handeln „Versuchshandeln“ ist.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "Beispiel: Eine Erzieherin führt eine Belohnungstafel ein, damit die Kinder beim Aufräumen helfen. Bei manchen Kindern klappt das, andere verlieren nach ein paar Tagen das Interesse oder helfen nur noch, wenn es eine Belohnung gibt. Menschen reagieren individuell (Persönlichkeit, Stimmung, Vorerfahrungen), deshalb kann der Erzieher nie sicher vorhersagen, ob sein Handeln das Ziel erreicht. Er muss beobachten, reflektieren und gegebenenfalls anders handeln."
+    }
+   ]
+  },
+  {
+   "kicker": "Erarbeitung · Schritt 4",
+   "titel": "Die Definition von Erziehung",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "In den Kursen 1 bis 4 haben Sie sechs Merkmale von Erziehung kennengelernt. Zusammen ergeben sie die Definition von Erziehung."
+    },
+    {
+     "typ": "aufbau",
+     "zeilen": [
+      {
+       "label": "beabsichtigte Lernhilfe",
+       "text": "Der Erzieher will bewusst und absichtlich Lernprozesse herbeiführen, die der zu Erziehende bewältigen muss.",
+       "farbe": "pfirsich"
+      },
+      {
+       "label": "zielgerichtet",
+       "text": "Erziehung strebt dauerhafte Veränderungen an, die bestimmten Erziehungszielen entsprechen.",
+       "farbe": "blau"
+      },
+      {
+       "label": "soziales Handeln",
+       "text": "Sie ist auf andere Menschen bezogen und geschieht bewusst und überlegt.",
+       "farbe": "gruen"
+      },
+      {
+       "label": "soziale Interaktion",
+       "text": "Erzieher und zu Erziehender reagieren wechselseitig aufeinander und beeinflussen sich gegenseitig.",
+       "farbe": "gelb"
+      },
+      {
+       "label": "soziale Beziehung",
+       "text": "Der Erfolg der Erziehung hängt stark von der persönlichen Beziehung ab.",
+       "farbe": "rot"
+      },
+      {
+       "label": "soziale Kommunikation",
+       "text": "Informationen werden mithilfe von Symbolen ausgetauscht, die für alle Beteiligten die gleiche Bedeutung haben.",
+       "farbe": "pfirsich"
+      }
+     ]
+    },
+    {
+     "typ": "merke",
+     "label": "Definition: Erziehung",
+     "text": "Erziehung ist ein soziales Handeln, welches bestimmte Lernprozesse bewusst und absichtlich herbeiführen und unterstützen will, um relativ dauerhafte Veränderungen des Verhaltens und Erlebens zu erreichen, die bestimmten Erziehungszielen entsprechen."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie jedem Merkmal die passende Erklärung zu.",
+     "paare": [
+      [
+       "soziale Interaktion",
+       "wechselseitige Beeinflussung"
+      ],
+      [
+       "soziale Kommunikation",
+       "Austausch über Symbole"
+      ],
+      [
+       "soziale Beziehung",
+       "Erfolg hängt von Bindung ab"
+      ],
+      [
+       "zielgerichtet",
+       "strebt dauerhafte Veränderung an"
+      ],
+      [
+       "beabsichtigte Lernhilfe",
+       "Lernprozesse werden absichtlich herbeigeführt"
+      ],
+      [
+       "soziales Handeln",
+       "bewusst und auf andere bezogen"
+      ]
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Vervollständigen Sie die Definition (auswendig!).",
+     "text": "Erziehung ist ein {{soziales}} Handeln, welches bestimmte {{Lernprozesse}} bewusst und {{absichtlich}} herbeiführen und unterstützen will, um relativ {{dauerhafte}} Veränderungen des Verhaltens und {{Erlebens}} zu erreichen, die bestimmten {{Erziehungszielen}} entsprechen.",
+     "woerter": [
+      "soziales",
+      "Lernprozesse",
+      "absichtlich",
+      "dauerhafte",
+      "Erlebens",
+      "Erziehungszielen"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Übung",
+   "titel": "Übung: Erziehung oder nicht?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wenden Sie die Definition an. Prüfen Sie jeweils, ob **alle** Merkmale erfüllt sind."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Liegt Erziehung im Sinne der Definition vor? (richtig = „ja“, falsch = „nein“)",
+     "aussagen": [
+      {
+       "text": "Ein Großvater zeigt seinem Enkel geduldig, wie man ein Vogelhaus baut, damit dieser handwerklich geschickter wird.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Ein Kind lernt durch einen Sturz, dass die Herdplatte heiß ist.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Eine Lehrerin bespricht mit der Klasse Regeln für Gruppenarbeit, damit die Zusammenarbeit dauerhaft besser klappt.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Ein Jugendlicher übernimmt beim Zocken den Slang seiner Online-Mitspieler.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Eine Werbeagentur will mit einem Spot, dass Kinder eine bestimmte Süßigkeit kaufen.",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ],
+     "erklaerung": "Die Herdplatte: kein Erzieher, kein Ziel. Der Slang: unbeabsichtigt. Werbung: zwar beabsichtigt, aber nicht auf die Entwicklung des Kindes, sondern auf Verkauf gerichtet – kein Erziehungsziel."
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Lernkarten: Begriff und Erklärung",
+     "paare": [
+      [
+       "Handeln",
+       "jede menschliche Aktivität, mit der bewusst und überlegt ein Ziel verfolgt wird"
+      ],
+      [
+       "soziales Handeln",
+       "bewusst und willentlich auf andere bezogen (Brezinka)"
+      ],
+      [
+       "pädagogisches Handeln",
+       "beabsichtigte Aktivität in einer Erziehungssituation mit Ziel; Ausgang offen („Versuchshandeln“)"
+      ],
+      [
+       "pädagogische Verantwortung",
+       "Erzieher muss Folgen seines Handelns bedenken, weil das Verhältnis ungleich ist"
+      ],
+      [
+       "Giesecke",
+       "Erziehung = nur, was bewusst und planvoll zum Zweck optimaler kindlicher Entwicklung geschieht"
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Prüfen Sie anhand der sechs Merkmale, ob es sich bei der Einstiegssituation (Lea und ihre Mutter) um Erziehung handelt.",
+     "hinweis": "Schreibe in ganzen Sätzen.",
+     "muster": "- **beabsichtigte Lernhilfe:** Die Mutter will bewusst, dass Lea besser lernt.\n- **zielgerichtet:** Ziel ist eine dauerhafte Verbesserung in Mathe / mehr Lernbereitschaft.\n- **soziales Handeln:** Gespräch, Lob, Ermahnung sind bewusst auf Lea bezogen.\n- **soziale Interaktion:** Lea erklärt, die Mutter reagiert – beide beeinflussen sich.\n- **soziale Beziehung:** Erfolg hängt davon ab, ob Lea ihrer Mutter vertraut.\n- **soziale Kommunikation:** Austausch über Sprache, Mimik usw. → Alle Merkmale sind erfüllt: Es handelt sich um Erziehung. Ob die Maßnahmen wirken, ist offen (Versuchshandeln)."
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Abschlusstest",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Zum Abschluss prüfst du dein Wissen. Offene Aufgaben vergleichst du selbst mit der Musterlösung."
+    },
+    {
+     "typ": "mc",
+     "frage": "Handeln ist …",
+     "optionen": [
+      "nur das Verhalten in der Schule.",
+      "eine unbewusste Reaktion auf Reize.",
+      "jede menschliche Aktivität, mit der bewusst und überlegt ein Ziel verfolgt wird.",
+      "jede Bewegung eines Menschen."
+     ],
+     "richtig": 2
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordnen Sie zu.",
+     "paare": [
+      [
+       "bewusst und willentlich auf andere bezogen",
+       "Brezinka"
+      ],
+      [
+       "bewusst und planvoll zum Zweck optimaler kindlicher Entwicklung",
+       "Giesecke"
+      ]
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Warum nennt man pädagogisches Handeln „Versuchshandeln“?",
+     "optionen": [
+      "weil sein Ausgang offen ist und sich nicht vorhersagen lässt",
+      "weil es nur im Labor stattfindet",
+      "weil Erzieher nicht ernsthaft handeln",
+      "weil man es jederzeit rückgängig machen kann"
+     ],
+     "richtig": 0
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Richtig oder falsch?",
+     "aussagen": [
+      {
+       "text": "Erziehung umfasst jede Art des kindlichen Lernens.",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Der Erzieher trägt die pädagogische Verantwortung, weil das Verhältnis meist ungleich ist.",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "Soziale Kommunikation ist eines der Merkmale von Erziehung.",
+       "richtig": true,
+       "erklaerung": ""
+      }
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Definition von Erziehung",
+     "text": "Erziehung ist ein soziales Handeln, welches bestimmte Lernprozesse bewusst und {{absichtlich}} herbeiführen und unterstützen will, um relativ dauerhafte Veränderungen des {{Verhaltens}} und Erlebens zu erreichen, die bestimmten {{Erziehungszielen}} entsprechen.",
+     "woerter": [
+      "absichtlich",
+      "Verhaltens",
+      "Erziehungszielen"
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Welche Merkmale gehören zu den sechs Merkmalen von Erziehung? (mehrere richtig) Entscheide bei jeder Aussage, ob sie zutrifft.",
+     "aussagen": [
+      {
+       "text": "soziale Interaktion",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "soziale Beziehung",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "beabsichtigte Lernhilfe",
+       "richtig": true,
+       "erklaerung": ""
+      },
+      {
+       "text": "zufälliges Lernen",
+       "richtig": false,
+       "erklaerung": ""
+      },
+      {
+       "text": "Bestrafung",
+       "richtig": false,
+       "erklaerung": ""
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Reflexion",
+   "titel": "Auf den Punkt gebracht",
+   "bloecke": [
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "**Handeln** ist bewusst, überlegt und zielgerichtet. **Soziales Handeln** ist bewusst und willentlich auf andere Menschen bezogen (Brezinka). Erziehung ist nur, was **bewusst und planvoll** zur optimalen Entwicklung geschieht (Giesecke) – nicht jedes Lernen. **Pädagogisches Handeln** ist „Versuchshandeln“: Der Ausgang ist offen. Der Erzieher trägt **Verantwortung**. Sechs Merkmale: beabsichtigte Lernhilfe, zielgerichtet, soziales Handeln, soziale Interaktion, soziale Beziehung, soziale Kommunikation. **Definition:** Erziehung ist ein soziales Handeln, welches bestimmte Lernprozesse bewusst und absichtlich herbeiführen und unterstützen will, um relativ dauerhafte Veränderungen des Verhaltens und Erlebens zu erreichen, die bestimmten Erziehungszielen entsprechen."
+    },
+    {
+     "typ": "text",
+     "text": "**Das kann ich jetzt:**"
+    },
+    {
+     "typ": "text",
+     "text": "- Ich kann Handeln, soziales Handeln und pädagogisches Handeln unterscheiden.\n- Ich kann die Aussagen von Brezinka und Giesecke wiedergeben.\n- Ich kann erklären, warum pädagogisches Handeln Versuchshandeln ist.\n- Ich kann die sechs Merkmale von Erziehung nennen.\n- Ich kann die Definition von Erziehung auswendig wiedergeben und auf Situationen anwenden."
+    },
+    {
+     "typ": "text",
+     "text": "**Weiterdenken:** Erziehung kann ganz unterschiedlich aussehen – mal warmherzig, mal streng, mal gleichgültig. Wie sich das auf Kinder auswirkt, untersuchen Sie im nächsten Kurs: **Erziehungsstile nach Baumrind**."
+    }
+   ]
+  }
+ ]
+}

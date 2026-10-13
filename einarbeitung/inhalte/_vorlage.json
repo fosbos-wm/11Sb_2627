@@ -1,0 +1,143 @@
+{
+ "entwurf": true,
+ "titel": "Titel der Einarbeitung",
+ "einleitung": "Optional: kurze Einführung. **Fett** geht mit doppelten Sternen.",
+ "abschnitte": [
+  {
+   "kicker": "Optional: kleine Zeile über der Überschrift",
+   "titel": "Seite 1: Text und Merkkasten",
+   "bloecke": [
+    {
+     "typ": "situation",
+     "label": "Lernsituation",
+     "text": "Ausgangssituation für die Stunde."
+    },
+    {
+     "typ": "text",
+     "text": "Ein Absatz."
+    },
+    {
+     "typ": "text",
+     "text": "- Eine Liste\n- mit mehreren Punkten"
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Kurzer Merksatz mit **fettem** Begriff."
+    },
+    {
+     "typ": "zitat",
+     "text": "„Ein Zitat.“",
+     "quelle": "(Autor, Jahr, S. 1)"
+    },
+    {
+     "typ": "fussnote",
+     "text": "¹ Erklärung zu einer Fußnote"
+    }
+   ]
+  },
+  {
+   "titel": "Seite 2: Notizen und Schema",
+   "bloecke": [
+    {
+     "typ": "notizen",
+     "beschriftung": "Aussagen aus einer Diskussion",
+     "items": [
+      "„Aussage 1“",
+      "„Aussage 2“"
+     ]
+    },
+    {
+     "typ": "schema",
+     "links": "Begriff A",
+     "rechts": "Begriff B",
+     "mitte": [
+      "stehen in",
+      "Wechselwirkung"
+     ],
+     "beschriftung": "Bildunterschrift"
+    }
+   ]
+  },
+  {
+   "titel": "Seite 3: Aufgaben",
+   "bloecke": [
+    {
+     "typ": "mc",
+     "frage": "Frage?",
+     "optionen": [
+      "A",
+      "B",
+      "C"
+     ],
+     "richtig": 1,
+     "erklaerung": "Warum B stimmt."
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänze.",
+     "text": "Ein {{Wort}} fehlt.",
+     "woerter": [
+      "Wort",
+      "Ablenker"
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Ordne zu.",
+     "paare": [
+      [
+       "Begriff 1",
+       "Erklärung 1"
+      ],
+      [
+       "Begriff 2",
+       "Erklärung 2"
+      ]
+     ]
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Was gehört wohin?",
+     "kategorien": [
+      {
+       "name": "Spalte 1",
+       "items": [
+        "Aussage a",
+        "Aussage b"
+       ]
+      },
+      {
+       "name": "Spalte 2",
+       "items": [
+        "Aussage c"
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Situation und Auftrag.",
+     "aussagen": [
+      {
+       "text": "Aussage 1",
+       "richtig": true,
+       "erklaerung": "Warum."
+      },
+      {
+       "text": "Aussage 2",
+       "richtig": false,
+       "erklaerung": "Warum."
+      }
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Offene Frage?",
+     "hinweis": "Wie viel soll geschrieben werden?",
+     "muster": "Musterlösung."
+    }
+   ]
+  }
+ ]
+}

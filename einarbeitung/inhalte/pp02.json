@@ -1,0 +1,345 @@
+{
+ "titel": "Wissenschaftliche und alltagspsychologische Aussagen",
+ "modulart": "selbstlern",
+ "lb": 1,
+ "nr": "3, 4",
+ "einleitung": "Dein Auftrag: Du wirst zur Detektivin oder zum Detektiv für Aussagen. In fünf Missionen findest du heraus, was nur nach Wissen klingt und was wirklich überprüfbar ist. Dafür brauchst du etwa 45 Minuten.",
+ "abschnitte": [
+  {
+   "titel": "🕵️ Dein Auftrag",
+   "bloecke": [
+    {
+     "typ": "situation",
+     "label": "Lernsituation",
+     "text": "In der ersten Stunde Pädagogik/Psychologie sagt der Lehrer: „Ihr alle seid ein bisschen Psychologen und Pädagogen. Ihr beurteilt andere Menschen, gebt Ratschläge und helft Freunden.“ Dann macht er einen wichtigen Unterschied: zwischen unseren eigenen, persönlichen Vorstellungen, der **Alltagstheorie**, und der **wissenschaftlichen Theorie**."
+    },
+    {
+     "typ": "text",
+     "text": "Das lernst du in diesem Kurs:"
+    },
+    {
+     "typ": "text",
+     "text": "- Du erkennst, woran man eine Alltagstheorie erkennt.\n- Du nennst die vier Merkmale wissenschaftlicher Aussagen und wendest sie an.\n- Du machst aus einer Alltagsvermutung eine überprüfbare Hypothese."
+    },
+    {
+     "typ": "merke",
+     "label": "Tipp",
+     "text": "Bei jeder Aufgabe bekommst du sofort eine Rückmeldung. Fehler sind erlaubt, so lernst du am meisten."
+    }
+   ]
+  },
+  {
+   "titel": "🔍 Mission 1: Das Sprichwort-Duell",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Sprichwörter sind Alltagswissen in Reinform. Lies die Paare. Was fällt dir auf?"
+    },
+    {
+     "typ": "notizen",
+     "beschriftung": "Sprichwörter im Duell",
+     "items": [
+      "„Gleich und gleich gesellt sich gern.“  gegen  „Gegensätze ziehen sich an.“",
+      "„Wer rastet, der rostet.“  gegen  „In der Ruhe liegt die Kraft.“",
+      "„Was Hänschen nicht lernt, lernt Hans nimmermehr.“  gegen  „Man lernt nie aus.“"
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Was zeigt dieses Duell über Alltagstheorien?",
+     "optionen": [
+      "Eines der beiden Sprichwörter ist in jedem Paar bewiesen.",
+      "Alltagstheorien können sich widersprechen, ohne dass jemand es prüft.",
+      "Sprichwörter sind immer wissenschaftlich überprüft worden."
+     ],
+     "richtig": 1,
+     "erklaerung": "Beide Seiten klingen überzeugend, aber niemand hat sie systematisch überprüft. Genau das unterscheidet Alltagstheorie von Wissenschaft."
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "3.1 Die Alltagstheorie",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Menschen sammeln durch **eigene Erfahrungen** Wissen über Psychologie und Erziehung und erklären sich damit die Welt. Dieses Wissen heißt **Alltagstheorie** (oft auch Privattheorie). Ihr gegenüber steht die **wissenschaftliche Theorie**, die sich auf wissenschaftliche Methoden stützt."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Frau Rudolfs bemerkt im Urlaub, dass Franzosen gemütlicher wirken als Deutsche. Das ist eine Alltagstheorie, denn sie stammt aus persönlicher Erfahrung. Dann folgert sie: Franzosen sind generell gemütlicher und größere Genießer als Deutsche. Das ist eine **unzulässige Verallgemeinerung**: Nicht alle Franzosen sind so, und nicht alle Deutschen sind das Gegenteil."
+    },
+    {
+     "typ": "text",
+     "text": "Die Alltagstheorie ist in der Regel **subjektiv**, **nicht überprüfbar** und **nicht systematisch gewonnen**. Meist enthält sie unzulässige Verallgemeinerungen. Auch bekannte Sprichwörter gehören dazu. Sie klingen überzeugend, stimmen aber nicht immer mit der Wirklichkeit überein und können sogar in die Irre führen."
+    },
+    {
+     "typ": "zitat",
+     "text": "„Gesunder Menschenverstand ist eine Sammlung von Vorurteilen, die man bis zum achtzehnten Lebensjahr erworben hat.“",
+     "quelle": "(zugeschrieben: Albert Einstein; die Urheberschaft ist nicht gesichert)"
+    }
+   ]
+  },
+  {
+   "titel": "Erst Verständnis, dann Begriff",
+   "bloecke": [
+    {
+     "typ": "lueckentext",
+     "titel": "Lückentext: Die Alltagstheorie",
+     "text": "Wissen, das aus {{persönlichen}} Erfahrungen stammt, nennt man {{Alltagstheorie}}. Sie ist meist {{subjektiv}} und nicht {{überprüfbar}}. Aus einem einzelnen Erlebnis wird oft vorschnell auf alle geschlossen. Das nennt man eine unzulässige {{Verallgemeinerung}}.",
+     "woerter": [
+      "persönlichen",
+      "wissenschaftlichen",
+      "Alltagstheorie",
+      "Hypothese",
+      "subjektiv",
+      "objektiv",
+      "überprüfbar",
+      "Verallgemeinerung",
+      "Beobachtung"
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "🔍 Mission 2: Wozu brauchen wir sie dann?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Trotz ihrer Schwächen hat jeder Mensch eine Alltagstheorie. Sie erfüllt wichtige Aufgaben: Sie gibt **Orientierung** und hilft, andere schnell einzuschätzen. Sie liefert **Erklärungen** und hilft, Alltagsprobleme zu lösen. Sie gibt **Sicherheit**, sich in einer Situation richtig zu verhalten. So werden Angst und Unsicherheit verringert."
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Du sollst die Alltagstheorie vor einer Klasse verteidigen. Welche Argumente tragen? Entscheide richtig oder falsch.",
+     "aussagen": [
+      {
+       "text": "Sie hilft, andere Menschen schnell einzuschätzen.",
+       "richtig": true,
+       "erklaerung": "Das ist eine ihrer Aufgaben: Orientierung im Alltag."
+      },
+      {
+       "text": "Sie gibt Sicherheit, weil man das Gefühl hat, eine Situation zu überblicken.",
+       "richtig": true,
+       "erklaerung": "So werden Angst und Unsicherheit verringert."
+      },
+      {
+       "text": "Sie ist wissenschaftlich überprüft und deshalb immer richtig.",
+       "richtig": false,
+       "erklaerung": "Sie ist gerade nicht systematisch überprüft. Sie kann stimmen, muss es aber nicht."
+      },
+      {
+       "text": "Man sollte sie ganz abschaffen, weil sie keinen Nutzen hat.",
+       "richtig": false,
+       "erklaerung": "Sie hat einen echten Nutzen im Alltag. Man muss nur wissen, dass sie keine gesicherte Erkenntnis ist."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "🔍 Mission 3: Wer sagt hier die Wahrheit?",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Du bekommst Aussagen aus dem Alltag und aus der Forschung. Entscheide: Alltagstheorie oder wissenschaftliche Aussage?"
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Alltagstheorie oder wissenschaftliche Aussage?",
+     "kategorien": [
+      {
+       "name": "Alltagstheorie",
+       "items": [
+        "„Mein Cousin lernt mit Musik schlechter, also stört Musik alle beim Lernen.“",
+        "„Meine Tante sagt: Kinder aus Großfamilien sind immer sozialer.“",
+        "„Bei meiner Chefin sieht man es doch: Wer viel Kaffee trinkt, ist gestresst.“"
+       ]
+      },
+      {
+       "name": "Wissenschaftliche Aussage",
+       "items": [
+        "Ein Forschungsteam vergleicht unter gleichen Bedingungen die Lernergebnisse von 400 zufällig ausgewählten Schüler:innen mit und ohne Musik.",
+        "Mehrere Forschungsgruppen kommen mit derselben Methode zum selben Ergebnis, und andere können die Untersuchung wiederholen.",
+        "Eine Befragung nach festen Regeln wird statistisch ausgewertet. Das Ergebnis gilt mit hoher Wahrscheinlichkeit für die untersuchte Gruppe."
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "I Information",
+   "titel": "4. Merkmale wissenschaftlicher Aussagen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wissenschaftliche Pädagogik und Psychologie unterscheiden sich von der Alltagstheorie vor allem darin, **wie sie zu ihren Erkenntnissen kommen**. Wissenschaftliche Erkenntnisse sind:"
+    },
+    {
+     "typ": "text",
+     "text": "- **allgemeingültig:** Die Aussage trifft auf alle genannten Personen oder Gruppen zu.\n- **überprüfbar:** Andere können die Aussage und ihren Weg dorthin jederzeit nachvollziehen und wiederholen.\n- **objektiv:** Verschiedene Forscher kommen bei gleichem Sachverhalt und gleichen Bedingungen zum gleichen Ergebnis.\n- **systematisch gewonnen:** Sie entstehen nach klaren Regeln und Methoden, geplant und organisiert."
+    },
+    {
+     "typ": "merke",
+     "label": "Beispiel",
+     "text": "Die Aussage „Autoritär erzogene Menschen werden schüchtern und ängstlich“ müsste auf alle autoritär erzogenen Menschen zutreffen (allgemeingültig). Egal, wer die Untersuchung durchführt, müsste dasselbe herauskommen (objektiv)."
+    },
+    {
+     "typ": "zitat",
+     "text": "„Der gesunde Menschenverstand sagt uns, dass die Erde platt ist.“",
+     "quelle": "(zugeschrieben: Albert Einstein; die Urheberschaft ist nicht gesichert)"
+    }
+   ]
+  },
+  {
+   "titel": "Merkmale festigen",
+   "bloecke": [
+    {
+     "typ": "zuordnung",
+     "titel": "Welches Merkmal passt zu welcher Erklärung?",
+     "paare": [
+      [
+       "Allgemeingültig",
+       "Die Aussage trifft auf alle genannten Personen oder Gruppen zu."
+      ],
+      [
+       "Überprüfbar",
+       "Andere können Aussage und Vorgehen nachvollziehen und wiederholen."
+      ],
+      [
+       "Objektiv",
+       "Verschiedene Forscher kommen zum gleichen Ergebnis."
+      ],
+      [
+       "Systematisch",
+       "Das Vorgehen folgt klaren Regeln und ist geplant."
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Der große Vergleich",
+   "bloecke": [
+    {
+     "typ": "sortieren",
+     "titel": "Wissenschaft oder Alltagstheorie? Sortiere die Merkmale.",
+     "kategorien": [
+      {
+       "name": "Merkmal wissenschaftlicher Aussagen",
+       "items": [
+        "überprüfbar und wiederholbar",
+        "objektiv: gleiches Ergebnis bei allen Forschern",
+        "systematisch und geplant gewonnen",
+        "allgemeingültig: trifft mit hoher Wahrscheinlichkeit auf alle genannten Personen zu"
+       ]
+      },
+      {
+       "name": "Merkmal der Alltagstheorie",
+       "items": [
+        "nicht überprüfbar und nicht wiederholbar",
+        "subjektiv: unterschiedliche Personen kommen zu unterschiedlichen Schlüssen",
+        "zufällige Einzelbeobachtungen und Erfahrungen",
+        "einmalige Ereignisse werden unzulässig verallgemeinert („von einem auf alle“)"
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "🔍 Mission 4: Der Fehler-Detektiv",
+   "bloecke": [
+    {
+     "typ": "kprim",
+     "stamm": "Beim Praktikum in der Kita erzählt dir eine Kollegin: „Ich arbeite seit drei Wochen hier. Gestern waren zwei Jungen sehr laut. Daran sieht man es: Jungen sind eben lauter als Mädchen, das ist bei allen so.“ Entscheide, ob die Aussagen richtig oder falsch sind.",
+     "aussagen": [
+      {
+       "text": "Die Aussage der Kollegin ist eine Alltagstheorie, weil sie auf persönlicher Erfahrung beruht.",
+       "richtig": true,
+       "erklaerung": "Sie stammt aus eigenen Beobachtungen und wurde nicht nach wissenschaftlichen Methoden gewonnen."
+      },
+      {
+       "text": "Die Kollegin verallgemeinert unzulässig von wenigen Beobachtungen auf alle Jungen.",
+       "richtig": true,
+       "erklaerung": "Aus zwei Einzelfällen kann man nicht auf alle schließen („von einem auf alle“)."
+      },
+      {
+       "text": "Die Aussage ist wissenschaftlich, weil sie über drei Wochen beobachtet wurde.",
+       "richtig": false,
+       "erklaerung": "Drei Wochen zufälliger Beobachtung sind weder geplant noch systematisch. Außerdem fehlt die Überprüfbarkeit."
+      },
+      {
+       "text": "Man könnte die Aussage wissenschaftlich prüfen, indem man nach festen Regeln viele Kinder beobachtet und vergleicht.",
+       "richtig": true,
+       "erklaerung": "So würde sie überprüfbar, systematisch und besser verallgemeinerbar."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "titel": "Kein Entweder-oder",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Die Grenze zwischen wissenschaftlicher Theorie und Alltagstheorie ist **nicht absolut**. Es ist kein reines Entweder-oder. Außerdem sind ganz absolute Aussagen über Menschen kaum möglich. Deshalb spricht man von **Wahrscheinlichkeitsaussagen**: Einzelne Ausnahmen bleiben möglich."
+    },
+    {
+     "typ": "mc",
+     "frage": "Eine gute Untersuchung zeigt: Autoritär erzogene Kinder werden meist schüchtern und ängstlich. Jonas wurde autoritär erzogen und ist sehr selbstbewusst. Was folgt daraus?",
+     "optionen": [
+      "Die wissenschaftliche Aussage ist damit widerlegt.",
+      "Einzelne Ausnahmen bleiben bei Wahrscheinlichkeitsaussagen möglich, die Aussage bleibt sinnvoll.",
+      "Die Aussage war nie wissenschaftlich, weil es eine Ausnahme gibt."
+     ],
+     "richtig": 1,
+     "erklaerung": "Wissenschaftliche Aussagen über Menschen sind Wahrscheinlichkeitsaussagen. Ein Einzelfall widerlegt sie nicht automatisch, sondern ist eine mögliche Ausnahme."
+    }
+   ]
+  },
+  {
+   "titel": "🔍 Mission 5: Vom Bauchgefühl zur Hypothese",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Wissenschaft beginnt oft mit einer Alltagsvermutung. Der Trick: Man formuliert sie so um, dass man sie **überprüfen** kann. Dafür muss klar sein, **wer**, **was** und **womit verglichen** wird."
+    },
+    {
+     "typ": "mc",
+     "frage": "Alltagsvermutung: „Kaugummikauen hilft beim Lernen.“ Welche Formulierung ist am besten überprüfbar?",
+     "optionen": [
+      "Kaugummi ist gut für Schüler.",
+      "Wer beim Lernen Kaugummi kaut, ist klüger.",
+      "Schüler:innen, die beim Lernen Kaugummi kauen, erinnern sich bei einem Test nach 20 Minuten an mehr Wörter als Schüler:innen ohne Kaugummi."
+     ],
+     "richtig": 2,
+     "erklaerung": "Nur die dritte Formulierung nennt, wer verglichen wird, was gemessen wird (erinnerte Wörter) und womit verglichen wird (ohne Kaugummi)."
+    },
+    {
+     "typ": "frei",
+     "frage": "Forme diese Alltagsvermutung in eine überprüfbare Hypothese um: „Wer vor einer Prüfung Musik hört, schreibt bessere Noten.“",
+     "hinweis": "Nenne, wer verglichen wird, was gemessen wird und womit verglichen wird. Die Musterlösung erscheint danach zum Vergleichen.",
+     "muster": "Zum Beispiel: Schüler:innen, die sich vor einem Vokabeltest 10 Minuten lang Musik anhören, erreichen im Test im Durchschnitt mehr Punkte als Schüler:innen, die in dieser Zeit still dasitzen. Hier ist klar, wer verglichen wird (zwei Gruppen von Schüler:innen), was gemessen wird (Punkte im Test) und womit verglichen wird (ohne Musik)."
+    }
+   ]
+  },
+  {
+   "titel": "🏆 Finale: Dein Schlussplädoyer",
+   "bloecke": [
+    {
+     "typ": "frei",
+     "frage": "Dein Mitschüler sagt: „Ich brauche keine Wissenschaft, ich kenne mich mit Menschen aus, das reicht.“ Antworte ihm in 4 bis 6 Sätzen. Erkläre, wozu die Alltagstheorie nützlich ist, wo ihre Grenzen liegen und warum wissenschaftliche Aussagen verlässlicher sind.",
+     "hinweis": "Verwende mindestens zwei der Merkmale allgemeingültig, überprüfbar, objektiv, systematisch. Die Musterlösung erscheint danach zum Vergleichen.",
+     "muster": "Die Alltagstheorie ist im Alltag nützlich: Sie gibt Orientierung, liefert schnelle Erklärungen und vermittelt Sicherheit. Sie beruht aber auf persönlichen Erfahrungen, ist subjektiv und nicht überprüfbar, und oft werden Einzelfälle unzulässig verallgemeinert. Wissenschaftliche Aussagen sind dagegen systematisch nach klaren Regeln gewonnen, überprüfbar und wiederholbar und objektiv, weil verschiedene Forscher bei gleichen Bedingungen zum gleichen Ergebnis kommen. Außerdem sollen sie für alle genannten Personen gelten, in der Regel als Wahrscheinlichkeitsaussage. Deshalb sind sie verlässlicher als das eigene Bauchgefühl, auch wenn man das Bauchgefühl im Alltag braucht."
+    },
+    {
+     "typ": "merke",
+     "label": "Auf den Punkt gebracht",
+     "text": "Die **Alltagstheorie** entsteht aus persönlichen Erfahrungen. Sie ist subjektiv, nicht überprüfbar, nicht allgemeingültig und nicht systematisch gewonnen. Trotzdem hat sie jeder Mensch, weil sie wichtige Aufgaben erfüllt und Sicherheit gibt. **Wissenschaftliche Aussagen** dagegen sind allgemeingültig, überprüfbar, objektiv und systematisch gewonnen."
+    }
+   ]
+  }
+ ]
+}
