@@ -22201,6 +22201,10 @@ async function init(){
  clearListeners();
  currentUser=user;
  if(!user){profile=null;notenLiveZuruecksetzen();showAuth();return}
+ /* Einrichtung mit Zugangscode läuft noch: erst abwarten, bis Konto (status approved) und Code
+    gemeinsam gespeichert sind. Sonst legt ensureProfile vorher ein Konto mit Status „pending“ an,
+    der Code-Schreibvorgang scheitert („Zugangscode ungültig“) und die Freigabe müsste manuell erfolgen. */
+ if(codeRegPromise){try{await codeRegPromise}catch(e){return}}
  try{
  await ensureProfile(user);
 
