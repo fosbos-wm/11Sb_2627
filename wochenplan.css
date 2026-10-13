@@ -210,3 +210,14 @@ body:has(.wp-armed) .wp-c{cursor:copy;background:#f4faf0}
 .wp-rp-zu{display:grid;grid-template-columns:1fr 1.3fr;gap:10px;align-items:center}.wp-rp-zu span{font-weight:700}
 .wp-rp-luecke{line-height:2.2}.wp-rp-luecke input{margin:0 4px;width:auto}
 .wp-rp-rh{margin:6px 0;padding-left:22px}.wp-rp-rh li{padding:4px 0;font-weight:700}
+
+/* Vollbild */
+body.wp-voll-body{overflow:hidden}
+.wp.wp-voll{position:fixed;inset:0;z-index:50;background:var(--bg);overflow:auto;padding:12px 18px;display:flex;flex-direction:column;gap:10px}
+.wp-voll .wp-head{margin:0}.wp-voll .wp-head p,.wp-voll .wp-head .kicker{display:none}.wp-voll .wp-head h1{font-size:20px;margin:0}
+.wp-voll .wp-bar2{margin:0}
+.wp-vl{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:14px;flex:1;min-height:0}
+.wp-vl-main{overflow:auto;min-height:0}
+.wp-vl-main .wp-grid{grid-template-rows:auto repeat(10,minmax(54px,1fr));min-height:calc(100vh - 190px);margin-bottom:8px}
+.wp-vl-side{overflow:auto;min-height:0}
+@media(max-width:1000px){.wp-vl{grid-template-columns:1fr}.wp-vl-side{max-height:45vh}}

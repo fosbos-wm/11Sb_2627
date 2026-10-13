@@ -471,10 +471,14 @@ async function schuelerHtml(){
  await autoPlatz();
  const wd=S.d.wochenDoc,p=S.d.plan;
  const offen=S.d.anfT.filter(a=>a.status==="offen").length;
- let h=`<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Mein Wochenplan</h1><p>Die Lehrkräfte führen ein – den Rest steuerst du selbst.</p></div><div class="wp-actions">${ansichtSwitch()}<button class="secondary" onclick="wp.inbox()">Anfragen${offen?` <span class="wp-badge">${offen}</span>`:""}</button><button class="secondary" onclick="wp.angebot()">Mein Angebot</button></div></div>`;
+ let h=`<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Mein Wochenplan</h1><p>Die Lehrkräfte führen ein – den Rest steuerst du selbst.</p></div><div class="wp-actions">${ansichtSwitch()}<button class="secondary" onclick="wp.inbox()">Anfragen${offen?` <span class="wp-badge">${offen}</span>`:""}</button><button class="secondary" onclick="wp.angebot()">Mein Angebot</button><button class="secondary" onclick="wp.voll()">${S.voll?"Vollbild beenden":"Vollbild"}</button></div></div>`;
  h+=`<div class="wp-bar2">${wochenKopf()}<label class="wp-ziel">Wochenziel <input id="wpZiel" maxlength="120" value="${esc(p.ziel||"")}" placeholder="Was willst du diese Woche schaffen?" onchange="wp.ziel(this.value)"></label></div>`;
  if(wd&&wd.impuls)h+=`<div class="wp-impuls"><b>Impuls deines Teams:</b> ${esc(wd.impuls)}</div>`;
  if(S.armed)h+=`<div class="wp-armed">Ausgewählt: <b>${esc(armedName())}</b> – tippe auf einen freien Platz im Plan. <button class="secondary" onclick="wp.arm(null)">Abbrechen</button></div>`;
+ if(S.voll){
+  h+=`<div class="wp-vl"><div class="wp-vl-main">${rasterHtml()}${lkLegende()}</div><div class="wp-vl-side">${langHtml()}${leisteHtml()}</div></div>`;
+  return h;
+ }
  h+=langHtml()+tageTabs()+rasterHtml()+lkLegende()+leisteHtml()+fortschrittHtml()+startHtml();
  h+=`<div class="card wp-rueck"><h3>Wochenrückblick <small>nur für dich</small></h3><textarea id="wpRueck" maxlength="600" rows="2" placeholder="Was lief gut? Was nehme ich mit in die nächste Woche?" onchange="wp.rueck(this.value)">${esc(p.rueckblick||"")}</textarea>
  <label class="wp-share"><input type="checkbox" ${p.geteilt?"checked":""} onchange="wp.teilen(this.checked)"> Meinen Plan dieser Woche mit meiner Lernbegleitung teilen (sonst sehen Lehrkräfte nur Kennzahlen)</label>${fb.dsHinweis()}</div>`;
@@ -509,6 +513,13 @@ async function inhalt(){
  try{return isT()?await lehrerHtml():await schuelerHtml()}
  catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.code==="permission-denied"?"Dafür fehlt die Berechtigung – bitte firestore.rules in der Firebase-Konsole veröffentlichen.":(e?.message||"Unbekannter Fehler"))}</p></div>`}
 }
+function vollSetzen(an){
+ if(isT())return;
+ S.voll=!!an;const r=$("wpRoot");if(r)r.classList.toggle("wp-voll",S.voll);
+ document.body.classList.toggle("wp-voll-body",S.voll);
+ neu();
+}
+if(!window.__wpEsc){window.__wpEsc=1;document.addEventListener("keydown",e=>{if(e.key==="Escape"&&S.voll&&document.getElementById("modalBackdrop")?.hidden!==false)vollSetzen(false)})}
 async function neu(){const r=$("wpRoot");if(!r)return;const y=window.scrollY;r.innerHTML=await inhalt();window.scrollTo(0,y)}
 const modalOpen=h=>fb.modal(`<button class="modal-close" onclick="closeModal()">×</button>${h}`);
 const nextId=()=>nid();
@@ -1021,6 +1032,7 @@ async function angebotMod(id){if(!confirm("Dieses Angebot entfernen?"))return;tr
    ========================================================= */
 Object.assign(wpPublic,{
  ltab:t=>{S.tab=t;neu()},
+ voll:()=>vollSetzen(!S.voll),
  vorschau,rpStart,rpWeiter,rpPruefen,rpWahl,rpRhAdd,rpRhReset,rpHinweis,rallyAdd,rallyDel,rallyMove,rallySet,slotModal,einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod
@@ -1028,6 +1040,6 @@ Object.assign(wpPublic,{
 window.wp=wpPublic;
 
 export async function wpRender(){
- S.armed=null;
+ S.armed=null;S.voll=false;document.body.classList.remove("wp-voll-body");
  return `<div id="wpRoot" class="wp">${await inhalt()}</div>`;
 }
