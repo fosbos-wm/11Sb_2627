@@ -220,7 +220,7 @@ function showDatenschutz(){
  <p><strong>5. Empfänger und Dienstleister</strong><br>
  <em>Google Firebase</em> (Google Cloud EMEA Limited / Google LLC): Anmeldung, Datenbank (Firestore) und Dateispeicher. Datenbank und Dateien liegen in einem Rechenzentrum in Frankfurt am Main (Region europe-west3). Eine Verarbeitung durch das US-Unternehmen Google LLC ist dabei nicht ausgeschlossen. Grundlage der Übermittlung sind der Angemessenheitsbeschluss zum EU-US Data Privacy Framework bzw. Standardvertragsklauseln.<br>
  <em>GitHub Pages</em> (GitHub Inc., Microsoft): Auslieferung der Webseite. Dabei wird deine IP-Adresse verarbeitet. Die Lehrkräfte melden sich mit ihrer dienstlichen E-Mail-Adresse an.<br>
- <em>Eingebettete Inhalte</em> (YouTube, Vimeo, WebUntis): Erst wenn du solche Inhalte öffnest, wird eine Verbindung zum jeweiligen Anbieter aufgebaut und deine IP-Adresse übermittelt.<br>
+ <em>Eingebettete Inhalte</em> (YouTube, Vimeo): Erst wenn du solche Inhalte öffnest, wird eine Verbindung zum jeweiligen Anbieter aufgebaut und deine IP-Adresse übermittelt.<br>
  Die Software der App wird von dieser Seite selbst ausgeliefert, es werden keine Schriftarten, Tracker oder Werbedienste von Dritten geladen.</p>
 
  <p><strong>6. Cookies und lokaler Speicher</strong><br>
@@ -1518,7 +1518,7 @@ async function renderKlassenteam(){
 }
 
 // ============================================================
-// STUNDENPLAN (WebUntis), NOTEN & WOCHENPLANUNG – F11Sb
+// NOTEN & WOCHENPLANUNG – F11Sb
 // ============================================================
 
 // Die 7 benoteten Fächer der F11Sb (Sozialwesen). Das Wahlpflichtfach
@@ -2953,20 +2953,6 @@ window.leaveLehrplanTeam=leaveLehrplanTeam;window.deleteLehrplanTeam=deleteLehrp
 window.addLehrplanProdukt=addLehrplanProdukt;window.deleteLehrplanProdukt=deleteLehrplanProdukt;
 window.toggleZielErfuellt=toggleZielErfuellt;window.markWocheAbgeschlossen=markWocheAbgeschlossen;
 
-function webUntisUrl(){
- const today=new Date().toISOString().slice(0,10);
- return `https://fos-bos-weilheim.webuntis.com/WebUntis?school=fos-bos-weilheim#/basic/timetablePublic/class?date=${today}&entityId=1190`;
-}
-function webUntisEmbedHTML(heightPx,openByDefault){
- const url=webUntisUrl();
- return `<details class="untis-embed"${openByDefault?"open":""}>
- <summary> Stundenplan anzeigen/ausblenden</summary>
- <iframe src="${url}"loading="lazy"style="width:100%;height:${heightPx}px;border:1px solid var(--line,#e2eaf0);border-radius:10px;background:#fff"class="untis-iframe"title="Stundenplan F11Sb (WebUntis)"></iframe>
- <div class="untis-fallback"><small>Wird der Stundenplan oben nicht angezeigt? Manche Schulnetzwerke blockieren die Einbettung.</small>
- <a href="${url}"target="_blank"rel="noopener"class="pill"> Stundenplan in WebUntis öffnen ↗</a></div>
- </details>`;
-}
-
 // ---- Noten (0–15 Punkte je Fach, getrennt nach Halbjahr) ------------------
 window.addEventListener("pagehide",()=>{try{notenLiveZuruecksetzen()}catch(e){}});
 let NOTEN_LIVE={entries:{},wpf:{},abschluss:{}};
@@ -3516,11 +3502,7 @@ class="list-item"><div><strong>${esc(p.title||p.text)}</strong>${p.title?`<small
  ${aktuellerPraktikumsauftrag.beschreibung?`<small style="display:block;margin-top:4px;color:var(--muted)">${esc(aktuellerPraktikumsauftrag.beschreibung.slice(0,140))}${aktuellerPraktikumsauftrag.beschreibung.length>140?"…":""}</small>`:""}
  </a>`:""}
  ${(()=>{ensureGlobalClock();return"";})()}
- <div class="card"style="margin-top:16px;margin-bottom:16px">
- <div class="kicker">STUNDENPLAN</div>
- <h2 style="margin-top:4px">Aktueller Stundenplan</h2>
- ${webUntisEmbedHTML(300)}
- </div>
+ <div style="height:16px"></div>
  <div class="card"style="margin-bottom:16px;text-align:center;border-left:4px solid #3fa66a">
  <h2 style="margin:0 0 8px"> FOSBOS-WM Jahresfokus: Solidarität und Zusammenhalt</h2>
  <p style="margin:0;font-style:italic;color:var(--muted)">„Solidarität lebt von kleinen Taten – heute schon jemandem geholfen?“</p>
@@ -3621,22 +3603,16 @@ async function renderKompass(){
  const offenePlanung=wochenplan.filter(w=>!w.done);
  const erledigtePlanung=wochenplan.filter(w=>w.done);
 
- return`${pageHead("PERSÖNLICH","Mein Campus-Kompass","Dein persönlicher Überblick über Stundenplan, Aufgaben, Noten und Projekte.",`<button class="primary"onclick="openTaskForm()">＋ Aufgabe</button>`)}
+ return`${pageHead("PERSÖNLICH","Mein Campus-Kompass","Dein persönlicher Überblick über Aufgaben, Noten und Projekte.",`<button class="primary"onclick="openTaskForm()">＋ Aufgabe</button>`)}
 
  ${(unreadCount>0||forumActivity>0)?`<div class="kompass-alerts">
  ${unreadCount>0?`<a href="#forum-nachrichten"class="pill kompass-alert-msg"> ${unreadCount} neue Nachricht${unreadCount===1?"":"en"}</a>`:""}
  ${forumActivity>0?`<a href="#forum-board"class="pill kompass-alert-forum"> ${forumActivity} neue${forumActivity===1?"r":""} Forum-Beitrag${forumActivity===1?"":"e"} (3 Tage)</a>`:""}
  </div>`:""}
 
- <div class="kicker"style="margin-top:6px">ORIENTIERUNG</div>
- <div class="card"style="margin-top:8px">
- <h2 style="margin-top:0"> Aktueller Stundenplan</h2>
- ${webUntisEmbedHTML(360)}
- </div>
-
  <div class="kicker"style="margin:22px 0 8px">WOCHEN-/MONATSPLANUNG</div>
  <div class="card">
- <p style="color:var(--muted);margin-top:0">Orientiere dich am Stundenplan oben: Was steht diese Woche oder diesen Monat an? Nur du siehst deine eigene Planung.</p>
+ <p style="color:var(--muted);margin-top:0">Was steht diese Woche oder diesen Monat an? Nur du siehst deine eigene Planung.</p>
  <div class="form-actions"style="margin-bottom:10px">
  <button class="primary"onclick="openWochenplanForm(null)">＋ Neuer Planungspunkt</button>
  ${wochenplan.length?`<button class="secondary"onclick="printWochenplanPDF(${JSON.stringify(wochenplan).replace(/"/g,"&quot;")})"> Als PDF</button>`:""}
@@ -21369,8 +21345,8 @@ let wpModul=null;
 async function renderWochenplanSeite(){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261014i";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261014i");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261014j";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261014j");
   return await wpModul.wpRender();
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
