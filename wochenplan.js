@@ -1,5 +1,5 @@
 /* =========================================================
-   WOCHENPLAN F11Sb – Module, Einführungen, Buchungen, Klassenteam
+   WOCHENPLAN 11Sb – Lernbausteine, Einführungen, Lernstandsgespräche, Buchungen, Klassenteam
    Wird bei Aufruf der Seite #wochenplan nachgeladen.
    Datenschutz: der persönliche Plan (wpPlan) ist privat; Lehrkräfte sehen
    nur Kennzahlen (wpStatus) – den Plan selbst nur, wenn die Person ihn teilt.
@@ -30,7 +30,10 @@ const FAECHER=[
  {k:"fachuebergreifend",l:"Fachübergreifend",c:"#9aa5a8",bg:"#eef1f2"}
 ];
 const FACH=k=>FAECHER.find(f=>f.k===k)||FAECHER[FAECHER.length-1];
-const MTYP={checkout:{l:"Check-out",i:"🏁"},baustein:{l:"Baustein",i:"📘"},lernen:{l:"Lernmodul",i:"📗"},vertiefung:{l:"Vertiefung",i:"🔎"},projekt:{l:"Projekt",i:"🧩"}};
+const MTYP={checkout:{l:"Check-out",i:"🏁"},einfuehrung:{l:"Einführung",i:"🎬"},baustein:{l:"Kurs / Training",i:"📘"},lernen:{l:"Lernbaustein",i:"📗"},vertiefung:{l:"Vertiefung",i:"🔎"},projekt:{l:"Projekt",i:"🧩"}};
+/* Feste Termine der Lehrkräfte (Collection wpEinfuehrungen, Feld art) */
+const TART={einfuehrung:{l:"Einführung",i:"🔒",kick:"EINFÜHRUNG",neu:"Neue Einführung",edit:"Einführung bearbeiten",ph:"z. B. Einführung Lernbereich 2",hint:"🔒 Fester Termin – die Lehrkraft führt ein, danach steuerst du selbst.",weg:"Diese Einführung löschen?"},lernstand:{l:"Lernstandsgespräch",i:"💬",kick:"LERNSTANDSGESPRÄCH",neu:"Neues Lernstandsgespräch",edit:"Lernstandsgespräch bearbeiten",ph:"z. B. Lernstandsgespräch Gruppe A",hint:"💬 Fester Termin – deine Lehrkraft spricht mit dir über deinen Lernstand. Bereite dich mit deinem Lernjournal vor.",weg:"Dieses Lernstandsgespräch löschen?"}};
+const tart=e=>TART[e&&e.art]||TART.einfuehrung;
 const ROUTEN=[["","— keine —"],["fachaufsatz","Fachaufsatz-Training"],["lernwerkzeuge","Lern-Werkzeuge"],["karteikarten","Karteikarten"],["lernstand","Lernstandsmessung"],["kompetenz","Kompetenzwerkstatt"],["projekte","Projekte"],["praktikum","fpA"],["journal","Lernjournal"],["lernpfad","Lernpfad"],["faecher","Fächer & Lernbereiche"],["methoden","Lernmethoden"],["resilienz","Resilienz & Respressi"],["fokus-timer","Fokus-Timer"]];
 const TAGE=["Mo","Di","Mi","Do","Fr"],TAGEL=["Montag","Dienstag","Mittwoch","Donnerstag","Freitag"];
 const ZEITEN_STD=["08:00","08:45","09:45","10:30","11:30","12:15","13:15","14:00","15:00","15:45"];
@@ -77,7 +80,7 @@ async function ladeSchueler(){
 /* ---------- Belegung ---------- */
 function bloecke(){
  const b=[],w=S.woche;
- S.d.einf.forEach(e=>b.push({k:"einf",d:e.d,h:e.h,len:e.len||1,titel:e.titel,fach:e.fach,sub:"Einführung"+(e.lehrkraft?" · "+e.lehrkraft:"")+(e.raum?" · "+e.raum:""),id:e.id,entwurf:e.status!=="live"}));
+ S.d.einf.forEach(e=>b.push({k:"einf",d:e.d,h:e.h,len:e.len||1,titel:e.titel,fach:e.fach,sub:tart(e).l+(e.lehrkraft?" · "+e.lehrkraft:"")+(e.raum?" · "+e.raum:""),id:e.id,art:e.art||"einfuehrung",entwurf:e.status!=="live"}));
  if(!isT()){
   S.d.buch.forEach(x=>b.push({k:"termin",d:x.d,h:x.h,len:x.len||1,titel:"Termin: "+(x.lehrkraft||"Lehrkraft"),fach:x.fach||"fachuebergreifend",sub:x.frage||"",id:x.id}));
   const me=uid();
@@ -123,7 +126,7 @@ function blockHtml0(b){
  const f=FACH(b.fach),st=`grid-column:${b.d+2};grid-row:${b.h+1}/span ${b.len||1}`;
  if(b.k==="einf"){
   const attr=isT()?`onclick="wp.einfBearbeiten('${b.id}')"`:`onclick="wp.info('einf','${b.id}')"`;
-  return `<div class="wp-b einf${b.entwurf?" entwurf":""}" style="${st};--fc:${f.c};--fb:${f.bg}" ${attr}><span class="wp-lock" title="Fester Termin der Lehrkraft">🔒</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}${b.entwurf?" · Entwurf":""}</small></div>`}
+  return `<div class="wp-b einf ${b.art==="lernstand"?"lernstand":""}${b.entwurf?" entwurf":""}" style="${st};--fc:${f.c};--fb:${f.bg}" ${attr}><span class="wp-lock" title="Fester Termin der Lehrkraft">${tart(b).i}</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}${b.entwurf?" · Entwurf":""}</small></div>`}
  if(b.k==="slot"){return `<div class="wp-b termin${b.entwurf?" entwurf":""}" style="${st}" onclick="wp.slotBearbeiten('${b.id}')"><span class="wp-ic">🗣️</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
  if(b.k==="termin"){return `<div class="wp-b termin" style="${st}" onclick="wp.info('termin','${b.id}')"><span class="wp-ic">🗣️</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
  if(b.k==="tutor"){return `<div class="wp-b tutor${b.offen?" offen":""}" style="${st}" onclick="wp.info('tutor','${b.id}')"><span class="wp-ic">🤝</span><b>${esc(b.titel)}</b><small>${esc(b.sub)}</small></div>`}
@@ -168,8 +171,8 @@ function modulTile(m){
 function leisteHtml(){
  const mods=S.d.module.filter(m=>S.filter==="alle"||m.fach===S.filter);
  const fs=[...new Set(S.d.module.map(m=>m.fach))];
- let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Module nach Fächern</h3><div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
- if(!S.d.module.length)h+=`<p class="wp-leer">Für diese Woche hat dein Team noch keine Module freigegeben.</p>`;
+ let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Lernbausteine nach Fächern</h3><div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
+ if(!S.d.module.length)h+=`<p class="wp-leer">Für diese Woche hat dein Team noch keine Lernbausteine freigegeben.</p>`;
  const grp={};mods.forEach(m=>(grp[m.fach]=grp[m.fach]||[]).push(m));
  h+=`<div class="wp-zeilen">`;
  Object.keys(grp).forEach(k=>{h+=`<div class="wp-zeile"><span class="wp-fl" style="--fc:${FACH(k).c};--fb:${FACH(k).bg}">${esc(FACH(k).l)}</span><div class="wp-tiles">${grp[k].map(modulTile).join("")}</div></div>`});
@@ -178,20 +181,20 @@ function leisteHtml(){
 }
 function fortschrittHtml(){
  const k=kennzahlen(),g=Math.max(1,k.modGesamt),pDone=Math.round(k.modErledigt/g*100),pPlan=Math.round((k.modGeplant-k.modErledigt)/g*100);
- return `<div class="wp-prog card"><div class="wp-ph"><b>Fortschritt in dieser Woche</b><span>${k.modErledigt} erledigt · ${k.modGeplant} von ${k.modGesamt} Modulen eingeplant</span></div>
+ return `<div class="wp-prog card"><div class="wp-ph"><b>Fortschritt in dieser Woche</b><span>${k.modErledigt} erledigt · ${k.modGeplant} von ${k.modGesamt} Lernbausteinen eingeplant</span></div>
  <div class="wp-bar" role="img" aria-label="${k.modErledigt} erledigt, ${k.modGeplant} eingeplant von ${k.modGesamt}"><i class="d" style="width:${pDone}%"></i><i class="p" style="width:${Math.max(0,pPlan)}%"></i></div>
  <div class="wp-leg"><span><i class="d"></i>erledigt</span><span><i class="p"></i>eingeplant</span><span><i class="o"></i>noch offen</span></div></div>`;
 }
 function startHtml(){
  const k=kennzahlen();
- return `<div class="wp-unten"><div class="card"><h3>So startest du</h3><ol class="wp-steps"><li><b>Feste Termine ansehen.</b> Die 🔒 Einführungen deiner Lehrkräfte stehen schon im Plan.</li><li><b>Module einplanen.</b> Ziehe ein Modul aus der Leiste auf einen freien Platz – oder tippe erst das Modul, dann den Platz.</li><li><b>Hilfe & Pausen mitdenken.</b> Termin, Tutor:in oder Auszeit sind eigene Bausteine.</li><li><b>Abhaken.</b> Tippe auf einen Eintrag und markiere ihn als erledigt.</li></ol></div>
+ return `<div class="wp-unten"><div class="card"><h3>So startest du</h3><ol class="wp-steps"><li><b>Feste Termine ansehen.</b> Die 🔒 Einführungen und 💬 Lernstandsgespräche deiner Lehrkräfte stehen schon im Plan.</li><li><b>Lernbausteine einplanen.</b> Ziehe einen Lernbaustein aus der Leiste auf einen freien Platz – oder tippe erst den Lernbaustein, dann den Platz.</li><li><b>Hilfe & Pausen mitdenken.</b> Termin, Tutor:in oder Auszeit sind eigene Bausteine.</li><li><b>Abhaken.</b> Tippe auf einen Eintrag und markiere ihn als erledigt.</li></ol></div>
  <div class="card"><h3>Meine Woche in Zahlen</h3><div class="wp-zahlen">
  <div><b>${std(k.geplantMin)}</b><small>Lernzeit geplant</small></div><div><b>${std(k.erledigtMin)}</b><small>davon erledigt</small></div>
- <div><b>${k.modGeplant}/${k.modGesamt}</b><small>Module eingeplant</small></div><div><b>${k.checkouts}</b><small>Check-outs erledigt</small></div>
+ <div><b>${k.modGeplant}/${k.modGesamt}</b><small>Lernbausteine eingeplant</small></div><div><b>${k.checkouts}</b><small>Check-outs erledigt</small></div>
  <div><b>${k.termine+k.tutoring}</b><small>Termine & Tutoring</small></div><div><b>${k.auszeiten}</b><small>Auszeiten</small></div></div></div></div>`;
 }
 function ansichtSwitch(){return `<div class="wp-seg"><button class="${S.ansicht==="verplant"?"on":""}" onclick="wp.ansicht('verplant')">🗓️ Verplant</button><button class="${S.ansicht==="geleistet"?"on":""}" onclick="wp.ansicht('geleistet')">✅ Geleistet</button></div>`}
-function armedName(){const a=S.armed;if(!a)return "";if(a.kind==="modul")return S.d.module.find(m=>m.id===a.id)?.titel||"Modul";return SONDER.find(s=>s.typ===a.id)?.t||"Baustein"}
+function armedName(){const a=S.armed;if(!a)return "";if(a.kind==="modul")return S.d.module.find(m=>m.id===a.id)?.titel||"Lernbaustein";return SONDER.find(s=>s.typ===a.id)?.t||"Baustein"}
 
 async function schuelerHtml(){
  if(S.ansicht==="geleistet")return await geleistetHtml();
@@ -221,7 +224,7 @@ async function geleistetHtml(){
  const wochen=[...new Set(plaene.map(p=>p.woche))].sort().slice(-12);
  const proWoche=wochen.map(w=>({w,m:done.filter(e=>e.woche===w).reduce((s,e)=>s+(e.len||1)*DAUER,0)}));const maxW=Math.max(1,...proWoche.map(x=>x.m));
  let h=`<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Das habe ich geleistet</h1><p>Alles, was du abgehakt hast – über alle Wochen.</p></div><div class="wp-actions">${ansichtSwitch()}</div></div>`;
- h+=`<div class="wp-kpis"><div class="card"><b>${done.length}</b><small>erledigte Module & Lernzeiten</small></div><div class="card"><b>${std(min)}</b><small>Lernzeit insgesamt</small></div><div class="card"><b>${co}</b><small>Check-outs</small></div><div class="card"><b>${geholfen}</b><small>Mal geholfen (Tutor:in / Kompetenz)</small></div><div class="card"><b>${hilfe}</b><small>Mal Hilfe bekommen</small></div></div>`;
+ h+=`<div class="wp-kpis"><div class="card"><b>${done.length}</b><small>erledigte Lernbausteine & Lernzeiten</small></div><div class="card"><b>${std(min)}</b><small>Lernzeit insgesamt</small></div><div class="card"><b>${co}</b><small>Check-outs</small></div><div class="card"><b>${geholfen}</b><small>Mal geholfen (Tutor:in / Kompetenz)</small></div><div class="card"><b>${hilfe}</b><small>Mal Hilfe bekommen</small></div></div>`;
  h+=`<div class="wp-unten"><div class="card"><h3>Lernzeit nach Fächern</h3>${Object.keys(proFach).length?Object.keys(proFach).sort((a,b)=>proFach[b]-proFach[a]).map(k=>`<div class="wp-hbar"><span>${esc(FACH(k).l)}</span><div><i style="width:${Math.round(proFach[k]/maxF*100)}%;background:${FACH(k).c}"></i></div><em>${std(proFach[k])}</em></div>`).join(""):`<p class="wp-leer">Noch nichts abgehakt – sobald du Einträge als erledigt markierst, erscheinen sie hier.</p>`}</div>
  <div class="card"><h3>Lernzeit pro Woche</h3>${proWoche.length?`<div class="wp-wbars">${proWoche.map(x=>`<div title="${esc(wochenText(x.w))}"><i style="height:${Math.round(x.m/maxW*100)}%"></i><small>KW${kwNr(parse(x.w))}</small></div>`).join("")}</div>`:`<p class="wp-leer">Noch keine Wochen.</p>`}</div></div>`;
  const letzte=done.sort((a,b)=>String(b.woche).localeCompare(String(a.woche))||b.d-a.d).slice(0,15);
@@ -254,9 +257,9 @@ async function setze(pl,d,h){
   const schon=S.d.plan.eintraege.find(e=>e.moduleId===m.id);
   if(schon&&!m.mehrfach){
    if(!frei(d,h,schon.len||1,schon.id))return fb.toast("Dort ist nicht genug Platz.");
-   schon.d=d;schon.h=h;await speichern();fb.toast("Modul verschoben.");return neu();
+   schon.d=d;schon.h=h;await speichern();fb.toast("Lernbaustein verschoben.");return neu();
   }
-  if(!frei(d,h,m.len||1))return fb.toast((m.len||1)>1?"Für dieses Modul brauchst du zwei freie Stunden hintereinander.":"Dieser Platz ist schon belegt.");
+  if(!frei(d,h,m.len||1))return fb.toast((m.len||1)>1?"Für diesen Lernbaustein brauchst du zwei freie Stunden hintereinander.":"Dieser Platz ist schon belegt.");
   S.d.plan.eintraege.push({id:nextId(),typ:"modul",mTyp:m.typ,moduleId:m.id,titel:m.titel,fach:m.fach,d,h,len:m.len||1,erledigt:false,route:m.route||"",link:m.link||""});
   await speichern();return neu();
  }
@@ -394,7 +397,7 @@ async function ausKompetenzwerkstatt(){
 /* ---------- Eintrag ansehen ---------- */
 function info(kind,id){
  if(kind==="einf"){const e=S.d.einf.find(x=>x.id===id);if(!e)return;
-  return modalOpen(`<div class="kicker">EINFÜHRUNG · ${esc(FACH(e.fach).l)}</div><h2>${esc(e.titel)}</h2><p>${TAGEL[e.d]}, ${esc(zeitBereich(e.h,e.len||1))}${e.lehrkraft?" · "+esc(e.lehrkraft):""}${e.raum?" · Raum "+esc(e.raum):""}</p><p class="wp-hint">🔒 Fester Termin – die Lehrkraft führt ein, danach steuerst du selbst.</p><div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`)}
+  return modalOpen(`<div class="kicker">${tart(e).kick} · ${esc(FACH(e.fach).l)}</div><h2>${esc(e.titel)}</h2><p>${TAGEL[e.d]}, ${esc(zeitBereich(e.h,e.len||1))}${e.lehrkraft?" · "+esc(e.lehrkraft):""}${e.raum?" · Raum "+esc(e.raum):""}</p><p class="wp-hint">${tart(e).hint}</p><div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`)}
  if(kind==="termin"){const b=S.d.buch.find(x=>x.id===id);if(!b)return;
   return modalOpen(`<div class="kicker">MEIN TERMIN</div><h2>${esc(b.lehrkraft||"Lehrkraft")}</h2><p>${TAGEL[b.d]}, ${esc(zeitBereich(b.h,b.len||1))}</p><p><b>Meine Frage:</b> ${esc(b.frage)}</p><div class="form-actions"><button class="secondary" onclick="wp.terminAbsagen('${b.id}')">Termin absagen</button><button class="primary" onclick="closeModal()">Schließen</button></div>`)}
  if(kind==="tutor"){const a=[...S.d.anfV,...S.d.anfT].find(x=>x.id===id);if(!a)return;const ich=a.tutorUid===uid();
@@ -430,12 +433,12 @@ const wpPublic={
 /* =========================================================
    LEHRKRAFT-ANSICHT
    ========================================================= */
-const TABS=[["uebersicht","📊 Klassenübersicht"],["module","🧩 Module"],["plan","🗓️ Einführungen & Termine"],["team","💬 Klassenteam & Planung"],["anfragen","🤝 Hilfe in der Klasse"]];
+const TABS=[["uebersicht","📊 Klassenübersicht"],["module","🧩 Lernbausteine"],["plan","🗓️ Einführungen, Gespräche & Termine"],["team","💬 Klassenteam & Planung"],["anfragen","🤝 Hilfe in der Klasse"]];
 function lTabs(){return `<div class="wp-seg wp-ltabs">${TABS.map(t=>`<button class="${S.tab===t[0]?"on":""}" onclick="wp.ltab('${t[0]}')">${t[1]}</button>`).join("")}</div>`}
 async function lehrerHtml(){
  if(S.tab!=="team")window.__wpStop();
  await ladeAllgemein();
- let h=`<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>Wochenplanung der Klasse</h1><p>Ihr stellt Module und feste Termine ein – die Schüler:innen planen ihre Woche selbst.</p></div></div>
+ let h=`<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>Wochenplanung der Klasse</h1><p>Ihr stellt Lernbausteine und feste Termine (Einführungen, Lernstandsgespräche) ein – die Schüler:innen planen ihre Woche selbst.</p></div></div>
  <div class="wp-bar2">${wochenKopf()}${lTabs()}</div>`;
  const wd=S.d.wochenDoc;
  const live=S.d.module.filter(m=>m.status==="live"&&m.woche===S.woche).length+S.d.einf.filter(e=>e.status==="live").length;
@@ -456,14 +459,14 @@ async function tabUebersicht(){
  const sts=users.filter(u=>u.status==="approved").map(u=>({u,s:st[u.uid]||null})).sort((a,b)=>String(a.u.displayName).localeCompare(String(b.u.displayName),"de"));
  const mitPlan=sts.filter(x=>x.s&&x.s.modGeplant>0).length;
  const avg=sts.length?sts.reduce((s,x)=>s+(x.s?x.s.geplantMin:0),0)/sts.length:0;
- const badge=s=>{if(!s||!s.modGesamt)return !s?'<span class="pill rot">kein Plan</span>':'<span class="pill">keine Module</span>';const r=s.modGeplant/s.modGesamt;return r>=.7?'<span class="pill ok">Plan steht</span>':r>0?'<span class="pill warn">Plan angefangen</span>':'<span class="pill rot">kein Plan</span>'};
- let h=`<div class="wp-kpis"><div class="card"><b>${sts.length}</b><small>freigeschaltete Schüler:innen</small></div><div class="card"><b>${mitPlan}</b><small>haben Module eingeplant</small></div><div class="card"><b>${std(avg)}</b><small>Ø Lernzeit geplant</small></div><div class="card"><b>${sts.reduce((s,x)=>s+(x.s?x.s.checkouts:0),0)}</b><small>Check-outs erledigt</small></div></div>`;
+ const badge=s=>{if(!s||!s.modGesamt)return !s?'<span class="pill rot">kein Plan</span>':'<span class="pill">keine Lernbausteine</span>';const r=s.modGeplant/s.modGesamt;return r>=.7?'<span class="pill ok">Plan steht</span>':r>0?'<span class="pill warn">Plan angefangen</span>':'<span class="pill rot">kein Plan</span>'};
+ let h=`<div class="wp-kpis"><div class="card"><b>${sts.length}</b><small>freigeschaltete Schüler:innen</small></div><div class="card"><b>${mitPlan}</b><small>haben Lernbausteine eingeplant</small></div><div class="card"><b>${std(avg)}</b><small>Ø Lernzeit geplant</small></div><div class="card"><b>${sts.reduce((s,x)=>s+(x.s?x.s.checkouts:0),0)}</b><small>Check-outs erledigt</small></div></div>`;
  h+=`<div class="card"><div class="wp-th"><h3>Wer hat schon geplant?</h3><small>Nur Kennzahlen – der Plan selbst bleibt privat, außer die Person teilt ihn.</small></div>
- <div class="wp-tabelle"><div class="wp-tr wp-tk"><span>Pseudonym</span><span>Module eingeplant</span><span>Lernzeit (geplant / erledigt)</span><span>Check-outs</span><span>Status</span><span></span></div>
+ <div class="wp-tabelle"><div class="wp-tr wp-tk"><span>Pseudonym</span><span>Lernbausteine eingeplant</span><span>Lernzeit (geplant / erledigt)</span><span>Check-outs</span><span>Status</span><span></span></div>
  ${sts.map(({u,s})=>{const r=s&&s.modGesamt?Math.round(s.modGeplant/s.modGesamt*100):0;
   return `<div class="wp-tr"><span><b>${esc(fb.zkAnzeige(u))}</b></span><span><div class="wp-mini"><i style="width:${r}%"></i></div><small>${s?s.modGeplant+" / "+s.modGesamt:"–"}</small></span><span>${s?std(s.geplantMin)+" / "+std(s.erledigtMin):"–"}</span><span>${s?s.checkouts:"–"}</span><span>${badge(s)}</span><span>${s&&s.geteilt?`<button class="secondary" onclick="wp.planAnsehen('${u.uid}')">Plan ansehen</button>`:'<small>🔒 privat</small>'}</span></div>`}).join("")||'<p class="wp-leer">Noch keine Schüler:innen freigeschaltet.</p>'}</div></div>
  <div class="card"><h3>Impuls an alle</h3><p class="wp-hint">Erscheint oben im Wochenplan aller Schüler:innen dieser Woche.</p><textarea id="wpImpuls" rows="2" maxlength="300" placeholder="z. B. Plant bis Mittwoch mindestens zwei Lernzeiten ein.">${esc(S.d.wochenDoc?.impuls||"")}</textarea><div class="form-actions"><button class="primary" onclick="wp.impuls()">Impuls senden</button></div></div>
- <div class="card wp-ds"><b>🔒 Datenschutz:</b> Lehrkräfte sehen die Zahlen in dieser Übersicht (Anzahl eingeplanter Module, Lernzeit, Check-outs). Auszeiten, Notizen, Wochenrückblicke und die Inhalte des Plans sind für euch nicht einsehbar – es sei denn, eine Schüler:in teilt ihren Plan ausdrücklich.</div>`;
+ <div class="card wp-ds"><b>🔒 Datenschutz:</b> Lehrkräfte sehen die Zahlen in dieser Übersicht (Anzahl eingeplanter Lernbausteine, Lernzeit, Check-outs). Auszeiten, Notizen, Wochenrückblicke und die Inhalte des Plans sind für euch nicht einsehbar – es sei denn, eine Schüler:in teilt ihren Plan ausdrücklich.</div>`;
  return h;
 }
 async function planAnsehen(u){
@@ -480,8 +483,8 @@ async function impuls(){
 function tabModule(){
  const mods=S.d.module;
  const grp={};mods.forEach(m=>(grp[m.fach]=grp[m.fach]||[]).push(m));
- let h=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">＋ Neues Modul</button><button class="secondary" onclick="wp.zeitenForm()">⚙ Stundenzeiten</button></div>`;
- if(!mods.length)h+=`<div class="card"><p class="wp-leer">Für diese Woche gibt es noch keine Module. Legt mit „Neues Modul“ Check-outs, Lernmodule oder Bausteine (z. B. Selbstlernkurs, Fachaufsatz-Training) an.</p></div>`;
+ let h=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">＋ Neuer Lernbaustein</button><button class="secondary" onclick="wp.zeitenForm()">⚙ Stundenzeiten</button></div>`;
+ if(!mods.length)h+=`<div class="card"><p class="wp-leer">Für diese Woche gibt es noch keine Lernbausteine. Legt mit „Neuer Lernbaustein“ Check-outs, Einführungen, Lernbausteine oder Kurse (z. B. Selbstlernkurs, Fachaufsatz-Training) an. Lernstandsgespräche setzt ihr als feste Termine im Reiter „Einführungen, Gespräche & Termine“.</p></div>`;
  Object.keys(grp).forEach(k=>{const f=FACH(k);
   h+=`<div class="card"><h3><span class="wp-fl" style="--fc:${f.c};--fb:${f.bg}">${esc(f.l)}</span></h3><div class="wp-liste">${grp[k].map(m=>`<div><span>${MTYP[m.typ]?.i||"📗"}</span><b>${esc(m.titel)}</b><small>${esc(MTYP[m.typ]?.l||m.typ)} · ${(m.len||1)*DAUER} Min.${m.pflicht?" · Pflicht":""}${m.woche===""?" · jede Woche":""}</small>
   <span class="pill ${m.status==="live"?"ok":"warn"}">${m.status==="live"?"live":"Entwurf"}</span>
@@ -493,7 +496,7 @@ function wochenOptionen(sel){
 }
 function modulForm(id){
  const m=id?S.d.module.find(x=>x.id===id):{titel:"",fach:"deutsch",typ:"lernen",len:1,woche:S.woche,beschr:"",route:"",link:"",pflicht:false,mehrfach:false,status:"entwurf"};
- modalOpen(`<div class="kicker">MODUL</div><h2>${id?"Modul bearbeiten":"Neues Modul"}</h2><div class="form">
+ modalOpen(`<div class="kicker">LERNBAUSTEIN</div><h2>${id?"Lernbaustein bearbeiten":"Neuer Lernbaustein"}</h2><div class="form">
  <label>Titel<input id="mfTitel" maxlength="80" value="${esc(m.titel)}"></label>
  <label>Fach<select id="mfFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===m.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
  <label>Art<select id="mfTyp">${Object.keys(MTYP).map(k=>`<option value="${k}" ${k===m.typ?"selected":""}>${MTYP[k].i} ${MTYP[k].l}</option>`).join("")}</select></label>
@@ -502,7 +505,7 @@ function modulForm(id){
  <label>Beschreibung<textarea id="mfBeschr" rows="3" maxlength="400">${esc(m.beschr||"")}</textarea></label>
  <label>Verknüpfte Seite in der App<select id="mfRoute">${ROUTEN.map(r=>`<option value="${r[0]}" ${r[0]===(m.route||"")?"selected":""}>${r[1]}</option>`).join("")}</select></label>
  <label>oder Link (https://…)<input id="mfLink" maxlength="300" value="${esc(m.link||"")}"></label>
- <label class="check"><input type="checkbox" id="mfPflicht" ${m.pflicht?"checked":""}><span>Pflichtmodul</span></label>
+ <label class="check"><input type="checkbox" id="mfPflicht" ${m.pflicht?"checked":""}><span>Pflicht-Lernbaustein</span></label>
  <label class="check"><input type="checkbox" id="mfMehr" ${m.mehrfach?"checked":""}><span>Kann mehrfach eingeplant werden</span></label>
  <label>Status<select id="mfStatus"><option value="entwurf" ${m.status!=="live"?"selected":""}>Entwurf (nur Lehrkräfte)</option><option value="live" ${m.status==="live"?"selected":""}>Live (Schüler:innen sehen es)</option></select></label>
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.modulSave('${id||""}')">Speichern</button></div></div>`);
@@ -513,7 +516,7 @@ async function modulSave(id){
  const d={titel,fach:$("mfFach").value,typ:$("mfTyp").value,len:Number($("mfLen").value)||1,woche:$("mfWoche").value,beschr:$("mfBeschr").value.trim(),route:$("mfRoute").value,link,pflicht:$("mfPflicht").checked,mehrfach:$("mfMehr").checked,status:$("mfStatus").value,updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpModule",id),d);else await fb.addDoc(col("wpModule"),{...d,createdBy:uid(),createdAt:fb.serverTimestamp()});fb.closeModal();fb.toast("Gespeichert.");neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
-async function modulWeg(id){if(!confirm("Dieses Modul löschen? Bereits eingeplante Einträge der Schüler:innen bleiben bestehen."))return;try{await fb.deleteDoc(ref("wpModule",id));neu()}catch(e){fb.toast("Nicht möglich.")}}
+async function modulWeg(id){if(!confirm("Diesen Lernbaustein löschen? Bereits eingeplante Einträge der Schüler:innen bleiben bestehen."))return;try{await fb.deleteDoc(ref("wpModule",id));neu()}catch(e){fb.toast("Nicht möglich.")}}
 async function modulKopie(id){
  const m=S.d.module.find(x=>x.id===id);if(!m)return;const {id:_i,...rest}=m;
  try{await fb.addDoc(col("wpModule"),{...rest,woche:iso(addD(parse(S.woche),7)),status:"entwurf",createdBy:uid(),createdAt:fb.serverTimestamp(),updatedAt:fb.serverTimestamp()});fb.toast("Als Entwurf in die nächste Woche kopiert.")}catch(e){console.error(e);fb.toast("Nicht möglich.")}
@@ -529,7 +532,7 @@ async function zeitenSave(){
 /* ---------- Einführungen & Termine ---------- */
 async function tabPlan(){
  const bu=await qdocs("wpBuchungen",W("woche",S.woche)).catch(()=>[]);S.d.buchungen=Object.fromEntries(bu.map(b=>[b.id,b]));
- let h=`<div class="card"><p class="wp-hint">Tippt auf einen freien Platz, um eine <b>Einführung</b> (feste Stunde eines Fachs) oder eine <b>Sprechzeit</b> (buchbarer Termin für fachliche Fragen) anzulegen. Entwürfe sind gestrichelt und für Schüler:innen unsichtbar.</p></div>`;
+ let h=`<div class="card"><p class="wp-hint">Tippt auf einen freien Platz, um eine <b>Einführung</b> (feste Stunde eines Fachs), ein <b>Lernstandsgespräch</b> (fester Termin, den ihr setzt) oder eine <b>Sprechzeit</b> (buchbarer Termin für fachliche Fragen) anzulegen. Entwürfe sind gestrichelt und für Schüler:innen unsichtbar.</p></div>`;
  h+=tageTabs()+rasterHtml({teacher:true});
  const sl=[...S.d.slots].sort((a,b)=>a.d-b.d||a.h-b.h);
  h+=`<div class="card"><h3>Sprechzeiten dieser Woche</h3>${sl.length?`<div class="wp-liste">${sl.map(s=>{const b=S.d.buchungen[s.id];
@@ -539,28 +542,29 @@ async function tabPlan(){
 function teacherZelle(d,h){
  if(S.tab!=="plan")return;
  if(!frei(d,h,1))return;
- modalOpen(`<div class="kicker">${TAGEL[d]} · ${h}. Stunde</div><h2>Was soll hier stehen?</h2><div class="wp-wahl"><button class="primary" onclick="wp.einfForm(null,${d},${h})">🔒 Einführung (fester Termin)</button><button class="secondary" onclick="wp.slotForm(null,${d},${h})">🗣️ Sprechzeit (buchbar)</button></div><div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button></div>`);
+ modalOpen(`<div class="kicker">${TAGEL[d]} · ${h}. Stunde</div><h2>Was soll hier stehen?</h2><div class="wp-wahl"><button class="primary" onclick="wp.einfForm(null,${d},${h},'einfuehrung')">🔒 Einführung (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${d},${h},'lernstand')">💬 Lernstandsgespräch (fester Termin)</button><button class="secondary" onclick="wp.slotForm(null,${d},${h})">🗣️ Sprechzeit (buchbar)</button></div><div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button></div>`);
 }
-function einfForm(id,d,h){
- const e=id?S.d.einf.find(x=>x.id===id):{fach:"deutsch",titel:"",d,h,len:1,lehrkraft:fb.profile?.displayName||"",raum:"",status:"entwurf"};
- modalOpen(`<div class="kicker">EINFÜHRUNG</div><h2>${id?"Einführung bearbeiten":"Neue Einführung"}</h2><div class="form">
+function einfForm(id,d,h,art){
+ const e=id?S.d.einf.find(x=>x.id===id):{fach:"deutsch",titel:art==="lernstand"?"Lernstandsgespräch":"",art:art==="lernstand"?"lernstand":"einfuehrung",d,h,len:1,lehrkraft:fb.profile?.displayName||"",raum:"",status:"entwurf"};
+ const T=tart(e);
+ modalOpen(`<div class="kicker">${T.kick}</div><h2>${id?T.edit:T.neu}</h2><div class="form">
  <label>Fach<select id="efFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===e.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
- <label>Thema / Titel<input id="efTitel" maxlength="80" value="${esc(e.titel)}" placeholder="z. B. Einführung Lernbereich 2"></label>
+ <label>${e.art==="lernstand"?"Titel":"Thema / Titel"}<input id="efTitel" maxlength="80" value="${esc(e.titel)}" placeholder="${esc(T.ph)}"></label>
  <label>Tag<select id="efD">${TAGEL.map((t,i)=>`<option value="${i}" ${i===e.d?"selected":""}>${t}</option>`).join("")}</select></label>
  <label>Beginn (Stunde)<select id="efH">${[...Array(10)].map((_,i)=>`<option value="${i+1}" ${i+1===e.h?"selected":""}>${i+1}. Stunde (${esc(zeiten()[i])})</option>`).join("")}</select></label>
  <label>Dauer<select id="efLen"><option value="1" ${e.len!==2?"selected":""}>45 Minuten</option><option value="2" ${e.len===2?"selected":""}>90 Minuten</option></select></label>
  <label>Lehrkraft<input id="efLk" maxlength="60" value="${esc(e.lehrkraft||"")}"></label><label>Raum (optional)<input id="efRaum" maxlength="20" value="${esc(e.raum||"")}"></label>
  <label>Status<select id="efStatus"><option value="entwurf" ${e.status!=="live"?"selected":""}>Entwurf</option><option value="live" ${e.status==="live"?"selected":""}>Live</option></select></label>
- <div class="form-actions">${id?`<button class="secondary" onclick="wp.einfWeg('${id}')">Löschen</button>`:""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einfSave('${id||""}')">Speichern</button></div></div>`);
+ <div class="form-actions">${id?`<button class="secondary" onclick="wp.einfWeg('${id}')">Löschen</button>`:""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einfSave('${id||""}','${e.art||"einfuehrung"}')">Speichern</button></div></div>`);
 }
-async function einfSave(id){
+async function einfSave(id,art){
  const d=Number($("efD").value),h=Number($("efH").value),len=Number($("efLen").value)||1,titel=$("efTitel").value.trim();
- if(titel.length<2)return fb.toast("Bitte ein Thema eingeben.");
+ if(titel.length<2)return fb.toast(art==="lernstand"?"Bitte einen Titel eingeben.":"Bitte ein Thema eingeben.");
  if(!frei(d,h,len,id))return fb.toast("Zu dieser Zeit ist schon etwas eingetragen (oder die Stunde reicht über den Tag hinaus).");
- const data={woche:S.woche,d,h,len,fach:$("efFach").value,titel,lehrkraft:$("efLk").value.trim(),raum:$("efRaum").value.trim(),status:$("efStatus").value,updatedAt:fb.serverTimestamp()};
+ const data={woche:S.woche,d,h,len,art:art==="lernstand"?"lernstand":"einfuehrung",fach:$("efFach").value,titel,lehrkraft:$("efLk").value.trim(),raum:$("efRaum").value.trim(),status:$("efStatus").value,updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpEinfuehrungen",id),data);else await fb.addDoc(col("wpEinfuehrungen"),{...data,createdBy:uid(),createdAt:fb.serverTimestamp()});fb.closeModal();neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
-async function einfWeg(id){if(!confirm("Diese Einführung löschen?"))return;try{await fb.deleteDoc(ref("wpEinfuehrungen",id));fb.closeModal();neu()}catch(e){fb.toast("Nicht möglich.")}}
+async function einfWeg(id){if(!confirm(tart(S.d.einf.find(x=>x.id===id)).weg))return;try{await fb.deleteDoc(ref("wpEinfuehrungen",id));fb.closeModal();neu()}catch(e){fb.toast("Nicht möglich.")}}
 function slotForm(id,d,h){
  const s=id?S.d.slots.find(x=>x.id===id):{fach:"deutsch",d,h,len:1,lehrkraft:fb.profile?.displayName||"",status:"entwurf"};
  modalOpen(`<div class="kicker">SPRECHZEIT</div><h2>${id?"Sprechzeit bearbeiten":"Neue Sprechzeit"}</h2><p class="wp-hint">Schüler:innen können diesen Termin für eine fachliche Frage buchen (ein Platz).</p><div class="form">
@@ -592,10 +596,10 @@ async function tabTeam(){
  <div class="wp-chatform"><input id="wpChatText" maxlength="500" placeholder="Nachricht ans Team …" onkeydown="if(event.key==='Enter')wp.chatSenden()"><button class="primary" onclick="wp.chatSenden()">Senden</button></div><small class="wp-hint">Nur für Lehrkräfte sichtbar. Bitte keine Schülernamen oder sensiblen Daten.</small></div>
  <div class="card"><h3>🗓️ ${esc(wochenText(w))} gemeinsam planen</h3>
  <p class="wp-hint">Was steht in dieser Woche je Fach an? Eure Notizen sind nur für das Team sichtbar.</p>
- ${kern.map(f=>`<label class="wp-notiz" style="--fc:${f.c}"><span>${esc(f.l)}</span><textarea rows="2" maxlength="400" onchange="wp.teamNotiz('${f.k}',this.value)" placeholder="Einführung, Check-out, Besonderheiten …">${esc(tp.notizen?.[f.k]||"")}</textarea></label>`).join("")}
+ ${kern.map(f=>`<label class="wp-notiz" style="--fc:${f.c}"><span>${esc(f.l)}</span><textarea rows="2" maxlength="400" onchange="wp.teamNotiz('${f.k}',this.value)" placeholder="Einführung, Lernstandsgespräche, Check-out, Besonderheiten …">${esc(tp.notizen?.[f.k]||"")}</textarea></label>`).join("")}
  <h4>To-dos fürs Team</h4><div id="wpTodos">${(tp.todos||[]).map(t=>`<label class="check"><input type="checkbox" ${t.done?"checked":""} onchange="wp.todoToggle('${t.id}')"><span>${esc(t.t)}</span> <button class="text-button" onclick="wp.todoWeg('${t.id}')">×</button></label>`).join("")||'<small class="wp-leer">Noch keine To-dos.</small>'}</div>
  <div class="wp-chatform"><input id="wpTodoText" maxlength="120" placeholder="Neues To-do …" onkeydown="if(event.key==='Enter')wp.todoNeu()"><button class="secondary" onclick="wp.todoNeu()">Hinzufügen</button></div>
- <div class="wp-freigabe"><div><b>${entw} Entwurf${entw===1?"":"e"}</b> für diese Woche · ${wochenDocStatus()}</div><div class="form-actions"><button class="secondary" onclick="wp.vorwoche()">Einführungen der Vorwoche übernehmen</button><button class="primary" onclick="wp.freigeben()">✔ Woche für die Klasse freigeben</button></div></div></div></div>`;
+ <div class="wp-freigabe"><div><b>${entw} Entwurf${entw===1?"":"e"}</b> für diese Woche · ${wochenDocStatus()}</div><div class="form-actions"><button class="secondary" onclick="wp.vorwoche()">Feste Termine der Vorwoche übernehmen</button><button class="primary" onclick="wp.freigeben()">✔ Woche für die Klasse freigeben</button></div></div></div></div>`;
  setTimeout(chatStart,0);
  return h;
 }
@@ -630,9 +634,9 @@ async function freigeben(){
 async function vorwoche(){
  const prev=iso(addD(parse(S.woche),-7));
  try{
-  const l=await qdocs("wpEinfuehrungen",W("woche",prev));if(!l.length)return fb.toast("In der Vorwoche gibt es keine Einführungen.");
+  const l=await qdocs("wpEinfuehrungen",W("woche",prev));if(!l.length)return fb.toast("In der Vorwoche gibt es keine festen Termine.");
   let n=0;for(const e of l){const {id,...r}=e;if(!frei(r.d,r.h,r.len||1))continue;await fb.addDoc(col("wpEinfuehrungen"),{...r,woche:S.woche,status:"entwurf",createdBy:uid(),createdAt:fb.serverTimestamp(),updatedAt:fb.serverTimestamp()});n++}
-  fb.toast(n+" Einführung(en) als Entwurf übernommen.");neu();
+  fb.toast(n+" Termin(e) als Entwurf übernommen.");neu();
  }catch(e){console.error(e);fb.toast("Nicht möglich.")}
 }
 /* ---------- Hilfe in der Klasse ---------- */

@@ -33,9 +33,11 @@ body:has(.wp-armed) .wp-c{cursor:copy;background:#f4faf0}
 .wp-b{border-radius:9px;padding:4px 8px;font-size:12px;line-height:1.25;overflow:hidden;position:relative;cursor:pointer;min-height:0;display:flex;flex-direction:column;justify-content:center;border:1px solid transparent}
 .wp-b b{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.wp-b small{color:#5d7280;font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .wp-b.einf{background:var(--fb);border-left:4px solid var(--fc)}.wp-b.einf.entwurf{border:1px dashed var(--fc);border-left:4px solid var(--fc);opacity:.75}
+.wp-b.einf.lernstand{border-left-width:4px;border-left-style:double;box-shadow:inset 0 0 0 1px var(--fc)}
 .wp-lock{position:absolute;right:5px;top:3px;font-size:10px;opacity:.7}
 .wp-b.plan{background:var(--fb);border-left:4px solid var(--fc)}
 .wp-b.plan.m-checkout{background:var(--wp-co)}
+.wp-b.plan.m-einfuehrung{background:var(--fb);border-left:4px solid var(--fc)}
 .wp-b.plan.m-baustein{border:1px dashed var(--fc);border-left:4px solid var(--fc)}
 .wp-b.plan.auszeit{background:#e6f4ea;border-left-color:#8cc59a}
 .wp-b.plan.eigen{background:#f3f5f6;border-left-color:#aab6bc}
@@ -62,7 +64,7 @@ body:has(.wp-armed) .wp-c{cursor:copy;background:#f4faf0}
 .wp-tile b{font-size:11.5px;line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .wp-tile small{margin-top:auto;font-size:10px;color:#5d7280}
 .wp-tic{position:absolute;right:4px;top:2px;font-size:11px}
-.wp-tile.m-checkout{background:var(--wp-co)}.wp-tile.m-baustein{border:1px dashed var(--fc);border-left:4px solid var(--fc);background:#fff}
+.wp-tile.m-checkout{background:var(--wp-co)}.wp-tile.m-einfuehrung{background:var(--fb);border-left:4px solid var(--fc)}.wp-tile.m-baustein{border:1px dashed var(--fc);border-left:4px solid var(--fc);background:#fff}
 .wp-tile.geplant{opacity:.55}.wp-tile.armed{outline:2px solid #69b0e0;opacity:1}
 .wp-tile.sonder{background:#f3f5f6;border-left-color:#aab6bc}
 .wp-tile.s-termin{background:#e4ecfb;border-left-color:#8aa6e0}.wp-tile.s-tutor,.wp-tile.s-kompetenz{background:#fde9e4;border-left-color:#e3a495}.wp-tile.s-auszeit{background:#e6f4ea;border-left-color:#8cc59a}
