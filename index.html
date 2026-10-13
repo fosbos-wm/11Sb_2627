@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1598d1">
+<title>F11Sb 26/27 | FOSBOS Weilheim</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; media-src 'self' blob: https:; font-src 'self' data:; connect-src 'self' https://*.googleapis.com https://*.firebaseio.com https://*.firebasestorage.app wss://*.firebaseio.com; frame-src 'self' https: blob:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="stylesheet" href="styles.css?v=20261009a">
+
+<!-- App-Icon fürs Homescreen (Handy/iPad) -->
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="F11Sb">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#start">
+    <img src="logo.jpg" alt="Fachoberschule Berufsoberschule Weilheim">
+    <div class="brand-divider"></div>
+    <div class="brand-copy">
+      <span>FOSBOS WEILHEIM</span>
+      <strong>F11Sb 26/27</strong>
+      <small>Unser Lernraum. Unser Projekt. Unser Weg.</small>
+    </div>
+  </a>
+  <div class="user-area">
+    <span id="userName" class="user-name"></span>
+    <button class="ghost-icon" id="motivBtn" hidden type="button" title="Motivations-Hinweise ein oder aus">✨</button>
+    <button class="ghost-icon" id="logoutBtn" hidden>Abmelden</button>
+    <button class="menu-btn" id="menuBtn">☰</button>
+  </div>
+</header>
+
+<div id="authScreen" class="auth-screen">
+  <div class="auth-card">
+    <img src="logo.jpg" alt="FOSBOS Weilheim" class="auth-logo">
+    <div class="kicker">F11Sb 26/27</div>
+    <h1>Willkommen auf dem Campus.</h1>
+    <p class="auth-intro">Melde dich mit deinem Pseudonym und deiner PIN an. Du brauchst dafür keinen echten Namen und keine E-Mail-Adresse.</p>
+    <div class="auth-tabs">
+      <button id="stuLoginTab" class="auth-tab active" type="button">Anmelden</button>
+      <button id="stuSetupTab" class="auth-tab" type="button">Erstmals einrichten</button>
+      <button id="teacherTab" class="auth-tab" type="button">Lehrkraft</button>
+    </div>
+    <form id="stuLoginForm" class="form auth-form">
+      <label>Pseudonym<input id="stuPseudo" maxlength="20" autocomplete="username" autocapitalize="off" required></label>
+      <label>PIN<input id="stuPin" type="password" autocomplete="current-password" required></label>
+      <button class="primary wide" type="submit">Anmelden</button>
+      <small style="color:var(--muted)">PIN vergessen? Die Lehrkraft richtet dir eine neue Zugangskarte ein.</small>
+    </form>
+    <form id="stuSetupForm" class="form auth-form" hidden>
+      <label>Zugangscode (steht auf deiner Karte)<input id="setupCode" maxlength="14" autocomplete="off" autocapitalize="characters" placeholder="XXXXX-XXXXX" required></label>
+      <label>Dein Pseudonym<input id="setupPseudo" maxlength="20" autocomplete="off" required></label>
+      <small style="display:block;margin-top:-10px;margin-bottom:10px;color:var(--muted)">3 bis 20 Zeichen. Wähle einen Spitznamen oder ein Kürzel, <b>kein</b> echter Vor- oder Nachname.</small>
+      <label>PIN (mindestens 6 Zeichen)<input id="setupPin" type="password" minlength="6" autocomplete="new-password" required></label>
+      <label>PIN wiederholen<input id="setupPin2" type="password" minlength="6" autocomplete="new-password" required></label>
+      <label class="check"><input id="setupConsent" type="checkbox" required><span>Mein Pseudonym enthält keinen echten Namen. Ich habe die <a href="#" onclick="showDatenschutz();return false">Datenschutzerklärung</a> gelesen.</span></label>
+      <button class="primary wide" type="submit">Einrichten</button>
+    </form>
+    <div id="teacherBox" hidden>
+    <div class="auth-tabs">
+      <button id="loginTab" class="auth-tab active">Anmelden</button>
+      <button id="registerTab" class="auth-tab">Konto erstellen</button>
+    </div>
+    <form id="loginForm" class="form auth-form">
+      <label>E-Mail-Adresse<input id="loginEmail" type="email" autocomplete="email" required></label>
+      <label>Passwort<input id="loginPassword" type="password" autocomplete="current-password" required></label>
+      <button class="primary wide" type="submit">Anmelden</button>
+      <button class="text-button" type="button" id="forgotBtn">Passwort vergessen?</button>
+    </form>
+    <form id="registerForm" class="form auth-form" hidden>
+      <label>Vorname<input id="registerFirstName" maxlength="40" autocomplete="given-name" required></label>
+      <label>Nachname<input id="registerLastName" maxlength="40" autocomplete="family-name" required></label>
+      <label>E-Mail-Adresse<input id="registerEmail" type="email" autocomplete="email" required></label>
+      <label>Passwort<input id="registerPassword" type="password" minlength="8" autocomplete="new-password" required></label>
+      <small style="display:block;margin-top:-10px;margin-bottom:10px;color:var(--muted)">Mindestens 8 Zeichen, davon Buchstaben UND Zahlen.</small>
+      <label>Passwort wiederholen<input id="registerPassword2" type="password" minlength="8" autocomplete="new-password" required></label>
+      <label class="check"><input id="registerConsent" type="checkbox" required> Ich habe die Hinweise zur Nutzung gelesen.</label>
+      <button class="primary wide" type="submit">Konto erstellen</button>
+    </form>
+    </div>
+    <div id="authError" class="auth-error" role="alert"></div>
+    <p class="auth-foot">Zugang nur für die F11Sb. Es werden keine echten Namen und keine E-Mail-Adressen von Schüler:innen gespeichert.</p>
+    <button type="button" class="text-button" onclick="showImpressum()">Impressum</button> <button type="button" class="text-button" onclick="showDatenschutz()">Datenschutz</button>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-title">CAMPUS</div>
+      <nav>
+        <a href="#start" data-page="start" class="nav-link active">Startseite</a>
+        <a href="#klassenteam" data-page="klassenteam" class="nav-link">Unser Klassenteam</a>
+        <a href="#wochenplan" data-page="wochenplan" class="nav-link">Mein Wochenplan</a>
+        <a href="#kompass" data-page="kompass" class="nav-link">Mein Campus-Kompass</a>
+        <a href="#lernwerkstatt" data-page="lernwerkstatt" class="nav-link">Lernwerkstatt</a>
+        <a href="#forum" data-page="forum" class="nav-link">Campus-Forum</a>
+        <a href="#kompetenz" data-page="kompetenz" class="nav-link">Kompetenzwerkstatt</a>
+        <a href="#journal" data-page="journal" class="nav-link">Lernjournal</a>
+        <a href="#praktikum" data-page="praktikum" class="nav-link">fpA</a><a href="#resilienz" data-page="resilienz" class="nav-link">Resilienz & Respressi</a>
+        <a href="#kalender" data-page="kalender" class="nav-link">Campus-Kalender</a>
+        <a href="#team" data-page="team" class="nav-link">Team & SQ</a>
+      </nav>
+      <div class="side-card">
+        <b>Campus hilft</b>
+        <p>Wobei kannst du anderen helfen?</p>
+        <button id="helpQuick">Hilfe anbieten →</button>
+      </div>
+      <div class="side-footer">Gemeinsam · offen · respektvoll</div>
+    </aside>
+    <main id="content" tabindex="-1"></main>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+
+<script type="module" src="app.js?v=20261010e"></script>
+</body>
+</html>

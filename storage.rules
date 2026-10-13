@@ -1,0 +1,90 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Nur freigeschaltete Campus-Mitglieder dürfen Dateien lesen/hochladen.
+    // Greift auf denselben "approved"-Status wie die Firestore-Regeln zu.
+    function isApproved() {
+      return request.auth != null
+        && firestore.exists(/databases/(default)/documents/users/$(request.auth.uid))
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.status == 'approved';
+    }
+
+    function isTeacher() {
+      return isApproved()
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role in ['teacher', 'admin'];
+    }
+
+    // Die App speichert jede Datei als "<uid>_<zeit>_<name>".
+    // Daran erkennt die Regel, wer die Datei hochgeladen hat.
+    function isUploader(fileName) {
+      return request.auth != null && fileName.matches(request.auth.uid + '_.*');
+    }
+
+    function sizeOk() {
+      return request.resource.size < 15 * 1024 * 1024;
+    }
+
+    // Lernprodukte im Lehrplan-Zeitstrahl (F11Sb) – max. 15 MB je Datei.
+    // Löschen: wer hochgeladen hat, oder eine Lehrkraft.
+    match /lehrplanProdukte/{wocheId}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isApproved() && isUploader(fileName) && sizeOk();
+      allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
+    }
+
+    // Blockberichte (Praktikum) – privat: nur die Person selbst und
+    // Lehrkräfte sehen die Datei. Löschen: wer hochgeladen hat, oder eine Lehrkraft.
+    match /praktikumsberichte/{ordner}/{fileName} {
+      allow read: if isApproved() && (isUploader(fileName) || isTeacher());
+      allow create, update: if isApproved() && isUploader(fileName) && sizeOk();
+      allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
+    }
+
+    // Prüfungsfragen im Abschlussprüfungs-Training – nur Lehrkräfte laden hoch
+    // und löschen.
+    match /aptInhalte/{einheitId}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isTeacher() && isUploader(fileName) && sizeOk();
+      allow delete: if isTeacher();
+    }
+
+    // Beiträge zu Projekt-Meilensteinen – max. 15 MB je Datei.
+    // Löschen: wer hochgeladen hat, oder eine Lehrkraft.
+    match /meilensteinBeitraege/{teamId}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isApproved() && isUploader(fileName) && sizeOk();
+      allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
+    }
+
+    // Pinnwand-Notizen – max. 15 MB je Datei.
+    // Löschen: wer hochgeladen hat, oder eine Lehrkraft.
+    match /boardPosts/{boardId}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isApproved() && isUploader(fileName) && sizeOk();
+      allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
+    }
+
+    // Dateien auf der Tafel/dem Whiteboard – max. 15 MB je Datei.
+    // Löschen: wer hochgeladen hat, oder eine Lehrkraft.
+    match /whiteboardDateien/{boardId}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isApproved() && isUploader(fileName) && sizeOk();
+      allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
+    }
+
+    // Unterrichtsmaterial im Modulplan (PDFs) – nur Lehrkräfte laden hoch
+    // und löschen, alle freigeschalteten Mitglieder lesen.
+    match /ppMaterial/{modulId}/{fileName} {
+      allow read: if isApproved();
+      allow create, update: if isTeacher() && isUploader(fileName) && sizeOk();
+      allow delete: if isTeacher();
+    }
+
+    // Alles andere ist gesperrt.
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
