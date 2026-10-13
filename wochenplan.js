@@ -221,7 +221,7 @@ function modulTile(m){
  const f=FACH(m.fach),pl=S.d.plan.eintraege.filter(e=>e.moduleId===m.id),n=pl.length,done=pl.some(e=>e.erledigt);
  const armed=S.armed&&S.armed.id===m.id;
  return `<div class="wp-tile art m-${esc(m.typ)}${n?" geplant":""}${done?" done":""}${armed?" armed":""}" style="--fc:${f.c};--fb:${f.bg};${artStyle(m.typ)}" draggable="true" ondragstart="wp.dragStart(event,'modul','${m.id}')" onclick="wp.arm('modul','${m.id}')" title="${esc(m.beschr||m.titel)}">
- <span class="wp-tic">${MTYP[m.typ]?.i||""}</span><b>${esc(m.titel)}</b><small>${esc(f.l)} · ${esc(dauerKurz(dauerInfo(m)))}${m.pflicht?" · Pflicht":""}${n?" · ✓ geplant":""}</small></div>`;
+ <span class="wp-tic">${MTYP[m.typ]?.i||""}</span><b>${esc(m.titel)}</b><small>${esc(f.l)} · ${esc(dauerKurz(dauerInfo(m)))}${m.pflicht?" · Pflicht":""}${n?" · ✓ geplant":""}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('modul','${m.id}')">Einplanen</button></div>`;
 }
 function leisteHtml(){
  const mods=S.d.module.filter(m=>S.filter==="alle"||m.fach===S.filter);
@@ -231,7 +231,7 @@ function leisteHtml(){
  const grp={};mods.forEach(m=>(grp[m.fach]=grp[m.fach]||[]).push(m));
  h+=`<div class="wp-zeilen">`;
  Object.keys(grp).forEach(k=>{h+=`<div class="wp-zeile"><span class="wp-fl" style="--fc:${FACH(k).c};--fb:${FACH(k).bg}">${esc(FACH(k).l)}</span><div class="wp-tiles">${grp[k].map(modulTile).join("")}</div></div>`});
- h+=`<div class="wp-zeile"><span class="wp-fl sonder">Immer dabei</span><div class="wp-tiles">${SONDER.map(s=>`<div class="wp-tile sonder s-${s.typ}${S.armed&&S.armed.id===s.typ?" armed":""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${s.typ}')" onclick="wp.arm('sonder','${s.typ}')"><span class="wp-tic">${s.ic}</span><b>${s.t}</b><small>${s.s}</small></div>`).join("")}</div></div></div>`;
+ h+=`<div class="wp-zeile"><span class="wp-fl sonder">Immer dabei</span><div class="wp-tiles">${SONDER.map(s=>`<div class="wp-tile sonder s-${s.typ}${S.armed&&S.armed.id===s.typ?" armed":""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${s.typ}')" onclick="wp.arm('sonder','${s.typ}')"><span class="wp-tic">${s.ic}</span><b>${s.t}</b><small>${s.s}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('sonder','${s.typ}')">Einplanen</button></div>`).join("")}</div></div></div>`;
  return h+"</div>";
 }
 function langHtml(){
@@ -338,6 +338,24 @@ async function setze(pl,d,h){
   if(pl.id==="auszeit")return modalAuszeit(d,h);
   if(pl.id==="eigen")return modalEigen(d,h);
  }
+}
+function einplanen(kind,id){
+ if(isT())return;
+ const m=kind==="modul"?S.d.module.find(x=>x.id===id):null;
+ const I=m?dauerInfo(m):{lang:false,len:1};
+ const titel=kind==="modul"?(m?m.titel:"Lernbaustein"):(SONDER.find(x=>x.typ===id)?.t||"Baustein");
+ const w=parse(S.woche);
+ const tage=TAGEL.map((t,d)=>`<option value="${d}" ${d===S.tag?"selected":""}>${t}, ${dm(addD(w,d))}</option>`).join("");
+ const std=[...Array(10)].map((_,i)=>`<option value="${i+1}">${i+1}. Stunde (${esc(zeiten()[i]||"")})</option>`).join("");
+ modalOpen(`<div class="kicker">EINPLANEN</div><h2>${esc(titel)}</h2><div class="form">
+  <label>Tag<select id="epTag">${tage}</select></label>
+  ${I.lang?"":`<label>Beginn<select id="epStd">${std}</select></label>`}
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einplanenOk('${kind}','${id}')">Einplanen</button></div></div>`);
+ const sel=$("epStd");if(sel){const len=I.len||1;const fr=[...sel.options].find(o=>frei(S.tag,Number(o.value),len));if(fr)sel.value=fr.value}
+}
+function einplanenOk(kind,id){
+ const d=Number($("epTag").value),h=Number($("epStd")?.value||1);
+ fb.closeModal();S.armed=null;setze({kind,id},d,h);
 }
 function modalAuszeit(d,h){
  modalOpen(`<div class="kicker">AUSZEIT</div><h2>Kurze Auszeit einplanen</h2><p>Regeneration gehört zum Lernen. Deine Auszeiten sind <b>nur für dich</b> sichtbar und zählen nicht in der Statistik der Lehrkräfte.</p>
@@ -765,7 +783,7 @@ async function angebotMod(id){if(!confirm("Dieses Angebot entfernen?"))return;tr
    ========================================================= */
 Object.assign(wpPublic,{
  ltab:t=>{S.tab=t;neu()},
- anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
+ einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod
 });
