@@ -6,12 +6,12 @@
    „Meine Apps“ → Web-App → SDK-Konfiguration einsetzen.
    ========================================================= */
 export const firebaseConfig = {
-  apiKey: "HIER_API_KEY",
-  authDomain: "HIER_PROJEKT-ID.firebaseapp.com",
-  projectId: "HIER_PROJEKT-ID",
-  storageBucket: "HIER_PROJEKT-ID.firebasestorage.app",
-  messagingSenderId: "HIER_SENDER_ID",
-  appId: "HIER_APP_ID"
+  apiKey: "AIzaSyA7bUChe9GwFXagWQB_2bU2iCWhiXEs7X8",
+  authDomain: "sb2627-b8414.firebaseapp.com",
+  projectId: "sb2627-b8414",
+  storageBucket: "sb2627-b8414.firebasestorage.app",
+  messagingSenderId: "840593020906",
+  appId: "1:840593020906:web:8b410ebb00ee05438a0493"
 };
 /* Kürzel der Klasse (steht in den Zugangscodes als Klassenmarkierung). */
 export const APP_KLASSE = "11sb2627";
