@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Fachaufsatz: Bausteine</title>
+<style>
+:root{--ink:#17384f;--muted:#5d7283;--bg:#f3f8fc;--line:#dce7ef;--card:#fff;
+--blau:#075a9d;--blau-bg:#cfe8fb;--gruen:#3f6b0f;--gruen-bg:#dcf1c8;--rot:#a8161d;--rot-bg:#fad2d5}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5}
+body{padding:24px max(16px,env(safe-area-inset-left,0px)) 48px max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+h1{margin:0;font-size:clamp(1.5rem,4vw,2rem);line-height:1.2}
+.lead{margin:6px 0 0;color:var(--muted);max-width:62ch}
+.bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+button{font:inherit;font-weight:700;color:var(--ink);background:#fff;border:2px solid var(--ink);border-radius:8px;padding:7px 14px;cursor:pointer}
+button:hover{background:var(--ink);color:#fff}
+button:focus-visible{outline:3px solid var(--blau);outline-offset:2px}
+.zone{border-left:8px solid var(--c);background:var(--bg2);border-radius:0 10px 10px 0;padding:12px 14px 14px;display:flex;flex-direction:column;gap:10px}
+.zone.e{--c:var(--blau);--bg2:var(--blau-bg)}
+.zone.h{--c:var(--gruen);--bg2:var(--gruen-bg)}
+.zone.s{--c:var(--rot);--bg2:var(--rot-bg)}
+.zone h2{margin:0;font-size:1.2rem;color:var(--c)}
+.zone h2 small{font-weight:400;color:var(--muted);font-size:.85rem;margin-left:8px}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.step{background:var(--card);border:2px solid var(--c);border-radius:8px;padding:10px 12px;display:grid;grid-template-columns:minmax(0,1fr);gap:6px 16px}
+@media(min-width:720px){.step{grid-template-columns:minmax(0,15rem) minmax(0,1fr)}}
+.step b{display:block;color:var(--c)}
+.step .was{font-size:.92rem;color:var(--muted)}
+.bsp{font-size:.95rem;border-top:1px dashed var(--line);padding-top:6px}
+@media(min-width:720px){.bsp{border-top:0;padding-top:0;border-left:1px dashed var(--line);padding-left:16px}}
+.bsp i{display:block;font-style:normal;font-weight:700;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.wdh{margin:0;font-weight:700;color:var(--gruen)}
+.farben{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.farben h2{margin:0 0 6px;font-size:1.05rem}
+.farben ul{margin:0;padding-left:1.1rem;display:grid;gap:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Fachaufsatz: Bausteine</h1>
+  <p class="lead">So ist ein Fachaufsatz im Fach Pädagogik/Psychologie aufgebaut. Die Beispiele stammen aus dem Aufsatz zu Verhalten und Erleben (Lena vor der Abschlussprüfung).</p>
+</header>
+
+<div class="bar"><span>Zuerst das Gerüst ansehen, danach die Beispiele einblenden.</span>
+<button id="tog" type="button" aria-pressed="true">Beispiel ausblenden</button></div>
+
+<section class="zone e" aria-labelledby="e">
+  <h2 id="e">Einleitung <small>ein zusammenhängender Absatz ohne Überschrift</small></h2>
+  <ol>
+    <li class="step"><div><b>1 Einleitungssatz</b><span class="was">ganz allgemein ins Thema, ohne Fallbezug</span></div>
+      <div class="bsp"><i>Beispiel</i>Menschen beschäftigt seit jeher die Frage, warum sie und andere so handeln, wie sie handeln, und was in ihnen vorgeht.</div></li>
+    <li class="step"><div><b>2 Eingrenzung des Lernbereichs</b><span class="was">Definitionen Pädagogik und Psychologie</span></div>
+      <div class="bsp"><i>Beispiel</i>Unter Pädagogik werden sowohl alle Formen des praktischen Erziehungsgeschehens als auch die wissenschaftliche Erhellung der Erziehungswirklichkeit verstanden. Psychologie ist die Wissenschaft vom Verhalten und Erleben.</div></li>
+    <li class="step"><div><b>3 Überleitung</b><span class="was">Fallbezug mit Zeilenangabe, Ausblick auf den Hauptteil</span></div>
+      <div class="bsp"><i>Beispiel</i>Lena sitzt kurz vor Beginn der Abschlussprüfung an ihrem Platz (Z. 1–2) … Im Folgenden werden die Begriffe Verhalten und Erleben erläutert und am Beispiel von Lena verdeutlicht.</div></li>
+  </ol>
+</section>
+
+<section class="zone h" aria-labelledby="h">
+  <h2 id="h">Hauptteil <small>für jeden Theoriepunkt wiederholen</small></h2>
+  <ol>
+    <li class="step"><div><b>4 Klärung von Theorie und Fachbegriffen</b><span class="was">Oberbegriff nennen, Fachbegriff definieren</span></div>
+      <div class="bsp"><i>Beispiel</i>Gegenstand der Psychologie sind Verhalten und Erleben.</div></li>
+    <li class="step"><div><b>5 Nennen</b><span class="was">den Theoriepunkt nennen: ein Merkmal, ein Begriff, eine Funktion</span></div>
+      <div class="bsp"><i>Beispiel</i>Ein Gegenstand der Psychologie ist das Verhalten.</div></li>
+    <li class="step"><div><b>6 Erklären</b><span class="was">in eigenen Worten, mit der Definition</span></div>
+      <div class="bsp"><i>Beispiel</i>Darunter versteht man die Gesamtheit aller von außen beobachtbaren Äußerungen eines Lebewesens.</div></li>
+    <li class="step"><div><b>7 Verdeutlichen (Transfer)</b><span class="was">am Fallbeispiel, Beleg mit Zeilenangabe (Z. __)</span></div>
+      <div class="bsp"><i>Beispiel</i>Lena wippt unruhig mit dem Fuß und kaut an ihrem Stift (Z. 2–3). Das können andere von außen sehen.</div></li>
+  </ol>
+  <p class="wdh">Dann der nächste Theoriepunkt: Erleben (Schritte 5 bis 7 noch einmal).</p>
+</section>
+
+<section class="zone s" aria-labelledby="s">
+  <h2 id="s">Schluss</h2>
+  <ol>
+    <li class="step"><div><b>8 Gedanke oder Ausblick</b><span class="was">passend zum Thema, kein neuer Stoff</span></div>
+      <div class="bsp"><i>Beispiel</i>Verhalten liefert Hinweise auf das Erleben, ersetzt aber nicht die Auskunft der Person selbst.</div></li>
+  </ol>
+</section>
+
+<aside class="farben">
+  <h2>Farbcode zum Prüfen deines Aufsatzes</h2>
+  <ul>
+    <li>Blau markieren: Einleitung (Einleitungssatz, Eingrenzung, Überleitung)</li>
+    <li>Grün markieren: Hauptteil (Nennen, Erklären, Verdeutlichen mit Zeilenangabe)</li>
+    <li>Rot markieren: Schluss</li>
+  </ul>
+  <p style="margin:6px 0 0">Fehlt eine Farbe, fehlt ein Baustein.</p>
+</aside>
+</div>
+<script>
+(function(){
+  var b=document.getElementById('tog'),on=true;
+  b.addEventListener('click',function(){
+    on=!on;
+    var e=document.querySelectorAll('.bsp');
+    for(var i=0;i<e.length;i++){e[i].hidden=!on;}
+    b.textContent=on?'Beispiel ausblenden':'Beispiel einblenden';
+    b.setAttribute('aria-pressed',String(on));
+  });
+})();
+</script>
+</body>
+</html>
