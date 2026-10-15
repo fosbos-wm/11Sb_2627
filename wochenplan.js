@@ -461,9 +461,10 @@ function rasterHtml(opts){
  for(let r=1;r<=10;r++){
   h+=`<div class="wp-time" style="grid-column:1;grid-row:${r+1}"><b>${r}</b><small>${esc(zeiten()[r-1]||"")}</small></div>`;
   for(let d=0;d<5;d++){if(cov.has(d+"-"+r))continue;
-   h+=`<div class="wp-c${d===S.tag?" tag-on":""}" style="grid-column:${d+2};grid-row:${r+1}" ondragover="wp.over(event)" ondragleave="wp.leave(event)" ondrop="wp.drop(event,${d},${r})" onclick="wp.zelle(${d},${r})">${opts.teacher?"":lkChips(d,r)}</div>`}
+   h+=`<div class="wp-c${d===S.tag?" tag-on":""}${!opts.teacher&&lkHat(d,r)?" hat-lk":""}" style="grid-column:${d+2};grid-row:${r+1}" ondragover="wp.over(event)" ondragleave="wp.leave(event)" ondrop="wp.drop(event,${d},${r})" onclick="wp.zelle(${d},${r})">${opts.teacher?"":lkChips(d,r)}</div>`}
  }
  bl.forEach(b=>{h+=blockHtml(b)});
+ if(!opts.teacher)for(let r=1;r<=10;r++)for(let d=0;d<5;d++){if(cov.has(d+"-"+r)&&lkHat(d,r))h+=`<div class="wp-lkov" style="grid-column:${d+2};grid-row:${r+1}">${lkChips(d,r)}</div>`}
  return h+"</div>";
 }
 function tageTabs(){const w=parse(S.woche);return `<div class="wp-tage">${TAGE.map((t,d)=>`<button class="${d===S.tag?"on":""}" onclick="wp.tag(${d})">${t} ${dm(addD(w,d))}</button>`).join("")}</div>`}
@@ -589,6 +590,7 @@ function vollSetzen(an){
  document.body.classList.toggle("wp-voll-body",S.voll);
  neu();
 }
+if(!window.__wpDe){window.__wpDe=1;document.addEventListener("dragend",()=>document.body.classList.remove("wp-dragging"));document.addEventListener("drop",()=>document.body.classList.remove("wp-dragging"))}
 if(!window.__wpEsc){window.__wpEsc=1;document.addEventListener("keydown",e=>{if(e.key==="Escape"&&S.voll&&document.getElementById("modalBackdrop")?.hidden!==false)vollSetzen(false)})}
 async function neu(){const r=$("wpRoot");if(!r)return;const y=window.scrollY;r.innerHTML=await inhalt();window.scrollTo(0,y)}
 const modalOpen=h=>fb.modal(`<button class="modal-close" onclick="closeModal()">×</button>${h}`);
@@ -642,9 +644,10 @@ function kuerzel(s){
  const w=String((s&&s.lehrkraft)||"Lk").replace(/\b(Frau|Herr|Dr\.?|Prof\.?|StR|OStR|StRin)\b/gi,"").trim().split(/\s+/).filter(Boolean);
  return (w[w.length-1]||"Lk").slice(0,3).toUpperCase();
 }
+const lkHat=(d,r)=>(S.d.slots||[]).some(x=>x.d===d&&x.h<=r&&r<x.h+(x.len||1));
 function lkChips(d,r){
  return (S.d.slots||[]).filter(x=>x.d===d&&x.h<=r&&r<x.h+(x.len||1)).map(x=>{const bel=S.d.belegt.has(x.id),mein=S.d.buch.some(b=>b.id===x.id);
-  return `<button type="button" class="wp-lk${bel?" bel":""}${mein?" mein":""}" title="${esc((x.lehrkraft||"Lehrkraft")+" · "+FACH(x.fach).l+(bel?" · vergeben":" · anwesend, für fachliche Fragen buchbar"))}" onclick="event.stopPropagation();wp.slotModal('${x.id}')">${esc(kuerzel(x))}</button>`}).join("");
+  return `<span role="button" tabindex="0" class="wp-lk${bel?" bel":""}${mein?" mein":""}" title="${esc((x.lehrkraft||"Lehrkraft")+" · "+FACH(x.fach).l+(bel?" · vergeben":" · anwesend, für fachliche Fragen buchbar"))}" onclick="event.stopPropagation();wp.slotModal('${x.id}')" onkeydown="if(event.key==='Enter')wp.slotModal('${x.id}')">${esc(kuerzel(x))}</span>`}).join("");
 }
 function lkLegende(){
  const sl=S.d.slots||[];if(!sl.length)return "";
@@ -836,7 +839,7 @@ const wpPublic={
  ansicht:a=>{S.ansicht=a;neu()},
  filter:k=>{S.filter=k;neu()},
  arm:(kind,id)=>{if(!kind||(S.armed&&S.armed.id===id)){S.armed=null}else{S.armed={kind,id}}neu().then(()=>{if(S.armed)$("wpGrid")?.scrollIntoView({behavior:"smooth",block:"start"})})},
- dragStart:(ev,kind,id)=>{S.drag={kind,id};try{ev.dataTransfer.setData("text/plain",JSON.stringify(S.drag));ev.dataTransfer.effectAllowed="move"}catch(e){}},
+ dragStart:(ev,kind,id)=>{S.drag={kind,id};document.body.classList.add("wp-dragging");try{ev.dataTransfer.setData("text/plain",JSON.stringify(S.drag));ev.dataTransfer.effectAllowed="move"}catch(e){}},
  over:ev=>{ev.preventDefault();ev.currentTarget.classList.add("over")},
  leave:ev=>ev.currentTarget.classList.remove("over"),
  drop:(ev,d,h)=>{ev.preventDefault();ev.currentTarget.classList.remove("over");const pl=payloadVon(ev);S.drag=null;S.armed=null;setze(pl,d,h)},

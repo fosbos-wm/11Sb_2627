@@ -282,3 +282,11 @@ body.wp-voll-body{overflow:hidden}
 .wp-tiles1 .wp-tile small{font-size:9px}
 .wp-pfeil{flex-basis:28px;font-size:20px}
 .wp-vl-main .wp-leiste{flex:none}
+
+/* Lehrkräfte-Anwesenheit als fester Hintergrund; Bausteine lassen sich trotzdem darauf ziehen */
+.wp-c.hat-lk{background:linear-gradient(0deg,rgba(168,116,74,.13),rgba(168,116,74,.13)),var(--wp-cell);border-color:#e0c4a8;border-style:solid}
+.wp-c.hat-lk:hover,.wp-c.hat-lk.over{background:#f7e9dc}
+.wp-lkov{pointer-events:none;align-self:end;justify-self:end;z-index:3;display:flex;flex-wrap:wrap;justify-content:flex-end;padding:0 3px 2px;max-width:100%}
+.wp-lkov .wp-lk{pointer-events:auto;font-size:9.5px;padding:0 5px;margin:0 0 0 2px;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.wp-lk{user-select:none}
+body.wp-dragging .wp-lk,body.wp-dragging .wp-lkov{pointer-events:none!important}
