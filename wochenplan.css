@@ -272,3 +272,13 @@ body.wp-voll-body{overflow:hidden}
 .wp-fdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px}
 @media(max-width:600px){.wp-pfeil{flex-basis:24px}}
 .wp-rp-video{width:100%;max-height:260px;border-radius:12px;background:#000;object-fit:cover}
+
+/* kompakte Reihe direkt unter dem Plan */
+.wp-leiste{padding:8px 10px 6px;margin:8px 0 12px}
+.wp-leiste .wp-lh{margin-bottom:4px;flex-wrap:nowrap;overflow:hidden}.wp-leiste .wp-lh h3{font-size:14px;white-space:nowrap}
+.wp-leiste .wp-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.wp-leiste .wp-chips button{white-space:nowrap;padding:3px 9px}
+.wp-tiles1 .wp-tile{flex:0 0 92px;width:92px;min-height:54px;padding:4px 6px 4px 7px}
+.wp-tiles1 .wp-tile b{font-size:10.5px;-webkit-line-clamp:2}
+.wp-tiles1 .wp-tile small{font-size:9px}
+.wp-pfeil{flex-basis:28px;font-size:20px}
+.wp-vl-main .wp-leiste{flex:none}

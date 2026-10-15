@@ -491,10 +491,9 @@ function leisteHtml(){
  const fs=[...new Set(offen.map(m=>m.fach))];
  if(S.filter!=="alle"&&!fs.includes(S.filter))S.filter="alle";
  const mods=offen.filter(m=>S.filter==="alle"||m.fach===S.filter);
- let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Zum Einplanen <small>${offen.length?offen.length+" Lernbaustein"+(offen.length===1?"":"e")+" noch frei":"alles zugeordnet"}</small></h3>${artLegende(ART_SCHUELER,"")}<div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
+ let h=`<div class="wp-leiste card"><div class="wp-lh"><h3 title="Ziehe einen Baustein in den Plan oder tippe auf Einplanen">Zum Einplanen <small>${offen.length?offen.length+" frei":"alles zugeordnet"} · ziehen oder tippen</small></h3><div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
  const sonder=SONDER.map(x=>`<div class="wp-tile sonder s-${x.typ}${S.armed&&S.armed.id===x.typ?" armed":""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${x.typ}')" onclick="wp.arm('sonder','${x.typ}')"><span class="wp-tic">${x.ic}</span><b>${x.t}</b><small>${x.s}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('sonder','${x.typ}')">Einplanen</button></div>`).join("");
- h+=`<p class="wp-hint wp-zieh">Ziehe einen Baustein in den Plan oder tippe auf „Einplanen“. Feste Termine und Pflichtbausteine mit festem Platz stehen schon im Plan.</p>
- <div class="wp-reihe"><button type="button" class="wp-pfeil" aria-label="nach links" onclick="wp.reiheScroll(-1)">‹</button><div class="wp-tiles1" id="wpReihe">${mods.map(modulTile).join("")}${mods.length?'<span class="wp-trenn"></span>':""}${sonder}</div><button type="button" class="wp-pfeil" aria-label="nach rechts" onclick="wp.reiheScroll(1)">›</button></div>`;
+ h+=`<div class="wp-reihe"><button type="button" class="wp-pfeil" aria-label="nach links" onclick="wp.reiheScroll(-1)">‹</button><div class="wp-tiles1" id="wpReihe">${mods.map(modulTile).join("")}${mods.length?'<span class="wp-trenn"></span>':""}${sonder}</div><button type="button" class="wp-pfeil" aria-label="nach rechts" onclick="wp.reiheScroll(1)">›</button></div>`;
  return h+"</div>";
 }
 function langHtml(){
@@ -547,10 +546,10 @@ async function schuelerHtml(){
  h+=persHtml();
  if(S.armed)h+=`<div class="wp-armed">Ausgewählt: <b>${esc(armedName())}</b> – tippe auf einen freien Platz im Plan. <button class="secondary" onclick="wp.arm(null)">Abbrechen</button></div>`;
  if(S.voll){
-  h+=`<div class="wp-vl"><div class="wp-vl-main">${rasterHtml()}${lkLegende()}</div><div class="wp-vl-side">${langHtml()}${leisteHtml()}</div></div>`;
+  h+=`<div class="wp-vl"><div class="wp-vl-main">${rasterHtml()}${leisteHtml()}</div><div class="wp-vl-side">${offenHtml()}${langHtml()}${lkLegende()}</div></div>`;
   return h;
  }
- h+=offenHtml()+langHtml()+tageTabs()+rasterHtml()+lkLegende()+leisteHtml()+fortschrittHtml()+startHtml()+lernplanBanner();
+ h+=offenHtml()+langHtml()+tageTabs()+rasterHtml()+leisteHtml()+lkLegende()+fortschrittHtml()+startHtml()+lernplanBanner();
  h+=`<div class="card wp-rueck"><h3>Wochenrückblick <small>nur für dich</small></h3><textarea id="wpRueck" maxlength="600" rows="2" placeholder="Was lief gut? Was nehme ich mit in die nächste Woche?" onchange="wp.rueck(this.value)">${esc(p.rueckblick||"")}</textarea>
  <label class="wp-share"><input type="checkbox" ${p.geteilt?"checked":""} onchange="wp.teilen(this.checked)"> Meinen Plan dieser Woche mit meiner Lernbegleitung teilen (sonst sehen Lehrkräfte nur Kennzahlen)</label>${fb.dsHinweis()}</div>`;
  return h;
