@@ -425,17 +425,18 @@ function modulTile(m){
  const f=FACH(m.fach),pl=S.d.plan.eintraege.filter(e=>e.moduleId===m.id),n=pl.length,done=pl.some(e=>e.erledigt);
  const armed=S.armed&&S.armed.id===m.id;
  return `<div class="wp-tile art m-${esc(m.typ)}${n?" geplant":""}${done?" done":""}${armed?" armed":""}" style="--fc:${f.c};--fb:${f.bg};${artStyle(m.typ)}" draggable="true" ondragstart="wp.dragStart(event,'modul','${m.id}')" onclick="wp.arm('modul','${m.id}')" title="${esc(m.beschr||m.titel)}">
- <span class="wp-tic">${MTYP[m.typ]?.i||""}</span><b>${esc(m.titel)}</b><small>${esc(f.l)} · ${esc(dauerKurz(dauerInfo(m)))}${m.pflicht?" · Pflicht":""}${n?" · ✓ geplant":""}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('modul','${m.id}')">Einplanen</button></div>`;
+ <span class="wp-tic">${MTYP[m.typ]?.i||""}</span><b>${esc(m.titel)}</b><small><i class="wp-fdot" style="background:${f.c}"></i>${esc(f.l)} · ${esc(dauerKurz(dauerInfo(m)))}${m.pflicht?" · Pflicht":""}${n?" · ✓":""}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('modul','${m.id}')">Einplanen</button></div>`;
 }
 function leisteHtml(){
- const mods=S.d.module.filter(m=>S.filter==="alle"||m.fach===S.filter);
- const fs=[...new Set(S.d.module.map(m=>m.fach))];
- let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Lernbausteine nach Fächern</h3>${artLegende(ART_SCHUELER,"Lernbausteine:")}<div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
- if(!S.d.module.length)h+=`<p class="wp-leer">Für diese Woche hat dein Team noch keine Lernbausteine freigegeben.</p>`;
- const grp={};mods.forEach(m=>(grp[m.fach]=grp[m.fach]||[]).push(m));
- h+=`<div class="wp-zeilen">`;
- Object.keys(grp).forEach(k=>{h+=`<div class="wp-zeile"><span class="wp-fl" style="--fc:${FACH(k).c};--fb:${FACH(k).bg}">${esc(FACH(k).l)}</span><div class="wp-tiles">${grp[k].map(modulTile).join("")}</div></div>`});
- h+=`<div class="wp-zeile"><span class="wp-fl sonder">Immer dabei</span><div class="wp-tiles">${SONDER.map(s=>`<div class="wp-tile sonder s-${s.typ}${S.armed&&S.armed.id===s.typ?" armed":""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${s.typ}')" onclick="wp.arm('sonder','${s.typ}')"><span class="wp-tic">${s.ic}</span><b>${s.t}</b><small>${s.s}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('sonder','${s.typ}')">Einplanen</button></div>`).join("")}</div></div></div>`;
+ /* nur frei wählbare, noch nicht eingeplante Lernbausteine (feste/automatisch gesetzte entfallen) */
+ const offen=S.d.module.filter(m=>(m.fixTag==null||m.fixTag==="")&&(m.mehrfach||!S.d.plan.eintraege.some(e=>e.moduleId===m.id)));
+ const fs=[...new Set(offen.map(m=>m.fach))];
+ if(S.filter!=="alle"&&!fs.includes(S.filter))S.filter="alle";
+ const mods=offen.filter(m=>S.filter==="alle"||m.fach===S.filter);
+ let h=`<div class="wp-leiste card"><div class="wp-lh"><h3>Zum Einplanen <small>${offen.length?offen.length+" Lernbaustein"+(offen.length===1?"":"e")+" noch frei":"alles zugeordnet"}</small></h3>${artLegende(ART_SCHUELER,"")}<div class="wp-chips"><button class="${S.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${fs.map(k=>`<button class="${S.filter===k?"on":""}" style="--fc:${FACH(k).c}" onclick="wp.filter('${k}')">${esc(FACH(k).l)}</button>`).join("")}</div></div>`;
+ const sonder=SONDER.map(x=>`<div class="wp-tile sonder s-${x.typ}${S.armed&&S.armed.id===x.typ?" armed":""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${x.typ}')" onclick="wp.arm('sonder','${x.typ}')"><span class="wp-tic">${x.ic}</span><b>${x.t}</b><small>${x.s}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('sonder','${x.typ}')">Einplanen</button></div>`).join("");
+ h+=`<p class="wp-hint wp-zieh">Ziehe einen Baustein in den Plan oder tippe auf „Einplanen“. Feste Termine und Pflichtbausteine mit festem Platz stehen schon im Plan.</p>
+ <div class="wp-reihe"><button type="button" class="wp-pfeil" aria-label="nach links" onclick="wp.reiheScroll(-1)">‹</button><div class="wp-tiles1" id="wpReihe">${mods.map(modulTile).join("")}${mods.length?'<span class="wp-trenn"></span>':""}${sonder}</div><button type="button" class="wp-pfeil" aria-label="nach rechts" onclick="wp.reiheScroll(1)">›</button></div>`;
  return h+"</div>";
 }
 function langHtml(){
@@ -1436,7 +1437,7 @@ Object.assign(wpPublic,{
  vorschau,rpStart,rpWeiter,rpPruefen,rpWahl,rpRhAdd,rpRhReset,rpHinweis,rallyAdd,rallyDel,rallyMove,rallySet,slotModal,einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod,
- fuerAlle,frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
+ reiheScroll:d=>{const r=$("wpReihe");if(r)r.scrollBy({left:d*Math.max(200,r.clientWidth*.7),behavior:"smooth"})},fuerAlle,frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
 });
 window.wp=wpPublic;
 

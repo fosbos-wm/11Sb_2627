@@ -257,3 +257,17 @@ body.wp-voll-body{overflow:hidden}
 .wp-fuer{background:#f6e2ed;border:1px solid #e3b6cf;border-radius:12px;padding:10px 12px;margin:8px 0}
 .wp-fuer-akt{display:flex;gap:12px;margin-bottom:4px}
 .wp-fuer-gitter{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px 10px;max-height:220px;overflow:auto}
+
+/* Lernbausteine in einer Reihe */
+.wp-leiste{padding-bottom:10px}.wp-leiste .wp-lh small{font-weight:500;color:var(--muted);margin-left:6px}
+.wp-zieh{margin:2px 0 8px}
+.wp-reihe{display:flex;align-items:stretch;gap:6px}
+.wp-tiles1{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scroll-snap-type:x proximity;flex:1;padding:2px 2px 6px;scrollbar-width:thin}
+.wp-tiles1 .wp-tile{flex:0 0 104px;width:104px;min-height:64px;scroll-snap-align:start}
+.wp-tiles1 .wp-tile b{font-size:11px}.wp-tiles1 .wp-tile small{font-size:9.5px;line-height:1.25;padding-top:2px}
+.wp-tiles1 .wp-plan-btn{margin-top:4px;padding:2px 6px;font-size:10px}
+.wp-trenn{flex:0 0 2px;background:var(--line);border-radius:2px;margin:0 4px}
+.wp-pfeil{flex:0 0 30px;border:1px solid var(--line);background:#fff;border-radius:10px;font-size:22px;line-height:1;cursor:pointer;color:#17384f}
+.wp-pfeil:hover{background:#e4edfb}
+.wp-fdot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:3px}
+@media(max-width:600px){.wp-pfeil{flex-basis:24px}}
