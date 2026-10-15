@@ -95,8 +95,8 @@ const ART_FELDER={
  deeperlearning:[{k:"ziel",l:"Ziel der Einheit",t:"text"},{k:"ablauf",l:"Ablauf (ein Schritt pro Zeile, mit Minuten)",t:"liste"},{k:"material",l:"Material",t:"text"},{k:"checkout",l:"Check-out-Aufgabe",t:"text"},{k:"muster",l:"Musterlösung (nur für Lehrkräfte sichtbar)",t:"text",intern:true}],
  feedback:[{k:"block",l:"Name des Blocks (z. B. Block 2: Psychologie)",t:"kurz"},{k:"hinweis",l:"Hinweis an die Klasse",t:"text"},{k:"extra",l:"Eigene Aussagen zusätzlich (eine pro Zeile, max. 10)",t:"liste",intern:true}]
 };
-const RALLY_TYPEN=[["info","Info-Seite"],["frei","Frage mit Freitext-Antwort"],["quiz","Quiz (eine richtige Antwort)"],["mehrfach","Quiz (mehrere richtige Antworten)"],["wahrfalsch","Richtig oder falsch"],["luecke","Lückentext"],["zuordnung","Zuordnen (Paare)"],["reihenfolge","Reihenfolge bringen"],["schaetzen","Zahl schätzen / berechnen"],["reflexion","Eigene Antwort (Reflexion)"],["aufgabe","Aufgabe zum Abhaken"]];
-const RT_MAX={frei:3,quiz:2,mehrfach:2,wahrfalsch:1,luecke:3,zuordnung:2,reihenfolge:2,schaetzen:3};
+const RALLY_TYPEN=[["info","Info-Seite"],["frei","Frage mit Freitext-Antwort"],["quiz","Quiz (eine richtige Antwort)"],["mehrfach","Quiz (mehrere richtige Antworten)"],["wahrfalsch","Richtig oder falsch"],["luecke","Lückentext"],["zuordnung","Zuordnen (Paare)"],["reihenfolge","Reihenfolge bringen"],["schaetzen","Zahl schätzen / berechnen"],["qr","QR-Code scannen (Ort im Schulhaus)"],["reflexion","Eigene Antwort (Reflexion)"],["aufgabe","Aufgabe zum Abhaken"]];
+const RT_MAX={frei:3,quiz:2,mehrfach:2,wahrfalsch:1,luecke:3,zuordnung:2,reihenfolge:2,schaetzen:3,qr:3};
 const zeilen=t=>String(t||"").split(/\n+/).map(x=>x.trim()).filter(Boolean);
 const mischen=a=>{const b=a.slice();for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
 function rallyEdit(x){
@@ -133,9 +133,10 @@ function rallyEditorHtml(){
   ${st.typ==="zuordnung"?`<label>Paare (eins pro Zeile: Begriff = Zuordnung)<textarea rows="4" maxlength="600" oninput="wp.rallySet(${i},'paareText',this.value)">${esc(st.paareText||"")}</textarea></label>`:""}
   ${st.typ==="reihenfolge"?`<label>Elemente in der richtigen Reihenfolge (eins pro Zeile; die Schüler sehen sie gemischt)<textarea rows="4" maxlength="600" oninput="wp.rallySet(${i},'reihenText',this.value)">${esc(st.reihenText||"")}</textarea></label>`:""}
   ${st.typ==="schaetzen"?`<div class="wp-st-zwei"><label>Richtige Zahl<input inputmode="decimal" value="${esc(st.zahl??"")}" oninput="wp.rallySet(${i},'zahl',this.value)"></label><label>Toleranz (±)<input inputmode="decimal" value="${esc(st.tol??0)}" oninput="wp.rallySet(${i},'tol',this.value)"></label></div>`:""}
+  ${st.typ==="qr"?`<div class="wp-st-zwei"><label>Code dieser Station<input maxlength="12" value="${esc(st.code||"")}" oninput="wp.rallySet(${i},'code',this.value.toUpperCase())"></label><button type="button" class="secondary" onclick="wp.rallySet(${i},'code',wp.qrNeu(),true)">Neuer Code</button></div><small class="wp-hint">Beschreibe oben im Text, wo die Schüler:innen den QR-Code finden (z. B. „Geh zur Aula“). Den Code druckst du unten als QR-Code aus.</small>`:""}
   ${st.typ!=="info"?`<div class="wp-st-zwei"><label>Punkte<input type="number" min="0" max="20" value="${esc(st.punkte??10)}" oninput="wp.rallySet(${i},'punkte',this.value)"></label><label>Hinweis (optional)<input maxlength="200" value="${esc(st.hinweis||"")}" oninput="wp.rallySet(${i},'hinweis',this.value)"></label></div>`:""}
  </div>`).join("")}
- <button type="button" class="secondary" onclick="wp.rallyAdd()">＋ Station hinzufügen</button></div>`;
+ <button type="button" class="secondary" onclick="wp.rallyAdd()">＋ Station hinzufügen</button>${r.some(x=>x.typ==="qr")?`<button type="button" class="secondary" onclick="wp.qrDruck()">QR-Codes drucken</button>`:""}</div>`;
 }
 function rallyClean(st){
  const o={typ:st.typ||"info",titel:String(st.titel||"").slice(0,80),text:String(st.text||"").slice(0,600),punkte:Math.max(0,Math.min(20,Number(st.punkte)||0)),hinweis:String(st.hinweis||"").slice(0,200)};
@@ -147,6 +148,7 @@ function rallyClean(st){
  if(o.typ==="zuordnung")o.paare=zeilen(st.paareText).slice(0,8).map(t=>t.split("=").map(a=>a.trim())).filter(p=>p[0]&&p[1]).map(p=>[p[0].slice(0,80),p.slice(1).join("=").slice(0,80)]);
  if(o.typ==="reihenfolge")o.reihe=zeilen(st.reihenText).slice(0,8).map(t=>t.slice(0,100));
  if(o.typ==="schaetzen"){o.zahl=Number(String(st.zahl).replace(",","."))||0;o.tol=Math.abs(Number(String(st.tol||0).replace(",","."))||0)}
+ if(o.typ==="qr")o.code=qrCodeClean(st.code)||qrNeuerCode();
  if(o.typ==="info")o.punkte=0;
  return o;
 }
@@ -154,7 +156,7 @@ const rallyRerender=()=>{const b=$("mfGest");if(b)b.innerHTML=gestFelderHtml("le
 function rallyAdd(){S.rally=S.rally||[];S.rally.push({typ:"frei",titel:"",text:"",antwort:"",punkte:10});rallyRerender()}
 function rallyDel(i){S.rally.splice(i,1);rallyRerender()}
 function rallyMove(i,d){const j=i+d;if(j<0||j>=S.rally.length)return;[S.rally[i],S.rally[j]]=[S.rally[j],S.rally[i]];rallyRerender()}
-function rallySet(i,k,v,re){S.rally[i][k]=v;if(re)rallyRerender()}
+function rallySet(i,k,v,re){S.rally[i][k]=v;if(k==="typ"&&v==="qr"&&!S.rally[i].code)S.rally[i].code=qrNeuerCode();if(re)rallyRerender()}
 function gestaltungHtml(m){
  if(!m)return "";
  const g=m.gestaltung||{};
@@ -192,12 +194,66 @@ function rpZeige(){
   else if(x.typ==="luecke"){let n=0;const t=String(x.lueckText||"").split(/(\[[^\]]+\])/).map(q=>/^\[[^\]]+\]$/.test(q)?`<input class="rpL" data-k="${n++}" maxlength="60" size="10">`:esc(q)).join("");body=`<p class="wp-rp-luecke">${t}</p>${hk}`}
   else if(x.typ==="zuordnung"){const re=mischen((x.paare||[]).map(p=>p[1]));body=`<div class="wp-rp-opt">${(x.paare||[]).map((p,k)=>`<label class="wp-rp-zu"><span>${esc(p[0])}</span><select class="rpZ" data-k="${k}"><option value="">– wählen –</option>${re.map(r=>`<option>${esc(r)}</option>`).join("")}</select></label>`).join("")}</div>${hk}`}
   else if(x.typ==="reihenfolge"){let mx_=mischen(x.reihe||[]);for(let q=0;q<9&&(x.reihe||[]).length>1&&mx_.join("\u0001")===(x.reihe||[]).join("\u0001");q++)mx_=mischen(x.reihe);S.rp.mix=mx_;S.rp.gew=[];body=`<div id="rpRh"></div><div class="wp-rp-opt" id="rpRo"></div>${hk}`}
+  else if(x.typ==="qr")body=`<div id="rpScanBox"><video id="rpVideo" class="wp-rp-video" playsinline muted hidden></video><canvas id="rpCanvas" hidden></canvas><p id="rpScanInfo" class="wp-hint"></p><div class="form-actions"><button type="button" class="primary" onclick="wp.rpScan()">Kamera öffnen und scannen</button></div></div><label class="form"><span>Oder Code eingeben (steht unter dem QR-Code)</span><input id="rpA" maxlength="20" autocapitalize="characters" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label>${hk}`;
   else if(x.typ==="schaetzen")body=`<label class="form"><span>Deine Zahl</span><input id="rpA" inputmode="decimal" maxlength="20" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label>${hk}`;
   else if(x.typ==="reflexion")body=`<label class="form"><span>Deine Antwort</span><textarea id="rpA" rows="4" maxlength="600"></textarea></label><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="primary" onclick="wp.rpPruefen()">Abschicken (+${x.punkte||0})</button></div>`;
  }
  modalOpen(`<div class="wp-artband" style="${artStyle("lernrallye")}">Lernrallye${S.rp.vorschau?" · Vorschau":""}</div><div class="wp-rp-kopf"><span>Station ${st.i+1} von ${R.length}</span><span>${st.pts} / ${mx} Punkte</span></div><div class="wp-rp-bar"><i style="width:${Math.round(st.i/R.length*100)}%"></i></div><h2>${esc(x.titel||"Station "+(st.i+1))}</h2><p>${esc(x.text||"")}</p>${body}`);
  if(x.typ==="reihenfolge")rpRh();
 }
+/* QR-Station: Code erzeugen, drucken, scannen */
+const QR_ABC="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function qrNeuerCode(){const a=new Uint32Array(5);crypto.getRandomValues(a);return [...a].map(x=>QR_ABC[x%QR_ABC.length]).join("")}
+const qrCodeClean=c=>String(c||"").toUpperCase().replace(/^WPR:/,"").replace(/[^A-Z0-9]/g,"").slice(0,12);
+let rpJsQr=null;
+function rpLadeJsQr(){if(window.jsQR)return Promise.resolve(window.jsQR);return rpJsQr||(rpJsQr=new Promise((ok,nein)=>{const sc=document.createElement("script");sc.src="jsQR.js?v=1";sc.onload=()=>ok(window.jsQR);sc.onerror=()=>{rpJsQr=null;nein(new Error("jsQR"))};document.head.appendChild(sc)}))}
+function rpStopScan(){const v=$("rpVideo");const st=S.rp&&S.rp.stream;if(st){st.getTracks().forEach(t=>t.stop());S.rp.stream=null}if(v){v.srcObject=null;v.hidden=true}S.rp&&(S.rp.scanLauf=false)}
+async function rpScan(){
+ const info=$("rpScanInfo");
+ if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){if(info)info.textContent="Dieses Gerät kann hier nicht scannen. Gib den Code unter dem QR-Code ein.";return}
+ rpStopScan();
+ try{S.rp.stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false})}
+ catch(e){if(info)info.textContent="Die Kamera ist nicht freigegeben. Erlaube sie im Browser oder gib den Code ein.";return}
+ const v=$("rpVideo");if(!v){rpStopScan();return}
+ v.srcObject=S.rp.stream;v.hidden=false;try{await v.play()}catch(e){}
+ if(info)info.textContent="Halte die Kamera auf den QR-Code.";
+ let det=null,jq=null;
+ if("BarcodeDetector" in window){try{det=new BarcodeDetector({formats:["qr_code"]})}catch(e){det=null}}
+ if(!det){try{jq=await rpLadeJsQr()}catch(e){rpStopScan();if(info)info.textContent="Der Scanner konnte nicht geladen werden. Gib den Code ein.";return}}
+ const cv=$("rpCanvas"),cx=cv.getContext("2d",{willReadFrequently:true});
+ const station=S.rp.st.i;S.rp.scanLauf=true;
+ const loop=async()=>{
+  if(!S.rp||!S.rp.scanLauf||!$("rpVideo")||S.rp.st.i!==station){rpStopScan();return}
+  try{
+   let roh=null;
+   if(det){const r=await det.detect(v);if(r&&r[0]&&r[0].rawValue)roh=r[0].rawValue}
+   else if(v.videoWidth){const w=Math.min(480,v.videoWidth),h=Math.round(w*v.videoHeight/v.videoWidth);cv.width=w;cv.height=h;cx.drawImage(v,0,0,w,h);const r=jq(cx.getImageData(0,0,w,h).data,w,h,{inversionAttempts:"dontInvert"});if(r&&r.data)roh=r.data}
+   if(roh){rpStopScan();return rpQrPruef(roh)}
+  }catch(e){}
+  setTimeout(loop,det?120:200);
+ };
+ loop();
+}
+function rpQrPruef(roh){
+ const x=S.rp.m.rallye[S.rp.st.i];
+ if(qrCodeClean(roh)&&qrCodeClean(roh)===qrCodeClean(x.code))return rpGewinn(x,true);
+ S.rp.st.fehl++;
+ if(S.rp.st.fehl>=(RT_MAX.qr||3))return rpGewinn(x,false);
+ rpFb("Das ist nicht der richtige QR-Code. Suche die richtige Station ("+S.rp.st.fehl+"/"+(RT_MAX.qr||3)+").",false);
+}
+async function qrDruck(){
+ const R=(S.rally||[]).filter(x=>x.typ==="qr"&&x.code);
+ if(!R.length)return fb.toast("Keine QR-Station vorhanden.");
+ const win=window.open("","_blank","width=900,height=800");
+ if(!win)return fb.toast("Das Druckfenster wurde blockiert. Bitte Pop-ups erlauben.");
+ const {qrcode}=await import("./qr-local.js?v=1");
+ const titel=($("mfTitel")?.value||"Lernrallye").trim();
+ const bl=R.map(x=>{const q=qrcode(0,"M");q.addData("WPR:"+qrCodeClean(x.code));q.make();
+  return `<section><div class="kl">Lernrallye · ${esc(titel)}</div><h1>${esc(x.titel||"Station")}</h1><div class="q">${q.createSvgTag(8,0)}</div><p class="un">QR-Code mit der Campus-App scannen oder diesen Code eingeben:</p><p class="cd">${esc(qrCodeClean(x.code))}</p></section>`}).join("");
+ win.document.write(`<!doctype html><html lang="de"><head><meta charset="utf-8"><title>QR-Codes Lernrallye</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#111}section{page-break-after:always;text-align:center;padding-top:14mm}section:last-child{page-break-after:auto}.kl{font-size:14pt;color:#555}h1{font-size:32pt;margin:6mm 0}.q svg{width:120mm;height:120mm}.un{font-size:14pt;margin:6mm 0 2mm}.cd{font-size:30pt;font-weight:700;letter-spacing:.08em;margin:0}.bar{background:#f3f3f3;padding:10px 12px;border-radius:8px;margin:8px;font-size:13px}@media print{.bar{display:none}}</style></head><body><div class="bar"><button onclick="window.print()" style="font-size:15px;padding:8px 14px">Drucken</button> Eine Seite je Station. Zum Aufhängen an dem Ort, den du im Stationstext beschreibst.</div>${bl}</body></html>`);
+ win.document.close();
+}
+
 function rpRh(){
  const ro=$("rpRo"),rh=$("rpRh");if(!ro||!rh)return;const {mix,gew}=S.rp;
  rh.innerHTML=gew.length?`<ol class="wp-rp-rh">${gew.map(i=>`<li>${esc(mix[i])}</li>`).join("")}</ol><button type="button" class="text-button" onclick="wp.rpRhReset()">Zurücksetzen</button>`:`<p class="wp-hint">Tippe die Elemente in der richtigen Reihenfolge an.</p>`;
@@ -212,6 +268,7 @@ function rpLoesung(x){
  if(x.typ==="luecke")return (String(x.lueckText||"").match(/\[[^\]]+\]/g)||[]).map(q=>q.slice(1,-1).split("|")[0]).join(", ");
  if(x.typ==="zuordnung")return (x.paare||[]).map(p=>p[0]+" = "+p[1]).join("; ");
  if(x.typ==="reihenfolge")return (x.reihe||[]).join(" → ");
+ if(x.typ==="qr")return "Frage deine Lehrkraft nach dem Ort der Station";
  if(x.typ==="schaetzen")return String(x.zahl).replace(".",",")+(x.tol?" (± "+String(x.tol).replace(".",",")+")":"");
  return String(x.antwort||"").split("|")[0];
 }
@@ -225,13 +282,14 @@ async function rpGewinn(x,richtig){
  if(f){f.className="wp-rp-fb "+(richtig?"ok":"nein");f.innerHTML=(richtig?"Richtig! +"+g+" Punkte":"Die richtige Lösung war: "+esc(rpLoesung(x)))+`<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(0)">Weiter</button></div>`}
 }
 async function rpWeiter(punkte){
- const st=S.rp.st;st.pts+=punkte;st.i++;st.fehl=0;st.hint=false;
+ rpStopScan();const st=S.rp.st;st.pts+=punkte;st.i++;st.fehl=0;st.hint=false;
  if(S.rp.e){S.rp.e.rallyStand={...st};try{await speichern()}catch(e){}}
  rpZeige();
 }
 function rpPruefen(){
  const x=S.rp.m.rallye[S.rp.st.i],t=x.typ,A=($("rpA")?.value||"").trim();let ok;
  if(t==="reflexion"){if(A.length<5)return rpFb("Bitte schreibe mindestens einen Satz.",false);const st=S.rp.st;st.antw=st.antw||{};st.antw[st.i]=A.slice(0,600);return rpWeiter(x.punkte||0)}
+ if(t==="qr"){if(!A)return;return rpQrPruef(A)}
  if(t==="frei"){if(!A)return;ok=String(x.antwort||"").split("|").map(q=>q.trim().toLowerCase()).filter(Boolean).includes(A.toLowerCase())}
  else if(t==="schaetzen"){if(!A)return;const z=Number(A.replace(",","."));if(isNaN(z))return rpFb("Bitte gib eine Zahl ein.",false);ok=Math.abs(z-x.zahl)<=(x.tol||0)+1e-9}
  else if(t==="mehrfach"){const g=[...document.querySelectorAll(".rpC:checked")].map(c=>Number(c.value)).sort().join();if(!g)return rpFb("Wähle mindestens eine Antwort.",false);ok=g===(x.richtige||[]).slice().sort().join()}
@@ -1437,7 +1495,7 @@ Object.assign(wpPublic,{
  vorschau,rpStart,rpWeiter,rpPruefen,rpWahl,rpRhAdd,rpRhReset,rpHinweis,rallyAdd,rallyDel,rallyMove,rallySet,slotModal,einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod,
- reiheScroll:d=>{const r=$("wpReihe");if(r)r.scrollBy({left:d*Math.max(200,r.clientWidth*.7),behavior:"smooth"})},fuerAlle,frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
+ rpScan,qrDruck,qrNeu:qrNeuerCode,reiheScroll:d=>{const r=$("wpReihe");if(r)r.scrollBy({left:d*Math.max(200,r.clientWidth*.7),behavior:"smooth"})},fuerAlle,frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
 });
 window.wp=wpPublic;
 
