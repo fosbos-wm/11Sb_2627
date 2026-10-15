@@ -1160,6 +1160,51 @@ service cloud.firestore {
       allow update: if isApproved() && resource.data.uid == request.auth.uid && request.resource.data.uid == resource.data.uid;
       allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
     }
+    // Block-Feedback: anonym. Lehrkräfte lesen; Schüler:innen senden einmal je Block (Marker wpFbGegeben).
+    match /wpFeedback/{id} {
+      allow read: if isApproved() && isTeacher();
+      allow create: if isApproved()
+        && request.resource.data.keys().hasOnly(['moduleId', 'fach', 'block', 'titel', 'blockDatum', 'datum', 'antworten', 'gut', 'besser', 'wunsch', 'createdAt'])
+        && request.resource.data.moduleId is string
+        && request.resource.data.antworten is map
+        && request.resource.data.gut is string && request.resource.data.gut.size() <= 600
+        && request.resource.data.besser is string && request.resource.data.besser.size() <= 600
+        && request.resource.data.wunsch is string && request.resource.data.wunsch.size() <= 600;
+      allow update: if false;
+      allow delete: if isApproved() && isTeacher();
+    }
+    match /wpFbGegeben/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.moduleId + '_' + request.auth.uid;
+      allow update: if false;
+      allow delete: if isApproved() && isTeacher();
+    }
+    // Lernplan bis Schulaufgabe/Kurzarbeit: privat.
+    match /wpLernplan/{id} {
+      allow read, write: if isApproved() && id == request.auth.uid;
+    }
+    // Persönlicher Impuls (Lehrkräfte schreiben, die Person liest).
+    match /wpImpuls/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow write: if isApproved() && isTeacher();
+    }
+    // Lernstandsgespräch je Person und Woche.
+    match /wpGespraeche/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow create, delete: if isApproved() && isTeacher();
+      allow update: if isApproved() && (isTeacher()
+        || (resource.data.uid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['bestaetigt', 'updatedAt'])));
+    }
+    // Zielvereinbarung (Lehrkräfte schreiben, die Person liest) und Notizen (nur Lehrkräfte).
+    match /wpZiele/{id} {
+      allow read: if isApproved() && (id == request.auth.uid || isTeacher());
+      allow write: if isApproved() && isTeacher();
+    }
+    match /wpGespraechNotizen/{id} {
+      allow read, write: if isApproved() && isTeacher();
+    }
     // Anfragen: nur die beteiligten Personen (und Lehrkräfte zur Übersicht).
     match /wpAnfragen/{id} {
       allow read: if isApproved() && (resource.data.vonUid == request.auth.uid
