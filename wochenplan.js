@@ -607,7 +607,7 @@ function einplanen(kind,id){
  const w=parse(S.woche);
  const tage=TAGEL.map((t,d)=>`<option value="${d}" ${d===S.tag?"selected":""}>${t}, ${dm(addD(w,d))}</option>`).join("");
  const std=[...Array(10)].map((_,i)=>`<option value="${i+1}">${i+1}. Stunde (${esc(zeiten()[i]||"")})</option>`).join("");
- modalOpen(`<div class="kicker">EINPLANEN</div><h2>${esc(titel)}</h2><div class="form">
+ modalOpen(`<div class="wp-artband" style="${artStyle('einfuehrung')}">Einplanen</div><div class="kicker">EINPLANEN</div><h2>${esc(titel)}</h2><div class="form">
   <label>Tag<select id="epTag">${tage}</select></label>
   ${I.lang?"":`<label>Beginn<select id="epStd">${std}</select></label>`}
   <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einplanenOk('${kind}','${id}')">Einplanen</button></div></div>`);
@@ -618,7 +618,7 @@ function einplanenOk(kind,id){
  fb.closeModal();S.armed=null;setze({kind,id},d,h);
 }
 function modalAuszeit(d,h){
- modalOpen(`<div class="kicker">AUSZEIT</div><h2>Kurze Auszeit einplanen</h2><p>Regeneration gehört zum Lernen. Deine Auszeiten sind <b>nur für dich</b> sichtbar und zählen nicht in der Statistik der Lehrkräfte.</p>
+ modalOpen(`<div class="wp-artband" style="${artStyle('vertiefung')}">Auszeit</div><div class="kicker">AUSZEIT</div><h2>Kurze Auszeit einplanen</h2><p>Regeneration gehört zum Lernen. Deine Auszeiten sind <b>nur für dich</b> sichtbar und zählen nicht in der Statistik der Lehrkräfte.</p>
  <div class="form"><label>Was tut dir gut?<select id="azArt">${AUSZEIT_ARTEN.map(a=>`<option value="${a[0]}">${a[1]}</option>`).join("")}</select></label>
  <label>Dauer<select id="azLen"><option value="1">45 Minuten</option>${frei(d,h,2)?'<option value="2">90 Minuten</option>':""}</select></label>
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.auszeitSetzen(${d},${h})">Einplanen</button></div></div>`);
@@ -630,7 +630,7 @@ async function auszeitSetzen(d,h){
  fb.closeModal();await speichern();neu();
 }
 function modalEigen(d,h){
- modalOpen(`<div class="kicker">EIGENE LERNZEIT</div><h2>Eigene Lernzeit einplanen</h2>
+ modalOpen(`<div class="wp-artband" style="${artStyle('eigen')}">Eigene Lernzeit</div><div class="kicker">EIGENE LERNZEIT</div><h2>Eigene Lernzeit einplanen</h2>
  <div class="form"><label>Was willst du tun?<input id="egTitel" maxlength="60" placeholder="z. B. Vokabeln wiederholen"></label>
  <label>Fach<select id="egFach">${FAECHER.map(f=>`<option value="${f.k}">${esc(f.l)}</option>`).join("")}</select></label>
  <label>Dauer (auch länger, z. B. für eine Prüfungsvorbereitung)<select id="egLen">${DAUER_EIGEN.filter(o=>LANG_WOCHEN[o[0]]||frei(d,h,dauerInfo({dauer:o[0]}).len)).map(o=>`<option value="${o[0]}" ${o[0]==="45"?"selected":""}>${o[1]}${LANG_WOCHEN[o[0]]?" (Zeitraum)":""}</option>`).join("")}</select></label>${fb.dsHinweis()}
@@ -648,14 +648,21 @@ async function eigenSetzen(d,h){
 function modalTermin(d,h){
  const me=uid(),eigene=S.d.buch.length;
  const sl=[...S.d.slots].sort((a,b)=>((a.d===d&&a.h===h)?0:1)-((b.d===d&&b.h===h)?0:1)||a.d-b.d||a.h-b.h);
- modalOpen(`<div class="kicker">TERMIN BEI EINER LEHRKRAFT</div><h2>Fachliche Frage klären</h2><p>Wähle einen freien Termin. Die Lehrkraft sieht dein Pseudonym und deine Frage – sonst niemand.</p>
+ modalOpen(`<div class="wp-artband" style="${artStyle('frage')}">Fachliche Frage</div><div class="kicker">TERMIN BEI EINER LEHRKRAFT</div><h2>Fachliche Frage klären</h2><p>Wähle einen freien Termin. Die Lehrkraft sieht dein Pseudonym und deine Frage – sonst niemand.</p>
  <label class="form"><span>Deine Frage (kurz)</span><textarea id="wpFrage" maxlength="200" rows="2" placeholder="Worum geht es? z. B. „Aufgabe 3 zur Gleichung – wie komme ich auf den Ansatz?“"></textarea></label>${fb.dsHinweis()}
  ${eigene>=2?'<p class="wp-warn">Du hast diese Woche schon 2 Termine gebucht. Sage erst einen ab, wenn du einen weiteren möchtest.</p>':""}
  <div class="wp-slotliste">${sl.length?sl.map(s=>{
   const bel=S.d.belegt.has(s.id),mein=S.d.buch.some(b=>b.id===s.id),platz=frei(s.d,s.h,s.len||1);
   return `<div class="wp-slot${bel?" bel":""}"><div><b>${TAGEL[s.d]}, ${esc(dm(addD(parse(S.woche),s.d)))} · ${esc(zeitBereich(s.h,s.len||1))}</b><small>${esc(s.lehrkraft||"Lehrkraft")} · ${esc(FACH(s.fach).l)}</small></div>
   ${mein?'<span class="pill">gebucht</span>':bel?'<span class="pill">vergeben</span>':!platz?'<span class="pill">bei dir belegt</span>':`<button class="primary" ${eigene>=2?"disabled":""} onclick="wp.buche('${s.id}')">Buchen</button>`}</div>`}).join(""):'<p class="wp-leer">Für diese Woche hat noch keine Lehrkraft Termine angeboten.</p>'}</div>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`);
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button><button class="primary" onclick="wp.frageVormerken(${d},${h})" title="Reserviert dir die Lernzeit im Plan, auch wenn noch kein Termin frei ist">Einplanen</button></div>
+ <small class="wp-hint">„Einplanen“ legt die Zeit für deine Frage in deinen Plan. Sobald eine Lehrkraft Termine anbietet, kannst du hier buchen.</small>`);
+}
+async function frageVormerken(d,h){
+ if(!frei(d,h,1))return fb.toast("Dieser Platz ist schon belegt.");
+ const f=($("wpFrage")?.value||"").trim().slice(0,100);
+ S.d.plan.eintraege.push({id:nextId(),typ:"eigen",mTyp:"frage",titel:f?"Frage: "+f:"Fachliche Frage klären",fach:"fachuebergreifend",d,h,len:1,dauer:"45",woche:S.woche,erledigt:false});
+ fb.closeModal();await speichern();fb.toast("Eingeplant.");neu();
 }
 async function buche(slotId){
  const s=S.d.slots.find(x=>x.id===slotId);if(!s)return;
@@ -677,7 +684,7 @@ async function terminAbsagen(slotId){
 function modalTutor(art,d,h){
  const me=uid(),isK=art==="kompetenz";
  const of=S.d.tutoren.filter(t=>t.art===art&&t.uid!==me);
- modalOpen(`<div class="kicker">${isK?"KOMPETENZ ANFRAGEN":"TUTOR:IN BUCHEN"}</div><h2>${isK?"Wer kann dir im Projekt helfen?":"Wer erklärt dir etwas?"}</h2>
+ modalOpen(`<div class="wp-artband" style="${artStyle('projekt')}">${isK?"Kompetenz anfragen":"Tutoring"}</div><div class="kicker">${isK?"KOMPETENZ ANFRAGEN":"TUTOR:IN BUCHEN"}</div><h2>${isK?"Wer kann dir im Projekt helfen?":"Wer erklärt dir etwas?"}</h2>
  <p>${isK?"Hier findest du Stärken aus der Kompetenzwerkstatt deiner Mitschüler:innen.":"Mitschüler:innen, die anderen ein Thema erklären."} Der Termin liegt am <b>${TAGEL[d]}, ${esc(zeitBereich(h,1))}</b>. Die Person muss die Anfrage annehmen.</p>
  <div class="form"><label>${isK?"Wobei brauchst du Unterstützung?":"Welches Thema?"}<input id="tuThema" maxlength="100"></label>
  ${isK?`<label>Projekt (optional)<input id="tuProjekt" maxlength="80" placeholder="z. B. BEP in Aktion – Team 2"></label>`:""}
@@ -698,7 +705,7 @@ function inbox(){
  const w=S.woche,t=S.d.anfT.filter(a=>a.woche===w),v=S.d.anfV.filter(a=>a.woche===w);
  const andere=S.d.anfT.filter(a=>a.woche!==w&&a.status==="offen").length;
  const lbl={offen:"wartet",angenommen:"angenommen",abgelehnt:"abgelehnt",zurueckgezogen:"zurückgezogen"};
- modalOpen(`<div class="kicker">ANFRAGEN · ${esc(wochenText(w))}</div><h2>Anfragen an dich</h2>
+ modalOpen(`<div class="wp-artband" style="${artStyle('baustein')}">Anfragen</div><div class="kicker">ANFRAGEN · ${esc(wochenText(w))}</div><h2>Anfragen an dich</h2>
  ${t.length?t.map(a=>`<div class="wp-slot"><div><b>${esc(a.vonPseudo)} · ${a.art==="kompetenz"?"Kompetenz":"Tutoring"}</b><small>${TAGE[a.d]} ${esc(zeitBereich(a.h,a.len||1))} · ${esc(a.thema)}${a.projekt?" · Projekt: "+esc(a.projekt):""}</small></div>
   ${a.status==="offen"?`<span><button class="primary" onclick="wp.antwort('${a.id}',true)">Annehmen</button> <button class="secondary" onclick="wp.antwort('${a.id}',false)">Ablehnen</button></span>`:`<span class="pill">${lbl[a.status]||a.status}</span>`}</div>`).join(""):'<p class="wp-leer">Keine Anfragen in dieser Woche.</p>'}
  ${andere?`<p class="wp-hint">${andere} offene Anfrage(n) in anderen Wochen – wechsle die Woche, um sie zu beantworten.</p>`:""}
@@ -718,7 +725,7 @@ async function zurueckziehen(id){
 /* ---------- Mein Angebot ---------- */
 function angebot(){
  const me=uid(),mine=S.d.tutoren.filter(t=>t.uid===me);
- modalOpen(`<div class="kicker">MEIN ANGEBOT</div><h2>Anderen helfen</h2><p>Hier entscheidest du, wobei du Mitschüler:innen unterstützen möchtest. Dein Angebot sehen alle in der Klasse – mit deinem Pseudonym.</p>
+ modalOpen(`<div class="wp-artband" style="${artStyle('baustein')}">Mein Angebot</div><div class="kicker">MEIN ANGEBOT</div><h2>Anderen helfen</h2><p>Hier entscheidest du, wobei du Mitschüler:innen unterstützen möchtest. Dein Angebot sehen alle in der Klasse – mit deinem Pseudonym.</p>
  <h3>Meine Angebote</h3>${mine.length?mine.map(t=>`<div class="wp-slot"><div><b>${t.art==="kompetenz"?"Kompetenz":"Tutor:in"}: ${esc(t.bereich)}</b><small>${t.art==="tutor"?esc(FACH(t.fach).l)+" · ":""}${esc(t.beschr||"")}</small></div><button class="secondary" onclick="wp.angebotWeg('${t.id}')">Löschen</button></div>`).join(""):'<p class="wp-leer">Noch kein Angebot.</p>'}
  <h3>Neues Angebot</h3><div class="form">
  <label>Art<select id="agArt" onchange="document.getElementById('agFachBox').hidden=this.value!=='tutor'"><option value="tutor">Tutor:in in einem Fach</option><option value="kompetenz">Kompetenz (z. B. Excel, Zeichnen, Moderieren)</option></select></label>
@@ -749,9 +756,9 @@ function info(kind,id){
   return modalOpen(`<div class="wp-artband" style="${artStyle(artKey(e.art))}">${esc(tart(e).l)}</div><div class="kicker">${esc(FACH(e.fach).l)}</div><h2>${esc(e.titel)}</h2><p>${TAGEL[e.d]}, ${esc(zeitBereich(e.h,e.len||1))}${e.lehrkraft?" · "+esc(e.lehrkraft):""}${e.raum?" · Raum "+esc(e.raum):""}</p><p class="wp-hint">${tart(e).hint}</p>${anhHtml(e.anhaenge)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`)}
  if(kind==="gesp")return infoGesp(id);
  if(kind==="termin"){const b=S.d.buch.find(x=>x.id===id);if(!b)return;
-  return modalOpen(`<div class="kicker">MEIN TERMIN</div><h2>${esc(b.lehrkraft||"Lehrkraft")}</h2><p>${TAGEL[b.d]}, ${esc(zeitBereich(b.h,b.len||1))}</p><p><b>Meine Frage:</b> ${esc(b.frage)}</p><div class="form-actions"><button class="secondary" onclick="wp.terminAbsagen('${b.id}')">Termin absagen</button><button class="primary" onclick="closeModal()">Schließen</button></div>`)}
+  return modalOpen(`<div class="wp-artband" style="${artStyle('frage')}">Termin bei einer Lehrkraft</div><div class="kicker">MEIN TERMIN</div><h2>${esc(b.lehrkraft||"Lehrkraft")}</h2><p>${TAGEL[b.d]}, ${esc(zeitBereich(b.h,b.len||1))}</p><p><b>Meine Frage:</b> ${esc(b.frage)}</p><div class="form-actions"><button class="secondary" onclick="wp.terminAbsagen('${b.id}')">Termin absagen</button><button class="primary" onclick="closeModal()">Schließen</button></div>`)}
  if(kind==="tutor"){const a=[...S.d.anfV,...S.d.anfT].find(x=>x.id===id);if(!a)return;const ich=a.tutorUid===uid();
-  return modalOpen(`<div class="kicker">${a.art==="kompetenz"?"KOMPETENZ":"TUTORING"} · ${a.status==="offen"?"ANGEFRAGT":"BESTÄTIGT"}</div><h2>${esc(ich?a.vonPseudo:a.tutorPseudo)}</h2><p>${TAGEL[a.d]}, ${esc(zeitBereich(a.h,a.len||1))}</p><p><b>Thema:</b> ${esc(a.thema)}${a.projekt?"<br><b>Projekt:</b> "+esc(a.projekt):""}</p><div class="form-actions"><button class="secondary" onclick="wp.zurueckziehen('${a.id}')">${ich?"Absagen":"Zurückziehen"}</button><button class="primary" onclick="closeModal()">Schließen</button></div>`)}
+  return modalOpen(`<div class="wp-artband" style="${artStyle('projekt')}">${a.art==="kompetenz"?"Kompetenz":"Tutoring"}</div><div class="kicker">${a.art==="kompetenz"?"KOMPETENZ":"TUTORING"} · ${a.status==="offen"?"ANGEFRAGT":"BESTÄTIGT"}</div><h2>${esc(ich?a.vonPseudo:a.tutorPseudo)}</h2><p>${TAGEL[a.d]}, ${esc(zeitBereich(a.h,a.len||1))}</p><p><b>Thema:</b> ${esc(a.thema)}${a.projekt?"<br><b>Projekt:</b> "+esc(a.projekt):""}</p><div class="form-actions"><button class="secondary" onclick="wp.zurueckziehen('${a.id}')">${ich?"Absagen":"Zurückziehen"}</button><button class="primary" onclick="closeModal()">Schließen</button></div>`)}
  const e=S.d.plan.eintraege.find(x=>x.id===id);if(!e)return;
  const m=e.moduleId?S.d.module.find(x=>x.id===e.moduleId):null;
  const ziel=e.route?`<button class="secondary" onclick="closeModal();go('${esc(e.route)}')">Öffnen</button>`:(e.link&&/^https:\/\//.test(e.link)?`<a class="secondary btn" href="${esc(e.link)}" target="_blank" rel="noopener">Link öffnen</a>`:"");
@@ -826,7 +833,7 @@ async function tabUebersicht(){
 }
 async function planAnsehen(u){
  const p=await gdoc("wpPlan",u+"_"+S.woche);if(!p||!p.geteilt)return fb.toast("Dieser Plan ist nicht geteilt.");
- modalOpen(`<div class="kicker">GETEILTER PLAN · ${esc(wochenText(S.woche))}</div><h2>Plan</h2>${p.ziel?`<p><b>Wochenziel:</b> ${esc(p.ziel)}</p>`:""}
+ modalOpen(`<div class="wp-artband" style="${artStyle('lernstand')}">Geteilter Plan</div><div class="kicker">GETEILTER PLAN · ${esc(wochenText(S.woche))}</div><h2>Plan</h2>${p.ziel?`<p><b>Wochenziel:</b> ${esc(p.ziel)}</p>`:""}
  <div class="wp-liste">${(p.eintraege||[]).filter(e=>e.typ!=="auszeit").sort((a,b)=>a.d-b.d||a.h-b.h).map(e=>`<div><span class="wp-fl" style="--fc:${FACH(e.fach).c};--fb:${FACH(e.fach).bg}">${esc(FACH(e.fach).l)}</span><b>${esc(e.titel)}</b><small>${TAGE[e.d]} ${esc(zeitBereich(e.h,e.len||1))}${e.erledigt?" · ✓ erledigt":""}</small></div>`).join("")||'<p class="wp-leer">Noch nichts eingeplant.</p>'}</div>
  <div class="form-actions"><button class="primary" onclick="closeModal()">Schließen</button></div>`);
 }
@@ -893,7 +900,7 @@ async function modulKopie(id){
  try{await fb.addDoc(col("wpModule"),{...rest,woche:iso(addD(parse(S.woche),7)),status:"entwurf",createdBy:uid(),createdAt:fb.serverTimestamp(),updatedAt:fb.serverTimestamp()});fb.toast("Als Entwurf in die nächste Woche kopiert.")}catch(e){console.error(e);fb.toast("Nicht möglich.")}
 }
 function zeitenForm(){
- modalOpen(`<div class="kicker">EINSTELLUNGEN</div><h2>Stundenzeiten</h2><p>Beginn der 10 Stunden (45 Minuten). Gilt für die ganze Klasse.</p><div class="wp-zeitenraster">${zeiten().map((z,i)=>`<label>${i+1}.<input id="zt${i}" type="time" value="${esc(z)}"></label>`).join("")}</div>
+ modalOpen(`<div class="wp-artband" style="${artStyle('eigen')}">Einstellungen</div><div class="kicker">EINSTELLUNGEN</div><h2>Stundenzeiten</h2><p>Beginn der 10 Stunden (45 Minuten). Gilt für die ganze Klasse.</p><div class="wp-zeitenraster">${zeiten().map((z,i)=>`<label>${i+1}.<input id="zt${i}" type="time" value="${esc(z)}"></label>`).join("")}</div>
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.zeitenSave()">Speichern</button></div>`);
 }
 async function zeitenSave(){
@@ -940,7 +947,7 @@ async function einfSave(id,art){
 async function einfWeg(id){if(!confirm(tart(S.d.einf.find(x=>x.id===id)).weg))return;try{await fb.deleteDoc(ref("wpEinfuehrungen",id));fb.closeModal();neu()}catch(e){fb.toast("Nicht möglich.")}}
 function slotForm(id,d,h){
  const s=id?S.d.slots.find(x=>x.id===id):{fach:"deutsch",d,h,len:1,lehrkraft:fb.profile?.displayName||"",status:"entwurf"};
- modalOpen(`<div class="kicker">SPRECHZEIT</div><h2>${id?"Sprechzeit bearbeiten":"Neue Sprechzeit"}</h2><p class="wp-hint">Schüler:innen können diesen Termin für eine fachliche Frage buchen (ein Platz).</p><div class="form">
+ modalOpen(`<div class="wp-artband" style="${artStyle('frage')}">Sprechzeit</div><div class="kicker">SPRECHZEIT</div><h2>${id?"Sprechzeit bearbeiten":"Neue Sprechzeit"}</h2><p class="wp-hint">Schüler:innen können diesen Termin für eine fachliche Frage buchen (ein Platz).</p><div class="form">
  <label>Lehrkraft<input id="slLk" maxlength="60" value="${esc(s.lehrkraft||"")}"></label>
  <label>Kürzel im Wochenplan (2–4 Buchstaben)<input id="slK" maxlength="4" value="${esc(s.kuerzel||kuerzel(s))}"></label>
  <label>Fach<select id="slFach">${FAECHER.map(f=>`<option value="${f.k}" ${f.k===s.fach?"selected":""}>${esc(f.l)}</option>`).join("")}</select></label>
@@ -1252,7 +1259,7 @@ function lernplanBanner(){
 }
 function lernplanForm(){
  const heute=iso(new Date());
- modalOpen(`<div class="kicker">LERNPLAN</div><h2>Schulaufgabe oder Kurzarbeit eintragen</h2><div class="form">
+ modalOpen(`<div class="wp-artband" style="${artStyle('checkout')}">Lernplan</div><div class="kicker">LERNPLAN</div><h2>Schulaufgabe oder Kurzarbeit eintragen</h2><div class="form">
  <label>Aus dem Kalender übernehmen<select id="lpKal" onchange="wp.lernplanKal(this.value)"><option value="">Kalender wird geladen …</option></select></label>
  <label>Fach<select id="lpFach">${FAECHER.filter(f=>!["fpa","foerder","fachuebergreifend"].includes(f.k)).map(f=>`<option value="${f.k}">${esc(f.l)}</option>`).join("")}</select></label>
  <label>Art<select id="lpArt"><option value="SA">Schulaufgabe (SA)</option><option value="KU">Kurzarbeit (KU)</option></select></label>
@@ -1409,7 +1416,7 @@ Object.assign(wpPublic,{
  vorschau,rpStart,rpWeiter,rpPruefen,rpWahl,rpRhAdd,rpRhReset,rpHinweis,rallyAdd,rallyDel,rallyMove,rallySet,slotModal,einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod,
- dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
+ frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
 });
 window.wp=wpPublic;
 

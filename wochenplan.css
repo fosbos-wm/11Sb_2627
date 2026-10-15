@@ -253,3 +253,4 @@ body.wp-voll-body{overflow:hidden}
 .wp-dwb small{font-size:.7rem;color:var(--muted)}
 .wp-zitat{background:#f6f8fa;border-radius:10px;padding:8px 12px;margin:6px 0}.wp-zitat p{margin:4px 0}
 .wp-gform{display:grid;gap:8px}
+.wp-b.plan.eigen.m-frage{background:#f3e6da;border-left-color:#a8744a}
