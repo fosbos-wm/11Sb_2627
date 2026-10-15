@@ -254,3 +254,6 @@ body.wp-voll-body{overflow:hidden}
 .wp-zitat{background:#f6f8fa;border-radius:10px;padding:8px 12px;margin:6px 0}.wp-zitat p{margin:4px 0}
 .wp-gform{display:grid;gap:8px}
 .wp-b.plan.eigen.m-frage{background:#f3e6da;border-left-color:#a8744a}
+.wp-fuer{background:#f6e2ed;border:1px solid #e3b6cf;border-radius:12px;padding:10px 12px;margin:8px 0}
+.wp-fuer-akt{display:flex;gap:12px;margin-bottom:4px}
+.wp-fuer-gitter{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:2px 10px;max-height:220px;overflow:auto}

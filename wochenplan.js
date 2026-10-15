@@ -288,7 +288,7 @@ async function anhHoch(inp){
  inp.value="";if(st)st.textContent="";const l=$("anhListe");if(l)l.innerHTML=anhListe();
 }
 function anhWeg(i){S.anh.splice(i,1);const l=$("anhListe");if(l)l.innerHTML=anhListe()}
-function artVorschau(t){const b=$("mfBand");if(!b)return;b.setAttribute("style",artStyle(t));b.textContent=artOf(t).l;const w=$("mfWrap");if(w)w.setAttribute("style",artStyle(t));const g=$("mfGest");if(g){if(t==="lernrallye"&&!(S.rally||[]).length)S.rally=[{typ:"info",titel:"Willkommen",text:"",punkte:0},{typ:"frei",titel:"",text:"",antwort:"",punkte:10}];g.innerHTML=gestFelderHtml(t,{})}const ft=$("mfFixTag");if(ft&&FEST_ARTEN.includes(t)&&ft.value==="")ft.value="0"}
+function artVorschau(t){const b=$("mfBand");if(!b)return;const fw=$("mfFuerWrap");if(fw){fw.hidden=t!=="lernstand";if(t==="lernstand"&&!$("fuerListe")){fw.innerHTML=fuerHtml([]);fuerLaden()}}b.setAttribute("style",artStyle(t));b.textContent=artOf(t).l;const w=$("mfWrap");if(w)w.setAttribute("style",artStyle(t));const g=$("mfGest");if(g){if(t==="lernrallye"&&!(S.rally||[]).length)S.rally=[{typ:"info",titel:"Willkommen",text:"",punkte:0},{typ:"frei",titel:"",text:"",antwort:"",punkte:10}];g.innerHTML=gestFelderHtml(t,{})}const ft=$("mfFixTag");if(ft&&FEST_ARTEN.includes(t)&&ft.value==="")ft.value="0"}
 const AUSZEIT_ARTEN=[["bewegung","Bewegung an der frischen Luft"],["ruhe","Ruhe / Atemübung"],["pause","Pause & etwas essen"],["gespraech","kurz abschalten mit Mitschüler:innen"]];
 
 /* ---------- Datum ---------- */
@@ -315,8 +315,9 @@ async function ladeAllgemein(){
   qdocs("wpModule",...live,W("woche",w)).catch(()=>[]),qdocs("wpModule",...live,W("woche","")).catch(()=>[]),
   qdocs("wpEinfuehrungen",...live,W("woche",w)).catch(()=>[]),qdocs("wpSlots",...live,W("woche",w)).catch(()=>[]),
   gdoc("wpWochen",w)]);
- S.d.module=[...m1,...m2].sort((a,b)=>String(a.fach).localeCompare(String(b.fach))||String(a.titel).localeCompare(String(b.titel),"de"));
- S.d.einf=einf;S.d.slots=slots;S.d.wochenDoc=wo;
+ const me0=fb.currentUser&&fb.currentUser.uid,mein=x=>t||!Array.isArray(x.fuer)||!x.fuer.length||x.fuer.includes(me0);
+ S.d.module=[...m1,...m2].filter(mein).sort((a,b)=>String(a.fach).localeCompare(String(b.fach))||String(a.titel).localeCompare(String(b.titel),"de"));
+ S.d.einf=einf.filter(mein);S.d.slots=slots;S.d.wochenDoc=wo;
 }
 async function ladeSchueler(){
  await ladeAllgemein();const w=S.woche,me=uid();
@@ -857,7 +858,7 @@ function tabModule(){
  let h=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">＋ Neuer Lernbaustein</button><button class="secondary" onclick="wp.zeitenForm()">Stundenzeiten</button><button class="secondary" onclick="wp.modulExport()" title="Alle Lernbausteine dieser Woche als Datei sichern oder an andere Klassen weitergeben">Bausteine exportieren</button><button class="secondary" onclick="document.getElementById('wpImpFile').click()" title="Lernbausteine aus einer Datei übernehmen">Bausteine importieren</button><input id="wpImpFile" type="file" accept=".json,application/json" hidden onchange="wp.modulImport(this)"></div>${artLegende()}`;
  if(!mods.length)h+=`<div class="card"><p class="wp-leer">Für diese Woche gibt es noch keine Lernbausteine. Legt mit „Neuer Lernbaustein“ alle Arten an und gestaltet sie je Art (z. B. Lernrallye mit Stationen). Einführungen, Projekte, Lernstandsgespräche und Gruppenübungen könnt ihr mit einem festen Termin platzieren; einfache feste Termine setzt ihr auch im Reiter „Feste Termine & Sprechzeiten“.</p></div>`;
  [...ART_REIHE,...Object.keys(grp).filter(k=>!ART_REIHE.includes(k))].filter(k=>grp[k]).forEach(k=>{const a=artOf(k);
-  h+=`<div class="card wp-artcard" style="${artStyle(k)}"><h3><span class="wp-art" style="${artStyle(k)}">${esc(MTYP[k]?.l||a.l)}</span> <small>${grp[k].length}</small></h3><div class="wp-liste">${grp[k].map(m=>{const f=FACH(m.fach);return `<div><span class="wp-fl" style="--fc:${f.c};--fb:${f.bg}">${esc(f.l)}</span><b>${esc(m.titel)}</b><small>${esc(dauerInfo(m).label)}${m.pflicht?" · Pflicht":""}${m.woche===""?" · jede Woche":""}${m.fixTag!=null&&m.fixTag!==""?" · fest: "+TAGE[m.fixTag]+", "+(m.fixStd||1)+". Std.":""}${(m.anhaenge||[]).length?" · "+m.anhaenge.length+" Anhang":""}</small>
+  h+=`<div class="card wp-artcard" style="${artStyle(k)}"><h3><span class="wp-art" style="${artStyle(k)}">${esc(MTYP[k]?.l||a.l)}</span> <small>${grp[k].length}</small></h3><div class="wp-liste">${grp[k].map(m=>{const f=FACH(m.fach);return `<div><span class="wp-fl" style="--fc:${f.c};--fb:${f.bg}">${esc(f.l)}</span><b>${esc(m.titel)}</b><small>${esc(dauerInfo(m).label)}${m.pflicht?" · Pflicht":""}${m.woche===""?" · jede Woche":""}${m.fixTag!=null&&m.fixTag!==""?" · fest: "+TAGE[m.fixTag]+", "+(m.fixStd||1)+". Std.":""}${(m.anhaenge||[]).length?" · "+m.anhaenge.length+" Anhang":""}${m.typ==="lernstand"?fuerText(m):""}</small>
   <span class="pill ${m.status==="live"?"ok":"warn"}">${m.status==="live"?"live":"Entwurf"}</span>
   <span class="wp-rowact"><button class="secondary" onclick="wp.vorschau('${m.id}')">Vorschau</button><button class="secondary" onclick="wp.modulForm('${m.id}')">Bearbeiten</button><button class="secondary" onclick="wp.modulKopie('${m.id}')" title="als Entwurf in die nächste Woche kopieren">→ Nächste Woche</button><button class="secondary" onclick="wp.modulWeg('${m.id}')">Löschen</button></span></div>`}).join("")}</div></div>`});
  return h;
@@ -865,6 +866,21 @@ function tabModule(){
 function wochenOptionen(sel){
  const a=parse(S.woche);return [[S.woche,"Diese Woche ("+wochenText(S.woche).split(" · ")[0]+")"],[iso(addD(a,7)),"Nächste Woche"],["","Jede Woche verfügbar"]].map(o=>`<option value="${o[0]}" ${o[0]===sel?"selected":""}>${o[1]}</option>`).join("")
 }
+/* Individuelle Zuordnung (Lernstandsgespräch): Auswahl der Schüler:innen */
+function fuerHtml(sel){
+ return `<div id="fuerBox" class="wp-fuer"><b>Für wen ist das Lernstandsgespräch?</b><small class="wp-hint">Das Gespräch ist individuell: Nur die gewählten Schüler:innen sehen und planen es. Ohne Auswahl gilt es für die ganze Klasse.</small><div id="fuerListe" data-sel="${esc((sel||[]).join(","))}"><small class="wp-leer">Schüler:innen werden geladen …</small></div></div>`;
+}
+async function fuerLaden(){
+ const box=$("fuerListe");if(!box)return;
+ const sel=new Set((box.dataset.sel||"").split(",").filter(Boolean));
+ try{
+  const us=(await qdocs("users",W("role","student"))).filter(u=>u.status==="approved").sort((a,b)=>String(fb.zkAnzeige(a)).localeCompare(String(fb.zkAnzeige(b)),"de"));
+  box.innerHTML=us.length?`<div class="wp-fuer-akt"><button type="button" class="text-button" onclick="wp.fuerAlle(true)">alle</button><button type="button" class="text-button" onclick="wp.fuerAlle(false)">keine</button></div><div class="wp-fuer-gitter">${us.map(u=>`<label class="check"><input type="checkbox" class="fuerC" value="${esc(u.uid)}" ${sel.has(u.uid)?"checked":""}><span>${esc(fb.zkAnzeige(u))}</span></label>`).join("")}</div>`:`<small class="wp-leer">Noch keine Schüler:innen freigeschaltet.</small>`;
+ }catch(e){box.innerHTML=`<small class="wp-leer">Die Liste konnte nicht geladen werden.</small>`}
+}
+const fuerAlle=on=>document.querySelectorAll(".fuerC").forEach(c=>{c.checked=!!on});
+const fuerLesen=()=>[...document.querySelectorAll(".fuerC:checked")].map(c=>c.value).slice(0,60);
+function fuerText(x){const n=Array.isArray(x.fuer)?x.fuer.length:0;return n?` · für ${n} Schüler:in${n===1?"":"nen"}`:""}
 function modulForm(id){
  const m=id?S.d.module.find(x=>x.id===id):{titel:"",fach:"deutsch",typ:"selbstlern",len:1,woche:S.woche,beschr:"",route:"",link:"",pflicht:false,mehrfach:false,status:"entwurf"};
  S.anh=[...(m.anhaenge||[])];
@@ -879,6 +895,7 @@ function modulForm(id){
  <small class="wp-hint">Bei „Fester Termin“ erscheint der Lernbaustein automatisch an diesem Tag und dieser Stunde im Wochenplan aller Schüler:innen (bei Tages-/Wochenbausteinen zählt nur der Tag).</small>
  <label>Gilt für<select id="mfWoche">${wochenOptionen(m.woche)}</select></label>
  <label>Beschreibung<textarea id="mfBeschr" rows="3" maxlength="400">${esc(m.beschr||"")}</textarea></label>
+ <div id="mfFuerWrap" ${m.typ==="lernstand"?"":"hidden"}>${fuerHtml(m.fuer)}</div>
  <div id="mfGest" class="wp-gest">${gestFelderHtml(m.typ,m.gestaltung)}</div>
  ${anhForm()}
  <label>Verknüpfte Seite in der App<select id="mfRoute">${ROUTEN.map(r=>`<option value="${r[0]}" ${r[0]===(m.route||"")?"selected":""}>${r[1]}</option>`).join("")}</select></label>
@@ -887,11 +904,12 @@ function modulForm(id){
  <label class="check"><input type="checkbox" id="mfMehr" ${m.mehrfach?"checked":""}><span>Kann mehrfach eingeplant werden</span></label>
  <label>Status<select id="mfStatus"><option value="entwurf" ${m.status!=="live"?"selected":""}>Entwurf (nur Lehrkräfte)</option><option value="live" ${m.status==="live"?"selected":""}>Live (Schüler:innen sehen es)</option></select></label>
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.modulSave('${id||""}')">Speichern</button></div></div></div>`);
+ if(m.typ==="lernstand")fuerLaden();
 }
 async function modulSave(id){
  const titel=$("mfTitel").value.trim();if(titel.length<2)return fb.toast("Bitte einen Titel eingeben.");
  const link=$("mfLink").value.trim();if(link&&!/^https:\/\//.test(link))return fb.toast("Der Link muss mit https:// beginnen.");
- const d={titel,fach:$("mfFach").value,typ:$("mfTyp").value,dauer:dauerInfo({dauer:$("mfLen").value}).code,len:dauerInfo({dauer:$("mfLen").value}).len,anhaenge:S.anh||[],gestaltung:gestLesen($("mfTyp").value),rallye:$("mfTyp").value==="lernrallye"?(S.rally||[]).map(rallyClean):[],fixTag:$("mfFixTag").value===""?null:Number($("mfFixTag").value),fixStd:Number($("mfFixStd").value)||1,woche:$("mfWoche").value,beschr:$("mfBeschr").value.trim(),route:$("mfRoute").value,link,pflicht:$("mfPflicht").checked,mehrfach:$("mfMehr").checked,status:$("mfStatus").value,updatedAt:fb.serverTimestamp()};
+ const d={titel,fach:$("mfFach").value,typ:$("mfTyp").value,dauer:dauerInfo({dauer:$("mfLen").value}).code,len:dauerInfo({dauer:$("mfLen").value}).len,anhaenge:S.anh||[],gestaltung:gestLesen($("mfTyp").value),rallye:$("mfTyp").value==="lernrallye"?(S.rally||[]).map(rallyClean):[],fixTag:$("mfFixTag").value===""?null:Number($("mfFixTag").value),fixStd:Number($("mfFixStd").value)||1,woche:$("mfWoche").value,beschr:$("mfBeschr").value.trim(),route:$("mfRoute").value,link,pflicht:$("mfPflicht").checked,mehrfach:$("mfMehr").checked,status:$("mfStatus").value,fuer:$("mfTyp").value==="lernstand"?fuerLesen():[],updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpModule",id),d);else await fb.addDoc(col("wpModule"),{...d,createdBy:uid(),createdAt:fb.serverTimestamp()});fb.closeModal();fb.toast("Gespeichert.");neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
 async function modulWeg(id){if(!confirm("Diesen Lernbaustein löschen? Bereits eingeplante Einträge der Schüler:innen bleiben bestehen."))return;try{await fb.deleteDoc(ref("wpModule",id));neu()}catch(e){fb.toast("Nicht möglich.")}}
@@ -932,16 +950,18 @@ function einfForm(id,d,h,art){
  <label>Tag<select id="efD">${TAGEL.map((t,i)=>`<option value="${i}" ${i===e.d?"selected":""}>${t}</option>`).join("")}</select></label>
  <label>Beginn (Stunde)<select id="efH">${[...Array(10)].map((_,i)=>`<option value="${i+1}" ${i+1===e.h?"selected":""}>${i+1}. Stunde (${esc(zeiten()[i])})</option>`).join("")}</select></label>
  <label>Dauer<select id="efLen"><option value="1" ${e.len!==2?"selected":""}>45 Minuten</option><option value="2" ${e.len===2?"selected":""}>90 Minuten</option></select></label>
+ ${e.art==="lernstand"?fuerHtml(e.fuer):""}
  ${anhForm()}
  <label>Lehrkraft<input id="efLk" maxlength="60" value="${esc(e.lehrkraft||"")}"></label><label>Raum (optional)<input id="efRaum" maxlength="20" value="${esc(e.raum||"")}"></label>
  <label>Status<select id="efStatus"><option value="entwurf" ${e.status!=="live"?"selected":""}>Entwurf</option><option value="live" ${e.status==="live"?"selected":""}>Live</option></select></label>
  <div class="form-actions">${id?`<button class="secondary" onclick="wp.einfWeg('${id}')">Löschen</button>`:""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einfSave('${id||""}','${e.art||"einfuehrung"}')">Speichern</button></div></div></div>`);
+ if(e.art==="lernstand")fuerLaden();
 }
 async function einfSave(id,art){
  const d=Number($("efD").value),h=Number($("efH").value),len=Number($("efLen").value)||1,titel=$("efTitel").value.trim();
  if(titel.length<2)return fb.toast(art==="lernstand"?"Bitte einen Titel eingeben.":"Bitte ein Thema eingeben.");
  if(!frei(d,h,len,id))return fb.toast("Zu dieser Zeit ist schon etwas eingetragen (oder die Stunde reicht über den Tag hinaus).");
- const data={woche:S.woche,d,h,len,art:artKey(art),fach:$("efFach").value,titel,lehrkraft:$("efLk").value.trim(),raum:$("efRaum").value.trim(),anhaenge:S.anh||[],status:$("efStatus").value,updatedAt:fb.serverTimestamp()};
+ const data={woche:S.woche,d,h,len,art:artKey(art),fach:$("efFach").value,titel,lehrkraft:$("efLk").value.trim(),raum:$("efRaum").value.trim(),anhaenge:S.anh||[],fuer:artKey(art)==="lernstand"?fuerLesen():[],status:$("efStatus").value,updatedAt:fb.serverTimestamp()};
  try{if(id)await fb.updateDoc(ref("wpEinfuehrungen",id),data);else await fb.addDoc(col("wpEinfuehrungen"),{...data,createdBy:uid(),createdAt:fb.serverTimestamp()});fb.closeModal();neu()}catch(e){console.error(e);fb.toast("Speichern nicht möglich.")}
 }
 async function einfWeg(id){if(!confirm(tart(S.d.einf.find(x=>x.id===id)).weg))return;try{await fb.deleteDoc(ref("wpEinfuehrungen",id));fb.closeModal();neu()}catch(e){fb.toast("Nicht möglich.")}}
@@ -1416,7 +1436,7 @@ Object.assign(wpPublic,{
  vorschau,rpStart,rpWeiter,rpPruefen,rpWahl,rpRhAdd,rpRhReset,rpHinweis,rallyAdd,rallyDel,rallyMove,rallySet,slotModal,einplanen,einplanenOk,anhHoch,anhWeg,artVorschau,anwKlick,anwAlle,anwPlanung,foldMerk:(id,o)=>{S.fold=S.fold||{};S.fold[id]=o},planAnsehen,impuls,modulForm,modulSave,modulWeg,modulKopie,zeitenForm,zeitenSave,
  einfForm,einfBearbeiten:id=>einfForm(id),einfSave,einfWeg,slotForm,slotBearbeiten:id=>slotForm(id),slotSave,slotWeg,
  chatSenden,teamNotiz,todoNeu,todoToggle,todoWeg,freigeben,vorwoche,angebotMod,
- frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
+ fuerAlle,frageVormerken,dlVorlage,fbForm,fbSenden,fbCsv,fbFach,offenWeg,lernplanForm,lernplanKal,lernplanSave,lernplanWeg,lernplanEinplanen,gespGesehen,dossier,gespSetzen,gespAbsagen,dossierSpeichern,modulExport,modulImport
 });
 window.wp=wpPublic;
 
