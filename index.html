@@ -122,6 +122,19 @@
 <div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" id="modal"></div></div>
 <div class="toast" id="toast"></div>
 
-<script type="module" src="app.js?v=20261014k"></script>
+<script type="module" src="app.js?v=20261016a"></script>
+<script>
+/* Ladehinweis: erscheint, wenn die App nach 15 Sekunden noch nicht mit Firebase verbunden ist */
+(function(){
+ setTimeout(function(){
+  if(window.CampusFirebase && window.CampusFirebase.db) return;
+  var b=document.createElement("div");
+  b.setAttribute("role","alert");
+  b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:99999;background:#fff3cd;color:#4a3b00;border:1px solid #e0c46c;border-radius:10px;padding:12px 14px;font:15px/1.4 system-ui,Arial,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.2)";
+  b.innerHTML="<b>Die App lädt ungewöhnlich lange.</b> Oft hilft es, die Seite neu zu laden oder kurz das WLAN zu wechseln (z. B. Mobilfunk). <button type=\"button\" style=\"margin-left:8px;padding:6px 12px;border:0;border-radius:8px;background:#3d8fd0;color:#fff;font-size:15px;cursor:pointer\" onclick=\"location.reload()\">Neu laden</button>";
+  document.body.appendChild(b);
+ },15000);
+})();
+</script>
 </body>
 </html>
