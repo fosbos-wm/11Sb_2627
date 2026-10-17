@@ -5306,6 +5306,415 @@
   ]
  },
  {
+  "id": "f11-lb3-baybep-ueberblick",
+  "thema": "BayBEP im Überblick: Bereiche, Kompetenzen, Anschluss",
+  "unter": "LB 3 · Bayerischer Bildungs- und Erziehungsplan · Kap. 5 und 7 · Anschluss an LB 2 und LB 4",
+  "items": [
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -700,
+    "w": 2000,
+    "h": 70,
+    "fs": 44,
+    "text": "BayBEP im Überblick: Bereiche, Kompetenzen, Anschluss"
+   },
+   {
+    "type": "text",
+    "x": -1000,
+    "y": -632,
+    "w": 2000,
+    "h": 36,
+    "fs": 20,
+    "text": "LB 3 · Bayerischer Bildungs- und Erziehungsplan · Kap. 5 und 7 · Anschluss an LB 2 und LB 4"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -580,
+    "w": 2000,
+    "h": 210,
+    "c": "blau",
+    "text": "① WAS DER LEHRPLAN VERLANGT"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -525,
+    "w": 640,
+    "h": 145,
+    "c": "gelb",
+    "fs": 18,
+    "text": "LERNBEREICH 3\n\nInhalt: themenbezogene Bildungs- und Erziehungsbereiche gemäß BayBEP, u. a. digitale Medien und Technologien, Umwelt und Gesundheit."
+   },
+   {
+    "type": "note",
+    "x": -320,
+    "y": -525,
+    "w": 640,
+    "h": 145,
+    "c": "gruen",
+    "fs": 18,
+    "text": "KOMPETENZERWARTUNG\n\nDen Stellenwert früher Bildung und Erziehung erkennen und Umsetzungsmöglichkeiten zur Förderung verschiedener Bereiche aufzeigen."
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": -525,
+    "w": 640,
+    "h": 145,
+    "c": "rosa",
+    "fs": 18,
+    "text": "DAS HEISST FÜR DICH\n\nEin Angebot einem Bereich zuordnen, ein Ziel aus dem BayBEP nennen und beschreiben, wie du es im Kita-Alltag umsetzt."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": -350,
+    "w": 2000,
+    "h": 510,
+    "c": "orange",
+    "text": "② ALLE 11 BILDUNGSBEREICHE · Kap. 7 · drei davon nennt der Lehrplan ausdrücklich"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -295,
+    "w": 475,
+    "h": 135,
+    "c": "lila",
+    "fs": 17,
+    "text": "7.1 WERTEORIENTIERUNG UND RELIGIOSITÄT\n\nBeispiel: Feste im Jahreskreis feiern, über Rituale sprechen"
+   },
+   {
+    "type": "note",
+    "x": -485,
+    "y": -295,
+    "w": 475,
+    "h": 135,
+    "c": "lila",
+    "fs": 17,
+    "text": "7.2 EMOTIONALITÄT, SOZIALE BEZIEHUNGEN UND KONFLIKTE\n\nBeispiel: Gefühlekarten, Streit mit Stopp-Regel klären"
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": -295,
+    "w": 475,
+    "h": 135,
+    "c": "blau",
+    "fs": 17,
+    "text": "7.3 SPRACHE UND LITERACY\n\nBeispiel: Bilderbuch im Dialog vorlesen, Reime sammeln"
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": -295,
+    "w": 475,
+    "h": 135,
+    "c": "blau",
+    "fs": 17,
+    "text": "7.4 DIGITALE MEDIEN UND TECHNOLOGIEN · IM LEHRPLAN\n\nBeispiel: Kinder nehmen ein Hörspiel auf oder fotografieren Pflanzen für ein Pflanzenbuch"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": -145,
+    "w": 475,
+    "h": 135,
+    "c": "gruen",
+    "fs": 17,
+    "text": "7.5 MATHEMATIK\n\nBeispiel: Sortieren und Zählen beim Tischdecken"
+   },
+   {
+    "type": "note",
+    "x": -485,
+    "y": -145,
+    "w": 475,
+    "h": 135,
+    "c": "gruen",
+    "fs": 17,
+    "text": "7.6 NATURWISSENSCHAFTEN UND TECHNIK\n\nBeispiel: Schwimmen oder Sinken ausprobieren"
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": -145,
+    "w": 475,
+    "h": 135,
+    "c": "gruen",
+    "fs": 17,
+    "text": "7.7 UMWELT · IM LEHRPLAN\n\nBeispiel: Müll-Detektive-Rallye, Hochbeet pflegen"
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": -145,
+    "w": 475,
+    "h": 135,
+    "c": "orange",
+    "fs": 17,
+    "text": "7.8 ÄSTHETIK, KUNST UND KULTUR\n\nBeispiel: Collage aus Naturmaterial"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 5,
+    "w": 475,
+    "h": 135,
+    "c": "orange",
+    "fs": 17,
+    "text": "7.9 MUSIK\n\nBeispiel: Klanggeschichte mit Instrumenten"
+   },
+   {
+    "type": "note",
+    "x": -485,
+    "y": 5,
+    "w": 475,
+    "h": 135,
+    "c": "rosa",
+    "fs": 17,
+    "text": "7.10 BEWEGUNG, RHYTHMIK, TANZ UND SPORT\n\nBeispiel: Bewegungsbaustelle aus Decken und Kisten"
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": 5,
+    "w": 475,
+    "h": 135,
+    "c": "rosa",
+    "fs": 17,
+    "text": "7.11 GESUNDHEIT · IM LEHRPLAN\n\nBeispiel: Gemeinsames Frühstück, Händewaschen-Lied"
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": 5,
+    "w": 475,
+    "h": 135,
+    "c": "grau",
+    "fs": 17,
+    "text": "QUERVERBINDUNGEN\n\nJedes Kapitel nennt Verbindungen zu anderen Bereichen. Beispiel: Klanggarten aus Naturmaterial verbindet Musik (7.9) und Umwelt (7.7)."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 180,
+    "w": 2000,
+    "h": 340,
+    "c": "lila",
+    "text": "③ BASISKOMPETENZEN · Kap. 5 · wird im Projekt verlangt, steht nicht im Lehrplantext"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 235,
+    "w": 376,
+    "h": 275,
+    "c": "gelb",
+    "fs": 17,
+    "text": "PERSONALE KOMPETENZEN\n• Selbstwahrnehmung\n• motivationale Kompetenzen (Selbstwirksamkeit, Neugier)\n• kognitive Kompetenzen\n• physische Kompetenzen\n\nBeispiel: Das Kind baut den Turm allein und sagt „Das hab ich geschafft“."
+   },
+   {
+    "type": "note",
+    "x": -584,
+    "y": 235,
+    "w": 376,
+    "h": 275,
+    "c": "rosa",
+    "fs": 17,
+    "text": "SOZIALE KOMPETENZEN\n• Beziehungen aufbauen\n• Empathie, Perspektivenübernahme\n• Kommunikation, Kooperation\n• Konfliktmanagement\n\nBeispiel: Zwei Kinder tragen eine Kiste und sprechen ab, wohin."
+   },
+   {
+    "type": "note",
+    "x": -188,
+    "y": 235,
+    "w": 376,
+    "h": 275,
+    "c": "tuerkis",
+    "fs": 17,
+    "text": "WERTE UND VERANTWORTUNG\n• Werthaltungen, Achtung von Andersartigkeit\n• Verantwortung für sich, andere, Umwelt\n• demokratische Teilhabe\n\nBeispiel: Kinder sammeln Müll und entscheiden, wohin er gehört."
+   },
+   {
+    "type": "note",
+    "x": 208,
+    "y": 235,
+    "w": 376,
+    "h": 275,
+    "c": "gruen",
+    "fs": 17,
+    "text": "LERNMETHODISCHE KOMPETENZ\n• Wissen erwerben\n• Wissen anwenden und übertragen\n• eigenes Lernen wahrnehmen und steuern\n\nBeispiel: „Wie hast du das herausgefunden?“"
+   },
+   {
+    "type": "note",
+    "x": 604,
+    "y": 235,
+    "w": 376,
+    "h": 275,
+    "c": "blau",
+    "fs": 17,
+    "text": "RESILIENZ\nMit Veränderungen und Belastungen kompetent umgehen.\n\nBeispiel: Das Experiment misslingt, die Kinder probieren eine neue Variante."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 540,
+    "w": 2000,
+    "h": 390,
+    "c": "gruen",
+    "text": "④ ANSCHLUSS AN LB 2 UND LB 4 · so begründest du ein Angebot fachlich"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 595,
+    "w": 475,
+    "h": 150,
+    "c": "gelb",
+    "fs": 17,
+    "text": "LB 2 · WAHRNEHMUNG\nProzess von Reizaufnahme bis Reaktion\n\nBeispiel: Tastkiste mit Naturmaterial. Die Kinder nehmen auf, verarbeiten und benennen."
+   },
+   {
+    "type": "note",
+    "x": -485,
+    "y": 595,
+    "w": 475,
+    "h": 150,
+    "c": "blau",
+    "fs": 17,
+    "text": "LB 2 · GEDÄCHTNIS\nMehrspeicher-Modell, Elaboration\n\nBeispiel: Ein Lied mit Bewegung zum Händewaschen prägt sich besser ein."
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": 595,
+    "w": 475,
+    "h": 150,
+    "c": "rosa",
+    "fs": 17,
+    "text": "LB 2 · EMOTION\nKomponenten, Emotionsregulation\n\nBeispiel: Gefühlekarten (7.2), Ärger durch tiefes Atmen beruhigen."
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": 595,
+    "w": 475,
+    "h": 150,
+    "c": "lila",
+    "fs": 16,
+    "text": "LB 2 · MOTIVATION\nAttributionstheorie nach Weiner\n\nBeispiel: Lob für die Anstrengung („so lange geübt“) ist internal und variabel und stärkt die Erfolgserwartung."
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 765,
+    "w": 475,
+    "h": 150,
+    "c": "gruen",
+    "fs": 17,
+    "text": "LB 4 · KONDITIONIEREN\nKlassisch (Pawlow), operant (Skinner)\n\nBeispiel: Ein Aufräumlied als Signal. Lob nach dem Aufräumen verstärkt das Verhalten."
+   },
+   {
+    "type": "note",
+    "x": -485,
+    "y": 765,
+    "w": 475,
+    "h": 150,
+    "c": "tuerkis",
+    "fs": 16,
+    "text": "LB 4 · BANDURA\nAufmerksamkeit, Gedächtnis, Reproduktion, Motivation\n\nBeispiel: Du trennst Müll vor, die Kinder ahmen es nach."
+   },
+   {
+    "type": "note",
+    "x": 10,
+    "y": 765,
+    "w": 475,
+    "h": 150,
+    "c": "orange",
+    "fs": 17,
+    "text": "LB 4 · MEDIEN\nMedien als Einflussfaktor beim Lernen\n\nVerknüpfung: Bereich 7.4, Chancen und Risiken abwägen."
+   },
+   {
+    "type": "note",
+    "x": 505,
+    "y": 765,
+    "w": 475,
+    "h": 150,
+    "c": "grau",
+    "fs": 17,
+    "text": "MEIN BEISPIEL AUS DEM PRAKTIKUM:\n\n\n"
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 960,
+    "w": 2000,
+    "h": 245,
+    "c": "orange",
+    "text": "⑤ HAUPTTEIL IM FACHAUFSATZ · Nennen, Erklären, Verdeutlichen (Transfer)"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 1015,
+    "w": 640,
+    "h": 175,
+    "c": "gelb",
+    "fs": 20,
+    "text": "NENNEN\nBildungsbereich oder Ziel benennen.\n\nBeispiel: der Bereich Umwelt (Kap. 7.7)."
+   },
+   {
+    "type": "note",
+    "x": -320,
+    "y": 1015,
+    "w": 640,
+    "h": 175,
+    "c": "rosa",
+    "fs": 20,
+    "text": "ERKLÄREN\nWas bedeutet das? Wie wird es gefördert?\n\nBeispiel: Kinder übernehmen Verantwortung für ihre Umgebung."
+   },
+   {
+    "type": "note",
+    "x": 340,
+    "y": 1015,
+    "w": 640,
+    "h": 175,
+    "c": "tuerkis",
+    "fs": 20,
+    "text": "VERDEUTLICHEN (TRANSFER)\nAm Fall zeigen.\n\nBeispiel: Kind A sortiert den Müll an der Station und begründet seine Wahl."
+   },
+   {
+    "type": "frame",
+    "x": -1000,
+    "y": 1225,
+    "w": 2000,
+    "h": 300,
+    "c": "tuerkis",
+    "text": "MEIN LERNANKER"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 1280,
+    "w": 1960,
+    "h": 155,
+    "c": "gelb",
+    "fs": 19,
+    "text": "Das kann ich am Ende:\n• die drei vom Lehrplan genannten Bereiche (Digitale Medien, Umwelt, Gesundheit) mit Ziel und Beispiel erklären\n• alle 11 Bildungsbereiche nennen und zu jedem ein Beispiel geben\n• Basiskompetenzen nennen und an einem Angebot zeigen\n• ein Angebot mit Stoff aus LB 2 und LB 4 fachlich begründen"
+   },
+   {
+    "type": "note",
+    "x": -980,
+    "y": 1445,
+    "w": 1960,
+    "h": 70,
+    "c": "grau",
+    "fs": 19,
+    "text": "Meine Eselsbrücke / mein Beispiel:"
+   }
+  ]
+ },
+ {
   "id": "f11-fa-jugend-gesamt",
   "thema": "Fachaufsatz am Fall „Die Jugend von heute“",
   "unter": "LB 1 · Bauplan, Muster, Baustein und Transfer, Formulierungen",
