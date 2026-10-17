@@ -20,7 +20,7 @@
   },
   {
    "titel": "Ergebnis",
-   "text": "Eigenes Angebot in der Praktikumsstelle, Ausarbeitung (6–8 Seiten) und ein Messestand im Team"
+   "text": "Eigenes Angebot in der Praktikumsstelle, Ausarbeitung (2–3 Seiten) und ein Messestand im Team"
   },
   {
    "titel": "Bewertung",
@@ -190,7 +190,7 @@
    "titel": "Abgabe der Ausarbeitung",
    "wer": "je Person",
    "bestaetigung": "lehrkraft",
-   "text": "Schriftliche Ausarbeitung, 6–8 Seiten (Einzelnote)",
+   "text": "Schriftliche Ausarbeitung, 2–3 Seiten (Einzelnote)",
    "inhalt": [
     "Digital als PDF und ausgedruckt",
     "Anhang mit Material, Fotos und Werken der Kinder",
@@ -428,7 +428,7 @@
   },
   {
    "titel": "Textverarbeitung für die Ausarbeitung",
-   "text": "6–8 Seiten Text, Schrift 11–12 pt, Zeilenabstand 1,5, dazu der Anhang. Abgabe als PDF und ausgedruckt.",
+   "text": "2–3 Seiten Text, Schrift 11–12 pt, Zeilenabstand 1,5, dazu der Anhang. Abgabe als PDF und ausgedruckt.",
    "phase": "Phase 5"
   },
   {
@@ -438,7 +438,7 @@
   }
  ],
  "ausarbeitung": {
-  "umfang": "6–8 Seiten Text (Schrift 11–12 pt, Zeilenabstand 1,5), dazu ein Anhang mit Material, Fotos und Werken der Kinder.",
+  "umfang": "2–3 Seiten Text (Schrift 11–12 pt, Zeilenabstand 1,5), dazu ein Anhang mit Material, Fotos und Werken der Kinder.",
   "teile": [
    {
     "teil": "1 Einleitung",
