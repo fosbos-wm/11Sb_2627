@@ -1,13 +1,13 @@
 {
-  "name": "F11Sb 26/27 – FOSBOS Weilheim",
-  "short_name": "F11Sb",
+  "name": "11Sb 26/27 – FOSBOS Weilheim",
+  "short_name": "11Sb",
   "description": "Der digitale Campus für Lernen, Projekte, Praxis und Gemeinschaft der FOSBOS Weilheim.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait-primary",
   "background_color": "#ffffff",
-  "theme_color": "#4f7f22",
+  "theme_color": "#117e76",
   "icons": [
     {
       "src": "icon-192.png",
