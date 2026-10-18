@@ -1,0 +1,1239 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function userExists() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid));
+    }
+
+    function isApproved() {
+      return userExists()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.status == 'approved';
+    }
+
+    function isTeacher() {
+      return isApproved()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['teacher', 'admin'];
+    }
+
+    function isAdmin() {
+      return isApproved()
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    function isSelf(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    // ---------------------------------------------------------
+    // USERS / ACCOUNTS
+    // ---------------------------------------------------------
+    match /users/{uid} {
+      // Das vollständige Konto (E-Mail, Geburtstag …) lesen nur die Person
+      // selbst und Lehrkräfte. Namen für Verzeichnis, Nachrichten und
+      // Geburtstagsliste stehen im Kurzprofil (profilePublic, siehe unten).
+      allow read: if isSelf(uid) || isTeacher();
+
+      // Public registration can only create a student in pending state.
+      // (a) Lehrkräfte registrieren sich mit E-Mail und warten auf Freischaltung.
+      // (b) Schüler:innen richten sich mit einem einmaligen Zugangscode ein
+      //     (Pseudonym statt Name, keine E-Mail). Der Code wird im selben
+      //     Schreibvorgang als benutzt markiert (getAfter).
+      allow create: if (isSelf(uid)
+          && request.resource.data.role == 'student'
+          && request.resource.data.status == 'pending'
+          && request.resource.data.uid == uid)
+        || (isSelf(uid)
+          && request.resource.data.role == 'student'
+          && request.resource.data.status == 'approved'
+          && request.resource.data.uid == uid
+          && request.resource.data.keys().hasOnly(['uid','email','firstName','lastName','displayName','pseudonym','role','status','code','createdAt'])
+          && request.resource.data.code is string
+          && exists(/databases/$(database)/documents/einladungen/$(request.resource.data.code))
+          && get(/databases/$(database)/documents/einladungen/$(request.resource.data.code)).data.used == false
+          && getAfter(/databases/$(database)/documents/einladungen/$(request.resource.data.code)).data.used == true
+          && getAfter(/databases/$(database)/documents/einladungen/$(request.resource.data.code)).data.usedBy == request.auth.uid);
+
+      // Admins may manage all user fields.
+      // Teachers may only manage the status of student accounts.
+      // A user may edit their own non-security profile fields, but never role/status.
+      allow update: if (isAdmin()
+          && !(resource.data.role == 'admin'
+               && request.resource.data.status != resource.data.status))
+        || (
+          isTeacher()
+          && resource.data.role == 'student'
+          && request.resource.data.role == 'student'
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['status', 'approvedAt', 'approvedBy', 'updatedAt', 'birthday'])
+        )
+        || (
+          isSelf(uid)
+          && request.resource.data.role == resource.data.role
+          && request.resource.data.status == resource.data.status
+          && request.resource.data.uid == resource.data.uid
+        );
+
+      // Deleting accounts is an administrative action.
+      // Löschen: Admin oder die Person selbst (Recht auf Löschung, Art. 17 DSGVO).
+      allow delete: if isAdmin() || isSelf(uid);
+    }
+
+    // ---------------------------------------------------------
+    // KURZPROFIL (Datensparsamkeit): nur Anzeigename, Rolle, Status und
+    // Geburtstag (MM-TT) – für alle freigeschalteten Nutzer lesbar.
+    // Die Person pflegt es selbst (Rolle/Status müssen zum Konto passen),
+    // Lehrkräfte gleichen es für alle Konten ab.
+    // ---------------------------------------------------------
+    // EINLADUNGSCODES (Zugangskarten): Lehrkräfte erzeugen sie, Schüler:innen
+    // lösen sie einmalig ein. Einzelabruf nur mit Kenntnis des Codes, die
+    // Liste aller Codes sehen nur Lehrkräfte.
+    // ---------------------------------------------------------
+    match /einladungen/{code} {
+      allow get: if signedIn();
+      allow list: if isTeacher();
+      allow create: if isTeacher()
+        && request.resource.data.used == false
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.keys().hasOnly(['used','createdBy','createdAt','klasse']);
+      allow update: if isTeacher()
+        || (signedIn()
+          && resource.data.used == false
+          && request.resource.data.used == true
+          && request.resource.data.usedBy == request.auth.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['used','usedBy','usedAt']));
+      allow delete: if isTeacher();
+    }
+
+    // ---------------------------------------------------------
+    // KURZPROFIL (Datensparsamkeit): nur Anzeigename, Rolle, Status und
+    // Geburtstag (MM-TT) – für alle freigeschalteten Nutzer lesbar.
+    // Die Person pflegt es selbst (Rolle/Status müssen zum Konto passen),
+    // Lehrkräfte gleichen es für alle Konten ab.
+    // ---------------------------------------------------------
+    match /profilePublic/{uid} {
+      allow read: if isApproved();
+      allow create, update: if request.resource.data.keys()
+            .hasOnly(['uid','displayName','firstName','lastName','role','status','birthday','updatedAt'])
+        && request.resource.data.uid == uid
+        && (isTeacher()
+            || (isSelf(uid) && userExists()
+                && request.resource.data.role == get(/databases/$(database)/documents/users/$(uid)).data.role
+                && request.resource.data.status == get(/databases/$(database)/documents/users/$(uid)).data.status));
+      allow delete: if isAdmin() || isSelf(uid);
+    }
+
+    // ---------------------------------------------------------
+    // PERSONAL LEARNING DATA
+    // ---------------------------------------------------------
+    match /journal/{id} {
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+    }
+
+    match /competencies/{id} {
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+    }
+
+    match /lernpfade/{id} {
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+    }
+
+    // Resilienz-Schatzkiste: bewusst OHNE Lehrkraft-Ausnahme – ausschließlich
+    // die Person selbst darf ihre eigenen gespeicherten Übungen lesen/ändern,
+    // nicht einmal Lehrkräfte oder Admins.
+    match /resilienzSchaetze/{id} {
+      // Zwei Prüfwege, damit es sowohl beim Einzelabruf (auch wenn das
+      // Dokument noch nicht existiert) als auch bei der Listen-Abfrage
+      // ("alle meine Schätze") zuverlässig funktioniert:
+      // 1) ID-Muster "<eigeneUID>_<skillId>" – greift schon vor dem Anlegen.
+      // 2) Dokumentinhalt uid == eigene UID – greift bei existierenden
+      //    Dokumenten, z. B. innerhalb einer where(uid==...)-Abfrage.
+      allow read, delete: if isApproved()
+        && (id.matches(request.auth.uid + '_.*')
+            || (resource != null && resource.data.uid == request.auth.uid));
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+    }
+
+    // Herkunftsorte-Karte (Landkreis Weilheim-Schongau): jede Person legt
+    // genau einen eigenen Eintrag an (Dokument-ID = eigene UID), alle
+    // freigeschalteten Nutzer:innen sehen die gesamte Karte.
+    match /heimatorte/{uid} {
+      allow read: if isApproved();
+      allow create, update: if isApproved() && uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isApproved() && (uid == request.auth.uid || isTeacher());
+    }
+
+    // Noten (Punkte 0–15 je Fach/Halbjahr): rein privat, ausschließlich die
+    // Person selbst darf ihre eigenen Noten lesen/ändern – nicht einmal
+    // Lehrkräfte oder Admins (genau wie die Resilienz-Schatzkiste).
+    match /noten/{uid} {
+      allow read: if isApproved() && uid == request.auth.uid;
+      // Löschen: die Person selbst; Admin nur löschen (nicht lesen), z. B. zum Schuljahresende.
+      allow delete: if isApproved() && (uid == request.auth.uid || isAdmin());
+      allow create, update: if isApproved() && uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+    }
+
+    // Wochen-/Monatsplanung: private Aufgabenplanung jeder Person für sich,
+    // orientiert am Stundenplan.
+    match /wochenplanung/{id} {
+      allow read: if isApproved() && resource.data.uid == request.auth.uid;
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+      allow update, delete: if isApproved() && resource.data.uid == request.auth.uid;
+    }
+
+    // Steckbriefe fürs Kennenlernen: jede Person legt genau ein eigenes
+    // Profil an (Dokument-ID = eigene UID), alle freigeschalteten
+    // Nutzer:innen dürfen alle Steckbriefe lesen.
+    match /steckbriefe/{uid} {
+      allow read: if isApproved();
+      allow create, update: if isApproved() && uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isApproved() && (uid == request.auth.uid || isAdmin());
+    }
+
+    // ---------------------------------------------------------
+    // SHARED CAMPUS CONTENT
+    // ---------------------------------------------------------
+    match /tasks/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid
+        && request.resource.data.ownerUid == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved()
+          && resource.data.createdBy == request.auth.uid
+          && request.resource.data.createdBy == resource.data.createdBy
+          && request.resource.data.ownerUid == resource.data.ownerUid);
+    }
+
+    match /projects/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /posts/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.authorUid == request.auth.uid;
+
+      // Teachers/admins may moderate. Students may only perform the
+      // specific like/comment updates used by the app.
+      allow update: if isTeacher()
+        || (
+          isApproved()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes'])
+          && (
+            (!resource.data.keys().hasAny(['likes']) && request.resource.data.likes == 1)
+            || (resource.data.keys().hasAny(['likes']) && request.resource.data.likes == resource.data.likes + 1)
+          )
+        )
+        || (
+          isApproved()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['comments'])
+          && request.resource.data.comments.size() == resource.data.comments.size() + 1
+        );
+
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // PINNWAND (Padlet-artige Raster-Boards für Gruppenarbeit)
+    // ---------------------------------------------------------
+    match /boards/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      // Löschen ist bewusst nur Lehrkräften vorbehalten (auch wenn hier
+      // zusätzlich die Ersteller:in erlaubt ist), damit beim Löschen
+      // eines Boards zuverlässig auch alle zugehörigen boardPosts anderer
+      // Autor:innen entfernt werden können (siehe boardPosts unten).
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /boardPosts/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.authorUid == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // WORTWOLKE (Stichworte sammeln, Häufigkeit bestimmt die Größe)
+    // ---------------------------------------------------------
+    match /wordclouds/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /wordcloudEntries/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.authorUid == request.auth.uid;
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // KANBAN-BOARD (Aufgaben in Spalten Offen / In Arbeit / Fertig)
+    // ---------------------------------------------------------
+    match /kanbanBoards/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /kanbanCards/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+
+      // Jede/r Beteiligte darf eine Karte in eine andere Spalte
+      // verschieben (nur status/updatedAt). Titel/Details/Zuständigkeit
+      // darf weiterhin nur die Ersteller:in oder eine Lehrkraft ändern.
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid)
+        || (isApproved()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status','updatedAt']));
+
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // TERMINFINDUNG (Terminvorschläge, Gruppe stimmt ab)
+    // ---------------------------------------------------------
+    match /termPolls/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // Eine Stimme ist ein Dokument mit fester ID "<pollId>_<uid>" –
+    // dadurch kann jede Person ihre eigene Stimme jederzeit
+    // überschreiben, aber niemals die Stimme einer anderen Person.
+    match /termVotes/{id} {
+      allow read: if isApproved();
+      allow create, update: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // TEAM GESUCHT (Pinnwand für Gruppenfindung)
+    // ---------------------------------------------------------
+    match /teamAds/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.authorUid == request.auth.uid;
+
+      // Die Autor:in darf das Gesuch vollständig bearbeiten. Jede
+      // andere freigeschaltete Person darf ausschließlich das Feld
+      // "interested" ändern, um Interesse zu zeigen/zurückzuziehen.
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid)
+        || (isApproved()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['interested']));
+
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // GEMEINSAME CHECKLISTE (Meilensteine gemeinsam abhaken)
+    // ---------------------------------------------------------
+    match /checklists/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /checklistItems/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+
+      // Abhaken darf jede freigeschaltete Person (nur done/doneBy/
+      // doneByName/updatedAt). Den Text ändern nur Ersteller:in
+      // oder Lehrkraft.
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid)
+        || (isApproved()
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['done','doneBy','doneByName','updatedAt']));
+
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // MELDEFUNKTION (Forum, Pinnwand, Team gesucht → Lehrkräfte)
+    // Nur Lehrkräfte dürfen Meldungen lesen, damit weder die
+    // gemeldete Person noch andere Schüler:innen sie sehen.
+    // ---------------------------------------------------------
+    match /reports/{id} {
+      allow read: if isTeacher();
+      allow create: if isApproved()
+        && request.resource.data.reportedBy == request.auth.uid;
+      allow update, delete: if isTeacher();
+    }
+
+    // ---------------------------------------------------------
+    // VERSTÄNDNIS-AMPEL (🟢🟡🔴 Live-Feedback)
+    // ---------------------------------------------------------
+    match /ampelRounds/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // Eine Antwort ist ein Dokument mit fester ID "<roundId>_<uid>" –
+    // jede Person kann nur ihre eigene Antwort setzen/überschreiben.
+    match /ampelResponses/{id} {
+      allow read: if isApproved();
+      allow create, update: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // LIVE-UMFRAGE (Frage mit Antwortoptionen)
+    // ---------------------------------------------------------
+    match /polls/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // Eine Stimme ist ein Dokument mit fester ID "<pollId>_<uid>".
+    match /pollVotes/{id} {
+      allow read: if isApproved();
+      allow create, update: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // ZUFALLS-PICKER "WER IST DRAN?" (eigene wiederverwendbare Listen)
+    // ---------------------------------------------------------
+    match /randomPickerLists/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+
+      // Jede freigeschaltete Person darf "losen" (nur lastPick ändern).
+      // Titel/Einträge bearbeiten dürfen nur Ersteller:in oder Lehrkraft.
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid)
+        || (isApproved()
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['lastPick']));
+
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // KARTEIKARTEN / VOKABELTRAINER (Decks mit Frage/Antwort-Karten)
+    // ---------------------------------------------------------
+    match /flashcardDecks/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /flashcards/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // GLOSSAR / FACHBEGRIFFE-WIKI
+    // ---------------------------------------------------------
+    match /glossaryEntries/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // ZUORDNUNGSÜBUNGEN (Begriff ↔ Erklärung)
+    // ---------------------------------------------------------
+    match /zuordnungen/{id} {
+      allow read: if isApproved();
+      allow create: if isTeacher()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher();
+    }
+
+    // ---------------------------------------------------------
+    // FACHAUFSATZ-TRAINING (Pädagogik/Psychologie, an echten
+    // Prüfungs-/Schulaufgaben). Übungstexte sind PRIVAT – exakt wie
+    // beim Lernjournal darf nur die schreibende Person oder eine
+    // Lehrkraft sie lesen, nicht andere Schüler:innen.
+    // ---------------------------------------------------------
+    match /essayCases/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // LERNWERKSTATT · FÄCHER-ZEITSTRAHL (Lehrplan, Aufträge, Material,
+    // Teams, Produkte, Lernstand)
+    // ---------------------------------------------------------
+    // Lehrplan-Wochen (Zeitstrahl): von Lehrkräften gepflegt, für alle
+    // freigeschalteten Nutzer:innen lesbar.
+    match /lehrplanWochen/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    // Zeitstrahl-Stunden: verknüpfte Tafeln und Lernübersichten (Schlüssel = Datum bzw. Referenz).
+    // Von Lehrkräften gepflegt, für alle freigeschalteten Nutzer:innen lesbar.
+    match /lehrplanTafeln/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    // Aufträge/Ziele je Woche: von Lehrkräften gepflegt.
+    match /lehrplanAuftraege/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    // Material je Woche: von Lehrkräften eingestellt.
+    match /lehrplanMaterialien/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    // Aufträge je Praktikumsphase (z. B. Blockpraktikum): von Lehrkräften
+    // gepflegt, für alle sichtbar – live gespiegelt in fpA, Lernpfad und Startseite.
+    match /praktikumsAuftraege/{phaseId} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    // Blockberichte (Tätigkeitsnachweis + Einschätzungsbogen): Schüler:innen
+    // laden ihre eigene Datei hoch, dürfen sie erneut hochladen und wieder
+    // löschen, aber NICHT selbst die Ampel-Bewertung setzen – das bleibt
+    // Lehrkräften vorbehalten.
+    match /praktikumsberichte/{id} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['dateiUrl','dateiName','hochgeladenAm']));
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+    // Teams/Gruppen je Woche: Schüler:innen bilden sie selbst.
+    // Die Meilenstein-Prüfung (msPruefung) setzt ausschließlich die Lehrkraft.
+    // Nicht-Mitglieder dürfen nur sich selbst hinzufügen (Beitreten).
+    match /lehrplanTeams/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved() && request.resource.data.createdBy == request.auth.uid
+        && !request.resource.data.keys().hasAny(['msPruefung']);
+      allow update: if isTeacher()
+        || (isApproved()
+          && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['msPruefung'])
+          && (request.auth.uid in resource.data.get('mitgliederUids',[])
+            || resource.data.createdBy == request.auth.uid
+            || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['mitgliederUids','mitgliederNamen'])
+              && request.auth.uid in request.resource.data.mitgliederUids)));
+      allow delete: if isTeacher() || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+    // Persönliche Beiträge zu Projekt-Meilensteinen (ID <teamId>_<index>_<uid>):
+    // jede Person schreibt nur ihren eigenen Beitrag, alle Freigeschalteten
+    // lesen (Team sieht den Stand, Lehrkraft prüft).
+    match /meilensteinBeitraege/{id} {
+      allow read: if isApproved();
+      allow create, update: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.teamId + '_' + string(request.resource.data.index) + '_' + request.auth.uid;
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+    // Produkte/Ergebnisse je Woche: Schüler:innen laden hoch, Lehrkraft sieht alles.
+    // Die Vorkorrektur-Felder setzt nur die Lehrkraft.
+    match /lehrplanProdukte/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && !request.resource.data.keys().hasAny(['vorkorrektur','vorkorrekturAmpel','vorkorrekturAm','vorkorrekturVon']);
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid
+          && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['vorkorrektur','vorkorrekturAmpel','vorkorrekturAm','vorkorrekturVon','uid']));
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // CHECK-OUT (K-Prim-Test zum Wochenabschluss, live durch die Lehrkraft)
+    // ---------------------------------------------------------
+    function checkoutIstLive(coId) {
+      return get(/databases/$(database)/documents/checkouts/$(coId)).data.status == 'live';
+    }
+    // Auswahlfenster für den Kurzarbeit-Ersatz: offen, wenn die Lehrkraft es von
+    // Hand geöffnet hat ODER jetzt zwischen „auswahlAb“ und (optional) „auswahlBis“.
+    function auswahlFensterOffen() {
+      let e = get(/databases/$(database)/documents/checkoutEinstellungen/pp).data;
+      return e.get('auswahlOffen', false) == true
+        || (e.get('auswahlAb', null) is timestamp
+            && request.time >= e.get('auswahlAb', null)
+            && (!(e.get('auswahlBis', null) is timestamp)
+                || request.time <= e.get('auswahlBis', null)));
+    }
+    // Aufgaben: Schüler:innen sehen nur freigeschaltete oder beendete Tests.
+    match /checkouts/{id} {
+      allow read: if isTeacher()
+        || (isApproved() && resource.data.status in ['live', 'beendet']);
+      allow create, update, delete: if isTeacher();
+    }
+    // Lösungen: ausschließlich Lehrkräfte (Auswertung im Browser der Lehrkraft).
+    match /checkoutLoesungen/{id} {
+      allow read, write: if isTeacher();
+    }
+    // Abgaben (ID <checkoutId>_<uid>): nur solange der Test live ist und noch
+    // nicht abgegeben wurde. Punkte/Noten schreibt nur die Lehrkraft.
+    match /checkoutAbgaben/{id} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.checkoutId + '_' + request.auth.uid
+        && checkoutIstLive(request.resource.data.checkoutId)
+        && request.resource.data.keys().hasOnly(['checkoutId','uid','name','antworten','abgegeben','abgegebenAt','updatedAt']);
+      allow update: if isTeacher()
+        || (isApproved()
+          && resource.data.uid == request.auth.uid
+          && resource.data.get('abgegeben', false) == false
+          && checkoutIstLive(resource.data.checkoutId)
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['antworten','abgegeben','abgegebenAt','updatedAt','name']));
+      allow delete: if isTeacher();
+    }
+    // Einstellungen Kurzarbeit-Ersatz (z. B. 7 aus 10, Auswahl offen?).
+    match /checkoutEinstellungen/{id} {
+      allow read: if isApproved();
+      allow write: if isTeacher();
+    }
+    // Auswahl der Schüler:innen für den Kurzarbeit-Ersatz – nur solange die
+    // Lehrkraft die Auswahl geöffnet hat.
+    match /checkoutAuswahl/{uid} {
+      allow read: if isApproved() && (uid == request.auth.uid || isTeacher());
+      allow create, update: if isTeacher()
+        || (isApproved() && uid == request.auth.uid
+          && request.resource.data.uid == request.auth.uid
+          && auswahlFensterOffen());
+      allow delete: if isTeacher();
+    }
+    // Persönlicher Fortschritt je Woche (Ziele erfüllt, Häkchen): privat,
+    // aber für Lehrkräfte einsehbar (z. B. für die Ampel-Übersicht).
+    match /lehrplanFortschritt/{id} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+      allow update: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
+    // Interaktive Stunde „Das Experiment“ (LB 1): anonymer Klassenvergleich.
+    // Gespeichert werden NUR Gruppe (A/B) und Wörterzahl (0–10) – bewusst ohne
+    // UID, Name und Zeitstempel, damit kein Wert einer Person zuordenbar ist.
+    // Alle Freigeschalteten dürfen lesen und einen Wert hinzufügen; Werte lassen
+    // sich nicht ändern, löschen (zurücksetzen) darf nur die Lehrkraft.
+    match /experimentErgebnisse/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.keys().hasOnly(['gruppe','woerter'])
+        && request.resource.data.gruppe in ['A','B']
+        && request.resource.data.woerter is int
+        && request.resource.data.woerter >= 0
+        && request.resource.data.woerter <= 10;
+      allow update: if false;
+      allow delete: if isTeacher();
+    }
+
+    // Basis-Check: Fragen legen nur Lehrkräfte an, Versuche gehören der
+    // jeweiligen Person (Lehrkräfte dürfen alle einsehen, für die Live-Übersicht).
+    match /basischeckFragen/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    // Abschlussprüfungs-Training (Pädagogik/Psychologie): Prüfungsfrage,
+    // Eingrenzungshinweis und K-Prim-Aufgaben je Inhalt – nur Lehrkräfte
+    // schreiben, alle Freigeschalteten lesen.
+    match /aptInhalte/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    match /basischeckVersuche/{id} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+      allow update: if isApproved() && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == resource.data.uid;
+      allow delete: if isTeacher();
+    }
+
+    match /essayEntries/{id} {
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+
+      // Beim Anlegen dürfen Schüler:innen keine Rückmeldungs-Felder
+      // vorbelegen – die kommen ausschließlich von der Lehrkraft.
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && !request.resource.data.keys().hasAny(['feedback','feedbackBy','feedbackAt']);
+
+      // Die schreibende Person darf nur ihren eigenen Text sowie das
+      // Anfordern einer Rückmeldung ändern. Feedback/feedbackBy/
+      // feedbackAt darf ausschließlich eine Lehrkraft setzen.
+      allow update: if isTeacher()
+        || (isApproved()
+          && resource.data.uid == request.auth.uid
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['text','updatedAt','feedbackRequested','feedbackRequestedAt','selfCheck','selfCheckAt']));
+
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // Kleine, generische Link-Ablage (aktuell: fobizz-Assistent-Link
+    // fürs Fachaufsatz-Training).
+    match /taskcardLinks/{id} {
+      allow read: if isApproved();
+      allow write: if isTeacher();
+    }
+
+    match /practice/{id} {
+      allow read: if isApproved();
+      allow create: if isTeacher()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher();
+    }
+
+    match /events/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+
+    match /calendar/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+
+    // ---------------------------------------------------------
+    // CAMPUS-NEWS – getrennt vom Campus-Forum
+    // ---------------------------------------------------------
+    match /news/{id} {
+      allow read: if isApproved();
+      allow create: if isTeacher()
+        && request.resource.data.authorUid == request.auth.uid;
+      allow update: if isTeacher()
+        && request.resource.data.authorUid == resource.data.authorUid;
+      allow delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------
+    // PRACTICAL TRAINING / FPA
+    // ---------------------------------------------------------
+    match /fpaQuestions/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /fpaProjects/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // KI INNOVATIONSLABOR
+    // ---------------------------------------------------------
+    match /kiLernwerkstattLinks/{id} {
+      allow read: if isApproved();
+      allow create: if isTeacher()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher();
+    }
+
+    match /kiChallenges/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /kiSolutions/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    match /kiResults/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid;
+      allow update, delete: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // LEHRKRÄFTE / KLASSENTEAM
+    // ---------------------------------------------------------
+    match /classTeamUpdates/{id} {
+      allow read, create, update, delete: if isTeacher();
+    }
+
+    // ---------------------------------------------------------
+    // LERNSTANDSMESSUNGEN
+    // ---------------------------------------------------------
+    match /lernstandMessungen/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+
+    match /lernstandVersuche/{id} {
+      // A student may only read their own attempts.
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+
+      // Students can submit only for themselves.
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid;
+
+      // Only teachers/admins can grade/change attempts.
+      allow update: if isTeacher();
+      allow delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------
+    // LEARNING RESOURCES
+    // ---------------------------------------------------------
+    match /lernressourcen/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+
+    // Kompatibilität mit älteren/alternativen Ressourcen-Datensätzen.
+    match /resources/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+
+    // ---------------------------------------------------------
+    // OPTIONAL / FUTURE CLASS STRUCTURE
+    // ---------------------------------------------------------
+    match /classes/{classId} {
+      allow read: if isApproved();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ---------------------------------------------------------
+    // PERSÖNLICHE NACHRICHTEN (Campus-Forum → Nachrichten)
+    // Schüler ↔ Schüler, Schüler ↔ Lehrkraft, Lehrkraft ↔ Lehrkraft.
+    // conversationId ist immer "<kleinereUid>_<größereUid>", damit
+    // beide Beteiligten dieselbe Unterhaltung eindeutig finden.
+    // ---------------------------------------------------------
+    match /messages/{id} {
+      // Nur die zwei Beteiligten einer Nachricht dürfen sie lesen.
+      allow read: if isApproved()
+        && (resource.data.fromUid == request.auth.uid || resource.data.toUid == request.auth.uid);
+
+      // Eine Nachricht kann nur im eigenen Namen an eine andere,
+      // tatsächlich existierende Person geschickt werden.
+      allow create: if isApproved()
+        && request.resource.data.fromUid == request.auth.uid
+        && request.resource.data.toUid is string
+        && request.resource.data.toUid != request.auth.uid
+        && exists(/databases/$(database)/documents/users/$(request.resource.data.toUid))
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 4000
+        && request.resource.data.conversationId ==
+             (request.auth.uid < request.resource.data.toUid
+               ? request.auth.uid + '_' + request.resource.data.toUid
+               : request.resource.data.toUid + '_' + request.auth.uid);
+
+      // Der Absender darf seine eigene Nachricht nachträglich bearbeiten
+      // (nur den Text/Antwort-Bezug). Der Empfänger darf ausschließlich
+      // den Lese-Status setzen (für die Benachrichtigungsanzeige).
+      // Zusätzlich darf jeder Beteiligte eine Nachricht aus der EIGENEN
+      // Ansicht entfernen, indem er die eigene UID zu deletedFor hinzufügt.
+      // Bestehende Einträge dürfen dabei nicht entfernt werden, damit
+      // niemand das Ausblenden der anderen Person rückgängig macht.
+      allow update: if isApproved()
+        && (
+          (resource.data.fromUid == request.auth.uid
+            && request.resource.data.fromUid == resource.data.fromUid
+            && request.resource.data.toUid == resource.data.toUid
+            && request.resource.data.diff(resource.data).affectedKeys()
+                 .hasOnly(['text', 'edited', 'updatedAt', 'replyToId', 'replyToText', 'replyToName']))
+          ||
+          (resource.data.toUid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['read', 'readAt']))
+          ||
+          ((resource.data.fromUid == request.auth.uid || resource.data.toUid == request.auth.uid)
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['deletedFor'])
+            && request.auth.uid in request.resource.data.deletedFor
+            && request.resource.data.deletedFor.hasAll(resource.data.get('deletedFor', [])))
+        );
+
+      // Jede Person darf ausschließlich ihre eigenen (gesendeten)
+      // Nachrichten löschen.
+      allow delete: if isApproved() && resource.data.fromUid == request.auth.uid;
+    }
+
+    // ---------------------------------------------------------
+    // TEAM-WHITEBOARD UND TAFEL (unendliche Arbeitsfläche, live im Team)
+    // Art "team": alle freigeschalteten Mitglieder bearbeiten gemeinsam.
+    // Art "tafel": Lehrkräfte bearbeiten, Schüler:innen sehen zu, solange
+    // "schreibschutz" gesetzt ist. Löschen dürfen nur die Urheber:in des
+    // Elements und Lehrkräfte.
+    // ---------------------------------------------------------
+    function wbOffen(boardId) {
+      // Eine Tafel (art "tafel") verändern ausschließlich Lehrkräfte, unabhängig vom Schreibschutz.
+      return isTeacher()
+        || (get(/databases/$(database)/documents/whiteboards/$(boardId)).data.get('art', 'team') != 'tafel'
+            && get(/databases/$(database)/documents/whiteboards/$(boardId)).data.get('schreibschutz', false) == false);
+    }
+
+    match /whiteboards/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.createdBy == request.auth.uid
+        && (request.resource.data.get('art', 'team') != 'tafel' || isTeacher());
+      allow update: if isTeacher()
+        || (isApproved() && resource.data.createdBy == request.auth.uid);
+      allow delete: if isTeacher();
+    }
+
+    match /whiteboardItems/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.authorUid == request.auth.uid
+        && wbOffen(request.resource.data.boardId);
+      allow update: if isApproved()
+        && request.resource.data.boardId == resource.data.boardId
+        && request.resource.data.authorUid == resource.data.authorUid
+        && wbOffen(resource.data.boardId);
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid
+            && wbOffen(resource.data.boardId));
+    }
+
+    // Bilder im Whiteboard: eigenes Dokument je Bild (verkleinertes JPEG als Text),
+    // damit das Verschieben des Bildes nur das kleine Element-Dokument überträgt.
+    match /whiteboardImages/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.authorUid == request.auth.uid
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 900000
+        && wbOffen(request.resource.data.boardId);
+      allow delete: if isTeacher()
+        || (isApproved() && resource.data.authorUid == request.auth.uid);
+    }
+
+    // Online-Anzeige und Mauszeiger: ein Dokument je Person und Board ("<boardId>_<uid>").
+    match /whiteboardPresence/{id} {
+      allow read: if isApproved();
+      allow create, update: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.boardId + '_' + request.auth.uid;
+      allow delete: if isApproved() && resource.data.uid == request.auth.uid;
+    }
+
+    // ---------------------------------------------------------
+    // MODULPLAN PÄDAGOGIK/PSYCHOLOGIE
+    // Lehrkräfte planen die Module Woche für Woche, alle sehen den Plan.
+    // ---------------------------------------------------------
+    match /ppModule/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+
+    // Check-out zur Unterrichtsstunde (offene Fragen): ein Dokument je Person
+    // und Modul, ID "<modulId>_<uid>". Lesen: die Person selbst und Lehrkräfte.
+    match /ppStundenAntworten/{id} {
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.modulId + '_' + request.auth.uid;
+      allow update: if isApproved()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // Lernübersicht: Die Lehrkraft legt die Vorlage im Modul bzw. in der Stunde an (ppModule / lehrplanTafeln).
+    // Jede Person hat darin ihre eigene Fassung mit Ergänzungen und Notizen: ein Dokument je Person, ID "<lernId>_<uid>".
+    // Lesen: die Person selbst und Lehrkräfte.
+    match /ppLernuebersicht/{id} {
+      allow read: if isApproved()
+        && (isTeacher()
+            || id.matches('.*_' + request.auth.uid)
+            || (resource != null && resource.data.uid == request.auth.uid));
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.lernId + '_' + request.auth.uid;
+      allow update: if isApproved()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // Fortschritt im Selbstlernkurs: ein Dokument je Person und Modul.
+    match /ppKursFortschritt/{id} {
+      allow read: if isApproved()
+        && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.modulId + '_' + request.auth.uid;
+      allow update: if isApproved()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // Lernrallye: Stand je Person und Rallye (Antworten, freigeschaltete Stationen), ID "<modulId>_<uid>".
+    // Lesen: die Person selbst und Lehrkräfte.
+    match /ppRallyeStand/{id} {
+      allow read: if isApproved()
+        && (isTeacher()
+            || id.matches('.*_' + request.auth.uid)
+            || (resource != null && resource.data.uid == request.auth.uid));
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.modulId + '_' + request.auth.uid;
+      allow update: if isApproved()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // Lernrallye: Punkte für die Rangliste (Kurzname, Team, Punkte). Alle freigeschalteten Nutzer:innen dürfen lesen.
+    match /ppRallyeRang/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.modulId + '_' + request.auth.uid;
+      allow update: if isApproved()
+        && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == request.auth.uid;
+      allow delete: if isTeacher() || (isApproved() && resource.data.uid == request.auth.uid);
+    }
+
+    // ---------------------------------------------------------
+    // WOCHENPLAN (Module, Einführungen, Sprechzeiten, Buchungen, Tutoring)
+    // Der persönliche Plan (wpPlan) ist privat; Lehrkräfte sehen nur Kennzahlen
+    // (wpStatus) oder den Plan, wenn die Person ihn teilt (geteilt == true).
+    // ---------------------------------------------------------
+    match /wpModule/{id} {
+      allow read: if isApproved() && (isTeacher() || resource.data.status == 'live');
+      allow create, update, delete: if isTeacher();
+    }
+    match /wpEinfuehrungen/{id} {
+      allow read: if isApproved() && (isTeacher() || resource.data.status == 'live');
+      allow create, update, delete: if isTeacher();
+    }
+    match /wpSlots/{id} {
+      allow read: if isApproved() && (isTeacher() || resource.data.status == 'live');
+      allow create, update, delete: if isTeacher();
+    }
+    match /wpWochen/{woche} {
+      allow read: if isApproved() && (resource == null || isTeacher() || resource.data.status == 'live');
+      allow create, update, delete: if isTeacher();
+    }
+    match /wpEinstellungen/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
+    match /wpTeamPlan/{woche} {
+      allow read, create, update, delete: if isTeacher();
+    }
+    // Anwesenheit der Woche (Freitagsplanung) – nur Lehrkräfte
+    match /wpAnwesenheit/{woche} {
+      allow read, create, update, delete: if isTeacher();
+    }
+    match /wpTeamChat/{id} {
+      allow read: if isTeacher();
+      allow create: if isTeacher() && request.resource.data.fromUid == request.auth.uid;
+      allow delete: if isTeacher() && (resource.data.fromUid == request.auth.uid || isAdmin());
+      allow update: if false;
+    }
+    match /wpPlan/{id} {
+      allow read: if isApproved() && (resource == null
+        || resource.data.uid == request.auth.uid
+        || (isTeacher() && resource.data.get('geteilt', false) == true));
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && id == request.auth.uid + '_' + request.resource.data.woche;
+      allow update: if isApproved() && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == resource.data.uid;
+      allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+    match /wpStatus/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && id == request.auth.uid + '_' + request.resource.data.woche;
+      allow update: if isApproved() && resource.data.uid == request.auth.uid
+        && request.resource.data.uid == resource.data.uid;
+      allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+    // Sprechzeit-Buchung: Dokument-ID = Slot-ID, dadurch kann jeder Termin nur
+    // einmal vergeben werden (ein zweites Anlegen wäre ein verbotenes Update).
+    match /wpBuchungen/{slotId} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && request.resource.data.slotId == slotId
+        && exists(/databases/$(database)/documents/wpSlots/$(slotId))
+        && get(/databases/$(database)/documents/wpSlots/$(slotId)).data.status == 'live';
+      allow update: if false;
+      allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+    }
+    // Belegt-Marker (ohne Personenbezug), damit alle sehen, dass ein Termin vergeben ist.
+    match /wpBelegt/{slotId} {
+      allow read: if isApproved();
+      allow create: if isApproved() && request.resource.data.keys().hasOnly(['slotId', 'createdAt'])
+        && request.resource.data.slotId == slotId
+        && getAfter(/databases/$(database)/documents/wpBuchungen/$(slotId)).data.uid == request.auth.uid;
+      allow update: if false;
+      allow delete: if isTeacher()
+        || (isApproved() && (!exists(/databases/$(database)/documents/wpBuchungen/$(slotId))
+          || get(/databases/$(database)/documents/wpBuchungen/$(slotId)).data.uid == request.auth.uid));
+    }
+    // Angebote der Mitschüler:innen (Tutoring / Kompetenzen) – sichtbar für alle in der Klasse.
+    match /wpTutor/{id} {
+      allow read: if isApproved();
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid;
+      allow update: if isApproved() && resource.data.uid == request.auth.uid && request.resource.data.uid == resource.data.uid;
+      allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+    }
+    // Block-Feedback: anonym. Lehrkräfte lesen; Schüler:innen senden einmal je Block (Marker wpFbGegeben).
+    match /wpFeedback/{id} {
+      allow read: if isApproved() && isTeacher();
+      allow create: if isApproved()
+        && request.resource.data.keys().hasOnly(['moduleId', 'fach', 'block', 'titel', 'blockDatum', 'datum', 'antworten', 'gut', 'besser', 'wunsch', 'createdAt'])
+        && request.resource.data.moduleId is string
+        && request.resource.data.antworten is map
+        && request.resource.data.gut is string && request.resource.data.gut.size() <= 600
+        && request.resource.data.besser is string && request.resource.data.besser.size() <= 600
+        && request.resource.data.wunsch is string && request.resource.data.wunsch.size() <= 600;
+      allow update: if false;
+      allow delete: if isApproved() && isTeacher();
+    }
+    match /wpFbGegeben/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.moduleId + '_' + request.auth.uid;
+      allow update: if false;
+      allow delete: if isApproved() && isTeacher();
+    }
+    // Lernplan bis Schulaufgabe/Kurzarbeit: privat.
+    match /wpLernplan/{id} {
+      allow read, write: if isApproved() && id == request.auth.uid;
+    }
+    // Persönlicher Impuls (Lehrkräfte schreiben, die Person liest).
+    match /wpImpuls/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow write: if isApproved() && isTeacher();
+    }
+    // Lernstandsgespräch je Person und Woche.
+    match /wpGespraeche/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow create, delete: if isApproved() && isTeacher();
+      allow update: if isApproved() && (isTeacher()
+        || (resource.data.uid == request.auth.uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['bestaetigt', 'updatedAt'])));
+    }
+    // Zielvereinbarung (Lehrkräfte schreiben, die Person liest) und Notizen (nur Lehrkräfte).
+    match /wpZiele/{id} {
+      allow read: if isApproved() && (id == request.auth.uid || isTeacher());
+      allow write: if isApproved() && isTeacher();
+    }
+    match /wpGespraechNotizen/{id} {
+      allow read, write: if isApproved() && isTeacher();
+    }
+    // Anfragen: nur die beteiligten Personen (und Lehrkräfte zur Übersicht).
+    match /wpAnfragen/{id} {
+      allow read: if isApproved() && (resource.data.vonUid == request.auth.uid
+        || resource.data.tutorUid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.vonUid == request.auth.uid
+        && request.resource.data.status == 'offen';
+      allow update: if isApproved()
+        && ((resource.data.tutorUid == request.auth.uid
+              && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+              && request.resource.data.status in ['angenommen', 'abgelehnt', 'zurueckgezogen'])
+          || (resource.data.vonUid == request.auth.uid
+              && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'updatedAt'])
+              && request.resource.data.status == 'zurueckgezogen'));
+      allow delete: if isApproved() && (resource.data.vonUid == request.auth.uid
+        || resource.data.tutorUid == request.auth.uid || isAdmin());
+    }
+
+
+    // ---------------------------------------------------------
+    // Deny everything not explicitly listed above.
+    // ---------------------------------------------------------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
