@@ -4670,6 +4670,18 @@ body.ppm-dnd-an{cursor:grabbing;-webkit-user-select:none;user-select:none}
 .ppm-leer{color:var(--muted);font-size:13px;align-self:center}
 .ppm-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:0 0 14px}.ppm-box h2{margin:0 0 8px;font-size:18px}.ppm-box h3{margin:12px 0 4px;font-size:15px}.ppm-box p{margin:6px 0;line-height:1.5}
 .ppm-kopf{border-left:6px solid var(--c);}
+/* ---- Farbbalance: jeder Bereich hat seine eigene ruhige Akzentfarbe ---- */
+.ppm-sek{--s:#2f79b7;border-left:6px solid var(--s);border-color:color-mix(in srgb,var(--s) 28%,#fff);border-left-color:var(--s);background:color-mix(in srgb,var(--s) 6%,#fff)}
+.ppm-sek>h2,.ppm-sek>summary{color:color-mix(in srgb,var(--s) 85%,#000)}
+.ppm-sek .ppm-btn.primaer{background:var(--s);border-color:var(--s)}
+.ppm-sek .ppm-bar i{background:var(--s)}
+.ppm-sek.s-faden{--s:#7b5ea7}.ppm-sek.s-material{--s:#c98318}.ppm-sek.s-lernen{--s:#2f79b7}
+.ppm-sek.s-pruefen{--s:#1f9a8a}.ppm-sek.s-team{--s:#c25a7c}.ppm-sek.s-lehrer{--s:#6b7c93}.ppm-sek.s-warn{--s:#c4513f}
+.ppm-kopf{background:color-mix(in srgb,var(--c) 9%,#fff);border-color:color-mix(in srgb,var(--c) 30%,#fff);border-left-color:var(--c)}
+.ppm-kopf h1{color:#1d2b3a}
+.ppm-sek .lb-pill{background:#fff}
+.ppm-sek.s-faden .lb-pill.da{background:var(--s);border-color:var(--s)}
+
 .ppm-zeile{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:8px 0;border-bottom:1px solid var(--line)}.ppm-zeile:last-child{border:0}
 .ppm-btn{display:inline-flex;align-items:center;gap:6px;min-height:42px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:700;font-size:13px;color:var(--ink);cursor:pointer;text-decoration:none}
 .ppm-btn.primaer{background:#2f7fc6;border-color:#2f7fc6;color:#fff}.ppm-btn.klein{min-height:34px;padding:0 10px;font-size:12px}
@@ -5171,7 +5183,25 @@ async function ppmStandardplan(){
  }catch(e){ppmFehler(e,"Plan konnte nicht angelegt werden");}
 }
 // ------------------------------------------------------------ Modulseiten
-async function ppmModulSeite(m){
+
+// Farbbalance: ordnet jedem Bereich einer Modulseite eine Akzentfarbe zu
+function ppmSekFarben(h){
+ if(!h||typeof h!=="string")return h;
+ const k=t=>{t=t.toLowerCase();
+  if(/lehrkraft|name der stunde/.test(t))return"s-lehrer";
+  if(/datenschutz/.test(t))return"s-warn";
+  if(/^material/.test(t))return"s-material";
+  if(/check-?out|k-prim|wo stehe|dein stand|zeitstruktur|zeitplan|rangliste|checkliste|bewertet/.test(t))return"s-pruefen";
+  if(/team|wer macht|messe/.test(t))return"s-team";
+  return"s-lernen";};
+ h=h.replace(/<div class="lb-leiste-x"/g,'<div');
+ h=h.replace(/<div class="ppm-box lb-leiste"/g,'<div class="ppm-box ppm-sek s-faden lb-leiste"');
+ h=h.replace(/<div class="ppm-box((?: [a-z-]+)*)">\s*<h2>([^<]*)/g,(a,c,t)=>`<div class="ppm-box ppm-sek ${k(t)}${c}"><h2>${t}`);
+ h=h.replace(/<details class="ppm-box ppm-details"([^>]*)><summary>([^<]*)/g,(a,o,t)=>`<details class="ppm-box ppm-details ppm-sek ${k(t)}"${o}><summary>${t}`);
+ return h;
+}
+async function ppmModulSeite(m){return ppmSekFarben(await ppmModulSeiteRoh(m));}
+async function ppmModulSeiteRoh(m){
  await ppmMeineLaden();
  if(m.modul==="projekt"){if(m.vorlage){const v=await bepVorlage(m.vorlage);if(v)return await ppmProjektVorlageSeite(m,v);}return await ppmProjektSeite(m);}
  if(m.modul==="stunde")return await ppmStundeSeite(m);
