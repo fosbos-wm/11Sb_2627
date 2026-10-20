@@ -4743,6 +4743,9 @@ body.ppm-dnd-an{cursor:grabbing;-webkit-user-select:none;user-select:none}
 .bep-gruppe{margin:12px 0 4px;font-size:11px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:#6b7c93}
 .bep-bz{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;margin:0 0 6px}
 .bep-bz.vergeben{background:#f6f9fc}
+.bep-bereich{margin:0 0 8px}.bep-bereich>.bep-bz{margin-bottom:4px}
+.bep-bz.bep-tz{margin:0 0 4px 22px;padding:6px 10px;background:#fff;border-left:4px solid #b9c8d6}
+.bep-tnr{flex:none;min-width:52px;font-weight:800;font-size:12px;color:#17384f}
 .bep-kap{flex:none;min-width:38px;height:30px;padding:0 6px;border-radius:8px;background:#17384f;color:#fff;font-weight:800;font-size:12px;display:inline-flex;align-items:center;justify-content:center}
 .bep-tabwrap{overflow-x:auto}
 .bep-tab{width:100%;border-collapse:collapse;font-size:14px}.bep-tab th{text-align:left;font-size:12px;color:var(--muted);padding:6px 8px;border-bottom:2px solid var(--line)}.bep-tab td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
@@ -5429,9 +5432,10 @@ async function bepTeamNeu(mId,idx){
  const v=await bepVorlage(m.vorlage),d=await bepLaden(m);if(!v||!d)return;
  if(d.team){toast("Du bist schon in einem Team.");return;}
  const b=v.bereiche[idx];if(!b)return;
- if(d.teams.some(t=>t.bereichKap===b.kap)){toast("Dieser Bereich ist schon vergeben. Tritt dem Team bei.");await render();return;}
+ // Mehrere Teams dürfen denselben Bildungsbereich wählen: neue Teams werden pro Bereich durchnummeriert
+ const nr=bepTeamsImBereich(d,b.kap).reduce((mx,t)=>Math.max(mx,bepTeamNr(t,d)),0)+1;
  try{
-  await addDoc(collection(db,"lehrplanTeams"),{wocheId:"vorlage_"+m.id,fach:"paedagogik",teamName:b.name,bereichKap:b.kap,bereichName:b.name,
+  await addDoc(collection(db,"lehrplanTeams"),{wocheId:"vorlage_"+m.id,fach:"paedagogik",teamName:nr>1?`${b.name} · Team ${nr}`:b.name,teamNr:nr,bereichKap:b.kap,bereichName:b.name,
    mitgliederUids:[currentUser.uid],mitgliederNamen:[profile?.displayName||"Ich"],createdBy:currentUser.uid,createdAt:serverTimestamp()});
   toast("Team gegründet. Du bist Mitglied.");showMotivationsBild(false,"team");await render();
  }catch(e){ppmFehler(e,"Das Team konnte nicht gegründet werden");}
@@ -5493,6 +5497,14 @@ async function bepTermineSpeichern(mId,zuruecksetzen){
 Object.assign(window,{bepTeamNeu,bepTeamBeitreten,bepTeamVerlassen,bepTeamAufloesen,bepTeamFeld,bepAufgabeHaken,bepCheckHaken,bepTermineSpeichern});
 
 // ------------------------------------------------------------ Modulseite
+// Mehrere Teams pro Bildungsbereich: Nummer innerhalb des Bereichs (ältere Teams ohne teamNr werden nach Gründungszeit gezählt)
+function bepTeamsImBereich(d,kap){return d.teams.filter(x=>x.bereichKap===kap).sort((a,b)=>((a.createdAt&&a.createdAt.seconds)||0)-((b.createdAt&&b.createdAt.seconds)||0));}
+function bepTeamNr(t,d){if(t.teamNr)return Number(t.teamNr);const l=bepTeamsImBereich(d,t.bereichKap);return Math.max(1,l.findIndex(x=>x.id===t.id)+1);}
+function bepTeamLabel(t,d){
+ const base=`${t.bereichKap?t.bereichKap+" ":""}${t.bereichName||t.teamName||""}`;
+ const mehrere=d&&bepTeamsImBereich(d,t.bereichKap).length>1;
+ return mehrere?`${base} · Team ${bepTeamNr(t,d)}`:base;
+}
 function bepNamenListe(team){return(team.mitgliederNamen||[]).map(n=>esc(wbKurz?wbKurz(n)||n:n)).join(", ");}
 function bepBlickHTML(v){
  return`<div class="bep-blick">${v.blick.map(b=>`<div class="bep-tile"><b>${esc(b.titel)}</b><small>${esc(b.text)}</small></div>`).join("")}</div>`;
@@ -5502,20 +5514,24 @@ function bepAuftragHTML(v){
   <div class="bep-hinweis"><b>Worauf es ankommt.</b> ${esc(v.worauf)}</div>
   <p class="bep-bsp"><b>Beispiel:</b> ${esc(v.beispiel)}</p></div>`;
 }
-// Teamwahl: elf Bildungsbereiche, jeder genau einmal
+// Teamwahl: elf Bildungsbereiche, mehrere Teams pro Bereich möglich
 function bepTeamWahlHTML(m,v,d){
  const max=(v.teamGroesse&&v.teamGroesse.max)||3;
  let gruppe="";
  const zeilen=v.bereiche.map((b,idx)=>{
-  const t=d.teams.find(x=>x.bereichKap===b.kap),n=t?(t.mitgliederUids||[]).length:0;
+  const ts=bepTeamsImBereich(d,b.kap);
   const kopf=b.gruppe!==gruppe?`<div class="bep-gruppe">${esc(b.gruppe)}</div>`:"";gruppe=b.gruppe;
-  const akt=!t?`<button type="button" class="ppm-btn klein primaer" onclick="bepTeamNeu('${m.id}',${idx})">Team gründen</button>`
-   :n>=max?`<span class="ppm-status">voll (${n}/${max})</span>`
-   :`<button type="button" class="ppm-btn klein primaer" onclick="bepTeamBeitreten('${m.id}','${t.id}')">Beitreten (${n}/${max})</button>`;
-  return`${kopf}<div class="bep-bz${t?" vergeben":""}"><span class="bep-kap">${esc(b.kap)}</span><div style="flex:1;min-width:0"><b>${esc(b.name)}</b>${t?`<br><small>Team: ${bepNamenListe(t)}</small>`:`<br><small>noch frei</small>`}</div>${akt}</div>`;
+  const teamZeilen=ts.map(t=>{
+   const n=(t.mitgliederUids||[]).length,nr=bepTeamNr(t,d);
+   const akt=n>=max?`<span class="ppm-status">voll (${n}/${max})</span>`
+    :`<button type="button" class="ppm-btn klein primaer" onclick="bepTeamBeitreten('${m.id}','${t.id}')">Beitreten (${n}/${max})</button>`;
+   return`<div class="bep-bz bep-tz vergeben"><span class="bep-tnr">Team ${nr}</span><div style="flex:1;min-width:0"><small>${bepNamenListe(t)||"noch niemand"}</small></div>${akt}</div>`;
+  }).join("");
+  const neuBtn=`<button type="button" class="ppm-btn klein${ts.length?"":" primaer"}" onclick="bepTeamNeu('${m.id}',${idx})">${ts.length?"Weiteres Team gründen":"Team gründen"}</button>`;
+  return`${kopf}<div class="bep-bereich"><div class="bep-bz${ts.length?" vergeben":""}"><span class="bep-kap">${esc(b.kap)}</span><div style="flex:1;min-width:0"><b>${esc(b.name)}</b><br><small>${ts.length?`${ts.length} Team${ts.length===1?"":"s"} · ${ts.reduce((a,t)=>a+(t.mitgliederUids||[]).length,0)} Person${ts.reduce((a,t)=>a+(t.mitgliederUids||[]).length,0)===1?"":"en"}`:"noch kein Team"}</small></div>${neuBtn}</div>${teamZeilen}</div>`;
  }).join("");
  return`<div class="ppm-box bep-teamwahl"><h2> Schritt 1: Such dir dein Team</h2>
-  <p>Jedes Team arbeitet an <b>einem</b> Bildungsbereich des BayBEP (${v.teamGroesse.min}–${max} Personen). Ist dein Wunschbereich noch frei, gründest du das Team. Ist schon ein Team da und noch Platz, trittst du bei.</p>
+  <p>Jedes Team arbeitet an <b>einem</b> Bildungsbereich des BayBEP (${v.teamGroesse.min}–${max} Personen). <b>Mehrere Teams können denselben Bereich wählen</b>, zum Beispiel Umwelt. Such dir einen Bereich aus und tritt einem Team mit freiem Platz bei oder gründe ein weiteres Team.</p>
   <p class="bep-klein">${esc(v.bereichHinweis)}</p>${zeilen}</div>`;
 }
 function bepTeamBoxHTML(m,v,d,lehrer){
@@ -5531,7 +5547,7 @@ function bepTeamBoxHTML(m,v,d,lehrer){
   return`<tr${mine?' class="ich"':""}><td data-l="Name"><b>${esc((t.mitgliederNamen||[])[k]||"Mitglied")}</b>${mine?" (ich)":""}</td><td data-l="Rolle im Team">${rolle}</td><td data-l="Praktikumsstelle">${stelle}</td><td data-l="Krippe / Kiga">${art}</td><td data-l="Altersgruppe">${alter}</td></tr>`;
  }).join("");
  const verlassen=!lehrer?`<button type="button" class="ppm-btn klein" onclick="bepTeamVerlassen('${m.id}','${t.id}')">Team verlassen</button>`:"";
- return`<div class="ppm-box"><h2> Mein Team: ${esc(t.bereichKap?t.bereichKap+" ":"")}${esc(t.bereichName||t.teamName||"")}</h2>
+ return`<div class="ppm-box"><h2> Mein Team: ${esc(bepTeamLabel(t,d))}</h2>
   <div class="bep-tabwrap"><table class="bep-tab bep-teamtab"><thead><tr><th>Name</th><th>Rolle im Team</th><th>Praktikumsstelle</th><th>Krippe / Kiga</th><th>Altersgruppe</th></tr></thead><tbody>${zeilen}</tbody></table></div>
   <p class="bep-klein">Rollen im Team: ${v.rollen.map(esc).join(", ")}. Trage deine Rolle und deine Praktikumsstelle ein. Keine Namen von Kindern!</p>
   <div class="ppm-zeile" style="border:0;padding-bottom:0">${(t.mitgliederUids||[]).length<max?`<small>Es ist noch Platz für ${max-(t.mitgliederUids||[]).length} Person${max-(t.mitgliederUids||[]).length===1?"":"en"}.</small>`:""}${verlassen}</div></div>`;
@@ -5660,29 +5676,29 @@ async function bepLehrerHTML(m,v,d){
  const warten=[];
  d.teams.forEach(t=>ph.bestaetigung.forEach(i=>{const st=msStatus(ph,t,d.beitraege,i);if(st.zustand==="wartet")warten.push({t,i,st});}));
  const kopfZellen=v.meilensteine.map((x,k)=>{const f=bepFrist(m,v,k+1);return`<th title="${esc(x.titel)}">${esc(x.kurz)}<small>${f?esc(fmtKurz(f)):""}</small></th>`;}).join("");
- const zeilen=d.teams.slice().sort((a,b)=>String(a.bereichKap||"").localeCompare(String(b.bereichKap||""),"de",{numeric:true})).map(t=>{
+ const zeilen=d.teams.slice().sort((a,b)=>String(a.bereichKap||"").localeCompare(String(b.bereichKap||""),"de",{numeric:true})||bepTeamNr(a,d)-bepTeamNr(b,d)).map(t=>{
   const zellen=v.meilensteine.map((x,k)=>{
    const i=k+1,st=msStatus(ph,t,d.beitraege,i),Z=MS_ZUSTAND[st.zustand],f=bepFrist(m,v,i);
    const n=(t.mitgliederUids||[]).length-st.fehlend.length,ueber=f&&f<h&&st.zustand!=="erreicht";
    return`<td class="bep-z ${st.zustand}${ueber?" ueber":""}" title="${esc(x.kurz+": "+Z.t+(ueber?" (Frist verstrichen)":""))}"><b>${st.zustand==="erreicht"?"✓":Z.i}</b><small>${n}/${(t.mitgliederUids||[]).length}</small></td>`;
   }).join("");
-  return`<tr><td class="bep-tn"><b>${esc(t.bereichKap||"")}</b> ${esc(t.bereichName||t.teamName||"")}<small>${bepNamenListe(t)}</small></td>${zellen}</tr>`;
+  return`<tr><td class="bep-tn"><b>${esc(bepTeamLabel(t,d))}</b><small>${bepNamenListe(t)}</small></td>${zellen}</tr>`;
  }).join("");
  const matrix=d.teams.length?`<div class="bep-tabwrap"><table class="bep-matrix"><thead><tr><th>Team (Bildungsbereich)</th>${kopfZellen}</tr></thead><tbody>${zeilen}</tbody></table></div>
    <p class="bep-klein">✓ erreicht · wartet auf deine Bestätigung · ↩ zurückgegeben · ○ offen (darunter: Beiträge vorhanden / Teamgröße). Rot umrandet: Frist ist verstrichen.</p>`
   :`<p class="ppm-leer">Noch hat sich kein Team gebildet.</p>`;
  const frei=v.bereiche.filter(b=>!d.teams.some(t=>t.bereichKap===b.kap));
- const queue=warten.length?warten.map(w=>`<div class="bep-wq"><b>${esc(w.t.bereichKap||"")} ${esc(w.t.bereichName||w.t.teamName||"")}</b> · ${esc(v.meilensteine[w.i-1].kurz)} ${esc(v.meilensteine[w.i-1].titel)}
+ const queue=warten.length?warten.map(w=>`<div class="bep-wq"><b>${esc(bepTeamLabel(w.t,d))}</b> · ${esc(v.meilensteine[w.i-1].kurz)} ${esc(v.meilensteine[w.i-1].titel)}
    <div class="ms-beitraege">${w.st.beitraege.map(b=>`<div><b>${esc(b.name||"")}:</b> ${esc(b.text||"")}${msLinksHTML(b)}</div>`).join("")}</div>
    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px"><button class="ppm-btn klein primaer" onclick="msPruefen('${v.id}','${w.t.id}',${w.i},true,'seite')">✓ Bestätigen</button><button class="ppm-btn klein" onclick="msPruefen('${v.id}','${w.t.id}',${w.i},false,'seite')">↩ Zurückgeben</button></div></div>`).join("")
   :`<p class="ppm-leer">Gerade wartet nichts auf deine Bestätigung.</p>`;
- const teamDetails=d.teams.map(t=>`<details class="bep-td"><summary><b>${esc(t.bereichKap||"")} ${esc(t.bereichName||t.teamName||"")}</b> · ${bepNamenListe(t)}</summary>
+ const teamDetails=d.teams.map(t=>`<details class="bep-td"><summary><b>${esc(bepTeamLabel(t,d))}</b> · ${bepNamenListe(t)}</summary>
    ${msListeHTML(ph,t,d.beitraege,"seite")}
    <div class="ppm-zeile" style="border:0"><button type="button" class="ppm-btn klein" onclick="bepTeamAufloesen('${m.id}','${t.id}')">Team auflösen</button></div></details>`).join("");
  const termine=v.meilensteine.map((x,k)=>{const i=k+1,eig=m.termine&&m.termine[i]||"",std=bepAnker(bepZeitraum(m),x.faellig);
   return`<label class="bep-termin"><span><b>${esc(x.kurz)}</b> ${esc(x.titel)}<small>Standard: ${std?esc(bepTagText(std)):"–"}</small></span><input type="date" id="bepT${i}" value="${esc(eig)}"></label>`;}).join("");
  return`<div class="ppm-box bep-lehrer"><h2>Für dich als Lehrkraft: Teamstand</h2>
-  <div class="bep-zahlen"><div><b>${d.teams.length}</b><small>Teams</small></div><div><b>${students.length-ohne.length}/${students.length}</b><small>Schüler:innen im Team</small></div><div class="${warten.length?"warn":""}"><b>${warten.length}</b><small>warten auf dich</small></div><div><b>${frei.length}</b><small>Bereiche noch frei</small></div></div>
+  <div class="bep-zahlen"><div><b>${d.teams.length}</b><small>Teams</small></div><div><b>${students.length-ohne.length}/${students.length}</b><small>Schüler:innen im Team</small></div><div class="${warten.length?"warn":""}"><b>${warten.length}</b><small>warten auf dich</small></div><div><b>${frei.length}</b><small>Bereiche ohne Team</small></div></div>
   <h3>Wartet auf deine Bestätigung</h3>${queue}
   <h3>Stand aller Teams</h3>${matrix}
   ${ohne.length?`<h3>Noch ohne Team (${ohne.length})</h3><p>${ohne.map(s=>esc(s.displayName||s.email||"Schüler:in")).join(", ")}</p>`:(students.length?`<p><b>Alle Schüler:innen haben ein Team ✓</b></p>`:"")}
