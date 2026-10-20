@@ -4235,7 +4235,8 @@ const PPM_TYPEN={
  selbstlern:{icon:"",name:"Selbstlernkurs",kurz:"Selbstlernkurs",art:"Selbstlernkurs",text:"Schüler:innen bearbeiten den Kurs selbstständig von A bis Z."},
  experiment:{icon:"",name:"Experiment (interaktive Einheit)",kurz:"Experiment",art:"Experiment",text:"„Das Experiment“ als interaktive Einheit. Du wählst selbst, welche Teile dabei sind."},
  einfuehrung:{icon:"",name:"Einführung in den Lernbereich",kurz:"Einführung",art:"Einführung in den Lernbereich",text:"Thema wählen: Die Digitale Tafel mit Vorlagen und die passenden Selbstlernkurse sind sofort vorbereitet."},
- rallye:{icon:"",name:"Lernrallye",kurz:"Lernrallye",art:"Lernrallye",text:"Stationen mit Aufgaben, per QR-Code oder der Reihe nach, einzeln oder in Teams, mit Punkten und Rangliste."}
+ rallye:{icon:"",name:"Lernrallye",kurz:"Lernrallye",art:"Lernrallye",text:"Stationen mit Aufgaben, per QR-Code oder der Reihe nach, einzeln oder in Teams, mit Punkten und Rangliste."},
+ uebung:{icon:"",name:"Vertiefungs- / Übungsbaustein",kurz:"Übungsbaustein",art:"Übungsbaustein",text:"Interaktive Übungen und Spiele (Memory, Blockfall, Lückentext, Zuordnung, Tetris …) für die Klasse freischalten, als einzelne Übung oder als ganzer Ordner."}
 };
 // Themen für „Einführung in den Lernbereich“: Tafel-Vorlagen (Seiten in der Reihenfolge) und verknüpfte Selbstlernkurse (Einheiten-IDs aus einarbeitung/inhalte).
 // Weitere Themen lassen sich hier einfach ergänzen.
@@ -4264,7 +4265,7 @@ const PPM_DAUERN=[
 // Pro Schulwoche stehen 6,3 Unterrichtsstunden zu je 45 Minuten (285 Minuten) zur Verfügung. Wochen mit Praktikum (fpA-Blöcke)
 // und Ferien sind gesperrt. Eine ganze Woche (1 bis 3 Wochen) belegt die Woche vollständig.
 const PPM_STD_PRO_WOCHE="6,3",PPM_MIN_PRO_STUNDE=45,PPM_MIN_PRO_WOCHE=285; // 6 Stunden + 15 Minuten (z. B. K-Prim-Test) = 285 Minuten = 6,3 Stunden
-const PPM_DAUER_STANDARD={projekt:"w3",stunde:"90",experiment:"90",apt:"w1",kprim:"45",selbstlern:"w1",einfuehrung:"135",rallye:"90"};
+const PPM_DAUER_STANDARD={projekt:"w3",stunde:"90",experiment:"90",apt:"w1",kprim:"45",selbstlern:"w1",einfuehrung:"135",rallye:"90",uebung:"45"};
 function ppmDauerKey(m){
  if(m&&PPM_DAUERN.some(d=>d.k===m.dauer))return m.dauer;
  const n=Math.max(1,Number(m&&m.wochen)||1);
@@ -4494,6 +4495,7 @@ function ppmFort(m){
  if(isTeacher())return null;
  try{
   if(m.modul==="selbstlern"&&String(m.kursId||"").startsWith("ea:")){const f=PPM.meine.ea[m.kursId.slice(3)]||{},a=f.einarbeitungAufgaben,done=!!f.einarbeitungAbgeschlossen;return{done,frac:done?1:(a&&a.gesamt?a.richtig/a.gesamt:0)};}
+  if(m.modul==="uebung"){const done=ubErledigt(m);return{done,frac:done?1:0};}
   if(m.modul==="rallye"){const p=lrFortschritt(m);return p.n?{done:p.done,frac:p.frac}:null;}
   if(m.modul==="einfuehrung"){const ids=m.kurse||[];if(!ids.length)return null;const n=ids.filter(id=>(PPM.meine.ea[id]||{}).einarbeitungAbgeschlossen).length;return{done:n===ids.length,frac:n/ids.length};}
   if(m.modul==="projekt"&&m.vorlage)return bepFort(m);
@@ -4508,6 +4510,7 @@ function ppmFort(m){
 function ppmKW(w){const d=new Date(w.start+"T12:00:00Z");d.setUTCDate(d.getUTCDate()+3-((d.getUTCDay()+6)%7));const j=new Date(Date.UTC(d.getUTCFullYear(),0,4));return 1+Math.round(((d-j)/86400000-3+((j.getUTCDay()+6)%7))/7);}
 function ppmStatus(m){
  if(isTeacher())return"";
+ if(m.modul==="uebung"){if(!m.ubZiel)return"";const d=ubErledigt(m);return`<span class="ppm-status${d?" ok":""}">${d?"erledigt ✓":"noch offen"}</span>`;}
  if(m.modul==="selbstlern"&&String(m.kursId||"").startsWith("ea:")){const f=PPM.meine.ea[m.kursId.slice(3)]||{},a=f.einarbeitungAufgaben;return`<span class="ppm-status${f.einarbeitungAbgeschlossen?" ok":""}">${f.einarbeitungAbgeschlossen?"abgeschlossen ✓":(a&&a.gesamt?`${a.richtig}/${a.gesamt} Aufgaben`:"noch offen")}</span>`;}
  if(m.modul==="projekt"&&m.vorlage)return bepStatusHTML(m);
  if(m.modul==="experiment"||(m.modul==="projekt"&&ppmProjektDirekt(m))){const f=PPM.meine.exp||{};return`<span class="ppm-status${f.experimentErledigt?" ok":""}">${f.experimentErledigt?"gemacht ✓":"noch offen"}</span>`;}
@@ -4940,6 +4943,7 @@ async function ppmDialog(id,typ,woche,opt){
  const projWochen=projekt?ppmWochen(projekt):null;
  const start=bearb?bearb.start:(woche&&(!projWochen||projWochen.some(w=>w.id===woche))?woche:(projWochen?projWochen[0].id:erste.id));
  let checkouts=[];
+ const ubKat=t==="uebung"?await ubKatalog():[];
  if(t==="kprim"){try{checkouts=(await ladeCheckoutDaten()).checkouts||[];}catch(e){}}
  const ea=t==="selbstlern"?await ppmEaListe():[];
  const vorlagen=t==="projekt"?(await Promise.all(BEP_VORLAGEN_IDS.map(bepVorlage))).filter(Boolean):[];
@@ -4971,6 +4975,10 @@ async function ppmDialog(id,typ,woche,opt){
  }
  if(t==="kprim")extra=`<label>Check-out verknüpfen<select id="ppmCheckout">${ppmCheckoutOptionen(checkouts,bearb&&bearb.checkoutId)}</select></label>
    <p style="font-size:13px;color:var(--muted);margin:0">Die K-Prim-Tests stehen nach Lernbereich geordnet zur Auswahl. Eine „Vorlage“ wird beim Speichern automatisch als Check-out-Entwurf angelegt und mit diesem Modul verknüpft; freischalten kannst du ihn danach auf der Modulseite.</p>`;
+ if(t==="uebung"){
+  extra=`<label>Welcher Baustein wird freigeschaltet?<select id="ppmUbZiel">${ubKat.length?"":`<option value="">Noch ohne Inhalt (folgt später)</option>`}${ubOptionen(ubKat,bearb&&bearb.ubZiel)}</select></label>
+   <p style="font-size:13px;color:var(--muted);margin:0">${ubKat.length?"Ein ganzer Ordner enthält mehrere Übungen zu einem Thema, die Schüler:innen suchen sich dann selbst eine aus. Die Übungen laufen im Browser, es werden keine Daten gespeichert oder übertragen. Als erledigt markieren sich die Schüler:innen selbst (nur auf ihrem Gerät).":"Für die 11. Klasse gibt es noch keine Übungen. Du kannst den Baustein schon im Plan anlegen, die Übungen werden später ergänzt (Ordner uebungsbausteine/)."}</p>`;
+ }
  if(t==="rallye"){
   extra=`<label>Wie spielen die Schüler:innen?<select id="ppmRModus"><option value="einzeln"${bearb&&bearb.rModus==="team"?"":" selected"}>Einzeln: Jede Person sammelt eigene Punkte</option><option value="team"${bearb&&bearb.rModus==="team"?" selected":""}>In Teams: Die Punkte zählen für das Team</option></select></label>
    <label>Freischaltung der Stationen<select id="ppmRFrei">${Object.entries(LR_FREISCHALTUNG).map(([k,v])=>`<option value="${k}"${(bearb&&bearb.rFreischaltung||"qr")===k?" selected":""}>${esc(v)}</option>`).join("")}</select></label>
@@ -5076,7 +5084,7 @@ async function ppmDialog(id,typ,woche,opt){
   if(!pr.ok){toast(pr.zeilen&&pr.zeilen[0]&&pr.zeilen[0].spur?"In dieser Zeit läuft schon ein anderes Projekt.":"In dieser Woche ist nicht genug Platz (6,3 Unterrichtsstunden pro Woche).");return;}
   const dk=$("ppmDauer").value,def=PPM_DAUERN.find(d=>d.k===dk);
   const daten={modul:t,lb,titel:ti.value.trim(),start:$("ppmStart").value,dauer:dk,wochen:def?def.wochen:(Number(dk.slice(1))||1),notiz:$("ppmNotiz").value.trim()};
-  if(!daten.titel){const x=PROJEKT_PHASEN.find(y=>y.lbNum===lb);daten.titel=t==="projekt"&&x?x.titel:(t==="apt"?"Prüfungstraining · LB"+lb:t==="kprim"?"K-Prim-Aufgabensatz · LB"+lb:t==="stunde"?"Deeper-Learning-Einheit · LB"+lb:t==="experiment"?"Das Experiment":t==="rallye"?"Lernrallye · LB"+lb:"Selbstlernkurs · LB"+lb);}
+  if(!daten.titel){const x=PROJEKT_PHASEN.find(y=>y.lbNum===lb);daten.titel=t==="projekt"&&x?x.titel:(t==="apt"?"Prüfungstraining · LB"+lb:t==="kprim"?"K-Prim-Aufgabensatz · LB"+lb:t==="stunde"?"Deeper-Learning-Einheit · LB"+lb:t==="experiment"?"Das Experiment":t==="rallye"?"Lernrallye · LB"+lb:t==="uebung"?"Übungsbaustein · LB"+lb:"Selbstlernkurs · LB"+lb);}
   if(t==="einfuehrung"){
    daten.thema=$("ppmThema").value;
    const th=PPM_EINF_THEMEN[daten.thema]||PPM_EINF_THEMEN.eigen;
@@ -5108,6 +5116,7 @@ async function ppmDialog(id,typ,woche,opt){
    if(def&&def.min&&min>def.min&&!confirm(`Die gewählten Teile brauchen etwa ${min} Minuten, eingeplant sind ${def.min}. Trotzdem speichern?`))return;
   }
   if(t==="rallye"){daten.rModus=$("ppmRModus").value;daten.rFreischaltung=$("ppmRFrei").value;}
+  if(t==="uebung"){daten.ubZiel=$("ppmUbZiel").value;if(daten.ubZiel&&!ti.value.trim())daten.titel=ubZielName(daten.ubZiel,ubKat)||daten.titel;}
   if(t==="selbstlern"){
    daten.kursId=$("ppmKurs").value;
    if(!ti.value.trim()){
@@ -5210,6 +5219,7 @@ async function ppmModulSeiteRoh(m){
  if(m.modul==="stunde")return await ppmStundeSeite(m);
  if(m.modul==="einfuehrung")return await ppmEinfuehrungSeite(m);
  if(m.modul==="rallye")return await ppmRallyeSeite(m);
+ if(m.modul==="uebung")return await ppmUebungSeite(m);
  if(m.modul==="kprim")return await ppmKprimSeite(m);
  if(m.modul==="apt")return await ppmAptSeite(m);
  if(m.modul==="experiment")return await ppmExperimentSeite(m);
@@ -5218,6 +5228,51 @@ async function ppmModulSeiteRoh(m){
   return await ppmKursSeite(m);
  }
  return"";
+}
+let UB_KAT=null;
+async function ubKatalog(){
+ if(UB_KAT)return UB_KAT;
+ try{const r=await fetch("uebungsbausteine/stationen/katalog.json",{cache:"no-cache"});UB_KAT=r.ok?await r.json():[];}catch(e){UB_KAT=[];}
+ return UB_KAT;
+}
+function ubPfad(e){return Array.isArray(e.pfad)&&e.pfad.length?e.pfad:[e.fach||"Übungen",e.thema||""].filter(Boolean);}
+function ubOptionen(kat,sel){
+ const ordner=[...new Set(kat.flatMap(e=>{const p=ubPfad(e);return p.map((_,i)=>p.slice(0,i+1).join("/"));}))];
+ const opt=(v,l)=>`<option value="${esc(v)}"${v===sel?" selected":""}>${esc(l)}</option>`;
+ return`<optgroup label="Ganzer Ordner">${ordner.map(k=>opt("o:"+k,k.split("/").join(" › ")+" (alle Übungen)")).join("")}</optgroup>
+  <optgroup label="Einzelne Übung">${kat.map(e=>{const p=ubPfad(e),l=p[p.length-1],rest=e.titel.startsWith(l+" ")?e.titel.slice(l.length+1):e.titel;return opt("s:"+e.id,p.join(" › ")+" › "+rest)}).join("")}</optgroup>`;
+}
+function ubZielName(z,kat){
+ if(!z)return"";
+ if(z.startsWith("o:"))return z.slice(2).split("/").join(" › ");
+ const e=(kat||[]).find(x=>"s:"+x.id===z);return e?e.titel:"";
+}
+function ubUrl(z){
+ if(String(z||"").startsWith("s:"))return"uebungsbausteine/station.html?s="+encodeURIComponent(z.slice(2).replace(/[^A-Za-z0-9_-]/g,""));
+ if(String(z||"").startsWith("o:"))return"uebungsbausteine/index.html?ordner="+encodeURIComponent(z.slice(2));
+ return"uebungsbausteine/index.html";
+}
+function ubSchluessel(m){return"ub-ok-"+((currentUser&&currentUser.uid)||"x")+"-"+m.id;}
+function ubErledigt(m){try{return localStorage.getItem(ubSchluessel(m))==="1";}catch(e){return false;}}
+window.ubToggle=async function(id){
+ const m=ppmById(id);if(!m)return;const k=ubSchluessel(m);
+ try{if(ubErledigt(m))localStorage.removeItem(k);else localStorage.setItem(k,"1");}catch(e){toast("Der Haken kann in diesem Browser nicht gespeichert werden.");}
+ await render();
+};
+async function ppmUebungSeite(m){
+ const lehrer=isTeacher(),kat=await ubKatalog(),url=ubUrl(m.ubZiel),done=ubErledigt(m);
+ if(!m.ubZiel)return`${ppmKopf(m,"")}
+ <div class="ppm-box"><h2>Vertiefungs- / Übungsbaustein</h2><p class="ppm-leer">Die Übungen für diesen Baustein werden noch vorbereitet.</p>${lehrer?`<p style="font-size:13px;color:var(--muted)">Sobald Übungen im Ordner uebungsbausteine/ liegen, wählst du sie über „Modul bearbeiten“ aus.</p>`:""}</div>
+ ${footer()}`;
+ const name=ubZielName(m.ubZiel,kat)||m.titel||"Übungsbaustein";
+ return`${ppmKopf(m,`<p style="color:var(--muted)">${esc(name)}</p>`)}
+ <div class="ppm-box"><h2>Vertiefungs- / Übungsbaustein</h2>
+  <p style="color:var(--muted);font-size:13px">Tippe eine Übung an, sie startet sofort. Die Übungen laufen komplett im Browser: Es werden keine Daten gespeichert oder übertragen.</p>
+  <iframe src="${esc(url)}" title="${esc(name)}" style="width:100%;height:78vh;border:1px solid var(--line,#ddd);border-radius:12px;background:#fff" allow="fullscreen"></iframe>
+  <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+   <a class="ppm-btn" href="${esc(url)}" target="_blank" rel="noopener" style="text-decoration:none">Im neuen Tab öffnen ↗</a>
+   ${lehrer?"":`<button type="button" class="ppm-btn primaer" onclick="ubToggle('${esc(m.id)}')">${done?"✓ Erledigt (zurücknehmen)":"Als erledigt markieren"}</button>`}</div></div>
+ ${footer()}`;
 }
 // ---- Experiment (interaktive Einheit mit wählbaren Teilen) ----
 async function ppmExperimentSeite(m){
