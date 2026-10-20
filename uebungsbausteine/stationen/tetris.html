@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Begriffe-Tetris</title>
+<style>
+:root{--paper:#f2f5f7;--card:#fff;--ink:#14222c;--muted:#566872;--line:#d3dde3;--accent:#0e5a77;--accent-d:#0a4660;--on:#fff;--ok:#1b7f4b;--ok-bg:#d9f0e2;--bad:#b3261e;--bad-bg:#f9dedc;--board:#10283a}
+@media (prefers-color-scheme:dark){:root{--paper:#0f171c;--card:#17232a;--ink:#e6eff3;--muted:#9bb0ba;--line:#2a3b44;--accent:#5fb8d9;--accent-d:#8dd0e8;--on:#062029;--ok:#6fd49b;--ok-bg:#163626;--bad:#f2928b;--bad-bg:#3a1b19;--board:#0a1820}}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-tap-highlight-color:transparent}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:12px max(12px,env(safe-area-inset-left,0))}
+main{width:100%;max-width:980px}
+h1{font-size:1.2rem;margin:0 0 4px}.sub{color:var(--muted);margin:0 0 12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.hidden{display:none!important}
+h2{font-size:1.05rem;margin:0 0 8px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:10px 0}
+label.sel{display:flex;gap:8px;align-items:center;font-size:.9rem}
+select{font:inherit;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+button{font:inherit;cursor:pointer;color:inherit}
+.btn{background:var(--accent);color:var(--on);border:0;border-radius:10px;padding:10px 18px;font-weight:600}
+.btn.sec{background:var(--card);color:var(--accent-d);border:1px solid var(--accent)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.small{font-size:.85rem;color:var(--muted)}
+ul.how{margin:6px 0 0;padding-left:20px;font-size:.9rem;line-height:1.5}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+#game{display:flex;gap:16px;align-items:flex-start;justify-content:center;flex-wrap:wrap}
+#board{display:block;background:var(--board);border-radius:10px;border:3px solid var(--ink);width:min(300px,78vw,calc((100vh - 230px)/2));height:auto;aspect-ratio:1/2}
+.side{display:flex;flex-direction:column;gap:10px;min-width:150px;max-width:200px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.stat small{display:block;color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em}
+.stat b{font-size:1.35rem}
+#next{display:block;margin:4px auto 0;background:var(--board);border-radius:8px}
+.ctrl{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;width:100%;max-width:520px;margin:12px auto 0}
+.ctrl button{background:var(--card);border:1px solid var(--accent);color:var(--accent-d);border-radius:10px;padding:14px 4px;font-weight:600;touch-action:manipulation;user-select:none}
+.ctrl button:active{background:var(--accent);color:var(--on)}
+.keys{font-size:.78rem;color:var(--muted);text-align:center;margin-top:8px}
+.overlay{position:fixed;inset:0;background:rgba(8,20,30,.66);display:flex;align-items:center;justify-content:center;padding:14px;z-index:10;overflow:auto}
+.dialog{background:var(--card);border-radius:14px;max-width:640px;width:100%;padding:18px;border:2px solid var(--accent);max-height:96vh;overflow:auto}
+.qmeta{display:flex;justify-content:space-between;gap:8px;font-size:.8rem;color:var(--muted);margin-bottom:6px}
+.qtype{font-size:.82rem;font-weight:600;color:var(--accent-d);margin-bottom:4px}
+.qtext{font-size:1.15rem;font-weight:600;margin:0 0 12px;line-height:1.35}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;gap:10px;text-align:left;background:var(--card);border:2px solid var(--line);border-radius:10px;padding:10px 12px;line-height:1.35}
+.opt:hover:not(:disabled){border-color:var(--accent)}
+.opt .k{flex:none;width:24px;height:24px;border-radius:6px;background:var(--paper);border:1px solid var(--line);font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.opt.ok{border-color:var(--ok);background:var(--ok-bg)}.opt.bad{border-color:var(--bad);background:var(--bad-bg)}
+.fb{margin-top:12px;padding:10px 12px;border-radius:10px;font-size:.92rem;line-height:1.4}
+.fb.ok{background:var(--ok-bg);border:1px solid var(--ok)}.fb.bad{background:var(--bad-bg);border:1px solid var(--bad)}
+.fb b{display:block;margin-bottom:2px}
+.dialog .btn{margin-top:12px}
+table.res{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:8px}
+table.res td{border-top:1px solid var(--line);padding:6px 4px;vertical-align:top}table.res td:first-child{font-weight:600;width:34%}
+.err{color:var(--bad);font-weight:600}
+@media (max-width:560px){.side{flex-direction:row;flex-wrap:wrap;max-width:none;width:100%;min-width:0}.side .stat{flex:1 1 70px;padding:6px 8px}.side .stat b{font-size:1.05rem}#nextbox{flex:1 1 70px}#board{width:min(260px,70vw,calc((100vh - 380px)/2))}#game{gap:8px}#btnPause,#btnQuit{flex:1 1 45%;padding:8px}}
+</style></head>
+<body><main>
+<section id="start" class="panel">
+ <h1 id="ttl">Begriffe-Tetris</h1><p class="sub" id="anl"></p>
+ <div id="loadmsg" class="small">Wird geladen ...</div>
+ <div class="row">
+  <label class="sel">Abgefragt wird <select id="mode"><option value="mix">Alle Fragearten gemischt</option><option value="fall">Fälle den Fachbegriffen zuordnen</option><option value="b2d">Bedeutung zum Fachbegriff finden</option><option value="d2b">Fachbegriff zur Bedeutung finden</option></select></label>
+  <label class="sel">Startgeschwindigkeit <select id="speed"><option value="1">Langsam</option><option value="3">Mittel</option><option value="5">Schnell</option></select></label>
+ </div>
+ <div class="row"><button id="btnStart" class="btn" disabled>Spiel starten</button><span id="count" class="small"></span><span id="best" class="small"></span></div>
+ <h2 style="margin-top:14px">So funktioniert es</h2>
+ <ul class="how">
+  <li>Die Blöcke fallen von oben. Drehe und verschiebe sie, damit sich waagrechte Reihen vollständig füllen.</li>
+  <li>Ist eine Reihe voll, hält das Spiel an. Du zeigst, ob du einen Fachbegriff verstehst: Was bedeutet er, und welcher Fachbegriff passt zu einem Fall? Richtig gibt Punkte, die Reihe löst sich in jedem Fall auf.</li>
+  <li>Falsch beantwortete Karten kommen später noch einmal und stehen am Ende in deiner Wiederholungsliste.</li>
+  <li>Das Spiel endet nach der letzten Frage oder wenn die Blöcke oben anstoßen.</li>
+ </ul>
+</section>
+<section id="game" class="hidden">
+ <div><canvas id="board" width="300" height="600"></canvas></div>
+ <div class="side">
+  <div class="stat"><small>Punkte</small><b id="sScore">0</b></div>
+  <div class="stat"><small>Level</small><b id="sLevel">1</b></div>
+  <div class="stat"><small>Reihen</small><b id="sLines">0</b></div>
+  <div class="stat"><small>Richtig</small><b id="sRight">0 / 0</b></div>
+  <div class="stat" id="nextbox"><small>Als Nächstes</small><canvas id="next" width="96" height="96"></canvas></div>
+  <button id="btnPause" class="btn sec">Pause</button>
+  <button id="btnQuit" class="btn sec">Spiel beenden</button>
+ </div>
+ <div style="width:100%"><div class="ctrl" id="ctrl"><button data-act="left">Links</button><button data-act="rotate">Drehen</button><button data-act="right">Rechts</button><button data-act="soft">Schneller</button><button data-act="down">Fallen</button></div>
+ <div class="keys">Tippen auf das Spielfeld dreht den Block, seitlich ziehen verschiebt ihn, nach unten wischen lässt ihn fallen.<br>Tastatur: Pfeile, Leertaste = fallen lassen, P = Pause</div></div>
+</section>
+</main>
+<div id="ov" class="overlay hidden"><div class="dialog" id="dlg"></div></div>
+<script>
+(function(){
+"use strict";
+var COLS=10, ROWS=20, CELL=30;
+var COLORS={I:"#3fb6e8",O:"#f2c230",T:"#9b6fd0",S:"#4fb06d",Z:"#e5565c",J:"#1688cf",L:"#ee8a3a"};
+var SHAPES={
+  I:[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],
+  O:[[1,1],[1,1]],
+  T:[[0,1,0],[1,1,1],[0,0,0]],
+  S:[[0,1,1],[1,1,0],[0,0,0]],
+  Z:[[1,1,0],[0,1,1],[0,0,0]],
+  J:[[1,0,0],[1,1,1],[0,0,0]],
+  L:[[0,0,1],[1,1,1],[0,0,0]]
+};
+var $=function(id){return document.getElementById(id);};
+var cvs=$("board"), ctx=cvs.getContext("2d");
+var ncvs=$("next"), nctx=ncvs.getContext("2d");
+
+var ART="Bedeutung",DATA=null,TS=false,SEED=1,NQ=12,RP,RQ,T0=0;
+var S={}; // game state
+
+/* ---------- helpers ---------- */
+function rng(seed){var a=(seed*2654435761)>>>0;return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function shuffle(a,r){r=r||RQ;for(var i=a.length-1;i>0;i--){var j=Math.floor(r()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function rot(m){var n=m.length,r=[],y,x;for(y=0;y<n;y++){r.push([]);for(x=0;x<n;x++)r[y].push(0);}for(y=0;y<n;y++)for(x=0;x<n;x++)r[x][n-1-y]=m[y][x];return r;}
+function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e;}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+
+/* ---------- start screen ---------- */
+function report(punkte,max,zuege,sekunden){if(!TS)return;try{parent.postMessage({tsResult:{punkte:punkte,max:max,zuege:zuege,sekunden:sekunden}},"*");}catch(e){}}
+function loadData(){
+  var q=new URLSearchParams(location.search);TS=q.get("ts")==="1";
+  var set=(q.get("set")||"").replace(/[^a-z0-9\-]/gi,"");
+  SEED=parseInt(q.get("spiel"),10)||Math.floor(Math.random()*99)+1;
+  var nq=parseInt(q.get("fragen"),10);NQ=(nq>=4&&nq<=40)?nq:12;
+  fetch("../inhalte/"+set+".json",{cache:"no-cache"}).then(function(r){if(!r.ok)throw new Error(r.status);return r.json();}).then(function(d){
+    DATA=d;$("ttl").textContent=d.titel;$("anl").textContent=d.anleitung||"";
+    ART=d.art==="definition"?"Definition":"Bedeutung";$("count").textContent=d.karten.length+" Fachbegriffe, "+(d.faelle||[]).length+" Fälle, "+NQ+" Fragen pro Spiel";
+    $("loadmsg").classList.add("hidden");$("btnStart").disabled=d.karten.length<8;
+  }).catch(function(){var m=$("loadmsg");m.className="err";m.textContent="Die Übung konnte nicht geladen werden.";});
+}
+
+/* ---------- cards / questions ---------- */
+function buildCards(){
+  var m=$("mode").value,out=[];
+  if(m!=="fall")DATA.karten.forEach(function(k,i){out.push({id:"k"+i,topic:k.t||"x",begriff:k.begriff,def:k.bedeutung||k.definition});});
+  if(m==="mix"||m==="fall")(DATA.faelle||[]).forEach(function(f,i){out.push({id:"f"+i,topic:f.c||"x",isFall:true,fall:!!f.fall,q:f,begriff:f.o[f.r],def:f.f});});
+  return out;
+}
+function nextCard(){
+  var q=S.retry;
+  for(var i=0;i<q.length;i++){if(q[i].wait<=0){var c=q.splice(i,1)[0].card;return c;}}
+  if(!S.deck.length)S.deck=shuffle(S.cards.slice());
+  var c2=S.deck.pop();
+  if(S.last&&c2.id===S.last.id&&S.deck.length){S.deck.unshift(c2);c2=S.deck.pop();}
+  return c2;
+}
+function makeQuestion(){
+  var card=nextCard();S.last=card;
+  if(card.isFall){
+    var opts0=shuffle(card.q.o.map(function(t,i){return {text:t,right:i===card.q.r};}));
+    return {card:card,dir:"fall",opts:opts0};
+  }
+  var mode=$("mode").value;
+  var dir=(mode==="mix"||mode==="fall")?(RQ()<.5?"b2d":"d2b"):mode;
+  var key=dir==="b2d"?"def":"begriff";
+  var base=S.cards.filter(function(c){return !c.isFall;});
+  if(base.length<4)base=DATA.karten.map(function(k,i){return {id:"k"+i,topic:k.t||"x",begriff:k.begriff,def:k.bedeutung||k.definition};});
+  var same=shuffle(base.filter(function(c){return c.id!==card.id&&c.topic===card.topic;}));
+  var other=shuffle(base.filter(function(c){return c.id!==card.id&&c.topic!==card.topic;}));
+  var pool=same.concat(other),wrong=[],seen={};seen[card[key]]=1;
+  for(var i=0;i<pool.length&&wrong.length<3;i++){if(!seen[pool[i][key]]){seen[pool[i][key]]=1;wrong.push(pool[i]);}}
+  var opts=shuffle([{text:card[key],right:true}].concat(wrong.map(function(w){return {text:w[key],right:false};})));
+  return {card:card,dir:dir,opts:opts};
+}
+function tickRetry(){S.retry.forEach(function(r){r.wait--;});}
+
+/* ---------- game core ---------- */
+function newPieceFromBag(){
+  if(!S.bag.length)S.bag=shuffle(Object.keys(SHAPES),RP);
+  var t=S.bag.pop();return {t:t,m:SHAPES[t].map(function(r){return r.slice();}),x:0,y:0};
+}
+function collides(m,px,py){
+  for(var y=0;y<m.length;y++)for(var x=0;x<m.length;x++){
+    if(!m[y][x])continue;
+    var bx=px+x,by=py+y;
+    if(bx<0||bx>=COLS||by>=ROWS)return true;
+    if(by>=0&&S.grid[by][bx])return true;
+  }
+  return false;
+}
+function spawn(){
+  var p=S.next||newPieceFromBag();S.next=newPieceFromBag();
+  p.x=Math.floor((COLS-p.m.length)/2);p.y=(p.t==="I")?-1:0;
+  S.cur=p;
+  if(collides(p.m,p.x,p.y)){gameOver();return;}
+  drawNext();
+}
+function move(dx){if(S.state!=="play")return;if(!collides(S.cur.m,S.cur.x+dx,S.cur.y)){S.cur.x+=dx;draw();}}
+function rotate(){
+  if(S.state!=="play")return;
+  var m=rot(S.cur.m),kicks=[0,-1,1,-2,2];
+  for(var i=0;i<kicks.length;i++){if(!collides(m,S.cur.x+kicks[i],S.cur.y)){S.cur.m=m;S.cur.x+=kicks[i];draw();return;}}
+}
+function softDrop(){
+  if(S.state!=="play")return false;
+  if(!collides(S.cur.m,S.cur.x,S.cur.y+1)){S.cur.y++;S.acc=0;draw();return true;}
+  lock();return false;
+}
+function hardDrop(){
+  if(S.state!=="play")return;
+  while(!collides(S.cur.m,S.cur.x,S.cur.y+1))S.cur.y++;
+  lock();
+}
+function lock(){
+  var p=S.cur,over=false;
+  for(var y=0;y<p.m.length;y++)for(var x=0;x<p.m.length;x++){
+    if(!p.m[y][x])continue;
+    var gy=p.y+y,gx=p.x+x;
+    if(gy<0){over=true;continue;}
+    S.grid[gy][gx]=p.t;
+  }
+  S.cur=null;
+  if(over){draw();gameOver();return;}
+  var full=[];
+  for(var r=0;r<ROWS;r++){if(S.grid[r].every(function(c){return c;}))full.push(r);}
+  if(!full.length){spawn();draw();return;}
+  S.full=full;S.qi=0;S.state="quiz";draw();askNext();
+}
+function clearRows(){
+  var rows=S.full;
+  S.grid=S.grid.filter(function(_,i){return rows.indexOf(i)<0;});
+  while(S.grid.length<ROWS)S.grid.unshift(emptyRow());
+  S.lines+=rows.length;
+  S.level=S.startLevel+Math.floor(S.lines/5);
+  S.full=[];
+}
+function emptyRow(){var r=[];for(var i=0;i<COLS;i++)r.push(0);return r;}
+function interval(){return Math.max(90,820-(S.level-1)*75);}
+
+/* ---------- loop ---------- */
+var raf=0,lastT=0;
+function loop(t){
+  raf=requestAnimationFrame(loop);
+  var dt=t-lastT;lastT=t;if(dt>200)dt=200;
+  if(S.state==="play"){S.acc+=dt;if(S.acc>=interval()){S.acc=0;if(!collides(S.cur.m,S.cur.x,S.cur.y+1)){S.cur.y++;draw();}else{lock();}}}
+}
+
+/* ---------- drawing ---------- */
+function block(c,x,y,color,size,alpha){
+  c.globalAlpha=alpha||1;
+  c.fillStyle=color;c.fillRect(x*size+1,y*size+1,size-2,size-2);
+  c.fillStyle="rgba(255,255,255,.28)";c.fillRect(x*size+1,y*size+1,size-2,4);
+  c.fillStyle="rgba(0,0,0,.2)";c.fillRect(x*size+1,y*size+size-5,size-2,4);
+  c.globalAlpha=1;
+}
+function draw(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  ctx.fillStyle="#10283a";ctx.fillRect(0,0,cvs.width,cvs.height);
+  ctx.strokeStyle="#1b3b52";ctx.lineWidth=1;
+  for(var x=1;x<COLS;x++){ctx.beginPath();ctx.moveTo(x*CELL+.5,0);ctx.lineTo(x*CELL+.5,ROWS*CELL);ctx.stroke();}
+  for(var y=1;y<ROWS;y++){ctx.beginPath();ctx.moveTo(0,y*CELL+.5);ctx.lineTo(COLS*CELL,y*CELL+.5);ctx.stroke();}
+  for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){if(S.grid[r][c])block(ctx,c,r,COLORS[S.grid[r][c]],CELL);}
+  if(S.cur){
+    var gy=S.cur.y;while(!collides(S.cur.m,S.cur.x,gy+1))gy++;
+    if(gy!==S.cur.y)forCells(S.cur,function(cx,cy){if(gy+(cy-S.cur.y)>=0)block(ctx,cx,gy+(cy-S.cur.y),COLORS[S.cur.t],CELL,.18);});
+    forCells(S.cur,function(cx,cy){if(cy>=0)block(ctx,cx,cy,COLORS[S.cur.t],CELL);});
+  }
+  if(S.state==="quiz"&&S.full){
+    S.full.forEach(function(r,i){
+      ctx.fillStyle=i<S.qi?"rgba(47,143,78,.0)":(i===S.qi?"rgba(255,255,255,.55)":"rgba(255,255,255,.28)");
+      ctx.fillRect(0,r*CELL,COLS*CELL,CELL);
+    });
+  }
+  $("sScore").textContent=S.score;$("sLevel").textContent=S.level;$("sLines").textContent=S.lines;
+  $("sRight").textContent=S.right+" / "+S.asked;
+}
+function forCells(p,fn){for(var y=0;y<p.m.length;y++)for(var x=0;x<p.m.length;x++)if(p.m[y][x])fn(p.x+x,p.y+y);}
+function drawNext(){
+  nctx.clearRect(0,0,96,96);nctx.fillStyle="#10283a";nctx.fillRect(0,0,96,96);
+  var m=S.next.m,n=m.length,sz=22,minx=9,maxx=-1,miny=9,maxy=-1,x,y;
+  for(y=0;y<n;y++)for(x=0;x<n;x++)if(m[y][x]){minx=Math.min(minx,x);maxx=Math.max(maxx,x);miny=Math.min(miny,y);maxy=Math.max(maxy,y);}
+  var ox=(96-(maxx-minx+1)*sz)/2/sz-minx,oy=(96-(maxy-miny+1)*sz)/2/sz-miny;
+  for(y=0;y<n;y++)for(x=0;x<n;x++)if(m[y][x])block(nctx,x+ox,y+oy,COLORS[S.next.t],sz);
+}
+
+/* ---------- quiz dialog ---------- */
+function showOverlay(on){$("ov").classList.toggle("hidden",!on);}
+var answered=false,curQ=null;
+function askNext(){
+  if(S.qi>=S.full.length||S.asked>=NQ){finishQuiz();return;}
+  curQ=makeQuestion();answered=false;
+  var d=$("dlg");d.textContent="";
+  var meta=el("div","qmeta");meta.appendChild(el("span",null,"Frage "+(S.asked+1)+" von "+NQ+(S.full.length>1?" · Reihe "+(S.qi+1)+" von "+S.full.length:"")));
+  meta.appendChild(el("span",null,curQ.card.topic==="x"?"":curQ.card.topic));d.appendChild(meta);
+  var qt=curQ.dir==="fall"?(curQ.card.fall?"Welcher Fachbegriff passt zu diesem Fall?":"Welcher Fachbegriff trifft auf diese Aussage zu?"):curQ.dir==="b2d"?("Welche "+ART+" hat dieser Fachbegriff?"):("Welcher Fachbegriff passt zu dieser "+ART+"?");
+  d.appendChild(el("div","qtype",qt));
+  d.appendChild(el("p","qtext",curQ.dir==="d2b"||curQ.dir==="fall"?curQ.card.def:curQ.card.begriff));
+  var box=el("div","opts");box.id="opts";
+  curQ.opts.forEach(function(o,i){
+    var b=el("button","opt");b.type="button";b.dataset.i=i;
+    b.appendChild(el("span","k",String(i+1)));b.appendChild(el("span",null,o.text));
+    b.addEventListener("click",function(){answer(i);});box.appendChild(b);
+  });
+  d.appendChild(box);
+  var fb=el("div","fb hidden");fb.id="fb";d.appendChild(fb);
+  var nb=el("button","btn hidden","Weiter");nb.id="nb";nb.type="button";nb.addEventListener("click",function(){S.qi++;draw();askNext();});d.appendChild(nb);
+  showOverlay(true);
+}
+function answer(i){
+  if(answered)return;answered=true;
+  var ok=curQ.opts[i].right,card=curQ.card;
+  S.asked++;
+  S.res[card.id]=S.res[card.id]||{card:card,right:0,wrong:0,last:null};
+  tickRetry();
+  if(ok){
+    S.right++;S.res[card.id].right++;S.res[card.id].last="right";
+    S.score+=100*S.level;
+  }else{
+    S.res[card.id].wrong++;S.res[card.id].last="wrong";
+    S.retry.push({card:card,wait:3});
+  }
+  var btns=document.querySelectorAll("#opts .opt");
+  [].forEach.call(btns,function(b,k){b.disabled=true;if(curQ.opts[k].right)b.classList.add("ok");else if(k===i)b.classList.add("bad");});
+  var fb=$("fb");fb.className="fb "+(ok?"ok":"bad");fb.textContent="";
+  fb.appendChild(el("b",null,ok?"Richtig, die Reihe löst sich auf.":"Nicht ganz, die Reihe löst sich trotzdem auf."));
+  fb.appendChild(el("span",null,card.isFall?("Richtig: "+card.begriff):(card.begriff+": "+card.def)));
+  if(!ok)fb.appendChild(el("div","small","Diese Karte kommt später noch einmal."));
+  var nb=$("nb");nb.classList.remove("hidden");
+  nb.textContent=(S.qi+1>=S.full.length||S.asked>=NQ)?"Reihe auflösen":"Weiter";
+  nb.focus();
+  draw();
+}
+function finishQuiz(){
+  showOverlay(false);
+  clearRows();
+  if(S.asked>=NQ){S.state="play";gameOver(true);return;}
+  S.state="play";S.acc=0;
+  spawn();
+  draw();
+}
+
+/* ---------- start / pause / end ---------- */
+function startGame(){
+  var cards=buildCards();if(cards.length<8)return;
+  RP=rng(SEED*7+1);RQ=rng(SEED*13+5);T0=Date.now();
+  var sl=parseInt($("speed").value,10)||1;
+  S={cards:cards,grid:[],bag:[],cur:null,next:null,state:"play",score:0,lines:0,level:sl,startLevel:sl,acc:0,
+     right:0,asked:0,res:{},retry:[],deck:[],last:null,full:[],qi:0};
+  for(var r=0;r<ROWS;r++)S.grid.push(emptyRow());
+  $("start").classList.add("hidden");$("game").classList.remove("hidden");
+  $("btnPause").textContent="Pause";
+  spawn();draw();
+  cancelAnimationFrame(raf);lastT=performance.now();raf=requestAnimationFrame(loop);
+}
+function pauseToggle(){
+  if(S.state==="play"){
+    S.state="pause";
+    var d=$("dlg");d.textContent="";d.appendChild(el("h2",null,"Pause"));
+    d.appendChild(el("p",null,"Das Spiel ist angehalten."));
+    var b=el("button","btn","Weiter spielen");b.type="button";b.addEventListener("click",pauseToggle);d.appendChild(b);
+    showOverlay(true);$("btnPause").textContent="Weiter";
+  }else if(S.state==="pause"){
+    S.state="play";S.acc=0;showOverlay(false);$("btnPause").textContent="Pause";
+  }
+}
+function gameOver(done){
+  S.state="over";S.cur=null;draw();
+  var secs=Math.round((Date.now()-T0)/1000);report(S.right,NQ,S.asked-S.right,secs);
+  var best=parseInt(store("ts-tetris-best")||"0",10)||0;
+  var isBest=S.score>best;if(isBest)store("ts-tetris-best",String(S.score));
+  var d=$("dlg");d.textContent="";
+  d.appendChild(el("h2",null,done===true?"Geschafft!":"Spiel beendet"));
+  d.appendChild(el("p",null,S.score+" Punkte, Level "+S.level+", "+S.lines+" Reihen. "+S.right+" von "+S.asked+" Fragen richtig."+(isBest&&S.score>0?" Neuer Bestwert auf diesem Gerät.":"")));
+  if(TS)d.appendChild(el("p","small","Dein Ergebnis steht oben auf der Seite, dort findest du den Ergebniscode für die Lehrkraft."));
+  var list=Object.keys(S.res).map(function(k){return S.res[k];}).filter(function(r){return r.last==="wrong";});
+  var fixed=Object.keys(S.res).map(function(k){return S.res[k];}).filter(function(r){return r.wrong>0&&r.last==="right";}).length;
+  if(list.length){
+    d.appendChild(el("h2",null,"Das solltest du wiederholen"));
+    var t=el("table","res");
+    list.forEach(function(r){var tr=el("tr");tr.appendChild(el("td",null,r.card.begriff));tr.appendChild(el("td",null,r.card.isFall?((r.card.fall?"Fall: ":"Aussage: ")+r.card.def):r.card.def));t.appendChild(tr);});
+    d.appendChild(t);
+  }else if(S.asked>0){
+    d.appendChild(el("p",null,"Keine offenen Fehler. Alle Karten, bei denen du dich geirrt hast, hast du später richtig beantwortet."));
+  }
+  if(fixed&&list.length)d.appendChild(el("p","small",fixed+" zuvor falsche "+(fixed===1?"Karte":"Karten")+" hast du später richtig beantwortet und sie stehen deshalb nicht in der Liste."));
+  var row=el("div","row");
+  var b1=el("button","btn",TS?"Zur Startseite der Übung":"Neues Spiel");b1.type="button";b1.addEventListener("click",function(){showOverlay(false);if(TS){toStart();}else{SEED=Math.floor(Math.random()*99)+1;startGame();}});
+  row.appendChild(b1);d.appendChild(row);
+  showOverlay(true);
+}
+function toStart(){
+  showOverlay(false);cancelAnimationFrame(raf);
+  $("game").classList.add("hidden");$("start").classList.remove("hidden");
+  var b=store("ts-tetris-best");$("best").textContent=b?"Bestwert auf diesem Gerät: "+b+" Punkte":"";
+}
+function quit(){
+  if(S.state==="quiz")return;
+  if(S.state==="play")pauseToggle();
+  if(S.asked===0&&S.score===0){toStart();return;}
+  gameOver();
+}
+
+/* ---------- input ---------- */
+document.addEventListener("keydown",function(e){
+  if(!S||!S.state)return;
+  if(S.state==="quiz"&&curQ){
+    var n=parseInt(e.key,10);
+    if(!answered&&n>=1&&n<=4){answer(n-1);e.preventDefault();return;}
+    if(answered&&(e.key==="Enter"||e.key===" ")){var nb=$("nb");if(nb){nb.click();e.preventDefault();}}
+    return;
+  }
+  if(e.key==="p"||e.key==="P"){pauseToggle();return;}
+  if(S.state!=="play")return;
+  switch(e.key){
+    case "ArrowLeft":move(-1);break;
+    case "ArrowRight":move(1);break;
+    case "ArrowUp":rotate();break;
+    case "ArrowDown":softDrop();break;
+    case " ":hardDrop();break;
+    default:return;
+  }
+  e.preventDefault();
+});
+document.addEventListener("visibilitychange",function(){if(document.hidden&&S&&S.state==="play")pauseToggle();});
+[].forEach.call(document.querySelectorAll("#ctrl button"),function(b){
+  var act=b.dataset.act,timer=null,delay=null;
+  function fire(){if(act==="left")move(-1);else if(act==="right")move(1);else if(act==="rotate")rotate();else if(act==="soft")softDrop();else if(act==="down")hardDrop();}
+  b.addEventListener("pointerdown",function(e){e.preventDefault();fire();if(act==="left"||act==="right"||act==="soft"){delay=setTimeout(function(){timer=setInterval(fire,act==="soft"?60:110);},400);}});
+  ["pointerup","pointerleave","pointercancel"].forEach(function(ev){b.addEventListener(ev,function(){clearTimeout(delay);delay=null;clearInterval(timer);timer=null;});});
+});
+/* Klick oder Tipp auf das Spielfeld = um 90 Grad drehen. Ziehen nach links/rechts = verschieben (ein Feld pro Feldbreite), nach unten ziehen = fallen lassen. */
+var drag=null;
+cvs.addEventListener("pointerdown",function(e){
+  if(!S||S.state!=="play")return;
+  e.preventDefault();
+  try{cvs.setPointerCapture(e.pointerId);}catch(x){}
+  drag={x:e.clientX,y:e.clientY,ax:e.clientX,moved:false,id:e.pointerId};
+});
+cvs.addEventListener("pointermove",function(e){
+  if(!drag||e.pointerId!==drag.id||!S||S.state!=="play")return;
+  var cell=cvs.getBoundingClientRect().width/COLS;
+  while(e.clientX-drag.ax>=cell){move(1);drag.ax+=cell;drag.moved=true;}
+  while(drag.ax-e.clientX>=cell){move(-1);drag.ax-=cell;drag.moved=true;}
+});
+function dragEnde(e,abbruch){
+  if(!drag||e.pointerId!==drag.id)return;
+  var d=drag;drag=null;
+  if(abbruch||!S||S.state!=="play")return;
+  var dx=e.clientX-d.x,dy=e.clientY-d.y;
+  if(!d.moved&&dy>70&&dy>Math.abs(dx)*2){hardDrop();return;}
+  if(!d.moved&&Math.abs(dx)<10&&Math.abs(dy)<10)rotate();
+}
+cvs.addEventListener("pointerup",function(e){dragEnde(e,false);});
+cvs.addEventListener("pointercancel",function(e){dragEnde(e,true);});
+cvs.style.touchAction="manipulation";cvs.style.cursor="pointer";
+$("btnStart").addEventListener("click",startGame);
+$("btnPause").addEventListener("click",pauseToggle);
+$("btnQuit").addEventListener("click",quit);
+
+/* Testzugriff */
+window.Tetris={state:function(){return S;},lock:function(){lock();},draw:draw,answer:answer,spawn:spawn};
+
+loadData();
+})();
+</script></body></html>

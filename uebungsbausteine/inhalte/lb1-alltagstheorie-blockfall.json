@@ -1,0 +1,71 @@
+{
+ "titel": "Blockfall: Alltagstheorie und wissenschaftliche Theorie",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Alltagstheorie",
+  "Wissenschaftliche Theorie"
+ ],
+ "items": [
+  {
+   "t": "Langhaarige Männer sind kriminell.",
+   "k": 0
+  },
+  {
+   "t": "Frauen können nicht Auto fahren.",
+   "k": 0
+  },
+  {
+   "t": "ADHS kommt von zu viel Fernsehkonsum.",
+   "k": 0
+  },
+  {
+   "t": "Lisa schließt von Paul auf alle Kinder, deren Eltern sich laut streiten.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Mein Onkel wurde streng erzogen und ist schüchtern, also macht Strenge schüchtern.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Ein Sprichwort wird als immer gültige Wahrheit angesehen.",
+   "k": 0
+  },
+  {
+   "t": "Eine Erklärung wird mit Nachdruck verteidigt, jedes Hinterfragen wird zurückgewiesen.",
+   "k": 0
+  },
+  {
+   "t": "Fragestellung, Methode und Ablauf werden vorab in einem Untersuchungsplan festgelegt.",
+   "k": 1
+  },
+  {
+   "t": "Zwei Forscherinnen kommen unabhängig voneinander zum gleichen Ergebnis.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Aufgrund einer repräsentativen Stichprobe werden Aussagen über eine Gruppe getroffen.",
+   "k": 1
+  },
+  {
+   "t": "Andere Forscher wiederholen die Untersuchung und überprüfen das Ergebnis.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Ein Forscherteam beschreibt genau, wie es vorgegangen ist.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Ein Messverfahren liefert bei verschiedenen Testleitern gleiche Werte.",
+   "k": 1
+  },
+  {
+   "t": "Die Aussage gilt mit hoher Wahrscheinlichkeit für die untersuchte Gruppe.",
+   "k": 1
+  }
+ ]
+}

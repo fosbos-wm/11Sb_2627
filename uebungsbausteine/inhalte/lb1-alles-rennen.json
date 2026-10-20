@@ -1,0 +1,2844 @@
+{
+ "titel": "Wichtel-Rennen: Alle Bereiche LB 1",
+ "anleitung": "Fragen aus allen Bereichen von LB 1 gemischt.",
+ "fragen": [
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Wissenschaft vom Erleben und Verhalten des Menschen.«",
+   "o": [
+    "Fremdbeobachtung",
+    "Logos (griech.)",
+    "Psychologie",
+    "Erleben bei Tieren"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »„Die Seele“: der erste Wortteil von „Psychologie“.«",
+   "o": [
+    "Dualismus (Descartes)",
+    "Fremdbeobachtung",
+    "Verhalten",
+    "Psyche (griech.)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »„Lehre“ oder „Wissenschaft“: der zweite Wortteil von „Psychologie“.«",
+   "o": [
+    "Psyche (griech.)",
+    "Selbstbeobachtung",
+    "Erleben",
+    "Logos (griech.)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Lässt sich wissenschaftlich nicht genau fassen; die Psychologie untersucht deshalb, wie sich das Seelenleben zeigt.«",
+   "o": [
+    "Selbstbeobachtung",
+    "Seele",
+    "Logos (griech.)",
+    "Psyche (griech.)"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gesamtheit aller von außen beobachtbaren Äußerungen eines Menschen, z. B. Sprechen, Körperbewegungen, Mimik.«",
+   "o": [
+    "Seele",
+    "Dualismus (Descartes)",
+    "Handeln",
+    "Verhalten"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gesamtheit aller von außen nicht beobachtbaren Vorgänge im Menschen, z. B. Gedanken, Erinnerungen, Gefühle.«",
+   "o": [
+    "Erleben",
+    "Dualismus (Descartes)",
+    "Logos (griech.)",
+    "Erleben bei Tieren"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Zugang zum eigenen Erleben: Nur die Person selbst nimmt es wahr.«",
+   "o": [
+    "Selbstbeobachtung",
+    "Fremdbeobachtung",
+    "Handeln",
+    "Seele"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Beobachtung von außen; sie ist beim Verhalten eines Menschen möglich, beim Erleben nicht.«",
+   "o": [
+    "Handeln",
+    "Fremdbeobachtung",
+    "Selbstbeobachtung",
+    "Seele"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Dasjenige Verhalten, das durch eine Absicht bestimmt ist.«",
+   "o": [
+    "Handeln",
+    "Erleben bei Tieren",
+    "Dualismus (Descartes)",
+    "Fremdbeobachtung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Beides läuft gleichzeitig ab und ist voneinander abhängig: zwei Seiten desselben psychischen Geschehens.«",
+   "o": [
+    "Erleben",
+    "Psyche (griech.)",
+    "Wechselwirkung von Erleben und Verhalten",
+    "Erleben bei Tieren"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Annahme einer Seele, die mit dem Gehirn in Verbindung steht (Materie und Geist); Descartes vermutete ihren Sitz in der Zirbeldrüse.«",
+   "o": [
+    "Verhalten",
+    "Logos (griech.)",
+    "Dualismus (Descartes)",
+    "Psychologie"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Das innere Erleben von Tieren kann nicht wissenschaftlich erforscht werden.«",
+   "o": [
+    "Erleben bei Tieren",
+    "Wechselwirkung von Erleben und Verhalten",
+    "Selbstbeobachtung",
+    "Verhalten"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Hunger spüren«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Die Farbe Rot wahrnehmen«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Mia denkt: „Gleich blamiere ich mich.“«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Mia fühlt sich sehr nervös.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Sich an den letzten Urlaub erinnern«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Mias Hand zittert.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Mias Stimme klingt brüchig.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ein Gesichtsausdruck«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Laufen«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Lea weint, um ihren Vater zu erweichen und doch noch zu Ludwig gehen zu dürfen.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Schüler meldet sich, um auf einen Fehler an der Tafel hinzuweisen.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Jemand geht zur Bäckerei, um Brötchen zu kaufen.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Schülerin lernt gezielt für den Test, um eine gute Note zu erreichen.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Jemand zuckt bei einem lauten Knall zusammen.«",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Von außen nicht beobachtbare Vorgänge im Menschen«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Nur durch Selbstbeobachtung zugänglich«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Gedanken, Erinnerungen und Träume«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Eine Gefühlsregung, z. B. Nervosität«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Von außen beobachtbare Äußerungen eines Menschen«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Durch Fremdbeobachtung erforschbar«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Mimik, Körperbewegungen und Sprechen«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Zittern der Hand und brüchige Stimme«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Verhalten, das durch eine Absicht bestimmt ist«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Bewusst auf ein Ziel ausgerichtet«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Beispiel: Lea weint, um den Vater zu erweichen«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erleben, Verhalten, Handeln",
+   "f": "Zu welcher Seite gehört: »Beispiel: Jemand lernt gezielt für einen Test«?",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Der Begriff „Seele“ lässt sich wissenschaftlich nicht genau fassen; deshalb untersucht die Psychologie, wie sich das Seelenleben eines Menschen zeigt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Erleben kann, genau wie Verhalten, von außen durch Fremdbeobachtung erforscht werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »In der Psychologie bezieht sich der Begriff „Erleben“ nur auf den Menschen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Verhalten und Erleben laufen nacheinander ab: Zuerst erlebt der Mensch etwas, danach zeigt er ein Verhalten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Handeln ist dasjenige Verhalten, das durch eine Absicht bestimmt ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Mimik und Körperbewegungen gehören zum Verhalten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Gedanken und Gefühle gehören zum Verhalten, weil man sie anderen mitteilen kann.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Wer bewusst und absichtlich weint, um etwas zu erreichen, handelt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Herr Urser deutet Leas Weinen als Ausdruck ihres Erlebens (Enttäuschung).«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Dr. Zieler geht davon aus, dass Leas Weinen durch eine Absicht bestimmt ist, also ein Handeln.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Der entscheidende Unterschied liegt darin, ob eine Absicht angenommen wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Beide Psychologen beschreiben ausschließlich das Erleben von Lea.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Das Zittern und die brüchige Stimme zeigen sich im Verhalten, die Nervosität gehört zum Erleben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Verhalten und Erleben beeinflussen sich gegenseitig und laufen gleichzeitig ab.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Man sieht Mia an, wie es ihr geht; man muss sie gar nicht fragen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Psychologie",
+   "f": "Trifft diese Aussage zu? »Das Verhalten liefert Hinweise auf das Erleben, ersetzt aber nicht die Auskunft der Person.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welches Wort fehlt? »Das Wort stammt aus dem Griechischen: „_____“ bedeutet die Seele, „Logos“ die Lehre.«",
+   "o": [
+    "Gefühle",
+    "Verhalten",
+    "Psychologie",
+    "Psyche"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welches Wort fehlt? »Deshalb untersucht die Psychologie, wie sich das _____ zeigt.«",
+   "o": [
+    "Seelenleben",
+    "Selbstbeobachtung",
+    "Unbewusste",
+    "Absicht"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welches Wort fehlt? »Verhalten umfasst alle von außen _____ Äußerungen eines Menschen.«",
+   "o": [
+    "Fremdbeobachtung",
+    "Handeln",
+    "beobachtbaren",
+    "Seelenleben"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welches Wort fehlt? »Erleben sind alle von außen nicht beobachtbaren Vorgänge, zum Beispiel Gedanken und _____.«",
+   "o": [
+    "Selbstbeobachtung",
+    "Gefühle",
+    "Verhalten",
+    "abhängig"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welches Wort fehlt? »Es ist nur durch _____ zugänglich.«",
+   "o": [
+    "Handeln",
+    "beobachtbaren",
+    "Selbstbeobachtung",
+    "Verhalten"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "f": "Welches Wort fehlt? »Beides läuft gleichzeitig ab und ist voneinander _____.«",
+   "o": [
+    "Selbstbeobachtung",
+    "Handeln",
+    "Absicht",
+    "abhängig"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.«",
+   "o": [
+    "Pädagogik",
+    "Verhältnis von Theorie und Praxis",
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Das tatsächliche erzieherische Handeln mit erzieherischer Absicht.«",
+   "o": [
+    "Pädagogik",
+    "Beziehung zwischen Erzieher und zu Erziehendem",
+    "Erziehungspraxis",
+    "Verhältnis von Theorie und Praxis"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Untersucht, wie Erziehung abläuft und wirkt, fragt nach Zusammenhängen und begründet Theorien.«",
+   "o": [
+    "Verhältnis von Theorie und Praxis",
+    "Erziehungswissenschaft",
+    "Einrichtungen der Erziehung",
+    "Vorstellungen über Erziehung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Theorie ist nicht ohne Praxis und Praxis nicht ohne Theorie denkbar.«",
+   "o": [
+    "Erziehung als Wechselspiel",
+    "Verhältnis von Theorie und Praxis",
+    "Ziele und Handlungen der Erziehung",
+    "Pädagogik"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: Menschenbild, z. B. ob man Kinder gezielt anleiten oder sich möglichst wenig einmischen soll.«",
+   "o": [
+    "Einrichtungen der Erziehung",
+    "Erziehungswissenschaft",
+    "Vorstellungen über Erziehung",
+    "Erziehung als Wechselspiel"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: z. B. Vertrauen, durch das Kritik leichter angenommen wird.«",
+   "o": [
+    "Beziehung zwischen Erzieher und zu Erziehendem",
+    "Vorstellungen über Erziehung",
+    "Erziehungswissenschaft",
+    "Pädagogik"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: Ziele (z. B. Selbstständigkeit) und die daraus folgenden Methoden und Maßnahmen.«",
+   "o": [
+    "Erziehung als Wechselspiel",
+    "Voraussetzungen und Bedingungen der Erziehung",
+    "Ziele und Handlungen der Erziehung",
+    "Verhältnis von Theorie und Praxis"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: z. B. kein ruhiger Lernplatz, viel Verantwortung zu Hause, Stress.«",
+   "o": [
+    "Erziehungspraxis",
+    "Verhältnis von Theorie und Praxis",
+    "Voraussetzungen und Bedingungen der Erziehung",
+    "Erziehung als Wechselspiel"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: z. B. Familie, Schule, Kindergarten, Jugendzentrum.«",
+   "o": [
+    "Verhältnis von Theorie und Praxis",
+    "Erziehungspraxis",
+    "Einrichtungen der Erziehung",
+    "Ziele und Handlungen der Erziehung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Keine Einbahnstraße: Erwachsene beeinflussen junge Menschen, reagieren aber auch auf deren Verhalten, Wünsche und Widerstand.«",
+   "o": [
+    "Anlage und Umwelt (heutige Sicht)",
+    "Erziehung als Wechselspiel",
+    "Erziehungspraxis",
+    "Ziele und Handlungen der Erziehung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Die Entwicklung eines Menschen wird meist als Zusammenspiel von Anlagen und Umwelt erklärt, nicht ausschließlich durch Gene.«",
+   "o": [
+    "Ziele und Handlungen der Erziehung",
+    "Anlage und Umwelt (heutige Sicht)",
+    "Vorstellungen über Erziehung",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Zwei Elternteile streiten darüber, ob man Kinder möglichst gezielt anleiten oder sich möglichst wenig einmischen sollte.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Vater ist überzeugt, dass Kinder von Natur aus gut sind und man sie nur wachsen lassen muss.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Erzieherin sieht das Kind als aktiven Gestalter seiner eigenen Bildung.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Schüler vertraut seinem Trainer und nimmt dessen Kritik deshalb leichter an.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Lehrerin gewinnt das Vertrauen ihrer Klasse, weil sie jedem zuhört.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Kind reagiert auf die Ermahnung der Mutter mit Trotz, die Mutter passt daraufhin ihr Vorgehen an.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Lehrerin überlegt, ob sie Gruppenarbeit einsetzt, damit ihre Klasse selbstständiger wird.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eltern wollen, dass ihr Kind Verantwortung lernt, und übertragen ihm die Pflege des Haustiers.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Erzieher lobt ein Kind, damit es sich künftig öfter traut, mitzuspielen.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Jugendlicher hat zu Hause keinen ruhigen Lernplatz und muss viel Verantwortung übernehmen.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Beide Eltern arbeiten im Schichtdienst, die Familie kann sich keine Nachhilfe leisten.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Kind wächst in einer Stadtwohnung an einer Hauptstraße auf und hat kaum Spielmöglichkeiten.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Jugendzentrum bietet Räume für Mitbestimmung und Freizeit an.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Kindergarten ergänzt die Erziehung in der Familie.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Schule vermittelt Kenntnisse, Fähigkeiten und Werte.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Das tatsächliche erzieherische Handeln mit erzieherischer Absicht«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Eltern erklären ihrem Kind die Hausregeln.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Eine Erzieherin im Kindergarten lehrt die Kinder ein Lied.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Herr Herschenkeimer hält einen guten Unterricht.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Frau Herschenkeimer erzieht ihr Kind zur Selbstständigkeit.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Eine Trainerin überträgt der Mannschaft Verantwortung.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Untersucht, wie Erziehung abläuft und wirkt«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Professor Dr. Sigmund stellt Theorien von der Erziehung auf.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Erforscht offene Fragen und Probleme in der Erziehung«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Fragt nach Zusammenhängen und begründet Theorien«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Wissenschaftliche Erhellung der Erziehungswirklichkeit«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Hilft, Erziehung besser zu verstehen und zu gestalten«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Erziehungspraxis meint das wissenschaftliche Nachdenken über Erziehung.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Pädagogik ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Erziehung ist keine Einbahnstraße: Erwachsene beeinflussen junge Menschen, reagieren aber auch auf deren Verhalten, Wünsche und Widerstand.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Heute geht man meist davon aus, dass die Entwicklung eines Menschen ausschließlich durch seine Gene festgelegt ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Die Pädagogik hat fünf Gegenstandsbereiche.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Zu den Gegenstandsbereichen gehören auch die Einrichtungen der Erziehung.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Eine Methode ist pädagogisch gut begründet, wenn sie für die Lehrkraft am bequemsten ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Aus den Zielen der Erziehung ergeben sich konkrete Handlungen wie Gespräche, Regeln, Lob oder Konsequenzen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Theorie ist nicht ohne Praxis denkbar und Praxis nicht ohne Theorie.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Nach Groothoff können Praxis und Wissenschaft der Erziehung nur bedingt getrennt werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Die Erziehungswissenschaft ersetzt die Erziehungspraxis.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Ein Professor, der Erziehungstheorien aufstellt, übt damit Erziehungspraxis aus.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welches Wort fehlt? »Die Erziehungspraxis ist das tatsächliche erzieherische _____ mit erzieherischer Absicht, zum Beispiel wenn Eltern Regeln erklären oder Lehrkräfte eine Rückmeldung geben.«",
+   "o": [
+    "Theorien",
+    "Beobachtung",
+    "Voraussetzungen",
+    "Handeln"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welches Wort fehlt? »Die Erziehungswissenschaft untersucht, wie Erziehung abläuft und wirkt, und begründet _____.«",
+   "o": [
+    "Einrichtungen",
+    "Erziehungspraxis",
+    "Praxis",
+    "Theorien"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welches Wort fehlt? »Theorie ist nicht ohne _____ denkbar und Praxis nicht ohne Theorie.«",
+   "o": [
+    "Pädagogik",
+    "Handeln",
+    "Praxis",
+    "Vorstellungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Wissen über Psychologie und Erziehung, das aufgrund persönlicher Erfahrungen gewonnen wurde.«",
+   "o": [
+    "Sprichwort",
+    "Alltagstheorie (Privattheorie)",
+    "Systematische Gewinnung",
+    "Keine Überprüfbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Stützt sich auf wissenschaftliche Methoden und erhebt Wahrheitsanspruch.«",
+   "o": [
+    "Funktion der Alltagstheorie",
+    "Objektivität",
+    "Wissenschaftliche Theorie",
+    "Keine Überprüfbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Merkmal der Alltagstheorie: Die Aussage hängt von der Person ab, unterschiedliche Menschen haben sehr unterschiedliches Alltagswissen.«",
+   "o": [
+    "Subjektivität",
+    "Überprüfbarkeit und Wiederholbarkeit",
+    "Funktion der Alltagstheorie",
+    "Objektivität"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Alltagstheorien entstehen aus eigenen Erlebnissen, nicht aus einem geplanten Vorgehen.«",
+   "o": [
+    "Objektivität",
+    "Gewinnung aufgrund persönlicher Erfahrung",
+    "Sprichwort",
+    "Alltagstheorie (Privattheorie)"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Von einem Einzelfall wird auf alle geschlossen, z. B. „Frauen können nicht Auto fahren“.«",
+   "o": [
+    "Wissenschaftliche Theorie",
+    "Unzulässige Verallgemeinerung",
+    "Alltagstheorie (Privattheorie)",
+    "Keine Überprüfbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Alltagstheorien werden nicht infrage gestellt und lassen sich nicht nachprüfen oder wiederholen.«",
+   "o": [
+    "Unzulässige Verallgemeinerung",
+    "Keine Überprüfbarkeit",
+    "Allgemeingültigkeit",
+    "Objektivität"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Orientierung, schnelle Einschätzung anderer, Erklärungen für Alltagsprobleme; sie gibt Sicherheit und verringert Angst.«",
+   "o": [
+    "Funktion der Alltagstheorie",
+    "Wissenschaftliche Theorie",
+    "Keine Überprüfbarkeit",
+    "Sprichwort"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Klingt überzeugend, stimmt aber nicht immer mit der Wirklichkeit überein und kann in die Irre führen.«",
+   "o": [
+    "Sprichwort",
+    "Objektivität",
+    "Überprüfbarkeit und Wiederholbarkeit",
+    "Funktion der Alltagstheorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Merkmal der wissenschaftlichen Theorie: Unabhängig von den Forschern kommen alle zu gleichen Ergebnissen.«",
+   "o": [
+    "Sprichwort",
+    "Objektivität",
+    "Systematische Gewinnung",
+    "Gewinnung aufgrund persönlicher Erfahrung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Die wissenschaftliche Theorie entsteht planmäßig über bestimmte Methoden und einen im Voraus festgelegten Untersuchungsplan.«",
+   "o": [
+    "Funktion der Alltagstheorie",
+    "Sprichwort",
+    "Wissenschaftliche Theorie",
+    "Systematische Gewinnung"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Wissenschaftliche Aussagen werden aufgrund einer repräsentativen Stichprobe über eine bestimmte Gruppe von Menschen getroffen.«",
+   "o": [
+    "Sprichwort",
+    "Wissenschaftliche Theorie",
+    "Allgemeingültigkeit",
+    "Subjektivität"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Andere Wissenschaftler können die Ergebnisse prüfen und das Vorgehen wiederholen.«",
+   "o": [
+    "Unzulässige Verallgemeinerung",
+    "Wissenschaftliche Theorie",
+    "Systematische Gewinnung",
+    "Überprüfbarkeit und Wiederholbarkeit"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Langhaarige Männer sind kriminell.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Frauen können nicht Auto fahren.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »ADHS kommt von zu viel Fernsehkonsum.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Lisa schließt von Paul auf alle Kinder, deren Eltern sich laut streiten.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Mein Onkel wurde streng erzogen und ist schüchtern, also macht Strenge schüchtern.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ein Sprichwort wird als immer gültige Wahrheit angesehen.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Eine Erklärung wird mit Nachdruck verteidigt, jedes Hinterfragen wird zurückgewiesen.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Fragestellung, Methode und Ablauf werden vorab in einem Untersuchungsplan festgelegt.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Zwei Forscherinnen kommen unabhängig voneinander zum gleichen Ergebnis.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Aufgrund einer repräsentativen Stichprobe werden Aussagen über eine Gruppe getroffen.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Andere Forscher wiederholen die Untersuchung und überprüfen das Ergebnis.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Forscherteam beschreibt genau, wie es vorgegangen ist.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ein Messverfahren liefert bei verschiedenen Testleitern gleiche Werte.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Die Aussage gilt mit hoher Wahrscheinlichkeit für die untersuchte Gruppe.«",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Subjektivität«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Gewinnung aufgrund persönlicher Erfahrung«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Unzulässige Verallgemeinerungen«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Keine Überprüfbarkeit und keine Wiederholbarkeit«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Erfüllt wichtige Funktionen, ihre Inhalte müssen aber nicht der Realität entsprechen«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Wird auch Privattheorie genannt«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Objektivität«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Systematische Gewinnung über bestimmte Methoden«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Allgemeingültigkeit«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Überprüfbarkeit und Wiederholbarkeit«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Hat Wahrheitsanspruch«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Zu welcher Seite gehört: »Stützt sich auf wissenschaftliche Methoden«?",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Sprichwörter sind immer zutreffend, weil sie sich über Generationen bewährt haben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Die Alltagstheorie wird oft auch als Privattheorie bezeichnet.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Weil die Alltagstheorie oft in die Irre führt, braucht der Mensch sie nicht und sollte sie ganz ablegen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Alltagstheorien entstehen aus persönlichen Erfahrungen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Alltagstheorien sind subjektiv.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Alltagstheorien führen häufig zu unzulässigen Verallgemeinerungen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Alltagstheorien werden systematisch nach festen Methoden gewonnen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Alltagstheorien lassen sich leicht wiederholen und nachprüfen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Sie gibt Orientierung und ermöglicht eine schnelle Einschätzung anderer Menschen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Sie liefert Erklärungen und hilft, Alltagsprobleme zu lösen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Sie ist überflüssig, weil sie immer in die Irre führt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Sie vermittelt Sicherheit, wodurch Angst und Unsicherheit abnehmen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Lisa stützt sich auf eine persönliche Beobachtung.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Lisa schließt von einem Einzelfall auf alle Kinder laut streitender Eltern.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Lisa hat ihre Aussage an einer repräsentativen Stichprobe systematisch überprüft.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Alltagstheorie",
+   "f": "Trifft diese Aussage zu? »Andere können Lisas Aussage nicht nachprüfen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welches Wort fehlt? »Trotzdem erfüllt sie wichtige Aufgaben: Sie gibt Orientierung und _____ und verringert Unsicherheit und Angst.«",
+   "o": [
+    "Wahrheitsanspruch",
+    "Erfahrungen",
+    "wissenschaftliche",
+    "Sicherheit"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welches Wort fehlt? »Sie ist objektiv, systematisch gewonnen, allgemeingültig sowie überprüfbar und _____.«",
+   "o": [
+    "Zufall",
+    "Erfahrungen",
+    "wiederholbar",
+    "Einzelfall"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "f": "Welches Wort fehlt? »Ihre Inhalte erheben _____.«",
+   "o": [
+    "Wahrheitsanspruch",
+    "wiederholbar",
+    "Methoden",
+    "Verallgemeinerungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Die Aussage trifft mit hoher Wahrscheinlichkeit auf alle in ihr genannten Personen oder Gruppen zu.«",
+   "o": [
+    "Allgemeingültigkeit",
+    "Einzelausnahme",
+    "Objektivität",
+    "Repräsentative Stichprobe"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Andere können die Aussage und den Weg dorthin jederzeit nachvollziehen und wiederholen.«",
+   "o": [
+    "Objektivität",
+    "Überprüfbarkeit",
+    "Einzelausnahme",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Verschiedene Forscher kommen bei gleichem Sachverhalt und gleichen Bedingungen zum gleichen Ergebnis.«",
+   "o": [
+    "Allgemeingültigkeit",
+    "Objektivität",
+    "Wissenschaftliche Aussage",
+    "Überprüfbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Die Aussage entsteht nach klaren Regeln und Methoden; das Vorgehen ist geplant und organisiert.«",
+   "o": [
+    "Wissenschaftliche Aussage",
+    "Systematische Gewinnung",
+    "Repräsentative Stichprobe",
+    "Wahrscheinlichkeitsaussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Weil absolute Aussagen über Menschen kaum möglich sind, bleiben Einzelausnahmen möglich.«",
+   "o": [
+    "Objektivität",
+    "Systematische Gewinnung",
+    "Repräsentative Stichprobe",
+    "Wahrscheinlichkeitsaussage"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Sie widerlegt eine Wahrscheinlichkeitsaussage nicht und macht wissenschaftliche Aussagen nicht wertlos.«",
+   "o": [
+    "Systematische Gewinnung",
+    "Wahrscheinlichkeitsaussage",
+    "Einzelausnahme",
+    "Überprüfbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Im Voraus festgelegt: Fragestellung, Methode und Ablauf (wann, wo, was, wer).«",
+   "o": [
+    "Überprüfbarkeit",
+    "Untersuchungsplan",
+    "Systematische Gewinnung",
+    "Subjektive Einzelbeobachtung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Untersuchte Personengruppe, die so zusammengesetzt ist, dass sie die Gesamtgruppe abbildet.«",
+   "o": [
+    "Systematische Gewinnung",
+    "Repräsentative Stichprobe",
+    "Subjektive Einzelbeobachtung",
+    "Einzelausnahme"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Die Grenze ist nicht absolut: Ein reines Entweder-oder gibt es nicht.«",
+   "o": [
+    "Grenze zwischen Alltags- und wissenschaftlicher Theorie",
+    "Einzelausnahme",
+    "Überprüfbarkeit",
+    "Repräsentative Stichprobe"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Zufällige, einmalige persönliche Erfahrung: nicht nachprüfbar, nicht geplant und nicht auf alle übertragbar.«",
+   "o": [
+    "Untersuchungsplan",
+    "Allgemeingültigkeit",
+    "Grenze zwischen Alltags- und wissenschaftlicher Theorie",
+    "Subjektive Einzelbeobachtung"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Aussage, die allgemeingültig, überprüfbar, objektiv und systematisch gewonnen ist.«",
+   "o": [
+    "Wahrscheinlichkeitsaussage",
+    "Allgemeingültigkeit",
+    "Wissenschaftliche Aussage",
+    "Repräsentative Stichprobe"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Das Ergebnis trifft mit hoher Wahrscheinlichkeit auf alle untersuchten Personen der genannten Gruppe zu.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Aus einer repräsentativ zusammengesetzten Stichprobe wird eine Aussage über eine ganze Gruppe abgeleitet.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Eine Aussage gilt mit hoher Wahrscheinlichkeit für alle Jugendlichen einer Altersgruppe, Ausnahmen bleiben möglich.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Forscherteam beschreibt genau, wie es vorgegangen ist, sodass andere die Untersuchung wiederholen können.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine zweite Forschergruppe wiederholt die Untersuchung nach der veröffentlichten Beschreibung.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Der Weg zum Ergebnis ist so dokumentiert, dass andere ihn nachvollziehen können.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Zwei Forscherinnen untersuchen unabhängig voneinander dieselbe Frage unter gleichen Bedingungen und kommen zum selben Ergebnis.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ein Test liefert bei unterschiedlichen Testleitern gleiche Ergebnisse.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Das Ergebnis hängt nicht davon ab, wer die Untersuchung durchführt.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Fragestellung, Methode und Ablauf einer Untersuchung werden vorher festgelegt und Schritt für Schritt umgesetzt.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Forscher plant vorab, wann, wo, was und wer untersucht wird.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Die Aussage entsteht nach klaren Regeln und Methoden.«",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Beruht auf einer einmaligen persönlichen Erfahrung«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Schließt von einem Einzelfall auf alle streng erzogenen Menschen«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Andere könnten aus anderen Beobachtungen andere Schlüsse ziehen«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Eine zufällige Einzelbeobachtung, nicht geplant«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Nicht nachprüfbar und nicht wiederholbar«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Macht aus einem Einzelfall eine allgemeine Regel«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Untersucht eine Stichprobe nach einem festgelegten Untersuchungsplan«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Formuliert eine Wahrscheinlichkeitsaussage, Ausnahmen bleiben möglich«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Verschiedene Forscher kommen unter gleichen Bedingungen zum gleichen Ergebnis«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Das Vorgehen ist so beschrieben, dass andere es wiederholen können«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Prüft Annahmen planmäßig statt aus Eindrücken«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Monas Aussage und wissenschaftliche Aussage",
+   "f": "Zu welcher Seite gehört: »Gilt mit hoher Wahrscheinlichkeit für die untersuchte Gruppe«?",
+   "o": [
+    "Monas Aussage",
+    "Wissenschaftliche Aussage"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Allgemeingültig bedeutet, dass die Aussage auf alle in ihr genannten Personen oder Gruppen zutrifft.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Weil absolute Aussagen über Menschen kaum möglich sind, spricht man von Wahrscheinlichkeitsaussagen, bei denen Einzelausnahmen möglich bleiben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Objektiv heißt: Verschiedene Forscher dürfen bei gleichem Sachverhalt zu unterschiedlichen Ergebnissen kommen, wenn sie ihre Sicht gut begründen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Zwischen wissenschaftlicher Theorie und Alltagstheorie gibt es eine scharfe Grenze; es gilt ein reines Entweder-oder.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Überprüfbar heißt: Andere können den Weg zur Aussage nachvollziehen und wiederholen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Ein Intelligenztest, der bei verschiedenen Testleitern unterschiedliche Ergebnisse liefert, ist nicht objektiv.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Wer nicht mehr sagen kann, wie er zu seinem Ergebnis gekommen ist, dessen Aussage ist nicht überprüfbar.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Objektivität bedeutet, dass jeder Forscher ein anderes Ergebnis erhalten darf.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Monas Aussage verallgemeinert einen Einzelfall.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Monas Aussage beruht auf einer einmaligen, nicht nachprüfbaren Erfahrung.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Monas Aussage ist allgemeingültig, weil sie auf einer Beobachtung beruht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Monas Aussage ist subjektiv: Andere könnten aus anderen Beobachtungen andere Schlüsse ziehen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Weil es immer Ausnahmen gibt, sind wissenschaftliche Aussagen über Menschen wertlos.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Wahrscheinlichkeitsaussagen gelten mit hoher Wahrscheinlichkeit für die genannte Gruppe.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Wissenschaftliche Aussagen sind verlässlicher als die Alltagstheorie, weil sie überprüfbar, objektiv und systematisch gewonnen sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Merkmale wissenschaftlicher Aussagen",
+   "f": "Trifft diese Aussage zu? »Eine wissenschaftliche Aussage ist schon dann gültig, wenn sie in einem einzigen Fall zutrifft.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welches Wort fehlt? »Allgemeingültig bedeutet, dass die Aussage mit hoher _____ auf alle genannten Personen oder Gruppen zutrifft.«",
+   "o": [
+    "Bedingungen",
+    "wiederholen",
+    "Wahrscheinlichkeit",
+    "Gefühl"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welches Wort fehlt? »Weil absolute Aussagen über Menschen kaum möglich sind, bleiben _____ möglich.«",
+   "o": [
+    "Einzelfall",
+    "Ausnahmen",
+    "Gefühl",
+    "Zufall"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welches Wort fehlt? »Überprüfbar heißt, dass andere die Aussage und den Weg dorthin nachvollziehen und _____ können.«",
+   "o": [
+    "Methoden",
+    "überprüfbar",
+    "wiederholen",
+    "Gefühl"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "f": "Welches Wort fehlt? »Objektiv heißt, dass verschiedene Forscher unter gleichen _____ zum gleichen Ergebnis kommen.«",
+   "o": [
+    "objektiv",
+    "Methoden",
+    "Ausnahmen",
+    "Bedingungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Absichtliches und planmäßiges Herbeiführen eines Vorgangs, um ihn gezielt beobachten zu können.«",
+   "o": [
+    "Laborexperiment",
+    "Willkürlichkeit",
+    "Skala",
+    "Experiment"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Kriterium des Experiments: Der Forscher bestimmt Bedingungen, Situation, Ort und Zeit selbst.«",
+   "o": [
+    "Variierbarkeit",
+    "Ursache-Wirkung-Zusammenhang",
+    "Willkürlichkeit",
+    "Empirische Methoden"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Kriterium des Experiments: Der Forscher kann die Bedingungen gezielt verändern.«",
+   "o": [
+    "Variierbarkeit",
+    "Kategoriensystem",
+    "Experiment",
+    "Feldexperiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Kriterium des Experiments: Das Vorgehen kann wiederholt werden.«",
+   "o": [
+    "Beobachtung",
+    "Wiederholbarkeit",
+    "Feldexperiment",
+    "Laborexperiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Forscher beobachtet eine bereits vorhandene Situation, ohne einzugreifen.«",
+   "o": [
+    "Empirische Methoden",
+    "Ursache-Wirkung-Zusammenhang",
+    "Variierbarkeit",
+    "Beobachtung"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Findet unter kontrollierten Bedingungen im Labor statt; Störfaktoren lassen sich besser kontrollieren.«",
+   "o": [
+    "Variierbarkeit",
+    "Beobachtung",
+    "Laborexperiment",
+    "Empirische Methoden"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Findet in der natürlichen Umgebung der Personen statt; genauere Vorhersage für echtes Alltagsverhalten.«",
+   "o": [
+    "Kategoriensystem",
+    "Ursache-Wirkung-Zusammenhang",
+    "Variierbarkeit",
+    "Feldexperiment"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Beobachtung, Experiment, Test und Befragung bzw. Interview.«",
+   "o": [
+    "Experiment",
+    "Beobachtung",
+    "Empirische Methoden",
+    "Laborexperiment"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Fasst zusammen, welche Merkmale beobachtet werden sollen.«",
+   "o": [
+    "Variierbarkeit",
+    "Beobachtung",
+    "Ursache-Wirkung-Zusammenhang",
+    "Kategoriensystem"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Macht die Werte einer Untersuchung vergleichbar (Zahlen oder Ratingskala).«",
+   "o": [
+    "Ursache-Wirkung-Zusammenhang",
+    "Beobachtung",
+    "Wiederholbarkeit",
+    "Skala"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Nur mit dem Experiment lässt sich sicher klären, ob ein Faktor die Ursache einer Wirkung ist.«",
+   "o": [
+    "Skala",
+    "Wiederholbarkeit",
+    "Ursache-Wirkung-Zusammenhang",
+    "Variierbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Dr. Kaya legt selbst fest, dass die Bewegungspause dienstags in der 2. Stunde im Klassenzimmer stattfindet.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Forscher bestimmt Zeitpunkt und Ort der Untersuchung selbst.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die Versuchsleiterin entscheidet, wann und wo der Versuch stattfindet.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Der Forscher entscheidet vorab, in welchem Raum und zu welcher Uhrzeit die Gruppe getestet wird.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »In der ersten Woche dauert die Bewegungspause 5 Minuten, in der zweiten 15 Minuten.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Forscher ändert gezielt die Lautstärke im Raum und beobachtet die Konzentration.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die Versuchsgruppen bekommen unterschiedlich lange Lernzeiten.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Bei einer Gruppe wird Musik gespielt, bei der anderen nicht.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Dr. Kaya wiederholt das Vorgehen an mehreren weiteren Dienstagen.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Der Versuch wird mit einer weiteren Klasse unter denselben Bedingungen noch einmal durchgeführt.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Das Experiment ist so beschrieben, dass andere es noch einmal durchführen können.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Derselbe Ablauf wird an mehreren Tagen durchgeführt.«",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Der Forscher beobachtet eine bereits vorhandene Situation.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Der Forscher greift nicht ein.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Beispiel: Wie verhalten sich Lehrer und Schüler im Unterricht?«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Zeigt Zusammenhänge, klärt aber nicht sicher die Ursache«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Der Forscher legt die Bedingungen nicht selbst fest.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Bedingungen lassen sich nicht gezielt verändern.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Der Forscher führt die Situation absichtlich und planmäßig selbst herbei.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Der Forscher verändert Bedingungen gezielt.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Beispiel: Der Forscher gibt dem Lehrer genau vor, wie er sich verhalten soll, und untersucht die Reaktion der Schüler.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Einzige Methode, mit der sich Ursache-Wirkung-Zusammenhänge herausfinden lassen«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Der Forscher bestimmt Ort, Zeit und Situation selbst.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Beobachtung und Experiment",
+   "f": "Zu welcher Seite gehört: »Besonders strenge Prüfung ist möglich.«?",
+   "o": [
+    "Beobachtung",
+    "Experiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Findet unter kontrollierten Bedingungen im Labor statt.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Störfaktoren lassen sich besser kontrollieren.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Vorteil: bessere Kontrolle der Bedingungen«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Beispiel: Versuchspersonen lösen Aufgaben in einem Untersuchungsraum.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Die Umgebung wird vom Forscher eingerichtet.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Findet in der natürlichen Umgebung der Personen statt.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Vorteil: genauere Vorhersage für echtes Alltagsverhalten«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Beispiel: Bewegungspausen im Klassenzimmer von zwei neunten Klassen«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Schule, Klassenzimmer oder Alltag sind der Ort der Untersuchung.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Laborexperiment und Feldexperiment",
+   "f": "Zu welcher Seite gehört: »Beispiel: In einem Kindergarten wird die Dauer der Freispielzeit verändert.«?",
+   "o": [
+    "Laborexperiment",
+    "Feldexperiment"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Ein Experiment ist das absichtliche und planmäßige Herbeiführen eines Vorgangs, um ihn gezielt beobachten zu können.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Willkürlichkeit als Kriterium des Experiments bedeutet, dass der Forscher zufällig und ohne Plan vorgeht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Ein Laborexperiment findet in der natürlichen Umgebung der Personen statt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Zu den wichtigsten empirischen Methoden gehören Beobachtung, Experiment, Test und Befragung bzw. Interview.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Sie bestimmt Wochentag, Stunde und Ort selbst (Willkürlichkeit).«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Sie verändert die Bedingung Pausenlänge (5 bzw. 15 Minuten).«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Sie wiederholt das Vorgehen an mehreren Dienstagen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Es handelt sich um ein Laborexperiment.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Beim Experiment führt der Forscher die Situation selbst herbei.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Beobachtung eignet sich besser als das Experiment, um sicher Ursache und Wirkung zu klären.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Bei der Beobachtung greift der Forscher in eine vorhandene Situation nicht ein.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Beobachtung kann Zusammenhänge zeigen, aber nicht sicher klären, ob ein Faktor die Ursache ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Ein Kategoriensystem legt fest, welche Merkmale beobachtet werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Eine Skala macht die Werte einer Untersuchung vergleichbar.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Mit einer Skala wird festgelegt, welche Verhaltensweisen beobachtet werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Das Experiment",
+   "f": "Trifft diese Aussage zu? »Für mangelnde Konzentration könnte „aus dem Fenster schauen“ eine Kategorie sein.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "f": "Welches Wort fehlt? »Bei der _____ greift der Forscher dagegen nicht ein.«",
+   "o": [
+    "Experiment",
+    "Interview",
+    "Beobachtung",
+    "Laborexperiment"
+   ],
+   "r": 2
+  }
+ ]
+}

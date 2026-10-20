@@ -1,0 +1,62 @@
+{
+ "titel": "Blockfall: Merkmale der Erziehung",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Soziale Beziehung",
+  "Soziale Kommunikation",
+  "Soziales Handeln"
+ ],
+ "items": [
+  {
+   "t": "Ein Kind braucht von Anfang an eine positive emotionale Bindung zur Bezugsperson.",
+   "k": 0
+  },
+  {
+   "t": "Wo die Beziehung nicht stimmt, hat die Erziehung wenig Chancen.",
+   "k": 0
+  },
+  {
+   "t": "Finn fasst Vertrauen zur Erzieherin, weil sie ihn jeden Morgen liebevoll begrüßt.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Eine Mutter schaut weg, als ihr Kind etwas Verbotenes tut – auch das teilt etwas mit.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Ein grimmiges Gesicht zeigt, dass ein Verhalten nicht gutgeheißen wird.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Geschlossene Augen und ein Daumen nach oben bedeuten „toll gemacht“.",
+   "k": 1
+  },
+  {
+   "t": "Das Wort „Hund“ steht für eine bestimmte Tierart.",
+   "k": 1
+  },
+  {
+   "t": "Die Mutter lobt ihre Tochter, damit sie in der Schule mitlernt.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Ein Vater führt ein Gespräch mit seinem Sohn, um ihn zum Aufräumen zu bewegen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Ein Erzieher stellt Belohnungen in Aussicht, um ein Ziel zu erreichen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Die Erzieherin überlegt, welche Folgen ihr Handeln für das Kind hat.",
+   "k": 2,
+   "f": 1
+  }
+ ]
+}

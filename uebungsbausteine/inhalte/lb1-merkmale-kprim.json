@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: K-Prim: Merkmale wissenschaftlicher Aussagen",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": null,
+ "vignette": null,
+ "aufgaben": [
+  {
+   "frage": "Welche Aussagen zu den Merkmalen wissenschaftlicher Aussagen treffen zu?",
+   "statements": [
+    {
+     "text": "Allgemeingültig bedeutet, dass die Aussage auf alle in ihr genannten Personen oder Gruppen zutrifft.",
+     "richtig": true,
+     "begruendung": "Definition des Merkmals im Text."
+    },
+    {
+     "text": "Weil absolute Aussagen über Menschen kaum möglich sind, spricht man von Wahrscheinlichkeitsaussagen, bei denen Einzelausnahmen möglich bleiben.",
+     "richtig": true,
+     "begruendung": "So erläutert der Text die Allgemeingültigkeit."
+    },
+    {
+     "text": "Objektiv heißt: Verschiedene Forscher dürfen bei gleichem Sachverhalt zu unterschiedlichen Ergebnissen kommen, wenn sie ihre Sicht gut begründen.",
+     "richtig": false,
+     "begruendung": "Objektivität heißt: Gleiche Bedingungen führen bei allen Forschern zum gleichen Ergebnis."
+    },
+    {
+     "text": "Zwischen wissenschaftlicher Theorie und Alltagstheorie gibt es eine scharfe Grenze; es gilt ein reines Entweder-oder.",
+     "richtig": false,
+     "begruendung": "Die Grenze ist nicht absolut, ein reines Entweder-oder gibt es nicht."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zur Überprüfbarkeit und Objektivität treffen zu?",
+   "statements": [
+    {
+     "text": "Überprüfbar heißt: Andere können den Weg zur Aussage nachvollziehen und wiederholen.",
+     "richtig": true,
+     "begruendung": "So lautet die Bestimmung des Merkmals."
+    },
+    {
+     "text": "Ein Intelligenztest, der bei verschiedenen Testleitern unterschiedliche Ergebnisse liefert, ist nicht objektiv.",
+     "richtig": true,
+     "begruendung": "Ergebnisse dürfen nicht von der durchführenden Person abhängen."
+    },
+    {
+     "text": "Wer nicht mehr sagen kann, wie er zu seinem Ergebnis gekommen ist, dessen Aussage ist nicht überprüfbar.",
+     "richtig": true,
+     "begruendung": "Ohne nachvollziehbaren Weg ist keine Überprüfung möglich."
+    },
+    {
+     "text": "Objektivität bedeutet, dass jeder Forscher ein anderes Ergebnis erhalten darf.",
+     "richtig": false,
+     "begruendung": "Objektiv heißt: gleiches Ergebnis bei gleichen Bedingungen."
+    }
+   ]
+  },
+  {
+   "frage": "Mona sagt: „Mein Onkel wurde streng erzogen und ist schüchtern. Das zeigt: Strenge Erziehung macht schüchtern.“ Welche Aussagen treffen zu?",
+   "statements": [
+    {
+     "text": "Monas Aussage verallgemeinert einen Einzelfall.",
+     "richtig": true,
+     "begruendung": "Von einem Fall wird auf alle geschlossen."
+    },
+    {
+     "text": "Monas Aussage beruht auf einer einmaligen, nicht nachprüfbaren Erfahrung.",
+     "richtig": true,
+     "begruendung": "Sie ist nicht überprüfbar und nicht wiederholbar."
+    },
+    {
+     "text": "Monas Aussage ist allgemeingültig, weil sie auf einer Beobachtung beruht.",
+     "richtig": false,
+     "begruendung": "Allgemeingültigkeit setzt eine geplante Untersuchung an einer repräsentativen Stichprobe voraus."
+    },
+    {
+     "text": "Monas Aussage ist subjektiv: Andere könnten aus anderen Beobachtungen andere Schlüsse ziehen.",
+     "richtig": true,
+     "begruendung": "Das spricht gegen Objektivität."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zur Bedeutung wissenschaftlicher Aussagen treffen zu?",
+   "statements": [
+    {
+     "text": "Weil es immer Ausnahmen gibt, sind wissenschaftliche Aussagen über Menschen wertlos.",
+     "richtig": false,
+     "begruendung": "Ausnahmen begrenzen sie auf Wahrscheinlichkeiten, machen sie aber nicht wertlos."
+    },
+    {
+     "text": "Wahrscheinlichkeitsaussagen gelten mit hoher Wahrscheinlichkeit für die genannte Gruppe.",
+     "richtig": true,
+     "begruendung": "So sind sie definiert."
+    },
+    {
+     "text": "Wissenschaftliche Aussagen sind verlässlicher als die Alltagstheorie, weil sie überprüfbar, objektiv und systematisch gewonnen sind.",
+     "richtig": true,
+     "begruendung": "Das unterscheidet sie von der Alltagstheorie."
+    },
+    {
+     "text": "Eine wissenschaftliche Aussage ist schon dann gültig, wenn sie in einem einzigen Fall zutrifft.",
+     "richtig": false,
+     "begruendung": "Sie muss allgemeingültig sein und darf nicht von einem Einzelfall auf alle schließen."
+    }
+   ]
+  }
+ ]
+}

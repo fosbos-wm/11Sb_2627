@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Teststation</title><link rel="stylesheet" href="css/ts.css"></head>
+<body>
+<div class="wrap">
+ <div class="top"><div class="brand"><span class="led on"></span><div>Vertiefungs- / Übungsbausteine<small>Interaktive Übungen zum Lernbereich</small></div></div></div>
+ <div class="row" style="margin-bottom:14px"><label>Team (für die Rangliste)<select id="team"></select></label><span class="muted small">Tippe auf eine Übung, sie startet sofort.</span></div>
+ <div class="grid" id="grid" aria-live="polite"></div>
+ <p class="muted small" style="margin-top:20px">Keine Anmeldung, keine Namen, keine Daten an einen Server.</p>
+</div>
+<script type="module">
+import {esc,ls,loadKatalog,cleanId,qrSvg} from "./js/ts-core.js";
+/* Gliederung als Ordnerbaum: Fach > Lernbereich > Thema > Übungen (Feld "pfad" im Katalog) */
+function baum(kat){
+  const root={name:"",key:"",children:[],items:[],n:0};
+  kat.forEach(s=>{
+    const p=s.pfad||[s.fach||"Weitere",s.thema||"Allgemein"];let n=root;
+    p.forEach(name=>{let c=n.children.find(x=>x.name===name);if(!c){c={name,key:(n.key?n.key+"/":"")+name,children:[],items:[],n:0};n.children.push(c)}c.n++;n=c});
+    n.items.push(s);
+  });
+  return root;
+}
+function finde(n,key,pf=[]){if(n.key===key)return {n,pf};for(const c of n.children){const r=finde(c,key,pf.concat(c.name));if(r)return r}return null}
+const uebungen=n=>n+" "+(n===1?"Übung":"Übungen");
+
+const $=id=>document.getElementById(id),q=new URLSearchParams(location.search);
+$("team").innerHTML=Array.from({length:30},(_,i)=>`<option value="${i+1}">Team ${i+1}</option>`).join("");
+let t=+ls.get("ts-team")||+q.get("t")||1;$("team").value=Math.min(30,Math.max(1,t));
+$("team").addEventListener("change",()=>{ls.set("ts-team",$("team").value);draw()});
+let kat=[];
+const sel=(q.get("auswahl")||"").split(",").map(cleanId).filter(Boolean);
+function link(s){
+  const u=new URLSearchParams({s:s.id,t:$("team").value});
+  (s.parameter||[]).forEach(p=>{const v=q.get(p.name);if(v&&/^[A-Za-z0-9]{1,6}$/.test(v))u.set(p.name,v)});
+  if(sel.length)u.set("auswahl",sel.join(","));
+  return "station.html?"+u;
+}
+const offen=(q.get("fach")||"").toLowerCase();
+/* QR-Code im Ordner: beim Aufklappen wird Link + QR-Code für genau diesen Ordner gezeigt */
+function ordnerQR(root){
+  root.querySelectorAll("details.ordner").forEach(d=>{
+    const fill=async()=>{
+      if(!d.open||d.querySelector(":scope>.oqrbox"))return;
+      const u=new URL("index.html",location.href);u.search="";u.hash="";u.searchParams.set("ordner",d.dataset.k);
+      const box=document.createElement("div");box.className="oqrbox";
+      box.innerHTML=`<div class="oqrimg"></div><div class="oqrtxt"><b>QR-Code für diesen Ordner</b><span class="muted small">Wer scannt, sieht nur die Übungen dieses Ordners.</span><input readonly value="${esc(u.href)}" aria-label="Link zum Ordner"><button type="button" class="btn alt">Link kopieren</button></div>`;
+      d.querySelector(":scope>summary").after(box);
+      box.querySelector(".oqrimg").innerHTML=await qrSvg(u.href,130);
+      const inp=box.querySelector("input");inp.addEventListener("focus",()=>inp.select());
+      box.querySelector("button").addEventListener("click",async e=>{try{await navigator.clipboard.writeText(u.href);e.target.textContent="Kopiert"}catch(x){inp.select()}});
+    };
+    d.addEventListener("toggle",fill);fill();
+  });
+}
+const ordner=(q.get("ordner")||"").slice(0,200);
+function karte(s,i){return `<a class="station" href="${link(s)}" style="text-decoration:none;color:inherit"><span class="no">ÜBUNG ${String(i+1).padStart(2,"0")}</span><b>${esc(s.titel)}</b><span class="muted small">${esc(s.beschreibung||"")}</span></a>`}
+function ordnerHtml(n,tiefe,aufF,offen,forceOpen,all){
+  const open=forceOpen||all||aufF.has(n.key)||offen===n.key.toLowerCase();
+  return `<details class="ordner${tiefe?" unter":""}" data-k="${esc(n.key)}" ${open?"open":""}><summary><span class="ico" aria-hidden="true">${tiefe?"📂":"📁"}</span><b>${esc(n.name)}</b><span class="muted small">${uebungen(n.n)}</span></summary>${n.children.map(c=>ordnerHtml(c,tiefe+1,aufF,offen,n.children.length===1,all)).join("")}${n.items.length?`<div class="grid">${n.items.map(karte).join("")}</div>`:""}</details>`;
+}
+function draw(){
+  const list=sel.length?sel.map(id=>kat.find(s=>s.id===id)).filter(Boolean):kat;
+  if(sel.length){$("grid").className="grid";$("grid").innerHTML=list.map(karte).join("")||`<div class="msg err">Für die 11. Klasse sind noch keine Übungen eingestellt. Sie werden später ergänzt.</div>`;return}
+  const root=baum(list);$("grid").className="";
+  const aufF=new Set(JSON.parse(ls.get("ts-open")||"[]"));
+  if(ordner){
+    const fr=finde(root,ordner,[]);const n=fr&&fr.n;
+    if(!n){$("grid").innerHTML=`<div class="msg err">Diesen Ordner gibt es nicht.</div>`;return}
+    $("grid").innerHTML=`<h2 style="margin:0 0 10px">${esc(fr.pf.join(" › "))}</h2>`+n.children.map(c=>ordnerHtml(c,1,aufF,"",true,true)).join("")+(n.items.length?`<div class="grid">${n.items.map(karte).join("")}</div>`:"");
+  }else{
+    $("grid").innerHTML=root.children.map(c=>ordnerHtml(c,0,aufF,offen,root.children.length===1,false)).join("")||`<div class="msg err">Für die 11. Klasse sind noch keine Übungen eingestellt. Sie werden später ergänzt.</div>`;
+  }
+  ordnerQR($("grid"));
+  $("grid").querySelectorAll("details").forEach(d=>d.addEventListener("toggle",()=>{
+    const o=[...$("grid").querySelectorAll("details[open]")].map(x=>x.dataset.k);ls.set("ts-open",JSON.stringify(o));
+  }));
+}
+loadKatalog().then(k=>{kat=k;draw()}).catch(()=>{$("grid").innerHTML=`<div class="msg err">Die Übungen konnten nicht geladen werden. Prüfe die Verbindung.</div>`});
+</script></body></html>

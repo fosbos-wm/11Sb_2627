@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: Erziehungsstile nach Baumrind",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": "Elterngespräche im Hort",
+ "vignette": "Die Horterzieherin Frau Klein führt Elterngespräche über Hausaufgaben und Mediennutzung der Viertklässler.\nFrau Albers: „Bei uns gilt eine Stunde Tablet, aber erst nach den Hausaufgaben. Die Regel haben wir mit Lukas besprochen. Wenn er gute Gründe hat, verhandeln wir. Abends erzählt er mir meistens, was ihn beschäftigt.“ Im Hort wirkt Lukas offen und hilft oft Jüngeren.\nHerr Brandt: „Mein Sohn hat zu gehorchen. Erklären muss ich nichts. Wer die Hausaufgaben nicht macht, hat eine Woche Hausarrest.“ Sein Sohn Jan ist im Hort meist still und traut sich wenig zu. Gegenüber Jüngeren wird er manchmal grob.\nFrau Çelik: „Ich will keinen Streit mit Mia. Wenn sie weint, darf sie eben länger spielen. Hauptsache, sie ist glücklich – ich hab sie so lieb.“\nHerr Dorn: „Keine Ahnung, was Tim nachmittags macht. Der ist alt genug. Ich habe genug eigene Probleme.“",
+ "aufgaben": [
+  {
+   "frage": "Das Verhalten der Eltern wird den beiden Dimensionen nach Baumrind fachlich zutreffend zugeordnet, wenn …",
+   "statements": [
+    {
+     "text": "… Frau Çeliks Zuneigung als Hinweis auf hohe Anforderung gewertet wird, weil sie sich intensiv um Mia kümmert.",
+     "richtig": false,
+     "begruendung": "Zuneigung gehört zur Dimension Wärme. Anforderungen stellt Frau Çelik gerade kaum."
+    },
+    {
+     "text": "… Herrn Dorns Haltung in beiden Dimensionen als niedrig eingestuft wird.",
+     "richtig": true,
+     "begruendung": "Er zeigt weder Zuwendung noch stellt er Regeln oder Erwartungen."
+    },
+    {
+     "text": "… Herrn Brandts Hausarrest als Ausdruck hoher Anforderung und Kontrolle gilt.",
+     "richtig": true,
+     "begruendung": "Strenge Regeln und konsequente Strafen gehören zur Dimension Anforderung/Kontrolle."
+    },
+    {
+     "text": "… Frau Albers’ abendliches Zuhören der Dimension Wärme und Responsivität zugeordnet wird.",
+     "richtig": true,
+     "begruendung": "Zuhören und Eingehen auf das Kind sind Ausdruck von Wärme und Responsivität."
+    }
+   ]
+  },
+  {
+   "frage": "Die Erziehungsstile der Eltern werden fachlich zutreffend bestimmt, wenn …",
+   "statements": [
+    {
+     "text": "… Frau Albers als autoritär eingeordnet wird, da sie feste Regeln aufstellt und durchsetzt.",
+     "richtig": false,
+     "begruendung": "Feste Regeln allein machen keinen autoritären Stil. Frau Albers verbindet Regeln mit Wärme, Begründung und Mitsprache – das ist autoritativ."
+    },
+    {
+     "text": "… Herr Dorn als permissiv gilt, weil er seinem Sohn viele Freiheiten lässt.",
+     "richtig": false,
+     "begruendung": "Ihm fehlt auch die Wärme – er nimmt kaum Anteil. Das ist der vernachlässigende Stil, nicht der permissive."
+    },
+    {
+     "text": "… Frau Çelik als permissiv eingestuft wird, da sie Konflikte meidet und kaum Grenzen setzt.",
+     "richtig": true,
+     "begruendung": "Hohe Wärme, wenige Regeln, Konfliktvermeidung: permissiver Stil."
+    },
+    {
+     "text": "… Herr Brandt als autoritär gilt, weil er Gehorsam ohne Begründung einfordert.",
+     "richtig": true,
+     "begruendung": "Hohe Anforderung bei geringer Wärme, Gehorsam ohne Erklärung: autoritärer Stil."
+    }
+   ]
+  },
+  {
+   "frage": "Mögliche Folgen für die Kinder werden im Sinne der Forschung zu den Erziehungsstilen zutreffend eingeschätzt, wenn …",
+   "statements": [
+    {
+     "text": "… für Tim das geringste Risiko ungünstiger Entwicklungsfolgen angenommen wird, da er früh selbstständig wird.",
+     "richtig": false,
+     "begruendung": "Der vernachlässigende Stil gilt als am stärksten mit negativen Entwicklungsfolgen verbunden."
+    },
+    {
+     "text": "… für Mia erwartet wird, dass ihr das Aushalten von Frustration besonders leichtfällt.",
+     "richtig": false,
+     "begruendung": "Permissiv erzogenen Kindern fällt es häufig schwerer, Frustration auszuhalten und Impulse zu steuern."
+    },
+    {
+     "text": "… für Lukas eher Selbstbewusstsein, soziale Kompetenz und Leistungsbereitschaft erwartet werden.",
+     "richtig": true,
+     "begruendung": "Autoritativ erzogene Kinder gelten in Baumrinds Forschung häufig als selbstbewusst, sozial kompetent und leistungsbereit."
+    },
+    {
+     "text": "… Jans Unsicherheit und sein gelegentlich grobes Verhalten als typischer Zusammenhang mit autoritärer Erziehung gelten.",
+     "richtig": true,
+     "begruendung": "Kinder aus autoritär geprägten Familien zeigen häufiger Unsicherheit und geringes Selbstwertgefühl oder – je nach Temperament – trotzig-aggressives Verhalten."
+    }
+   ]
+  },
+  {
+   "frage": "Frau Klein nutzt das Modell von Baumrind in den Gesprächen fachlich angemessen, wenn …",
+   "statements": [
+    {
+     "text": "… sie Frau Çelik rät, weniger Wärme zu zeigen, damit ihr Stil autoritativer wird.",
+     "richtig": false,
+     "begruendung": "Autoritativ heißt hohe Wärme plus hohe Anforderung. Frau Çelik müsste ihre Anforderungen erhöhen, nicht die Wärme verringern."
+    },
+    {
+     "text": "… sie die Studienergebnisse als sichere Vorhersage für die Entwicklung jedes einzelnen Kindes verwendet.",
+     "richtig": false,
+     "begruendung": "Die Forschung zeigt Zusammenhänge und Wahrscheinlichkeiten, keine sicheren Vorhersagen für den Einzelfall."
+    },
+    {
+     "text": "… sie den vernachlässigenden Stil als Teil von Baumrinds ursprünglichem Modell mit drei Stilen vorstellt.",
+     "richtig": false,
+     "begruendung": "Baumrind beschrieb zunächst drei Stile; den vernachlässigenden Stil ergänzten später Maccoby und Martin."
+    },
+    {
+     "text": "… sie berücksichtigt, dass die Stile Idealtypen sind und Eltern im Alltag häufig Mischformen zeigen.",
+     "richtig": true,
+     "begruendung": "Die Stile beschreiben Idealtypen; reale Eltern verhalten sich je nach Situation unterschiedlich."
+    }
+   ]
+  }
+ ]
+}

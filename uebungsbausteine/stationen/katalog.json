@@ -1,0 +1,453 @@
+[
+ {
+  "id": "lb1-psychologie-blockfall",
+  "titel": "Blockfall Gegenstand der Psychologie",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb1-psychologie-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Gegenstand der Psychologie",
+  "pfad": [
+   "LB 1",
+   "Gegenstand der Psychologie",
+   "Blockfall"
+  ]
+ },
+ {
+  "id": "lb1-psychologie-kprim",
+  "titel": "K-Prim K-Prim: Gegenstand der Psychologie",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht?",
+  "datei": "kprim.html?set=lb1-psychologie-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Gegenstand der Psychologie",
+  "pfad": [
+   "LB 1",
+   "Gegenstand der Psychologie",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb1-paedagogik-zuordnung",
+  "titel": "Zuordnung Gegenstand der Pädagogik",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "11 Fachbegriffe in ihrer Bedeutung verstehen und zuordnen.",
+  "datei": "zuordnung.html?set=lb1-paedagogik-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Gegenstand der Pädagogik",
+  "pfad": [
+   "LB 1",
+   "Gegenstand der Pädagogik",
+   "Zuordnung"
+  ]
+ },
+ {
+  "id": "lb1-paedagogik-rennen",
+  "titel": "Wichtel-Schubkarrenrennen Gegenstand der Pädagogik",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "2 bis 8 Teams treten gleichzeitig an: 53 Fragen zu Gegenstand der Pädagogik.",
+  "datei": "rennen.html?set=lb1-paedagogik-rennen",
+  "ergebnis": false,
+  "parameter": [],
+  "thema": "Gegenstand der Pädagogik",
+  "pfad": [
+   "LB 1",
+   "Gegenstand der Pädagogik",
+   "Wichtel-Schubkarrenrennen"
+  ]
+ },
+ {
+  "id": "lb1-alltagstheorie-blockfall",
+  "titel": "Blockfall Alltagstheorie und wissenschaftliche Theorie",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb1-alltagstheorie-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Alltagstheorie und wissenschaftliche Theorie",
+  "pfad": [
+   "LB 1",
+   "Alltagstheorie und wissenschaftliche Theorie",
+   "Blockfall"
+  ]
+ },
+ {
+  "id": "lb1-alltagstheorie-kprim",
+  "titel": "K-Prim K-Prim: Alltagstheorie",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht?",
+  "datei": "kprim.html?set=lb1-alltagstheorie-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Alltagstheorie und wissenschaftliche Theorie",
+  "pfad": [
+   "LB 1",
+   "Alltagstheorie und wissenschaftliche Theorie",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb1-merkmale-memory",
+  "titel": "Memory Merkmale wissenschaftlicher Aussagen",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe mit ihren Erklärungen aufdecken und paaren.",
+  "datei": "memory.html?set=lb1-merkmale-memory",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale wissenschaftlicher Aussagen",
+  "pfad": [
+   "LB 1",
+   "Merkmale wissenschaftlicher Aussagen",
+   "Memory"
+  ]
+ },
+ {
+  "id": "lb1-merkmale-kprim",
+  "titel": "K-Prim K-Prim: Merkmale wissenschaftlicher Aussagen",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht?",
+  "datei": "kprim.html?set=lb1-merkmale-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Merkmale wissenschaftlicher Aussagen",
+  "pfad": [
+   "LB 1",
+   "Merkmale wissenschaftlicher Aussagen",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb1-experiment-vergleich-1",
+  "titel": "Theorievergleich: Beobachtung und Experiment",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "12 Karten in 2 Spalten sortieren.",
+  "datei": "vergleich.html?set=lb1-experiment-vergleich-1",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Das Experiment",
+  "pfad": [
+   "LB 1",
+   "Das Experiment",
+   "Theorievergleich"
+  ]
+ },
+ {
+  "id": "lb1-experiment-kprim",
+  "titel": "K-Prim K-Prim: Das Experiment",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht?",
+  "datei": "kprim.html?set=lb1-experiment-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Das Experiment",
+  "pfad": [
+   "LB 1",
+   "Das Experiment",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb3-merkmale-blockfall",
+  "titel": "Blockfall Merkmale der Erziehung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb3-merkmale-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Blockfall"
+  ]
+ },
+ {
+  "id": "lb3-merkmale-kprim",
+  "titel": "K-Prim Merkmale der Erziehung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "4 Freitagstests mit Fallvignette (Nummer wählen): vier Aufgaben mit je vier Aussagen.",
+  "datei": "kprim.html?set=lb3-merkmale-kprim",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Freitagstest (1 bis 4)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 4,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb3-stile-vergleich-1",
+  "titel": "Theorievergleich: Hohe und niedrige Wärme bei hoher Anforderung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "12 Karten in 2 Spalten sortieren.",
+  "datei": "vergleich.html?set=lb3-stile-vergleich-1",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "Theorievergleich"
+  ]
+ },
+ {
+  "id": "lb3-stile-kprim",
+  "titel": "K-Prim Erziehungsstile nach Baumrind",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht? Mit Fallvignette.",
+  "datei": "kprim.html?set=lb3-stile-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb3-kindergarten-zuordnung",
+  "titel": "Zuordnung Der Kindergarten",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "13 Fachbegriffe in ihrer Bedeutung verstehen und zuordnen.",
+  "datei": "zuordnung.html?set=lb3-kindergarten-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Kindergarten",
+  "pfad": [
+   "LB 3",
+   "Der Kindergarten",
+   "Zuordnung"
+  ]
+ },
+ {
+  "id": "lb3-kindergarten-kprim",
+  "titel": "K-Prim Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht? Mit Fallvignette.",
+  "datei": "kprim.html?set=lb3-kindergarten-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Der Kindergarten",
+  "pfad": [
+   "LB 3",
+   "Der Kindergarten",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb3-baybep-kprim",
+  "titel": "K-Prim Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Vier Aufgaben mit je vier Aussagen: trifft zu oder nicht? Mit Fallvignette.",
+  "datei": "kprim.html?set=lb3-baybep-kprim",
+  "ergebnis": true,
+  "parameter": [],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "K-Prim"
+  ]
+ },
+ {
+  "id": "lb3-baybep-rennen",
+  "titel": "Wichtel-Schubkarrenrennen Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "2 bis 8 Teams treten gleichzeitig an: 66 Fragen zu Der Bayerische Bildungs- und Erziehungsplan (BayBEP).",
+  "datei": "rennen.html?set=lb3-baybep-rennen",
+  "ergebnis": false,
+  "parameter": [],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "Wichtel-Schubkarrenrennen"
+  ]
+ },
+ {
+  "id": "lb1-alles-tetris",
+  "titel": "Begriffe-Tetris Alle Fachbegriffe LB 1",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "103 Fachbegriffe und Fälle gemischt: Reihen schaffen, Begriffe verstehen und auf Fälle anwenden.",
+  "datei": "tetris.html?set=lb1-alles-tetris",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Spielnummer",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   },
+   {
+    "name": "fragen",
+    "label": "Fragen pro Spiel",
+    "typ": "wahl",
+    "optionen": [
+     "8",
+     "12",
+     "16"
+    ],
+    "standard": "12"
+   }
+  ],
+  "thema": "Alle Bereiche gemischt",
+  "pfad": [
+   "LB 1",
+   "Alle Bereiche gemischt",
+   "Begriffe-Tetris"
+  ]
+ },
+ {
+  "id": "lb1-alles-rennen",
+  "titel": "Wichtel-Schubkarrenrennen Alle Bereiche LB 1",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "2 bis 8 Teams, 287 Fragen aus allen Bereichen von LB 1 gemischt.",
+  "datei": "rennen.html?set=lb1-alles-rennen",
+  "ergebnis": false,
+  "parameter": [],
+  "thema": "Alle Bereiche gemischt",
+  "pfad": [
+   "LB 1",
+   "Alle Bereiche gemischt",
+   "Wichtel-Schubkarrenrennen"
+  ]
+ },
+ {
+  "id": "lb3-alles-tetris",
+  "titel": "Begriffe-Tetris Alle Fachbegriffe LB 3",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "71 Fachbegriffe und Fälle gemischt: Reihen schaffen, Begriffe verstehen und auf Fälle anwenden.",
+  "datei": "tetris.html?set=lb3-alles-tetris",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Spielnummer",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   },
+   {
+    "name": "fragen",
+    "label": "Fragen pro Spiel",
+    "typ": "wahl",
+    "optionen": [
+     "8",
+     "12",
+     "16"
+    ],
+    "standard": "12"
+   }
+  ],
+  "thema": "Alle Bereiche gemischt",
+  "pfad": [
+   "LB 3",
+   "Alle Bereiche gemischt",
+   "Begriffe-Tetris"
+  ]
+ },
+ {
+  "id": "lb3-alles-rennen",
+  "titel": "Wichtel-Schubkarrenrennen Alle Bereiche LB 3",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "2 bis 8 Teams, 316 Fragen aus allen Bereichen von LB 3 gemischt.",
+  "datei": "rennen.html?set=lb3-alles-rennen",
+  "ergebnis": false,
+  "parameter": [],
+  "thema": "Alle Bereiche gemischt",
+  "pfad": [
+   "LB 3",
+   "Alle Bereiche gemischt",
+   "Wichtel-Schubkarrenrennen"
+  ]
+ }
+]

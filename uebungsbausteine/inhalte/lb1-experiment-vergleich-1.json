@@ -1,0 +1,58 @@
+{
+ "titel": "Theorievergleich: Beobachtung und Experiment",
+ "anleitung": "Tippe eine Karte an und dann die Spalte, zu der sie gehört. Wenn alle Karten sortiert sind, kannst du prüfen.",
+ "spalten": [
+  "Beobachtung",
+  "Experiment"
+ ],
+ "karten": [
+  {
+   "t": "Der Forscher beobachtet eine bereits vorhandene Situation.",
+   "s": 0
+  },
+  {
+   "t": "Der Forscher greift nicht ein.",
+   "s": 0
+  },
+  {
+   "t": "Beispiel: Wie verhalten sich Lehrer und Schüler im Unterricht?",
+   "s": 0
+  },
+  {
+   "t": "Zeigt Zusammenhänge, klärt aber nicht sicher die Ursache",
+   "s": 0
+  },
+  {
+   "t": "Der Forscher legt die Bedingungen nicht selbst fest.",
+   "s": 0
+  },
+  {
+   "t": "Bedingungen lassen sich nicht gezielt verändern.",
+   "s": 0
+  },
+  {
+   "t": "Der Forscher führt die Situation absichtlich und planmäßig selbst herbei.",
+   "s": 1
+  },
+  {
+   "t": "Der Forscher verändert Bedingungen gezielt.",
+   "s": 1
+  },
+  {
+   "t": "Beispiel: Der Forscher gibt dem Lehrer genau vor, wie er sich verhalten soll, und untersucht die Reaktion der Schüler.",
+   "s": 1
+  },
+  {
+   "t": "Einzige Methode, mit der sich Ursache-Wirkung-Zusammenhänge herausfinden lassen",
+   "s": 1
+  },
+  {
+   "t": "Der Forscher bestimmt Ort, Zeit und Situation selbst.",
+   "s": 1
+  },
+  {
+   "t": "Besonders strenge Prüfung ist möglich.",
+   "s": 1
+  }
+ ]
+}

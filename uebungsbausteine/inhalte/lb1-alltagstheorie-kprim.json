@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: K-Prim: Alltagstheorie",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": null,
+ "vignette": null,
+ "aufgaben": [
+  {
+   "frage": "Welche Aussagen zur Alltagstheorie treffen zu?",
+   "statements": [
+    {
+     "text": "Sprichwörter sind immer zutreffend, weil sie sich über Generationen bewährt haben.",
+     "richtig": false,
+     "begruendung": "Sprichwörter klingen überzeugend, stimmen aber nicht immer mit der Wirklichkeit überein."
+    },
+    {
+     "text": "Die Alltagstheorie wird oft auch als Privattheorie bezeichnet.",
+     "richtig": true,
+     "begruendung": "Begriffsklärung im Text."
+    },
+    {
+     "text": "Weil die Alltagstheorie oft in die Irre führt, braucht der Mensch sie nicht und sollte sie ganz ablegen.",
+     "richtig": false,
+     "begruendung": "Jeder Mensch braucht eine Alltagstheorie, da sie wichtige Aufgaben erfüllt."
+    },
+    {
+     "text": "Alltagstheorien entstehen aus persönlichen Erfahrungen.",
+     "richtig": true,
+     "begruendung": "So lautet die Bestimmung der Alltagstheorie."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zu den Merkmalen der Alltagstheorie treffen zu?",
+   "statements": [
+    {
+     "text": "Alltagstheorien sind subjektiv.",
+     "richtig": true,
+     "begruendung": "Sie hängen von der Person und ihren Erfahrungen ab."
+    },
+    {
+     "text": "Alltagstheorien führen häufig zu unzulässigen Verallgemeinerungen.",
+     "richtig": true,
+     "begruendung": "Von einem Einzelfall wird auf alle geschlossen."
+    },
+    {
+     "text": "Alltagstheorien werden systematisch nach festen Methoden gewonnen.",
+     "richtig": false,
+     "begruendung": "Sie werden nicht systematisch, sondern aus persönlicher Erfahrung gewonnen."
+    },
+    {
+     "text": "Alltagstheorien lassen sich leicht wiederholen und nachprüfen.",
+     "richtig": false,
+     "begruendung": "Sie sind nicht überprüfbar und nicht wiederholbar."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zu den Aufgaben der Alltagstheorie treffen zu?",
+   "statements": [
+    {
+     "text": "Sie gibt Orientierung und ermöglicht eine schnelle Einschätzung anderer Menschen.",
+     "richtig": true,
+     "begruendung": "Das ist eine ihrer Aufgaben."
+    },
+    {
+     "text": "Sie liefert Erklärungen und hilft, Alltagsprobleme zu lösen.",
+     "richtig": true,
+     "begruendung": "Auch das gehört zu ihren Aufgaben."
+    },
+    {
+     "text": "Sie ist überflüssig, weil sie immer in die Irre führt.",
+     "richtig": false,
+     "begruendung": "Sie kann in die Irre führen, erfüllt aber wichtige Aufgaben."
+    },
+    {
+     "text": "Sie vermittelt Sicherheit, wodurch Angst und Unsicherheit abnehmen.",
+     "richtig": true,
+     "begruendung": "Wer eine Situation zu überblicken glaubt, fühlt sich sicherer."
+    }
+   ]
+  },
+  {
+   "frage": "Lisa beobachtet, dass der Nachbarsjunge Paul, dessen Eltern oft laut streiten, selbst laut und wütend wird. Sie schließt: „Kinder von Eltern, die laut streiten, werden selbst immer laut und aggressiv.“ Welche Aussagen treffen zu?",
+   "statements": [
+    {
+     "text": "Lisa stützt sich auf eine persönliche Beobachtung.",
+     "richtig": true,
+     "begruendung": "Das ist ein Merkmal der Alltagstheorie."
+    },
+    {
+     "text": "Lisa schließt von einem Einzelfall auf alle Kinder laut streitender Eltern.",
+     "richtig": true,
+     "begruendung": "Das ist eine unzulässige Verallgemeinerung."
+    },
+    {
+     "text": "Lisa hat ihre Aussage an einer repräsentativen Stichprobe systematisch überprüft.",
+     "richtig": false,
+     "begruendung": "Es gibt kein geplantes Vorgehen, nur eine zufällige Beobachtung."
+    },
+    {
+     "text": "Andere können Lisas Aussage nicht nachprüfen.",
+     "richtig": true,
+     "begruendung": "Sie beruht auf einer zufälligen Beobachtung."
+    }
+   ]
+  }
+ ]
+}

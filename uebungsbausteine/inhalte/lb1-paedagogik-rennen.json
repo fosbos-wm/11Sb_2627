@@ -1,0 +1,556 @@
+{
+ "titel": "Wichtel-Rennen: Gegenstand der Pädagogik",
+ "anleitung": "Fragen zu Gegenstand der Pädagogik.",
+ "fragen": [
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.«",
+   "o": [
+    "Erziehung als Wechselspiel",
+    "Ziele und Handlungen der Erziehung",
+    "Pädagogik",
+    "Vorstellungen über Erziehung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Das tatsächliche erzieherische Handeln mit erzieherischer Absicht.«",
+   "o": [
+    "Erziehungspraxis",
+    "Vorstellungen über Erziehung",
+    "Ziele und Handlungen der Erziehung",
+    "Anlage und Umwelt (heutige Sicht)"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Untersucht, wie Erziehung abläuft und wirkt, fragt nach Zusammenhängen und begründet Theorien.«",
+   "o": [
+    "Voraussetzungen und Bedingungen der Erziehung",
+    "Beziehung zwischen Erzieher und zu Erziehendem",
+    "Erziehungswissenschaft",
+    "Pädagogik"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Theorie ist nicht ohne Praxis und Praxis nicht ohne Theorie denkbar.«",
+   "o": [
+    "Erziehung als Wechselspiel",
+    "Pädagogik",
+    "Verhältnis von Theorie und Praxis",
+    "Beziehung zwischen Erzieher und zu Erziehendem"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: Menschenbild, z. B. ob man Kinder gezielt anleiten oder sich möglichst wenig einmischen soll.«",
+   "o": [
+    "Voraussetzungen und Bedingungen der Erziehung",
+    "Vorstellungen über Erziehung",
+    "Pädagogik",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: z. B. Vertrauen, durch das Kritik leichter angenommen wird.«",
+   "o": [
+    "Beziehung zwischen Erzieher und zu Erziehendem",
+    "Einrichtungen der Erziehung",
+    "Erziehungspraxis",
+    "Verhältnis von Theorie und Praxis"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: Ziele (z. B. Selbstständigkeit) und die daraus folgenden Methoden und Maßnahmen.«",
+   "o": [
+    "Erziehungswissenschaft",
+    "Beziehung zwischen Erzieher und zu Erziehendem",
+    "Ziele und Handlungen der Erziehung",
+    "Anlage und Umwelt (heutige Sicht)"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: z. B. kein ruhiger Lernplatz, viel Verantwortung zu Hause, Stress.«",
+   "o": [
+    "Erziehung als Wechselspiel",
+    "Erziehungswissenschaft",
+    "Voraussetzungen und Bedingungen der Erziehung",
+    "Ziele und Handlungen der Erziehung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gegenstandsbereich: z. B. Familie, Schule, Kindergarten, Jugendzentrum.«",
+   "o": [
+    "Einrichtungen der Erziehung",
+    "Voraussetzungen und Bedingungen der Erziehung",
+    "Vorstellungen über Erziehung",
+    "Ziele und Handlungen der Erziehung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Keine Einbahnstraße: Erwachsene beeinflussen junge Menschen, reagieren aber auch auf deren Verhalten, Wünsche und Widerstand.«",
+   "o": [
+    "Erziehungspraxis",
+    "Anlage und Umwelt (heutige Sicht)",
+    "Erziehung als Wechselspiel",
+    "Einrichtungen der Erziehung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Die Entwicklung eines Menschen wird meist als Zusammenspiel von Anlagen und Umwelt erklärt, nicht ausschließlich durch Gene.«",
+   "o": [
+    "Einrichtungen der Erziehung",
+    "Anlage und Umwelt (heutige Sicht)",
+    "Erziehungspraxis",
+    "Voraussetzungen und Bedingungen der Erziehung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Zwei Elternteile streiten darüber, ob man Kinder möglichst gezielt anleiten oder sich möglichst wenig einmischen sollte.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Vater ist überzeugt, dass Kinder von Natur aus gut sind und man sie nur wachsen lassen muss.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Erzieherin sieht das Kind als aktiven Gestalter seiner eigenen Bildung.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Schüler vertraut seinem Trainer und nimmt dessen Kritik deshalb leichter an.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Lehrerin gewinnt das Vertrauen ihrer Klasse, weil sie jedem zuhört.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Kind reagiert auf die Ermahnung der Mutter mit Trotz, die Mutter passt daraufhin ihr Vorgehen an.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Lehrerin überlegt, ob sie Gruppenarbeit einsetzt, damit ihre Klasse selbstständiger wird.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eltern wollen, dass ihr Kind Verantwortung lernt, und übertragen ihm die Pflege des Haustiers.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Erzieher lobt ein Kind, damit es sich künftig öfter traut, mitzuspielen.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Jugendlicher hat zu Hause keinen ruhigen Lernplatz und muss viel Verantwortung übernehmen.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Beide Eltern arbeiten im Schichtdienst, die Familie kann sich keine Nachhilfe leisten.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Kind wächst in einer Stadtwohnung an einer Hauptstraße auf und hat kaum Spielmöglichkeiten.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Jugendzentrum bietet Räume für Mitbestimmung und Freizeit an.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Kindergarten ergänzt die Erziehung in der Familie.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Schule vermittelt Kenntnisse, Fähigkeiten und Werte.«",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Das tatsächliche erzieherische Handeln mit erzieherischer Absicht«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Eltern erklären ihrem Kind die Hausregeln.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Eine Erzieherin im Kindergarten lehrt die Kinder ein Lied.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Herr Herschenkeimer hält einen guten Unterricht.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Frau Herschenkeimer erzieht ihr Kind zur Selbstständigkeit.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Eine Trainerin überträgt der Mannschaft Verantwortung.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Untersucht, wie Erziehung abläuft und wirkt«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Professor Dr. Sigmund stellt Theorien von der Erziehung auf.«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Erforscht offene Fragen und Probleme in der Erziehung«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Fragt nach Zusammenhängen und begründet Theorien«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Wissenschaftliche Erhellung der Erziehungswirklichkeit«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungspraxis und Erziehungswissenschaft",
+   "f": "Zu welcher Seite gehört: »Hilft, Erziehung besser zu verstehen und zu gestalten«?",
+   "o": [
+    "Erziehungspraxis",
+    "Erziehungswissenschaft"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Erziehungspraxis meint das wissenschaftliche Nachdenken über Erziehung.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Pädagogik ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Erziehung ist keine Einbahnstraße: Erwachsene beeinflussen junge Menschen, reagieren aber auch auf deren Verhalten, Wünsche und Widerstand.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Heute geht man meist davon aus, dass die Entwicklung eines Menschen ausschließlich durch seine Gene festgelegt ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Die Pädagogik hat fünf Gegenstandsbereiche.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Zu den Gegenstandsbereichen gehören auch die Einrichtungen der Erziehung.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Eine Methode ist pädagogisch gut begründet, wenn sie für die Lehrkraft am bequemsten ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Aus den Zielen der Erziehung ergeben sich konkrete Handlungen wie Gespräche, Regeln, Lob oder Konsequenzen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Theorie ist nicht ohne Praxis denkbar und Praxis nicht ohne Theorie.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Nach Groothoff können Praxis und Wissenschaft der Erziehung nur bedingt getrennt werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Die Erziehungswissenschaft ersetzt die Erziehungspraxis.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "K-Prim: Gegenstand der Pädagogik",
+   "f": "Trifft diese Aussage zu? »Ein Professor, der Erziehungstheorien aufstellt, übt damit Erziehungspraxis aus.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welches Wort fehlt? »Die Erziehungspraxis ist das tatsächliche erzieherische _____ mit erzieherischer Absicht, zum Beispiel wenn Eltern Regeln erklären oder Lehrkräfte eine Rückmeldung geben.«",
+   "o": [
+    "Erziehungspraxis",
+    "Psychologie",
+    "Handeln",
+    "Praxis"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welches Wort fehlt? »Die Erziehungswissenschaft untersucht, wie Erziehung abläuft und wirkt, und begründet _____.«",
+   "o": [
+    "Theorien",
+    "Pädagogik",
+    "Erziehungspraxis",
+    "Zufall"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "f": "Welches Wort fehlt? »Theorie ist nicht ohne _____ denkbar und Praxis nicht ohne Theorie.«",
+   "o": [
+    "Praxis",
+    "Beziehung",
+    "Voraussetzungen",
+    "Pädagogik"
+   ],
+   "r": 0
+  }
+ ]
+}

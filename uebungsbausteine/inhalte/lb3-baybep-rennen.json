@@ -1,0 +1,658 @@
+{
+ "titel": "Wichtel-Rennen: Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+ "anleitung": "Fragen zu Der Bayerische Bildungs- und Erziehungsplan (BayBEP).",
+ "fragen": [
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Orientierungsrahmen für Bildung in bayerischen Kitas von der Geburt bis zur Einschulung.«",
+   "o": [
+    "Digitale Kompetenz",
+    "Primat der Pädagogik",
+    "BayBEP",
+    "Querschnittsbereich"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Das Kind ist aktiver Gestalter seiner Bildung und lernt von Geburt an mit anderen.«",
+   "o": [
+    "Ko-Konstruktion",
+    "Primat der Pädagogik",
+    "Aufbau eines Bildungsbereichs",
+    "Gesundheit (WHO)"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Bildung findet beim Spielen, Essen, Draußensein und in Projekten statt.«",
+   "o": [
+    "Mündiger Umgang mit Medien",
+    "Ganzheitliche, alltagsintegrierte Bildung",
+    "Gesundheit (WHO)",
+    "BayBEP"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Leitgedanken → Bildungs- und Erziehungsziele → Anregungen und Beispiele zur Umsetzung.«",
+   "o": [
+    "Querschnittsbereich",
+    "Aufbau eines Bildungsbereichs",
+    "Ganzheitliche, alltagsintegrierte Bildung",
+    "Ko-Konstruktion"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Im BayBEP die „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen.«",
+   "o": [
+    "Digitale Kompetenz",
+    "Aufbau eines Bildungsbereichs",
+    "Ko-Konstruktion",
+    "Gesundheit (WHO)"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Kreativ, kritisch und sicher: Gestalten statt Konsumieren.«",
+   "o": [
+    "Ko-Konstruktion",
+    "BayBEP",
+    "Mündiger Umgang mit Medien",
+    "Gesundheit (WHO)"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Nicht die Technik bestimmt die Pädagogik, sondern die Technik dient der Pädagogik.«",
+   "o": [
+    "Digitale Kompetenz",
+    "Mündiger Umgang mit Medien",
+    "Primat der Pädagogik",
+    "Ko-Konstruktion"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Mit Medien: Fotos, Hörspiele oder Trickfilme erstellen. Über Medien: darüber sprechen, wie Medien wirken.«",
+   "o": [
+    "Bildung für nachhaltige Entwicklung (BNE)",
+    "Ko-Konstruktion",
+    "Bildung mit Medien / über Medien",
+    "Mündiger Umgang mit Medien"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Denkt nach vorne und verbindet Ökologie, Ökonomie und Soziales, damit auch künftige Generationen gut leben können.«",
+   "o": [
+    "Ganzheitliche, alltagsintegrierte Bildung",
+    "Primat der Pädagogik",
+    "Mündiger Umgang mit Medien",
+    "Bildung für nachhaltige Entwicklung (BNE)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Zustand von körperlichem, seelischem, geistigem und sozialem Wohlbefinden, mehr als das Fehlen von Krankheit.«",
+   "o": [
+    "Primat der Pädagogik",
+    "Bildung mit Medien / über Medien",
+    "Gesundheit (WHO)",
+    "Querschnittsbereich"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Selbstwahrnehmung, Einfühlungsvermögen, Umgang mit Stress und Gefühlen, Kommunikation, Problemlösen: sie schützen auch vor Sucht.«",
+   "o": [
+    "Querschnittsbereich",
+    "Lebenskompetenzen",
+    "Ko-Konstruktion",
+    "BayBEP"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Umweltbildung überschneidet sich mit Werteorientierung, Naturwissenschaften, Ästhetik, Bewegung und Gesundheit.«",
+   "o": [
+    "Aufbau eines Bildungsbereichs",
+    "Ko-Konstruktion",
+    "Querschnittsbereich",
+    "Digitale Kompetenz"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder fotografieren Pflanzen im Garten und gestalten ein digitales Pflanzenbuch.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder erstellen ein Hörspiel oder einen Trickfilm.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Gestalten statt Konsumieren«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Kinderrechte in der digitalen Welt: Zugang, Schutz und Bildung«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder lernen spielerisch, was Algorithmen sind, auch ohne Computer.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Im Projekt „Lebensraum Wasser“ untersuchen Kinder einen Bach und überlegen, wo sie Wasser sparen können.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder erleben Tiere, Pflanzen und Naturmaterialien mit allen Sinnen.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ziel: „Ich kann etwas tun!“ – Zuversicht und Hoffnung trotz Umweltproblemen«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ökologie, Ökonomie und Soziales im Zusammenspiel (BNE)«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder decken gemeinsam den Frühstückstisch und probieren unbekanntes Gemüse.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine kurze Entspannungsübung für Momente der Wut«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Gesundheit ist mehr als das Fehlen von Krankheit.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Suchtprävention durch Stärkung der Lebenskompetenzen«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Eigene Fotos, Hörspiele und Trickfilme gestalten«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Informatik spielerisch entdecken«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Recht auf Teilhabe und Bildung in der digitalen Welt«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Das Digitale ergänzt und bereichert das Analoge«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Technik wird in den Dienst der Pädagogik gestellt«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Klare Regeln für Mediennutzung und Fotos«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Datenschutz und Schutzeinstellungen«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Recht auf Schutz und Sicherheit«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Bei Apps zählt Qualität, nicht Quantität«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Kinder nutzen digitale Medien zu Hause oft passiv-konsumierend«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Kinder erleben Tiere, Pflanzen und Naturmaterialien«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Regt Fantasie und Kreativität an«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Natur mit allen Sinnen erfahren«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Was ist Umwelt für mich? Welchen Wert hat sie?«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Erwachsene schützen Kinder vor Umweltbelastungen«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Umweltschutz kann Spaß machen«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Denkt nach vorne, kein „Reparaturbetrieb“«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Zusammenspiel von Ökologie, Ökonomie und Sozialem«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Auch künftige Generationen sollen gut leben können«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Videos im Ruheraum als Belohnung eingesetzt werden, weil die Kinder sie zu Hause ohnehin nutzen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Frau Hubers Bedenken aufgegriffen werden, indem digitale Medien aus dem Kita-Alltag vollständig ausgeschlossen werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… mit den Kindern besprochen wird, ob die Ergebnisse einer Pflanzen-App immer zuverlässig sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… die Kinder das Pflanzenwachstum mit dem Tablet fotografieren und daraus ein eigenes Gartentagebuch gestalten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… erklärt wird, dass Kinder auch in der digitalen Welt ein Recht auf Zugang, Teilhabe sowie Bildung und Befähigung haben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… darauf verwiesen wird, dass der BayBEP digitale Kompetenz als „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen bezeichnet.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… klargestellt wird, dass es in der Kita um Gestalten und Reflektieren geht und nicht um zusätzlichen Medienkonsum.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass das Digitale das Analoge im Kita-Alltag nach und nach ersetzen soll.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… ihm zugestimmt wird, weil Kinder für die Umweltprobleme hauptverantwortlich sind und deshalb ihr Verhalten ändern müssen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… ergänzt wird, dass Kinder die Umwelt zunächst mit allen Sinnen erfahren und als verletzbar erleben sollen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… kritisiert wird, dass Angst Kinder überfordern kann, während der BayBEP Zuversicht und Hoffnung stärken will.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… der Vorschlag als gelungenes Beispiel für Bildung für nachhaltige Entwicklung im Sinne der Agenda 21 gilt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… die Kinder das geerntete Gemüse zubereiten und Essen als Genuss mit allen Sinnen erleben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Gesundheit wie von der Elternvertreterin als bloßes Fehlen von Krankheit verstanden wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… die Suchtprävention vor allem auf einem Vortrag über Drogen und deren Gefahren beruht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Gesundheitsbildung erst in der Grundschule ansetzt, wenn Kinder die Zusammenhänge besser verstehen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Der Bayerische Bildungs- und Erziehungsplan ist ein _____, kein Stundenplan.«",
+   "o": [
+    "Orientierungsrahmen",
+    "Sucht",
+    "alltagsintegriert",
+    "Zufall"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Er sieht das Kind als aktiven _____ seiner Bildung.«",
+   "o": [
+    "Gestalter",
+    "Stundenplan",
+    "Orientierungsrahmen",
+    "Konsumieren"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Bildung soll ganzheitlich und _____ stattfinden.«",
+   "o": [
+    "alltagsintegriert",
+    "nachhaltige",
+    "Sucht",
+    "Strafe"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Jeder Bildungsbereich besteht aus Leitgedanken, Bildungs- und Erziehungszielen und Anregungen zur _____.«",
+   "o": [
+    "Kulturtechnik",
+    "WHO",
+    "Konsumieren",
+    "Umsetzung"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Das Digitale ersetzt das Analoge nicht, sondern _____ es.«",
+   "o": [
+    "Gestalter",
+    "Kulturtechnik",
+    "ergänzt",
+    "nachhaltige"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Die Umweltbildung entwickelte sich von der Naturbegegnung über den Umweltschutz zur Bildung für _____ Entwicklung.«",
+   "o": [
+    "ergänzt",
+    "Stundenplan",
+    "Konsumieren",
+    "nachhaltige"
+   ],
+   "r": 3
+  }
+ ]
+}

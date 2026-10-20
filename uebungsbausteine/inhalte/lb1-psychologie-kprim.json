@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: K-Prim: Gegenstand der Psychologie",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": null,
+ "vignette": null,
+ "aufgaben": [
+  {
+   "frage": "Welche Aussagen zum Gegenstand der Psychologie treffen zu?",
+   "statements": [
+    {
+     "text": "Der Begriff „Seele“ lässt sich wissenschaftlich nicht genau fassen; deshalb untersucht die Psychologie, wie sich das Seelenleben eines Menschen zeigt.",
+     "richtig": true,
+     "begruendung": "Genau so begründet der Text den Gegenstand der Psychologie."
+    },
+    {
+     "text": "Erleben kann, genau wie Verhalten, von außen durch Fremdbeobachtung erforscht werden.",
+     "richtig": false,
+     "begruendung": "Erleben ist nur durch Selbstbeobachtung zugänglich; Fremdbeobachtung gilt für das Verhalten."
+    },
+    {
+     "text": "In der Psychologie bezieht sich der Begriff „Erleben“ nur auf den Menschen.",
+     "richtig": true,
+     "begruendung": "Bei Tieren kann das innere Erleben nicht wissenschaftlich erforscht werden."
+    },
+    {
+     "text": "Verhalten und Erleben laufen nacheinander ab: Zuerst erlebt der Mensch etwas, danach zeigt er ein Verhalten.",
+     "richtig": false,
+     "begruendung": "Beide laufen gleichzeitig ab und sind zwei Seiten desselben psychischen Geschehens."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zu Verhalten, Erleben und Handeln treffen zu?",
+   "statements": [
+    {
+     "text": "Handeln ist dasjenige Verhalten, das durch eine Absicht bestimmt ist.",
+     "richtig": true,
+     "begruendung": "So wird Handeln bestimmt."
+    },
+    {
+     "text": "Mimik und Körperbewegungen gehören zum Verhalten.",
+     "richtig": true,
+     "begruendung": "Sie sind von außen beobachtbar."
+    },
+    {
+     "text": "Gedanken und Gefühle gehören zum Verhalten, weil man sie anderen mitteilen kann.",
+     "richtig": false,
+     "begruendung": "Gedanken und Gefühle gehören zum Erleben; nur ihr Ausdruck ist Verhalten."
+    },
+    {
+     "text": "Wer bewusst und absichtlich weint, um etwas zu erreichen, handelt.",
+     "richtig": true,
+     "begruendung": "Das Weinen ist hier durch eine Absicht bestimmt."
+    }
+   ]
+  },
+  {
+   "frage": "Lea weint heftig. Herr Urser meint, sie sei enttäuscht. Dr. Zieler meint, sie weine, um den Vater zu erweichen. Welche Aussagen treffen zu?",
+   "statements": [
+    {
+     "text": "Herr Urser deutet Leas Weinen als Ausdruck ihres Erlebens (Enttäuschung).",
+     "richtig": true,
+     "begruendung": "Er führt das Weinen auf ein Gefühl zurück."
+    },
+    {
+     "text": "Dr. Zieler geht davon aus, dass Leas Weinen durch eine Absicht bestimmt ist, also ein Handeln.",
+     "richtig": true,
+     "begruendung": "Er unterstellt das Ziel, den Vater zu erweichen."
+    },
+    {
+     "text": "Der entscheidende Unterschied liegt darin, ob eine Absicht angenommen wird.",
+     "richtig": true,
+     "begruendung": "Davon hängt ab, ob es Verhalten oder Handeln ist."
+    },
+    {
+     "text": "Beide Psychologen beschreiben ausschließlich das Erleben von Lea.",
+     "richtig": false,
+     "begruendung": "Dr. Zieler beschreibt eine Absicht und damit ein Handeln."
+    }
+   ]
+  },
+  {
+   "frage": "Mia soll ein Referat halten, ihre Hand zittert, sie denkt: „Gleich blamiere ich mich.“ Welche Aussagen zum Zusammenhang von Verhalten und Erleben treffen zu?",
+   "statements": [
+    {
+     "text": "Das Zittern und die brüchige Stimme zeigen sich im Verhalten, die Nervosität gehört zum Erleben.",
+     "richtig": true,
+     "begruendung": "Verhalten ist von außen sichtbar, Erleben nicht."
+    },
+    {
+     "text": "Verhalten und Erleben beeinflussen sich gegenseitig und laufen gleichzeitig ab.",
+     "richtig": true,
+     "begruendung": "Sie sind zwei Seiten desselben psychischen Geschehens."
+    },
+    {
+     "text": "Man sieht Mia an, wie es ihr geht; man muss sie gar nicht fragen.",
+     "richtig": false,
+     "begruendung": "Das Verhalten liefert Hinweise, ersetzt aber nicht die Auskunft der Person."
+    },
+    {
+     "text": "Das Verhalten liefert Hinweise auf das Erleben, ersetzt aber nicht die Auskunft der Person.",
+     "richtig": true,
+     "begruendung": "Das Erleben bleibt Außenstehenden verborgen."
+    }
+   ]
+  }
+ ]
+}

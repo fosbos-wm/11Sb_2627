@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Station – Teststation</title><link rel="stylesheet" href="css/ts.css">
+<style>html,body{height:100%}body{display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:8px max(16px,env(safe-area-inset-left,0px));background:var(--panel);border-bottom:1px solid var(--line)}
+.bar .t{flex:1 1 160px;min-width:0;font-weight:700}
+iframe{flex:1;width:100%;border:0;background:var(--bg);min-height:0}
+.res{padding:10px 16px;font-size:.95rem}.res code{font:800 1.3rem var(--mono);letter-spacing:.06em}</style></head>
+<body>
+<div class="bar"><button type="button" id="qrmini" class="alt" aria-label="QR-Code zu dieser Übung, zum Vergrößern antippen" style="padding:3px;min-width:0;flex:none"><span id="qrs" style="display:block;width:56px;height:56px"></span></button><span class="led on"></span><span class="t" id="titel">Station</span><span class="muted small" id="team"></span><a class="btn alt" id="back" href="index.html">Alle Übungen</a></div>
+<div class="res msg" id="res" hidden role="status"></div>
+<div class="beamer" id="qrbig" hidden style="display:none"><button class="alt close" id="qrclose" type="button">Schließen</button><div class="side" style="margin:auto"><div class="muted">Scannen und mitmachen</div><div id="qrb"></div><div class="muted small" id="qru" style="word-break:break-all;max-width:360px"></div></div></div>
+<iframe id="frame" title="Station" allow="fullscreen" hidden></iframe>
+<div class="wrap" id="fehler" hidden><div class="msg err" id="ftext"></div></div>
+<script type="module">
+import {qrSvg,esc,fmtTime,SAFE_DATEI,loadKatalog,makeCode,rankSort,ls,cleanParams,cleanId} from "./js/ts-core.js";
+const $=id=>document.getElementById(id);
+const q=new URLSearchParams(location.search),sid=cleanId(q.get("s")),team=Math.max(1,Math.min(30,+q.get("t")||+ls.get("ts-team")||1)),auswahl=(q.get("auswahl")||"").split(",").map(cleanId).filter(Boolean).join(",");
+$("back").href="index.html?t="+team+(auswahl?"&auswahl="+encodeURIComponent(auswahl):"");
+const shareUrl=(()=>{const u=new URL(location.href);u.searchParams.delete("t");u.hash="";return u.href})();
+qrSvg(shareUrl,56).then(v=>{$("qrs").innerHTML=v});
+$("qrmini").addEventListener("click",async()=>{$("qrb").innerHTML=await qrSvg(shareUrl,340);$("qru").textContent=shareUrl.replace(/^https?:\/\//,"");$("qrbig").hidden=false;$("qrbig").style.display="flex"});
+$("qrclose").addEventListener("click",()=>{$("qrbig").hidden=true;$("qrbig").style.display="none"});
+const fail=t=>{$("fehler").hidden=false;$("ftext").textContent=t};
+(async()=>{
+  try{
+    const kat=await loadKatalog(),s=kat.find(x=>x.id===sid);
+    if(!s||!SAFE_DATEI.test(s.datei||"")){fail("Diese Übung gibt es nicht.");return}
+    $("titel").textContent=s.titel;$("team").textContent="Team "+team;document.title=s.titel+" – Teststation";
+    const u=new URL("stationen/"+s.datei,location.href);
+    u.searchParams.set("ts","1");u.searchParams.set("team",team);
+    Object.entries(cleanParams(s,q)).forEach(([a,v])=>u.searchParams.set(a,v));
+    const fr=$("frame");fr.src=u.href;fr.hidden=false;
+    const key="ts-best-"+sid+"-"+q.toString().replace(/[^A-Za-z0-9=&]/g,"")+"-"+team;
+    window.addEventListener("message",e=>{
+      if(e.source!==fr.contentWindow)return;
+      const r=e.data&&e.data.tsResult;if(!r||s.ergebnis===false)return;
+      const n={team,punkte:Math.max(0,Math.round(+r.punkte||0)),max:Math.max(1,Math.round(+r.max||1)),zuege:Math.max(0,Math.round(+r.zuege||0)),sekunden:Math.max(0,Math.round(+r.sekunden||0))};
+      let old=null;try{old=JSON.parse(ls.get(key)||"null")}catch(_){}
+      const best=old&&rankSort(old,n)<=0?old:n;ls.set(key,JSON.stringify(best));
+      const box=$("res");box.hidden=false;box.className="res msg ok";
+      box.innerHTML=`Dein bestes Ergebnis: ${best.punkte} von ${best.max} · ${best.zuege} Züge · ${fmtTime(best.sekunden)} min. Ergebniscode für die Lehrkraft: <code>${esc(makeCode(best))}</code>`;
+    });
+  }catch(e){fail("Die Übung konnte nicht geladen werden. Prüfe die Verbindung.")}
+})();
+</script></body></html>

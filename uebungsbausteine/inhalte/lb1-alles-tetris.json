@@ -1,0 +1,830 @@
+{
+ "titel": "Begriffe-Tetris: Alle Bereiche LB 1",
+ "art": "bedeutung",
+ "anleitung": "Lass die Blöcke fallen und fülle waagrechte Reihen. Jede volle Reihe stellt eine Frage: Was bedeutet der Fachbegriff, und welcher Fachbegriff passt zu einem Fall?",
+ "karten": [
+  {
+   "begriff": "Psychologie",
+   "bedeutung": "Wissenschaft vom Erleben und Verhalten des Menschen.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Psyche (griech.)",
+   "bedeutung": "„Die Seele“: der erste Wortteil von „Psychologie“.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Logos (griech.)",
+   "bedeutung": "„Lehre“ oder „Wissenschaft“: der zweite Wortteil von „Psychologie“.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Seele",
+   "bedeutung": "Lässt sich wissenschaftlich nicht genau fassen; die Psychologie untersucht deshalb, wie sich das Seelenleben zeigt.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Verhalten",
+   "bedeutung": "Gesamtheit aller von außen beobachtbaren Äußerungen eines Menschen, z. B. Sprechen, Körperbewegungen, Mimik.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Erleben",
+   "bedeutung": "Gesamtheit aller von außen nicht beobachtbaren Vorgänge im Menschen, z. B. Gedanken, Erinnerungen, Gefühle.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Selbstbeobachtung",
+   "bedeutung": "Der Zugang zum eigenen Erleben: Nur die Person selbst nimmt es wahr.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Fremdbeobachtung",
+   "bedeutung": "Beobachtung von außen; sie ist beim Verhalten eines Menschen möglich, beim Erleben nicht.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Handeln",
+   "bedeutung": "Dasjenige Verhalten, das durch eine Absicht bestimmt ist.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Wechselwirkung von Erleben und Verhalten",
+   "bedeutung": "Beides läuft gleichzeitig ab und ist voneinander abhängig: zwei Seiten desselben psychischen Geschehens.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Dualismus (Descartes)",
+   "bedeutung": "Annahme einer Seele, die mit dem Gehirn in Verbindung steht (Materie und Geist); Descartes vermutete ihren Sitz in der Zirbeldrüse.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Erleben bei Tieren",
+   "bedeutung": "Das innere Erleben von Tieren kann nicht wissenschaftlich erforscht werden.",
+   "t": "Gegenstand der Psychologie"
+  },
+  {
+   "begriff": "Pädagogik",
+   "bedeutung": "Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Erziehungspraxis",
+   "bedeutung": "Das tatsächliche erzieherische Handeln mit erzieherischer Absicht.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Erziehungswissenschaft",
+   "bedeutung": "Untersucht, wie Erziehung abläuft und wirkt, fragt nach Zusammenhängen und begründet Theorien.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Verhältnis von Theorie und Praxis",
+   "bedeutung": "Theorie ist nicht ohne Praxis und Praxis nicht ohne Theorie denkbar.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Vorstellungen über Erziehung",
+   "bedeutung": "Gegenstandsbereich: Menschenbild, z. B. ob man Kinder gezielt anleiten oder sich möglichst wenig einmischen soll.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Beziehung zwischen Erzieher und zu Erziehendem",
+   "bedeutung": "Gegenstandsbereich: z. B. Vertrauen, durch das Kritik leichter angenommen wird.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Ziele und Handlungen der Erziehung",
+   "bedeutung": "Gegenstandsbereich: Ziele (z. B. Selbstständigkeit) und die daraus folgenden Methoden und Maßnahmen.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Voraussetzungen und Bedingungen der Erziehung",
+   "bedeutung": "Gegenstandsbereich: z. B. kein ruhiger Lernplatz, viel Verantwortung zu Hause, Stress.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Einrichtungen der Erziehung",
+   "bedeutung": "Gegenstandsbereich: z. B. Familie, Schule, Kindergarten, Jugendzentrum.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Erziehung als Wechselspiel",
+   "bedeutung": "Keine Einbahnstraße: Erwachsene beeinflussen junge Menschen, reagieren aber auch auf deren Verhalten, Wünsche und Widerstand.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Anlage und Umwelt (heutige Sicht)",
+   "bedeutung": "Die Entwicklung eines Menschen wird meist als Zusammenspiel von Anlagen und Umwelt erklärt, nicht ausschließlich durch Gene.",
+   "t": "Gegenstand der Pädagogik"
+  },
+  {
+   "begriff": "Alltagstheorie (Privattheorie)",
+   "bedeutung": "Wissen über Psychologie und Erziehung, das aufgrund persönlicher Erfahrungen gewonnen wurde.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Wissenschaftliche Theorie",
+   "bedeutung": "Stützt sich auf wissenschaftliche Methoden und erhebt Wahrheitsanspruch.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Subjektivität",
+   "bedeutung": "Merkmal der Alltagstheorie: Die Aussage hängt von der Person ab, unterschiedliche Menschen haben sehr unterschiedliches Alltagswissen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Gewinnung aufgrund persönlicher Erfahrung",
+   "bedeutung": "Alltagstheorien entstehen aus eigenen Erlebnissen, nicht aus einem geplanten Vorgehen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Unzulässige Verallgemeinerung",
+   "bedeutung": "Von einem Einzelfall wird auf alle geschlossen, z. B. „Frauen können nicht Auto fahren“.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Keine Überprüfbarkeit",
+   "bedeutung": "Alltagstheorien werden nicht infrage gestellt und lassen sich nicht nachprüfen oder wiederholen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Funktion der Alltagstheorie",
+   "bedeutung": "Orientierung, schnelle Einschätzung anderer, Erklärungen für Alltagsprobleme; sie gibt Sicherheit und verringert Angst.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Sprichwort",
+   "bedeutung": "Klingt überzeugend, stimmt aber nicht immer mit der Wirklichkeit überein und kann in die Irre führen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Objektivität",
+   "bedeutung": "Merkmal der wissenschaftlichen Theorie: Unabhängig von den Forschern kommen alle zu gleichen Ergebnissen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Systematische Gewinnung",
+   "bedeutung": "Die wissenschaftliche Theorie entsteht planmäßig über bestimmte Methoden und einen im Voraus festgelegten Untersuchungsplan.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Allgemeingültigkeit",
+   "bedeutung": "Wissenschaftliche Aussagen werden aufgrund einer repräsentativen Stichprobe über eine bestimmte Gruppe von Menschen getroffen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Überprüfbarkeit und Wiederholbarkeit",
+   "bedeutung": "Andere Wissenschaftler können die Ergebnisse prüfen und das Vorgehen wiederholen.",
+   "t": "Alltagstheorie und wissenschaftliche Theorie"
+  },
+  {
+   "begriff": "Allgemeingültigkeit",
+   "bedeutung": "Die Aussage trifft mit hoher Wahrscheinlichkeit auf alle in ihr genannten Personen oder Gruppen zu.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Überprüfbarkeit",
+   "bedeutung": "Andere können die Aussage und den Weg dorthin jederzeit nachvollziehen und wiederholen.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Objektivität",
+   "bedeutung": "Verschiedene Forscher kommen bei gleichem Sachverhalt und gleichen Bedingungen zum gleichen Ergebnis.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Systematische Gewinnung",
+   "bedeutung": "Die Aussage entsteht nach klaren Regeln und Methoden; das Vorgehen ist geplant und organisiert.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Wahrscheinlichkeitsaussage",
+   "bedeutung": "Weil absolute Aussagen über Menschen kaum möglich sind, bleiben Einzelausnahmen möglich.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Einzelausnahme",
+   "bedeutung": "Sie widerlegt eine Wahrscheinlichkeitsaussage nicht und macht wissenschaftliche Aussagen nicht wertlos.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Untersuchungsplan",
+   "bedeutung": "Im Voraus festgelegt: Fragestellung, Methode und Ablauf (wann, wo, was, wer).",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Repräsentative Stichprobe",
+   "bedeutung": "Untersuchte Personengruppe, die so zusammengesetzt ist, dass sie die Gesamtgruppe abbildet.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Grenze zwischen Alltags- und wissenschaftlicher Theorie",
+   "bedeutung": "Die Grenze ist nicht absolut: Ein reines Entweder-oder gibt es nicht.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Subjektive Einzelbeobachtung",
+   "bedeutung": "Zufällige, einmalige persönliche Erfahrung: nicht nachprüfbar, nicht geplant und nicht auf alle übertragbar.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Wissenschaftliche Aussage",
+   "bedeutung": "Aussage, die allgemeingültig, überprüfbar, objektiv und systematisch gewonnen ist.",
+   "t": "Merkmale wissenschaftlicher Aussagen"
+  },
+  {
+   "begriff": "Experiment",
+   "bedeutung": "Absichtliches und planmäßiges Herbeiführen eines Vorgangs, um ihn gezielt beobachten zu können.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Willkürlichkeit",
+   "bedeutung": "Kriterium des Experiments: Der Forscher bestimmt Bedingungen, Situation, Ort und Zeit selbst.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Variierbarkeit",
+   "bedeutung": "Kriterium des Experiments: Der Forscher kann die Bedingungen gezielt verändern.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Wiederholbarkeit",
+   "bedeutung": "Kriterium des Experiments: Das Vorgehen kann wiederholt werden.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Beobachtung",
+   "bedeutung": "Der Forscher beobachtet eine bereits vorhandene Situation, ohne einzugreifen.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Laborexperiment",
+   "bedeutung": "Findet unter kontrollierten Bedingungen im Labor statt; Störfaktoren lassen sich besser kontrollieren.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Feldexperiment",
+   "bedeutung": "Findet in der natürlichen Umgebung der Personen statt; genauere Vorhersage für echtes Alltagsverhalten.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Empirische Methoden",
+   "bedeutung": "Beobachtung, Experiment, Test und Befragung bzw. Interview.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Kategoriensystem",
+   "bedeutung": "Fasst zusammen, welche Merkmale beobachtet werden sollen.",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Skala",
+   "bedeutung": "Macht die Werte einer Untersuchung vergleichbar (Zahlen oder Ratingskala).",
+   "t": "Das Experiment"
+  },
+  {
+   "begriff": "Ursache-Wirkung-Zusammenhang",
+   "bedeutung": "Nur mit dem Experiment lässt sich sicher klären, ob ein Faktor die Ursache einer Wirkung ist.",
+   "t": "Das Experiment"
+  }
+ ],
+ "faelle": [
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Mia denkt: „Gleich blamiere ich mich.“",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Mia fühlt sich sehr nervös.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Sich an den letzten Urlaub erinnern",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Mias Hand zittert.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Mias Stimme klingt brüchig.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Lea weint, um ihren Vater zu erweichen und doch noch zu Ludwig gehen zu dürfen.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Ein Schüler meldet sich, um auf einen Fehler an der Tafel hinzuweisen.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Jemand geht zur Bäckerei, um Brötchen zu kaufen.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Eine Schülerin lernt gezielt für den Test, um eine gute Note zu erreichen.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Psychologie",
+   "fall": 1,
+   "f": "Jemand zuckt bei einem lauten Knall zusammen.",
+   "o": [
+    "Erleben",
+    "Verhalten",
+    "Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Zwei Elternteile streiten darüber, ob man Kinder möglichst gezielt anleiten oder sich möglichst wenig einmischen sollte.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Vater ist überzeugt, dass Kinder von Natur aus gut sind und man sie nur wachsen lassen muss.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Eine Erzieherin sieht das Kind als aktiven Gestalter seiner eigenen Bildung.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Schüler vertraut seinem Trainer und nimmt dessen Kritik deshalb leichter an.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Eine Lehrerin gewinnt das Vertrauen ihrer Klasse, weil sie jedem zuhört.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Kind reagiert auf die Ermahnung der Mutter mit Trotz, die Mutter passt daraufhin ihr Vorgehen an.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Eine Lehrerin überlegt, ob sie Gruppenarbeit einsetzt, damit ihre Klasse selbstständiger wird.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Eltern wollen, dass ihr Kind Verantwortung lernt, und übertragen ihm die Pflege des Haustiers.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Erzieher lobt ein Kind, damit es sich künftig öfter traut, mitzuspielen.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Jugendlicher hat zu Hause keinen ruhigen Lernplatz und muss viel Verantwortung übernehmen.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Beide Eltern arbeiten im Schichtdienst, die Familie kann sich keine Nachhilfe leisten.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Kind wächst in einer Stadtwohnung an einer Hauptstraße auf und hat kaum Spielmöglichkeiten.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Jugendzentrum bietet Räume für Mitbestimmung und Freizeit an.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Ein Kindergarten ergänzt die Erziehung in der Familie.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Gegenstand der Pädagogik",
+   "fall": 1,
+   "f": "Eine Schule vermittelt Kenntnisse, Fähigkeiten und Werte.",
+   "o": [
+    "Vorstellungen",
+    "Beziehung",
+    "Ziele und Handlungen",
+    "Bedingungen",
+    "Einrichtungen"
+   ],
+   "r": 4
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "fall": 1,
+   "f": "Lisa schließt von Paul auf alle Kinder, deren Eltern sich laut streiten.",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "fall": 1,
+   "f": "Mein Onkel wurde streng erzogen und ist schüchtern, also macht Strenge schüchtern.",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "fall": 1,
+   "f": "Zwei Forscherinnen kommen unabhängig voneinander zum gleichen Ergebnis.",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "fall": 1,
+   "f": "Andere Forscher wiederholen die Untersuchung und überprüfen das Ergebnis.",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Alltagstheorie und wissenschaftliche Theorie",
+   "fall": 1,
+   "f": "Ein Forscherteam beschreibt genau, wie es vorgegangen ist.",
+   "o": [
+    "Alltagstheorie",
+    "Wissenschaftliche Theorie"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "fall": 1,
+   "f": "Ein Forscherteam beschreibt genau, wie es vorgegangen ist, sodass andere die Untersuchung wiederholen können.",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "fall": 1,
+   "f": "Eine zweite Forschergruppe wiederholt die Untersuchung nach der veröffentlichten Beschreibung.",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "fall": 1,
+   "f": "Zwei Forscherinnen untersuchen unabhängig voneinander dieselbe Frage unter gleichen Bedingungen und kommen zum selben Ergebnis.",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "fall": 1,
+   "f": "Fragestellung, Methode und Ablauf einer Untersuchung werden vorher festgelegt und Schritt für Schritt umgesetzt.",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale wissenschaftlicher Aussagen",
+   "fall": 1,
+   "f": "Ein Forscher plant vorab, wann, wo, was und wer untersucht wird.",
+   "o": [
+    "Allgemeingültig",
+    "Überprüfbar",
+    "Objektiv",
+    "Systematisch gewonnen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Dr. Kaya legt selbst fest, dass die Bewegungspause dienstags in der 2. Stunde im Klassenzimmer stattfindet.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Ein Forscher bestimmt Zeitpunkt und Ort der Untersuchung selbst.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Die Versuchsleiterin entscheidet, wann und wo der Versuch stattfindet.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Der Forscher entscheidet vorab, in welchem Raum und zu welcher Uhrzeit die Gruppe getestet wird.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "In der ersten Woche dauert die Bewegungspause 5 Minuten, in der zweiten 15 Minuten.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Ein Forscher ändert gezielt die Lautstärke im Raum und beobachtet die Konzentration.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Die Versuchsgruppen bekommen unterschiedlich lange Lernzeiten.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Bei einer Gruppe wird Musik gespielt, bei der anderen nicht.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Dr. Kaya wiederholt das Vorgehen an mehreren weiteren Dienstagen.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Der Versuch wird mit einer weiteren Klasse unter denselben Bedingungen noch einmal durchgeführt.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Das Experiment",
+   "fall": 1,
+   "f": "Derselbe Ablauf wird an mehreren Tagen durchgeführt.",
+   "o": [
+    "Willkürlichkeit",
+    "Variierbarkeit",
+    "Wiederholbarkeit"
+   ],
+   "r": 2
+  }
+ ]
+}

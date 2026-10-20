@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zuordnung</title>
+<style>
+:root{--bg:#f2f5f7;--panel:#fff;--fg:#14222c;--muted:#566872;--line:#d3dde3;--pri:#0e5a77;--pri-ink:#fff;--ok:#1b7f4b;--ok-soft:#d9f0e2;--bad:#b3261e;--bad-soft:#f9dedc;
+ --c1:#2a62b0;--c2:#b8325f;--c3:#1b7f4b;--c4:#a56a00;--c5:#6a3fb5;--c6:#0e7f86;--c7:#b3541e;--c8:#4d5d6b;--c9:#8a3fa0;--c10:#5c7f1b;--c11:#a02f2f;--c12:#2f5fa0}
+@media (prefers-color-scheme:dark){:root{--bg:#0f171c;--panel:#17232a;--fg:#e6eff3;--muted:#9bb0ba;--line:#2a3b44;--pri:#5fb8d9;--pri-ink:#062029;--ok:#6fd49b;--ok-soft:#163626;--bad:#ff9a92;--bad-soft:#40201e;
+ --c1:#8db6f2;--c2:#f08cae;--c3:#6fd49b;--c4:#f0c060;--c5:#b9a0ee;--c6:#6fd3d9;--c7:#f0a070;--c8:#a9b8c4;--c9:#d9a0e6;--c10:#b4d86f;--c11:#f09090;--c12:#8fb0e6;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:14px max(14px,env(safe-area-inset-left,0px)) 40px}
+h1{font-size:1.2rem;margin:0 0 4px}p{margin:0 0 12px;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px}
+@media (max-width:560px){.cols{gap:8px}}
+.col{display:flex;flex-direction:column;gap:8px;min-width:0}
+.it{display:flex;gap:8px;align-items:flex-start;text-align:left;width:100%;font:inherit;color:var(--fg);background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;min-height:48px}
+.it .no{flex:none;font:800 .8rem ui-monospace,Menlo,monospace;min-width:1.6em;height:1.6em;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--fg)}
+.it.sel{border-color:var(--pri);box-shadow:0 0 0 3px color-mix(in srgb,var(--pri) 30%,transparent)}
+.it.p{border-color:var(--pc)}.it.p .no{background:var(--pc);color:var(--bg)}
+.it.ok{background:var(--ok-soft);border-color:var(--ok)}.it.bad{background:var(--bad-soft);border-color:var(--bad)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:16px}
+button.b{font:600 .95rem inherit;font-family:inherit;border-radius:10px;border:1px solid var(--pri);background:var(--pri);color:var(--pri-ink);padding:10px 18px;cursor:pointer}
+button.b.alt{background:var(--panel);color:var(--fg);border-color:var(--line)}button.b:disabled{opacity:.5;cursor:default}
+.msg{margin-top:12px;padding:10px 14px;border-radius:10px;background:var(--ok-soft);color:var(--ok);font-weight:600}.msg.n{background:var(--bad-soft);color:var(--bad)}
+.stat{margin-left:auto;color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
+:focus-visible{outline:3px solid var(--pri);outline-offset:2px}
+</style></head><body>
+<h1 id="t">Zuordnung</h1><p id="a"></p>
+<div class="cols"><div class="col" id="L"></div><div class="col" id="R"></div></div>
+<div class="bar"><button class="b" id="chk" disabled type="button">Prüfen</button><button class="b alt" id="res" type="button">Neu mischen</button><span class="stat" id="st"></span></div>
+<div id="m" role="status"></div>
+<script>
+const QS=new URLSearchParams(location.search),TS=QS.get("ts")==="1",SET=(QS.get("set")||"").replace(/[^a-z0-9\-]/gi,"");
+function rng(seed){let a=(seed*2654435761)>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function sh(a,r){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let P=[],Lo=[],Ro=[],link={},sel=null,t0=0,tick=null,secs=0,tries=0,done=false,first=null;
+function render(res){
+  const col=i=>`var(--c${(i%12)+1})`;
+  const lnum={},rnum={};let n=0;Object.keys(link).forEach(l=>{n++;lnum[l]=n;rnum[link[l]]=n});
+  $("L").innerHTML=Lo.map(i=>{const k=link[i]!==undefined,c=res?(res[i]?"ok":"bad"):"";return `<button type="button" class="it ${k?"p":""} ${sel===i?"sel":""} ${c}" style="--pc:${col(lnum[i]||0)}" data-l="${i}"><span class="no">${k?lnum[i]:""}</span><span>${esc(P[i][0])}</span></button>`}).join("");
+  $("R").innerHTML=Ro.map(i=>{const l=Object.keys(link).find(x=>link[x]===i),k=l!==undefined,c=res&&k?(res[l]?"ok":"bad"):"";return `<button type="button" class="it ${k?"p":""} ${c}" style="--pc:${col(rnum[i]||0)}" data-r="${i}"><span class="no">${k?rnum[i]:""}</span><span>${esc(P[i][1])}</span></button>`}).join("");
+  $("chk").disabled=done||Object.keys(link).length!==P.length;
+  $("st").textContent=Object.keys(link).length+" von "+P.length+" verbunden";
+  document.querySelectorAll("[data-l]").forEach(b=>b.addEventListener("click",()=>{if(done)return;const i=+b.dataset.l;if(link[i]!==undefined){delete link[i];sel=null}else sel=sel===i?null:i;m("");render()}));
+  document.querySelectorAll("[data-r]").forEach(b=>b.addEventListener("click",()=>{if(done)return;const j=+b.dataset.r,l=Object.keys(link).find(x=>link[x]===j);if(l!==undefined){delete link[l];render();return}if(sel===null)return;link[sel]=j;sel=null;m("");start();render()}));
+}
+function m(t,bad){$("m").innerHTML=t?`<div class="msg ${bad?"n":""}">${t}</div>`:""}
+function start(){if(tick)return;t0=Date.now();tick=setInterval(()=>{secs=Math.round((Date.now()-t0)/1000)},500)}
+function report(punkte){if(!TS)return;try{parent.postMessage({tsResult:{punkte,max:P.length,zuege:tries,sekunden:secs}},"*")}catch(e){}}
+function check(){
+  tries++;const res={};let ok=0;Object.keys(link).forEach(l=>{res[l]=+link[l]===+l;if(res[l])ok++});
+  if(first===null)first=ok;
+  if(ok===P.length){done=true;clearInterval(tick);secs=Math.round((Date.now()-t0)/1000);render(res);m(`Alles richtig! ${tries===1?"Gleich beim ersten Versuch.":"Nach "+tries+" Prüfungen."}`+(TS?" Zeige deiner Lehrkraft den Ergebniscode (oben).":""));report(first)}
+  else{render(res);m(`${ok} von ${P.length} richtig. Die falschen Verbindungen sind rot: tippe sie an, um sie zu lösen, und verbinde neu.`,true)}
+}
+function init(){
+  const seed=+QS.get("spiel")||Math.floor(Math.random()*99)+1,r=rng(seed);
+  Lo=sh(P.map((_,i)=>i),r);Ro=sh(P.map((_,i)=>i),rng(seed*31+7));link={};sel=null;tries=0;first=null;done=false;secs=0;clearInterval(tick);tick=null;m("");render();
+}
+$("chk").addEventListener("click",()=>{ // falsche zurücksetzen nach Anzeige geschieht beim Antippen
+  check()});
+$("res").addEventListener("click",()=>{const q=new URLSearchParams(location.search);if(!TS)q.set("spiel",String(Math.floor(Math.random()*99)+1));history.replaceState(null,"","?"+q);init()});
+fetch("../inhalte/"+SET+".json").then(r=>r.json()).then(d=>{$("t").textContent=d.titel;$("a").textContent=d.anleitung;P=d.paare;if(TS)$("res").textContent="Von vorn beginnen";init()}).catch(()=>{$("a").textContent="Die Übung konnte nicht geladen werden."});
+</script></body></html>

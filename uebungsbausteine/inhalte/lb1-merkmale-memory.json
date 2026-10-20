@@ -1,0 +1,38 @@
+{
+ "titel": "Memory: Merkmale wissenschaftlicher Aussagen",
+ "anleitung": "Finde zu jedem Begriff die passende Erklärung.",
+ "paare": [
+  [
+   "Allgemeingültig",
+   "gilt mit hoher Wahrscheinlichkeit für die genannte Gruppe"
+  ],
+  [
+   "Überprüfbar",
+   "andere können es nachvollziehen und wiederholen"
+  ],
+  [
+   "Objektiv",
+   "gleiches Ergebnis bei verschiedenen Forschern"
+  ],
+  [
+   "Systematisch gewonnen",
+   "nach klaren Regeln und Methoden"
+  ],
+  [
+   "Wahrscheinlichkeitsaussage",
+   "Ausnahmen bleiben möglich"
+  ],
+  [
+   "Untersuchungsplan",
+   "vorab festgelegt: wann, wo, was, wer"
+  ],
+  [
+   "Repräsentative Stichprobe",
+   "bildet die Gesamtgruppe ab"
+  ],
+  [
+   "Einzelbeobachtung",
+   "zufällig, nicht nachprüfbar"
+  ]
+ ]
+}

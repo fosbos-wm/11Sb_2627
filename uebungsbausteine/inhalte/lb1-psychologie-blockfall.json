@@ -1,0 +1,77 @@
+{
+ "titel": "Blockfall: Gegenstand der Psychologie",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Erleben",
+  "Verhalten",
+  "Handeln"
+ ],
+ "items": [
+  {
+   "t": "Hunger spüren",
+   "k": 0
+  },
+  {
+   "t": "Die Farbe Rot wahrnehmen",
+   "k": 0
+  },
+  {
+   "t": "Mia denkt: „Gleich blamiere ich mich.“",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Mia fühlt sich sehr nervös.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Sich an den letzten Urlaub erinnern",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Mias Hand zittert.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Mias Stimme klingt brüchig.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Ein Gesichtsausdruck",
+   "k": 1
+  },
+  {
+   "t": "Laufen",
+   "k": 1
+  },
+  {
+   "t": "Lea weint, um ihren Vater zu erweichen und doch noch zu Ludwig gehen zu dürfen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Ein Schüler meldet sich, um auf einen Fehler an der Tafel hinzuweisen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Jemand geht zur Bäckerei, um Brötchen zu kaufen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Eine Schülerin lernt gezielt für den Test, um eine gute Note zu erreichen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Jemand zuckt bei einem lauten Knall zusammen.",
+   "k": 1,
+   "f": 1
+  }
+ ]
+}

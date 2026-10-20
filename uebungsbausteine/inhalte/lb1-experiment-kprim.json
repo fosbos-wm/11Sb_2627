@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: K-Prim: Das Experiment",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": null,
+ "vignette": null,
+ "aufgaben": [
+  {
+   "frage": "Welche Aussagen zum Experiment treffen zu?",
+   "statements": [
+    {
+     "text": "Ein Experiment ist das absichtliche und planmäßige Herbeiführen eines Vorgangs, um ihn gezielt beobachten zu können.",
+     "richtig": true,
+     "begruendung": "Definition des Experiments im Text."
+    },
+    {
+     "text": "Willkürlichkeit als Kriterium des Experiments bedeutet, dass der Forscher zufällig und ohne Plan vorgeht.",
+     "richtig": false,
+     "begruendung": "Willkürlichkeit heißt, dass der Forscher Bedingungen, Situation, Ort und Zeit selbst bestimmen kann."
+    },
+    {
+     "text": "Ein Laborexperiment findet in der natürlichen Umgebung der Personen statt.",
+     "richtig": false,
+     "begruendung": "Das beschreibt das Feldexperiment. Das Laborexperiment findet unter kontrollierten Bedingungen im Labor statt."
+    },
+    {
+     "text": "Zu den wichtigsten empirischen Methoden gehören Beobachtung, Experiment, Test und Befragung bzw. Interview.",
+     "richtig": true,
+     "begruendung": "Aufzählung unter „Auf den Punkt gebracht“."
+    }
+   ]
+  },
+  {
+   "frage": "Dr. Kaya legt Wochentag, Stunde und Ort einer Bewegungspause selbst fest, wählt 5 bzw. 15 Minuten Dauer und wiederholt das Vorgehen an mehreren Dienstagen. Welche Aussagen treffen zu?",
+   "statements": [
+    {
+     "text": "Sie bestimmt Wochentag, Stunde und Ort selbst (Willkürlichkeit).",
+     "richtig": true,
+     "begruendung": "Das erfüllt das Kriterium der Willkürlichkeit."
+    },
+    {
+     "text": "Sie verändert die Bedingung Pausenlänge (5 bzw. 15 Minuten).",
+     "richtig": true,
+     "begruendung": "Das erfüllt das Kriterium der Variierbarkeit."
+    },
+    {
+     "text": "Sie wiederholt das Vorgehen an mehreren Dienstagen.",
+     "richtig": true,
+     "begruendung": "Das erfüllt das Kriterium der Wiederholbarkeit."
+    },
+    {
+     "text": "Es handelt sich um ein Laborexperiment.",
+     "richtig": false,
+     "begruendung": "Es findet im Klassenzimmer statt, also in der natürlichen Umgebung: ein Feldexperiment."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zu Beobachtung und Experiment treffen zu?",
+   "statements": [
+    {
+     "text": "Beim Experiment führt der Forscher die Situation selbst herbei.",
+     "richtig": true,
+     "begruendung": "Das unterscheidet es von der Beobachtung."
+    },
+    {
+     "text": "Beobachtung eignet sich besser als das Experiment, um sicher Ursache und Wirkung zu klären.",
+     "richtig": false,
+     "begruendung": "Dafür ist das Experiment die geeignete Methode."
+    },
+    {
+     "text": "Bei der Beobachtung greift der Forscher in eine vorhandene Situation nicht ein.",
+     "richtig": true,
+     "begruendung": "Er beschreibt, was vorhanden ist."
+    },
+    {
+     "text": "Beobachtung kann Zusammenhänge zeigen, aber nicht sicher klären, ob ein Faktor die Ursache ist.",
+     "richtig": true,
+     "begruendung": "Die Bedingungen werden nicht gezielt verändert."
+    }
+   ]
+  },
+  {
+   "frage": "Welche Aussagen zu Kategoriensystem und Skala treffen zu?",
+   "statements": [
+    {
+     "text": "Ein Kategoriensystem legt fest, welche Merkmale beobachtet werden.",
+     "richtig": true,
+     "begruendung": "So wird es bestimmt."
+    },
+    {
+     "text": "Eine Skala macht die Werte einer Untersuchung vergleichbar.",
+     "richtig": true,
+     "begruendung": "Das kann eine Zahlen- oder eine Ratingskala sein."
+    },
+    {
+     "text": "Mit einer Skala wird festgelegt, welche Verhaltensweisen beobachtet werden.",
+     "richtig": false,
+     "begruendung": "Das leistet das Kategoriensystem."
+    },
+    {
+     "text": "Für mangelnde Konzentration könnte „aus dem Fenster schauen“ eine Kategorie sein.",
+     "richtig": true,
+     "begruendung": "Es ist ein beobachtbares Verhalten, das zur Kategorie passt."
+    }
+   ]
+  }
+ ]
+}

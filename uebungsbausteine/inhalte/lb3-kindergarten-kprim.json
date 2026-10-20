@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": "Anmeldung im Kinderhaus „Regenbogen“",
+ "vignette": "Das Kinderhaus „Regenbogen“ in Neustadt wird von der Caritas betrieben. Unter einem Dach gibt es eine Krippengruppe, zwei Kindergartengruppen und einen Hort für Grundschulkinder. Betreut werden die Kinder von Erzieherinnen und Erziehern, Kinderpflegerinnen und einer Sozialpädagogin.\nFrau Hahn ist alleinerziehend und beginnt im Januar eine Vollzeitstelle. Beim Anmeldegespräch fragt sie besorgt: „Meine Tochter Ella ist gerade drei geworden. Muss sie jetzt in den Kindergarten? Und muss sie dann jeden Tag kommen, so wie später in der Schule?“\nIhr Nachbar Herr Vogt hatte ihr am Morgen gesagt: „Kindergarten ist doch nur Aufbewahrung, damit die Eltern arbeiten können. Und wenn das Kind den ganzen Tag dort ist, übernimmt eben der Kindergarten die Erziehung statt der Familie.“\nDie Stadt Neustadt plant wegen der hohen Nachfrage eine weitere Einrichtung. Bevor sie selbst aktiv wird, fragt sie bei der Diakonie und beim Roten Kreuz an, ob diese den neuen Kindergarten übernehmen möchten.",
+ "aufgaben": [
+  {
+   "frage": "Das Kinderhaus „Regenbogen“ wird fachlich zutreffend beschrieben, wenn …",
+   "statements": [
+    {
+     "text": "… angenommen wird, dass die Kinder dort wie in einem Heim dauerhaft wohnen und übernachten.",
+     "richtig": false,
+     "begruendung": "Anders als im Heim bleiben die Kinder in Kindertagesstätten nicht dauerhaft über Nacht."
+    },
+    {
+     "text": "… die Caritas als öffentlicher Träger bezeichnet wird, weil sie Aufgaben für das Gemeinwohl übernimmt.",
+     "richtig": false,
+     "begruendung": "Die Caritas ist ein kirchlicher Wohlfahrtsverband und damit ein freier Träger. Öffentliche Träger sind z. B. Städte und Gemeinden."
+    },
+    {
+     "text": "… es als Kindertagesstätte bezeichnet wird, da es Krippe, Kindergarten und Hort unter einem Dach vereint.",
+     "richtig": true,
+     "begruendung": "„Kita“ ist meist der Oberbegriff für verschiedene Einrichtungen für Kinder unter einem Dach: Krippe, Kindergarten und Hort."
+    },
+    {
+     "text": "… es als außerschulische Einrichtung eingeordnet wird, obwohl dort auch Schulkinder betreut werden.",
+     "richtig": true,
+     "begruendung": "Kitas sind außerschulische Einrichtungen – auch der Hort betreut Schulkinder außerhalb des Unterrichts."
+    }
+   ]
+  },
+  {
+   "frage": "Frau Hahns Fragen werden fachlich zutreffend beantwortet, wenn …",
+   "statements": [
+    {
+     "text": "… ihr erklärt wird, dass für Ella keine gesetzliche Pflicht zum Besuch des Kindergartens besteht.",
+     "richtig": true,
+     "begruendung": "Im Gegensatz zur Schulpflicht besteht keine gesetzliche Pflicht, einen Kindergarten zu besuchen."
+    },
+    {
+     "text": "… ihr mitgeteilt wird, dass Ella mit drei Jahren im vierten Lebensjahr ist und damit im typischen Kindergartenalter.",
+     "richtig": true,
+     "begruendung": "Das vierte Lebensjahr beginnt mit dem dritten Geburtstag. Der Kindergarten ist für Kinder zwischen dem vierten und sechsten Lebensjahr."
+    },
+    {
+     "text": "… sie erfährt, dass sie den Beginn des Kindergartenbesuchs am Entwicklungsstand ihrer Tochter ausrichten kann.",
+     "richtig": true,
+     "begruendung": "Die Eltern schicken ihre Kinder freiwillig und können den Eintritt nach dem Entwicklungsstand richten."
+    },
+    {
+     "text": "… ihr gesagt wird, dass Ella den Kindergarten wie die Schule an jedem Wochentag besuchen muss.",
+     "richtig": false,
+     "begruendung": "Der Kindergarten muss nicht täglich besucht werden; der Aufenthalt kann flexibel gehandhabt werden."
+    }
+   ]
+  },
+  {
+   "frage": "Herrn Vogts Aussage wird fachlich zutreffend widerlegt, wenn …",
+   "statements": [
+    {
+     "text": "… betont wird, dass der Kindergarten eine familienergänzende Einrichtung ist, die die Familie nicht ersetzt.",
+     "richtig": true,
+     "begruendung": "Der Kindergarten will die Erziehung der Familie unterstützen und ergänzen – nicht ersetzen."
+    },
+    {
+     "text": "… ihm darin zugestimmt wird, dass der Kindergarten bei ganztägiger Betreuung die Erziehungsaufgabe der Familie übernimmt.",
+     "richtig": false,
+     "begruendung": "Auch bei Ganztagsbetreuung bleibt der Kindergarten familienergänzend; die Familie behält ihre Erziehungsaufgabe."
+    },
+    {
+     "text": "… eingeräumt wird, dass Pflege und Erziehung im Kindergarten meist von ungelernten Hilfskräften geleistet werden.",
+     "richtig": false,
+     "begruendung": "Pflege und Erziehung werden in der Regel von ausgebildeten Erziehern und Kinderpflegern geleistet."
+    },
+    {
+     "text": "… mit Mollenhauer ergänzt wird, dass Kinder dort Gleichaltrige und Spielräume finden, die Familien oft fehlen.",
+     "richtig": true,
+     "begruendung": "Mollenhauer: Die Familie kann heute oft keinen freien, gesicherten Spielraum, keine Altersgruppe und keine vielfältigen Sozialerfahrungen mehr bieten."
+    }
+   ]
+  },
+  {
+   "frage": "Das Vorgehen der Stadt Neustadt wird fachlich zutreffend erklärt, wenn …",
+   "statements": [
+    {
+     "text": "… angenommen wird, dass öffentliche Träger grundsätzlich die Mehrheit der Kindergärten betreiben.",
+     "richtig": false,
+     "begruendung": "Die meisten Kindergärten sind in freier Trägerschaft; nur etwa 30 % liegen in öffentlicher Trägerschaft."
+    },
+    {
+     "text": "… die Regelung dem Jugendwohlfahrtsgesetz zugeschrieben wird, das bis heute unverändert gilt.",
+     "richtig": false,
+     "begruendung": "Das JWG wurde 1990/91 durch das Kinder- und Jugendhilfegesetz (KJHG, SGB VIII) abgelöst."
+    },
+    {
+     "text": "… es auf das Subsidiaritätsprinzip zurückgeführt wird, nach dem freie Träger Vorrang vor öffentlichen Trägern haben.",
+     "richtig": true,
+     "begruendung": "Öffentliche Träger werden erst aktiv, wenn kein freier Träger zur Verfügung steht (Subsidiaritätsprinzip)."
+    },
+    {
+     "text": "… betont wird, dass ein Kindergarten keiner staatlichen Aufsicht untersteht, sobald ein freier Träger ihn betreibt.",
+     "richtig": false,
+     "begruendung": "Kindergärten unterstehen unabhängig vom Träger der Aufsicht von Jugendämtern und Regierungen."
+    }
+   ]
+  }
+ ]
+}

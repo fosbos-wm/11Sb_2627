@@ -1,0 +1,58 @@
+{
+ "titel": "Theorievergleich: Hohe und niedrige Wärme bei hoher Anforderung",
+ "anleitung": "Tippe eine Karte an und dann die Spalte, zu der sie gehört. Wenn alle Karten sortiert sind, kannst du prüfen.",
+ "spalten": [
+  "Autoritativ",
+  "Autoritär"
+ ],
+ "karten": [
+  {
+   "t": "Hohe Wärme und hohe Anforderung",
+   "s": 0
+  },
+  {
+   "t": "Eltern begründen ihre Entscheidungen",
+   "s": 0
+  },
+  {
+   "t": "Eltern hören dem Kind zu",
+   "s": 0
+  },
+  {
+   "t": "Gilt als besonders günstig für die Entwicklung",
+   "s": 0
+  },
+  {
+   "t": "Kind: selbstbewusst und sozial kompetent",
+   "s": 0
+  },
+  {
+   "t": "Ausnahme am Wochenende wird gemeinsam vereinbart",
+   "s": 0
+  },
+  {
+   "t": "Niedrige Wärme und hohe Anforderung",
+   "s": 1
+  },
+  {
+   "t": "Gehorsam wird ohne Begründung verlangt",
+   "s": 1
+  },
+  {
+   "t": "Entscheidungen werden selten diskutiert",
+   "s": 1
+  },
+  {
+   "t": "Kind: eher unsicher mit geringem Selbstwert",
+   "s": 1
+  },
+  {
+   "t": "Je nach Temperament trotzig-aggressives Verhalten",
+   "s": 1
+  },
+  {
+   "t": "„Weil ich es sage.“",
+   "s": 1
+  }
+ ]
+}

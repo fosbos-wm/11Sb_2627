@@ -1,0 +1,3075 @@
+{
+ "titel": "Wichtel-Rennen: Alle Bereiche LB 3",
+ "anleitung": "Fragen aus allen Bereichen von LB 3 gemischt.",
+ "fragen": [
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Will Lernprozesse herbeiführen und unterstützen.«",
+   "o": [
+    "Symbolischer Interaktionismus (Mollenhauer)",
+    "Pädagogisches Handeln",
+    "Soziale Interaktion",
+    "Erzieher"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Soll die Lernprozesse bewältigen bzw. vollbringen.«",
+   "o": [
+    "Symbolischer Interaktionismus (Mollenhauer)",
+    "Zu Erziehender",
+    "Soziale Interaktion",
+    "Wechselspiel von Aktion und Reaktion"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Wechselseitig aufeinander bezogenes Verhalten zwischen Menschen, die agieren, reagieren und sich gegenseitig beeinflussen und steuern.«",
+   "o": [
+    "Soziale Interaktion",
+    "Wertorientiertes Handeln",
+    "Soziale Beziehung",
+    "Zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Prozess der Erziehung verändert sowohl den zu Erziehenden als auch den Erzieher.«",
+   "o": [
+    "Erzieher",
+    "Wertorientiertes Handeln",
+    "Wechselspiel von Aktion und Reaktion",
+    "Zu Erziehender"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Erfolg der Erziehung hängt stark von der persönlichen, positiven emotionalen Beziehung ab.«",
+   "o": [
+    "Soziale Beziehung",
+    "Pädagogisches Handeln",
+    "Wechselspiel von Aktion und Reaktion",
+    "Erzieher"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Teil einer sozialen Interaktion, in dem Informationen vermittelt, aufgenommen und ausgetauscht werden.«",
+   "o": [
+    "Soziale Interaktion",
+    "Beabsichtigte Lernhilfe",
+    "Soziales Handeln",
+    "Soziale Kommunikation"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Menschen kommunizieren über Symbole (Sprache, Mimik, Gestik, Körperkontakt, Musik), die für alle Beteiligten die gleiche Bedeutung haben.«",
+   "o": [
+    "Soziale Kommunikation",
+    "Soziales Handeln",
+    "Zu Erziehender",
+    "Symbolischer Interaktionismus (Mollenhauer)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Jede Handlung muss vom anderen gedeutet und verstanden werden.«",
+   "o": [
+    "Zu Erziehender",
+    "Wechselspiel von Aktion und Reaktion",
+    "Soziales Handeln",
+    "Wechselseitiger Interpretationsprozess"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Erzieher will bewusst und absichtlich Lernprozesse herbeiführen, die der zu Erziehende bewältigen muss.«",
+   "o": [
+    "Beabsichtigte Lernhilfe",
+    "Wechselseitiger Interpretationsprozess",
+    "Soziales Handeln",
+    "Wechselspiel von Aktion und Reaktion"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Erzieherische Handlungen sind immer bestimmten Werten und Normen verpflichtet.«",
+   "o": [
+    "Wertorientiertes Handeln",
+    "Soziale Beziehung",
+    "Erzieher",
+    "Soziale Interaktion"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Bewusst und willentlich auf andere Menschen bezogenes, überlegtes Handeln.«",
+   "o": [
+    "Soziales Handeln",
+    "Symbolischer Interaktionismus (Mollenhauer)",
+    "Pädagogisches Handeln",
+    "Wechselspiel von Aktion und Reaktion"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Beabsichtigte Aktivität in einer Erziehungssituation mit einem Ziel; das Ergebnis ist offen („Versuchshandeln“).«",
+   "o": [
+    "Soziale Beziehung",
+    "Pädagogisches Handeln",
+    "Wechselseitiger Interpretationsprozess",
+    "Erzieher"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ein Kind braucht von Anfang an eine positive emotionale Bindung zur Bezugsperson.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Wo die Beziehung nicht stimmt, hat die Erziehung wenig Chancen.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Finn fasst Vertrauen zur Erzieherin, weil sie ihn jeden Morgen liebevoll begrüßt.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine Mutter schaut weg, als ihr Kind etwas Verbotenes tut – auch das teilt etwas mit.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein grimmiges Gesicht zeigt, dass ein Verhalten nicht gutgeheißen wird.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Geschlossene Augen und ein Daumen nach oben bedeuten „toll gemacht“.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Das Wort „Hund“ steht für eine bestimmte Tierart.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die Mutter lobt ihre Tochter, damit sie in der Schule mitlernt.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Vater führt ein Gespräch mit seinem Sohn, um ihn zum Aufräumen zu bewegen.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Ein Erzieher stellt Belohnungen in Aussicht, um ein Ziel zu erreichen.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die Erzieherin überlegt, welche Folgen ihr Handeln für das Kind hat.«",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Will Lernprozesse herbeiführen und unterstützen«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Verfolgt bewusst ein Erziehungsziel«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Trägt die pädagogische Verantwortung«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Muss sich fragen, welche Folgen sein Handeln hat«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Stimmt sein Handeln auf Alter, Interessen und Fähigkeiten des anderen ab«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Verändert sich im Erziehungsprozess selbst«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Soll Lernprozesse bewältigen«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Erlebt eine relativ dauerhafte Änderung von Verhalten und Erleben«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Braucht von Anfang an eine positive emotionale Beziehung«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Deutet die Handlungen des Erziehers«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Reagiert auf das Verhalten des Erziehers«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erzieher und zu Erziehender",
+   "f": "Zu welcher Seite gehört: »Wird durch den Prozess verändert«?",
+   "o": [
+    "Erzieher",
+    "zu Erziehender"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Wechselseitig aufeinander bezogenes Verhalten«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Beide agieren und reagieren, beeinflussen und steuern sich«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Der Erzieher schimpft, das Kind weint, der Erzieher nimmt es in den Arm«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Das Geschehen zwischen Personen«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Informationen werden vermittelt, aufgenommen und ausgetauscht«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Auch Schweigen und Wegschauen sagen etwas aus«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Symbole wie Sprache, Mimik, Gestik haben für alle die gleiche Bedeutung«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Nach Mead ein Austausch von Bedeutung über Symbole«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Bewusst und willentlich auf andere Menschen bezogen«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Zielt auf die Veränderung des anderen ab«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Geschieht bewusst und planmäßig, nicht jedes Lernen ist Erziehung«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Interaktion, Kommunikation und Handeln",
+   "f": "Zu welcher Seite gehört: »Nach Brezinka sinnhaft orientiert am Verhalten anderer«?",
+   "o": [
+    "Soziale Interaktion",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… die Interaktion erst in dem Moment beginnt, in dem Herr Yıldız ein ausdrückliches Erziehungsziel formuliert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… Finns Schreien und das veränderte Vorgehen von Herrn Yıldız als wechselseitig aufeinander bezogenes Verhalten gedeutet werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… davon ausgegangen wird, dass nur Herr Yıldız Einfluss nimmt, während Finn lediglich auf die Maßnahmen des Erziehers reagiert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… das Hinhocken auf Augenhöhe als Reaktion von Herrn Yıldız auf Finns Verhalten verstanden wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… ihr zugestimmt wird, weil der zu Erziehende seine Lernprozesse selbst bewältigen muss und der Erzieher sich daher nicht nach ihm richten muss.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… darauf hingewiesen wird, dass sich ein Erzieher an Alter, Interessen und Fähigkeiten des Kindes orientieren muss.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… ergänzt wird, dass der Erziehungsprozess auch den Erzieher verändert, wie Herrn Yıldız’ gewachsene Geduld zeigt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… festgestellt wird, dass sie Erziehung als einseitigen Vorgang versteht und die Wechselseitigkeit außer Acht lässt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… angenommen wird, dass eine tragfähige Bindung nur zu den Eltern möglich ist und Fachkräfte deshalb Distanz wahren sollten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… die emotionale Beziehung als angenehme Begleiterscheinung gilt, die für den Erfolg der Erziehung jedoch nebensächlich ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… die gelungene Eingewöhnung als Voraussetzung dafür gesehen wird, dass spätere Erziehungsmaßnahmen bei Finn Wirkung zeigen können.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… mit Brisch argumentiert wird, dass Bindung für kleine Kinder eine Art emotionale Nahrung darstellt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… Frau Berger allein deshalb als Erzieherin gilt, weil sie eine pädagogische Ausbildung abgeschlossen hat.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… Finns Mutter nicht als Erzieherin gelten kann, da Eltern keine pädagogischen Fachkräfte sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… Herr Yıldız als Erzieher bezeichnet wird, weil er bei Finn Lernprozesse auslösen und unterstützen will.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziale Beziehung",
+   "f": "Trifft diese Aussage zu? »… Finn als passiver Empfänger gilt, an dem die Erziehung lediglich vollzogen wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… soziale Kommunikation als der Teil der Interaktion gilt, in dem Informationen vermittelt, aufgenommen und ausgetauscht werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… Frau Langs Blick auf das Handy als Information gewertet wird, die Lea etwas über die Aufmerksamkeit der Erzieherin mitteilt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… nur die gesprochenen Worte von Frau Lang als Kommunikation gelten, ihr übriges Verhalten dagegen nicht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… soziale Interaktion und soziale Kommunikation als gleichbedeutende Begriffe ohne inhaltlichen Unterschied verwendet werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass das Wort „schön“ die Botschaft des Wegschauens vollständig aufhebt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… ergänzt wird, dass widersprüchliche verbale und nonverbale Signale die Deutung für ein Kind erschweren.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… darauf verwiesen wird, dass in einer Beziehung jedes Verhalten etwas aussagt – auch Wegschauen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… erklärt wird, dass Leas Verstummen eine Reaktion auf eine nonverbale Botschaft von Frau Lang ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… angenommen wird, dass Gesten im Gegensatz zu Wörtern keine Symbole im Sinne des symbolischen Interaktionismus sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… erkannt wird, dass der Finger an den Lippen nur wirkt, wenn alle Beteiligten ihm dieselbe Bedeutung zuschreiben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… Frau Langs Erklärung als Schritt verstanden wird, mit Emil eine gemeinsame Bedeutung des Zeichens herzustellen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… Emils Lachen als bewusste Missachtung der Gruppenregel und damit als absichtliches Störverhalten eingeordnet wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… sie Erziehung vor allem als einseitige Weitergabe von Anweisungen an die Gruppe versteht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… sie den Interpretationsprozess abschließt, indem sie jedem Verhalten der Kinder eine feste Bedeutung zuweist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… sie davon ausgeht, dass ihre Zeichen von den Kindern nicht gedeutet werden müssen, weil sie eindeutig sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als Austausch von Informationen",
+   "f": "Trifft diese Aussage zu? »… sie eine Kommunikationsstruktur schafft, in der die Kinder Fähigkeiten wie Zuhören und Abwarten erwerben können.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… festgehalten wird, dass Mats den Lernprozess beim Zähneputzen trotz der Unterstützung selbst bewältigen muss.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… das abendliche Üben des Zähneputzens als Erziehung gilt, weil der Vater den Lernprozess absichtlich herbeiführt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… das Mitsingen der Werbemelodie als Erziehung gewertet wird, da Mats dabei etwas Neues lernt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… auch die Übernahme des Schimpfworts als Ergebnis von Erziehung gilt, weil Mats es vom Vater gelernt hat.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… das Ziel als relativ dauerhafte Änderung von Mats’ Verhalten verstanden wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… Erziehungsziele als neutrale Vorgaben gelten, die unabhängig von Werten und Normen formuliert werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… Selbstständigkeit als Wert erkannt wird, an dem sich das Handeln des Vaters orientiert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass der Vater ohne dieses Ziel keinen Grund hätte, überhaupt auf Mats einzuwirken.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… gefolgert wird, dass Erziehung überflüssig wird, sobald Kinder viel durch Nachahmung lernen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… angemerkt wird, dass die Mutter durch ihr Vorbild unbeabsichtigt dennoch Lernprozesse bei Mats anstößt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… festgestellt wird, dass Kinder ohne Absicht eines Erziehers zwar lernen, dies aber keine Erziehung im engeren Sinn ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… ihr widersprochen wird, weil jede Form des kindlichen Lernens automatisch Erziehung darstellt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… erkannt wird, dass sie eine kurzfristige Wirkung anstrebt statt einer relativ dauerhaften Änderung des Verhaltens.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… ihr Vorgehen als gleichwertig zum Üben des Vaters bewertet wird, da beide saubere Zähne erreichen wollen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass für Erziehung allein das Ergebnis zählt und der Weg dorthin unerheblich ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als beabsichtigte Lernhilfe",
+   "f": "Trifft diese Aussage zu? »… ihre Haltung als Beispiel für wertorientiertes Erziehungshandeln mit klarem Langzeitziel gilt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… soziales Handeln dadurch gekennzeichnet ist, dass es zuverlässig zum gewünschten Ergebnis führt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… auch Selins Niesen als soziales Handeln gilt, weil Noah darauf mit Lachen reagiert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… ihr Gespräch mit Noah als Aktivität gilt, die bewusst und willentlich auf eine andere Person bezogen ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… sie sich dabei am vergangenen Hauen und am künftig erwarteten Verhalten Noahs orientiert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… daraus abgeleitet wird, dass Planung beim pädagogischen Handeln überflüssig ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… das Hauen zu Hause als Beleg dafür gilt, dass Frau Webers Vorgehen keine Erziehung war.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… erklärt wird, dass Noah als eigenständige Person individuell auf Maßnahmen reagiert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… pädagogisches Handeln als „Versuchshandeln“ bezeichnet wird, dessen Ausgang offen ist.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… darauf hingewiesen wird, dass Erzieher wegen des meist ungleichen Verhältnisses pädagogische Verantwortung tragen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… eingewendet wird, dass das Befolgen von Hausregeln die Frage nach den Folgen für das einzelne Kind nicht ersetzt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass Erzieher sich ständig fragen müssen, welche Folgen ihr Handeln hat.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… ihm entgegengehalten wird, dass Kinder und Erzieher in Wissen und Macht grundsätzlich gleichgestellt sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… Noah nach den zwei Wochen nachweislich weder im Kindergarten noch zu Hause mehr haut.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… sie mit Noah in einer sozialen Interaktion steht, in der beide wechselseitig aufeinander reagieren.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… sie bestimmte Lernprozesse bei Noah bewusst und absichtlich herbeiführen und unterstützen will.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehung als soziales Handeln",
+   "f": "Trifft diese Aussage zu? »… sie eine relativ dauerhafte Veränderung von Noahs Verhalten anstrebt, die einem Erziehungsziel entspricht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welches Wort fehlt? »Erziehung ist _____: Erzieher und zu Erziehender reagieren wechselseitig aufeinander und beeinflussen sich gegenseitig.«",
+   "o": [
+    "soziale Interaktion",
+    "Handeln",
+    "Kommunikation",
+    "Erziehungszielen"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welches Wort fehlt? »Der Erfolg der Erziehung hängt stark von einer positiven emotionalen _____ ab.«",
+   "o": [
+    "Beziehung",
+    "offen",
+    "Erziehungszielen",
+    "Zufall"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welches Wort fehlt? »Sie ist wertorientiertes und soziales _____, also bewusst und überlegt.«",
+   "o": [
+    "Beziehung",
+    "Gleichgültigkeit",
+    "Symbolen",
+    "Handeln"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "f": "Welches Wort fehlt? »Pädagogisches Handeln ist ein „Versuchshandeln“, weil sein Ausgang _____ ist.«",
+   "o": [
+    "beabsichtigte",
+    "Handeln",
+    "Gleichgültigkeit",
+    "offen"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Amerikanische Entwicklungspsychologin; untersuchte in den 1960er-Jahren die Wirkung von Erziehungsverhalten.«",
+   "o": [
+    "Vernachlässigender Stil",
+    "Wärme und Responsivität",
+    "Diana Baumrind",
+    "Folgen permissiver Erziehung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Dimension: wie viel emotionale Unterstützung und Zuwendung Eltern geben.«",
+   "o": [
+    "Wärme und Responsivität",
+    "Autoritativer Stil",
+    "Folgen autoritärer Erziehung",
+    "Folgen vernachlässigender Erziehung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Dimension: wie viele Regeln und Erwartungen Eltern stellen und wie konsequent sie diese durchsetzen.«",
+   "o": [
+    "Autoritativer Stil",
+    "Vernachlässigender Stil",
+    "Anforderung und Kontrolle",
+    "Wärme und Responsivität"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Hohe Wärme und hohe Anforderung: klare Regeln, die erklärt werden; das Kind wird einbezogen.«",
+   "o": [
+    "Diana Baumrind",
+    "Wärme und Responsivität",
+    "Autoritärer Stil",
+    "Autoritativer Stil"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Niedrige Wärme und hohe Anforderung: Gehorsam wird ohne Erklärung eingefordert.«",
+   "o": [
+    "Autoritärer Stil",
+    "Folgen vernachlässigender Erziehung",
+    "Folgen permissiver Erziehung",
+    "Folgen autoritärer Erziehung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Hohe Wärme und niedrige Anforderung: wenige Regeln, Konflikte werden vermieden.«",
+   "o": [
+    "Diana Baumrind",
+    "Folgen vernachlässigender Erziehung",
+    "Permissiver Stil",
+    "Autoritärer Stil"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Niedrige Wärme und niedrige Anforderung: Eltern nehmen am Leben des Kindes kaum Anteil.«",
+   "o": [
+    "Permissiver Stil",
+    "Anforderung und Kontrolle",
+    "Vernachlässigender Stil",
+    "Wärme und Responsivität"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Ergänzten später den vernachlässigenden Stil zu Baumrinds drei Stilen.«",
+   "o": [
+    "Autoritärer Stil",
+    "Maccoby und Martin",
+    "Vernachlässigender Stil",
+    "Folgen autoritativer Erziehung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Kinder gelten häufig als selbstbewusst, sozial kompetent und leistungsbereit.«",
+   "o": [
+    "Diana Baumrind",
+    "Folgen permissiver Erziehung",
+    "Folgen autoritativer Erziehung",
+    "Vernachlässigender Stil"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Häufiger Unsicherheit und geringes Selbstwertgefühl oder trotzig-aggressives Verhalten.«",
+   "o": [
+    "Diana Baumrind",
+    "Folgen autoritärer Erziehung",
+    "Folgen autoritativer Erziehung",
+    "Anforderung und Kontrolle"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Schwerer, sich an Regeln zu halten, Frustration auszuhalten und Impulse zu steuern.«",
+   "o": [
+    "Folgen permissiver Erziehung",
+    "Vernachlässigender Stil",
+    "Folgen autoritärer Erziehung",
+    "Diana Baumrind"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Am stärksten mit negativen Entwicklungsfolgen verbunden: geringes Selbstwertgefühl, Schulprobleme, Verhaltensauffälligkeiten.«",
+   "o": [
+    "Folgen autoritativer Erziehung",
+    "Maccoby und Martin",
+    "Folgen vernachlässigender Erziehung",
+    "Wärme und Responsivität"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die Eltern erklären, warum eine feste Schlafenszeit wichtig ist, hören den Wunsch an und einigen sich auf eine Ausnahme am Wochenende.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Klare Regeln, die begründet werden, bei viel Zuwendung«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Das Kind wird in angemessenem Maß in Entscheidungen einbezogen.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Kinder gelten häufig als selbstbewusst, sozial kompetent und leistungsbereit.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »„Weil ich es sage. Ab ins Bett.“ – keine Begründung, kein Gespräch«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Gehorsam wird erwartet, Entscheidungen werden selten erklärt.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Strenge Regeln und hohe Anforderungen bei geringer Wärme«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Häufiger Unsicherheit, geringes Selbstwertgefühl oder trotzig-aggressives Verhalten«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Das Kind möchte länger aufbleiben, die Eltern lassen es gewähren, ohne eine Schlafenszeit durchzusetzen.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Die Eltern vermeiden Konflikte und lassen dem Kind weitgehend freie Hand.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Hohe Wärme, aber wenige Regeln und geringe Anforderungen«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Dem Kind fällt es oft schwerer, Frustration auszuhalten und Impulse zu steuern.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Das Kind kommt abends, wann es möchte; niemand fragt nach, was es erlebt hat.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Weder Wärme noch Anforderungen; die Eltern kümmern sich kaum um die Bedürfnisse des Kindes.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Gilt als am stärksten mit negativen Entwicklungsfolgen verbunden«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Wurde erst später von Maccoby und Martin ergänzt.«",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Hohe Wärme und hohe Anforderung«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Eltern begründen ihre Entscheidungen«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Eltern hören dem Kind zu«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Gilt als besonders günstig für die Entwicklung«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Kind: selbstbewusst und sozial kompetent«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Ausnahme am Wochenende wird gemeinsam vereinbart«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Niedrige Wärme und hohe Anforderung«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Gehorsam wird ohne Begründung verlangt«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Entscheidungen werden selten diskutiert«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Kind: eher unsicher mit geringem Selbstwert«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »Je nach Temperament trotzig-aggressives Verhalten«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Hohe und niedrige Wärme bei hoher Anforderung",
+   "f": "Zu welcher Seite gehört: »„Weil ich es sage.“«?",
+   "o": [
+    "Autoritativ",
+    "Autoritär"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Hohe Wärme, geringe Anforderung«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Eltern vermeiden Konflikte«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Grenzen werden selten konsequent gesetzt«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Kind: tut sich schwer mit Regeln und Frustration«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Das Kind darf aufbleiben, so lange es will, die Eltern sind aber zugewandt«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Eltern lassen dem Kind weitgehend freie Hand«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Geringe Wärme, geringe Anforderung«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Eltern nehmen am Leben des Kindes kaum Anteil«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Auch „unbeteiligter“ Stil genannt«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Am stärksten mit negativen Folgen verbunden«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Kind: geringes Selbstwertgefühl, Schulprobleme«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Permissiv und vernachlässigend",
+   "f": "Zu welcher Seite gehört: »Niemand fragt, was das Kind erlebt hat«?",
+   "o": [
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Frau Çeliks Zuneigung als Hinweis auf hohe Anforderung gewertet wird, weil sie sich intensiv um Mia kümmert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Herrn Dorns Haltung in beiden Dimensionen als niedrig eingestuft wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Herrn Brandts Hausarrest als Ausdruck hoher Anforderung und Kontrolle gilt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Frau Albers’ abendliches Zuhören der Dimension Wärme und Responsivität zugeordnet wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Frau Albers als autoritär eingeordnet wird, da sie feste Regeln aufstellt und durchsetzt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Herr Dorn als permissiv gilt, weil er seinem Sohn viele Freiheiten lässt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Frau Çelik als permissiv eingestuft wird, da sie Konflikte meidet und kaum Grenzen setzt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Herr Brandt als autoritär gilt, weil er Gehorsam ohne Begründung einfordert.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… für Tim das geringste Risiko ungünstiger Entwicklungsfolgen angenommen wird, da er früh selbstständig wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… für Mia erwartet wird, dass ihr das Aushalten von Frustration besonders leichtfällt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… für Lukas eher Selbstbewusstsein, soziale Kompetenz und Leistungsbereitschaft erwartet werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… Jans Unsicherheit und sein gelegentlich grobes Verhalten als typischer Zusammenhang mit autoritärer Erziehung gelten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… sie Frau Çelik rät, weniger Wärme zu zeigen, damit ihr Stil autoritativer wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… sie die Studienergebnisse als sichere Vorhersage für die Entwicklung jedes einzelnen Kindes verwendet.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… sie den vernachlässigenden Stil als Teil von Baumrinds ursprünglichem Modell mit drei Stilen vorstellt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Trifft diese Aussage zu? »… sie berücksichtigt, dass die Stile Idealtypen sind und Eltern im Alltag häufig Mischformen zeigen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welches Wort fehlt? »Der _____ Stil verbindet hohe Wärme mit klaren Regeln, die erklärt werden.«",
+   "o": [
+    "autoritative",
+    "permissive",
+    "Anforderung",
+    "vernachlässigende"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welches Wort fehlt? »Der _____ Stil stellt hohe Anforderungen bei geringer Wärme und fordert Gehorsam ohne Begründung.«",
+   "o": [
+    "Anforderung",
+    "autoritative",
+    "Zufall",
+    "autoritäre"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welches Wort fehlt? »Der _____ Stil ist warmherzig, stellt aber kaum Regeln.«",
+   "o": [
+    "ungünstigsten",
+    "Anforderung",
+    "permissive",
+    "Baumrind"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welches Wort fehlt? »Der _____ Stil zeigt weder Wärme noch Anforderungen; ihn ergänzten später Maccoby und Martin.«",
+   "o": [
+    "permissive",
+    "autoritative",
+    "Wärme",
+    "vernachlässigende"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "f": "Welches Wort fehlt? »Er gilt als am _____ für die kindliche Entwicklung, der autoritative Stil als besonders günstig.«",
+   "o": [
+    "Baumrind",
+    "autoritäre",
+    "Zufall",
+    "ungünstigsten"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Oberbegriff für Kinderkrippe, Kindergarten und Kinderhort; außerschulische, freiwillige Einrichtung.«",
+   "o": [
+    "Kinderhort",
+    "Subsidiaritätsprinzip",
+    "Familienergänzende Einrichtung",
+    "Kindertagesstätte (Kita)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Ersetzt die Familie nicht, sondern ergänzt und unterstützt die Erziehung zu Hause.«",
+   "o": [
+    "Kindergarten",
+    "Aufsicht",
+    "Familienergänzende Einrichtung",
+    "Kinderkrippe"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Einrichtung für die Kleinsten (unter 3 Jahren).«",
+   "o": [
+    "Freiwilligkeit",
+    "Freie Träger",
+    "Kinderkrippe",
+    "Familienergänzende Einrichtung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Einrichtung für Kinder von ca. 3 bis 6 Jahren, Besuch freiwillig.«",
+   "o": [
+    "Kindergarten",
+    "Subsidiaritätsprinzip",
+    "Freiwilligkeit",
+    "Kindertagesstätte (Kita)"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Einrichtung für Schulkinder: Betreuung nach der Schule.«",
+   "o": [
+    "Freiwilligkeit",
+    "Subsidiaritätsprinzip",
+    "Kinderkrippe",
+    "Kinderhort"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Anders als bei der Schule gibt es keine Pflicht, den Kindergarten zu besuchen.«",
+   "o": [
+    "Familienergänzende Einrichtung",
+    "Kinderkrippe",
+    "Freiwilligkeit",
+    "Kinderhort"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Organisation, die einen Kindergarten betreibt und verantwortet.«",
+   "o": [
+    "Fachpersonal",
+    "Kinderhort",
+    "Träger",
+    "Kindergarten"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Stellen die meisten Kindergärten: vor allem kirchliche (Diakonie, Caritas) und Wohlfahrtsverbände sowie private Träger.«",
+   "o": [
+    "Freiwilligkeit",
+    "Öffentliche Träger",
+    "Fachpersonal",
+    "Freie Träger"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Z. B. Städte und Gemeinden (Kommunen); ca. 30 % der Kindergärten.«",
+   "o": [
+    "Öffentliche Träger",
+    "Kindertagesstätte (Kita)",
+    "Freiwilligkeit",
+    "Kinderkrippe"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Öffentliche Träger gründen erst dann selbst einen Kindergarten, wenn kein freier Träger bereitsteht.«",
+   "o": [
+    "Familienergänzende Einrichtung",
+    "Aufsicht",
+    "Freiwilligkeit",
+    "Subsidiaritätsprinzip"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Ausgebildete Erzieher/-innen und Kinderpfleger/-innen; die Bezeichnung „Kindergärtner/-in“ wird nicht mehr verwendet.«",
+   "o": [
+    "Familienergänzende Einrichtung",
+    "Kinder- und Jugendhilfegesetz (KJHG)",
+    "Fachpersonal",
+    "Träger"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Der Kindergarten untersteht der Aufsicht von Jugendämtern und Regierungen.«",
+   "o": [
+    "Kinder- und Jugendhilfegesetz (KJHG)",
+    "Familienergänzende Einrichtung",
+    "Subsidiaritätsprinzip",
+    "Aufsicht"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Gilt seit 1990/91 und wurde als Sozialgesetzbuch VIII ins Sozialrecht eingefügt.«",
+   "o": [
+    "Freiwilligkeit",
+    "Fachpersonal",
+    "Öffentliche Träger",
+    "Kinder- und Jugendhilfegesetz (KJHG)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Betreuung für die Kleinsten unter drei Jahren«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die einjährige Lena wird ganztags betreut, während ihre Eltern arbeiten.«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Kinder von etwa 3 bis 6 Jahren, Besuch freiwillig«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Lena (4) findet hier Freunde, einen Garten und viele Spielideen.«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Der Besuch ist anders als bei der Schule keine Pflicht.«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Die Eltern entscheiden je nach Entwicklungsstand, wann das Kind beginnt.«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Betreuung für Schulkinder nach dem Unterricht«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Der achtjährige Ben macht nach der Schule seine Hausaufgaben unter Aufsicht.«",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Gesetzliche Schulpflicht«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Feste Altersregel für den Beginn«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Jeden Tag, feste Zeiten«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Besuch ist Pflicht«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Vermittelt Kenntnisse nach einem Lehrplan«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Besuch ist freiwillig«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Eltern entscheiden je nach Entwicklungsstand des Kindes«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Zeiten flexibel nach Absprache«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Nicht zwingend täglich«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Schule und Kindergarten",
+   "f": "Zu welcher Seite gehört: »Familienergänzende Einrichtung«?",
+   "o": [
+    "Schule",
+    "Kindergarten"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Stellen die meisten Kindergärten«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Diakonisches Werk (evangelisch)«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Caritasverband (katholisch)«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Betriebe, Krankenhäuser, Studentenwerke«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Deutsches Rotes Kreuz«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Etwa 30 % der Kindergärten«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Städte und Gemeinden«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Gründen erst selbst, wenn kein freier Träger bereitsteht«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Freie und öffentliche Träger",
+   "f": "Zu welcher Seite gehört: »Kommunen als Betreiber«?",
+   "o": [
+    "Freie Träger",
+    "Öffentliche Träger"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… angenommen wird, dass die Kinder dort wie in einem Heim dauerhaft wohnen und übernachten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… die Caritas als öffentlicher Träger bezeichnet wird, weil sie Aufgaben für das Gemeinwohl übernimmt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… es als Kindertagesstätte bezeichnet wird, da es Krippe, Kindergarten und Hort unter einem Dach vereint.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… es als außerschulische Einrichtung eingeordnet wird, obwohl dort auch Schulkinder betreut werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… ihr erklärt wird, dass für Ella keine gesetzliche Pflicht zum Besuch des Kindergartens besteht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… ihr mitgeteilt wird, dass Ella mit drei Jahren im vierten Lebensjahr ist und damit im typischen Kindergartenalter.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… sie erfährt, dass sie den Beginn des Kindergartenbesuchs am Entwicklungsstand ihrer Tochter ausrichten kann.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… ihr gesagt wird, dass Ella den Kindergarten wie die Schule an jedem Wochentag besuchen muss.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass der Kindergarten eine familienergänzende Einrichtung ist, die die Familie nicht ersetzt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… ihm darin zugestimmt wird, dass der Kindergarten bei ganztägiger Betreuung die Erziehungsaufgabe der Familie übernimmt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… eingeräumt wird, dass Pflege und Erziehung im Kindergarten meist von ungelernten Hilfskräften geleistet werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… mit Mollenhauer ergänzt wird, dass Kinder dort Gleichaltrige und Spielräume finden, die Familien oft fehlen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… angenommen wird, dass öffentliche Träger grundsätzlich die Mehrheit der Kindergärten betreiben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… die Regelung dem Jugendwohlfahrtsgesetz zugeschrieben wird, das bis heute unverändert gilt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… es auf das Subsidiaritätsprinzip zurückgeführt wird, nach dem freie Träger Vorrang vor öffentlichen Trägern haben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten als Erziehungs- und Bildungseinrichtung",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass ein Kindergarten keiner staatlichen Aufsicht untersteht, sobald ein freier Träger ihn betreibt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welches Wort fehlt? »Der Begriff _____ ist ein Oberbegriff für Kinderkrippe, Kindergarten und Kinderhort.«",
+   "o": [
+    "Zufall",
+    "Kita",
+    "Kinderpflegern",
+    "familienergänzend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welches Wort fehlt? »Sie werden wichtiger, weil Eltern häufiger _____ sind und die Familie, vor allem in der Stadt, nicht mehr alle Spiel- und Sozialerfahrungen bieten kann (Mollenhauer).«",
+   "o": [
+    "Kinderpflegern",
+    "familienergänzend",
+    "berufstätig",
+    "Lehrer"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welches Wort fehlt? »Betrieben wird er von einem _____.«",
+   "o": [
+    "Träger",
+    "Kinderpflegern",
+    "Lehrer",
+    "berufstätig"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welches Wort fehlt? »Die meisten Kindergärten haben _____ Träger, etwa Caritas oder Diakonie.«",
+   "o": [
+    "freie",
+    "Zufall",
+    "freiwilliger",
+    "berufstätig"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welches Wort fehlt? »Nach dem _____ gründen öffentliche Träger erst selbst einen Kindergarten, wenn kein freier Träger bereitsteht.«",
+   "o": [
+    "Träger",
+    "Zufall",
+    "Subsidiaritätsprinzip",
+    "Schulpflicht"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Kindergarten",
+   "f": "Welches Wort fehlt? »Gearbeitet wird von Erziehern und _____, die Aufsicht haben Jugendämter und Regierungen.«",
+   "o": [
+    "Kinderpflegern",
+    "Subsidiaritätsprinzip",
+    "Kita",
+    "Zufall"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Orientierungsrahmen für Bildung in bayerischen Kitas von der Geburt bis zur Einschulung.«",
+   "o": [
+    "Primat der Pädagogik",
+    "Ganzheitliche, alltagsintegrierte Bildung",
+    "Aufbau eines Bildungsbereichs",
+    "BayBEP"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Das Kind ist aktiver Gestalter seiner Bildung und lernt von Geburt an mit anderen.«",
+   "o": [
+    "Bildung mit Medien / über Medien",
+    "Ko-Konstruktion",
+    "Aufbau eines Bildungsbereichs",
+    "BayBEP"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Bildung findet beim Spielen, Essen, Draußensein und in Projekten statt.«",
+   "o": [
+    "Lebenskompetenzen",
+    "Aufbau eines Bildungsbereichs",
+    "Ganzheitliche, alltagsintegrierte Bildung",
+    "Primat der Pädagogik"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Leitgedanken → Bildungs- und Erziehungsziele → Anregungen und Beispiele zur Umsetzung.«",
+   "o": [
+    "Digitale Kompetenz",
+    "Aufbau eines Bildungsbereichs",
+    "Ko-Konstruktion",
+    "Mündiger Umgang mit Medien"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Im BayBEP die „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen.«",
+   "o": [
+    "Mündiger Umgang mit Medien",
+    "Bildung für nachhaltige Entwicklung (BNE)",
+    "Lebenskompetenzen",
+    "Digitale Kompetenz"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Kreativ, kritisch und sicher: Gestalten statt Konsumieren.«",
+   "o": [
+    "Querschnittsbereich",
+    "Mündiger Umgang mit Medien",
+    "Bildung mit Medien / über Medien",
+    "Digitale Kompetenz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Nicht die Technik bestimmt die Pädagogik, sondern die Technik dient der Pädagogik.«",
+   "o": [
+    "Digitale Kompetenz",
+    "Primat der Pädagogik",
+    "Mündiger Umgang mit Medien",
+    "Bildung für nachhaltige Entwicklung (BNE)"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Mit Medien: Fotos, Hörspiele oder Trickfilme erstellen. Über Medien: darüber sprechen, wie Medien wirken.«",
+   "o": [
+    "BayBEP",
+    "Aufbau eines Bildungsbereichs",
+    "Mündiger Umgang mit Medien",
+    "Bildung mit Medien / über Medien"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Denkt nach vorne und verbindet Ökologie, Ökonomie und Soziales, damit auch künftige Generationen gut leben können.«",
+   "o": [
+    "Mündiger Umgang mit Medien",
+    "Bildung mit Medien / über Medien",
+    "Ganzheitliche, alltagsintegrierte Bildung",
+    "Bildung für nachhaltige Entwicklung (BNE)"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Zustand von körperlichem, seelischem, geistigem und sozialem Wohlbefinden, mehr als das Fehlen von Krankheit.«",
+   "o": [
+    "BayBEP",
+    "Gesundheit (WHO)",
+    "Bildung für nachhaltige Entwicklung (BNE)",
+    "Lebenskompetenzen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Selbstwahrnehmung, Einfühlungsvermögen, Umgang mit Stress und Gefühlen, Kommunikation, Problemlösen: sie schützen auch vor Sucht.«",
+   "o": [
+    "Mündiger Umgang mit Medien",
+    "Lebenskompetenzen",
+    "Bildung für nachhaltige Entwicklung (BNE)",
+    "Gesundheit (WHO)"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu dieser Bedeutung? »Umweltbildung überschneidet sich mit Werteorientierung, Naturwissenschaften, Ästhetik, Bewegung und Gesundheit.«",
+   "o": [
+    "BayBEP",
+    "Primat der Pädagogik",
+    "Bildung für nachhaltige Entwicklung (BNE)",
+    "Querschnittsbereich"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder fotografieren Pflanzen im Garten und gestalten ein digitales Pflanzenbuch.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder erstellen ein Hörspiel oder einen Trickfilm.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Gestalten statt Konsumieren«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Kinderrechte in der digitalen Welt: Zugang, Schutz und Bildung«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder lernen spielerisch, was Algorithmen sind, auch ohne Computer.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Im Projekt „Lebensraum Wasser“ untersuchen Kinder einen Bach und überlegen, wo sie Wasser sparen können.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder erleben Tiere, Pflanzen und Naturmaterialien mit allen Sinnen.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ziel: „Ich kann etwas tun!“ – Zuversicht und Hoffnung trotz Umweltproblemen«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Ökologie, Ökonomie und Soziales im Zusammenspiel (BNE)«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Kinder decken gemeinsam den Frühstückstisch und probieren unbekanntes Gemüse.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff passt zu diesem Fall? »Eine kurze Entspannungsübung für Momente der Wut«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Gesundheit ist mehr als das Fehlen von Krankheit.«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welcher Fachbegriff trifft auf diese Aussage zu? »Suchtprävention durch Stärkung der Lebenskompetenzen«",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Eigene Fotos, Hörspiele und Trickfilme gestalten«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Informatik spielerisch entdecken«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Recht auf Teilhabe und Bildung in der digitalen Welt«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Das Digitale ergänzt und bereichert das Analoge«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Technik wird in den Dienst der Pädagogik gestellt«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Klare Regeln für Mediennutzung und Fotos«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Datenschutz und Schutzeinstellungen«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Recht auf Schutz und Sicherheit«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Bei Apps zählt Qualität, nicht Quantität«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Chancen und Risiken digitaler Medien in der Kita",
+   "f": "Zu welcher Seite gehört: »Kinder nutzen digitale Medien zu Hause oft passiv-konsumierend«?",
+   "o": [
+    "Chance und Nutzen",
+    "Risiko und Schutz"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Kinder erleben Tiere, Pflanzen und Naturmaterialien«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Regt Fantasie und Kreativität an«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Natur mit allen Sinnen erfahren«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Was ist Umwelt für mich? Welchen Wert hat sie?«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Erwachsene schützen Kinder vor Umweltbelastungen«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Umweltschutz kann Spaß machen«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Denkt nach vorne, kein „Reparaturbetrieb“«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Zusammenspiel von Ökologie, Ökonomie und Sozialem«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Die drei Stufen der Umweltbildung",
+   "f": "Zu welcher Seite gehört: »Auch künftige Generationen sollen gut leben können«?",
+   "o": [
+    "Naturbegegnung",
+    "Umweltschutz und Werthaltungen",
+    "Bildung für nachhaltige Entwicklung"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Videos im Ruheraum als Belohnung eingesetzt werden, weil die Kinder sie zu Hause ohnehin nutzen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Frau Hubers Bedenken aufgegriffen werden, indem digitale Medien aus dem Kita-Alltag vollständig ausgeschlossen werden.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… mit den Kindern besprochen wird, ob die Ergebnisse einer Pflanzen-App immer zuverlässig sind.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… die Kinder das Pflanzenwachstum mit dem Tablet fotografieren und daraus ein eigenes Gartentagebuch gestalten.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… erklärt wird, dass Kinder auch in der digitalen Welt ein Recht auf Zugang, Teilhabe sowie Bildung und Befähigung haben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… darauf verwiesen wird, dass der BayBEP digitale Kompetenz als „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen bezeichnet.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… klargestellt wird, dass es in der Kita um Gestalten und Reflektieren geht und nicht um zusätzlichen Medienkonsum.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… betont wird, dass das Digitale das Analoge im Kita-Alltag nach und nach ersetzen soll.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… ihm zugestimmt wird, weil Kinder für die Umweltprobleme hauptverantwortlich sind und deshalb ihr Verhalten ändern müssen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… ergänzt wird, dass Kinder die Umwelt zunächst mit allen Sinnen erfahren und als verletzbar erleben sollen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… kritisiert wird, dass Angst Kinder überfordern kann, während der BayBEP Zuversicht und Hoffnung stärken will.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… der Vorschlag als gelungenes Beispiel für Bildung für nachhaltige Entwicklung im Sinne der Agenda 21 gilt.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… die Kinder das geerntete Gemüse zubereiten und Essen als Genuss mit allen Sinnen erleben.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Gesundheit wie von der Elternvertreterin als bloßes Fehlen von Krankheit verstanden wird.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… die Suchtprävention vor allem auf einem Vortrag über Drogen und deren Gefahren beruht.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+   "f": "Trifft diese Aussage zu? »… Gesundheitsbildung erst in der Grundschule ansetzt, wenn Kinder die Zusammenhänge besser verstehen.«",
+   "o": [
+    "Trifft zu",
+    "Trifft nicht zu"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Der Bayerische Bildungs- und Erziehungsplan ist ein _____, kein Stundenplan.«",
+   "o": [
+    "Kulturtechnik",
+    "Umsetzung",
+    "Orientierungsrahmen",
+    "alltagsintegriert"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Er sieht das Kind als aktiven _____ seiner Bildung.«",
+   "o": [
+    "Strafe",
+    "Gestalter",
+    "Stundenplan",
+    "Orientierungsrahmen"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Bildung soll ganzheitlich und _____ stattfinden.«",
+   "o": [
+    "ergänzt",
+    "Sucht",
+    "WHO",
+    "alltagsintegriert"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Jeder Bildungsbereich besteht aus Leitgedanken, Bildungs- und Erziehungszielen und Anregungen zur _____.«",
+   "o": [
+    "Gestalter",
+    "nachhaltige",
+    "Umsetzung",
+    "ergänzt"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Das Digitale ersetzt das Analoge nicht, sondern _____ es.«",
+   "o": [
+    "Konsumieren",
+    "nachhaltige",
+    "Umsetzung",
+    "ergänzt"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "f": "Welches Wort fehlt? »Die Umweltbildung entwickelte sich von der Naturbegegnung über den Umweltschutz zur Bildung für _____ Entwicklung.«",
+   "o": [
+    "Zufall",
+    "nachhaltige",
+    "WHO",
+    "Gestalter"
+   ],
+   "r": 1
+  }
+ ]
+}

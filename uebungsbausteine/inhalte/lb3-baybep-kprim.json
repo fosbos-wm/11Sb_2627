@@ -1,0 +1,108 @@
+{
+ "titel": "K-Prim: Der Bayerische Bildungs- und Erziehungsplan: Digitale Medien, Umwelt, Gesundheit",
+ "anleitung": "Entscheide bei jeder Aussage, ob sie zutrifft oder nicht.",
+ "vignette_titel": "Teamsitzung in der Kita „Sonnenblume“",
+ "vignette": "Die Kita „Sonnenblume“ hat ein Hochbeet bekommen. In der Teamsitzung sammelt das Team Ideen für ein Projekt „Unser Gemüsegarten“.\nFrau Yilmaz schlägt vor, dass die Kinder das Wachstum der Pflanzen mit dem Tablet fotografieren und daraus ein eigenes Gartentagebuch gestalten. Mit einer Pflanzen-App wollen sie Unkraut bestimmen und anschließend besprechen, ob die App immer recht hat. Der Praktikant Paul ergänzt: „Und wer brav mitarbeitet, darf zur Belohnung im Ruheraum ein Video schauen.“\nFrau Huber ist skeptisch: „Tablets? Die Kinder sitzen zu Hause schon genug vor Bildschirmen. Digitales gehört einfach nicht zum Bildungsauftrag einer Kita.“\nHerr Krause möchte das Thema Umwelt einbringen: „Wir zeigen ihnen Filme über Dürren und Überschwemmungen. Wenn sie richtig Angst bekommen, trennen sie den Müll freiwillig.“\nDie Leiterin plant für den Herbst die Suchtprävention: Ein Polizist soll den Vorschulkindern erklären, wie gefährlich Drogen sind. Eine Elternvertreterin meint dazu: „Gesund ist ein Kind doch, solange es nicht krank ist.“ Frau Yilmaz will das Gemüse am Ende gemeinsam mit den Kindern zu einer Suppe verarbeiten.",
+ "aufgaben": [
+  {
+   "frage": "Die Vorschläge zum Einsatz digitaler Medien entsprechen dem BayBEP, wenn …",
+   "statements": [
+    {
+     "text": "… Videos im Ruheraum als Belohnung eingesetzt werden, weil die Kinder sie zu Hause ohnehin nutzen.",
+     "richtig": false,
+     "begruendung": "Der BayBEP betont: kein Medienkonsum. Passives Videoschauen als Belohnung widerspricht dem Grundsatz."
+    },
+    {
+     "text": "… Frau Hubers Bedenken aufgegriffen werden, indem digitale Medien aus dem Kita-Alltag vollständig ausgeschlossen werden.",
+     "richtig": false,
+     "begruendung": "Der BayBEP setzt auf intelligentes Risikomanagement statt Ausschluss; Kinder haben ein Recht auf Zugang und Teilhabe."
+    },
+    {
+     "text": "… mit den Kindern besprochen wird, ob die Ergebnisse einer Pflanzen-App immer zuverlässig sind.",
+     "richtig": true,
+     "begruendung": "Bildung über Medien: Relevanz, Qualität und Zuverlässigkeit von Informationen ansatzweise einschätzen (Analysieren und Reflektieren)."
+    },
+    {
+     "text": "… die Kinder das Pflanzenwachstum mit dem Tablet fotografieren und daraus ein eigenes Gartentagebuch gestalten.",
+     "richtig": true,
+     "begruendung": "Bildung mit Medien: Kinder produzieren und präsentieren eigene Medienprodukte – Gestalten statt Konsumieren."
+    }
+   ]
+  },
+  {
+   "frage": "Frau Hubers Einwand wird aus Sicht des BayBEP fachlich zutreffend beantwortet, wenn …",
+   "statements": [
+    {
+     "text": "… erklärt wird, dass Kinder auch in der digitalen Welt ein Recht auf Zugang, Teilhabe sowie Bildung und Befähigung haben.",
+     "richtig": true,
+     "begruendung": "Der BayBEP stützt sich auf die Kinderrechte: Zugang und Teilhabe, Schutz und Sicherheit, Bildung und Befähigung."
+    },
+    {
+     "text": "… darauf verwiesen wird, dass der BayBEP digitale Kompetenz als „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen bezeichnet.",
+     "richtig": true,
+     "begruendung": "So steht es im Kapitel 7.4; digitale Kompetenz ist Voraussetzung für gleichberechtigte Teilhabe."
+    },
+    {
+     "text": "… klargestellt wird, dass es in der Kita um Gestalten und Reflektieren geht und nicht um zusätzlichen Medienkonsum.",
+     "richtig": true,
+     "begruendung": "„Kein Medienkonsum“: Nicht Konsumieren, sondern Gestalten und Lernen ist das Anliegen früher digitaler Bildung."
+    },
+    {
+     "text": "… betont wird, dass das Digitale das Analoge im Kita-Alltag nach und nach ersetzen soll.",
+     "richtig": false,
+     "begruendung": "Grundsatz des BayBEP: Das Digitale ersetzt das Analoge nicht, sondern ergänzt, unterstützt und bereichert es."
+    }
+   ]
+  },
+  {
+   "frage": "Herrn Krauses Vorschlag wird aus Sicht des BayBEP fachlich zutreffend beurteilt, wenn …",
+   "statements": [
+    {
+     "text": "… ihm zugestimmt wird, weil Kinder für die Umweltprobleme hauptverantwortlich sind und deshalb ihr Verhalten ändern müssen.",
+     "richtig": false,
+     "begruendung": "Kinder tragen für Umweltgefährdungen – wenn überhaupt – nur begrenzt Verantwortung, beschränkt auf ihren unmittelbaren Handlungsbereich."
+    },
+    {
+     "text": "… ergänzt wird, dass Kinder die Umwelt zunächst mit allen Sinnen erfahren und als verletzbar erleben sollen.",
+     "richtig": true,
+     "begruendung": "Bildungsziel: die Umwelt mit allen Sinnen erfahren und als unersetzlich und verletzbar wahrnehmen – z. B. im Gemüsegarten."
+    },
+    {
+     "text": "… kritisiert wird, dass Angst Kinder überfordern kann, während der BayBEP Zuversicht und Hoffnung stärken will.",
+     "richtig": true,
+     "begruendung": "Ziel ist, trotz Umweltproblemen Lösungsmöglichkeiten zu erkennen und dabei Zuversicht, Hoffnung und Durchhaltevermögen zu entwickeln."
+    },
+    {
+     "text": "… der Vorschlag als gelungenes Beispiel für Bildung für nachhaltige Entwicklung im Sinne der Agenda 21 gilt.",
+     "richtig": false,
+     "begruendung": "BNE zeigt nach vorne weisende Szenarien und verbindet Ökologie, Ökonomie und Soziales. Angstmachende Bilder gehören nicht dazu."
+    }
+   ]
+  },
+  {
+   "frage": "Die Pläne zur Gesundheitsbildung entsprechen dem BayBEP, wenn …",
+   "statements": [
+    {
+     "text": "… die Kinder das geerntete Gemüse zubereiten und Essen als Genuss mit allen Sinnen erleben.",
+     "richtig": true,
+     "begruendung": "Ziele im Bereich Ernährung: Essen als Genuss mit allen Sinnen erleben, Erfahrungen mit der Zubereitung von Speisen sammeln."
+    },
+    {
+     "text": "… Gesundheit wie von der Elternvertreterin als bloßes Fehlen von Krankheit verstanden wird.",
+     "richtig": false,
+     "begruendung": "Nach der WHO ist Gesundheit ein Zustand von körperlichem, seelischem, geistigem und sozialem Wohlbefinden."
+    },
+    {
+     "text": "… die Suchtprävention vor allem auf einem Vortrag über Drogen und deren Gefahren beruht.",
+     "richtig": false,
+     "begruendung": "Suchtprävention im Kindesalter ist sucht(mittel)unspezifisch: Sie stärkt Lebenskompetenzen und Schutzfaktoren statt über Drogen aufzuklären."
+    },
+    {
+     "text": "… Gesundheitsbildung erst in der Grundschule ansetzt, wenn Kinder die Zusammenhänge besser verstehen.",
+     "richtig": false,
+     "begruendung": "Gesundheitsbildung beginnt ab der Geburt; grundlegende Gewohnheiten entwickeln sich bereits in den ersten Lebensjahren."
+    }
+   ]
+  }
+ ]
+}

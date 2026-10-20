@@ -1,0 +1,500 @@
+{
+ "titel": "Begriffe-Tetris: Alle Bereiche LB 3",
+ "art": "bedeutung",
+ "anleitung": "Lass die Blöcke fallen und fülle waagrechte Reihen. Jede volle Reihe stellt eine Frage: Was bedeutet der Fachbegriff, und welcher Fachbegriff passt zu einem Fall?",
+ "karten": [
+  {
+   "begriff": "Erzieher",
+   "bedeutung": "Will Lernprozesse herbeiführen und unterstützen.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Zu Erziehender",
+   "bedeutung": "Soll die Lernprozesse bewältigen bzw. vollbringen.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Soziale Interaktion",
+   "bedeutung": "Wechselseitig aufeinander bezogenes Verhalten zwischen Menschen, die agieren, reagieren und sich gegenseitig beeinflussen und steuern.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Wechselspiel von Aktion und Reaktion",
+   "bedeutung": "Der Prozess der Erziehung verändert sowohl den zu Erziehenden als auch den Erzieher.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Soziale Beziehung",
+   "bedeutung": "Der Erfolg der Erziehung hängt stark von der persönlichen, positiven emotionalen Beziehung ab.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Soziale Kommunikation",
+   "bedeutung": "Der Teil einer sozialen Interaktion, in dem Informationen vermittelt, aufgenommen und ausgetauscht werden.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Symbolischer Interaktionismus (Mollenhauer)",
+   "bedeutung": "Menschen kommunizieren über Symbole (Sprache, Mimik, Gestik, Körperkontakt, Musik), die für alle Beteiligten die gleiche Bedeutung haben.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Wechselseitiger Interpretationsprozess",
+   "bedeutung": "Jede Handlung muss vom anderen gedeutet und verstanden werden.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Beabsichtigte Lernhilfe",
+   "bedeutung": "Der Erzieher will bewusst und absichtlich Lernprozesse herbeiführen, die der zu Erziehende bewältigen muss.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Wertorientiertes Handeln",
+   "bedeutung": "Erzieherische Handlungen sind immer bestimmten Werten und Normen verpflichtet.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Soziales Handeln",
+   "bedeutung": "Bewusst und willentlich auf andere Menschen bezogenes, überlegtes Handeln.",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Pädagogisches Handeln",
+   "bedeutung": "Beabsichtigte Aktivität in einer Erziehungssituation mit einem Ziel; das Ergebnis ist offen („Versuchshandeln“).",
+   "t": "Merkmale der Erziehung"
+  },
+  {
+   "begriff": "Diana Baumrind",
+   "bedeutung": "Amerikanische Entwicklungspsychologin; untersuchte in den 1960er-Jahren die Wirkung von Erziehungsverhalten.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Wärme und Responsivität",
+   "bedeutung": "Dimension: wie viel emotionale Unterstützung und Zuwendung Eltern geben.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Anforderung und Kontrolle",
+   "bedeutung": "Dimension: wie viele Regeln und Erwartungen Eltern stellen und wie konsequent sie diese durchsetzen.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Autoritativer Stil",
+   "bedeutung": "Hohe Wärme und hohe Anforderung: klare Regeln, die erklärt werden; das Kind wird einbezogen.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Autoritärer Stil",
+   "bedeutung": "Niedrige Wärme und hohe Anforderung: Gehorsam wird ohne Erklärung eingefordert.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Permissiver Stil",
+   "bedeutung": "Hohe Wärme und niedrige Anforderung: wenige Regeln, Konflikte werden vermieden.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Vernachlässigender Stil",
+   "bedeutung": "Niedrige Wärme und niedrige Anforderung: Eltern nehmen am Leben des Kindes kaum Anteil.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Maccoby und Martin",
+   "bedeutung": "Ergänzten später den vernachlässigenden Stil zu Baumrinds drei Stilen.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Folgen autoritativer Erziehung",
+   "bedeutung": "Kinder gelten häufig als selbstbewusst, sozial kompetent und leistungsbereit.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Folgen autoritärer Erziehung",
+   "bedeutung": "Häufiger Unsicherheit und geringes Selbstwertgefühl oder trotzig-aggressives Verhalten.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Folgen permissiver Erziehung",
+   "bedeutung": "Schwerer, sich an Regeln zu halten, Frustration auszuhalten und Impulse zu steuern.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Folgen vernachlässigender Erziehung",
+   "bedeutung": "Am stärksten mit negativen Entwicklungsfolgen verbunden: geringes Selbstwertgefühl, Schulprobleme, Verhaltensauffälligkeiten.",
+   "t": "Erziehungsstile nach Baumrind"
+  },
+  {
+   "begriff": "Kindertagesstätte (Kita)",
+   "bedeutung": "Oberbegriff für Kinderkrippe, Kindergarten und Kinderhort; außerschulische, freiwillige Einrichtung.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Familienergänzende Einrichtung",
+   "bedeutung": "Ersetzt die Familie nicht, sondern ergänzt und unterstützt die Erziehung zu Hause.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Kinderkrippe",
+   "bedeutung": "Einrichtung für die Kleinsten (unter 3 Jahren).",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Kindergarten",
+   "bedeutung": "Einrichtung für Kinder von ca. 3 bis 6 Jahren, Besuch freiwillig.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Kinderhort",
+   "bedeutung": "Einrichtung für Schulkinder: Betreuung nach der Schule.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Freiwilligkeit",
+   "bedeutung": "Anders als bei der Schule gibt es keine Pflicht, den Kindergarten zu besuchen.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Träger",
+   "bedeutung": "Organisation, die einen Kindergarten betreibt und verantwortet.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Freie Träger",
+   "bedeutung": "Stellen die meisten Kindergärten: vor allem kirchliche (Diakonie, Caritas) und Wohlfahrtsverbände sowie private Träger.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Öffentliche Träger",
+   "bedeutung": "Z. B. Städte und Gemeinden (Kommunen); ca. 30 % der Kindergärten.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Subsidiaritätsprinzip",
+   "bedeutung": "Öffentliche Träger gründen erst dann selbst einen Kindergarten, wenn kein freier Träger bereitsteht.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Fachpersonal",
+   "bedeutung": "Ausgebildete Erzieher/-innen und Kinderpfleger/-innen; die Bezeichnung „Kindergärtner/-in“ wird nicht mehr verwendet.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Aufsicht",
+   "bedeutung": "Der Kindergarten untersteht der Aufsicht von Jugendämtern und Regierungen.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "Kinder- und Jugendhilfegesetz (KJHG)",
+   "bedeutung": "Gilt seit 1990/91 und wurde als Sozialgesetzbuch VIII ins Sozialrecht eingefügt.",
+   "t": "Der Kindergarten"
+  },
+  {
+   "begriff": "BayBEP",
+   "bedeutung": "Orientierungsrahmen für Bildung in bayerischen Kitas von der Geburt bis zur Einschulung.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Ko-Konstruktion",
+   "bedeutung": "Das Kind ist aktiver Gestalter seiner Bildung und lernt von Geburt an mit anderen.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Ganzheitliche, alltagsintegrierte Bildung",
+   "bedeutung": "Bildung findet beim Spielen, Essen, Draußensein und in Projekten statt.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Aufbau eines Bildungsbereichs",
+   "bedeutung": "Leitgedanken → Bildungs- und Erziehungsziele → Anregungen und Beispiele zur Umsetzung.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Digitale Kompetenz",
+   "bedeutung": "Im BayBEP die „vierte Kulturtechnik“ neben Lesen, Schreiben und Rechnen.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Mündiger Umgang mit Medien",
+   "bedeutung": "Kreativ, kritisch und sicher: Gestalten statt Konsumieren.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Primat der Pädagogik",
+   "bedeutung": "Nicht die Technik bestimmt die Pädagogik, sondern die Technik dient der Pädagogik.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Bildung mit Medien / über Medien",
+   "bedeutung": "Mit Medien: Fotos, Hörspiele oder Trickfilme erstellen. Über Medien: darüber sprechen, wie Medien wirken.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Bildung für nachhaltige Entwicklung (BNE)",
+   "bedeutung": "Denkt nach vorne und verbindet Ökologie, Ökonomie und Soziales, damit auch künftige Generationen gut leben können.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Gesundheit (WHO)",
+   "bedeutung": "Zustand von körperlichem, seelischem, geistigem und sozialem Wohlbefinden, mehr als das Fehlen von Krankheit.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Lebenskompetenzen",
+   "bedeutung": "Selbstwahrnehmung, Einfühlungsvermögen, Umgang mit Stress und Gefühlen, Kommunikation, Problemlösen: sie schützen auch vor Sucht.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  },
+  {
+   "begriff": "Querschnittsbereich",
+   "bedeutung": "Umweltbildung überschneidet sich mit Werteorientierung, Naturwissenschaften, Ästhetik, Bewegung und Gesundheit.",
+   "t": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"
+  }
+ ],
+ "faelle": [
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Finn fasst Vertrauen zur Erzieherin, weil sie ihn jeden Morgen liebevoll begrüßt.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Eine Mutter schaut weg, als ihr Kind etwas Verbotenes tut – auch das teilt etwas mit.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Ein grimmiges Gesicht zeigt, dass ein Verhalten nicht gutgeheißen wird.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Die Mutter lobt ihre Tochter, damit sie in der Schule mitlernt.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Ein Vater führt ein Gespräch mit seinem Sohn, um ihn zum Aufräumen zu bewegen.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Ein Erzieher stellt Belohnungen in Aussicht, um ein Ziel zu erreichen.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Merkmale der Erziehung",
+   "fall": 1,
+   "f": "Die Erzieherin überlegt, welche Folgen ihr Handeln für das Kind hat.",
+   "o": [
+    "Soziale Beziehung",
+    "Soziale Kommunikation",
+    "Soziales Handeln"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "fall": 1,
+   "f": "Die Eltern erklären, warum eine feste Schlafenszeit wichtig ist, hören den Wunsch an und einigen sich auf eine Ausnahme am Wochenende.",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "fall": 1,
+   "f": "„Weil ich es sage. Ab ins Bett.“ – keine Begründung, kein Gespräch",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "fall": 1,
+   "f": "Das Kind möchte länger aufbleiben, die Eltern lassen es gewähren, ohne eine Schlafenszeit durchzusetzen.",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Erziehungsstile nach Baumrind",
+   "fall": 1,
+   "f": "Das Kind kommt abends, wann es möchte; niemand fragt nach, was es erlebt hat.",
+   "o": [
+    "Autoritativ",
+    "Autoritär",
+    "Permissiv",
+    "Vernachlässigend"
+   ],
+   "r": 3
+  },
+  {
+   "c": "Der Kindergarten",
+   "fall": 1,
+   "f": "Die einjährige Lena wird ganztags betreut, während ihre Eltern arbeiten.",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Kindergarten",
+   "fall": 1,
+   "f": "Lena (4) findet hier Freunde, einen Garten und viele Spielideen.",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "fall": 1,
+   "f": "Die Eltern entscheiden je nach Entwicklungsstand, wann das Kind beginnt.",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Kindergarten",
+   "fall": 1,
+   "f": "Der achtjährige Ben macht nach der Schule seine Hausaufgaben unter Aufsicht.",
+   "o": [
+    "Kinderkrippe",
+    "Kindergarten",
+    "Kinderhort"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Kinder fotografieren Pflanzen im Garten und gestalten ein digitales Pflanzenbuch.",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Kinder erstellen ein Hörspiel oder einen Trickfilm.",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Kinder lernen spielerisch, was Algorithmen sind, auch ohne Computer.",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 0
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Im Projekt „Lebensraum Wasser“ untersuchen Kinder einen Bach und überlegen, wo sie Wasser sparen können.",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Kinder erleben Tiere, Pflanzen und Naturmaterialien mit allen Sinnen.",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 1
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Kinder decken gemeinsam den Frühstückstisch und probieren unbekanntes Gemüse.",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  },
+  {
+   "c": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "fall": 1,
+   "f": "Eine kurze Entspannungsübung für Momente der Wut",
+   "o": [
+    "Digitale Medien",
+    "Umwelt",
+    "Gesundheit"
+   ],
+   "r": 2
+  }
+ ]
+}
