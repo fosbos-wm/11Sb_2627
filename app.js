@@ -5762,7 +5762,37 @@ function bepAbgabenHTML(m,v,d,students){
   return`<details class="ppm-details"${offen?" open":""} style="margin-top:8px"><summary><b>${esc(x.kurz)}</b> ${esc(x.titel)} · ${da}/${gesamt} abgegeben${f?` · Frist ${esc(fmtKurz(f))}`:""}${bestaetigen?" · Lehrkraft bestätigt":""}</summary>
    <div class="bep-tabwrap" style="margin-top:8px"><table class="bep-tab"><thead><tr><th>Schüler:in</th><th>Team</th><th></th><th>Abgabe</th></tr></thead><tbody>${zeilen.join("")||`<tr><td colspan="4">Noch kein Team.</td></tr>`}</tbody></table></div></details>`;
  }).join("");
- return`<h3>Abgaben im Überblick (wer hat was abgegeben?)</h3>${blocks}`;
+ return`<h3>Abgaben im Überblick (wer hat was abgegeben?)</h3>${bepAbgabenMatrixHTML(m,v,d,students)}<p class="bep-klein" style="margin-top:12px">Details zu jeder Abgabe (Text, Link, Datei):</p>${blocks}`;
+}
+// Kompakte Tabelle: Schüler:innen × Meilensteine
+function bepAbgabenMatrixHTML(m,v,d,students){
+ const ph=bepPh(m,v),h=bepHeute();
+ const nach=new Map();(d.beitraege||[]).forEach(b=>nach.set(b.teamId+"|"+Number(b.index)+"|"+b.uid,b));
+ const namen=new Map(students.map(s=>[s.uid,s.displayName||s.email||"Schüler:in"]));
+ const teams=d.teams.slice().sort((a,b)=>String(a.bereichKap||"").localeCompare(String(b.bereichKap||""),"de",{numeric:true})||bepTeamNr(a,d)-bepTeamNr(b,d));
+ const imTeam=new Set(d.teams.flatMap(t=>t.mitgliederUids||[]));
+ const personen=[];
+ teams.forEach(t=>(t.mitgliederUids||[]).forEach((u,j)=>personen.push({uid:u,name:namen.get(u)||(t.mitgliederNamen||[])[j]||"Mitglied",team:t})));
+ students.filter(s=>!imTeam.has(s.uid)).forEach(s=>personen.push({uid:s.uid,name:s.displayName||s.email||"Schüler:in",team:null}));
+ if(!personen.length)return`<p class="ppm-leer">Noch keine Schüler:innen.</p>`;
+ const summe=v.meilensteine.map(()=>0);
+ const kopf=v.meilensteine.map((x,k)=>{const f=bepFrist(m,v,k+1);return`<th title="${esc(x.titel)}">${esc(x.kurz)}<small>${f?esc(fmtKurz(f)):""}</small></th>`;}).join("");
+ const zeilen=personen.map(p=>{
+  const zellen=v.meilensteine.map((x,k)=>{
+   const i=k+1,f=bepFrist(m,v,i),b=p.team?nach.get(p.team.id+"|"+i+"|"+p.uid):null;
+   if(b)summe[k]++;
+   const st=p.team?msStatus(ph,p.team,d.beitraege,i):null;
+   const bestaetigen=ph.bestaetigung.includes(i);
+   let zeichen=b?"✓":"○",kl=b?"erreicht":"offen",tip=b?String(b.text||"").slice(0,140):"noch nichts abgegeben";
+   if(b&&bestaetigen&&st){if(st.zustand==="wartet"){zeichen="⏳";kl="wartet";tip+=" (wartet auf deine Bestätigung)";}else if(st.zustand==="zurueck"){zeichen="↩";kl="zurueck";tip+=" (zurückgegeben)";}else if(st.zustand==="erreicht"){tip+=" (bestätigt)";}}
+   const ueber=!b&&f&&f<h;
+   return`<td class="bep-z ${kl}${ueber?" ueber":""}" title="${esc(x.kurz+": "+tip+(ueber?" · Frist verstrichen":""))}"><b>${zeichen}</b></td>`;
+  }).join("");
+  return`<tr><td class="bep-tn"><b>${esc(p.name)}</b><small>${p.team?esc(bepTeamLabel(p.team,d)):"<i>kein Team</i>"}</small></td>${zellen}</tr>`;
+ }).join("");
+ const fuss=`<tr><td class="bep-tn"><b>abgegeben</b></td>${summe.map(n=>`<td class="bep-z"><b>${n}/${personen.length}</b></td>`).join("")}</tr>`;
+ return`<div class="bep-tabwrap"><table class="bep-matrix"><thead><tr><th>Schüler:in (Team)</th>${kopf}</tr></thead><tbody>${zeilen}${fuss}</tbody></table></div>
+  <p class="bep-klein">✓ abgegeben · ⏳ abgegeben, wartet auf deine Bestätigung · ↩ zurückgegeben · ○ noch nichts. Rot umrandet: Frist verstrichen. Fahre mit der Maus über ein Feld (am Handy: gedrückt halten), um den Text der Abgabe zu sehen.</p>`;
 }
 async function bepLehrerHTML(m,v,d){
  const ph=bepPh(m,v),h=bepHeute();
