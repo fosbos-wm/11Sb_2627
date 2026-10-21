@@ -21478,8 +21478,8 @@ let wpModul=null;
 async function renderWochenplanSeite(){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261015f";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261015f");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261021c";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261021c");
   return await wpModul.wpRender();
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
