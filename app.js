@@ -4793,7 +4793,9 @@ body.ppm-dnd-an{cursor:grabbing;-webkit-user-select:none;user-select:none}
 .bep-matrix{width:100%;border-collapse:collapse;font-size:13px}.bep-matrix th{padding:6px 4px;text-align:center;font-size:12px;border-bottom:2px solid var(--line)}.bep-matrix th small{display:block;font-weight:400;color:var(--muted)}.bep-matrix th:first-child{text-align:left}
 .bep-tn{padding:6px 8px;min-width:200px}.bep-tn small{display:block;color:var(--muted)}
 .bep-z{text-align:center;padding:4px;border:1px solid #fff;background:#eef1f4}.bep-z b{display:block}.bep-z small{color:var(--muted);font-size:11px}
-.bep-z.erreicht{background:#dff3e5;color:#1f6a3a}.bep-z.wartet{background:#fff0c9}.bep-z.zurueck{background:#fbe0dd}.bep-z.ueber{outline:2px solid #d9534f;outline-offset:-2px}
+.bep-z.erreicht{background:#dff3e5;color:#1f6a3a}.bep-z.wartet{background:#fff0c9}.bep-z.zurueck{background:#fbe0dd}.bep-z.ueber{outline:2px solid #d9534f;outline-offset:-2px;background:#f9d6d2;color:#a02a22}.bep-z.erreicht{background:#cdeed6}.bep-z.wartet{background:#ffe08a}.bep-z.offen{color:#8a99a6}.bep-z b{font-size:15px}
+.bep-zahlen div.gruen{background:#e4f6ea;border-color:#a9dcb8}.bep-zahlen div.gelb{background:#fff4d6;border-color:#f0d28a}.bep-zahlen div.warn{background:#ffe3a0;border-color:#e0a324}
+.bep-badge{display:inline-block;min-width:22px;padding:0 8px;border-radius:999px;background:#e0a324;color:#fff;font-size:13px;text-align:center;vertical-align:middle}
 .bep-wq{padding:10px 12px;border-radius:12px;background:#fff8e8;border:1px solid #f0d28a;margin:6px 0}
 .bep-td{border:1px solid var(--line);border-radius:12px;padding:8px 12px;margin:6px 0;background:#fff}.bep-td summary{cursor:pointer}
 .bep-termine{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:8px;margin:8px 0}
@@ -5777,7 +5779,12 @@ function bepAbgabenMatrixHTML(m,v,d,students){
  if(!personen.length)return`<p class="ppm-leer">Noch keine Schüler:innen.</p>`;
  const summe=v.meilensteine.map(()=>0);
  const kopf=v.meilensteine.map((x,k)=>{const f=bepFrist(m,v,k+1);return`<th title="${esc(x.titel)}">${esc(x.kurz)}<small>${f?esc(fmtKurz(f)):""}</small></th>`;}).join("");
+ const palette=[["#e6f1fb","#3d8fd0"],["#eaf6e4","#5fae3b"],["#fdf1e0","#d9a85a"],["#f1e8fa","#8d62c4"],["#e3f5f3","#2fa39a"],["#fbe8ee","#d0587f"]];
+ const farbe=p=>{if(!p.team)return["#eef1f4","#9fb0bd"];return palette[Math.max(0,teams.findIndex(t=>t.id===p.team.id))%palette.length];};
+ let letztes="#";
  const zeilen=personen.map(p=>{
+  const fc=farbe(p),tid=p.team?p.team.id:"-";let teamKopf="";
+  if(tid!==letztes){letztes=tid;teamKopf=`<tr><td colspan="${v.meilensteine.length+1}" style="background:${fc[0]};border-left:5px solid ${fc[1]};font-weight:700;font-size:12px;padding:5px 8px;text-align:left">${p.team?esc(bepTeamLabel(p.team,d)):"Ohne Team"}</td></tr>`;}
   const zellen=v.meilensteine.map((x,k)=>{
    const i=k+1,f=bepFrist(m,v,i),b=p.team?nach.get(p.team.id+"|"+i+"|"+p.uid):null;
    if(b)summe[k]++;
@@ -5788,11 +5795,11 @@ function bepAbgabenMatrixHTML(m,v,d,students){
    const ueber=!b&&f&&f<h;
    return`<td class="bep-z ${kl}${ueber?" ueber":""}" title="${esc(x.kurz+": "+tip+(ueber?" · Frist verstrichen":""))}"><b>${zeichen}</b></td>`;
   }).join("");
-  return`<tr><td class="bep-tn"><b>${esc(p.name)}</b><small>${p.team?esc(bepTeamLabel(p.team,d)):"<i>kein Team</i>"}</small></td>${zellen}</tr>`;
+  return`${teamKopf}<tr><td class="bep-tn" style="border-left:5px solid ${fc[1]}"><b>${esc(p.name)}</b></td>${zellen}</tr>`;
  }).join("");
  const fuss=`<tr><td class="bep-tn"><b>abgegeben</b></td>${summe.map(n=>`<td class="bep-z"><b>${n}/${personen.length}</b></td>`).join("")}</tr>`;
  return`<div class="bep-tabwrap"><table class="bep-matrix"><thead><tr><th>Schüler:in (Team)</th>${kopf}</tr></thead><tbody>${zeilen}${fuss}</tbody></table></div>
-  <p class="bep-klein">✓ abgegeben · ⏳ abgegeben, wartet auf deine Bestätigung · ↩ zurückgegeben · ○ noch nichts. Rot umrandet: Frist verstrichen. Fahre mit der Maus über ein Feld (am Handy: gedrückt halten), um den Text der Abgabe zu sehen.</p>`;
+  <p class="bep-klein">✓ abgegeben · ⏳ abgegeben, wartet auf deine Bestätigung · ↩ zurückgegeben · ○ noch nichts. Grün = abgegeben, gelb = wartet auf dich, rot = Frist verstrichen ohne Abgabe oder zurückgegeben. Fahre mit der Maus über ein Feld (am Handy: gedrückt halten), um den Text der Abgabe zu sehen.</p>`;
 }
 async function bepLehrerHTML(m,v,d){
  const ph=bepPh(m,v),h=bepHeute();
@@ -5824,10 +5831,10 @@ async function bepLehrerHTML(m,v,d){
  const termine=v.meilensteine.map((x,k)=>{const i=k+1,eig=m.termine&&m.termine[i]||"",std=bepAnker(bepZeitraum(m),x.faellig);
   return`<label class="bep-termin"><span><b>${esc(x.kurz)}</b> ${esc(x.titel)}<small>Standard: ${std?esc(bepTagText(std)):"–"}</small></span><input type="date" id="bepT${i}" value="${esc(eig)}"></label>`;}).join("");
  return`<div class="ppm-box bep-lehrer"><h2>Für dich als Lehrkraft: Teamstand</h2>
-  <div class="bep-zahlen"><div><b>${d.teams.length}</b><small>Teams</small></div><div><b>${students.length-ohne.length}/${students.length}</b><small>Schüler:innen im Team</small></div><div class="${warten.length?"warn":""}"><b>${warten.length}</b><small>warten auf dich</small></div><div><b>${frei.length}</b><small>Bereiche ohne Team</small></div></div>
-  <h3>Wartet auf deine Bestätigung</h3>${queue}
+  <div class="bep-zahlen"><div><b>${d.teams.length}</b><small>Teams</small></div><div class="${ohne.length?"gelb":"gruen"}"><b>${students.length-ohne.length}/${students.length}</b><small>Schüler:innen im Team</small></div><div class="${warten.length?"warn":"gruen"}"><b>${warten.length}</b><small>warten auf dich</small></div><div><b>${frei.length}</b><small>Bereiche ohne Team</small></div></div>
+  <h3>Wartet auf deine Bestätigung${warten.length?` <span class="bep-badge">${warten.length}</span>`:""}</h3>${queue}
   ${bepAbgabenHTML(m,v,d,students)}
-  <h3>Stand aller Teams</h3>${matrix}
+  <details class="ppm-details" style="margin-top:12px"><summary><b>Stand aller Teams</b> (Kurzfassung je Team)</summary>${matrix}</details>
   ${ohne.length?`<h3>Noch ohne Team (${ohne.length})</h3><p>${ohne.map(s=>esc(s.displayName||s.email||"Schüler:in")).join(", ")}</p>`:(students.length?`<p><b>Alle Schüler:innen haben ein Team ✓</b></p>`:"")}
   ${frei.length?`<p class="bep-klein"><b>Noch freie Bereiche:</b> ${frei.map(b=>esc(b.kap+" "+b.name)).join(" · ")}</p>`:""}
   ${teamDetails?`<h3>Teams im Einzelnen (Beiträge ansehen, bestätigen, zurückgeben)</h3>${teamDetails}`:""}
