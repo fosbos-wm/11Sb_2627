@@ -540,6 +540,12 @@ service cloud.firestore {
       allow read: if isApproved();
       allow create, update, delete: if isTeacher();
     }
+    // Zeitstrahl-Stunden: verknüpfte Tafeln und Lernübersichten (Schlüssel = Datum bzw. Referenz).
+    // Von Lehrkräften gepflegt, für alle freigeschalteten Nutzer:innen lesbar.
+    match /lehrplanTafeln/{id} {
+      allow read: if isApproved();
+      allow create, update, delete: if isTeacher();
+    }
     // Aufträge/Ziele je Woche: von Lehrkräften gepflegt.
     match /lehrplanAuftraege/{id} {
       allow read: if isApproved();
@@ -585,7 +591,8 @@ service cloud.firestore {
             || resource.data.createdBy == request.auth.uid
             || (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['mitgliederUids','mitgliederNamen'])
               && request.auth.uid in request.resource.data.mitgliederUids)));
-      allow delete: if isTeacher() || (isApproved() && resource.data.createdBy == request.auth.uid);
+      allow delete: if isTeacher() || (isApproved() && (resource.data.createdBy == request.auth.uid
+        || resource.data.get('mitgliederUids',[]).size() == 0));
     }
     // Persönliche Beiträge zu Projekt-Meilensteinen (ID <teamId>_<index>_<uid>):
     // jede Person schreibt nur ihren eigenen Beitrag, alle Freigeschalteten
