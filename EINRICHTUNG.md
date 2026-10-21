@@ -45,3 +45,18 @@ Alles liegt in `wochenplan.js` und `wochenplan.css`; die Firestore-Regeln dafür
 2. **Einführungen, Gespräche & Termine**: feste Einführungen der Fächer, **Lernstandsgespräche** (fester Termin, von der Lehrkraft gesetzt) und Sprechzeiten anlegen (als Entwurf), **Lernbausteine** (Art u. a. Einführung, Lernbaustein, Check-out) anlegen, danach im Reiter **Klassenteam & Planung** „Woche für die Klasse freigeben“.
 3. Schüler:innen sehen erst, was auf *live* steht. Entwürfe, Team-Chat und Team-Notizen sind nur für Lehrkräfte lesbar.
 4. Test: mit einem Schülerkonto Lernbaustein in den Plan ziehen, Termin buchen (zweites Schülerkonto darf denselben Termin nicht mehr buchen können), Tutor-Anfrage senden und annehmen.
+
+## Vertiefungs- / Übungsbausteine (Modulart „Übungsbaustein“, noch ohne Inhalt)
+
+Im Unterrichtsplan gibt es **＋ Modul → Vertiefungs- / Übungsbaustein**. Der Katalog `uebungsbausteine/stationen/katalog.json` enthält 22 Übungen (je Thema höchstens 2 verschiedene Arten) für die 11. Klasse, geordnet nach **LB 1 › Thema › Art der Übung** und **LB 3 › Thema › Art der Übung**.
+
+- LB 1: Gegenstand der Psychologie, Gegenstand der Pädagogik, Alltagstheorie und wissenschaftliche Theorie, Merkmale wissenschaftlicher Aussagen, Das Experiment.
+- LB 3: Merkmale der Erziehung (Lehrtexte 1–4), Erziehungsstile nach Baumrind, Der Kindergarten, BayBEP.
+- Pro Thema gibt es zwei Arten (u. a. Blockfall, Zuordnung, Memory, Theorievergleich, K-Prim, Wichtel-Schubkarrenrennen für 2–8 Teams), dazu je Lernbereich „Alle Bereiche gemischt“ (Tetris, Rennen). Die Auswahl steht im Katalog und lässt sich dort ändern.
+- Die K-Prim-Aufgaben zu LB 3 stammen aus den Freitagstests (mit Fallvignette und Begründungen nach dem Prüfen); bei „Merkmale der Erziehung“ wählt die Nummer einen der vier Tests.
+
+In „Modul bearbeiten“ kann ein ganzer Ordner (z. B. „LB 1 › Das Experiment“) oder eine einzelne Übung gewählt werden. Schüler:innen markieren einen Baustein selbst als erledigt (nur im Browser des Geräts, nichts wird übertragen).
+
+## Karteikarten (Definitionen LB 1 bis LB 4)
+
+Im Unterrichtsplan: **＋ Modul → Karteikarten (Definitionen)**. Der Ordner `karteikarten/` enthält die Seite (`index.html`) und die 120 Karten (`karten.js`, aus „Definitionen Lernbereich 11.1 bis 11.4“). Beim Anlegen wählst du, welche Lernbereiche (LB 1 bis LB 4) freigeschaltet sind. Vorderseite: Begriff, Rückseite: Definition. Schüler:innen bewerten „Gewusst“ oder „Nochmal üben“, der Lernstand bleibt nur im Browser. Neue Karten ergänzt du in `karten.js` (Felder: id, lb, g = Thema, b = Begriff, z = Zusatz, d = Definition).
