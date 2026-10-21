@@ -2300,7 +2300,7 @@ function msListeHTML(ph,team,beitraege,ansicht="seite",fokusUid=null){
    return`<span class="ms-person${b?" ok":""}${fokusUid===u?" fokus":""}"title="${esc(b?b.text:"noch kein Beitrag")}">${b?"✓":"○"} ${esc((team.mitgliederNamen||[])[k]||"Mitglied")}</span>`;
   }).join(""):"";
   const lehrerBeitraege=lehrer&&st.beitraege.length?`<div class="ms-beitraege">${st.beitraege.map(b=>`<div${fokusUid===b.uid?' class="fokus"':""}><b>${esc(b.name||"")}:</b> ${esc(b.text||"")}${msLinksHTML(b)}</div>`).join("")}</div>`:"";
-  const lehrerAktion=lehrer&&bestaetigen&&i>0&&!st.fehlend.length?`
+  const lehrerAktion=lehrer&&bestaetigen&&i>0&&!st.fehlend.length&&!st.leer?`
     ${st.zustand!=="erreicht"?`<button class="primary"onclick="msPruefen('${ph.id}','${team.id}',${i},true,'${ansicht}')">✓ Bestätigen</button>`:""}
     ${st.zustand!=="zurueck"?`<button class="secondary"onclick="msPruefen('${ph.id}','${team.id}',${i},false,'${ansicht}')">↩ Zurückgeben</button>`:""}`:"";
   const schuelerAktion=!lehrer&&imTeam&&i>0?`<button class="${meiner?"secondary":"primary"}"onclick="openMsBeitrag('${ph.id}','${team.id}',${i},'${ansicht}')">${meiner?"Beitrag ändern":"Mein Beitrag"}</button>`:"";
@@ -2308,7 +2308,7 @@ function msListeHTML(ph,team,beitraege,ansicht="seite",fokusUid=null){
    <span class="ms-icon"style="background:${st.zustand==="erreicht"?c:"#fff"};border-color:${st.zustand==="erreicht"?c:Z.f};color:${st.zustand==="erreicht"?"#fff":Z.f}">${Z.i}</span>
    <div class="ms-body">
     <div class="ms-kopf"><b>${esc(m)}</b>${bestaetigen?`<span class="ms-tag">Lehrkraft bestätigt</span>`:""}</div>
-    <small class="ms-status"style="color:${Z.f}">${i===0?"erreicht mit der Teamgründung":esc(Z.t)}${st.zustand==="offen"&&st.fehlend.length&&i>0?` · es fehlt noch: ${esc(st.fehlend.map(f=>f.name).join(", "))}`:""}</small>
+    <small class="ms-status"style="color:${Z.f}">${i===0?"erreicht mit der Teamgründung":(st.leer?"Dieses Team hat keine Mitglieder mehr, es gibt nichts abzugeben (Team kann aufgelöst werden)":esc(Z.t))}${st.zustand==="offen"&&st.fehlend.length&&i>0?` · es fehlt noch: ${esc(st.fehlend.map(f=>f.name).join(", "))}`:""}</small>
     ${personen?`<div class="ms-personen">${personen}</div>`:""}
     ${st.pruefung?.kommentar&&st.zustand==="zurueck"?`<div class="ms-kommentar"><b>Rückmeldung:</b> ${esc(st.pruefung.kommentar)}</div>`:""}
     ${!lehrer&&meiner?`<div class="ms-meiner"><b>Dein Beitrag:</b> ${esc(meiner.text)}${msLinksHTML(meiner)}</div>`:""}
