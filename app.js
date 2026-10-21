@@ -4227,6 +4227,7 @@ function ppNaechsterSchrittHTML(fortschrittMap,heute){
 // Projekt und Prüfungstraining nutzen weiter die bestehenden Ansichten
 // (Teams, Meilensteine, 4 Schritte); die Wochen kommen jetzt aus dem Plan.
 // ============================================================
+const PPM_FARBE={projekt:["#27998b","#dcf1ee"],stunde:["#2a86a8","#dcf0f6"],apt:["#8a68c9","#ece6f7"],kprim:["#d6675c","#fae3e0"],selbstlern:["#5aa85a","#e5f2e2"],experiment:["#6b7f8c","#eef1f2"],einfuehrung:["#4f86e0","#e4edfb"],rallye:["#d9922e","#fbecd5"],uebung:["#c2569a","#f9e3f0"],karteikarten:["#1f8a70","#d9f2ea"]};
 const PPM_TYPEN={
  projekt:{icon:"",name:"Ein Projekt durchführen",kurz:"Projekt",art:"Projekt",text:"Team-Projekt mit Meilensteinen anlegen."},
  stunde:{icon:"",name:"Unterrichtsstunde nach dem Deeper-Learning-Konzept",kurz:"Stunde",art:"Deeper-Learning-Einheit",text:"Mit Digitaler Tafel, Material (PDF, Film, Audio, Bilder, Links) und einem Check-out mit offener Frage."},
@@ -4650,6 +4651,7 @@ ${PPM_ZOOM_CSS}
 body.ppm-dnd-an{cursor:grabbing;-webkit-user-select:none;user-select:none}
 .ppm-woche.ppm-ziel{background:#eef7ee;outline:2px dashed #3fa66a}
 .ppm-karte.ppm-vor{box-shadow:-7px 0 0 -1px #3fa66a}.ppm-karte.ppm-ende{box-shadow:7px 0 0 -1px #3fa66a}
+.ppm-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 18px}.ppm-chip{display:inline-block;padding:5px 14px;border-radius:999px;background:var(--ab);color:#26323a;border:1.5px solid var(--ac);font:inherit;font-size:13px;font-weight:700;line-height:1.3;cursor:pointer;transition:transform .1s,box-shadow .1s}.ppm-chip:hover{transform:translateY(-1px);box-shadow:0 2px 6px #0002;background:var(--ac);color:#fff}.ppm-chip:focus-visible{outline:3px solid #69b0e0;outline-offset:2px}
 .ppm-legende{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:0 0 18px}
 .ppm-typ{display:flex;flex-direction:column;gap:4px;text-align:left;padding:12px 14px;border-radius:14px;border:1.5px dashed #b9c8d6;background:#fff;cursor:pointer;font:inherit;color:inherit}
 .ppm-typ:hover{border-color:#2f7fc6;background:#f3f9ff}.ppm-typ b{font-size:14px}.ppm-typ small{color:var(--muted);line-height:1.35}
@@ -4823,7 +4825,7 @@ async function renderPPModulplan(){
   <div class="ppm-balken"><span><b>Verplant:</b> ${ppmStd(belegt)} von ${ppmStd(gesamt)} Unterrichtsstunden (${proz} %)</span><div class="ppm-bar" role="progressbar" aria-valuenow="${proz}" aria-valuemin="0" aria-valuemax="100"><i style="width:${proz}%"></i></div></div>
   <div class="ppm-balken"><span><b>Schuljahr:</b> ${vergangen} von ${SCHULWOCHEN_PP.length} Schulwochen vorbei (${jahrProz} %)</span><div class="ppm-bar ppm-bar-jahr" role="progressbar" aria-valuenow="${jahrProz}" aria-valuemin="0" aria-valuemax="100"><i style="width:${jahrProz}%"></i></div></div>
   <div class="ppm-leg"><span><i style="background:#3d8fd0"></i>Woche teilweise belegt</span><span><i style="background:#3fa66a"></i>Woche voll (6,3 Stunden)</span><span><i style="background:#d9534f"></i>Woche überbucht</span><span>  Praktikum (gesperrt)</span><span> Ferien (gesperrt)</span></div></div>`;
- const legende=lehrer?`<div class="ppm-legende">${Object.entries(PPM_TYPEN).filter(([k])=>k!=="experiment").map(([k,T])=>`<button type="button" class="ppm-typ" data-ppm="neu" data-typ="${k}"><b>${T.icon} ${esc(T.name)}</b><small>${esc(T.text)}</small></button>`).join("")}</div>`:"";
+ const legende=lehrer?`<div class="ppm-chips" aria-label="Lernbausteine anlegen">${Object.entries(PPM_TYPEN).filter(([k])=>k!=="experiment").map(([k,T])=>{const F=PPM_FARBE[k]||["#6b7f8c","#eef1f2"];return`<button type="button" class="ppm-chip" style="--ac:${F[0]};--ab:${F[1]}" data-ppm="neu" data-typ="${k}" title="${esc(T.name)}: ${esc(T.text)} – anklicken zum Gestalten">${esc(T.art||T.kurz||T.name)}</button>`}).join("")}</div>`:"";
  const zeilen=ppmZeitleiste().map(z=>{
   if(z.art==="block"){
    const darin=z.kind==="praktikum"?FERIEN_2026_27.filter(f=>f.start<=z.bis&&f.end>=z.von).map(f=>f.titel):[];
@@ -21478,8 +21480,8 @@ let wpModul=null;
 async function renderWochenplanSeite(){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261021c";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261021c");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261021d";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261021d");
   return await wpModul.wpRender();
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
