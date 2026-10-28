@@ -21117,6 +21117,8 @@ function navVerfolgen(p){
  const n=navSnap(p),k=JSON.stringify(n);
  if(NAV_SKIP){NAV_SKIP=false;NAV_CUR={n,k};return;}
  if(NAV_CUR&&NAV_CUR.k===k)return;   // gleiche Seite (z. B. nur neu geladen): nichts merken
+ const oben=NAV_STACK[NAV_STACK.length-1];
+ if(oben&&JSON.stringify(oben)===k){NAV_STACK.pop();NAV_CUR={n,k};return;}   // Rückkehr zur vorigen Seite (Browser-Zurück oder Zurück-Knopf): Verlauf verkürzen, nicht verlängern
  if(NAV_CUR){NAV_STACK.push(NAV_CUR.n);if(NAV_STACK.length>50)NAV_STACK.shift();}
  NAV_CUR={n,k};
 }
@@ -21128,9 +21130,26 @@ function navZurueck(){
  if(location.hash!=="#"+v.p)location.hash=v.p;else render();
 }
 window.navZurueck=navZurueck;
+// Ist das ein „← Ziel“-Knopf zum Verlassen einer Seite? (nicht: Pfeil allein wie Kanban „←“ / Wochenwechsel, nicht „← Zurück“ beim Karteikarten-Lernen)
+function navIstZurueckKnopf(b){
+ if(!b||b.classList.contains("nav-back")||b.closest(".modal"))return false;
+ if(!/^(?:\u2190|&larr;)\s*[A-Za-zÄÖÜäöüß]/.test((b.textContent||"").trim()))return false;
+ return !/studyPrevCard|moveKanbanCard|kprimVorschauSpringe/.test(b.getAttribute("onclick")||"");
+}
+// Jeder „← …“-Knopf in der Seite führt genau eine Seite zurück (Verlauf), Beschriftung entsprechend „Zurück“
+function navZurueckKnoepfeAngleichen(content){
+ if(!NAV_STACK.length)return;   // ohne Verlauf (z. B. nach Neuladen) bleibt das feste Ziel samt Beschriftung
+ content.querySelectorAll("button").forEach(b=>{if(navIstZurueckKnopf(b)){b.textContent="\u2190 Zurück";b.title="Eine Seite zurück";}});
+}
+document.addEventListener("click",ev=>{
+ const b=ev.target&&ev.target.closest?ev.target.closest("#content button"):null;
+ if(!b||!NAV_STACK.length||!navIstZurueckKnopf(b))return;
+ ev.preventDefault();ev.stopImmediatePropagation();navZurueck();
+},true);
 function navZurueckLeiste(content,p,html){
+ navZurueckKnoepfeAngleichen(content);
  if(p==="start"||p==="whiteboard-board")return;   // Startseite: nichts zurück; Board-Ansicht hat eigenen Zurück-Knopf
- if(/<button[^>]*>\s*(?:\u2190|&larr;)/.test(String(html||"").slice(0,3500)))return;   // Seite hat schon einen eigenen Zurück-Knopf
+ if([...content.querySelectorAll("button")].slice(0,25).some(navIstZurueckKnopf))return;   // Seite hat schon einen eigenen Zurück-Knopf
  if(!document.getElementById("navBackCss")){const st=document.createElement("style");st.id="navBackCss";st.textContent=".nav-back-bar{margin:0 0 12px}.nav-back{font-size:13px;padding:6px 14px;border-radius:999px}";document.head.appendChild(st);}
  const hatVerlauf=NAV_STACK.length>0;
  const bar=document.createElement("div");bar.className="nav-back-bar";
