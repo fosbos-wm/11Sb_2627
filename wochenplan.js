@@ -1336,8 +1336,8 @@ function ut() {
   );
 }
 function wpWs() {
-  const h = Math.round(Number(wpUi().trayH) || 250);
-  return `<div class="wp-ws" id="wpWs" style="--tray-h:${h}px">${Ce()}<div class="wp-split" role="separator" aria-orientation="horizontal" tabindex="0" title="Ziehen: Plan und Lernbausteine größer/kleiner (Doppelklick = zurücksetzen)"><i></i></div>${ut()}</div>`;
+  const h = Math.round(Number(wpUi().trayH) || 0);
+  return `<div class="wp-ws" id="wpWs"${h ? ` style="--tray-h:${h}px"` : ""}>${Ce()}<div class="wp-split" role="separator" aria-orientation="horizontal" tabindex="0" title="Ziehen: Plan und Lernbausteine größer/kleiner (Doppelklick = zurücksetzen)"><i></i></div>${ut()}</div>`;
 }
 function wpPfeile() {
   const t = f("wpReihe");
@@ -1564,7 +1564,7 @@ function mt(e) {
   }),
   document.addEventListener("dblclick", (ev) => {
     const h = ev.target.closest?.(".wp-split");
-    h && (h.parentElement.style.setProperty("--tray-h", "250px"), wpUiSet({ trayH: 250 }), wpPfeile());
+    h && (h.parentElement.style.removeProperty("--tray-h"), wpUiSet({ trayH: 0 }), wpPfeile());
   }),
   document.addEventListener("keydown", (ev) => {
     const h = ev.target.closest?.(".wp-split");
