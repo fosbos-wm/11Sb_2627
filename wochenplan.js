@@ -1,161 +1,3763 @@
-const c=new Proxy({},{get:(e,t)=>window.CampusWP[t]}),f=e=>document.getElementById(e),o=e=>String(e??"").replace(/[&<>"']/g,t=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[t]),R=e=>c.collection(c.db,e),z=(e,t)=>c.doc(c.db,e,t),M=(e,t)=>c.where(e,"==",t);async function A(e,...t){return(await c.getDocs(t.length?c.query(R(e),...t):R(e))).docs.map(a=>({id:a.id,...a.data()}))}async function j(e,t){try{const n=await c.getDoc(z(e,t));return n.exists()?{id:n.id,...n.data()}:null}catch(n){return console.warn("wp",e,n.code||n),null}}const te=()=>c.isTeacher(),S=()=>c.currentUser.uid,ce=()=>c.profile?.pseudonym||c.profile?.displayName||"Sch\xFCler:in",Ee=()=>Math.random().toString(36).slice(2,9)+Date.now().toString(36).slice(-3),_=[{k:"deutsch",l:"Deutsch",c:"#2f6fb0",bg:"#e3f0f9"},{k:"mathematik",l:"Mathematik",c:"#d17a1f",bg:"#fbefdb"},{k:"englisch",l:"Englisch",c:"#8250b8",bg:"#eee7f7"},{k:"paedagogik",l:"P\xE4/Psy",c:"#1f9a8a",bg:"#e0f2ee"},{k:"sozialwirtschaft",l:"SWR",c:"#c2477f",bg:"#f7e5ee"},{k:"geschichte",l:"Geschichte",c:"#9a7b2c",bg:"#f6eed7"},{k:"chemie",l:"Chemie",c:"#5e9a38",bg:"#e6f1e0"},{k:"fpa",l:"fpA / Projekte",c:"#5f6f91",bg:"#e9ecf3"},{k:"foerder",l:"F\xF6rderunterricht",c:"#b5573c",bg:"#f7e6e0"},{k:"fachuebergreifend",l:"Fach\xFCbergreifend",c:"#8a9499",bg:"#eef1f2"}],T=e=>_.find(t=>t.k===e)||_[_.length-1],ge={einfuehrung:{l:"Einf\xFChrung"},projekt:{l:"Projekt"},lernstand:{l:"Lernstandsgespr\xE4ch"},gruppenuebung:{l:"Gruppen\xFCbung"},selbstlern:{l:"Selbstlernkurs"},checkout:{l:"Check-out"},fachaufsatz:{l:"Fachaufsatztraining"},lernrallye:{l:"Lernrallye"},frage:{l:"Fachliche Frage"},uebung:{l:"Vertiefungs- / \xDCbungsbaustein"},karteikarten:{l:"Karteikarten (Definitionen)"},deeperlearning:{l:"Deeper-Learning-Einheit"},feedback:{l:"Block-Feedback"},baustein:{l:"Kurs / Training"},lernen:{l:"Lernbaustein"},vertiefung:{l:"Vertiefung"}},Ft=["einfuehrung","projekt","lernstand","gruppenuebung"],Ye=["einfuehrung","projekt","lernstand","gruppenuebung","selbstlern","checkout","fachaufsatz","lernrallye","deeperlearning","feedback","frage","uebung","karteikarten"],oe={einfuehrung:{l:"Einf\xFChrung",i:"",kick:"EINF\xDCHRUNG",neu:"Neue Einf\xFChrung",edit:"Einf\xFChrung bearbeiten",ph:"z. B. Einf\xFChrung Lernbereich 2",hint:"Fester Termin \u2013 die Lehrkraft f\xFChrt ein, danach steuerst du selbst.",weg:"Diese Einf\xFChrung l\xF6schen?"},lernstand:{l:"Lernstandsgespr\xE4ch",i:"",kick:"LERNSTANDSGESPR\xC4CH",neu:"Neues Lernstandsgespr\xE4ch",edit:"Lernstandsgespr\xE4ch bearbeiten",ph:"z. B. Lernstandsgespr\xE4ch Gruppe A",hint:"Fester Termin \u2013 deine Lehrkraft spricht mit dir \xFCber deinen Lernstand. Bereite dich mit deinem Lernjournal vor.",weg:"Dieses Lernstandsgespr\xE4ch l\xF6schen?"}};oe.projekt={l:"Projekt",i:"",kick:"PROJEKT",neu:"Neues Projekt",edit:"Projekt bearbeiten",ph:"z. B. Projektstart Lernbereich 2",hint:"Fester Termin \u2013 die Lehrkraft setzt das Projekt, danach arbeitet ihr in euren Teams.",weg:"Dieses Projekt l\xF6schen?"},oe.gruppenuebung={l:"Gruppen\xFCbung",i:"",kick:"GRUPPEN\xDCBUNG",neu:"Neue Gruppen\xFCbung",edit:"Gruppen\xFCbung bearbeiten",ph:"z. B. Gruppen\xFCbung Fallbeispiel",hint:"Fester Termin \u2013 die Lehrkraft legt die Gruppen\xFCbung fest. Ihr arbeitet gemeinsam in Gruppen.",weg:"Diese Gruppen\xFCbung l\xF6schen?"};const ae=e=>oe[e&&e.art]||oe.einfuehrung,ne=e=>oe[e]?e:"einfuehrung",xt=[["","\u2014 keine \u2014"],["fachaufsatz","Fachaufsatz-Training"],["lernwerkzeuge","Lern-Werkzeuge"],["karteikarten","Karteikarten"],["lernstand","Lernstandsmessung"],["kompetenz","Kompetenzwerkstatt"],["projekte","Projekte"],["praktikum","fpA"],["journal","Lernjournal"],["lernpfad","Lernpfad"],["faecher","F\xE4cher & Lernbereiche"],["methoden","Lernmethoden"],["resilienz","Resilienz & Respressi"],["fokus-timer","Fokus-Timer"]],I=["Mo","Di","Mi","Do","Fr"],W=["Montag","Dienstag","Mittwoch","Donnerstag","Freitag"],Nt=["08:00","08:45","09:45","10:30","11:30","12:15","13:15","14:00","15:00","15:45"],be=45,we=[["15","15 Minuten"],["20","20 Minuten"],["25","25 Minuten"],["30","30 Minuten"],["35","35 Minuten"],["40","40 Minuten"],["45","45 Minuten"],["60","60 Minuten"],["90","90 Minuten"],["120","120 Minuten"],["tag","Ein Tag"],["2tage","Zwei Tage"],["1w","Eine Woche"],["2w","Zwei Wochen"],["3w","Drei Wochen"]],ve={tag:1,"2tage":1,"3tage":1,"4tage":1,"1w":1,"2w":2,"3w":3},Je={tag:1,"2tage":2,"3tage":3,"4tage":4},Xe=[...we.slice(0,10),["180","3 Stunden"],["240","4 Stunden"],["tag","Ein Tag"],["2tage","Zwei Tage"],["3tage","Drei Tage"],["4tage","Vier Tage"],["1w","Eine Woche"],["2w","Zwei Wochen"],["3w","Drei Wochen"]];function x(e){const t=e&&e.dauer?String(e.dauer):"";if(!t){const s=e&&e.len||1;return{code:"",label:s*be+" Minuten",min:s*be,len:s,lang:!1,wochen:1}}const n=we.find(s=>s[0]===t)||Xe.find(s=>s[0]===t)||we[6];if(ve[t])return{code:t,label:n[1],min:0,len:0,lang:!0,wochen:ve[t]};const a=Number(t)||45;return{code:t,label:n[1],min:a,len:Math.max(1,Math.ceil(a/be)),lang:!1,wochen:1}}const de=e=>x(e).min,ie=e=>e.lang?e.label:e.min+" Min.",De={einfuehrung:{l:"Einf\xFChrung",c:"#4f86e0",bg:"#e4edfb"},lernen:{l:"Lernbaustein",c:"#5aa85a",bg:"#e5f2e2"},projekt:{l:"Projekt",c:"#27998b",bg:"#dcf1ee"},vertiefung:{l:"Vertiefung",c:"#d9922e",bg:"#fbecd5"},baustein:{l:"Kurs / Training",c:"#8a68c9",bg:"#ece6f7"},checkout:{l:"Check-out",c:"#d6675c",bg:"#fae3e0"},lernstand:{l:"Lernstandsgespr\xE4ch",c:"#c0568f",bg:"#f6e2ed"},gruppenuebung:{l:"Gruppen\xFCbung",c:"#5c6bc0",bg:"#e5e8f7"},selbstlern:{l:"Selbstlernkurs",c:"#5aa85a",bg:"#e5f2e2"},fachaufsatz:{l:"Fachaufsatztraining",c:"#8a68c9",bg:"#ece6f7"},lernrallye:{l:"Lernrallye",c:"#d9922e",bg:"#fbecd5"},eigen:{l:"Eigene Lernzeit",c:"#6b7f8c",bg:"#eef1f2"},frage:{l:"Fachliche Frage",c:"#a8744a",bg:"#f3e6da"},deeperlearning:{l:"Deeper-Learning-Einheit",c:"#2a86a8",bg:"#dcf0f6"},feedback:{l:"Block-Feedback",c:"#7a8f2e",bg:"#eef2d8"},uebung:{l:"Vertiefungs- / \xDCbungsbaustein",c:"#c2569a",bg:"#f9e3f0"},karteikarten:{l:"Karteikarten (Definitionen)",c:"#1f8a70",bg:"#d9f2ea"}},Me=["einfuehrung","projekt","lernstand","gruppenuebung","selbstlern","checkout","fachaufsatz","lernrallye","deeperlearning","feedback","frage","uebung","karteikarten"],ai=["selbstlern","checkout","fachaufsatz","frage"],V=e=>De[e]||De.lernen,y=e=>`--ac:${V(e).c};--ab:${V(e).bg}`;function Pt(e,t){return`<div class="wp-legende" aria-label="Farben der Lernbausteine">${t?`<b>${o(t)}</b>`:""}${(e||Me).map(n=>`<button type="button" class="wp-art wp-art-btn" style="${y(n)}" title="Lernbaustein \u201E${o(V(n).l)}\u201C anlegen und gestalten" onclick="wp.modulForm('','${n}')">${o(V(n).l)}</button>`).join("")}</div>`}const Fe={uebung:[{k:"ubName",l:"\xDCbung",t:"kurz"}],karteikarten:[{k:"kkText",l:"Freigeschaltete Lernbereiche",t:"kurz"}],einfuehrung:[{k:"ziel",l:"Ziel der Einf\xFChrung",t:"text"},{k:"ablauf",l:"Ablauf (ein Schritt pro Zeile)",t:"liste"},{k:"mitbringen",l:"Mitbringen / Vorbereitung",t:"text"}],projekt:[{k:"ziel",l:"Projektziel",t:"text"},{k:"produkt",l:"Produkt / Ergebnis",t:"text"},{k:"meilensteine",l:"Meilensteine (einer pro Zeile)",t:"liste"},{k:"team",l:"Teamgr\xF6\xDFe",t:"kurz"}],lernstand:[{k:"vorbereitung",l:"Zur Vorbereitung (Fragen, eine pro Zeile)",t:"liste"},{k:"ablauf",l:"Ablauf des Gespr\xE4chs",t:"text"}],gruppenuebung:[{k:"auftrag",l:"Auftrag",t:"text"},{k:"gruppe",l:"Gruppengr\xF6\xDFe",t:"kurz"},{k:"rollen",l:"Rollen (eine pro Zeile)",t:"liste"},{k:"ergebnis",l:"Ergebnissicherung",t:"text"}],selbstlern:[{k:"ziele",l:"Lernziele (eins pro Zeile)",t:"liste"},{k:"schritte",l:"Lernschritte (einer pro Zeile)",t:"liste"},{k:"hinweis",l:"Hinweis",t:"text"}],checkout:[{k:"fragen",l:"Aufgaben / Fragen (eine pro Zeile)",t:"liste"},{k:"hinweis",l:"Hinweis zur Bearbeitung",t:"text"}],fachaufsatz:[{k:"thema",l:"Thema / Pr\xFCfungsfrage",t:"text"},{k:"operatoren",l:"Operatoren",t:"kurz"},{k:"hinweis",l:"Hinweis",t:"text"}],frage:[{k:"thema",l:"Themen der fachlichen Frage",t:"text"},{k:"vorbereitung",l:"Bitte mitbringen",t:"text"}],deeperlearning:[{k:"ziel",l:"Ziel der Einheit",t:"text"},{k:"ablauf",l:"Ablauf (ein Schritt pro Zeile, mit Minuten)",t:"liste"},{k:"material",l:"Material",t:"text"},{k:"checkout",l:"Check-out-Aufgabe",t:"text"},{k:"muster",l:"Musterl\xF6sung (nur f\xFCr Lehrkr\xE4fte sichtbar)",t:"text",intern:!0}],feedback:[{k:"block",l:"Name des Blocks (z. B. Block 2: Psychologie)",t:"kurz"},{k:"hinweis",l:"Hinweis an die Klasse",t:"text"},{k:"extra",l:"Eigene Aussagen zus\xE4tzlich (eine pro Zeile, max. 10)",t:"liste",intern:!0}]},jt=[["info","Info-Seite"],["frei","Frage mit Freitext-Antwort"],["quiz","Quiz (eine richtige Antwort)"],["mehrfach","Quiz (mehrere richtige Antworten)"],["wahrfalsch","Richtig oder falsch"],["luecke","L\xFCckentext"],["zuordnung","Zuordnen (Paare)"],["reihenfolge","Reihenfolge bringen"],["schaetzen","Zahl sch\xE4tzen / berechnen"],["qr","QR-Code scannen (Ort im Schulhaus)"],["reflexion","Eigene Antwort (Reflexion)"],["aufgabe","Aufgabe zum Abhaken"]],$e={frei:3,quiz:2,mehrfach:2,wahrfalsch:1,luecke:3,zuordnung:2,reihenfolge:2,schaetzen:3,qr:3},ke=e=>String(e||"").split(/\n+/).map(t=>t.trim()).filter(Boolean),xe=e=>{const t=e.slice();for(let n=t.length-1;n>0;n--){const a=Math.floor(Math.random()*(n+1));[t[n],t[a]]=[t[a],t[n]]}return t};function Bt(e){const t={...e};return t.optText=(e.optionen||[]).map((n,a)=>((e.typ==="mehrfach"?(e.richtige||[]).includes(a):a===e.richtig)?"*":"")+n).join(`
-`),t.paareText=(e.paare||[]).map(n=>n[0]+" = "+n[1]).join(`
-`),t.reihenText=(e.reihe||[]).join(`
-`),t}function Ne(e,t){if(t=t||{},e==="lernrallye")return Rt();if(e==="uebung")return'<label>Vertiefungs- / \xDCbungsbaustein<select id="gf_ubZiel" data-sel="'+o(t.ubZiel||"")+'"><option value="">Lade \xDCbungen \u2026</option></select></label><small class="wp-hint">Ganzer Ordner (z. B. LB 1 \u203A Thema) oder eine einzelne \xDCbung. Die Sch\xFCler:innen \xF6ffnen sie \u00FCber \u201ELink \xF6ffnen\u201C.</small>';if(e==="karteikarten"){const q=String(t.kkLb||"1,2,3,4").split(",");return'<fieldset class="wp-kk"><legend>Freigeschaltete Lernbereiche</legend>'+[1,2,3,4].map(k=>`<label class="check"><input type="checkbox" class="wpKkLb" value="${k}" ${q.includes(String(k))?"checked":""}><span>LB ${k}</span></label>`).join("")+"</fieldset>"}const n=Fe[e]||[];return(e==="deeperlearning"?'<div class="wp-vorlage"><button type="button" class="secondary" onclick="wp.dlVorlage()">Vorlage \u201EFachaufsatz\u201C einf\xFCgen</button><small>F\xFCllt Titel, Ablauf, Check-out und Musterl\xF6sung vor. Danach nur noch pr\xFCfen.</small></div>':e==="feedback"?'<p class="wp-hint">Die 15 Standardaussagen (Lernen, Selbststeuerung, Zusammenarbeit, Material, Gesamteindruck) sind immer dabei. Eigene Aussagen unten erg\xE4nzen.</p>':"")+n.map(s=>{const l=Array.isArray(t[s.k])?t[s.k].join(`
-`):t[s.k]||"";return`<label>${o(s.l)}${s.t==="kurz"?`<input id="gf_${s.k}" maxlength="80" value="${o(l)}">`:`<textarea id="gf_${s.k}" rows="${s.t==="liste"?4:3}" maxlength="1200">${o(l)}</textarea>`}</label>`}).join("")}function Wt(e){const t={};if(e==="uebung"){const u=f("gf_ubZiel"),v=u?u.value:"";v&&(t.ubZiel=v,t.ubName=u.selectedOptions[0].textContent)}else if(e==="karteikarten"){const q=[...document.querySelectorAll(".wpKkLb:checked")].map(k=>k.value);q.length&&(t.kkLb=q.join(","),t.kkText="LB "+q.join(", LB "))}return e==="lernrallye"||e==="uebung"||e==="karteikarten"||(Fe[e]||[]).forEach(n=>{const a=(f("gf_"+n.k)?.value||"").trim();a&&(t[n.k]=n.t==="liste"?a.split(/\n+/).map(s=>s.trim()).filter(Boolean):a)}),t}function Rt(){const e=i.rally||[];return`<div class="wp-rally-ed"><b>Stationen der Lernrallye</b><small>Die Sch\xFCler:innen gehen Station f\xFCr Station durch, l\xF6sen Aufgaben und sammeln Punkte \u2013 wie bei einer Rallye.</small>
- ${e.map((t,n)=>`<div class="wp-station"><div class="wp-st-h"><b>Station ${n+1}</b><span><button type="button" class="text-button" onclick="wp.rallyMove(${n},-1)">nach oben</button><button type="button" class="text-button" onclick="wp.rallyMove(${n},1)">nach unten</button><button type="button" class="text-button" onclick="wp.rallyDel(${n})">entfernen</button></span></div>
-  <label>Art<select onchange="wp.rallySet(${n},'typ',this.value,true)">${jt.map(a=>`<option value="${a[0]}" ${a[0]===t.typ?"selected":""}>${a[1]}</option>`).join("")}</select></label>
-  <label>Titel<input maxlength="80" value="${o(t.titel||"")}" oninput="wp.rallySet(${n},'titel',this.value)"></label>
-  <label>Text / Aufgabe<textarea rows="2" maxlength="600" oninput="wp.rallySet(${n},'text',this.value)">${o(t.text||"")}</textarea></label>
-  ${t.typ==="frei"?`<label>Richtige Antwort(en), mehrere mit | trennen<input maxlength="200" value="${o(t.antwort||"")}" oninput="wp.rallySet(${n},'antwort',this.value)"></label>`:""}
-  ${t.typ==="quiz"||t.typ==="mehrfach"?`<label>Antwortm\xF6glichkeiten (eine pro Zeile, ${t.typ==="quiz"?"die richtige":"jede richtige"} mit * am Anfang)<textarea rows="4" maxlength="500" oninput="wp.rallySet(${n},'optText',this.value)">${o(t.optText||"")}</textarea></label>`:""}
-  ${t.typ==="wahrfalsch"?`<label>Die Aussage ist<select onchange="wp.rallySet(${n},'wf',this.value)"><option value="w" ${t.wf!=="f"?"selected":""}>richtig</option><option value="f" ${t.wf==="f"?"selected":""}>falsch</option></select></label>`:""}
-  ${t.typ==="luecke"?`<label>L\xFCckentext \u2013 L\xFCcken in [eckigen Klammern], Alternativen mit | trennen<textarea rows="3" maxlength="600" oninput="wp.rallySet(${n},'lueckText',this.value)">${o(t.lueckText||"")}</textarea></label>`:""}
-  ${t.typ==="zuordnung"?`<label>Paare (eins pro Zeile: Begriff = Zuordnung)<textarea rows="4" maxlength="600" oninput="wp.rallySet(${n},'paareText',this.value)">${o(t.paareText||"")}</textarea></label>`:""}
-  ${t.typ==="reihenfolge"?`<label>Elemente in der richtigen Reihenfolge (eins pro Zeile; die Sch\xFCler sehen sie gemischt)<textarea rows="4" maxlength="600" oninput="wp.rallySet(${n},'reihenText',this.value)">${o(t.reihenText||"")}</textarea></label>`:""}
-  ${t.typ==="schaetzen"?`<div class="wp-st-zwei"><label>Richtige Zahl<input inputmode="decimal" value="${o(t.zahl??"")}" oninput="wp.rallySet(${n},'zahl',this.value)"></label><label>Toleranz (\xB1)<input inputmode="decimal" value="${o(t.tol??0)}" oninput="wp.rallySet(${n},'tol',this.value)"></label></div>`:""}
-  ${t.typ==="qr"?`<div class="wp-st-zwei"><label>Code dieser Station<input maxlength="12" value="${o(t.code||"")}" oninput="wp.rallySet(${n},'code',this.value.toUpperCase())"></label><button type="button" class="secondary" onclick="wp.rallySet(${n},'code',wp.qrNeu(),true)">Neuer Code</button></div><small class="wp-hint">Beschreibe oben im Text, wo die Sch\xFCler:innen den QR-Code finden (z. B. \u201EGeh zur Aula\u201C). Den Code druckst du unten als QR-Code aus.</small>`:""}
-  ${t.typ!=="info"?`<div class="wp-st-zwei"><label>Punkte<input type="number" min="0" max="20" value="${o(t.punkte??10)}" oninput="wp.rallySet(${n},'punkte',this.value)"></label><label>Hinweis (optional)<input maxlength="200" value="${o(t.hinweis||"")}" oninput="wp.rallySet(${n},'hinweis',this.value)"></label></div>`:""}
- </div>`).join("")}
- <button type="button" class="secondary" onclick="wp.rallyAdd()">\uFF0B Station hinzuf\xFCgen</button>${e.some(t=>t.typ==="qr")?'<button type="button" class="secondary" onclick="wp.qrDruck()">QR-Codes drucken</button>':""}</div>`}function Gt(e){const t={typ:e.typ||"info",titel:String(e.titel||"").slice(0,80),text:String(e.text||"").slice(0,600),punkte:Math.max(0,Math.min(20,Number(e.punkte)||0)),hinweis:String(e.hinweis||"").slice(0,200)};if(t.typ==="frei"&&(t.antwort=String(e.antwort||"").slice(0,200)),t.typ==="quiz"){const n=String(e.optText||"").split(/\n+/).map(a=>a.trim()).filter(Boolean);t.richtig=Math.max(0,n.findIndex(a=>a.startsWith("*"))),t.optionen=n.map(a=>a.replace(/^\*\s*/,""))}if(t.typ==="mehrfach"){const n=ke(e.optText).slice(0,8);t.richtige=n.map((a,s)=>a.startsWith("*")?s:-1).filter(a=>a>=0),t.optionen=n.map(a=>a.replace(/^\*\s*/,""))}return t.typ==="wahrfalsch"&&(t.wf=e.wf==="f"?"f":"w"),t.typ==="luecke"&&(t.lueckText=String(e.lueckText||"").slice(0,600)),t.typ==="zuordnung"&&(t.paare=ke(e.paareText).slice(0,8).map(n=>n.split("=").map(a=>a.trim())).filter(n=>n[0]&&n[1]).map(n=>[n[0].slice(0,80),n.slice(1).join("=").slice(0,80)])),t.typ==="reihenfolge"&&(t.reihe=ke(e.reihenText).slice(0,8).map(n=>n.slice(0,100))),t.typ==="schaetzen"&&(t.zahl=Number(String(e.zahl).replace(",","."))||0,t.tol=Math.abs(Number(String(e.tol||0).replace(",","."))||0)),t.typ==="qr"&&(t.code=le(e.code)||Pe()),t.typ==="info"&&(t.punkte=0),t}const ye=()=>{const e=f("mfGest");e&&(e.innerHTML=Ne("lernrallye",{}))};function It(){i.rally=i.rally||[],i.rally.push({typ:"frei",titel:"",text:"",antwort:"",punkte:10}),ye()}function Kt(e){i.rally.splice(e,1),ye()}function Ct(e,t){const n=e+t;n<0||n>=i.rally.length||([i.rally[e],i.rally[n]]=[i.rally[n],i.rally[e]],ye())}function Ht(e,t,n,a){i.rally[e][t]=n,t==="typ"&&n==="qr"&&!i.rally[e].code&&(i.rally[e].code=Pe()),a&&ye()}function et(e){if(!e)return"";const t=e.gestaltung||{};let n=(Fe[e.typ]||[]).map(a=>{const s=t[a.k];return a.intern||!s||Array.isArray(s)&&!s.length?"":`<div class="wp-gest-b"><b>${o(a.l.replace(/\s*\(.*\)$/,""))}</b>${Array.isArray(s)?`<ol>${s.map(l=>`<li>${o(l)}</li>`).join("")}</ol>`:`<p>${o(s)}</p>`}</div>`}).join("");if(e.typ==="lernrallye"&&(e.rallye||[]).length){const a=e.rallye,s=a.reduce((l,r)=>l+(r.punkte||0),0);n=`<div class="wp-gest-b"><b>Lernrallye</b><p>${a.length} Stationen \xB7 bis zu ${s} Punkte</p></div>`}return n?`<div class="wp-gest-view" style="${y(e.typ)}">${n}</div>`:""}function tt(e,t){if(!t||t.typ!=="lernrallye"||!(t.rallye||[]).length)return"";const n=e&&e.rallye,a=e&&e.rallyStand&&e.rallyStand.i>0;return`${n?`<p class="wp-hint">Ergebnis: ${e.rallye.punkte} von ${e.rallye.max} Punkten.</p>`:""}<div class="form-actions"><button class="primary" onclick="wp.rpStart('${e?e.id:""}','${t.id}')">${n?"Rallye wiederholen":a?"Rallye fortsetzen":"Rallye starten"}</button></div>`}function _t(e,t){const n=i.d.module.find(l=>l.id===t);if(!n)return;const a=e?i.d.plan.eintraege.find(l=>l.id===e):null,s=!a||a.rallye||!a.rallyStand;i.rp={m:n,e:a,vorschau:!a,st:s?{i:0,pts:0,fehl:0,hint:!1}:{...a.rallyStand}},nt()}function nt(){const{m:e,st:t}=i.rp,n=e.rallye||[];if(t.i>=n.length)return en();const a=n[t.i],s=n.reduce((r,d)=>r+(d.punkte||0),0);let l="";if(a.typ==="info")l='<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(0)">Weiter</button></div>';else if(a.typ==="aufgabe")l=`<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(${a.punkte||0})">Erledigt (+${a.punkte||0})</button></div>`;else if(a.typ==="frei")l=`<label class="form"><span>Deine Antwort</span><input id="rpA" maxlength="120" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="secondary" onclick="wp.rpHinweis()">Hinweis</button><button class="primary" onclick="wp.rpPruefen()">Pr\xFCfen</button></div>`;else if(a.typ==="quiz")l=`<div class="wp-rp-opt">${(a.optionen||[]).map((r,d)=>`<button type="button" class="secondary" onclick="wp.rpWahl(${d})">${o(r)}</button>`).join("")}</div><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="secondary" onclick="wp.rpHinweis()">Hinweis</button></div>`;else{const r='<div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="secondary" onclick="wp.rpHinweis()">Hinweis</button><button class="primary" onclick="wp.rpPruefen()">Pr\xFCfen</button></div>';if(a.typ==="mehrfach")l=`<div class="wp-rp-opt">${(a.optionen||[]).map((d,m)=>`<label class="wp-rp-chk"><input type="checkbox" class="rpC" value="${m}"> ${o(d)}</label>`).join("")}</div>${r}`;else if(a.typ==="wahrfalsch")l=`<div class="wp-rp-opt"><button type="button" class="secondary" onclick="wp.rpWahl('w')">Richtig</button><button type="button" class="secondary" onclick="wp.rpWahl('f')">Falsch</button></div><div id="rpFb" class="wp-rp-fb"></div>`;else if(a.typ==="luecke"){let d=0;l=`<p class="wp-rp-luecke">${String(a.lueckText||"").split(/(\[[^\]]+\])/).map(u=>/^\[[^\]]+\]$/.test(u)?`<input class="rpL" data-k="${d++}" maxlength="60" size="10">`:o(u)).join("")}</p>${r}`}else if(a.typ==="zuordnung"){const d=xe((a.paare||[]).map(m=>m[1]));l=`<div class="wp-rp-opt">${(a.paare||[]).map((m,u)=>`<label class="wp-rp-zu"><span>${o(m[0])}</span><select class="rpZ" data-k="${u}"><option value="">\u2013 w\xE4hlen \u2013</option>${d.map(p=>`<option>${o(p)}</option>`).join("")}</select></label>`).join("")}</div>${r}`}else if(a.typ==="reihenfolge"){let d=xe(a.reihe||[]);for(let m=0;m<9&&(a.reihe||[]).length>1&&d.join("")===(a.reihe||[]).join("");m++)d=xe(a.reihe);i.rp.mix=d,i.rp.gew=[],l=`<div id="rpRh"></div><div class="wp-rp-opt" id="rpRo"></div>${r}`}else a.typ==="qr"?l=`<div id="rpScanBox"><video id="rpVideo" class="wp-rp-video" playsinline muted hidden></video><canvas id="rpCanvas" hidden></canvas><p id="rpScanInfo" class="wp-hint"></p><div class="form-actions"><button type="button" class="primary" onclick="wp.rpScan()">Kamera \xF6ffnen und scannen</button></div></div><label class="form"><span>Oder Code eingeben (steht unter dem QR-Code)</span><input id="rpA" maxlength="20" autocapitalize="characters" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label>${r}`:a.typ==="schaetzen"?l=`<label class="form"><span>Deine Zahl</span><input id="rpA" inputmode="decimal" maxlength="20" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label>${r}`:a.typ==="reflexion"&&(l=`<label class="form"><span>Deine Antwort</span><textarea id="rpA" rows="4" maxlength="600"></textarea></label><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="primary" onclick="wp.rpPruefen()">Abschicken (+${a.punkte||0})</button></div>`)}E(`<div class="wp-artband" style="${y("lernrallye")}">Lernrallye${i.rp.vorschau?" \xB7 Vorschau":""}</div><div class="wp-rp-kopf"><span>Station ${t.i+1} von ${n.length}</span><span>${t.pts} / ${s} Punkte</span></div><div class="wp-rp-bar"><i style="width:${Math.round(t.i/n.length*100)}%"></i></div><h2>${o(a.titel||"Station "+(t.i+1))}</h2><p>${o(a.text||"")}</p>${l}`),a.typ==="reihenfolge"&&Be()}const at="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";function Pe(){const e=new Uint32Array(5);return crypto.getRandomValues(e),[...e].map(t=>at[t%at.length]).join("")}const le=e=>String(e||"").toUpperCase().replace(/^WPR:/,"").replace(/[^A-Z0-9]/g,"").slice(0,12);let je=null;function Zt(){return window.jsQR?Promise.resolve(window.jsQR):je||(je=new Promise((e,t)=>{const n=document.createElement("script");n.src="jsQR.js?v=1",n.onload=()=>e(window.jsQR),n.onerror=()=>{je=null,t(new Error("jsQR"))},document.head.appendChild(n)}))}function se(){const e=f("rpVideo"),t=i.rp&&i.rp.stream;t&&(t.getTracks().forEach(n=>n.stop()),i.rp.stream=null),e&&(e.srcObject=null,e.hidden=!0),i.rp&&(i.rp.scanLauf=!1)}async function Ut(){const e=f("rpScanInfo");if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){e&&(e.textContent="Dieses Ger\xE4t kann hier nicht scannen. Gib den Code unter dem QR-Code ein.");return}se();try{i.rp.stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:!1})}catch{e&&(e.textContent="Die Kamera ist nicht freigegeben. Erlaube sie im Browser oder gib den Code ein.");return}const t=f("rpVideo");if(!t){se();return}t.srcObject=i.rp.stream,t.hidden=!1;try{await t.play()}catch{}e&&(e.textContent="Halte die Kamera auf den QR-Code.");let n=null,a=null;if("BarcodeDetector"in window)try{n=new BarcodeDetector({formats:["qr_code"]})}catch{n=null}if(!n)try{a=await Zt()}catch{se(),e&&(e.textContent="Der Scanner konnte nicht geladen werden. Gib den Code ein.");return}const s=f("rpCanvas"),l=s.getContext("2d",{willReadFrequently:!0}),r=i.rp.st.i;i.rp.scanLauf=!0;const d=async()=>{if(!i.rp||!i.rp.scanLauf||!f("rpVideo")||i.rp.st.i!==r){se();return}try{let m=null;if(n){const u=await n.detect(t);u&&u[0]&&u[0].rawValue&&(m=u[0].rawValue)}else if(t.videoWidth){const u=Math.min(480,t.videoWidth),p=Math.round(u*t.videoHeight/t.videoWidth);s.width=u,s.height=p,l.drawImage(t,0,0,u,p);const g=a(l.getImageData(0,0,u,p).data,u,p,{inversionAttempts:"dontInvert"});g&&g.data&&(m=g.data)}if(m)return se(),it(m)}catch{}setTimeout(d,n?120:200)};d()}function it(e){const t=i.rp.m.rallye[i.rp.st.i];if(le(e)&&le(e)===le(t.code))return re(t,!0);if(i.rp.st.fehl++,i.rp.st.fehl>=($e.qr||3))return re(t,!1);O("Das ist nicht der richtige QR-Code. Suche die richtige Station ("+i.rp.st.fehl+"/"+($e.qr||3)+").",!1)}async function qt(){const e=(i.rally||[]).filter(l=>l.typ==="qr"&&l.code);if(!e.length)return c.toast("Keine QR-Station vorhanden.");const t=window.open("","_blank","width=900,height=800");if(!t)return c.toast("Das Druckfenster wurde blockiert. Bitte Pop-ups erlauben.");const{qrcode:n}=await import("./qr-local.js?v=1"),a=(f("mfTitel")?.value||"Lernrallye").trim(),s=e.map(l=>{const r=n(0,"M");return r.addData("WPR:"+le(l.code)),r.make(),`<section><div class="kl">Lernrallye \xB7 ${o(a)}</div><h1>${o(l.titel||"Station")}</h1><div class="q">${r.createSvgTag(8,0)}</div><p class="un">QR-Code mit der Campus-App scannen oder diesen Code eingeben:</p><p class="cd">${o(le(l.code))}</p></section>`}).join("");t.document.write(`<!doctype html><html lang="de"><head><meta charset="utf-8"><title>QR-Codes Lernrallye</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#111}section{page-break-after:always;text-align:center;padding-top:14mm}section:last-child{page-break-after:auto}.kl{font-size:14pt;color:#555}h1{font-size:32pt;margin:6mm 0}.q svg{width:120mm;height:120mm}.un{font-size:14pt;margin:6mm 0 2mm}.cd{font-size:30pt;font-weight:700;letter-spacing:.08em;margin:0}.bar{background:#f3f3f3;padding:10px 12px;border-radius:8px;margin:8px;font-size:13px}@media print{.bar{display:none}}</style></head><body><div class="bar"><button onclick="window.print()" style="font-size:15px;padding:8px 14px">Drucken</button> Eine Seite je Station. Zum Aufh\xE4ngen an dem Ort, den du im Stationstext beschreibst.</div>${s}</body></html>`),t.document.close()}function Be(){const e=f("rpRo"),t=f("rpRh");if(!e||!t)return;const{mix:n,gew:a}=i.rp;t.innerHTML=a.length?`<ol class="wp-rp-rh">${a.map(s=>`<li>${o(n[s])}</li>`).join("")}</ol><button type="button" class="text-button" onclick="wp.rpRhReset()">Zur\xFCcksetzen</button>`:'<p class="wp-hint">Tippe die Elemente in der richtigen Reihenfolge an.</p>',e.innerHTML=n.map((s,l)=>a.includes(l)?"":`<button type="button" class="secondary" onclick="wp.rpRhAdd(${l})">${o(s)}</button>`).join("")}function Vt(e){i.rp.gew.push(e),Be()}function Ot(){i.rp.gew=[],Be()}function Qt(e){return e.typ==="quiz"?e.optionen[e.richtig]:e.typ==="mehrfach"?(e.richtige||[]).map(t=>e.optionen[t]).join("; "):e.typ==="wahrfalsch"?e.wf==="f"?"falsch":"richtig":e.typ==="luecke"?(String(e.lueckText||"").match(/\[[^\]]+\]/g)||[]).map(t=>t.slice(1,-1).split("|")[0]).join(", "):e.typ==="zuordnung"?(e.paare||[]).map(t=>t[0]+" = "+t[1]).join("; "):e.typ==="reihenfolge"?(e.reihe||[]).join(" \u2192 "):e.typ==="qr"?"Frage deine Lehrkraft nach dem Ort der Station":e.typ==="schaetzen"?String(e.zahl).replace(".",",")+(e.tol?" (\xB1 "+String(e.tol).replace(".",",")+")":""):String(e.antwort||"").split("|")[0]}function O(e,t){const n=f("rpFb");n&&(n.className="wp-rp-fb "+(t?"ok":"nein"),n.textContent=e)}function Yt(){const e=i.rp.m.rallye[i.rp.st.i];i.rp.st.hint=!0,O(e.hinweis?"Hinweis: "+e.hinweis:"F\xFCr diese Station gibt es keinen Hinweis.",!0)}async function re(e,t){const n=i.rp.st,a=e.punkte||0,s=t?n.fehl===0&&!n.hint?a:Math.ceil(a/2):0;n.pts+=s;const l=f("rpFb");l&&(l.className="wp-rp-fb "+(t?"ok":"nein"),l.innerHTML=(t?"Richtig! +"+s+" Punkte":"Die richtige L\xF6sung war: "+o(Qt(e)))+'<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(0)">Weiter</button></div>')}async function lt(e){se();const t=i.rp.st;if(t.pts+=e,t.i++,t.fehl=0,t.hint=!1,i.rp.e){i.rp.e.rallyStand={...t};try{await F()}catch{}}nt()}function Jt(){const e=i.rp.m.rallye[i.rp.st.i],t=e.typ,n=(f("rpA")?.value||"").trim();let a;if(t==="reflexion"){if(n.length<5)return O("Bitte schreibe mindestens einen Satz.",!1);const l=i.rp.st;return l.antw=l.antw||{},l.antw[l.i]=n.slice(0,600),lt(e.punkte||0)}if(t==="qr")return n?it(n):void 0;if(t==="frei"){if(!n)return;a=String(e.antwort||"").split("|").map(l=>l.trim().toLowerCase()).filter(Boolean).includes(n.toLowerCase())}else if(t==="schaetzen"){if(!n)return;const l=Number(n.replace(",","."));if(isNaN(l))return O("Bitte gib eine Zahl ein.",!1);a=Math.abs(l-e.zahl)<=(e.tol||0)+1e-9}else if(t==="mehrfach"){const l=[...document.querySelectorAll(".rpC:checked")].map(r=>Number(r.value)).sort().join();if(!l)return O("W\xE4hle mindestens eine Antwort.",!1);a=l===(e.richtige||[]).slice().sort().join()}else if(t==="luecke"){const l=(String(e.lueckText||"").match(/\[[^\]]+\]/g)||[]).map(d=>d.slice(1,-1).split("|").map(m=>m.trim().toLowerCase())),r=[...document.querySelectorAll(".rpL")].map(d=>d.value.trim().toLowerCase());if(r.some(d=>!d))return O("F\xFClle alle L\xFCcken aus.",!1);a=l.every((d,m)=>d.includes(r[m]))}else if(t==="zuordnung"){const l=[...document.querySelectorAll(".rpZ")].map(r=>r.value);if(l.some(r=>!r))return O("Ordne alle Begriffe zu.",!1);a=(e.paare||[]).every((r,d)=>r[1]===l[d])}else if(t==="reihenfolge"){const{mix:l,gew:r}=i.rp;if(r.length<l.length)return O("Bringe zuerst alle Elemente in eine Reihenfolge.",!1);a=r.every((d,m)=>l[d]===e.reihe[m])}else return;if(a)return re(e,!0);i.rp.st.fehl++;const s=$e[t]||2;if(i.rp.st.fehl>=s)return re(e,!1);O("Leider nicht richtig \u2013 versuche es noch einmal ("+i.rp.st.fehl+"/"+s+").",!1)}function Xt(e){const t=i.rp.m.rallye[i.rp.st.i];if(e===t.richtig||e===t.wf)return re(t,!0);if(i.rp.st.fehl++,i.rp.st.fehl>=($e[t.typ]||2))return re(t,!1);O("Leider falsch \u2013 w\xE4hle noch einmal.",!1)}async function en(){const{m:e,st:t,e:n}=i.rp,a=e.rallye||[],s=a.reduce((d,m)=>d+(m.punkte||0),0),l=s?t.pts/s:1,r=l>=.8?"Gold":l>=.5?"Silber":"Bronze";if(n){n.rallye={punkte:t.pts,max:s},delete n.rallyStand,n.erledigt=!0,n.doneAt=Date.now();try{await F()}catch{}}E(`<div class="wp-artband" style="${y("lernrallye")}">Lernrallye geschafft</div><h2>${o(e.titel)}</h2><p class="wp-rp-gross">${t.pts} von ${s} Punkten</p><p>Abzeichen: <b>${r}</b>${i.rp.vorschau?" (Vorschau \u2013 nichts wird gespeichert)":""}</p><div class="form-actions"><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`),n&&v()}function tn(e){const t=i.d.module.find(n=>n.id===e);t&&E(`<div class="wp-artband" style="${y(t.typ)}">${o(V(t.typ).l)} \xB7 Vorschau f\xFCr Sch\xFCler:innen</div><div class="kicker">${o(T(t.fach).l)} \xB7 ${o(ie(x(t)))}</div><h2>${o(t.titel)}</h2>${t.beschr?`<p>${o(t.beschr)}</p>`:""}${et(t)}${We(t.anhaenge)}${tt(null,t)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`)}const nn=/\.(pdf|docx?|png|jpe?g|gif|webp|heic|mp4|mov|webm|m4v|mp3|m4a|wav|ogg|aac)$/i;function an(e){const t=String(e.name||"").toLowerCase();return/\.(png|jpe?g|gif|webp|heic)$/.test(t)?"bild":/\.(mp4|mov|webm|m4v)$/.test(t)?"video":/\.(mp3|m4a|wav|ogg|aac)$/.test(t)?"audio":"datei"}function We(e){return e=(Array.isArray(e)?e:[]).filter(t=>t&&/^https:\/\//.test(t.url||"")),e.length?`<div class="wp-anh"><b>Anh\xE4nge</b>${e.map(t=>{const n=an(t),a=o(t.url),s=o(t.name||"Datei");return n==="bild"?`<a href="${a}" target="_blank" rel="noopener"><img src="${a}" alt="${s}" loading="lazy"></a>`:n==="video"?`<video controls preload="metadata" src="${a}"></video><small>${s}</small>`:n==="audio"?`<div><audio controls preload="none" src="${a}"></audio><small>${s}</small></div>`:`<a class="wp-datei" href="${a}" target="_blank" rel="noopener">${s}</a>`}).join("")}</div>`:""}function Re(){return(i.anh||[]).map((e,t)=>`<div class="wp-anhz"><span>${o(e.name||"Datei")}</span><button type="button" class="secondary" onclick="wp.anhWeg(${t})">Entfernen</button></div>`).join("")||'<small class="wp-leer">Noch kein Anhang.</small>'}function st(){return`<div class="wp-anhform"><b>Anh\xE4nge</b><small>PDF, Word, Bild, Video oder Audio \xB7 max. 15 MB je Datei</small><div id="anhListe">${Re()}</div><input id="anhDatei" type="file" multiple accept=".pdf,.doc,.docx,image/*,video/*,audio/*" onchange="wp.anhHoch(this)"><small id="anhStatus"></small></div>`}async function ln(e){const t=[...e.files||[]],n=f("anhStatus");for(const s of t){if(!nn.test(s.name)&&!/^(image|video|audio)\//.test(s.type||"")){c.toast("\u201E"+s.name+"\u201C: Dateityp nicht erlaubt.");continue}n&&(n.textContent="L\xE4dt hoch: "+s.name+" \u2026");try{const l=await c.upload(s,"wpAnhaenge/lernbausteine");i.anh.push({url:l.url,name:s.name,path:l.path})}catch(l){console.error(l),c.toast(l?.message||"Upload nicht m\xF6glich.")}}e.value="",n&&(n.textContent="");const a=f("anhListe");a&&(a.innerHTML=Re())}function sn(e){i.anh.splice(e,1);const t=f("anhListe");t&&(t.innerHTML=Re())}let UBK=null;function ubLink(z){return String(z).startsWith("s:")?"uebungsbausteine/station.html?s="+encodeURIComponent(z.slice(2).replace(/[^A-Za-z0-9_-]/g,"")):"uebungsbausteine/index.html?ordner="+encodeURIComponent(z.slice(2))}async function ubFill(ty,g){if(ty!=="uebung")return;const sel=f("gf_ubZiel");if(!sel)return;if(!UBK)try{const r=await fetch("uebungsbausteine/stationen/katalog.json",{cache:"no-cache"});UBK=r.ok?await r.json():[]}catch{UBK=[]}const pf=e=>Array.isArray(e.pfad)&&e.pfad.length?e.pfad:[e.fach||"\xDCbungen",e.thema||""].filter(Boolean),want=(g&&g.ubZiel)||sel.dataset.sel||"",op=(v,l)=>`<option value="${o(v)}"${v===want?" selected":""}>${o(l)}</option>`,ord=[...new Set(UBK.flatMap(e=>{const p=pf(e);return p.map((_,k)=>p.slice(0,k+1).join("/"))}))];sel.innerHTML=UBK.length?`<optgroup label="Ganzer Ordner">${ord.map(k=>op("o:"+k,k.split("/").join(" \u203A ")+" (alle \xDCbungen)")).join("")}</optgroup><optgroup label="Einzelne \xDCbung">${UBK.map(e=>op("s:"+e.id,pf(e).join(" \u203A ")+" \u203A "+e.titel)).join("")}</optgroup>`:'<option value="">Keine \xDCbungen gefunden</option>'}function rn(e){const t=f("mfBand");if(!t)return;const n=f("mfFuerWrap");n&&(n.hidden=e!=="lernstand",e==="lernstand"&&!f("fuerListe")&&(n.innerHTML=Ze([]),Ue())),t.setAttribute("style",y(e)),t.textContent=V(e).l;const a=f("mfWrap");a&&a.setAttribute("style",y(e));const s=f("mfGest");s&&(e==="uebung"&&setTimeout(()=>ubFill("uebung",{}),0),e==="lernrallye"&&!(i.rally||[]).length&&(i.rally=[{typ:"info",titel:"Willkommen",text:"",punkte:0},{typ:"frei",titel:"",text:"",antwort:"",punkte:10}]),s.innerHTML=Ne(e,{}));const l=f("mfFixTag");l&&Ft.includes(e)&&l.value===""&&(l.value="0")}const rt=[["bewegung","Bewegung an der frischen Luft"],["ruhe","Ruhe / Atem\xFCbung"],["pause","Pause & etwas essen"],["gespraech","kurz abschalten mit Mitsch\xFCler:innen"]],B=e=>e.getFullYear()+"-"+String(e.getMonth()+1).padStart(2,"0")+"-"+String(e.getDate()).padStart(2,"0"),L=e=>{const[t,n,a]=String(e).split("-").map(Number);return new Date(t,n-1,a)},cn=e=>{const t=new Date(e.getFullYear(),e.getMonth(),e.getDate());return t.setDate(t.getDate()-(t.getDay()+6)%7),t},N=(e,t)=>{const n=new Date(e);return n.setDate(n.getDate()+t),n};function ue(e){const t=new Date(Date.UTC(e.getFullYear(),e.getMonth(),e.getDate())),n=t.getUTCDay()||7;t.setUTCDate(t.getUTCDate()+4-n);const a=new Date(Date.UTC(t.getUTCFullYear(),0,1));return Math.ceil(((t-a)/864e5+1)/7)}const Z=e=>String(e.getDate()).padStart(2,"0")+"."+String(e.getMonth()+1).padStart(2,"0")+".";function Q(e){const t=L(e),n=N(t,4);return"KW "+ue(t)+" \xB7 "+Z(t)+"\u2013"+Z(n)+t.getFullYear()}const Ge=()=>B(cn(new Date)),i=window.__wpS=window.__wpS||{woche:Ge(),ansicht:"verplant",tab:"uebersicht",tag:Math.min(4,(new Date().getDay()+6)%7),armed:null,zeiten:null,d:{},chatUnsub:null,filter:"alle"};window.__wpStop=()=>{if(i.chatUnsub){try{i.chatUnsub()}catch{}i.chatUnsub=null}};const Y=()=>i.zeiten||Nt;function G(e,t){const n=Y()[e-1]||"",[a,s]=(Y()[e+t-2]||"").split(":").map(Number);if(isNaN(a))return n;const l=a*60+s+be;return n+"\u2013"+String(Math.floor(l/60)).padStart(2,"0")+":"+String(l%60).padStart(2,"0")}async function ct(){const e=i.woche,t=te(),n=t?[]:[M("status","live")],a=await j("wpEinstellungen","zeiten");a&&Array.isArray(a.liste)&&a.liste.length===10&&(i.zeiten=a.liste);const[s,l,r,d,m]=await Promise.all([A("wpModule",...n,M("woche",e)).catch(()=>[]),A("wpModule",...n,M("woche","")).catch(()=>[]),A("wpEinfuehrungen",...n,M("woche",e)).catch(()=>[]),A("wpSlots",...n,M("woche",e)).catch(()=>[]),j("wpWochen",e)]),u=c.currentUser&&c.currentUser.uid,p=g=>t||!Array.isArray(g.fuer)||!g.fuer.length||g.fuer.includes(u);i.d.module=[...s,...l].filter(p).sort((g,h)=>String(g.fach).localeCompare(String(h.fach))||String(g.titel).localeCompare(String(h.titel),"de")),i.d.einf=r.filter(p),i.d.slots=d,i.d.wochenDoc=m}async function on(){await ct();const e=i.woche,t=S(),[n,a,s,l,r,d,m,u]=await Promise.all([j("wpPlan",t+"_"+e),A("wpBelegt").catch(()=>[]),A("wpBuchungen",M("uid",t)).catch(()=>[]),A("wpAnfragen",M("vonUid",t)).catch(()=>[]),A("wpAnfragen",M("tutorUid",t)).catch(()=>[]),A("wpTutor").catch(()=>[]),j("wpPlan",t+"_"+B(N(L(e),-7))),j("wpPlan",t+"_"+B(N(L(e),-14)))]),[p,g,h,w,$]=await Promise.all([A("wpFbGegeben",M("uid",t)).catch(()=>[]),j("wpLernplan",t),j("wpImpuls",t+"_"+e),j("wpGespraeche",t+"_"+e),j("wpZiele",t)]);i.d.fbGegeben=new Set(p.map(k=>k.moduleId)),i.d.lernplan=g&&Array.isArray(g.termine)?g:{termine:[]},i.d.impulsPers=h,i.d.gesp=w?[w]:[],i.d.zielGespraech=$,i.d.laufend=[[m,1],[u,2]].flatMap(([k,K])=>k?(k.eintraege||[]).filter(b=>b.lang&&!b.erledigt&&x(b).wochen>K).map(b=>({...b,woche:k.woche})):[]),i.d.plan=n||{id:t+"_"+e,uid:t,woche:e,eintraege:[],ziel:"",rueckblick:"",geteilt:!1},Array.isArray(i.d.plan.eintraege)||(i.d.plan.eintraege=[]),i.d.offen=Wa(m),i.d.belegt=new Set(a.map(k=>k.id)),i.d.buch=s.filter(k=>k.woche===e),i.d.anfV=l,i.d.anfT=r,i.d.tutoren=d}function Ie(){const e=[],t=i.woche;if(i.d.einf.forEach(n=>e.push({k:"einf",d:n.d,h:n.h,len:n.len||1,titel:n.titel,fach:n.fach,sub:ae(n).l+(n.lehrkraft?" \xB7 "+n.lehrkraft:"")+(n.raum?" \xB7 "+n.raum:""),id:n.id,art:n.art||"einfuehrung",entwurf:n.status!=="live"})),te())i.d.slots.forEach(n=>e.push({k:"slot",d:n.d,h:n.h,len:n.len||1,titel:"Sprechzeit",fach:n.fach,sub:(n.lehrkraft||"")+(n.status!=="live"?" \xB7 Entwurf":""),id:n.id,entwurf:n.status!=="live"}));else{i.d.buch.forEach(a=>e.push({k:"termin",d:a.d,h:a.h,len:a.len||1,titel:"Termin: "+(a.lehrkraft||"Lehrkraft"),fach:a.fach||"fachuebergreifend",sub:a.frage||"",id:a.id}));const n=S();[...i.d.anfV,...i.d.anfT].filter((a,s,l)=>a.woche===t&&l.findIndex(r=>r.id===a.id)===s&&["offen","angenommen"].includes(a.status)).forEach(a=>{const s=a.tutorUid===n;s&&a.status==="offen"||e.push({k:"tutor",d:a.d,h:a.h,len:a.len||1,titel:(a.art==="kompetenz"?"Kompetenz: ":"Tutoring: ")+(s?a.vonPseudo:a.tutorPseudo),fach:a.fach||"fachuebergreifend",sub:(a.status==="offen"?"angefragt \xB7 ":"")+(a.thema||""),id:a.id,offen:a.status==="offen"})}),(i.d.gesp||[]).forEach(a=>e.push({k:"gesp",d:a.d,h:a.h,len:a.len||1,titel:"Lernstandsgespr\xE4ch",fach:"fachuebergreifend",sub:(a.lehrkraft||"")+(a.raum?" \xB7 "+a.raum:""),id:a.id})),i.d.plan.eintraege.filter(a=>!a.lang).forEach(a=>e.push({k:"plan",...a}))}return e}function D(e,t,n,a){return t<1||t+n-1>10||e<0||e>4?!1:!Ie().some(s=>s.id!==a&&s.d===e&&!(t+n-1<s.h||t>s.h+(s.len||1)-1))}function Ke(){const e=i.d.module.filter(r=>r.woche===i.woche),t=i.d.plan.eintraege,n=new Set(t.filter(r=>r.moduleId).map(r=>r.moduleId)),a=e.filter(r=>n.has(r.id)).length,s=e.filter(r=>t.some(d=>d.moduleId===r.id&&d.erledigt)).length,l=t.filter(r=>["modul","eigen"].includes(r.typ));return{modGesamt:e.length,modGeplant:a,modErledigt:s,geplantMin:l.reduce((r,d)=>r+de(d),0),erledigtMin:l.filter(r=>r.erledigt).reduce((r,d)=>r+de(d),0),checkouts:t.filter(r=>r.mTyp==="checkout"&&r.erledigt).length,termine:i.d.buch.length,auszeiten:t.filter(r=>r.typ==="auszeit").length,tutoring:Ie().filter(r=>r.k==="tutor"&&!r.offen).length}}const U=e=>{const t=e/60;return(Math.round(t*10)/10).toString().replace(".",",")+" Std."};async function F(){const e=i.d.plan,t=S(),n=Ke(),a={uid:t,woche:i.woche,eintraege:e.eintraege,ziel:e.ziel||"",rueckblick:e.rueckblick||"",geteilt:!!e.geteilt,verworfen:(e.verworfen||[]).slice(-40),updatedAt:c.serverTimestamp()};try{await c.setDoc(z("wpPlan",t+"_"+i.woche),a),await c.setDoc(z("wpStatus",t+"_"+i.woche),{uid:t,pseudo:ce(),woche:i.woche,modGesamt:n.modGesamt,modGeplant:n.modGeplant,modErledigt:n.modErledigt,geplantMin:n.geplantMin,erledigtMin:n.erledigtMin,checkouts:n.checkouts,termine:n.termine,geteilt:!!e.geteilt,updatedAt:c.serverTimestamp()})}catch(s){throw console.error(s),c.toast("Speichern nicht m\xF6glich."),s}}function dn(e){return un(e).replace(/^<div /,`<div data-d="${e.d}" `)}function un(e){const t=T(e.fach),n=`grid-column:${e.d+2};grid-row:${e.h+1}/span ${e.len||1}`;if(e.k==="einf"){const r=te()?`onclick="wp.einfBearbeiten('${e.id}')"`:`onclick="wp.info('einf','${e.id}')"`;return`<div class="wp-b einf art ${e.art==="lernstand"?"lernstand":""}${e.entwurf?" entwurf":""}" style="${n};--fc:${t.c};--fb:${t.bg};${y(ne(e.art))}" ${r}><span class="wp-lock" title="Fester Termin der Lehrkraft">${ae(e).i}</span><b>${o(e.titel)}</b><small>${o(e.sub)}${e.entwurf?" \xB7 Entwurf":""}</small></div>`}if(e.k==="gesp")return`<div class="wp-b einf art lernstand" style="${n};--fc:${t.c};--fb:${t.bg};${y("lernstand")}" onclick="wp.info('gesp','${e.id}')"><span class="wp-lock" title="Fester Termin der Lehrkraft"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;if(e.k==="slot")return`<div class="wp-b termin${e.entwurf?" entwurf":""}" style="${n}" onclick="wp.slotBearbeiten('${e.id}')"><span class="wp-ic"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;if(e.k==="termin")return`<div class="wp-b termin art" style="${n};--fc:${t.c};${y("frage")}" onclick="wp.info('termin','${e.id}')"><span class="wp-ic"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;if(e.k==="tutor")return`<div class="wp-b tutor${e.offen?" offen":""}" style="${n}" onclick="wp.info('tutor','${e.id}')"><span class="wp-ic"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;const a=e.typ,s="wp-b plan "+a+(e.mTyp?" m-"+e.mTyp:"")+(a==="modul"&&e.mTyp?" art":"")+(e.erledigt?" done":""),l=a==="auszeit"||a==="eigen"?"":ge[e.mTyp]?.i||"";return`<div class="${s}" style="${n};--fc:${t.c};--fb:${t.bg};${a==="modul"&&e.mTyp?y(e.mTyp):""}" ${e.fest?"":`draggable="true" ondragstart="wp.dragStart(event,'move','${e.id}')"`} onclick="wp.info('plan','${e.id}')"><span class="wp-ic">${l}</span><b>${o(e.titel)}</b><small>${o(t.l)} \xB7 ${ie(x(e))}</small>${e.erledigt?'<span class="wp-ok">\u2713</span>':""}</div>`}function Ce(e){e=e||{};const t=L(i.woche),n=Ie(),a=new Set;n.forEach(r=>{for(let d=0;d<(r.len||1);d++)a.add(r.d+"-"+(r.h+d))});const s=B(new Date);let l=`<div class="wp-grid" id="wpGrid" data-tag="${i.tag}"><div class="wp-corner"></div>`;for(let r=0;r<5;r++){const d=N(t,r),m=B(d)===s;l+=`<div class="wp-dayh${m?" heute":""}${r===i.tag?" tag-on":""}" style="grid-column:${r+2};grid-row:1"><b>${I[r]}</b> <span>${Z(d)}</span>${e.teacher?"":'<em class="wp-du">Du steuerst</em>'}</div>`}for(let r=1;r<=10;r++){l+=`<div class="wp-time" style="grid-column:1;grid-row:${r+1}"><b>${r}</b><small>${o(Y()[r-1]||"")}</small></div>`;for(let d=0;d<5;d++)a.has(d+"-"+r)||(l+=`<div class="wp-c${d===i.tag?" tag-on":""}${!e.teacher&&gt(d,r)?" hat-lk":""}" style="grid-column:${d+2};grid-row:${r+1}" ondragover="wp.over(event)" ondragleave="wp.leave(event)" ondrop="wp.drop(event,${d},${r})" onclick="wp.zelle(${d},${r})">${e.teacher?"":bt(d,r)}</div>`)}if(n.forEach(r=>{l+=dn(r)}),!e.teacher)for(let r=1;r<=10;r++)for(let d=0;d<5;d++)a.has(d+"-"+r)&&gt(d,r)&&(l+=`<div class="wp-lkov" style="grid-column:${d+2};grid-row:${r+1}">${bt(d,r)}</div>`);return l+"</div>"}function ot(){const e=L(i.woche);return`<div class="wp-tage">${I.map((t,n)=>`<button class="${n===i.tag?"on":""}" onclick="wp.tag(${n})">${t} ${Z(N(e,n))}</button>`).join("")}</div>`}function dt(){return`<div class="wp-nav"><button class="secondary" onclick="wp.woche(-1)" aria-label="Vorherige Woche">\u2190</button><b>${o(Q(i.woche))}</b><button class="secondary" onclick="wp.woche(1)" aria-label="N\xE4chste Woche">\u2192</button>${i.woche!==Ge()?'<button class="secondary" onclick="wp.woche(0)">Heute</button>':""}</div>`}const He=[{typ:"termin",ic:"",t:"Fachliche Frage",s:"Lehrkraft buchen"},{typ:"tutor",ic:"",t:"Tutor:in buchen",s:"Mitsch\xFCler:in hilft"},{typ:"kompetenz",ic:"",t:"Kompetenz anfragen",s:"f\xFCrs Projekt"},{typ:"auszeit",ic:"",t:"Auszeit",s:"kurz regenerieren"},{typ:"eigen",ic:"",t:"Eigene Lernzeit",s:"selbst gew\xE4hlt"}];function pn(e){const t=T(e.fach),n=i.d.plan.eintraege.filter(r=>r.moduleId===e.id),a=n.length,s=n.some(r=>r.erledigt),l=i.armed&&i.armed.id===e.id;return`<div class="wp-tile art m-${o(e.typ)}${a?" geplant":""}${s?" done":""}${l?" armed":""}" style="--fc:${t.c};--fb:${t.bg};${y(e.typ)}" draggable="true" ondragstart="wp.dragStart(event,'modul','${e.id}')" onclick="wp.arm('modul','${e.id}')" title="${o(e.beschr||e.titel)}">
- <span class="wp-tic">${ge[e.typ]?.i||""}</span><b>${o(e.titel)}</b><small><i class="wp-fdot" style="background:${t.c}"></i>${o(t.l)} \xB7 ${o(ie(x(e)))}${e.pflicht?" \xB7 Pflicht":""}${a?" \xB7 \u2713":""}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('modul','${e.id}')">Einplanen</button></div>`}function ut(){const e=i.d.module.filter(l=>(l.fixTag==null||l.fixTag==="")&&(l.mehrfach||!i.d.plan.eintraege.some(r=>r.moduleId===l.id))),t=[...new Set(e.map(l=>l.fach))];i.filter!=="alle"&&!t.includes(i.filter)&&(i.filter="alle");const n=e.filter(l=>i.filter==="alle"||l.fach===i.filter);let a=`<div class="wp-leiste card"><div class="wp-lh"><h3 title="Ziehe einen Baustein in den Plan oder tippe auf Einplanen">Zum Einplanen <small>${e.length?e.length+" frei":"alles zugeordnet"} \xB7 ziehen oder tippen</small></h3><div class="wp-chips"><button class="${i.filter==="alle"?"on":""}" onclick="wp.filter('alle')">Alle</button>${t.map(l=>`<button class="${i.filter===l?"on":""}" style="--fc:${T(l).c}" onclick="wp.filter('${l}')">${o(T(l).l)}</button>`).join("")}</div></div>`;const s=He.map(l=>`<div class="wp-tile sonder s-${l.typ}${i.armed&&i.armed.id===l.typ?" armed":""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${l.typ}')" onclick="wp.arm('sonder','${l.typ}')"><span class="wp-tic">${l.ic}</span><b>${l.t}</b><small>${l.s}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('sonder','${l.typ}')">Einplanen</button></div>`).join("");return a+=`<div class="wp-reihe"><button type="button" class="wp-pfeil" aria-label="nach links" onclick="wp.reiheScroll(-1)">\u2039</button><div class="wp-tiles1" id="wpReihe">${n.map(pn).join("")}${n.length?'<span class="wp-trenn"></span>':""}${s}</div><button type="button" class="wp-pfeil" aria-label="nach rechts" onclick="wp.reiheScroll(1)">\u203A</button></div>`,a+"</div>"}function pt(){const e=i.d.plan.eintraege.filter(a=>a.lang),t=i.d.laufend||[];if(!e.length&&!t.length)return"";const n=(a,s)=>{const l=x(a),r=a.woche||i.woche,d=B(N(L(r),7*(l.wochen-1))),m=l.wochen>1?"KW "+ue(L(r))+"\u2013"+ue(L(d)):a.startTag>=0?I[a.startTag]+((Je[l.code]||1)>1?" \u2013 "+I[Math.min(4,a.startTag+Je[l.code]-1)]:""):"diese Woche";return`<div class="wp-lang art${a.erledigt?" done":""}" style="--fc:${T(a.fach).c};${y(a.mTyp)}" ${s?`title="Hier abhaken: Woche ab ${o(Q(r))}"`:`onclick="wp.info('plan','${a.id}')"`}><b>${o(a.titel)}</b><small>${o(T(a.fach).l)} \xB7 ${o(l.label)} \xB7 ${o(m)}${s?" \xB7 l\xE4uft noch":""}</small>${a.erledigt?'<span class="wp-ok">\u2713</span>':""}</div>`};return`<div class="card wp-langbox"><h3>L\xE4nger laufende Lernbausteine</h3><div class="wp-langliste">${e.map(a=>n(a,!1)).join("")}${t.map(a=>n(a,!0)).join("")}</div></div>`}function hn(){const e=Ke(),t=Math.max(1,e.modGesamt),n=Math.round(e.modErledigt/t*100),a=Math.round((e.modGeplant-e.modErledigt)/t*100);return`<div class="wp-prog card"><div class="wp-ph"><b>Fortschritt in dieser Woche</b><span>${e.modErledigt} erledigt \xB7 ${e.modGeplant} von ${e.modGesamt} Lernbausteinen eingeplant</span></div>
- <div class="wp-bar" role="img" aria-label="${e.modErledigt} erledigt, ${e.modGeplant} eingeplant von ${e.modGesamt}"><i class="d" style="width:${n}%"></i><i class="p" style="width:${Math.max(0,a)}%"></i></div>
- <div class="wp-leg"><span><i class="d"></i>erledigt</span><span><i class="p"></i>eingeplant</span><span><i class="o"></i>noch offen</span></div></div>`}function fn(){const e=Ke();return`<div class="wp-unten"><div class="card"><h3>So startest du</h3><ol class="wp-steps"><li><b>Feste Termine ansehen.</b> Einf\xFChrungen, Projekte, Lernstandsgespr\xE4che und Gruppen\xFCbungen deiner Lehrkr\xE4fte stehen schon im Plan. Die K\xFCrzel im Raster zeigen, wann welche Lehrkraft f\xFCr fachliche Fragen da ist.</li><li><b>Lernbausteine einplanen.</b> Ziehe einen Lernbaustein aus der Leiste auf einen freien Platz \u2013 oder tippe erst den Lernbaustein, dann den Platz.</li><li><b>Hilfe & Pausen mitdenken.</b> Termin, Tutor:in oder Auszeit sind eigene Bausteine.</li><li><b>Abhaken.</b> Tippe auf einen Eintrag und markiere ihn als erledigt.</li></ol></div>
+const c = new Proxy({}, { get: (e, t) => window.CampusWP[t] }),
+  f = (e) => document.getElementById(e),
+  o = (e) => String(e ?? "").replace(/[&<>"']/g, (t) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;" })[t]),
+  R = (e) => c.collection(c.db, e),
+  z = (e, t) => c.doc(c.db, e, t),
+  M = (e, t) => c.where(e, "==", t);
+async function A(e, ...t) {
+  return (await c.getDocs(t.length ? c.query(R(e), ...t) : R(e))).docs.map((a) => ({ id: a.id, ...a.data() }));
+}
+async function j(e, t) {
+  try {
+    const n = await c.getDoc(z(e, t));
+    return n.exists() ? { id: n.id, ...n.data() } : null;
+  } catch (n) {
+    return (console.warn("wp", e, n.code || n), null);
+  }
+}
+const te = () => c.isTeacher(),
+  S = () => c.currentUser.uid,
+  ce = () => c.profile?.pseudonym || c.profile?.displayName || "Sch\xFCler:in",
+  Ee = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-3),
+  _ = [
+    { k: "deutsch", l: "Deutsch", c: "#2f6fb0", bg: "#e3f0f9" },
+    { k: "mathematik", l: "Mathematik", c: "#d17a1f", bg: "#fbefdb" },
+    { k: "englisch", l: "Englisch", c: "#8250b8", bg: "#eee7f7" },
+    { k: "paedagogik", l: "P\xE4/Psy", c: "#1f9a8a", bg: "#e0f2ee" },
+    { k: "sozialwirtschaft", l: "SWR", c: "#c2477f", bg: "#f7e5ee" },
+    { k: "geschichte", l: "Geschichte", c: "#9a7b2c", bg: "#f6eed7" },
+    { k: "chemie", l: "Chemie", c: "#5e9a38", bg: "#e6f1e0" },
+    { k: "fpa", l: "fpA / Projekte", c: "#5f6f91", bg: "#e9ecf3" },
+    { k: "foerder", l: "F\xF6rderunterricht", c: "#b5573c", bg: "#f7e6e0" },
+    { k: "fachuebergreifend", l: "Fach\xFCbergreifend", c: "#8a9499", bg: "#eef1f2" },
+  ],
+  T = (e) => _.find((t) => t.k === e) || _[_.length - 1],
+  ge = {
+    einfuehrung: { l: "Einf\xFChrung" },
+    projekt: { l: "Projekt" },
+    lernstand: { l: "Lernstandsgespr\xE4ch" },
+    gruppenuebung: { l: "Gruppen\xFCbung" },
+    selbstlern: { l: "Selbstlernkurs" },
+    checkout: { l: "Check-out" },
+    fachaufsatz: { l: "Fachaufsatztraining" },
+    lernrallye: { l: "Lernrallye" },
+    frage: { l: "Fachliche Frage" },
+    uebung: { l: "Vertiefungs- / \xDCbungsbaustein" },
+    karteikarten: { l: "Karteikarten (Definitionen)" },
+    deeperlearning: { l: "Deeper-Learning-Einheit" },
+    feedback: { l: "Block-Feedback" },
+    baustein: { l: "Kurs / Training" },
+    lernen: { l: "Lernbaustein" },
+    vertiefung: { l: "Vertiefung" },
+  },
+  Ft = ["einfuehrung", "projekt", "lernstand", "gruppenuebung"],
+  Ye = [
+    "einfuehrung",
+    "projekt",
+    "lernstand",
+    "gruppenuebung",
+    "selbstlern",
+    "checkout",
+    "fachaufsatz",
+    "lernrallye",
+    "deeperlearning",
+    "feedback",
+    "frage",
+    "uebung",
+    "karteikarten",
+  ],
+  oe = {
+    einfuehrung: {
+      l: "Einf\xFChrung",
+      i: "",
+      kick: "EINF\xDCHRUNG",
+      neu: "Neue Einf\xFChrung",
+      edit: "Einf\xFChrung bearbeiten",
+      ph: "z. B. Einf\xFChrung Lernbereich 2",
+      hint: "Fester Termin \u2013 die Lehrkraft f\xFChrt ein, danach steuerst du selbst.",
+      weg: "Diese Einf\xFChrung l\xF6schen?",
+    },
+    lernstand: {
+      l: "Lernstandsgespr\xE4ch",
+      i: "",
+      kick: "LERNSTANDSGESPR\xC4CH",
+      neu: "Neues Lernstandsgespr\xE4ch",
+      edit: "Lernstandsgespr\xE4ch bearbeiten",
+      ph: "z. B. Lernstandsgespr\xE4ch Gruppe A",
+      hint: "Fester Termin \u2013 deine Lehrkraft spricht mit dir \xFCber deinen Lernstand. Bereite dich mit deinem Lernjournal vor.",
+      weg: "Dieses Lernstandsgespr\xE4ch l\xF6schen?",
+    },
+  };
+((oe.projekt = {
+  l: "Projekt",
+  i: "",
+  kick: "PROJEKT",
+  neu: "Neues Projekt",
+  edit: "Projekt bearbeiten",
+  ph: "z. B. Projektstart Lernbereich 2",
+  hint: "Fester Termin \u2013 die Lehrkraft setzt das Projekt, danach arbeitet ihr in euren Teams.",
+  weg: "Dieses Projekt l\xF6schen?",
+}),
+  (oe.gruppenuebung = {
+    l: "Gruppen\xFCbung",
+    i: "",
+    kick: "GRUPPEN\xDCBUNG",
+    neu: "Neue Gruppen\xFCbung",
+    edit: "Gruppen\xFCbung bearbeiten",
+    ph: "z. B. Gruppen\xFCbung Fallbeispiel",
+    hint: "Fester Termin \u2013 die Lehrkraft legt die Gruppen\xFCbung fest. Ihr arbeitet gemeinsam in Gruppen.",
+    weg: "Diese Gruppen\xFCbung l\xF6schen?",
+  }));
+const ae = (e) => oe[e && e.art] || oe.einfuehrung,
+  ne = (e) => (oe[e] ? e : "einfuehrung"),
+  xt = [
+    ["", "\u2014 keine \u2014"],
+    ["fachaufsatz", "Fachaufsatz-Training"],
+    ["lernwerkzeuge", "Lern-Werkzeuge"],
+    ["karteikarten", "Karteikarten"],
+    ["lernstand", "Lernstandsmessung"],
+    ["kompetenz", "Kompetenzwerkstatt"],
+    ["projekte", "Projekte"],
+    ["praktikum", "fpA"],
+    ["journal", "Lernjournal"],
+    ["lernpfad", "Lernpfad"],
+    ["faecher", "F\xE4cher & Lernbereiche"],
+    ["methoden", "Lernmethoden"],
+    ["resilienz", "Resilienz & Respressi"],
+    ["fokus-timer", "Fokus-Timer"],
+  ],
+  I = ["Mo", "Di", "Mi", "Do", "Fr"],
+  W = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag"],
+  Nt = ["08:00", "08:45", "09:45", "10:30", "11:30", "12:15", "13:15", "14:00", "15:00", "15:45"],
+  be = 45,
+  we = [
+    ["15", "15 Minuten"],
+    ["20", "20 Minuten"],
+    ["25", "25 Minuten"],
+    ["30", "30 Minuten"],
+    ["35", "35 Minuten"],
+    ["40", "40 Minuten"],
+    ["45", "45 Minuten"],
+    ["60", "60 Minuten"],
+    ["90", "90 Minuten"],
+    ["120", "120 Minuten"],
+    ["tag", "Ein Tag"],
+    ["2tage", "Zwei Tage"],
+    ["1w", "Eine Woche"],
+    ["2w", "Zwei Wochen"],
+    ["3w", "Drei Wochen"],
+  ],
+  ve = { tag: 1, "2tage": 1, "3tage": 1, "4tage": 1, "1w": 1, "2w": 2, "3w": 3 },
+  Je = { tag: 1, "2tage": 2, "3tage": 3, "4tage": 4 },
+  Xe = [
+    ...we.slice(0, 10),
+    ["180", "3 Stunden"],
+    ["240", "4 Stunden"],
+    ["tag", "Ein Tag"],
+    ["2tage", "Zwei Tage"],
+    ["3tage", "Drei Tage"],
+    ["4tage", "Vier Tage"],
+    ["1w", "Eine Woche"],
+    ["2w", "Zwei Wochen"],
+    ["3w", "Drei Wochen"],
+  ];
+function x(e) {
+  const t = e && e.dauer ? String(e.dauer) : "";
+  if (!t) {
+    const s = (e && e.len) || 1;
+    return { code: "", label: s * be + " Minuten", min: s * be, len: s, lang: !1, wochen: 1 };
+  }
+  const n = we.find((s) => s[0] === t) || Xe.find((s) => s[0] === t) || we[6];
+  if (ve[t]) return { code: t, label: n[1], min: 0, len: 0, lang: !0, wochen: ve[t] };
+  const a = Number(t) || 45;
+  return { code: t, label: n[1], min: a, len: Math.max(1, Math.ceil(a / be)), lang: !1, wochen: 1 };
+}
+const de = (e) => x(e).min,
+  ie = (e) => (e.lang ? e.label : e.min + " Min."),
+  De = {
+    einfuehrung: { l: "Einf\xFChrung", c: "#4f86e0", bg: "#e4edfb" },
+    lernen: { l: "Lernbaustein", c: "#5aa85a", bg: "#e5f2e2" },
+    projekt: { l: "Projekt", c: "#27998b", bg: "#dcf1ee" },
+    vertiefung: { l: "Vertiefung", c: "#d9922e", bg: "#fbecd5" },
+    baustein: { l: "Kurs / Training", c: "#8a68c9", bg: "#ece6f7" },
+    checkout: { l: "Check-out", c: "#d6675c", bg: "#fae3e0" },
+    lernstand: { l: "Lernstandsgespr\xE4ch", c: "#c0568f", bg: "#f6e2ed" },
+    gruppenuebung: { l: "Gruppen\xFCbung", c: "#5c6bc0", bg: "#e5e8f7" },
+    selbstlern: { l: "Selbstlernkurs", c: "#5aa85a", bg: "#e5f2e2" },
+    fachaufsatz: { l: "Fachaufsatztraining", c: "#8a68c9", bg: "#ece6f7" },
+    lernrallye: { l: "Lernrallye", c: "#d9922e", bg: "#fbecd5" },
+    eigen: { l: "Eigene Lernzeit", c: "#6b7f8c", bg: "#eef1f2" },
+    frage: { l: "Fachliche Frage", c: "#a8744a", bg: "#f3e6da" },
+    deeperlearning: { l: "Deeper-Learning-Einheit", c: "#2a86a8", bg: "#dcf0f6" },
+    feedback: { l: "Block-Feedback", c: "#7a8f2e", bg: "#eef2d8" },
+    uebung: { l: "Vertiefungs- / \xDCbungsbaustein", c: "#c2569a", bg: "#f9e3f0" },
+    karteikarten: { l: "Karteikarten (Definitionen)", c: "#1f8a70", bg: "#d9f2ea" },
+  },
+  Me = [
+    "einfuehrung",
+    "projekt",
+    "lernstand",
+    "gruppenuebung",
+    "selbstlern",
+    "checkout",
+    "fachaufsatz",
+    "lernrallye",
+    "deeperlearning",
+    "feedback",
+    "frage",
+    "uebung",
+    "karteikarten",
+  ],
+  ai = ["selbstlern", "checkout", "fachaufsatz", "frage"],
+  V = (e) => De[e] || De.lernen,
+  y = (e) => `--ac:${V(e).c};--ab:${V(e).bg}`;
+function Pt(e, t) {
+  return `<div class="wp-legende" aria-label="Farben der Lernbausteine">${t ? `<b>${o(t)}</b>` : ""}${(e || Me).map((n) => `<button type="button" class="wp-art wp-art-btn" style="${y(n)}" title="Lernbaustein \u201E${o(V(n).l)}\u201C anlegen und gestalten" onclick="wp.modulForm('','${n}')">${o(V(n).l)}</button>`).join("")}</div>`;
+}
+const Fe = {
+    uebung: [{ k: "ubName", l: "\xDCbung", t: "kurz" }],
+    karteikarten: [{ k: "kkText", l: "Freigeschaltete Lernbereiche", t: "kurz" }],
+    einfuehrung: [
+      { k: "ziel", l: "Ziel der Einf\xFChrung", t: "text" },
+      { k: "ablauf", l: "Ablauf (ein Schritt pro Zeile)", t: "liste" },
+      { k: "mitbringen", l: "Mitbringen / Vorbereitung", t: "text" },
+    ],
+    projekt: [
+      { k: "ziel", l: "Projektziel", t: "text" },
+      { k: "produkt", l: "Produkt / Ergebnis", t: "text" },
+      { k: "meilensteine", l: "Meilensteine (einer pro Zeile)", t: "liste" },
+      { k: "team", l: "Teamgr\xF6\xDFe", t: "kurz" },
+    ],
+    lernstand: [
+      { k: "vorbereitung", l: "Zur Vorbereitung (Fragen, eine pro Zeile)", t: "liste" },
+      { k: "ablauf", l: "Ablauf des Gespr\xE4chs", t: "text" },
+    ],
+    gruppenuebung: [
+      { k: "auftrag", l: "Auftrag", t: "text" },
+      { k: "gruppe", l: "Gruppengr\xF6\xDFe", t: "kurz" },
+      { k: "rollen", l: "Rollen (eine pro Zeile)", t: "liste" },
+      { k: "ergebnis", l: "Ergebnissicherung", t: "text" },
+    ],
+    selbstlern: [
+      { k: "ziele", l: "Lernziele (eins pro Zeile)", t: "liste" },
+      { k: "schritte", l: "Lernschritte (einer pro Zeile)", t: "liste" },
+      { k: "hinweis", l: "Hinweis", t: "text" },
+    ],
+    checkout: [
+      { k: "fragen", l: "Aufgaben / Fragen (eine pro Zeile)", t: "liste" },
+      { k: "hinweis", l: "Hinweis zur Bearbeitung", t: "text" },
+    ],
+    fachaufsatz: [
+      { k: "thema", l: "Thema / Pr\xFCfungsfrage", t: "text" },
+      { k: "operatoren", l: "Operatoren", t: "kurz" },
+      { k: "hinweis", l: "Hinweis", t: "text" },
+    ],
+    frage: [
+      { k: "thema", l: "Themen der fachlichen Frage", t: "text" },
+      { k: "vorbereitung", l: "Bitte mitbringen", t: "text" },
+    ],
+    deeperlearning: [
+      { k: "ziel", l: "Ziel der Einheit", t: "text" },
+      { k: "ablauf", l: "Ablauf (ein Schritt pro Zeile, mit Minuten)", t: "liste" },
+      { k: "material", l: "Material", t: "text" },
+      { k: "checkout", l: "Check-out-Aufgabe", t: "text" },
+      { k: "muster", l: "Musterl\xF6sung (nur f\xFCr Lehrkr\xE4fte sichtbar)", t: "text", intern: !0 },
+    ],
+    feedback: [
+      { k: "block", l: "Name des Blocks (z. B. Block 2: Psychologie)", t: "kurz" },
+      { k: "hinweis", l: "Hinweis an die Klasse", t: "text" },
+      { k: "extra", l: "Eigene Aussagen zus\xE4tzlich (eine pro Zeile, max. 10)", t: "liste", intern: !0 },
+    ],
+  },
+  jt = [
+    ["info", "Info-Seite"],
+    ["frei", "Frage mit Freitext-Antwort"],
+    ["quiz", "Quiz (eine richtige Antwort)"],
+    ["mehrfach", "Quiz (mehrere richtige Antworten)"],
+    ["wahrfalsch", "Richtig oder falsch"],
+    ["luecke", "L\xFCckentext"],
+    ["zuordnung", "Zuordnen (Paare)"],
+    ["reihenfolge", "Reihenfolge bringen"],
+    ["schaetzen", "Zahl sch\xE4tzen / berechnen"],
+    ["qr", "QR-Code scannen (Ort im Schulhaus)"],
+    ["reflexion", "Eigene Antwort (Reflexion)"],
+    ["aufgabe", "Aufgabe zum Abhaken"],
+  ],
+  $e = { frei: 3, quiz: 2, mehrfach: 2, wahrfalsch: 1, luecke: 3, zuordnung: 2, reihenfolge: 2, schaetzen: 3, qr: 3 },
+  ke = (e) =>
+    String(e || "")
+      .split(/\n+/)
+      .map((t) => t.trim())
+      .filter(Boolean),
+  xe = (e) => {
+    const t = e.slice();
+    for (let n = t.length - 1; n > 0; n--) {
+      const a = Math.floor(Math.random() * (n + 1));
+      [t[n], t[a]] = [t[a], t[n]];
+    }
+    return t;
+  };
+function Bt(e) {
+  const t = { ...e };
+  return (
+    (t.optText = (e.optionen || []).map(
+      (n, a) => ((e.typ === "mehrfach" ? (e.richtige || []).includes(a) : a === e.richtig) ? "*" : "") + n,
+    ).join(`
+`)),
+    (t.paareText = (e.paare || []).map((n) => n[0] + " = " + n[1]).join(`
+`)),
+    (t.reihenText = (e.reihe || []).join(`
+`)),
+    t
+  );
+}
+function Ne(e, t) {
+  if (((t = t || {}), e === "lernrallye")) return Rt();
+  if (e === "uebung")
+    return (
+      '<label>Vertiefungs- / \xDCbungsbaustein<select id="gf_ubZiel" data-sel="' +
+      o(t.ubZiel || "") +
+      '"><option value="">Lade \xDCbungen \u2026</option></select></label><small class="wp-hint">Ganzer Ordner (z. B. LB 1 \u203A Thema) oder eine einzelne \xDCbung. Die Sch\xFCler:innen \xF6ffnen sie \u00FCber \u201ELink \xF6ffnen\u201C.</small>'
+    );
+  if (e === "karteikarten") {
+    const q = String(t.kkLb || "1,2,3,4").split(",");
+    return (
+      '<fieldset class="wp-kk"><legend>Freigeschaltete Lernbereiche</legend>' +
+      [1, 2, 3, 4]
+        .map(
+          (k) =>
+            `<label class="check"><input type="checkbox" class="wpKkLb" value="${k}" ${q.includes(String(k)) ? "checked" : ""}><span>LB ${k}</span></label>`,
+        )
+        .join("") +
+      "</fieldset>"
+    );
+  }
+  const n = Fe[e] || [];
+  return (
+    (e === "deeperlearning"
+      ? '<div class="wp-vorlage"><button type="button" class="secondary" onclick="wp.dlVorlage()">Vorlage \u201EFachaufsatz\u201C einf\xFCgen</button><small>F\xFCllt Titel, Ablauf, Check-out und Musterl\xF6sung vor. Danach nur noch pr\xFCfen.</small></div>'
+      : e === "feedback"
+        ? '<p class="wp-hint">Die 15 Standardaussagen (Lernen, Selbststeuerung, Zusammenarbeit, Material, Gesamteindruck) sind immer dabei. Eigene Aussagen unten erg\xE4nzen.</p>'
+        : "") +
+    n
+      .map((s) => {
+        const l = Array.isArray(t[s.k])
+          ? t[s.k].join(`
+`)
+          : t[s.k] || "";
+        return `<label>${o(s.l)}${s.t === "kurz" ? `<input id="gf_${s.k}" maxlength="80" value="${o(l)}">` : `<textarea id="gf_${s.k}" rows="${s.t === "liste" ? 4 : 3}" maxlength="1200">${o(l)}</textarea>`}</label>`;
+      })
+      .join("")
+  );
+}
+function Wt(e) {
+  const t = {};
+  if (e === "uebung") {
+    const u = f("gf_ubZiel"),
+      v = u ? u.value : "";
+    v && ((t.ubZiel = v), (t.ubName = u.selectedOptions[0].textContent));
+  } else if (e === "karteikarten") {
+    const q = [...document.querySelectorAll(".wpKkLb:checked")].map((k) => k.value);
+    q.length && ((t.kkLb = q.join(",")), (t.kkText = "LB " + q.join(", LB ")));
+  }
+  return (
+    e === "lernrallye" ||
+      e === "uebung" ||
+      e === "karteikarten" ||
+      (Fe[e] || []).forEach((n) => {
+        const a = (f("gf_" + n.k)?.value || "").trim();
+        a &&
+          (t[n.k] =
+            n.t === "liste"
+              ? a
+                  .split(/\n+/)
+                  .map((s) => s.trim())
+                  .filter(Boolean)
+              : a);
+      }),
+    t
+  );
+}
+function Rt() {
+  const e = i.rally || [];
+  return `<div class="wp-rally-ed"><b>Stationen der Lernrallye</b><small>Die Sch\xFCler:innen gehen Station f\xFCr Station durch, l\xF6sen Aufgaben und sammeln Punkte \u2013 wie bei einer Rallye.</small>
+ ${e
+   .map(
+     (
+       t,
+       n,
+     ) => `<div class="wp-station"><div class="wp-st-h"><b>Station ${n + 1}</b><span><button type="button" class="text-button" onclick="wp.rallyMove(${n},-1)">nach oben</button><button type="button" class="text-button" onclick="wp.rallyMove(${n},1)">nach unten</button><button type="button" class="text-button" onclick="wp.rallyDel(${n})">entfernen</button></span></div>
+  <label>Art<select onchange="wp.rallySet(${n},'typ',this.value,true)">${jt.map((a) => `<option value="${a[0]}" ${a[0] === t.typ ? "selected" : ""}>${a[1]}</option>`).join("")}</select></label>
+  <label>Titel<input maxlength="80" value="${o(t.titel || "")}" oninput="wp.rallySet(${n},'titel',this.value)"></label>
+  <label>Text / Aufgabe<textarea rows="2" maxlength="600" oninput="wp.rallySet(${n},'text',this.value)">${o(t.text || "")}</textarea></label>
+  ${t.typ === "frei" ? `<label>Richtige Antwort(en), mehrere mit | trennen<input maxlength="200" value="${o(t.antwort || "")}" oninput="wp.rallySet(${n},'antwort',this.value)"></label>` : ""}
+  ${t.typ === "quiz" || t.typ === "mehrfach" ? `<label>Antwortm\xF6glichkeiten (eine pro Zeile, ${t.typ === "quiz" ? "die richtige" : "jede richtige"} mit * am Anfang)<textarea rows="4" maxlength="500" oninput="wp.rallySet(${n},'optText',this.value)">${o(t.optText || "")}</textarea></label>` : ""}
+  ${t.typ === "wahrfalsch" ? `<label>Die Aussage ist<select onchange="wp.rallySet(${n},'wf',this.value)"><option value="w" ${t.wf !== "f" ? "selected" : ""}>richtig</option><option value="f" ${t.wf === "f" ? "selected" : ""}>falsch</option></select></label>` : ""}
+  ${t.typ === "luecke" ? `<label>L\xFCckentext \u2013 L\xFCcken in [eckigen Klammern], Alternativen mit | trennen<textarea rows="3" maxlength="600" oninput="wp.rallySet(${n},'lueckText',this.value)">${o(t.lueckText || "")}</textarea></label>` : ""}
+  ${t.typ === "zuordnung" ? `<label>Paare (eins pro Zeile: Begriff = Zuordnung)<textarea rows="4" maxlength="600" oninput="wp.rallySet(${n},'paareText',this.value)">${o(t.paareText || "")}</textarea></label>` : ""}
+  ${t.typ === "reihenfolge" ? `<label>Elemente in der richtigen Reihenfolge (eins pro Zeile; die Sch\xFCler sehen sie gemischt)<textarea rows="4" maxlength="600" oninput="wp.rallySet(${n},'reihenText',this.value)">${o(t.reihenText || "")}</textarea></label>` : ""}
+  ${t.typ === "schaetzen" ? `<div class="wp-st-zwei"><label>Richtige Zahl<input inputmode="decimal" value="${o(t.zahl ?? "")}" oninput="wp.rallySet(${n},'zahl',this.value)"></label><label>Toleranz (\xB1)<input inputmode="decimal" value="${o(t.tol ?? 0)}" oninput="wp.rallySet(${n},'tol',this.value)"></label></div>` : ""}
+  ${t.typ === "qr" ? `<div class="wp-st-zwei"><label>Code dieser Station<input maxlength="12" value="${o(t.code || "")}" oninput="wp.rallySet(${n},'code',this.value.toUpperCase())"></label><button type="button" class="secondary" onclick="wp.rallySet(${n},'code',wp.qrNeu(),true)">Neuer Code</button></div><small class="wp-hint">Beschreibe oben im Text, wo die Sch\xFCler:innen den QR-Code finden (z. B. \u201EGeh zur Aula\u201C). Den Code druckst du unten als QR-Code aus.</small>` : ""}
+  ${t.typ !== "info" ? `<div class="wp-st-zwei"><label>Punkte<input type="number" min="0" max="20" value="${o(t.punkte ?? 10)}" oninput="wp.rallySet(${n},'punkte',this.value)"></label><label>Hinweis (optional)<input maxlength="200" value="${o(t.hinweis || "")}" oninput="wp.rallySet(${n},'hinweis',this.value)"></label></div>` : ""}
+ </div>`,
+   )
+   .join("")}
+ <button type="button" class="secondary" onclick="wp.rallyAdd()">\uFF0B Station hinzuf\xFCgen</button>${e.some((t) => t.typ === "qr") ? '<button type="button" class="secondary" onclick="wp.qrDruck()">QR-Codes drucken</button>' : ""}</div>`;
+}
+function Gt(e) {
+  const t = {
+    typ: e.typ || "info",
+    titel: String(e.titel || "").slice(0, 80),
+    text: String(e.text || "").slice(0, 600),
+    punkte: Math.max(0, Math.min(20, Number(e.punkte) || 0)),
+    hinweis: String(e.hinweis || "").slice(0, 200),
+  };
+  if ((t.typ === "frei" && (t.antwort = String(e.antwort || "").slice(0, 200)), t.typ === "quiz")) {
+    const n = String(e.optText || "")
+      .split(/\n+/)
+      .map((a) => a.trim())
+      .filter(Boolean);
+    ((t.richtig = Math.max(
+      0,
+      n.findIndex((a) => a.startsWith("*")),
+    )),
+      (t.optionen = n.map((a) => a.replace(/^\*\s*/, ""))));
+  }
+  if (t.typ === "mehrfach") {
+    const n = ke(e.optText).slice(0, 8);
+    ((t.richtige = n.map((a, s) => (a.startsWith("*") ? s : -1)).filter((a) => a >= 0)),
+      (t.optionen = n.map((a) => a.replace(/^\*\s*/, ""))));
+  }
+  return (
+    t.typ === "wahrfalsch" && (t.wf = e.wf === "f" ? "f" : "w"),
+    t.typ === "luecke" && (t.lueckText = String(e.lueckText || "").slice(0, 600)),
+    t.typ === "zuordnung" &&
+      (t.paare = ke(e.paareText)
+        .slice(0, 8)
+        .map((n) => n.split("=").map((a) => a.trim()))
+        .filter((n) => n[0] && n[1])
+        .map((n) => [n[0].slice(0, 80), n.slice(1).join("=").slice(0, 80)])),
+    t.typ === "reihenfolge" &&
+      (t.reihe = ke(e.reihenText)
+        .slice(0, 8)
+        .map((n) => n.slice(0, 100))),
+    t.typ === "schaetzen" &&
+      ((t.zahl = Number(String(e.zahl).replace(",", ".")) || 0), (t.tol = Math.abs(Number(String(e.tol || 0).replace(",", ".")) || 0))),
+    t.typ === "qr" && (t.code = le(e.code) || Pe()),
+    t.typ === "info" && (t.punkte = 0),
+    t
+  );
+}
+const ye = () => {
+  const e = f("mfGest");
+  e && (e.innerHTML = Ne("lernrallye", {}));
+};
+function It() {
+  ((i.rally = i.rally || []), i.rally.push({ typ: "frei", titel: "", text: "", antwort: "", punkte: 10 }), ye());
+}
+function Kt(e) {
+  (i.rally.splice(e, 1), ye());
+}
+function Ct(e, t) {
+  const n = e + t;
+  n < 0 || n >= i.rally.length || (([i.rally[e], i.rally[n]] = [i.rally[n], i.rally[e]]), ye());
+}
+function Ht(e, t, n, a) {
+  ((i.rally[e][t] = n), t === "typ" && n === "qr" && !i.rally[e].code && (i.rally[e].code = Pe()), a && ye());
+}
+function et(e) {
+  if (!e) return "";
+  const t = e.gestaltung || {};
+  let n = (Fe[e.typ] || [])
+    .map((a) => {
+      const s = t[a.k];
+      return a.intern || !s || (Array.isArray(s) && !s.length)
+        ? ""
+        : `<div class="wp-gest-b"><b>${o(a.l.replace(/\s*\(.*\)$/, ""))}</b>${Array.isArray(s) ? `<ol>${s.map((l) => `<li>${o(l)}</li>`).join("")}</ol>` : `<p>${o(s)}</p>`}</div>`;
+    })
+    .join("");
+  if (e.typ === "lernrallye" && (e.rallye || []).length) {
+    const a = e.rallye,
+      s = a.reduce((l, r) => l + (r.punkte || 0), 0);
+    n = `<div class="wp-gest-b"><b>Lernrallye</b><p>${a.length} Stationen \xB7 bis zu ${s} Punkte</p></div>`;
+  }
+  return n ? `<div class="wp-gest-view" style="${y(e.typ)}">${n}</div>` : "";
+}
+function tt(e, t) {
+  if (!t || t.typ !== "lernrallye" || !(t.rallye || []).length) return "";
+  const n = e && e.rallye,
+    a = e && e.rallyStand && e.rallyStand.i > 0;
+  return `${n ? `<p class="wp-hint">Ergebnis: ${e.rallye.punkte} von ${e.rallye.max} Punkten.</p>` : ""}<div class="form-actions"><button class="primary" onclick="wp.rpStart('${e ? e.id : ""}','${t.id}')">${n ? "Rallye wiederholen" : a ? "Rallye fortsetzen" : "Rallye starten"}</button></div>`;
+}
+function _t(e, t) {
+  const n = i.d.module.find((l) => l.id === t);
+  if (!n) return;
+  const a = e ? i.d.plan.eintraege.find((l) => l.id === e) : null,
+    s = !a || a.rallye || !a.rallyStand;
+  ((i.rp = { m: n, e: a, vorschau: !a, st: s ? { i: 0, pts: 0, fehl: 0, hint: !1 } : { ...a.rallyStand } }), nt());
+}
+function nt() {
+  const { m: e, st: t } = i.rp,
+    n = e.rallye || [];
+  if (t.i >= n.length) return en();
+  const a = n[t.i],
+    s = n.reduce((r, d) => r + (d.punkte || 0), 0);
+  let l = "";
+  if (a.typ === "info") l = '<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(0)">Weiter</button></div>';
+  else if (a.typ === "aufgabe")
+    l = `<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(${a.punkte || 0})">Erledigt (+${a.punkte || 0})</button></div>`;
+  else if (a.typ === "frei")
+    l = `<label class="form"><span>Deine Antwort</span><input id="rpA" maxlength="120" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="secondary" onclick="wp.rpHinweis()">Hinweis</button><button class="primary" onclick="wp.rpPruefen()">Pr\xFCfen</button></div>`;
+  else if (a.typ === "quiz")
+    l = `<div class="wp-rp-opt">${(a.optionen || []).map((r, d) => `<button type="button" class="secondary" onclick="wp.rpWahl(${d})">${o(r)}</button>`).join("")}</div><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="secondary" onclick="wp.rpHinweis()">Hinweis</button></div>`;
+  else {
+    const r =
+      '<div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="secondary" onclick="wp.rpHinweis()">Hinweis</button><button class="primary" onclick="wp.rpPruefen()">Pr\xFCfen</button></div>';
+    if (a.typ === "mehrfach")
+      l = `<div class="wp-rp-opt">${(a.optionen || []).map((d, m) => `<label class="wp-rp-chk"><input type="checkbox" class="rpC" value="${m}"> ${o(d)}</label>`).join("")}</div>${r}`;
+    else if (a.typ === "wahrfalsch")
+      l = `<div class="wp-rp-opt"><button type="button" class="secondary" onclick="wp.rpWahl('w')">Richtig</button><button type="button" class="secondary" onclick="wp.rpWahl('f')">Falsch</button></div><div id="rpFb" class="wp-rp-fb"></div>`;
+    else if (a.typ === "luecke") {
+      let d = 0;
+      l = `<p class="wp-rp-luecke">${String(a.lueckText || "")
+        .split(/(\[[^\]]+\])/)
+        .map((u) => (/^\[[^\]]+\]$/.test(u) ? `<input class="rpL" data-k="${d++}" maxlength="60" size="10">` : o(u)))
+        .join("")}</p>${r}`;
+    } else if (a.typ === "zuordnung") {
+      const d = xe((a.paare || []).map((m) => m[1]));
+      l = `<div class="wp-rp-opt">${(a.paare || []).map((m, u) => `<label class="wp-rp-zu"><span>${o(m[0])}</span><select class="rpZ" data-k="${u}"><option value="">\u2013 w\xE4hlen \u2013</option>${d.map((p) => `<option>${o(p)}</option>`).join("")}</select></label>`).join("")}</div>${r}`;
+    } else if (a.typ === "reihenfolge") {
+      let d = xe(a.reihe || []);
+      for (let m = 0; m < 9 && (a.reihe || []).length > 1 && d.join("") === (a.reihe || []).join(""); m++) d = xe(a.reihe);
+      ((i.rp.mix = d), (i.rp.gew = []), (l = `<div id="rpRh"></div><div class="wp-rp-opt" id="rpRo"></div>${r}`));
+    } else
+      a.typ === "qr"
+        ? (l = `<div id="rpScanBox"><video id="rpVideo" class="wp-rp-video" playsinline muted hidden></video><canvas id="rpCanvas" hidden></canvas><p id="rpScanInfo" class="wp-hint"></p><div class="form-actions"><button type="button" class="primary" onclick="wp.rpScan()">Kamera \xF6ffnen und scannen</button></div></div><label class="form"><span>Oder Code eingeben (steht unter dem QR-Code)</span><input id="rpA" maxlength="20" autocapitalize="characters" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label>${r}`)
+        : a.typ === "schaetzen"
+          ? (l = `<label class="form"><span>Deine Zahl</span><input id="rpA" inputmode="decimal" maxlength="20" onkeydown="if(event.key==='Enter')wp.rpPruefen()"></label>${r}`)
+          : a.typ === "reflexion" &&
+            (l = `<label class="form"><span>Deine Antwort</span><textarea id="rpA" rows="4" maxlength="600"></textarea></label><div id="rpFb" class="wp-rp-fb"></div><div class="form-actions"><button class="primary" onclick="wp.rpPruefen()">Abschicken (+${a.punkte || 0})</button></div>`);
+  }
+  (E(
+    `<div class="wp-artband" style="${y("lernrallye")}">Lernrallye${i.rp.vorschau ? " \xB7 Vorschau" : ""}</div><div class="wp-rp-kopf"><span>Station ${t.i + 1} von ${n.length}</span><span>${t.pts} / ${s} Punkte</span></div><div class="wp-rp-bar"><i style="width:${Math.round((t.i / n.length) * 100)}%"></i></div><h2>${o(a.titel || "Station " + (t.i + 1))}</h2><p>${o(a.text || "")}</p>${l}`,
+  ),
+    a.typ === "reihenfolge" && Be());
+}
+const at = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function Pe() {
+  const e = new Uint32Array(5);
+  return (crypto.getRandomValues(e), [...e].map((t) => at[t % at.length]).join(""));
+}
+const le = (e) =>
+  String(e || "")
+    .toUpperCase()
+    .replace(/^WPR:/, "")
+    .replace(/[^A-Z0-9]/g, "")
+    .slice(0, 12);
+let je = null;
+function Zt() {
+  return window.jsQR
+    ? Promise.resolve(window.jsQR)
+    : je ||
+        (je = new Promise((e, t) => {
+          const n = document.createElement("script");
+          ((n.src = "jsQR.js?v=1"),
+            (n.onload = () => e(window.jsQR)),
+            (n.onerror = () => {
+              ((je = null), t(new Error("jsQR")));
+            }),
+            document.head.appendChild(n));
+        }));
+}
+function se() {
+  const e = f("rpVideo"),
+    t = i.rp && i.rp.stream;
+  (t && (t.getTracks().forEach((n) => n.stop()), (i.rp.stream = null)),
+    e && ((e.srcObject = null), (e.hidden = !0)),
+    i.rp && (i.rp.scanLauf = !1));
+}
+async function Ut() {
+  const e = f("rpScanInfo");
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    e && (e.textContent = "Dieses Ger\xE4t kann hier nicht scannen. Gib den Code unter dem QR-Code ein.");
+    return;
+  }
+  se();
+  try {
+    i.rp.stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" } }, audio: !1 });
+  } catch {
+    e && (e.textContent = "Die Kamera ist nicht freigegeben. Erlaube sie im Browser oder gib den Code ein.");
+    return;
+  }
+  const t = f("rpVideo");
+  if (!t) {
+    se();
+    return;
+  }
+  ((t.srcObject = i.rp.stream), (t.hidden = !1));
+  try {
+    await t.play();
+  } catch {}
+  e && (e.textContent = "Halte die Kamera auf den QR-Code.");
+  let n = null,
+    a = null;
+  if ("BarcodeDetector" in window)
+    try {
+      n = new BarcodeDetector({ formats: ["qr_code"] });
+    } catch {
+      n = null;
+    }
+  if (!n)
+    try {
+      a = await Zt();
+    } catch {
+      (se(), e && (e.textContent = "Der Scanner konnte nicht geladen werden. Gib den Code ein."));
+      return;
+    }
+  const s = f("rpCanvas"),
+    l = s.getContext("2d", { willReadFrequently: !0 }),
+    r = i.rp.st.i;
+  i.rp.scanLauf = !0;
+  const d = async () => {
+    if (!i.rp || !i.rp.scanLauf || !f("rpVideo") || i.rp.st.i !== r) {
+      se();
+      return;
+    }
+    try {
+      let m = null;
+      if (n) {
+        const u = await n.detect(t);
+        u && u[0] && u[0].rawValue && (m = u[0].rawValue);
+      } else if (t.videoWidth) {
+        const u = Math.min(480, t.videoWidth),
+          p = Math.round((u * t.videoHeight) / t.videoWidth);
+        ((s.width = u), (s.height = p), l.drawImage(t, 0, 0, u, p));
+        const g = a(l.getImageData(0, 0, u, p).data, u, p, { inversionAttempts: "dontInvert" });
+        g && g.data && (m = g.data);
+      }
+      if (m) return (se(), it(m));
+    } catch {}
+    setTimeout(d, n ? 120 : 200);
+  };
+  d();
+}
+function it(e) {
+  const t = i.rp.m.rallye[i.rp.st.i];
+  if (le(e) && le(e) === le(t.code)) return re(t, !0);
+  if ((i.rp.st.fehl++, i.rp.st.fehl >= ($e.qr || 3))) return re(t, !1);
+  O("Das ist nicht der richtige QR-Code. Suche die richtige Station (" + i.rp.st.fehl + "/" + ($e.qr || 3) + ").", !1);
+}
+async function qt() {
+  const e = (i.rally || []).filter((l) => l.typ === "qr" && l.code);
+  if (!e.length) return c.toast("Keine QR-Station vorhanden.");
+  const t = window.open("", "_blank", "width=900,height=800");
+  if (!t) return c.toast("Das Druckfenster wurde blockiert. Bitte Pop-ups erlauben.");
+  const { qrcode: n } = await import("./qr-local.js?v=1"),
+    a = (f("mfTitel")?.value || "Lernrallye").trim(),
+    s = e
+      .map((l) => {
+        const r = n(0, "M");
+        return (
+          r.addData("WPR:" + le(l.code)),
+          r.make(),
+          `<section><div class="kl">Lernrallye \xB7 ${o(a)}</div><h1>${o(l.titel || "Station")}</h1><div class="q">${r.createSvgTag(8, 0)}</div><p class="un">QR-Code mit der Campus-App scannen oder diesen Code eingeben:</p><p class="cd">${o(le(l.code))}</p></section>`
+        );
+      })
+      .join("");
+  (t.document.write(
+    `<!doctype html><html lang="de"><head><meta charset="utf-8"><title>QR-Codes Lernrallye</title><style>@page{size:A4;margin:14mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;margin:0;color:#111}section{page-break-after:always;text-align:center;padding-top:14mm}section:last-child{page-break-after:auto}.kl{font-size:14pt;color:#555}h1{font-size:32pt;margin:6mm 0}.q svg{width:120mm;height:120mm}.un{font-size:14pt;margin:6mm 0 2mm}.cd{font-size:30pt;font-weight:700;letter-spacing:.08em;margin:0}.bar{background:#f3f3f3;padding:10px 12px;border-radius:8px;margin:8px;font-size:13px}@media print{.bar{display:none}}</style></head><body><div class="bar"><button onclick="window.print()" style="font-size:15px;padding:8px 14px">Drucken</button> Eine Seite je Station. Zum Aufh\xE4ngen an dem Ort, den du im Stationstext beschreibst.</div>${s}</body></html>`,
+  ),
+    t.document.close());
+}
+function Be() {
+  const e = f("rpRo"),
+    t = f("rpRh");
+  if (!e || !t) return;
+  const { mix: n, gew: a } = i.rp;
+  ((t.innerHTML = a.length
+    ? `<ol class="wp-rp-rh">${a.map((s) => `<li>${o(n[s])}</li>`).join("")}</ol><button type="button" class="text-button" onclick="wp.rpRhReset()">Zur\xFCcksetzen</button>`
+    : '<p class="wp-hint">Tippe die Elemente in der richtigen Reihenfolge an.</p>'),
+    (e.innerHTML = n
+      .map((s, l) => (a.includes(l) ? "" : `<button type="button" class="secondary" onclick="wp.rpRhAdd(${l})">${o(s)}</button>`))
+      .join("")));
+}
+function Vt(e) {
+  (i.rp.gew.push(e), Be());
+}
+function Ot() {
+  ((i.rp.gew = []), Be());
+}
+function Qt(e) {
+  return e.typ === "quiz"
+    ? e.optionen[e.richtig]
+    : e.typ === "mehrfach"
+      ? (e.richtige || []).map((t) => e.optionen[t]).join("; ")
+      : e.typ === "wahrfalsch"
+        ? e.wf === "f"
+          ? "falsch"
+          : "richtig"
+        : e.typ === "luecke"
+          ? (String(e.lueckText || "").match(/\[[^\]]+\]/g) || []).map((t) => t.slice(1, -1).split("|")[0]).join(", ")
+          : e.typ === "zuordnung"
+            ? (e.paare || []).map((t) => t[0] + " = " + t[1]).join("; ")
+            : e.typ === "reihenfolge"
+              ? (e.reihe || []).join(" \u2192 ")
+              : e.typ === "qr"
+                ? "Frage deine Lehrkraft nach dem Ort der Station"
+                : e.typ === "schaetzen"
+                  ? String(e.zahl).replace(".", ",") + (e.tol ? " (\xB1 " + String(e.tol).replace(".", ",") + ")" : "")
+                  : String(e.antwort || "").split("|")[0];
+}
+function O(e, t) {
+  const n = f("rpFb");
+  n && ((n.className = "wp-rp-fb " + (t ? "ok" : "nein")), (n.textContent = e));
+}
+function Yt() {
+  const e = i.rp.m.rallye[i.rp.st.i];
+  ((i.rp.st.hint = !0), O(e.hinweis ? "Hinweis: " + e.hinweis : "F\xFCr diese Station gibt es keinen Hinweis.", !0));
+}
+async function re(e, t) {
+  const n = i.rp.st,
+    a = e.punkte || 0,
+    s = t ? (n.fehl === 0 && !n.hint ? a : Math.ceil(a / 2)) : 0;
+  n.pts += s;
+  const l = f("rpFb");
+  l &&
+    ((l.className = "wp-rp-fb " + (t ? "ok" : "nein")),
+    (l.innerHTML =
+      (t ? "Richtig! +" + s + " Punkte" : "Die richtige L\xF6sung war: " + o(Qt(e))) +
+      '<div class="form-actions"><button class="primary" onclick="wp.rpWeiter(0)">Weiter</button></div>'));
+}
+async function lt(e) {
+  se();
+  const t = i.rp.st;
+  if (((t.pts += e), t.i++, (t.fehl = 0), (t.hint = !1), i.rp.e)) {
+    i.rp.e.rallyStand = { ...t };
+    try {
+      await F();
+    } catch {}
+  }
+  nt();
+}
+function Jt() {
+  const e = i.rp.m.rallye[i.rp.st.i],
+    t = e.typ,
+    n = (f("rpA")?.value || "").trim();
+  let a;
+  if (t === "reflexion") {
+    if (n.length < 5) return O("Bitte schreibe mindestens einen Satz.", !1);
+    const l = i.rp.st;
+    return ((l.antw = l.antw || {}), (l.antw[l.i] = n.slice(0, 600)), lt(e.punkte || 0));
+  }
+  if (t === "qr") return n ? it(n) : void 0;
+  if (t === "frei") {
+    if (!n) return;
+    a = String(e.antwort || "")
+      .split("|")
+      .map((l) => l.trim().toLowerCase())
+      .filter(Boolean)
+      .includes(n.toLowerCase());
+  } else if (t === "schaetzen") {
+    if (!n) return;
+    const l = Number(n.replace(",", "."));
+    if (isNaN(l)) return O("Bitte gib eine Zahl ein.", !1);
+    a = Math.abs(l - e.zahl) <= (e.tol || 0) + 1e-9;
+  } else if (t === "mehrfach") {
+    const l = [...document.querySelectorAll(".rpC:checked")]
+      .map((r) => Number(r.value))
+      .sort()
+      .join();
+    if (!l) return O("W\xE4hle mindestens eine Antwort.", !1);
+    a = l === (e.richtige || []).slice().sort().join();
+  } else if (t === "luecke") {
+    const l = (String(e.lueckText || "").match(/\[[^\]]+\]/g) || []).map((d) =>
+        d
+          .slice(1, -1)
+          .split("|")
+          .map((m) => m.trim().toLowerCase()),
+      ),
+      r = [...document.querySelectorAll(".rpL")].map((d) => d.value.trim().toLowerCase());
+    if (r.some((d) => !d)) return O("F\xFClle alle L\xFCcken aus.", !1);
+    a = l.every((d, m) => d.includes(r[m]));
+  } else if (t === "zuordnung") {
+    const l = [...document.querySelectorAll(".rpZ")].map((r) => r.value);
+    if (l.some((r) => !r)) return O("Ordne alle Begriffe zu.", !1);
+    a = (e.paare || []).every((r, d) => r[1] === l[d]);
+  } else if (t === "reihenfolge") {
+    const { mix: l, gew: r } = i.rp;
+    if (r.length < l.length) return O("Bringe zuerst alle Elemente in eine Reihenfolge.", !1);
+    a = r.every((d, m) => l[d] === e.reihe[m]);
+  } else return;
+  if (a) return re(e, !0);
+  i.rp.st.fehl++;
+  const s = $e[t] || 2;
+  if (i.rp.st.fehl >= s) return re(e, !1);
+  O("Leider nicht richtig \u2013 versuche es noch einmal (" + i.rp.st.fehl + "/" + s + ").", !1);
+}
+function Xt(e) {
+  const t = i.rp.m.rallye[i.rp.st.i];
+  if (e === t.richtig || e === t.wf) return re(t, !0);
+  if ((i.rp.st.fehl++, i.rp.st.fehl >= ($e[t.typ] || 2))) return re(t, !1);
+  O("Leider falsch \u2013 w\xE4hle noch einmal.", !1);
+}
+async function en() {
+  const { m: e, st: t, e: n } = i.rp,
+    a = e.rallye || [],
+    s = a.reduce((d, m) => d + (m.punkte || 0), 0),
+    l = s ? t.pts / s : 1,
+    r = l >= 0.8 ? "Gold" : l >= 0.5 ? "Silber" : "Bronze";
+  if (n) {
+    ((n.rallye = { punkte: t.pts, max: s }), delete n.rallyStand, (n.erledigt = !0), (n.doneAt = Date.now()));
+    try {
+      await F();
+    } catch {}
+  }
+  (E(
+    `<div class="wp-artband" style="${y("lernrallye")}">Lernrallye geschafft</div><h2>${o(e.titel)}</h2><p class="wp-rp-gross">${t.pts} von ${s} Punkten</p><p>Abzeichen: <b>${r}</b>${i.rp.vorschau ? " (Vorschau \u2013 nichts wird gespeichert)" : ""}</p><div class="form-actions"><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`,
+  ),
+    n && v());
+}
+function tn(e) {
+  const t = i.d.module.find((n) => n.id === e);
+  t &&
+    E(
+      `<div class="wp-artband" style="${y(t.typ)}">${o(V(t.typ).l)} \xB7 Vorschau f\xFCr Sch\xFCler:innen</div><div class="kicker">${o(T(t.fach).l)} \xB7 ${o(ie(x(t)))}</div><h2>${o(t.titel)}</h2>${t.beschr ? `<p>${o(t.beschr)}</p>` : ""}${et(t)}${We(t.anhaenge)}${tt(null, t)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`,
+    );
+}
+const nn = /\.(pdf|docx?|png|jpe?g|gif|webp|heic|mp4|mov|webm|m4v|mp3|m4a|wav|ogg|aac)$/i;
+function an(e) {
+  const t = String(e.name || "").toLowerCase();
+  return /\.(png|jpe?g|gif|webp|heic)$/.test(t)
+    ? "bild"
+    : /\.(mp4|mov|webm|m4v)$/.test(t)
+      ? "video"
+      : /\.(mp3|m4a|wav|ogg|aac)$/.test(t)
+        ? "audio"
+        : "datei";
+}
+function We(e) {
+  return (
+    (e = (Array.isArray(e) ? e : []).filter((t) => t && /^https:\/\//.test(t.url || ""))),
+    e.length
+      ? `<div class="wp-anh"><b>Anh\xE4nge</b>${e
+          .map((t) => {
+            const n = an(t),
+              a = o(t.url),
+              s = o(t.name || "Datei");
+            return n === "bild"
+              ? `<a href="${a}" target="_blank" rel="noopener"><img src="${a}" alt="${s}" loading="lazy"></a>`
+              : n === "video"
+                ? `<video controls preload="metadata" src="${a}"></video><small>${s}</small>`
+                : n === "audio"
+                  ? `<div><audio controls preload="none" src="${a}"></audio><small>${s}</small></div>`
+                  : `<a class="wp-datei" href="${a}" target="_blank" rel="noopener">${s}</a>`;
+          })
+          .join("")}</div>`
+      : ""
+  );
+}
+function Re() {
+  return (
+    (i.anh || [])
+      .map(
+        (e, t) =>
+          `<div class="wp-anhz"><span>${o(e.name || "Datei")}</span><button type="button" class="secondary" onclick="wp.anhWeg(${t})">Entfernen</button></div>`,
+      )
+      .join("") || '<small class="wp-leer">Noch kein Anhang.</small>'
+  );
+}
+function st() {
+  return `<div class="wp-anhform"><b>Anh\xE4nge</b><small>PDF, Word, Bild, Video oder Audio \xB7 max. 15 MB je Datei</small><div id="anhListe">${Re()}</div><input id="anhDatei" type="file" multiple accept=".pdf,.doc,.docx,image/*,video/*,audio/*" onchange="wp.anhHoch(this)"><small id="anhStatus"></small></div>`;
+}
+async function ln(e) {
+  const t = [...(e.files || [])],
+    n = f("anhStatus");
+  for (const s of t) {
+    if (!nn.test(s.name) && !/^(image|video|audio)\//.test(s.type || "")) {
+      c.toast("\u201E" + s.name + "\u201C: Dateityp nicht erlaubt.");
+      continue;
+    }
+    n && (n.textContent = "L\xE4dt hoch: " + s.name + " \u2026");
+    try {
+      const l = await c.upload(s, "wpAnhaenge/lernbausteine");
+      i.anh.push({ url: l.url, name: s.name, path: l.path });
+    } catch (l) {
+      (console.error(l), c.toast(l?.message || "Upload nicht m\xF6glich."));
+    }
+  }
+  ((e.value = ""), n && (n.textContent = ""));
+  const a = f("anhListe");
+  a && (a.innerHTML = Re());
+}
+function sn(e) {
+  i.anh.splice(e, 1);
+  const t = f("anhListe");
+  t && (t.innerHTML = Re());
+}
+let UBK = null;
+function ubLink(z) {
+  return String(z).startsWith("s:")
+    ? "uebungsbausteine/station.html?s=" + encodeURIComponent(z.slice(2).replace(/[^A-Za-z0-9_-]/g, ""))
+    : "uebungsbausteine/index.html?ordner=" + encodeURIComponent(z.slice(2));
+}
+async function ubFill(ty, g) {
+  if (ty !== "uebung") return;
+  const sel = f("gf_ubZiel");
+  if (!sel) return;
+  if (!UBK)
+    try {
+      const r = await fetch("uebungsbausteine/stationen/katalog.json", { cache: "no-cache" });
+      UBK = r.ok ? await r.json() : [];
+    } catch {
+      UBK = [];
+    }
+  const pf = (e) => (Array.isArray(e.pfad) && e.pfad.length ? e.pfad : [e.fach || "\xDCbungen", e.thema || ""].filter(Boolean)),
+    want = (g && g.ubZiel) || sel.dataset.sel || "",
+    op = (v, l) => `<option value="${o(v)}"${v === want ? " selected" : ""}>${o(l)}</option>`,
+    ord = [
+      ...new Set(
+        UBK.flatMap((e) => {
+          const p = pf(e);
+          return p.map((_, k) => p.slice(0, k + 1).join("/"));
+        }),
+      ),
+    ];
+  sel.innerHTML = UBK.length
+    ? `<optgroup label="Ganzer Ordner">${ord.map((k) => op("o:" + k, k.split("/").join(" \u203A ") + " (alle \xDCbungen)")).join("")}</optgroup><optgroup label="Einzelne \xDCbung">${UBK.map((e) => op("s:" + e.id, pf(e).join(" \u203A ") + " \u203A " + e.titel)).join("")}</optgroup>`
+    : '<option value="">Keine \xDCbungen gefunden</option>';
+}
+function rn(e) {
+  const t = f("mfBand");
+  if (!t) return;
+  const n = f("mfFuerWrap");
+  (n && ((n.hidden = e !== "lernstand"), e === "lernstand" && !f("fuerListe") && ((n.innerHTML = Ze([])), Ue())),
+    t.setAttribute("style", y(e)),
+    (t.textContent = V(e).l));
+  const a = f("mfWrap");
+  a && a.setAttribute("style", y(e));
+  const s = f("mfGest");
+  s &&
+    (e === "uebung" && setTimeout(() => ubFill("uebung", {}), 0),
+    e === "lernrallye" &&
+      !(i.rally || []).length &&
+      (i.rally = [
+        { typ: "info", titel: "Willkommen", text: "", punkte: 0 },
+        { typ: "frei", titel: "", text: "", antwort: "", punkte: 10 },
+      ]),
+    (s.innerHTML = Ne(e, {})));
+  const l = f("mfFixTag");
+  l && Ft.includes(e) && l.value === "" && (l.value = "0");
+}
+const rt = [
+    ["bewegung", "Bewegung an der frischen Luft"],
+    ["ruhe", "Ruhe / Atem\xFCbung"],
+    ["pause", "Pause & etwas essen"],
+    ["gespraech", "kurz abschalten mit Mitsch\xFCler:innen"],
+  ],
+  B = (e) => e.getFullYear() + "-" + String(e.getMonth() + 1).padStart(2, "0") + "-" + String(e.getDate()).padStart(2, "0"),
+  L = (e) => {
+    const [t, n, a] = String(e).split("-").map(Number);
+    return new Date(t, n - 1, a);
+  },
+  cn = (e) => {
+    const t = new Date(e.getFullYear(), e.getMonth(), e.getDate());
+    return (t.setDate(t.getDate() - ((t.getDay() + 6) % 7)), t);
+  },
+  N = (e, t) => {
+    const n = new Date(e);
+    return (n.setDate(n.getDate() + t), n);
+  };
+function ue(e) {
+  const t = new Date(Date.UTC(e.getFullYear(), e.getMonth(), e.getDate())),
+    n = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - n);
+  const a = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+  return Math.ceil(((t - a) / 864e5 + 1) / 7);
+}
+const Z = (e) => String(e.getDate()).padStart(2, "0") + "." + String(e.getMonth() + 1).padStart(2, "0") + ".";
+function Q(e) {
+  const t = L(e),
+    n = N(t, 4);
+  return "KW " + ue(t) + " \xB7 " + Z(t) + "\u2013" + Z(n) + t.getFullYear();
+}
+const Ge = () => B(cn(new Date())),
+  i = (window.__wpS = window.__wpS || {
+    woche: Ge(),
+    ansicht: "verplant",
+    tab: "uebersicht",
+    tag: Math.min(4, (new Date().getDay() + 6) % 7),
+    armed: null,
+    zeiten: null,
+    d: {},
+    chatUnsub: null,
+    filter: "alle",
+  });
+window.__wpStop = () => {
+  if (i.chatUnsub) {
+    try {
+      i.chatUnsub();
+    } catch {}
+    i.chatUnsub = null;
+  }
+};
+const Y = () => i.zeiten || Nt;
+function G(e, t) {
+  const n = Y()[e - 1] || "",
+    [a, s] = (Y()[e + t - 2] || "").split(":").map(Number);
+  if (isNaN(a)) return n;
+  const l = a * 60 + s + be;
+  return n + "\u2013" + String(Math.floor(l / 60)).padStart(2, "0") + ":" + String(l % 60).padStart(2, "0");
+}
+async function ct() {
+  const e = i.woche,
+    t = te(),
+    n = t ? [] : [M("status", "live")],
+    a = await j("wpEinstellungen", "zeiten");
+  a && Array.isArray(a.liste) && a.liste.length === 10 && (i.zeiten = a.liste);
+  const [s, l, r, d, m] = await Promise.all([
+      A("wpModule", ...n, M("woche", e)).catch(() => []),
+      A("wpModule", ...n, M("woche", "")).catch(() => []),
+      A("wpEinfuehrungen", ...n, M("woche", e)).catch(() => []),
+      A("wpSlots", ...n, M("woche", e)).catch(() => []),
+      j("wpWochen", e),
+    ]),
+    u = c.currentUser && c.currentUser.uid,
+    p = (g) => t || !Array.isArray(g.fuer) || !g.fuer.length || g.fuer.includes(u);
+  ((i.d.module = [...s, ...l]
+    .filter(p)
+    .sort((g, h) => String(g.fach).localeCompare(String(h.fach)) || String(g.titel).localeCompare(String(h.titel), "de"))),
+    (i.d.einf = r.filter(p)),
+    (i.d.slots = d),
+    (i.d.wochenDoc = m));
+}
+async function on() {
+  await ct();
+  const e = i.woche,
+    t = S(),
+    [n, a, s, l, r, d, m, u] = await Promise.all([
+      j("wpPlan", t + "_" + e),
+      A("wpBelegt").catch(() => []),
+      A("wpBuchungen", M("uid", t)).catch(() => []),
+      A("wpAnfragen", M("vonUid", t)).catch(() => []),
+      A("wpAnfragen", M("tutorUid", t)).catch(() => []),
+      A("wpTutor").catch(() => []),
+      j("wpPlan", t + "_" + B(N(L(e), -7))),
+      j("wpPlan", t + "_" + B(N(L(e), -14))),
+    ]),
+    [p, g, h, w, $] = await Promise.all([
+      A("wpFbGegeben", M("uid", t)).catch(() => []),
+      j("wpLernplan", t),
+      j("wpImpuls", t + "_" + e),
+      j("wpGespraeche", t + "_" + e),
+      j("wpZiele", t),
+    ]);
+  ((i.d.fbGegeben = new Set(p.map((k) => k.moduleId))),
+    (i.d.lernplan = g && Array.isArray(g.termine) ? g : { termine: [] }),
+    (i.d.impulsPers = h),
+    (i.d.gesp = w ? [w] : []),
+    (i.d.zielGespraech = $),
+    (i.d.laufend = [
+      [m, 1],
+      [u, 2],
+    ].flatMap(([k, K]) =>
+      k ? (k.eintraege || []).filter((b) => b.lang && !b.erledigt && x(b).wochen > K).map((b) => ({ ...b, woche: k.woche })) : [],
+    )),
+    (i.d.plan = n || { id: t + "_" + e, uid: t, woche: e, eintraege: [], ziel: "", rueckblick: "", geteilt: !1 }),
+    Array.isArray(i.d.plan.eintraege) || (i.d.plan.eintraege = []),
+    (i.d.offen = Wa(m)),
+    (i.d.belegt = new Set(a.map((k) => k.id))),
+    (i.d.buch = s.filter((k) => k.woche === e)),
+    (i.d.anfV = l),
+    (i.d.anfT = r),
+    (i.d.tutoren = d));
+}
+function Ie() {
+  const e = [],
+    t = i.woche;
+  if (
+    (i.d.einf.forEach((n) =>
+      e.push({
+        k: "einf",
+        d: n.d,
+        h: n.h,
+        len: n.len || 1,
+        titel: n.titel,
+        fach: n.fach,
+        sub: ae(n).l + (n.lehrkraft ? " \xB7 " + n.lehrkraft : "") + (n.raum ? " \xB7 " + n.raum : ""),
+        id: n.id,
+        art: n.art || "einfuehrung",
+        entwurf: n.status !== "live",
+      }),
+    ),
+    te())
+  )
+    i.d.slots.forEach((n) =>
+      e.push({
+        k: "slot",
+        d: n.d,
+        h: n.h,
+        len: n.len || 1,
+        titel: "Sprechzeit",
+        fach: n.fach,
+        sub: (n.lehrkraft || "") + (n.status !== "live" ? " \xB7 Entwurf" : ""),
+        id: n.id,
+        entwurf: n.status !== "live",
+      }),
+    );
+  else {
+    i.d.buch.forEach((a) =>
+      e.push({
+        k: "termin",
+        d: a.d,
+        h: a.h,
+        len: a.len || 1,
+        titel: "Termin: " + (a.lehrkraft || "Lehrkraft"),
+        fach: a.fach || "fachuebergreifend",
+        sub: a.frage || "",
+        id: a.id,
+      }),
+    );
+    const n = S();
+    ([...i.d.anfV, ...i.d.anfT]
+      .filter((a, s, l) => a.woche === t && l.findIndex((r) => r.id === a.id) === s && ["offen", "angenommen"].includes(a.status))
+      .forEach((a) => {
+        const s = a.tutorUid === n;
+        (s && a.status === "offen") ||
+          e.push({
+            k: "tutor",
+            d: a.d,
+            h: a.h,
+            len: a.len || 1,
+            titel: (a.art === "kompetenz" ? "Kompetenz: " : "Tutoring: ") + (s ? a.vonPseudo : a.tutorPseudo),
+            fach: a.fach || "fachuebergreifend",
+            sub: (a.status === "offen" ? "angefragt \xB7 " : "") + (a.thema || ""),
+            id: a.id,
+            offen: a.status === "offen",
+          });
+      }),
+      (i.d.gesp || []).forEach((a) =>
+        e.push({
+          k: "gesp",
+          d: a.d,
+          h: a.h,
+          len: a.len || 1,
+          titel: "Lernstandsgespr\xE4ch",
+          fach: "fachuebergreifend",
+          sub: (a.lehrkraft || "") + (a.raum ? " \xB7 " + a.raum : ""),
+          id: a.id,
+        }),
+      ),
+      i.d.plan.eintraege.filter((a) => !a.lang).forEach((a) => e.push({ k: "plan", ...a })));
+  }
+  return e;
+}
+function D(e, t, n, a) {
+  return t < 1 || t + n - 1 > 10 || e < 0 || e > 4
+    ? !1
+    : !Ie().some((s) => s.id !== a && s.d === e && !(t + n - 1 < s.h || t > s.h + (s.len || 1) - 1));
+}
+function Ke() {
+  const e = i.d.module.filter((r) => r.woche === i.woche),
+    t = i.d.plan.eintraege,
+    n = new Set(t.filter((r) => r.moduleId).map((r) => r.moduleId)),
+    a = e.filter((r) => n.has(r.id)).length,
+    s = e.filter((r) => t.some((d) => d.moduleId === r.id && d.erledigt)).length,
+    l = t.filter((r) => ["modul", "eigen"].includes(r.typ));
+  return {
+    modGesamt: e.length,
+    modGeplant: a,
+    modErledigt: s,
+    geplantMin: l.reduce((r, d) => r + de(d), 0),
+    erledigtMin: l.filter((r) => r.erledigt).reduce((r, d) => r + de(d), 0),
+    checkouts: t.filter((r) => r.mTyp === "checkout" && r.erledigt).length,
+    termine: i.d.buch.length,
+    auszeiten: t.filter((r) => r.typ === "auszeit").length,
+    tutoring: Ie().filter((r) => r.k === "tutor" && !r.offen).length,
+  };
+}
+const U = (e) => {
+  const t = e / 60;
+  return (Math.round(t * 10) / 10).toString().replace(".", ",") + " Std.";
+};
+async function F() {
+  const e = i.d.plan,
+    t = S(),
+    n = Ke(),
+    a = {
+      uid: t,
+      woche: i.woche,
+      eintraege: e.eintraege,
+      ziel: e.ziel || "",
+      rueckblick: e.rueckblick || "",
+      geteilt: !!e.geteilt,
+      verworfen: (e.verworfen || []).slice(-40),
+      updatedAt: c.serverTimestamp(),
+    };
+  try {
+    (await c.setDoc(z("wpPlan", t + "_" + i.woche), a),
+      await c.setDoc(z("wpStatus", t + "_" + i.woche), {
+        uid: t,
+        pseudo: ce(),
+        woche: i.woche,
+        modGesamt: n.modGesamt,
+        modGeplant: n.modGeplant,
+        modErledigt: n.modErledigt,
+        geplantMin: n.geplantMin,
+        erledigtMin: n.erledigtMin,
+        checkouts: n.checkouts,
+        termine: n.termine,
+        geteilt: !!e.geteilt,
+        updatedAt: c.serverTimestamp(),
+      }));
+  } catch (s) {
+    throw (console.error(s), c.toast("Speichern nicht m\xF6glich."), s);
+  }
+}
+function dn(e) {
+  return un(e).replace(/^<div /, `<div data-d="${e.d}" `);
+}
+function un(e) {
+  const t = T(e.fach),
+    n = `grid-column:${e.d + 2};grid-row:${e.h + 1}/span ${e.len || 1}`;
+  if (e.k === "einf") {
+    const r = te() ? `onclick="wp.einfBearbeiten('${e.id}')"` : `onclick="wp.info('einf','${e.id}')"`;
+    return `<div class="wp-b einf art ${e.art === "lernstand" ? "lernstand" : ""}${e.entwurf ? " entwurf" : ""}" style="${n};--fc:${t.c};--fb:${t.bg};${y(ne(e.art))}" ${r}><span class="wp-lock" title="Fester Termin der Lehrkraft">${ae(e).i}</span><b>${o(e.titel)}</b><small>${o(e.sub)}${e.entwurf ? " \xB7 Entwurf" : ""}</small></div>`;
+  }
+  if (e.k === "gesp")
+    return `<div class="wp-b einf art lernstand" style="${n};--fc:${t.c};--fb:${t.bg};${y("lernstand")}" onclick="wp.info('gesp','${e.id}')"><span class="wp-lock" title="Fester Termin der Lehrkraft"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;
+  if (e.k === "slot")
+    return `<div class="wp-b termin${e.entwurf ? " entwurf" : ""}" style="${n}" onclick="wp.slotBearbeiten('${e.id}')"><span class="wp-ic"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;
+  if (e.k === "termin")
+    return `<div class="wp-b termin art" style="${n};--fc:${t.c};${y("frage")}" onclick="wp.info('termin','${e.id}')"><span class="wp-ic"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;
+  if (e.k === "tutor")
+    return `<div class="wp-b tutor${e.offen ? " offen" : ""}" style="${n}" onclick="wp.info('tutor','${e.id}')"><span class="wp-ic"></span><b>${o(e.titel)}</b><small>${o(e.sub)}</small></div>`;
+  const a = e.typ,
+    s = "wp-b plan " + a + (e.mTyp ? " m-" + e.mTyp : "") + (a === "modul" && e.mTyp ? " art" : "") + (e.erledigt ? " done" : ""),
+    l = a === "auszeit" || a === "eigen" ? "" : ge[e.mTyp]?.i || "";
+  return `<div class="${s}" style="${n};--fc:${t.c};--fb:${t.bg};${a === "modul" && e.mTyp ? y(e.mTyp) : ""}" ${e.fest ? "" : `draggable="true" ondragstart="wp.dragStart(event,'move','${e.id}')"`} onclick="wp.info('plan','${e.id}')"><span class="wp-ic">${l}</span><b>${o(e.titel)}</b><small>${o(t.l)} \xB7 ${ie(x(e))}</small>${e.erledigt ? '<span class="wp-ok">\u2713</span>' : ""}</div>`;
+}
+function Ce(e) {
+  e = e || {};
+  const t = L(i.woche),
+    n = Ie(),
+    a = new Set();
+  n.forEach((r) => {
+    for (let d = 0; d < (r.len || 1); d++) a.add(r.d + "-" + (r.h + d));
+  });
+  const s = B(new Date());
+  let l = `<div class="wp-grid" id="wpGrid" data-tag="${i.tag}"><div class="wp-corner"></div>`;
+  for (let r = 0; r < 5; r++) {
+    const d = N(t, r),
+      m = B(d) === s;
+    l += `<div class="wp-dayh${m ? " heute" : ""}${r === i.tag ? " tag-on" : ""}" style="grid-column:${r + 2};grid-row:1"><b>${I[r]}</b> <span>${Z(d)}</span>${e.teacher ? "" : '<em class="wp-du">Du steuerst</em>'}</div>`;
+  }
+  for (let r = 1; r <= 10; r++) {
+    l += `<div class="wp-time" style="grid-column:1;grid-row:${r + 1}"><b>${r}</b><small>${o(Y()[r - 1] || "")}</small></div>`;
+    for (let d = 0; d < 5; d++)
+      a.has(d + "-" + r) ||
+        (l += `<div class="wp-c${d === i.tag ? " tag-on" : ""}${!e.teacher && gt(d, r) ? " hat-lk" : ""}" style="grid-column:${d + 2};grid-row:${r + 1}" ondragover="wp.over(event)" ondragleave="wp.leave(event)" ondrop="wp.drop(event,${d},${r})" onclick="wp.zelle(${d},${r})">${e.teacher ? "" : bt(d, r)}</div>`);
+  }
+  if (
+    (n.forEach((r) => {
+      l += dn(r);
+    }),
+    !e.teacher)
+  )
+    for (let r = 1; r <= 10; r++)
+      for (let d = 0; d < 5; d++)
+        a.has(d + "-" + r) && gt(d, r) && (l += `<div class="wp-lkov" style="grid-column:${d + 2};grid-row:${r + 1}">${bt(d, r)}</div>`);
+  return l + "</div>";
+}
+function ot() {
+  const e = L(i.woche);
+  return `<div class="wp-tage">${I.map((t, n) => `<button class="${n === i.tag ? "on" : ""}" onclick="wp.tag(${n})">${t} ${Z(N(e, n))}</button>`).join("")}</div>`;
+}
+function dt() {
+  return `<div class="wp-nav"><button class="secondary" onclick="wp.woche(-1)" aria-label="Vorherige Woche">\u2190</button><b>${o(Q(i.woche))}</b><button class="secondary" onclick="wp.woche(1)" aria-label="N\xE4chste Woche">\u2192</button>${i.woche !== Ge() ? '<button class="secondary" onclick="wp.woche(0)">Heute</button>' : ""}</div>`;
+}
+const He = [
+  { typ: "termin", ic: "", t: "Fachliche Frage", s: "Lehrkraft buchen" },
+  { typ: "tutor", ic: "", t: "Tutor:in buchen", s: "Mitsch\xFCler:in hilft" },
+  { typ: "kompetenz", ic: "", t: "Kompetenz anfragen", s: "f\xFCrs Projekt" },
+  { typ: "auszeit", ic: "", t: "Auszeit", s: "kurz regenerieren" },
+  { typ: "eigen", ic: "", t: "Eigene Lernzeit", s: "selbst gew\xE4hlt" },
+];
+function pn(e) {
+  const t = T(e.fach),
+    n = i.d.plan.eintraege.filter((r) => r.moduleId === e.id),
+    a = n.length,
+    s = n.some((r) => r.erledigt),
+    l = i.armed && i.armed.id === e.id;
+  return `<div class="wp-tile art m-${o(e.typ)}${a ? " geplant" : ""}${s ? " done" : ""}${l ? " armed" : ""}" style="--fc:${t.c};--fb:${t.bg};${y(e.typ)}" draggable="true" ondragstart="wp.dragStart(event,'modul','${e.id}')" onclick="wp.arm('modul','${e.id}')" title="${o(e.beschr || e.titel)}">
+ <span class="wp-tic">${ge[e.typ]?.i || ""}</span><b>${o(e.titel)}</b><small><i class="wp-fdot" style="background:${t.c}"></i>${o(t.l)} \xB7 ${o(ie(x(e)))}${e.pflicht ? " \xB7 Pflicht" : ""}${a ? " \xB7 \u2713" : ""}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('modul','${e.id}')">Einplanen</button></div>`;
+}
+const WP_UI_KEY = "wpUi";
+function wpUi() {
+  try {
+    return JSON.parse(localStorage.getItem(WP_UI_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+function wpUiSet(p) {
+  try {
+    localStorage.setItem(WP_UI_KEY, JSON.stringify({ ...wpUi(), ...p }));
+  } catch {}
+}
+function ut() {
+  const e = i.d.module.filter(
+      (l) => (l.fixTag == null || l.fixTag === "") && (l.mehrfach || !i.d.plan.eintraege.some((r) => r.moduleId === l.id)),
+    ),
+    t = [...new Set(e.map((l) => l.fach))];
+  i.filter !== "alle" && !t.includes(i.filter) && (i.filter = "alle");
+  const n = e.filter((l) => i.filter === "alle" || l.fach === i.filter),
+    kompakt = wpUi().lay === "kompakt";
+  let a = `<div class="wp-leiste card"><div class="wp-lh"><h3 title="Ziehe einen Baustein in den Plan oder tippe auf Einplanen">Zum Einplanen <small>${e.length ? e.length + " frei" : "alles zugeordnet"} \xB7 ziehen oder tippen</small></h3><div class="wp-chips"><button class="${i.filter === "alle" ? "on" : ""}" onclick="wp.filter('alle')">Alle</button>${t.map((l) => `<button class="${i.filter === l ? "on" : ""}" style="--fc:${T(l).c}" onclick="wp.filter('${l}')">${o(T(l).l)}</button>`).join("")}</div><div class="wp-lay" title="Anordnung der Lernbausteine"><button class="${kompakt ? "" : "on"}" onclick="wp.layout('fach')">Reihen nach Fach</button><button class="${kompakt ? "on" : ""}" onclick="wp.layout('kompakt')">Kompakt</button></div></div>`;
+  const s = He.map(
+    (l) =>
+      `<div class="wp-tile sonder s-${l.typ}${i.armed && i.armed.id === l.typ ? " armed" : ""}" draggable="true" ondragstart="wp.dragStart(event,'sonder','${l.typ}')" onclick="wp.arm('sonder','${l.typ}')"><span class="wp-tic">${l.ic}</span><b>${l.t}</b><small>${l.s}</small><button type="button" class="wp-plan-btn" onclick="event.stopPropagation();wp.einplanen('sonder','${l.typ}')">Einplanen</button></div>`,
+  ).join("");
+  let rows;
+  if (kompakt) rows = `<div class="wp-rows kompakt">${n.map(pn).join("")}${n.length ? '<span class="wp-trenn"></span>' : ""}${s}</div>`;
+  else {
+    const zeile = (lbl, inhalt, extra) =>
+      `<div class="wp-trow"><span class="wp-trl"${extra || ""}>${lbl}</span>${inhalt}</div>`;
+    rows = `<div class="wp-rows">${t
+      .filter((f) => n.some((l) => l.fach === f))
+      .map((f) => {
+        const it = n.filter((l) => l.fach === f);
+        return zeile(`${o(T(f).l)}<small>${it.length}</small>`, it.map(pn).join(""), ` style="--fc:${T(f).c};--fb:${T(f).bg}"`);
+      })
+      .join("")}${zeile("Hilfe &amp; Pausen", s, ' data-sonder="1"')}</div>`;
+  }
+  return (
+    (a += `<div class="wp-reihe"><button type="button" class="wp-pfeil" id="wpPfL" aria-label="nach links" onclick="wp.reiheScroll(-1)" ondragover="wp.pfeilDrag(event,-1)">\u2039</button><div class="wp-tiles1${kompakt ? " kompakt" : ""}" id="wpReihe">${rows}</div><button type="button" class="wp-pfeil" id="wpPfR" aria-label="nach rechts" onclick="wp.reiheScroll(1)" ondragover="wp.pfeilDrag(event,1)">\u203A</button></div>`),
+    a + "</div>"
+  );
+}
+function wpWs() {
+  const h = Math.round(Number(wpUi().trayH) || 250);
+  return `<div class="wp-ws" id="wpWs" style="--tray-h:${h}px">${Ce()}<div class="wp-split" role="separator" aria-orientation="horizontal" tabindex="0" title="Ziehen: Plan und Lernbausteine größer/kleiner (Doppelklick = zurücksetzen)"><i></i></div>${ut()}</div>`;
+}
+function wpPfeile() {
+  const t = f("wpReihe");
+  if (!t) return;
+  const max = t.scrollWidth - t.clientWidth - 2;
+  f("wpPfL")?.toggleAttribute("disabled", t.scrollLeft <= 1);
+  f("wpPfR")?.toggleAttribute("disabled", t.scrollLeft >= max);
+}
+function pt() {
+  const e = i.d.plan.eintraege.filter((a) => a.lang),
+    t = i.d.laufend || [];
+  if (!e.length && !t.length) return "";
+  const n = (a, s) => {
+    const l = x(a),
+      r = a.woche || i.woche,
+      d = B(N(L(r), 7 * (l.wochen - 1))),
+      m =
+        l.wochen > 1
+          ? "KW " + ue(L(r)) + "\u2013" + ue(L(d))
+          : a.startTag >= 0
+            ? I[a.startTag] + ((Je[l.code] || 1) > 1 ? " \u2013 " + I[Math.min(4, a.startTag + Je[l.code] - 1)] : "")
+            : "diese Woche";
+    return `<div class="wp-lang art${a.erledigt ? " done" : ""}" style="--fc:${T(a.fach).c};${y(a.mTyp)}" ${s ? `title="Hier abhaken: Woche ab ${o(Q(r))}"` : `onclick="wp.info('plan','${a.id}')"`}><b>${o(a.titel)}</b><small>${o(T(a.fach).l)} \xB7 ${o(l.label)} \xB7 ${o(m)}${s ? " \xB7 l\xE4uft noch" : ""}</small>${a.erledigt ? '<span class="wp-ok">\u2713</span>' : ""}</div>`;
+  };
+  return `<div class="card wp-langbox"><h3>L\xE4nger laufende Lernbausteine</h3><div class="wp-langliste">${e.map((a) => n(a, !1)).join("")}${t.map((a) => n(a, !0)).join("")}</div></div>`;
+}
+function hn() {
+  const e = Ke(),
+    t = Math.max(1, e.modGesamt),
+    n = Math.round((e.modErledigt / t) * 100),
+    a = Math.round(((e.modGeplant - e.modErledigt) / t) * 100);
+  return `<div class="wp-prog card"><div class="wp-ph"><b>Fortschritt in dieser Woche</b><span>${e.modErledigt} erledigt \xB7 ${e.modGeplant} von ${e.modGesamt} Lernbausteinen eingeplant</span></div>
+ <div class="wp-bar" role="img" aria-label="${e.modErledigt} erledigt, ${e.modGeplant} eingeplant von ${e.modGesamt}"><i class="d" style="width:${n}%"></i><i class="p" style="width:${Math.max(0, a)}%"></i></div>
+ <div class="wp-leg"><span><i class="d"></i>erledigt</span><span><i class="p"></i>eingeplant</span><span><i class="o"></i>noch offen</span></div></div>`;
+}
+function fn() {
+  const e = Ke();
+  return `<div class="wp-unten"><div class="card"><h3>So startest du</h3><ol class="wp-steps"><li><b>Feste Termine ansehen.</b> Einf\xFChrungen, Projekte, Lernstandsgespr\xE4che und Gruppen\xFCbungen deiner Lehrkr\xE4fte stehen schon im Plan. Die K\xFCrzel im Raster zeigen, wann welche Lehrkraft f\xFCr fachliche Fragen da ist.</li><li><b>Lernbausteine einplanen.</b> Ziehe einen Lernbaustein aus der Leiste auf einen freien Platz \u2013 oder tippe erst den Lernbaustein, dann den Platz.</li><li><b>Hilfe & Pausen mitdenken.</b> Termin, Tutor:in oder Auszeit sind eigene Bausteine.</li><li><b>Abhaken.</b> Tippe auf einen Eintrag und markiere ihn als erledigt.</li></ol></div>
  <div class="card"><h3>Meine Woche in Zahlen</h3><div class="wp-zahlen">
  <div><b>${U(e.geplantMin)}</b><small>Lernzeit geplant</small></div><div><b>${U(e.erledigtMin)}</b><small>davon erledigt</small></div>
  <div><b>${e.modGeplant}/${e.modGesamt}</b><small>Lernbausteine eingeplant</small></div><div><b>${e.checkouts}</b><small>Check-outs erledigt</small></div>
- <div><b>${e.termine+e.tutoring}</b><small>Termine & Tutoring</small></div><div><b>${e.auszeiten}</b><small>Auszeiten</small></div></div></div></div>`}function ht(){return`<div class="wp-seg"><button class="${i.ansicht==="verplant"?"on":""}" onclick="wp.ansicht('verplant')">Verplant</button><button class="${i.ansicht==="geleistet"?"on":""}" onclick="wp.ansicht('geleistet')">\u2713 Geleistet</button></div>`}function mn(){const e=i.armed;return e?e.kind==="modul"?i.d.module.find(t=>t.id===e.id)?.titel||"Lernbaustein":He.find(t=>t.typ===e.id)?.t||"Baustein":""}async function gn(){let e=!1;const t=i.d.plan.eintraege;for(const n of i.d.module){if(n.fixTag==null||n.fixTag===""||n.typ==="frage")continue;const a=x(n),s=Number(n.fixTag),l=Number(n.fixStd)||1,r=t.find(d=>d.moduleId===n.id);if(a.lang){r||(t.push({id:q(),typ:"modul",mTyp:n.typ,moduleId:n.id,titel:n.titel,fach:n.fach,d:-1,h:0,len:0,lang:!0,dauer:a.code,startTag:s,woche:i.woche,fest:!0,erledigt:!1,route:n.route||"",link:n.link||""}),e=!0);continue}if(r){r.fest&&(r.d!==s||r.h!==l)&&D(s,l,a.len,r.id)&&(r.d=s,r.h=l,e=!0);continue}D(s,l,a.len)&&(t.push({id:q(),typ:"modul",mTyp:n.typ,moduleId:n.id,titel:n.titel,fach:n.fach,d:s,h:l,len:a.len,dauer:a.code,fest:!0,erledigt:!1,route:n.route||"",link:n.link||""}),e=!0)}e&&await F()}async function bn(){if(i.ansicht==="geleistet")return await wn();await on(),await gn();const e=i.d.wochenDoc,t=i.d.plan,n=i.d.anfT.filter(s=>s.status==="offen").length;let a=`<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Mein Wochenplan</h1><p>Die Lehrkr\xE4fte f\xFChren ein \u2013 den Rest steuerst du selbst.</p></div><div class="wp-actions">${ht()}<button class="secondary" onclick="wp.inbox()">Anfragen${n?` <span class="wp-badge">${n}</span>`:""}</button><button class="secondary" onclick="wp.angebot()">Mein Angebot</button><button class="secondary" onclick="wp.voll()">${i.voll?"Vollbild beenden":"Vollbild"}</button></div></div>`;return a+=`<div class="wp-bar2">${dt()}<label class="wp-ziel">Wochenziel <input id="wpZiel" maxlength="120" value="${o(t.ziel||"")}" placeholder="Was willst du diese Woche schaffen?" onchange="wp.ziel(this.value)"></label></div>`,e&&e.impuls&&(a+=`<div class="wp-impuls"><b>Impuls deines Teams:</b> ${o(e.impuls)}</div>`),a+=qa(),i.armed&&(a+=`<div class="wp-armed">Ausgew\xE4hlt: <b>${o(mn())}</b> \u2013 tippe auf einen freien Platz im Plan. <button class="secondary" onclick="wp.arm(null)">Abbrechen</button></div>`),i.voll?(a+=`<div class="wp-vl"><div class="wp-vl-main">${Ce()}${ut()}</div><div class="wp-vl-side">${Lt()}${pt()}${wt()}</div></div>`,a):(a+=Lt()+pt()+ot()+Ce()+ut()+wt()+hn()+fn()+Ka(),a+=`<div class="card wp-rueck"><h3>Wochenr\xFCckblick <small>nur f\xFCr dich</small></h3><textarea id="wpRueck" maxlength="600" rows="2" placeholder="Was lief gut? Was nehme ich mit in die n\xE4chste Woche?" onchange="wp.rueck(this.value)">${o(t.rueckblick||"")}</textarea>
- <label class="wp-share"><input type="checkbox" ${t.geteilt?"checked":""} onchange="wp.teilen(this.checked)"> Meinen Plan dieser Woche mit meiner Lernbegleitung teilen (sonst sehen Lehrkr\xE4fte nur Kennzahlen)</label>${c.dsHinweis()}</div>`,a)}async function wn(){const e=S(),[t,n,a]=await Promise.all([A("wpPlan",M("uid",e)).catch(()=>[]),A("wpAnfragen",M("vonUid",e)).catch(()=>[]),A("wpAnfragen",M("tutorUid",e)).catch(()=>[])]),s=[];t.forEach(b=>(b.eintraege||[]).forEach(P=>s.push({...P,woche:b.woche})));const l=s.filter(b=>b.erledigt&&["modul","eigen"].includes(b.typ)),r=l.reduce((b,P)=>b+de(P),0),d=l.filter(b=>b.mTyp==="checkout").length,m=a.filter(b=>b.status==="angenommen").length,u=n.filter(b=>b.status==="angenommen").length,p={};l.forEach(b=>{p[b.fach]=(p[b.fach]||0)+de(b)});const g=Math.max(1,...Object.values(p)),w=[...new Set(t.map(b=>b.woche))].sort().slice(-12).map(b=>({w:b,m:l.filter(P=>P.woche===b).reduce((P,C)=>P+de(C),0)})),$=Math.max(1,...w.map(b=>b.m));let k=`<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Das habe ich geleistet</h1><p>Alles, was du abgehakt hast \u2013 \xFCber alle Wochen.</p></div><div class="wp-actions">${ht()}</div></div>`;k+=`<div class="wp-kpis"><div class="card"><b>${l.length}</b><small>erledigte Lernbausteine & Lernzeiten</small></div><div class="card"><b>${U(r)}</b><small>Lernzeit insgesamt</small></div><div class="card"><b>${d}</b><small>Check-outs</small></div><div class="card"><b>${m}</b><small>Mal geholfen (Tutor:in / Kompetenz)</small></div><div class="card"><b>${u}</b><small>Mal Hilfe bekommen</small></div></div>`,k+=`<div class="wp-unten"><div class="card"><h3>Lernzeit nach F\xE4chern</h3>${Object.keys(p).length?Object.keys(p).sort((b,P)=>p[P]-p[b]).map(b=>`<div class="wp-hbar"><span>${o(T(b).l)}</span><div><i style="width:${Math.round(p[b]/g*100)}%;background:${T(b).c}"></i></div><em>${U(p[b])}</em></div>`).join(""):'<p class="wp-leer">Noch nichts abgehakt \u2013 sobald du Eintr\xE4ge als erledigt markierst, erscheinen sie hier.</p>'}</div>
- <div class="card"><h3>Lernzeit pro Woche</h3>${w.length?`<div class="wp-wbars">${w.map(b=>`<div title="${o(Q(b.w))}"><i style="height:${Math.round(b.m/$*100)}%"></i><small>KW${ue(L(b.w))}</small></div>`).join("")}</div>`:'<p class="wp-leer">Noch keine Wochen.</p>'}</div></div>`;const K=l.sort((b,P)=>String(P.woche).localeCompare(String(b.woche))||P.d-b.d).slice(0,15);return k+=`<div class="card"><h3>Zuletzt erledigt</h3>${K.length?`<div class="wp-liste">${K.map(b=>`<div><span class="wp-fl" style="--fc:${T(b.fach).c};--fb:${T(b.fach).bg}">${o(T(b.fach).l)}</span><b>${o(b.titel)}</b><small>${o(Q(b.woche))} \xB7 ${b.lang?o(x(b).label):I[b.d]+" \xB7 "+ie(x(b))}</small></div>`).join("")}</div>`:'<p class="wp-leer">Noch nichts erledigt.</p>'}</div>`,k}async function ft(){try{return te()?await _n():await bn()}catch(e){return console.error("Wochenplan:",e),`<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${o(e?.code==="permission-denied"?"Daf\xFCr fehlt die Berechtigung \u2013 bitte firestore.rules in der Firebase-Konsole ver\xF6ffentlichen.":e?.message||"Unbekannter Fehler")}</p></div>`}}function mt(e){if(te())return;i.voll=!!e;const t=f("wpRoot");t&&t.classList.toggle("wp-voll",i.voll),document.body.classList.toggle("wp-voll-body",i.voll),v()}window.__wpDe||(window.__wpDe=1,document.addEventListener("dragend",()=>document.body.classList.remove("wp-dragging")),document.addEventListener("drop",()=>document.body.classList.remove("wp-dragging"))),window.__wpEsc||(window.__wpEsc=1,document.addEventListener("keydown",e=>{e.key==="Escape"&&i.voll&&document.getElementById("modalBackdrop")?.hidden!==!1&&mt(!1)}));async function v(){const e=f("wpRoot");if(!e)return;const t=window.scrollY;e.innerHTML=await ft(),window.scrollTo(0,t)}const E=e=>c.modal(`<button class="modal-close" onclick="closeModal()">\xD7</button>${e}`),q=()=>Ee();function vn(e){try{return JSON.parse(e.dataTransfer.getData("text/plain"))}catch{return i.drag||null}}async function _e(e,t,n){if(e){if(e.kind==="move"){const a=i.d.plan.eintraege.find(s=>s.id===e.id);return a?a.fest?c.toast("Dieser Lernbaustein hat einen festen Termin."):D(t,n,a.len||1,a.id)?(a.d=t,a.h=n,await F(),v()):c.toast("Dort ist nicht genug Platz."):void 0}if(e.kind==="offen"){const a=(i.d.offen||[]).find(u=>u.id===e.id);if(!a)return;const s=x(a),{vonWoche:l,note:r,doneAt:d,...m}=a;if(s.lang)i.d.plan.eintraege.push({...m,id:q(),d:-1,h:0,len:0,startTag:t,woche:i.woche,erledigt:!1,uebertrag:!0});else{if(!D(t,n,s.len))return c.toast(s.len>1?"Daf\xFCr brauchst du "+s.len+" freie Stunden hintereinander.":"Dieser Platz ist schon belegt.");i.d.plan.eintraege.push({...m,id:q(),d:t,h:n,len:s.len,woche:i.woche,erledigt:!1,uebertrag:!0})}return i.d.offen=i.d.offen.filter(u=>u.id!==e.id),await F(),c.toast("Eingeplant."),v()}if(e.kind==="modul"){const a=i.d.module.find(r=>r.id===e.id);if(!a)return;if(a.typ==="frage")return i.armed=null,vt(t,n);const s=x(a),l=i.d.plan.eintraege.find(r=>r.moduleId===a.id);return l&&!a.mehrfach?s.lang?c.toast("Dieser Lernbaustein ist schon eingeplant."):D(t,n,l.len||1,l.id)?(l.d=t,l.h=n,await F(),c.toast("Lernbaustein verschoben."),v()):c.toast("Dort ist nicht genug Platz."):s.lang?(i.d.plan.eintraege.push({id:q(),typ:"modul",mTyp:a.typ,moduleId:a.id,titel:a.titel,fach:a.fach,d:-1,h:0,len:0,lang:!0,dauer:s.code,startTag:t,woche:i.woche,erledigt:!1,route:a.route||"",link:a.link||""}),await F(),c.toast("Eingeplant: "+s.label+"."),v()):D(t,n,s.len)?(i.d.plan.eintraege.push({id:q(),typ:"modul",mTyp:a.typ,moduleId:a.id,titel:a.titel,fach:a.fach,d:t,h:n,len:s.len,dauer:s.code,erledigt:!1,route:a.route||"",link:a.link||""}),await F(),v()):c.toast(s.len>1?"F\xFCr diesen Lernbaustein brauchst du "+s.len+" freie Stunden hintereinander.":"Dieser Platz ist schon belegt.")}if(e.kind==="sonder"){if(e.id==="termin")return vt(t,n);if(e.id==="tutor"||e.id==="kompetenz")return Mn(e.id,t,n);if(e.id==="auszeit")return zn(t,n);if(e.id==="eigen")return Sn(t,n)}}}function pe(e){if(e&&e.kuerzel)return e.kuerzel;const t=String(e&&e.lehrkraft||"Lk").replace(/\b(Frau|Herr|Dr\.?|Prof\.?|StR|OStR|StRin)\b/gi,"").trim().split(/\s+/).filter(Boolean);return(t[t.length-1]||"Lk").slice(0,3).toUpperCase()}const gt=(e,t)=>(i.d.slots||[]).some(n=>n.d===e&&n.h<=t&&t<n.h+(n.len||1));function bt(e,t){return(i.d.slots||[]).filter(n=>n.d===e&&n.h<=t&&t<n.h+(n.len||1)).map(n=>{const a=i.d.belegt.has(n.id),s=i.d.buch.some(l=>l.id===n.id);return`<span role="button" tabindex="0" class="wp-lk${a?" bel":""}${s?" mein":""}" title="${o((n.lehrkraft||"Lehrkraft")+" \xB7 "+T(n.fach).l+(a?" \xB7 vergeben":" \xB7 anwesend, f\xFCr fachliche Fragen buchbar"))}" onclick="event.stopPropagation();wp.slotModal('${n.id}')" onkeydown="if(event.key==='Enter')wp.slotModal('${n.id}')">${o(pe(n))}</span>`}).join("")}function wt(){const e=i.d.slots||[];if(!e.length)return"";const t=new Map;return e.forEach(n=>{const a=pe(n);t.has(a)||t.set(a,n.lehrkraft||"Lehrkraft")}),`<div class="wp-lkleg"><b>Lehrkr\xE4fte im Plan:</b> ${[...t].map(([n,a])=>`<span><i class="wp-lk">${o(n)}</i> ${o(a)}</span>`).join("")}<small>Tippe auf ein K\xFCrzel, um die Lehrkraft f\xFCr eine fachliche Frage zu buchen.</small></div>`}function $n(e){const t=i.d.slots.find(r=>r.id===e);if(!t)return;const n=i.d.belegt.has(t.id),a=i.d.buch.some(r=>r.id===t.id),s=D(t.d,t.h,t.len||1),l=i.d.buch.length;E(`<div class="wp-artband" style="${y("frage")}">Fachliche Frage</div><div class="kicker">${o(T(t.fach).l)}</div><h2>${o(t.lehrkraft||"Lehrkraft")} (${o(pe(t))})</h2><p>${W[t.d]}, ${o(Z(N(L(i.woche),t.d)))} \xB7 ${o(G(t.h,t.len||1))}</p>
- ${a?'<p class="wp-hint">Diesen Termin hast du gebucht.</p>':n?'<p class="wp-hint">Dieser Termin ist schon vergeben.</p>':s?`<label class="form"><span>Deine Frage (kurz)</span><textarea id="wpFrage" maxlength="200" rows="2" placeholder="Worum geht es?"></textarea></label>${c.dsHinweis()}${l>=2?'<p class="wp-warn">Du hast diese Woche schon 2 Termine gebucht. Sage erst einen ab.</p>':""}`:'<p class="wp-hint">Bei dir ist zu dieser Zeit schon etwas geplant.</p>'}
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button>${!a&&!n&&s?`<button class="primary" ${l>=2?"disabled":""} onclick="wp.buche('${t.id}')">Buchen</button>`:""}</div>`)}function kn(e,t){if(te())return;const n=e==="modul"?i.d.module.find(u=>u.id===t):e==="offen"?(i.d.offen||[]).find(u=>u.id===t):null,a=n?x(n):{lang:!1,len:1},s=e==="modul"||e==="offen"?n?n.titel:"Lernbaustein":He.find(u=>u.typ===t)?.t||"Baustein",l=L(i.woche),r=W.map((u,p)=>`<option value="${p}" ${p===i.tag?"selected":""}>${u}, ${Z(N(l,p))}</option>`).join(""),d=[...Array(10)].map((u,p)=>`<option value="${p+1}">${p+1}. Stunde (${o(Y()[p]||"")})</option>`).join("");E(`<div class="wp-artband" style="${y("einfuehrung")}">Einplanen</div><div class="kicker">EINPLANEN</div><h2>${o(s)}</h2><div class="form">
+ <div><b>${e.termine + e.tutoring}</b><small>Termine & Tutoring</small></div><div><b>${e.auszeiten}</b><small>Auszeiten</small></div></div></div></div>`;
+}
+function ht() {
+  return `<div class="wp-seg"><button class="${i.ansicht === "verplant" ? "on" : ""}" onclick="wp.ansicht('verplant')">Verplant</button><button class="${i.ansicht === "geleistet" ? "on" : ""}" onclick="wp.ansicht('geleistet')">\u2713 Geleistet</button></div>`;
+}
+function mn() {
+  const e = i.armed;
+  return e
+    ? e.kind === "modul"
+      ? i.d.module.find((t) => t.id === e.id)?.titel || "Lernbaustein"
+      : He.find((t) => t.typ === e.id)?.t || "Baustein"
+    : "";
+}
+async function gn() {
+  let e = !1;
+  const t = i.d.plan.eintraege;
+  for (const n of i.d.module) {
+    if (n.fixTag == null || n.fixTag === "" || n.typ === "frage") continue;
+    const a = x(n),
+      s = Number(n.fixTag),
+      l = Number(n.fixStd) || 1,
+      r = t.find((d) => d.moduleId === n.id);
+    if (a.lang) {
+      r ||
+        (t.push({
+          id: q(),
+          typ: "modul",
+          mTyp: n.typ,
+          moduleId: n.id,
+          titel: n.titel,
+          fach: n.fach,
+          d: -1,
+          h: 0,
+          len: 0,
+          lang: !0,
+          dauer: a.code,
+          startTag: s,
+          woche: i.woche,
+          fest: !0,
+          erledigt: !1,
+          route: n.route || "",
+          link: n.link || "",
+        }),
+        (e = !0));
+      continue;
+    }
+    if (r) {
+      r.fest && (r.d !== s || r.h !== l) && D(s, l, a.len, r.id) && ((r.d = s), (r.h = l), (e = !0));
+      continue;
+    }
+    D(s, l, a.len) &&
+      (t.push({
+        id: q(),
+        typ: "modul",
+        mTyp: n.typ,
+        moduleId: n.id,
+        titel: n.titel,
+        fach: n.fach,
+        d: s,
+        h: l,
+        len: a.len,
+        dauer: a.code,
+        fest: !0,
+        erledigt: !1,
+        route: n.route || "",
+        link: n.link || "",
+      }),
+      (e = !0));
+  }
+  e && (await F());
+}
+async function bn() {
+  if (i.ansicht === "geleistet") return await wn();
+  (await on(), await gn());
+  const e = i.d.wochenDoc,
+    t = i.d.plan,
+    n = i.d.anfT.filter((s) => s.status === "offen").length;
+  let a = `<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Mein Wochenplan</h1><p>Die Lehrkr\xE4fte f\xFChren ein \u2013 den Rest steuerst du selbst.</p></div><div class="wp-actions">${ht()}<button class="secondary" onclick="wp.inbox()">Anfragen${n ? ` <span class="wp-badge">${n}</span>` : ""}</button><button class="secondary" onclick="wp.angebot()">Mein Angebot</button>${i.voll ? "" : `<button class="secondary" onclick="wp.nav()" title="Seitenleiste aus-/einblenden, damit der Plan mehr Platz hat">${wpUi().navAus ? "\u2630 Navigation einblenden" : "\u25E7 Navigation ausblenden"}</button>`}<button class="secondary" onclick="wp.voll()">${i.voll ? "Vollbild beenden" : "Vollbild"}</button></div></div>`;
+  return (
+    (a += `<div class="wp-bar2">${dt()}<label class="wp-ziel">Wochenziel <input id="wpZiel" maxlength="120" value="${o(t.ziel || "")}" placeholder="Was willst du diese Woche schaffen?" onchange="wp.ziel(this.value)"></label></div>`),
+    e && e.impuls && (a += `<div class="wp-impuls"><b>Impuls deines Teams:</b> ${o(e.impuls)}</div>`),
+    (a += qa()),
+    i.armed &&
+      (a += `<div class="wp-armed">Ausgew\xE4hlt: <b>${o(mn())}</b> \u2013 tippe auf einen freien Platz im Plan. <button class="secondary" onclick="wp.arm(null)">Abbrechen</button></div>`),
+    i.voll
+      ? ((a += `<div class="wp-vl"><div class="wp-vl-main">${wpWs()}</div><div class="wp-vl-side">${Lt()}${pt()}${wt()}</div></div>`),
+        a)
+      : ((a += Lt() + pt() + ot() + wpWs() + wt() + hn() + fn() + Ka()),
+        (a += `<div class="card wp-rueck"><h3>Wochenr\xFCckblick <small>nur f\xFCr dich</small></h3><textarea id="wpRueck" maxlength="600" rows="2" placeholder="Was lief gut? Was nehme ich mit in die n\xE4chste Woche?" onchange="wp.rueck(this.value)">${o(t.rueckblick || "")}</textarea>
+ <label class="wp-share"><input type="checkbox" ${t.geteilt ? "checked" : ""} onchange="wp.teilen(this.checked)"> Meinen Plan dieser Woche mit meiner Lernbegleitung teilen (sonst sehen Lehrkr\xE4fte nur Kennzahlen)</label>${c.dsHinweis()}</div>`),
+        a)
+  );
+}
+async function wn() {
+  const e = S(),
+    [t, n, a] = await Promise.all([
+      A("wpPlan", M("uid", e)).catch(() => []),
+      A("wpAnfragen", M("vonUid", e)).catch(() => []),
+      A("wpAnfragen", M("tutorUid", e)).catch(() => []),
+    ]),
+    s = [];
+  t.forEach((b) => (b.eintraege || []).forEach((P) => s.push({ ...P, woche: b.woche })));
+  const l = s.filter((b) => b.erledigt && ["modul", "eigen"].includes(b.typ)),
+    r = l.reduce((b, P) => b + de(P), 0),
+    d = l.filter((b) => b.mTyp === "checkout").length,
+    m = a.filter((b) => b.status === "angenommen").length,
+    u = n.filter((b) => b.status === "angenommen").length,
+    p = {};
+  l.forEach((b) => {
+    p[b.fach] = (p[b.fach] || 0) + de(b);
+  });
+  const g = Math.max(1, ...Object.values(p)),
+    w = [...new Set(t.map((b) => b.woche))]
+      .sort()
+      .slice(-12)
+      .map((b) => ({ w: b, m: l.filter((P) => P.woche === b).reduce((P, C) => P + de(C), 0) })),
+    $ = Math.max(1, ...w.map((b) => b.m));
+  let k = `<div class="wp-head"><div><div class="kicker">MEINE WOCHE</div><h1>Das habe ich geleistet</h1><p>Alles, was du abgehakt hast \u2013 \xFCber alle Wochen.</p></div><div class="wp-actions">${ht()}</div></div>`;
+  ((k += `<div class="wp-kpis"><div class="card"><b>${l.length}</b><small>erledigte Lernbausteine & Lernzeiten</small></div><div class="card"><b>${U(r)}</b><small>Lernzeit insgesamt</small></div><div class="card"><b>${d}</b><small>Check-outs</small></div><div class="card"><b>${m}</b><small>Mal geholfen (Tutor:in / Kompetenz)</small></div><div class="card"><b>${u}</b><small>Mal Hilfe bekommen</small></div></div>`),
+    (k += `<div class="wp-unten"><div class="card"><h3>Lernzeit nach F\xE4chern</h3>${
+      Object.keys(p).length
+        ? Object.keys(p)
+            .sort((b, P) => p[P] - p[b])
+            .map(
+              (b) =>
+                `<div class="wp-hbar"><span>${o(T(b).l)}</span><div><i style="width:${Math.round((p[b] / g) * 100)}%;background:${T(b).c}"></i></div><em>${U(p[b])}</em></div>`,
+            )
+            .join("")
+        : '<p class="wp-leer">Noch nichts abgehakt \u2013 sobald du Eintr\xE4ge als erledigt markierst, erscheinen sie hier.</p>'
+    }</div>
+ <div class="card"><h3>Lernzeit pro Woche</h3>${w.length ? `<div class="wp-wbars">${w.map((b) => `<div title="${o(Q(b.w))}"><i style="height:${Math.round((b.m / $) * 100)}%"></i><small>KW${ue(L(b.w))}</small></div>`).join("")}</div>` : '<p class="wp-leer">Noch keine Wochen.</p>'}</div></div>`));
+  const K = l.sort((b, P) => String(P.woche).localeCompare(String(b.woche)) || P.d - b.d).slice(0, 15);
+  return (
+    (k += `<div class="card"><h3>Zuletzt erledigt</h3>${K.length ? `<div class="wp-liste">${K.map((b) => `<div><span class="wp-fl" style="--fc:${T(b.fach).c};--fb:${T(b.fach).bg}">${o(T(b.fach).l)}</span><b>${o(b.titel)}</b><small>${o(Q(b.woche))} \xB7 ${b.lang ? o(x(b).label) : I[b.d] + " \xB7 " + ie(x(b))}</small></div>`).join("")}</div>` : '<p class="wp-leer">Noch nichts erledigt.</p>'}</div>`),
+    k
+  );
+}
+async function ft() {
+  try {
+    return te() ? await _n() : await bn();
+  } catch (e) {
+    return (
+      console.error("Wochenplan:", e),
+      `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${o(e?.code === "permission-denied" ? "Daf\xFCr fehlt die Berechtigung \u2013 bitte firestore.rules in der Firebase-Konsole ver\xF6ffentlichen." : e?.message || "Unbekannter Fehler")}</p></div>`
+    );
+  }
+}
+function mt(e) {
+  if (te()) return;
+  i.voll = !!e;
+  const t = f("wpRoot");
+  (t && t.classList.toggle("wp-voll", i.voll), document.body.classList.toggle("wp-voll-body", i.voll), v());
+}
+(window.__wpSp ||
+  ((window.__wpSp = 1),
+  document.addEventListener("pointerdown", (ev) => {
+    const h = ev.target.closest?.(".wp-split");
+    if (!h) return;
+    const ws = h.parentElement,
+      tray = ws.querySelector(".wp-leiste"),
+      y0 = ev.clientY,
+      h0 = tray.offsetHeight,
+      max = ws.clientHeight - 200;
+    let last = h0;
+    ev.preventDefault();
+    h.setPointerCapture?.(ev.pointerId);
+    h.classList.add("on");
+    const mv = (e) => {
+        last = Math.max(110, Math.min(max, h0 + (y0 - e.clientY)));
+        ws.style.setProperty("--tray-h", last + "px");
+      },
+      up = () => {
+        h.removeEventListener("pointermove", mv);
+        h.removeEventListener("pointerup", up);
+        h.removeEventListener("pointercancel", up);
+        h.classList.remove("on");
+        wpUiSet({ trayH: Math.round(last) });
+        wpPfeile();
+      };
+    h.addEventListener("pointermove", mv);
+    h.addEventListener("pointerup", up);
+    h.addEventListener("pointercancel", up);
+  }),
+  document.addEventListener("dblclick", (ev) => {
+    const h = ev.target.closest?.(".wp-split");
+    h && (h.parentElement.style.setProperty("--tray-h", "250px"), wpUiSet({ trayH: 250 }), wpPfeile());
+  }),
+  document.addEventListener("keydown", (ev) => {
+    const h = ev.target.closest?.(".wp-split");
+    if (!h || (ev.key !== "ArrowUp" && ev.key !== "ArrowDown")) return;
+    ev.preventDefault();
+    const ws = h.parentElement,
+      n = Math.max(110, Math.min(ws.clientHeight - 200, ws.querySelector(".wp-leiste").offsetHeight + (ev.key === "ArrowUp" ? 30 : -30)));
+    (ws.style.setProperty("--tray-h", n + "px"), wpUiSet({ trayH: n }), wpPfeile());
+  }),
+  document.addEventListener("scroll", (ev) => ev.target?.id === "wpReihe" && wpPfeile(), true),
+  window.addEventListener("resize", () => wpPfeile())),
+  window.__wpDe ||
+  ((window.__wpDe = 1),
+  document.addEventListener("dragend", () => document.body.classList.remove("wp-dragging")),
+  document.addEventListener("drop", () => document.body.classList.remove("wp-dragging"))),
+  window.__wpEsc ||
+    ((window.__wpEsc = 1),
+    document.addEventListener("keydown", (e) => {
+      e.key === "Escape" && i.voll && document.getElementById("modalBackdrop")?.hidden !== !1 && mt(!1);
+    })));
+async function v() {
+  const e = f("wpRoot");
+  if (!e) return;
+  const t = window.scrollY,
+    r = f("wpReihe"),
+    sl = r ? r.scrollLeft : 0,
+    st = r ? r.scrollTop : 0;
+  e.innerHTML = await ft();
+  window.scrollTo(0, t);
+  const r2 = f("wpReihe");
+  (r2 && ((r2.scrollLeft = sl), (r2.scrollTop = st)), wpPfeile());
+}
+const E = (e) => c.modal(`<button class="modal-close" onclick="closeModal()">\xD7</button>${e}`),
+  q = () => Ee();
+function vn(e) {
+  try {
+    return JSON.parse(e.dataTransfer.getData("text/plain"));
+  } catch {
+    return i.drag || null;
+  }
+}
+async function _e(e, t, n) {
+  if (e) {
+    if (e.kind === "move") {
+      const a = i.d.plan.eintraege.find((s) => s.id === e.id);
+      return a
+        ? a.fest
+          ? c.toast("Dieser Lernbaustein hat einen festen Termin.")
+          : D(t, n, a.len || 1, a.id)
+            ? ((a.d = t), (a.h = n), await F(), v())
+            : c.toast("Dort ist nicht genug Platz.")
+        : void 0;
+    }
+    if (e.kind === "offen") {
+      const a = (i.d.offen || []).find((u) => u.id === e.id);
+      if (!a) return;
+      const s = x(a),
+        { vonWoche: l, note: r, doneAt: d, ...m } = a;
+      if (s.lang) i.d.plan.eintraege.push({ ...m, id: q(), d: -1, h: 0, len: 0, startTag: t, woche: i.woche, erledigt: !1, uebertrag: !0 });
+      else {
+        if (!D(t, n, s.len))
+          return c.toast(s.len > 1 ? "Daf\xFCr brauchst du " + s.len + " freie Stunden hintereinander." : "Dieser Platz ist schon belegt.");
+        i.d.plan.eintraege.push({ ...m, id: q(), d: t, h: n, len: s.len, woche: i.woche, erledigt: !1, uebertrag: !0 });
+      }
+      return ((i.d.offen = i.d.offen.filter((u) => u.id !== e.id)), await F(), c.toast("Eingeplant."), v());
+    }
+    if (e.kind === "modul") {
+      const a = i.d.module.find((r) => r.id === e.id);
+      if (!a) return;
+      if (a.typ === "frage") return ((i.armed = null), vt(t, n));
+      const s = x(a),
+        l = i.d.plan.eintraege.find((r) => r.moduleId === a.id);
+      return l && !a.mehrfach
+        ? s.lang
+          ? c.toast("Dieser Lernbaustein ist schon eingeplant.")
+          : D(t, n, l.len || 1, l.id)
+            ? ((l.d = t), (l.h = n), await F(), c.toast("Lernbaustein verschoben."), v())
+            : c.toast("Dort ist nicht genug Platz.")
+        : s.lang
+          ? (i.d.plan.eintraege.push({
+              id: q(),
+              typ: "modul",
+              mTyp: a.typ,
+              moduleId: a.id,
+              titel: a.titel,
+              fach: a.fach,
+              d: -1,
+              h: 0,
+              len: 0,
+              lang: !0,
+              dauer: s.code,
+              startTag: t,
+              woche: i.woche,
+              erledigt: !1,
+              route: a.route || "",
+              link: a.link || "",
+            }),
+            await F(),
+            c.toast("Eingeplant: " + s.label + "."),
+            v())
+          : D(t, n, s.len)
+            ? (i.d.plan.eintraege.push({
+                id: q(),
+                typ: "modul",
+                mTyp: a.typ,
+                moduleId: a.id,
+                titel: a.titel,
+                fach: a.fach,
+                d: t,
+                h: n,
+                len: s.len,
+                dauer: s.code,
+                erledigt: !1,
+                route: a.route || "",
+                link: a.link || "",
+              }),
+              await F(),
+              v())
+            : c.toast(
+                s.len > 1
+                  ? "F\xFCr diesen Lernbaustein brauchst du " + s.len + " freie Stunden hintereinander."
+                  : "Dieser Platz ist schon belegt.",
+              );
+    }
+    if (e.kind === "sonder") {
+      if (e.id === "termin") return vt(t, n);
+      if (e.id === "tutor" || e.id === "kompetenz") return Mn(e.id, t, n);
+      if (e.id === "auszeit") return zn(t, n);
+      if (e.id === "eigen") return Sn(t, n);
+    }
+  }
+}
+function pe(e) {
+  if (e && e.kuerzel) return e.kuerzel;
+  const t = String((e && e.lehrkraft) || "Lk")
+    .replace(/\b(Frau|Herr|Dr\.?|Prof\.?|StR|OStR|StRin)\b/gi, "")
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+  return (t[t.length - 1] || "Lk").slice(0, 3).toUpperCase();
+}
+const gt = (e, t) => (i.d.slots || []).some((n) => n.d === e && n.h <= t && t < n.h + (n.len || 1));
+function bt(e, t) {
+  return (i.d.slots || [])
+    .filter((n) => n.d === e && n.h <= t && t < n.h + (n.len || 1))
+    .map((n) => {
+      const a = i.d.belegt.has(n.id),
+        s = i.d.buch.some((l) => l.id === n.id);
+      return `<span role="button" tabindex="0" class="wp-lk${a ? " bel" : ""}${s ? " mein" : ""}" title="${o((n.lehrkraft || "Lehrkraft") + " \xB7 " + T(n.fach).l + (a ? " \xB7 vergeben" : " \xB7 anwesend, f\xFCr fachliche Fragen buchbar"))}" onclick="event.stopPropagation();wp.slotModal('${n.id}')" onkeydown="if(event.key==='Enter')wp.slotModal('${n.id}')">${o(pe(n))}</span>`;
+    })
+    .join("");
+}
+function wt() {
+  const e = i.d.slots || [];
+  if (!e.length) return "";
+  const t = new Map();
+  return (
+    e.forEach((n) => {
+      const a = pe(n);
+      t.has(a) || t.set(a, n.lehrkraft || "Lehrkraft");
+    }),
+    `<div class="wp-lkleg"><b>Lehrkr\xE4fte im Plan:</b> ${[...t].map(([n, a]) => `<span><i class="wp-lk">${o(n)}</i> ${o(a)}</span>`).join("")}<small>Tippe auf ein K\xFCrzel, um die Lehrkraft f\xFCr eine fachliche Frage zu buchen.</small></div>`
+  );
+}
+function $n(e) {
+  const t = i.d.slots.find((r) => r.id === e);
+  if (!t) return;
+  const n = i.d.belegt.has(t.id),
+    a = i.d.buch.some((r) => r.id === t.id),
+    s = D(t.d, t.h, t.len || 1),
+    l = i.d.buch.length;
+  E(`<div class="wp-artband" style="${y("frage")}">Fachliche Frage</div><div class="kicker">${o(T(t.fach).l)}</div><h2>${o(t.lehrkraft || "Lehrkraft")} (${o(pe(t))})</h2><p>${W[t.d]}, ${o(Z(N(L(i.woche), t.d)))} \xB7 ${o(G(t.h, t.len || 1))}</p>
+ ${a ? '<p class="wp-hint">Diesen Termin hast du gebucht.</p>' : n ? '<p class="wp-hint">Dieser Termin ist schon vergeben.</p>' : s ? `<label class="form"><span>Deine Frage (kurz)</span><textarea id="wpFrage" maxlength="200" rows="2" placeholder="Worum geht es?"></textarea></label>${c.dsHinweis()}${l >= 2 ? '<p class="wp-warn">Du hast diese Woche schon 2 Termine gebucht. Sage erst einen ab.</p>' : ""}` : '<p class="wp-hint">Bei dir ist zu dieser Zeit schon etwas geplant.</p>'}
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button>${!a && !n && s ? `<button class="primary" ${l >= 2 ? "disabled" : ""} onclick="wp.buche('${t.id}')">Buchen</button>` : ""}</div>`);
+}
+function kn(e, t) {
+  if (te()) return;
+  const n = e === "modul" ? i.d.module.find((u) => u.id === t) : e === "offen" ? (i.d.offen || []).find((u) => u.id === t) : null,
+    a = n ? x(n) : { lang: !1, len: 1 },
+    s = e === "modul" || e === "offen" ? (n ? n.titel : "Lernbaustein") : He.find((u) => u.typ === t)?.t || "Baustein",
+    l = L(i.woche),
+    r = W.map((u, p) => `<option value="${p}" ${p === i.tag ? "selected" : ""}>${u}, ${Z(N(l, p))}</option>`).join(""),
+    d = [...Array(10)].map((u, p) => `<option value="${p + 1}">${p + 1}. Stunde (${o(Y()[p] || "")})</option>`).join("");
+  E(`<div class="wp-artband" style="${y("einfuehrung")}">Einplanen</div><div class="kicker">EINPLANEN</div><h2>${o(s)}</h2><div class="form">
   <label>Tag<select id="epTag">${r}</select></label>
-  ${a.lang?"":`<label>Beginn<select id="epStd">${d}</select></label>`}
-  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einplanenOk('${e}','${t}')">Einplanen</button></div></div>`);const m=f("epStd");if(m){const u=a.len||1,p=[...m.options].find(g=>D(i.tag,Number(g.value),u));p&&(m.value=p.value)}}function yn(e,t){const n=Number(f("epTag").value),a=Number(f("epStd")?.value||1);c.closeModal(),i.armed=null,_e({kind:e,id:t},n,a)}function zn(e,t){E(`<div class="wp-artband" style="${y("vertiefung")}">Auszeit</div><div class="kicker">AUSZEIT</div><h2>Kurze Auszeit einplanen</h2><p>Regeneration geh\xF6rt zum Lernen. Deine Auszeiten sind <b>nur f\xFCr dich</b> sichtbar und z\xE4hlen nicht in der Statistik der Lehrkr\xE4fte.</p>
- <div class="form"><label>Was tut dir gut?<select id="azArt">${rt.map(n=>`<option value="${n[0]}">${n[1]}</option>`).join("")}</select></label>
- <label>Dauer<select id="azLen"><option value="1">45 Minuten</option>${D(e,t,2)?'<option value="2">90 Minuten</option>':""}</select></label>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.auszeitSetzen(${e},${t})">Einplanen</button></div></div>`)}async function Tn(e,t){const n=f("azArt").value,a=Number(f("azLen").value)||1,s=rt.find(l=>l[0]===n)[1];if(!D(e,t,a))return c.toast("Dort ist nicht genug Platz.");i.d.plan.eintraege.push({id:q(),typ:"auszeit",titel:"Auszeit: "+s,fach:"fachuebergreifend",d:e,h:t,len:a,erledigt:!1,route:"resilienz"}),c.closeModal(),await F(),v()}function Sn(e,t){E(`<div class="wp-artband" style="${y("eigen")}">Eigene Lernzeit</div><div class="kicker">EIGENE LERNZEIT</div><h2>Eigene Lernzeit einplanen</h2>
+  ${a.lang ? "" : `<label>Beginn<select id="epStd">${d}</select></label>`}
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einplanenOk('${e}','${t}')">Einplanen</button></div></div>`);
+  const m = f("epStd");
+  if (m) {
+    const u = a.len || 1,
+      p = [...m.options].find((g) => D(i.tag, Number(g.value), u));
+    p && (m.value = p.value);
+  }
+}
+function yn(e, t) {
+  const n = Number(f("epTag").value),
+    a = Number(f("epStd")?.value || 1);
+  (c.closeModal(), (i.armed = null), _e({ kind: e, id: t }, n, a));
+}
+function zn(e, t) {
+  E(`<div class="wp-artband" style="${y("vertiefung")}">Auszeit</div><div class="kicker">AUSZEIT</div><h2>Kurze Auszeit einplanen</h2><p>Regeneration geh\xF6rt zum Lernen. Deine Auszeiten sind <b>nur f\xFCr dich</b> sichtbar und z\xE4hlen nicht in der Statistik der Lehrkr\xE4fte.</p>
+ <div class="form"><label>Was tut dir gut?<select id="azArt">${rt.map((n) => `<option value="${n[0]}">${n[1]}</option>`).join("")}</select></label>
+ <label>Dauer<select id="azLen"><option value="1">45 Minuten</option>${D(e, t, 2) ? '<option value="2">90 Minuten</option>' : ""}</select></label>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.auszeitSetzen(${e},${t})">Einplanen</button></div></div>`);
+}
+async function Tn(e, t) {
+  const n = f("azArt").value,
+    a = Number(f("azLen").value) || 1,
+    s = rt.find((l) => l[0] === n)[1];
+  if (!D(e, t, a)) return c.toast("Dort ist nicht genug Platz.");
+  (i.d.plan.eintraege.push({
+    id: q(),
+    typ: "auszeit",
+    titel: "Auszeit: " + s,
+    fach: "fachuebergreifend",
+    d: e,
+    h: t,
+    len: a,
+    erledigt: !1,
+    route: "resilienz",
+  }),
+    c.closeModal(),
+    await F(),
+    v());
+}
+function Sn(e, t) {
+  E(`<div class="wp-artband" style="${y("eigen")}">Eigene Lernzeit</div><div class="kicker">EIGENE LERNZEIT</div><h2>Eigene Lernzeit einplanen</h2>
  <div class="form"><label>Was willst du tun?<input id="egTitel" maxlength="60" placeholder="z. B. Vokabeln wiederholen"></label>
- <label>Fach<select id="egFach">${_.map(n=>`<option value="${n.k}">${o(n.l)}</option>`).join("")}</select></label>
- <label>Dauer (auch l\xE4nger, z. B. f\xFCr eine Pr\xFCfungsvorbereitung)<select id="egLen">${Xe.filter(n=>ve[n[0]]||D(e,t,x({dauer:n[0]}).len)).map(n=>`<option value="${n[0]}" ${n[0]==="45"?"selected":""}>${n[1]}${ve[n[0]]?" (Zeitraum)":""}</option>`).join("")}</select></label>${c.dsHinweis()}
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.eigenSetzen(${e},${t})">Einplanen</button></div></div>`)}async function An(e,t){const n=f("egTitel").value.trim();if(n.length<2)return c.toast("Bitte beschreibe kurz, was du tun willst.");const a=x({dauer:f("egLen").value});if(a.lang)return i.d.plan.eintraege.push({id:q(),typ:"eigen",mTyp:"eigen",titel:n,fach:f("egFach").value,d:-1,h:0,len:0,lang:!0,dauer:a.code,startTag:e,woche:i.woche,erledigt:!1}),c.closeModal(),await F(),v();if(!D(e,t,a.len))return c.toast("Dort ist nicht genug Platz.");i.d.plan.eintraege.push({id:q(),typ:"eigen",titel:n,fach:f("egFach").value,d:e,h:t,len:a.len,dauer:a.code,erledigt:!1}),c.closeModal(),await F(),v()}function vt(e,t){const n=S(),a=i.d.buch.length,s=[...i.d.slots].sort((l,r)=>(l.d===e&&l.h===t?0:1)-(r.d===e&&r.h===t?0:1)||l.d-r.d||l.h-r.h);E(`<div class="wp-artband" style="${y("frage")}">Fachliche Frage</div><div class="kicker">TERMIN BEI EINER LEHRKRAFT</div><h2>Fachliche Frage kl\xE4ren</h2><p>W\xE4hle einen freien Termin. Die Lehrkraft sieht dein Pseudonym und deine Frage \u2013 sonst niemand.</p>
+ <label>Fach<select id="egFach">${_.map((n) => `<option value="${n.k}">${o(n.l)}</option>`).join("")}</select></label>
+ <label>Dauer (auch l\xE4nger, z. B. f\xFCr eine Pr\xFCfungsvorbereitung)<select id="egLen">${Xe.filter(
+   (n) => ve[n[0]] || D(e, t, x({ dauer: n[0] }).len),
+ )
+   .map((n) => `<option value="${n[0]}" ${n[0] === "45" ? "selected" : ""}>${n[1]}${ve[n[0]] ? " (Zeitraum)" : ""}</option>`)
+   .join("")}</select></label>${c.dsHinweis()}
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.eigenSetzen(${e},${t})">Einplanen</button></div></div>`);
+}
+async function An(e, t) {
+  const n = f("egTitel").value.trim();
+  if (n.length < 2) return c.toast("Bitte beschreibe kurz, was du tun willst.");
+  const a = x({ dauer: f("egLen").value });
+  if (a.lang)
+    return (
+      i.d.plan.eintraege.push({
+        id: q(),
+        typ: "eigen",
+        mTyp: "eigen",
+        titel: n,
+        fach: f("egFach").value,
+        d: -1,
+        h: 0,
+        len: 0,
+        lang: !0,
+        dauer: a.code,
+        startTag: e,
+        woche: i.woche,
+        erledigt: !1,
+      }),
+      c.closeModal(),
+      await F(),
+      v()
+    );
+  if (!D(e, t, a.len)) return c.toast("Dort ist nicht genug Platz.");
+  (i.d.plan.eintraege.push({
+    id: q(),
+    typ: "eigen",
+    titel: n,
+    fach: f("egFach").value,
+    d: e,
+    h: t,
+    len: a.len,
+    dauer: a.code,
+    erledigt: !1,
+  }),
+    c.closeModal(),
+    await F(),
+    v());
+}
+function vt(e, t) {
+  const n = S(),
+    a = i.d.buch.length,
+    s = [...i.d.slots].sort((l, r) => (l.d === e && l.h === t ? 0 : 1) - (r.d === e && r.h === t ? 0 : 1) || l.d - r.d || l.h - r.h);
+  E(`<div class="wp-artband" style="${y("frage")}">Fachliche Frage</div><div class="kicker">TERMIN BEI EINER LEHRKRAFT</div><h2>Fachliche Frage kl\xE4ren</h2><p>W\xE4hle einen freien Termin. Die Lehrkraft sieht dein Pseudonym und deine Frage \u2013 sonst niemand.</p>
  <label class="form"><span>Deine Frage (kurz)</span><textarea id="wpFrage" maxlength="200" rows="2" placeholder="Worum geht es? z. B. \u201EAufgabe 3 zur Gleichung \u2013 wie komme ich auf den Ansatz?\u201C"></textarea></label>${c.dsHinweis()}
- ${a>=2?'<p class="wp-warn">Du hast diese Woche schon 2 Termine gebucht. Sage erst einen ab, wenn du einen weiteren m\xF6chtest.</p>':""}
- <div class="wp-slotliste">${s.length?s.map(l=>{const r=i.d.belegt.has(l.id),d=i.d.buch.some(u=>u.id===l.id),m=D(l.d,l.h,l.len||1);return`<div class="wp-slot${r?" bel":""}"><div><b>${W[l.d]}, ${o(Z(N(L(i.woche),l.d)))} \xB7 ${o(G(l.h,l.len||1))}</b><small>${o(l.lehrkraft||"Lehrkraft")} \xB7 ${o(T(l.fach).l)}</small></div>
-  ${d?'<span class="pill">gebucht</span>':r?'<span class="pill">vergeben</span>':m?`<button class="primary" ${a>=2?"disabled":""} onclick="wp.buche('${l.id}')">Buchen</button>`:'<span class="pill">bei dir belegt</span>'}</div>`}).join(""):'<p class="wp-leer">F\xFCr diese Woche hat noch keine Lehrkraft Termine angeboten.</p>'}</div>
+ ${a >= 2 ? '<p class="wp-warn">Du hast diese Woche schon 2 Termine gebucht. Sage erst einen ab, wenn du einen weiteren m\xF6chtest.</p>' : ""}
+ <div class="wp-slotliste">${
+   s.length
+     ? s
+         .map((l) => {
+           const r = i.d.belegt.has(l.id),
+             d = i.d.buch.some((u) => u.id === l.id),
+             m = D(l.d, l.h, l.len || 1);
+           return `<div class="wp-slot${r ? " bel" : ""}"><div><b>${W[l.d]}, ${o(Z(N(L(i.woche), l.d)))} \xB7 ${o(G(l.h, l.len || 1))}</b><small>${o(l.lehrkraft || "Lehrkraft")} \xB7 ${o(T(l.fach).l)}</small></div>
+  ${d ? '<span class="pill">gebucht</span>' : r ? '<span class="pill">vergeben</span>' : m ? `<button class="primary" ${a >= 2 ? "disabled" : ""} onclick="wp.buche('${l.id}')">Buchen</button>` : '<span class="pill">bei dir belegt</span>'}</div>`;
+         })
+         .join("")
+     : '<p class="wp-leer">F\xFCr diese Woche hat noch keine Lehrkraft Termine angeboten.</p>'
+ }</div>
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button><button class="primary" onclick="wp.frageVormerken(${e},${t})" title="Reserviert dir die Lernzeit im Plan, auch wenn noch kein Termin frei ist">Einplanen</button></div>
- <small class="wp-hint">\u201EEinplanen\u201C legt die Zeit f\xFCr deine Frage in deinen Plan. Sobald eine Lehrkraft Termine anbietet, kannst du hier buchen.</small>`)}async function Ln(e,t){if(!D(e,t,1))return c.toast("Dieser Platz ist schon belegt.");const n=(f("wpFrage")?.value||"").trim().slice(0,100);i.d.plan.eintraege.push({id:q(),typ:"eigen",mTyp:"frage",titel:n?"Frage: "+n:"Fachliche Frage kl\xE4ren",fach:"fachuebergreifend",d:e,h:t,len:1,dauer:"45",woche:i.woche,erledigt:!1}),c.closeModal(),await F(),c.toast("Eingeplant."),v()}async function En(e){const t=i.d.slots.find(a=>a.id===e);if(!t)return;const n=(f("wpFrage")?.value||"").trim();if(n.length<5)return c.toast("Bitte formuliere kurz deine Frage (mind. 5 Zeichen).");if(!D(t.d,t.h,t.len||1))return c.toast("Bei dir ist zu dieser Zeit schon etwas geplant.");try{const a=c.writeBatch(c.db);a.set(z("wpBuchungen",t.id),{slotId:t.id,uid:S(),pseudo:ce(),woche:i.woche,d:t.d,h:t.h,len:t.len||1,lehrkraft:t.lehrkraft||"",fach:t.fach||"fachuebergreifend",frage:n,createdAt:c.serverTimestamp()}),a.set(z("wpBelegt",t.id),{slotId:t.id,createdAt:c.serverTimestamp()}),await a.commit(),c.closeModal(),c.toast("Termin gebucht."),v()}catch(a){console.error(a),c.toast("Dieser Termin ist leider inzwischen vergeben."),c.closeModal(),v()}}async function Dn(e){if(confirm("Diesen Termin absagen?"))try{const t=c.writeBatch(c.db);t.delete(z("wpBuchungen",e)),t.delete(z("wpBelegt",e)),await t.commit(),c.closeModal(),c.toast("Termin abgesagt."),v()}catch(t){console.error(t),c.toast("Absagen nicht m\xF6glich.")}}function Mn(e,t,n){const a=S(),s=e==="kompetenz",l=i.d.tutoren.filter(r=>r.art===e&&r.uid!==a);E(`<div class="wp-artband" style="${y("projekt")}">${s?"Kompetenz anfragen":"Tutoring"}</div><div class="kicker">${s?"KOMPETENZ ANFRAGEN":"TUTOR:IN BUCHEN"}</div><h2>${s?"Wer kann dir im Projekt helfen?":"Wer erkl\xE4rt dir etwas?"}</h2>
- <p>${s?"Hier findest du St\xE4rken aus der Kompetenzwerkstatt deiner Mitsch\xFCler:innen.":"Mitsch\xFCler:innen, die anderen ein Thema erkl\xE4ren."} Der Termin liegt am <b>${W[t]}, ${o(G(n,1))}</b>. Die Person muss die Anfrage annehmen.</p>
- <div class="form"><label>${s?"Wobei brauchst du Unterst\xFCtzung?":"Welches Thema?"}<input id="tuThema" maxlength="100"></label>
- ${s?'<label>Projekt (optional)<input id="tuProjekt" maxlength="80" placeholder="z. B. BEP in Aktion \u2013 Team 2"></label>':""}
- <label>Dauer<select id="tuLen"><option value="1">45 Minuten</option>${D(t,n,2)?'<option value="2">90 Minuten</option>':""}</select></label>${c.dsHinweis()}</div>
- <div class="wp-slotliste">${l.length?l.map(r=>`<div class="wp-slot"><div><b>${o(r.pseudo)}</b><small>${o(s?r.bereich:T(r.fach).l+" \xB7 "+r.bereich)}${r.beschr?" \u2013 "+o(r.beschr):""}</small></div><button class="primary" onclick="wp.anfrage('${r.id}',${t},${n})">Anfragen</button></div>`).join(""):'<p class="wp-leer">Noch niemand hat ein Angebot eingestellt. Tipp: Biete selbst etwas an (Knopf \u201EMein Angebot\u201C).</p>'}</div>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`)}async function Fn(e,t,n){const a=i.d.tutoren.find(r=>r.id===e);if(!a)return;const s=(f("tuThema")?.value||"").trim();if(s.length<3)return c.toast("Bitte nenne kurz das Thema.");const l=Number(f("tuLen").value)||1;if(!D(t,n,l))return c.toast("Bei dir ist zu dieser Zeit schon etwas geplant.");try{await c.addDoc(R("wpAnfragen"),{vonUid:S(),vonPseudo:ce(),tutorUid:a.uid,tutorPseudo:a.pseudo,art:a.art,fach:a.fach||"fachuebergreifend",bereich:a.bereich||"",thema:s,projekt:(f("tuProjekt")?.value||"").trim(),woche:i.woche,d:t,h:n,len:l,status:"offen",createdAt:c.serverTimestamp(),updatedAt:c.serverTimestamp()}),c.closeModal(),c.toast("Anfrage gesendet."),v()}catch(r){console.error(r),c.toast("Anfrage nicht m\xF6glich.")}}function xn(){const e=i.woche,t=i.d.anfT.filter(l=>l.woche===e),n=i.d.anfV.filter(l=>l.woche===e),a=i.d.anfT.filter(l=>l.woche!==e&&l.status==="offen").length,s={offen:"wartet",angenommen:"angenommen",abgelehnt:"abgelehnt",zurueckgezogen:"zur\xFCckgezogen"};E(`<div class="wp-artband" style="${y("baustein")}">Anfragen</div><div class="kicker">ANFRAGEN \xB7 ${o(Q(e))}</div><h2>Anfragen an dich</h2>
- ${t.length?t.map(l=>`<div class="wp-slot"><div><b>${o(l.vonPseudo)} \xB7 ${l.art==="kompetenz"?"Kompetenz":"Tutoring"}</b><small>${I[l.d]} ${o(G(l.h,l.len||1))} \xB7 ${o(l.thema)}${l.projekt?" \xB7 Projekt: "+o(l.projekt):""}</small></div>
-  ${l.status==="offen"?`<span><button class="primary" onclick="wp.antwort('${l.id}',true)">Annehmen</button> <button class="secondary" onclick="wp.antwort('${l.id}',false)">Ablehnen</button></span>`:`<span class="pill">${s[l.status]||l.status}</span>`}</div>`).join(""):'<p class="wp-leer">Keine Anfragen in dieser Woche.</p>'}
- ${a?`<p class="wp-hint">${a} offene Anfrage(n) in anderen Wochen \u2013 wechsle die Woche, um sie zu beantworten.</p>`:""}
+ <small class="wp-hint">\u201EEinplanen\u201C legt die Zeit f\xFCr deine Frage in deinen Plan. Sobald eine Lehrkraft Termine anbietet, kannst du hier buchen.</small>`);
+}
+async function Ln(e, t) {
+  if (!D(e, t, 1)) return c.toast("Dieser Platz ist schon belegt.");
+  const n = (f("wpFrage")?.value || "").trim().slice(0, 100);
+  (i.d.plan.eintraege.push({
+    id: q(),
+    typ: "eigen",
+    mTyp: "frage",
+    titel: n ? "Frage: " + n : "Fachliche Frage kl\xE4ren",
+    fach: "fachuebergreifend",
+    d: e,
+    h: t,
+    len: 1,
+    dauer: "45",
+    woche: i.woche,
+    erledigt: !1,
+  }),
+    c.closeModal(),
+    await F(),
+    c.toast("Eingeplant."),
+    v());
+}
+async function En(e) {
+  const t = i.d.slots.find((a) => a.id === e);
+  if (!t) return;
+  const n = (f("wpFrage")?.value || "").trim();
+  if (n.length < 5) return c.toast("Bitte formuliere kurz deine Frage (mind. 5 Zeichen).");
+  if (!D(t.d, t.h, t.len || 1)) return c.toast("Bei dir ist zu dieser Zeit schon etwas geplant.");
+  try {
+    const a = c.writeBatch(c.db);
+    (a.set(z("wpBuchungen", t.id), {
+      slotId: t.id,
+      uid: S(),
+      pseudo: ce(),
+      woche: i.woche,
+      d: t.d,
+      h: t.h,
+      len: t.len || 1,
+      lehrkraft: t.lehrkraft || "",
+      fach: t.fach || "fachuebergreifend",
+      frage: n,
+      createdAt: c.serverTimestamp(),
+    }),
+      a.set(z("wpBelegt", t.id), { slotId: t.id, createdAt: c.serverTimestamp() }),
+      await a.commit(),
+      c.closeModal(),
+      c.toast("Termin gebucht."),
+      v());
+  } catch (a) {
+    (console.error(a), c.toast("Dieser Termin ist leider inzwischen vergeben."), c.closeModal(), v());
+  }
+}
+async function Dn(e) {
+  if (confirm("Diesen Termin absagen?"))
+    try {
+      const t = c.writeBatch(c.db);
+      (t.delete(z("wpBuchungen", e)), t.delete(z("wpBelegt", e)), await t.commit(), c.closeModal(), c.toast("Termin abgesagt."), v());
+    } catch (t) {
+      (console.error(t), c.toast("Absagen nicht m\xF6glich."));
+    }
+}
+function Mn(e, t, n) {
+  const a = S(),
+    s = e === "kompetenz",
+    l = i.d.tutoren.filter((r) => r.art === e && r.uid !== a);
+  E(`<div class="wp-artband" style="${y("projekt")}">${s ? "Kompetenz anfragen" : "Tutoring"}</div><div class="kicker">${s ? "KOMPETENZ ANFRAGEN" : "TUTOR:IN BUCHEN"}</div><h2>${s ? "Wer kann dir im Projekt helfen?" : "Wer erkl\xE4rt dir etwas?"}</h2>
+ <p>${s ? "Hier findest du St\xE4rken aus der Kompetenzwerkstatt deiner Mitsch\xFCler:innen." : "Mitsch\xFCler:innen, die anderen ein Thema erkl\xE4ren."} Der Termin liegt am <b>${W[t]}, ${o(G(n, 1))}</b>. Die Person muss die Anfrage annehmen.</p>
+ <div class="form"><label>${s ? "Wobei brauchst du Unterst\xFCtzung?" : "Welches Thema?"}<input id="tuThema" maxlength="100"></label>
+ ${s ? '<label>Projekt (optional)<input id="tuProjekt" maxlength="80" placeholder="z. B. BEP in Aktion \u2013 Team 2"></label>' : ""}
+ <label>Dauer<select id="tuLen"><option value="1">45 Minuten</option>${D(t, n, 2) ? '<option value="2">90 Minuten</option>' : ""}</select></label>${c.dsHinweis()}</div>
+ <div class="wp-slotliste">${l.length ? l.map((r) => `<div class="wp-slot"><div><b>${o(r.pseudo)}</b><small>${o(s ? r.bereich : T(r.fach).l + " \xB7 " + r.bereich)}${r.beschr ? " \u2013 " + o(r.beschr) : ""}</small></div><button class="primary" onclick="wp.anfrage('${r.id}',${t},${n})">Anfragen</button></div>`).join("") : '<p class="wp-leer">Noch niemand hat ein Angebot eingestellt. Tipp: Biete selbst etwas an (Knopf \u201EMein Angebot\u201C).</p>'}</div>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`);
+}
+async function Fn(e, t, n) {
+  const a = i.d.tutoren.find((r) => r.id === e);
+  if (!a) return;
+  const s = (f("tuThema")?.value || "").trim();
+  if (s.length < 3) return c.toast("Bitte nenne kurz das Thema.");
+  const l = Number(f("tuLen").value) || 1;
+  if (!D(t, n, l)) return c.toast("Bei dir ist zu dieser Zeit schon etwas geplant.");
+  try {
+    (await c.addDoc(R("wpAnfragen"), {
+      vonUid: S(),
+      vonPseudo: ce(),
+      tutorUid: a.uid,
+      tutorPseudo: a.pseudo,
+      art: a.art,
+      fach: a.fach || "fachuebergreifend",
+      bereich: a.bereich || "",
+      thema: s,
+      projekt: (f("tuProjekt")?.value || "").trim(),
+      woche: i.woche,
+      d: t,
+      h: n,
+      len: l,
+      status: "offen",
+      createdAt: c.serverTimestamp(),
+      updatedAt: c.serverTimestamp(),
+    }),
+      c.closeModal(),
+      c.toast("Anfrage gesendet."),
+      v());
+  } catch (r) {
+    (console.error(r), c.toast("Anfrage nicht m\xF6glich."));
+  }
+}
+function xn() {
+  const e = i.woche,
+    t = i.d.anfT.filter((l) => l.woche === e),
+    n = i.d.anfV.filter((l) => l.woche === e),
+    a = i.d.anfT.filter((l) => l.woche !== e && l.status === "offen").length,
+    s = { offen: "wartet", angenommen: "angenommen", abgelehnt: "abgelehnt", zurueckgezogen: "zur\xFCckgezogen" };
+  E(`<div class="wp-artband" style="${y("baustein")}">Anfragen</div><div class="kicker">ANFRAGEN \xB7 ${o(Q(e))}</div><h2>Anfragen an dich</h2>
+ ${
+   t.length
+     ? t
+         .map(
+           (
+             l,
+           ) => `<div class="wp-slot"><div><b>${o(l.vonPseudo)} \xB7 ${l.art === "kompetenz" ? "Kompetenz" : "Tutoring"}</b><small>${I[l.d]} ${o(G(l.h, l.len || 1))} \xB7 ${o(l.thema)}${l.projekt ? " \xB7 Projekt: " + o(l.projekt) : ""}</small></div>
+  ${l.status === "offen" ? `<span><button class="primary" onclick="wp.antwort('${l.id}',true)">Annehmen</button> <button class="secondary" onclick="wp.antwort('${l.id}',false)">Ablehnen</button></span>` : `<span class="pill">${s[l.status] || l.status}</span>`}</div>`,
+         )
+         .join("")
+     : '<p class="wp-leer">Keine Anfragen in dieser Woche.</p>'
+ }
+ ${a ? `<p class="wp-hint">${a} offene Anfrage(n) in anderen Wochen \u2013 wechsle die Woche, um sie zu beantworten.</p>` : ""}
  <h3>Meine Anfragen</h3>
- ${n.length?n.map(l=>`<div class="wp-slot"><div><b>${o(l.tutorPseudo)} \xB7 ${l.art==="kompetenz"?"Kompetenz":"Tutoring"}</b><small>${I[l.d]} ${o(G(l.h,l.len||1))} \xB7 ${o(l.thema)}</small></div><span><span class="pill">${s[l.status]||l.status}</span>${["offen","angenommen"].includes(l.status)?` <button class="secondary" onclick="wp.zurueckziehen('${l.id}')">Zur\xFCckziehen</button>`:""}</span></div>`).join(""):'<p class="wp-leer">Du hast in dieser Woche nichts angefragt.</p>'}
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`)}async function Nn(e,t){const n=i.d.anfT.find(a=>a.id===e);if(n){if(t&&!D(n.d,n.h,n.len||1))return c.toast("Du hast zu dieser Zeit schon etwas geplant. Verschiebe erst deinen Eintrag.");try{await c.updateDoc(z("wpAnfragen",e),{status:t?"angenommen":"abgelehnt",updatedAt:c.serverTimestamp()}),c.closeModal(),c.toast(t?"Angenommen \u2013 der Termin steht in euren Pl\xE4nen.":"Abgelehnt."),v()}catch(a){console.error(a),c.toast("Antwort nicht m\xF6glich.")}}}async function Pn(e){try{await c.updateDoc(z("wpAnfragen",e),{status:"zurueckgezogen",updatedAt:c.serverTimestamp()}),c.closeModal(),v()}catch(t){console.error(t),c.toast("Nicht m\xF6glich.")}}function ze(){const e=S(),t=i.d.tutoren.filter(n=>n.uid===e);E(`<div class="wp-artband" style="${y("baustein")}">Mein Angebot</div><div class="kicker">MEIN ANGEBOT</div><h2>Anderen helfen</h2><p>Hier entscheidest du, wobei du Mitsch\xFCler:innen unterst\xFCtzen m\xF6chtest. Dein Angebot sehen alle in der Klasse \u2013 mit deinem Pseudonym.</p>
- <h3>Meine Angebote</h3>${t.length?t.map(n=>`<div class="wp-slot"><div><b>${n.art==="kompetenz"?"Kompetenz":"Tutor:in"}: ${o(n.bereich)}</b><small>${n.art==="tutor"?o(T(n.fach).l)+" \xB7 ":""}${o(n.beschr||"")}</small></div><button class="secondary" onclick="wp.angebotWeg('${n.id}')">L\xF6schen</button></div>`).join(""):'<p class="wp-leer">Noch kein Angebot.</p>'}
+ ${n.length ? n.map((l) => `<div class="wp-slot"><div><b>${o(l.tutorPseudo)} \xB7 ${l.art === "kompetenz" ? "Kompetenz" : "Tutoring"}</b><small>${I[l.d]} ${o(G(l.h, l.len || 1))} \xB7 ${o(l.thema)}</small></div><span><span class="pill">${s[l.status] || l.status}</span>${["offen", "angenommen"].includes(l.status) ? ` <button class="secondary" onclick="wp.zurueckziehen('${l.id}')">Zur\xFCckziehen</button>` : ""}</span></div>`).join("") : '<p class="wp-leer">Du hast in dieser Woche nichts angefragt.</p>'}
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`);
+}
+async function Nn(e, t) {
+  const n = i.d.anfT.find((a) => a.id === e);
+  if (n) {
+    if (t && !D(n.d, n.h, n.len || 1)) return c.toast("Du hast zu dieser Zeit schon etwas geplant. Verschiebe erst deinen Eintrag.");
+    try {
+      (await c.updateDoc(z("wpAnfragen", e), { status: t ? "angenommen" : "abgelehnt", updatedAt: c.serverTimestamp() }),
+        c.closeModal(),
+        c.toast(t ? "Angenommen \u2013 der Termin steht in euren Pl\xE4nen." : "Abgelehnt."),
+        v());
+    } catch (a) {
+      (console.error(a), c.toast("Antwort nicht m\xF6glich."));
+    }
+  }
+}
+async function Pn(e) {
+  try {
+    (await c.updateDoc(z("wpAnfragen", e), { status: "zurueckgezogen", updatedAt: c.serverTimestamp() }), c.closeModal(), v());
+  } catch (t) {
+    (console.error(t), c.toast("Nicht m\xF6glich."));
+  }
+}
+function ze() {
+  const e = S(),
+    t = i.d.tutoren.filter((n) => n.uid === e);
+  E(`<div class="wp-artband" style="${y("baustein")}">Mein Angebot</div><div class="kicker">MEIN ANGEBOT</div><h2>Anderen helfen</h2><p>Hier entscheidest du, wobei du Mitsch\xFCler:innen unterst\xFCtzen m\xF6chtest. Dein Angebot sehen alle in der Klasse \u2013 mit deinem Pseudonym.</p>
+ <h3>Meine Angebote</h3>${t.length ? t.map((n) => `<div class="wp-slot"><div><b>${n.art === "kompetenz" ? "Kompetenz" : "Tutor:in"}: ${o(n.bereich)}</b><small>${n.art === "tutor" ? o(T(n.fach).l) + " \xB7 " : ""}${o(n.beschr || "")}</small></div><button class="secondary" onclick="wp.angebotWeg('${n.id}')">L\xF6schen</button></div>`).join("") : '<p class="wp-leer">Noch kein Angebot.</p>'}
  <h3>Neues Angebot</h3><div class="form">
  <label>Art<select id="agArt" onchange="document.getElementById('agFachBox').hidden=this.value!=='tutor'"><option value="tutor">Tutor:in in einem Fach</option><option value="kompetenz">Kompetenz (z. B. Excel, Zeichnen, Moderieren)</option></select></label>
- <label id="agFachBox">Fach<select id="agFach">${_.slice(0,7).map(n=>`<option value="${n.k}">${o(n.l)}</option>`).join("")}</select></label>
+ <label id="agFachBox">Fach<select id="agFach">${_.slice(0, 7)
+   .map((n) => `<option value="${n.k}">${o(n.l)}</option>`)
+   .join("")}</select></label>
  <label>Thema / Kompetenz<input id="agBereich" maxlength="60" placeholder="z. B. Gleichungen, Textanalyse, Pr\xE4sentationen"></label>
  <label>Kurzbeschreibung (optional)<input id="agBeschr" maxlength="120"></label>${c.dsHinweis()}
  <div class="form-actions"><button class="secondary" onclick="wp.ausKompetenzwerkstatt()">Aus meiner Kompetenzwerkstatt \xFCbernehmen</button><button class="primary" onclick="wp.angebotNeu()">Ver\xF6ffentlichen</button></div></div>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`)}async function jn(){const e=f("agArt").value,t=f("agBereich").value.trim();if(t.length<2)return c.toast("Bitte nenne ein Thema bzw. eine Kompetenz.");try{await c.addDoc(R("wpTutor"),{uid:S(),pseudo:ce(),art:e,fach:e==="tutor"?f("agFach").value:"fachuebergreifend",bereich:t,beschr:f("agBeschr").value.trim(),createdAt:c.serverTimestamp()}),i.d.tutoren=await A("wpTutor"),ze(),c.toast("Angebot ver\xF6ffentlicht.")}catch(n){console.error(n),c.toast("Nicht m\xF6glich.")}}async function Bn(e){try{await c.deleteDoc(z("wpTutor",e)),i.d.tutoren=i.d.tutoren.filter(t=>t.id!==e),ze()}catch{c.toast("Nicht m\xF6glich.")}}async function Wn(){try{const e=(await A("competencies",M("uid",S()))).filter(a=>a.canHelp);if(!e.length)return c.toast("In deiner Kompetenzwerkstatt ist nichts mit \u201EIch kann helfen\u201C markiert.");const t=new Set(i.d.tutoren.filter(a=>a.uid===S()).map(a=>a.bereich));let n=0;for(const a of e)t.has(a.name)||(await c.addDoc(R("wpTutor"),{uid:S(),pseudo:ce(),art:"kompetenz",fach:"fachuebergreifend",bereich:String(a.name).slice(0,60),beschr:String(a.helpText||"").slice(0,120),createdAt:c.serverTimestamp()}),n++);i.d.tutoren=await A("wpTutor"),ze(),c.toast(n+" Angebot(e) \xFCbernommen.")}catch(e){console.error(e),c.toast("\xDCbernehmen nicht m\xF6glich.")}}function Rn(e,t){if(e==="einf"){const r=i.d.einf.find(d=>d.id===t);return r?E(`<div class="wp-artband" style="${y(ne(r.art))}">${o(ae(r).l)}</div><div class="kicker">${o(T(r.fach).l)}</div><h2>${o(r.titel)}</h2><p>${W[r.d]}, ${o(G(r.h,r.len||1))}${r.lehrkraft?" \xB7 "+o(r.lehrkraft):""}${r.raum?" \xB7 Raum "+o(r.raum):""}</p><p class="wp-hint">${ae(r).hint}</p>${We(r.anhaenge)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`):void 0}if(e==="gesp")return Va(t);if(e==="termin"){const r=i.d.buch.find(d=>d.id===t);return r?E(`<div class="wp-artband" style="${y("frage")}">Termin bei einer Lehrkraft</div><div class="kicker">MEIN TERMIN</div><h2>${o(r.lehrkraft||"Lehrkraft")}</h2><p>${W[r.d]}, ${o(G(r.h,r.len||1))}</p><p><b>Meine Frage:</b> ${o(r.frage)}</p><div class="form-actions"><button class="secondary" onclick="wp.terminAbsagen('${r.id}')">Termin absagen</button><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`):void 0}if(e==="tutor"){const r=[...i.d.anfV,...i.d.anfT].find(m=>m.id===t);if(!r)return;const d=r.tutorUid===S();return E(`<div class="wp-artband" style="${y("projekt")}">${r.art==="kompetenz"?"Kompetenz":"Tutoring"}</div><div class="kicker">${r.art==="kompetenz"?"KOMPETENZ":"TUTORING"} \xB7 ${r.status==="offen"?"ANGEFRAGT":"BEST\xC4TIGT"}</div><h2>${o(d?r.vonPseudo:r.tutorPseudo)}</h2><p>${W[r.d]}, ${o(G(r.h,r.len||1))}</p><p><b>Thema:</b> ${o(r.thema)}${r.projekt?"<br><b>Projekt:</b> "+o(r.projekt):""}</p><div class="form-actions"><button class="secondary" onclick="wp.zurueckziehen('${r.id}')">${d?"Absagen":"Zur\xFCckziehen"}</button><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`)}const n=i.d.plan.eintraege.find(r=>r.id===t);if(!n)return;const a=n.moduleId?i.d.module.find(r=>r.id===n.moduleId):null,s=n.route?`<button class="secondary" onclick="closeModal();go('${o(n.route)}')">\xD6ffnen</button>`:n.link&&/^https:\/\//.test(n.link)?`<a class="secondary btn" href="${o(n.link)}" target="_blank" rel="noopener">Link \xF6ffnen</a>`:"",l=x(n);E(`${n.mTyp?`<div class="wp-artband" style="${y(n.mTyp)}">${o(V(n.mTyp).l)}</div>`:""}<div class="kicker">${o(T(n.fach).l)} \xB7 ${o(ie(l))}</div><h2>${o(n.titel)}</h2><p>${l.lang?o(l.label):W[n.d]+", "+o(G(n.h,n.len||1))}</p>${a&&a.beschr?`<p>${o(a.beschr)}</p>`:""}${et(a)}${tt(n,a)}${Da(n,a)}${n.fest?'<p class="wp-hint">Fester Termin deiner Lehrkraft \u2013 dieser Lernbaustein ist f\xFCr dich schon eingeplant.</p>':""}${We(a&&a.anhaenge)}
- <label class="form"><span>Notiz (nur f\xFCr dich)</span><textarea id="wpNotiz" rows="2" maxlength="300" onchange="wp.notiz('${n.id}',this.value)">${o(n.note||"")}</textarea></label>
- <div class="form-actions">${n.fest?"":`<button class="secondary" onclick="wp.entfernen('${n.id}')">Aus Plan nehmen</button>`}${s}<button class="primary" onclick="wp.erledigt('${n.id}')">${n.erledigt?"Wieder \xF6ffnen":"\u2713 Erledigt"}</button></div>`)}async function Gn(e){const t=i.d.plan.eintraege.find(n=>n.id===e);t&&(t.erledigt=!t.erledigt,t.doneAt=t.erledigt?Date.now():null,c.closeModal(),await F(),t.erledigt&&c.toast("Stark \u2013 abgehakt!"),v())}async function In(e){i.d.plan.eintraege=i.d.plan.eintraege.filter(t=>t.id!==e),c.closeModal(),await F(),v()}async function Kn(e,t){const n=i.d.plan.eintraege.find(a=>a.id===e);n&&(n.note=String(t).slice(0,300),await F())}const $t={woche:async e=>{i.woche=e===0?Ge():B(N(L(i.woche),7*e)),i.armed=null,v()},tag:e=>{i.tag=e,v()},ansicht:e=>{i.ansicht=e,v()},filter:e=>{i.filter=e,v()},arm:(e,t)=>{!e||i.armed&&i.armed.id===t?i.armed=null:i.armed={kind:e,id:t},v().then(()=>{i.armed&&f("wpGrid")?.scrollIntoView({behavior:"smooth",block:"start"})})},dragStart:(e,t,n)=>{i.drag={kind:t,id:n},document.body.classList.add("wp-dragging");try{e.dataTransfer.setData("text/plain",JSON.stringify(i.drag)),e.dataTransfer.effectAllowed="move"}catch{}},over:e=>{e.preventDefault(),e.currentTarget.classList.add("over")},leave:e=>e.currentTarget.classList.remove("over"),drop:(e,t,n)=>{e.preventDefault(),e.currentTarget.classList.remove("over");const a=vn(e);i.drag=null,i.armed=null,_e(a,t,n)},zelle:(e,t)=>{if(te())return la(e,t);if(i.armed){const n=i.armed;i.armed=null,_e({kind:n.kind,id:n.id},e,t)}},info:Rn,erledigt:Gn,entfernen:In,notiz:Kn,buche:En,terminAbsagen:Dn,anfrage:Fn,inbox:xn,antwort:Nn,zurueckziehen:Pn,angebot:ze,angebotNeu:jn,angebotWeg:Bn,ausKompetenzwerkstatt:Wn,auszeitSetzen:Tn,eigenSetzen:An,ziel:async e=>{i.d.plan.ziel=String(e).slice(0,120),await F()},rueck:async e=>{i.d.plan.rueckblick=String(e).slice(0,600),await F()},teilen:async e=>{i.d.plan.geteilt=!!e,await F(),c.toast(e?"Plan wird mit der Lernbegleitung geteilt.":"Plan ist wieder privat.")}},Cn=[["uebersicht","Klassen\xFCbersicht"],["module","Lernbausteine"],["plan","Feste Termine & Sprechzeiten"],["team","Klassenteam & Freitagsplanung"],["feedback","Block-Feedback"],["anfragen","Hilfe in der Klasse"]];function Hn(){return`<div class="wp-seg wp-ltabs">${Cn.map(e=>`<button class="${i.tab===e[0]?"on":""}" onclick="wp.ltab('${e[0]}')">${e[1]}</button>`).join("")}</div>`}async function _n(){i.tab!=="team"&&window.__wpStop(),await ct();let e=`<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>Wochenplanung der Klasse</h1><p>Ihr stellt Lernbausteine und feste Termine (Einf\xFChrungen, Lernstandsgespr\xE4che) ein \u2013 die Sch\xFCler:innen planen ihre Woche selbst.</p></div></div>
- <div class="wp-bar2">${dt()}${Hn()}</div>`;const t=i.d.wochenDoc,n=i.d.module.filter(s=>s.status==="live"&&s.woche===i.woche).length+i.d.einf.filter(s=>s.status==="live").length,a=i.d.module.filter(s=>s.status!=="live"&&s.woche===i.woche).length+i.d.einf.filter(s=>s.status!=="live").length+i.d.slots.filter(s=>s.status!=="live").length;return e+=`<div class="wp-stat">${t&&t.status==="live"?'<span class="pill ok">Woche ist f\xFCr die Klasse sichtbar</span>':'<span class="pill">Woche noch nicht freigegeben</span>'}<span>${n} Eintr\xE4ge live</span>${a?`<span class="pill warn">${a} Entwurf</span>`:""}</div>`,i.tab==="uebersicht"?e+=await Zn():i.tab==="module"?e+=Vn():i.tab==="plan"?e+=await ia():i.tab==="team"?e+=await da():i.tab==="feedback"?e+=await Pa():e+=await Sa(),e}async function Zn(){const e=i.woche,[t,n]=await Promise.all([A("users",M("role","student")).catch(()=>[]),A("wpStatus",M("woche",e)).catch(()=>[])]),a=Object.fromEntries(n.map(u=>[u.uid,u])),s=t.filter(u=>u.status==="approved").map(u=>({u,s:a[u.uid]||null})).sort((u,p)=>String(u.u.displayName).localeCompare(String(p.u.displayName),"de"));i.d.sts=s;const l=s.filter(u=>u.s&&u.s.modGeplant>0).length,r=s.length?s.reduce((u,p)=>u+(p.s?p.s.geplantMin:0),0)/s.length:0,d=u=>{if(!u||!u.modGesamt)return u?'<span class="pill">keine Lernbausteine</span>':'<span class="pill rot">kein Plan</span>';const p=u.modGeplant/u.modGesamt;return p>=.7?'<span class="pill ok">Plan steht</span>':p>0?'<span class="pill warn">Plan angefangen</span>':'<span class="pill rot">kein Plan</span>'};let m=`<div class="wp-kpis"><div class="card"><b>${s.length}</b><small>freigeschaltete Sch\xFCler:innen</small></div><div class="card"><b>${l}</b><small>haben Lernbausteine eingeplant</small></div><div class="card"><b>${U(r)}</b><small>\xD8 Lernzeit geplant</small></div><div class="card"><b>${s.reduce((u,p)=>u+(p.s?p.s.checkouts:0),0)}</b><small>Check-outs erledigt</small></div></div>`;return m+=`<div class="card"><div class="wp-th"><h3>Wer hat schon geplant?</h3><small>Nur Kennzahlen \u2013 der Plan selbst bleibt privat, au\xDFer die Person teilt ihn.</small></div>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`);
+}
+async function jn() {
+  const e = f("agArt").value,
+    t = f("agBereich").value.trim();
+  if (t.length < 2) return c.toast("Bitte nenne ein Thema bzw. eine Kompetenz.");
+  try {
+    (await c.addDoc(R("wpTutor"), {
+      uid: S(),
+      pseudo: ce(),
+      art: e,
+      fach: e === "tutor" ? f("agFach").value : "fachuebergreifend",
+      bereich: t,
+      beschr: f("agBeschr").value.trim(),
+      createdAt: c.serverTimestamp(),
+    }),
+      (i.d.tutoren = await A("wpTutor")),
+      ze(),
+      c.toast("Angebot ver\xF6ffentlicht."));
+  } catch (n) {
+    (console.error(n), c.toast("Nicht m\xF6glich."));
+  }
+}
+async function Bn(e) {
+  try {
+    (await c.deleteDoc(z("wpTutor", e)), (i.d.tutoren = i.d.tutoren.filter((t) => t.id !== e)), ze());
+  } catch {
+    c.toast("Nicht m\xF6glich.");
+  }
+}
+async function Wn() {
+  try {
+    const e = (await A("competencies", M("uid", S()))).filter((a) => a.canHelp);
+    if (!e.length) return c.toast("In deiner Kompetenzwerkstatt ist nichts mit \u201EIch kann helfen\u201C markiert.");
+    const t = new Set(i.d.tutoren.filter((a) => a.uid === S()).map((a) => a.bereich));
+    let n = 0;
+    for (const a of e)
+      t.has(a.name) ||
+        (await c.addDoc(R("wpTutor"), {
+          uid: S(),
+          pseudo: ce(),
+          art: "kompetenz",
+          fach: "fachuebergreifend",
+          bereich: String(a.name).slice(0, 60),
+          beschr: String(a.helpText || "").slice(0, 120),
+          createdAt: c.serverTimestamp(),
+        }),
+        n++);
+    ((i.d.tutoren = await A("wpTutor")), ze(), c.toast(n + " Angebot(e) \xFCbernommen."));
+  } catch (e) {
+    (console.error(e), c.toast("\xDCbernehmen nicht m\xF6glich."));
+  }
+}
+function Rn(e, t) {
+  if (e === "einf") {
+    const r = i.d.einf.find((d) => d.id === t);
+    return r
+      ? E(
+          `<div class="wp-artband" style="${y(ne(r.art))}">${o(ae(r).l)}</div><div class="kicker">${o(T(r.fach).l)}</div><h2>${o(r.titel)}</h2><p>${W[r.d]}, ${o(G(r.h, r.len || 1))}${r.lehrkraft ? " \xB7 " + o(r.lehrkraft) : ""}${r.raum ? " \xB7 Raum " + o(r.raum) : ""}</p><p class="wp-hint">${ae(r).hint}</p>${We(r.anhaenge)}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button></div>`,
+        )
+      : void 0;
+  }
+  if (e === "gesp") return Va(t);
+  if (e === "termin") {
+    const r = i.d.buch.find((d) => d.id === t);
+    return r
+      ? E(
+          `<div class="wp-artband" style="${y("frage")}">Termin bei einer Lehrkraft</div><div class="kicker">MEIN TERMIN</div><h2>${o(r.lehrkraft || "Lehrkraft")}</h2><p>${W[r.d]}, ${o(G(r.h, r.len || 1))}</p><p><b>Meine Frage:</b> ${o(r.frage)}</p><div class="form-actions"><button class="secondary" onclick="wp.terminAbsagen('${r.id}')">Termin absagen</button><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`,
+        )
+      : void 0;
+  }
+  if (e === "tutor") {
+    const r = [...i.d.anfV, ...i.d.anfT].find((m) => m.id === t);
+    if (!r) return;
+    const d = r.tutorUid === S();
+    return E(
+      `<div class="wp-artband" style="${y("projekt")}">${r.art === "kompetenz" ? "Kompetenz" : "Tutoring"}</div><div class="kicker">${r.art === "kompetenz" ? "KOMPETENZ" : "TUTORING"} \xB7 ${r.status === "offen" ? "ANGEFRAGT" : "BEST\xC4TIGT"}</div><h2>${o(d ? r.vonPseudo : r.tutorPseudo)}</h2><p>${W[r.d]}, ${o(G(r.h, r.len || 1))}</p><p><b>Thema:</b> ${o(r.thema)}${r.projekt ? "<br><b>Projekt:</b> " + o(r.projekt) : ""}</p><div class="form-actions"><button class="secondary" onclick="wp.zurueckziehen('${r.id}')">${d ? "Absagen" : "Zur\xFCckziehen"}</button><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`,
+    );
+  }
+  const n = i.d.plan.eintraege.find((r) => r.id === t);
+  if (!n) return;
+  const a = n.moduleId ? i.d.module.find((r) => r.id === n.moduleId) : null,
+    s = n.route
+      ? `<button class="secondary" onclick="closeModal();go('${o(n.route)}')">\xD6ffnen</button>`
+      : n.link && /^https:\/\//.test(n.link)
+        ? `<a class="secondary btn" href="${o(n.link)}" target="_blank" rel="noopener">Link \xF6ffnen</a>`
+        : "",
+    l = x(n);
+  E(`${n.mTyp ? `<div class="wp-artband" style="${y(n.mTyp)}">${o(V(n.mTyp).l)}</div>` : ""}<div class="kicker">${o(T(n.fach).l)} \xB7 ${o(ie(l))}</div><h2>${o(n.titel)}</h2><p>${l.lang ? o(l.label) : W[n.d] + ", " + o(G(n.h, n.len || 1))}</p>${a && a.beschr ? `<p>${o(a.beschr)}</p>` : ""}${et(a)}${tt(n, a)}${Da(n, a)}${n.fest ? '<p class="wp-hint">Fester Termin deiner Lehrkraft \u2013 dieser Lernbaustein ist f\xFCr dich schon eingeplant.</p>' : ""}${We(a && a.anhaenge)}
+ <label class="form"><span>Notiz (nur f\xFCr dich)</span><textarea id="wpNotiz" rows="2" maxlength="300" onchange="wp.notiz('${n.id}',this.value)">${o(n.note || "")}</textarea></label>
+ <div class="form-actions">${n.fest ? "" : `<button class="secondary" onclick="wp.entfernen('${n.id}')">Aus Plan nehmen</button>`}${s}<button class="primary" onclick="wp.erledigt('${n.id}')">${n.erledigt ? "Wieder \xF6ffnen" : "\u2713 Erledigt"}</button></div>`);
+}
+async function Gn(e) {
+  const t = i.d.plan.eintraege.find((n) => n.id === e);
+  t &&
+    ((t.erledigt = !t.erledigt),
+    (t.doneAt = t.erledigt ? Date.now() : null),
+    c.closeModal(),
+    await F(),
+    t.erledigt && c.toast("Stark \u2013 abgehakt!"),
+    v());
+}
+async function In(e) {
+  ((i.d.plan.eintraege = i.d.plan.eintraege.filter((t) => t.id !== e)), c.closeModal(), await F(), v());
+}
+async function Kn(e, t) {
+  const n = i.d.plan.eintraege.find((a) => a.id === e);
+  n && ((n.note = String(t).slice(0, 300)), await F());
+}
+const $t = {
+    woche: async (e) => {
+      ((i.woche = e === 0 ? Ge() : B(N(L(i.woche), 7 * e))), (i.armed = null), v());
+    },
+    tag: (e) => {
+      ((i.tag = e), v());
+    },
+    ansicht: (e) => {
+      ((i.ansicht = e), v());
+    },
+    filter: (e) => {
+      ((i.filter = e), v());
+    },
+    arm: (e, t) => {
+      (!e || (i.armed && i.armed.id === t) ? (i.armed = null) : (i.armed = { kind: e, id: t }),
+        v().then(() => {
+          i.armed && f("wpGrid")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }));
+    },
+    dragStart: (e, t, n) => {
+      ((i.drag = { kind: t, id: n }), document.body.classList.add("wp-dragging"));
+      try {
+        (e.dataTransfer.setData("text/plain", JSON.stringify(i.drag)), (e.dataTransfer.effectAllowed = "move"));
+      } catch {}
+    },
+    over: (e) => {
+      (e.preventDefault(), e.currentTarget.classList.add("over"));
+    },
+    leave: (e) => e.currentTarget.classList.remove("over"),
+    drop: (e, t, n) => {
+      (e.preventDefault(), e.currentTarget.classList.remove("over"));
+      const a = vn(e);
+      ((i.drag = null), (i.armed = null), _e(a, t, n));
+    },
+    zelle: (e, t) => {
+      if (te()) return la(e, t);
+      if (i.armed) {
+        const n = i.armed;
+        ((i.armed = null), _e({ kind: n.kind, id: n.id }, e, t));
+      }
+    },
+    info: Rn,
+    erledigt: Gn,
+    entfernen: In,
+    notiz: Kn,
+    buche: En,
+    terminAbsagen: Dn,
+    anfrage: Fn,
+    inbox: xn,
+    antwort: Nn,
+    zurueckziehen: Pn,
+    angebot: ze,
+    angebotNeu: jn,
+    angebotWeg: Bn,
+    ausKompetenzwerkstatt: Wn,
+    auszeitSetzen: Tn,
+    eigenSetzen: An,
+    ziel: async (e) => {
+      ((i.d.plan.ziel = String(e).slice(0, 120)), await F());
+    },
+    rueck: async (e) => {
+      ((i.d.plan.rueckblick = String(e).slice(0, 600)), await F());
+    },
+    teilen: async (e) => {
+      ((i.d.plan.geteilt = !!e), await F(), c.toast(e ? "Plan wird mit der Lernbegleitung geteilt." : "Plan ist wieder privat."));
+    },
+  },
+  Cn = [
+    ["uebersicht", "Klassen\xFCbersicht"],
+    ["module", "Lernbausteine"],
+    ["plan", "Feste Termine & Sprechzeiten"],
+    ["team", "Klassenteam & Freitagsplanung"],
+    ["feedback", "Block-Feedback"],
+    ["anfragen", "Hilfe in der Klasse"],
+  ];
+function Hn() {
+  return `<div class="wp-seg wp-ltabs">${Cn.map((e) => `<button class="${i.tab === e[0] ? "on" : ""}" onclick="wp.ltab('${e[0]}')">${e[1]}</button>`).join("")}</div>`;
+}
+async function _n() {
+  (i.tab !== "team" && window.__wpStop(), await ct());
+  let e = `<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>Wochenplanung der Klasse</h1><p>Ihr stellt Lernbausteine und feste Termine (Einf\xFChrungen, Lernstandsgespr\xE4che) ein \u2013 die Sch\xFCler:innen planen ihre Woche selbst.</p></div></div>
+ <div class="wp-bar2">${dt()}${Hn()}</div>`;
+  const t = i.d.wochenDoc,
+    n = i.d.module.filter((s) => s.status === "live" && s.woche === i.woche).length + i.d.einf.filter((s) => s.status === "live").length,
+    a =
+      i.d.module.filter((s) => s.status !== "live" && s.woche === i.woche).length +
+      i.d.einf.filter((s) => s.status !== "live").length +
+      i.d.slots.filter((s) => s.status !== "live").length;
+  return (
+    (e += `<div class="wp-stat">${t && t.status === "live" ? '<span class="pill ok">Woche ist f\xFCr die Klasse sichtbar</span>' : '<span class="pill">Woche noch nicht freigegeben</span>'}<span>${n} Eintr\xE4ge live</span>${a ? `<span class="pill warn">${a} Entwurf</span>` : ""}</div>`),
+    i.tab === "uebersicht"
+      ? (e += await Zn())
+      : i.tab === "module"
+        ? (e += Vn())
+        : i.tab === "plan"
+          ? (e += await ia())
+          : i.tab === "team"
+            ? (e += await da())
+            : i.tab === "feedback"
+              ? (e += await Pa())
+              : (e += await Sa()),
+    e
+  );
+}
+async function Zn() {
+  const e = i.woche,
+    [t, n] = await Promise.all([A("users", M("role", "student")).catch(() => []), A("wpStatus", M("woche", e)).catch(() => [])]),
+    a = Object.fromEntries(n.map((u) => [u.uid, u])),
+    s = t
+      .filter((u) => u.status === "approved")
+      .map((u) => ({ u, s: a[u.uid] || null }))
+      .sort((u, p) => String(u.u.displayName).localeCompare(String(p.u.displayName), "de"));
+  i.d.sts = s;
+  const l = s.filter((u) => u.s && u.s.modGeplant > 0).length,
+    r = s.length ? s.reduce((u, p) => u + (p.s ? p.s.geplantMin : 0), 0) / s.length : 0,
+    d = (u) => {
+      if (!u || !u.modGesamt) return u ? '<span class="pill">keine Lernbausteine</span>' : '<span class="pill rot">kein Plan</span>';
+      const p = u.modGeplant / u.modGesamt;
+      return p >= 0.7
+        ? '<span class="pill ok">Plan steht</span>'
+        : p > 0
+          ? '<span class="pill warn">Plan angefangen</span>'
+          : '<span class="pill rot">kein Plan</span>';
+    };
+  let m = `<div class="wp-kpis"><div class="card"><b>${s.length}</b><small>freigeschaltete Sch\xFCler:innen</small></div><div class="card"><b>${l}</b><small>haben Lernbausteine eingeplant</small></div><div class="card"><b>${U(r)}</b><small>\xD8 Lernzeit geplant</small></div><div class="card"><b>${s.reduce((u, p) => u + (p.s ? p.s.checkouts : 0), 0)}</b><small>Check-outs erledigt</small></div></div>`;
+  return (
+    (m += `<div class="card"><div class="wp-th"><h3>Wer hat schon geplant?</h3><small>Nur Kennzahlen \u2013 der Plan selbst bleibt privat, au\xDFer die Person teilt ihn.</small></div>
  <div class="wp-tabelle"><div class="wp-tr wp-tk"><span>Pseudonym</span><span>Lernbausteine eingeplant</span><span>Lernzeit (geplant / erledigt)</span><span>Check-outs</span><span>Status</span><span></span><span></span></div>
- ${s.map(({u,s:p})=>{const g=p&&p.modGesamt?Math.round(p.modGeplant/p.modGesamt*100):0;return`<div class="wp-tr"><span><b>${o(c.zkAnzeige(u))}</b></span><span><div class="wp-mini"><i style="width:${g}%"></i></div><small>${p?p.modGeplant+" / "+p.modGesamt:"\u2013"}</small></span><span>${p?U(p.geplantMin)+" / "+U(p.erledigtMin):"\u2013"}</span><span>${p?p.checkouts:"\u2013"}</span><span>${d(p)}</span><span>${p&&p.geteilt?`<button class="secondary" onclick="wp.planAnsehen('${u.uid}')">Plan ansehen</button>`:"<small>privat</small>"}</span><span><button class="secondary" onclick="wp.dossier('${u.uid}')">Gespr\xE4ch</button></span></div>`}).join("")||'<p class="wp-leer">Noch keine Sch\xFCler:innen freigeschaltet.</p>'}</div></div>
- <div class="card"><h3>Impuls an die Klasse oder eine Auswahl</h3><p class="wp-hint">Erscheint oben im Wochenplan der gew\xE4hlten Sch\xFCler:innen in dieser Woche.</p><textarea id="wpImpuls" rows="2" maxlength="300" placeholder="z. B. Plant bis Mittwoch mindestens zwei Lernzeiten ein.">${o(i.d.wochenDoc?.impuls||"")}</textarea>
- <label class="wp-impsel">Empf\xE4nger <select id="wpImpZiel"><option value="alle">Alle (${s.length})</option><option value="keinplan">Nur ohne Plan (${s.filter(u=>!u.s||!u.s.modGeplant).length})</option><option value="wenig">Ohne oder mit angefangenem Plan (${s.filter(u=>!u.s||!u.s.modGesamt||u.s.modGeplant/u.s.modGesamt<.7).length})</option></select></label>
+ ${
+   s
+     .map(({ u, s: p }) => {
+       const g = p && p.modGesamt ? Math.round((p.modGeplant / p.modGesamt) * 100) : 0;
+       return `<div class="wp-tr"><span><b>${o(c.zkAnzeige(u))}</b></span><span><div class="wp-mini"><i style="width:${g}%"></i></div><small>${p ? p.modGeplant + " / " + p.modGesamt : "\u2013"}</small></span><span>${p ? U(p.geplantMin) + " / " + U(p.erledigtMin) : "\u2013"}</span><span>${p ? p.checkouts : "\u2013"}</span><span>${d(p)}</span><span>${p && p.geteilt ? `<button class="secondary" onclick="wp.planAnsehen('${u.uid}')">Plan ansehen</button>` : "<small>privat</small>"}</span><span><button class="secondary" onclick="wp.dossier('${u.uid}')">Gespr\xE4ch</button></span></div>`;
+     })
+     .join("") || '<p class="wp-leer">Noch keine Sch\xFCler:innen freigeschaltet.</p>'
+ }</div></div>
+ <div class="card"><h3>Impuls an die Klasse oder eine Auswahl</h3><p class="wp-hint">Erscheint oben im Wochenplan der gew\xE4hlten Sch\xFCler:innen in dieser Woche.</p><textarea id="wpImpuls" rows="2" maxlength="300" placeholder="z. B. Plant bis Mittwoch mindestens zwei Lernzeiten ein.">${o(i.d.wochenDoc?.impuls || "")}</textarea>
+ <label class="wp-impsel">Empf\xE4nger <select id="wpImpZiel"><option value="alle">Alle (${s.length})</option><option value="keinplan">Nur ohne Plan (${s.filter((u) => !u.s || !u.s.modGeplant).length})</option><option value="wenig">Ohne oder mit angefangenem Plan (${s.filter((u) => !u.s || !u.s.modGesamt || u.s.modGeplant / u.s.modGesamt < 0.7).length})</option></select></label>
  <div class="form-actions"><button class="primary" onclick="wp.impuls()">Impuls senden</button></div></div>
- <div class="card wp-ds"><b>Datenschutz:</b> Lehrkr\xE4fte sehen die Zahlen in dieser \xDCbersicht (Anzahl eingeplanter Lernbausteine, Lernzeit, Check-outs). Auszeiten, Notizen, Wochenr\xFCckblicke und die Inhalte des Plans sind f\xFCr euch nicht einsehbar \u2013 es sei denn, eine Sch\xFCler:in teilt ihren Plan ausdr\xFCcklich.</div>`,m}async function Un(e){const t=await j("wpPlan",e+"_"+i.woche);if(!t||!t.geteilt)return c.toast("Dieser Plan ist nicht geteilt.");E(`<div class="wp-artband" style="${y("lernstand")}">Geteilter Plan</div><div class="kicker">GETEILTER PLAN \xB7 ${o(Q(i.woche))}</div><h2>Plan</h2>${t.ziel?`<p><b>Wochenziel:</b> ${o(t.ziel)}</p>`:""}
- <div class="wp-liste">${(t.eintraege||[]).filter(n=>n.typ!=="auszeit").sort((n,a)=>n.d-a.d||n.h-a.h).map(n=>`<div><span class="wp-fl" style="--fc:${T(n.fach).c};--fb:${T(n.fach).bg}">${o(T(n.fach).l)}</span><b>${o(n.titel)}</b><small>${I[n.d]} ${o(G(n.h,n.len||1))}${n.erledigt?" \xB7 \u2713 erledigt":""}</small></div>`).join("")||'<p class="wp-leer">Noch nichts eingeplant.</p>'}</div>
- <div class="form-actions"><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`)}async function qn(){const e=(f("wpImpuls")?.value||"").trim().slice(0,300),t=f("wpImpZiel")?.value||"alle";try{if(t==="alle")return await c.setDoc(z("wpWochen",i.woche),{woche:i.woche,impuls:e,status:"live",updatedAt:c.serverTimestamp()},{merge:!0}),c.toast("Impuls an die Klasse gesendet."),v();const a=(i.d.sts||[]).filter(l=>t==="keinplan"?!l.s||!l.s.modGeplant:!l.s||!l.s.modGesamt||l.s.modGeplant/l.s.modGesamt<.7);if(!a.length)return c.toast("Keine Sch\xFCler:innen in dieser Auswahl.");if(!e)return c.toast("Bitte einen Text eingeben.");const s=c.writeBatch(c.db);a.forEach(l=>s.set(z("wpImpuls",l.u.uid+"_"+i.woche),{uid:l.u.uid,woche:i.woche,text:e,von:c.profile?.displayName||"Lehrkraft",createdAt:c.serverTimestamp()})),await s.commit(),c.toast("Impuls an "+a.length+" Personen gesendet.")}catch(n){console.error(n),c.toast("Nicht m\xF6glich.")}}function Vn(){const e=i.d.module,t={};e.forEach(a=>(t[a.typ]=t[a.typ]||[]).push(a));let n=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">\uFF0B Neuer Lernbaustein</button><button class="secondary" onclick="wp.zeitenForm()">Stundenzeiten</button><button class="secondary" onclick="wp.modulExport()" title="Alle Lernbausteine dieser Woche als Datei sichern oder an andere Klassen weitergeben">Bausteine exportieren</button><button class="secondary" onclick="document.getElementById('wpImpFile').click()" title="Lernbausteine aus einer Datei \xFCbernehmen">Bausteine importieren</button><input id="wpImpFile" type="file" accept=".json,application/json" hidden onchange="wp.modulImport(this)"></div>${Pt()}`;return e.length||(n+='<div class="card"><p class="wp-leer">F\xFCr diese Woche gibt es noch keine Lernbausteine. Legt mit \u201ENeuer Lernbaustein\u201C alle Arten an und gestaltet sie je Art (z. B. Lernrallye mit Stationen). Einf\xFChrungen, Projekte, Lernstandsgespr\xE4che und Gruppen\xFCbungen k\xF6nnt ihr mit einem festen Termin platzieren; einfache feste Termine setzt ihr auch im Reiter \u201EFeste Termine & Sprechzeiten\u201C.</p></div>'),[...Me,...Object.keys(t).filter(a=>!Me.includes(a))].filter(a=>t[a]).forEach(a=>{const s=V(a);n+=`<div class="card wp-artcard" style="${y(a)}"><h3><span class="wp-art" style="${y(a)}">${o(ge[a]?.l||s.l)}</span> <small>${t[a].length}</small></h3><div class="wp-liste">${t[a].map(l=>{const r=T(l.fach);return`<div><span class="wp-fl" style="--fc:${r.c};--fb:${r.bg}">${o(r.l)}</span><b>${o(l.titel)}</b><small>${o(x(l).label)}${l.pflicht?" \xB7 Pflicht":""}${l.woche===""?" \xB7 jede Woche":""}${l.fixTag!=null&&l.fixTag!==""?" \xB7 fest: "+I[l.fixTag]+", "+(l.fixStd||1)+". Std.":""}${(l.anhaenge||[]).length?" \xB7 "+l.anhaenge.length+" Anhang":""}${l.typ==="lernstand"?Yn(l):""}</small>
-  <span class="pill ${l.status==="live"?"ok":"warn"}">${l.status==="live"?"live":"Entwurf"}</span>
-  <span class="wp-rowact"><button class="secondary" onclick="wp.vorschau('${l.id}')">Vorschau</button><button class="secondary" onclick="wp.modulForm('${l.id}')">Bearbeiten</button><button class="secondary" onclick="wp.modulKopie('${l.id}')" title="als Entwurf in die n\xE4chste Woche kopieren">\u2192 N\xE4chste Woche</button><button class="secondary" onclick="wp.modulWeg('${l.id}')">L\xF6schen</button></span></div>`}).join("")}</div></div>`}),n}function On(e){const t=L(i.woche);return[[i.woche,"Diese Woche ("+Q(i.woche).split(" \xB7 ")[0]+")"],[B(N(t,7)),"N\xE4chste Woche"],["","Jede Woche verf\xFCgbar"]].map(n=>`<option value="${n[0]}" ${n[0]===e?"selected":""}>${n[1]}</option>`).join("")}function Ze(e){return`<div id="fuerBox" class="wp-fuer"><b>F\xFCr wen ist das Lernstandsgespr\xE4ch?</b><small class="wp-hint">Das Gespr\xE4ch ist individuell: Nur die gew\xE4hlten Sch\xFCler:innen sehen und planen es. Ohne Auswahl gilt es f\xFCr die ganze Klasse.</small><div id="fuerListe" data-sel="${o((e||[]).join(","))}"><small class="wp-leer">Sch\xFCler:innen werden geladen \u2026</small></div></div>`}async function Ue(){const e=f("fuerListe");if(!e)return;const t=new Set((e.dataset.sel||"").split(",").filter(Boolean));try{const n=(await A("users",M("role","student"))).filter(a=>a.status==="approved").sort((a,s)=>String(c.zkAnzeige(a)).localeCompare(String(c.zkAnzeige(s)),"de"));e.innerHTML=n.length?`<div class="wp-fuer-akt"><button type="button" class="text-button" onclick="wp.fuerAlle(true)">alle</button><button type="button" class="text-button" onclick="wp.fuerAlle(false)">keine</button></div><div class="wp-fuer-gitter">${n.map(a=>`<label class="check"><input type="checkbox" class="fuerC" value="${o(a.uid)}" ${t.has(a.uid)?"checked":""}><span>${o(c.zkAnzeige(a))}</span></label>`).join("")}</div>`:'<small class="wp-leer">Noch keine Sch\xFCler:innen freigeschaltet.</small>'}catch{e.innerHTML='<small class="wp-leer">Die Liste konnte nicht geladen werden.</small>'}}const Qn=e=>document.querySelectorAll(".fuerC").forEach(t=>{t.checked=!!e}),kt=()=>[...document.querySelectorAll(".fuerC:checked")].map(e=>e.value).slice(0,60);function Yn(e){const t=Array.isArray(e.fuer)?e.fuer.length:0;return t?` \xB7 f\xFCr ${t} Sch\xFCler:in${t===1?"":"nen"}`:""}function Jn(e,pt){const t=e?i.d.module.find(n=>n.id===e):{titel:"",fach:"deutsch",typ:Ye.includes(pt)?pt:"selbstlern",len:1,woche:i.woche,beschr:"",route:"",link:"",pflicht:!1,mehrfach:!1,status:"entwurf"};i.anh=[...t.anhaenge||[]],i.rally=(t.rallye||[]).map(Bt),E(`<div id="mfWrap" class="wp-artform" style="${y(t.typ)}"><div id="mfBand" class="wp-artband" style="${y(t.typ)}">${o(V(t.typ).l)}</div><div class="kicker">LERNBAUSTEIN</div><h2>${e?"Lernbaustein bearbeiten":"Neuer Lernbaustein"}</h2><div class="form">
+ <div class="card wp-ds"><b>Datenschutz:</b> Lehrkr\xE4fte sehen die Zahlen in dieser \xDCbersicht (Anzahl eingeplanter Lernbausteine, Lernzeit, Check-outs). Auszeiten, Notizen, Wochenr\xFCckblicke und die Inhalte des Plans sind f\xFCr euch nicht einsehbar \u2013 es sei denn, eine Sch\xFCler:in teilt ihren Plan ausdr\xFCcklich.</div>`),
+    m
+  );
+}
+async function Un(e) {
+  const t = await j("wpPlan", e + "_" + i.woche);
+  if (!t || !t.geteilt) return c.toast("Dieser Plan ist nicht geteilt.");
+  E(`<div class="wp-artband" style="${y("lernstand")}">Geteilter Plan</div><div class="kicker">GETEILTER PLAN \xB7 ${o(Q(i.woche))}</div><h2>Plan</h2>${t.ziel ? `<p><b>Wochenziel:</b> ${o(t.ziel)}</p>` : ""}
+ <div class="wp-liste">${
+   (t.eintraege || [])
+     .filter((n) => n.typ !== "auszeit")
+     .sort((n, a) => n.d - a.d || n.h - a.h)
+     .map(
+       (n) =>
+         `<div><span class="wp-fl" style="--fc:${T(n.fach).c};--fb:${T(n.fach).bg}">${o(T(n.fach).l)}</span><b>${o(n.titel)}</b><small>${I[n.d]} ${o(G(n.h, n.len || 1))}${n.erledigt ? " \xB7 \u2713 erledigt" : ""}</small></div>`,
+     )
+     .join("") || '<p class="wp-leer">Noch nichts eingeplant.</p>'
+ }</div>
+ <div class="form-actions"><button class="primary" onclick="closeModal()">Schlie\xDFen</button></div>`);
+}
+async function qn() {
+  const e = (f("wpImpuls")?.value || "").trim().slice(0, 300),
+    t = f("wpImpZiel")?.value || "alle";
+  try {
+    if (t === "alle")
+      return (
+        await c.setDoc(
+          z("wpWochen", i.woche),
+          { woche: i.woche, impuls: e, status: "live", updatedAt: c.serverTimestamp() },
+          { merge: !0 },
+        ),
+        c.toast("Impuls an die Klasse gesendet."),
+        v()
+      );
+    const a = (i.d.sts || []).filter((l) =>
+      t === "keinplan" ? !l.s || !l.s.modGeplant : !l.s || !l.s.modGesamt || l.s.modGeplant / l.s.modGesamt < 0.7,
+    );
+    if (!a.length) return c.toast("Keine Sch\xFCler:innen in dieser Auswahl.");
+    if (!e) return c.toast("Bitte einen Text eingeben.");
+    const s = c.writeBatch(c.db);
+    (a.forEach((l) =>
+      s.set(z("wpImpuls", l.u.uid + "_" + i.woche), {
+        uid: l.u.uid,
+        woche: i.woche,
+        text: e,
+        von: c.profile?.displayName || "Lehrkraft",
+        createdAt: c.serverTimestamp(),
+      }),
+    ),
+      await s.commit(),
+      c.toast("Impuls an " + a.length + " Personen gesendet."));
+  } catch (n) {
+    (console.error(n), c.toast("Nicht m\xF6glich."));
+  }
+}
+function Vn() {
+  const e = i.d.module,
+    t = {};
+  e.forEach((a) => (t[a.typ] = t[a.typ] || []).push(a));
+  let n = `<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">\uFF0B Neuer Lernbaustein</button><button class="secondary" onclick="wp.zeitenForm()">Stundenzeiten</button><button class="secondary" onclick="wp.modulExport()" title="Alle Lernbausteine dieser Woche als Datei sichern oder an andere Klassen weitergeben">Bausteine exportieren</button><button class="secondary" onclick="document.getElementById('wpImpFile').click()" title="Lernbausteine aus einer Datei \xFCbernehmen">Bausteine importieren</button><input id="wpImpFile" type="file" accept=".json,application/json" hidden onchange="wp.modulImport(this)"></div>${Pt()}`;
+  return (
+    e.length ||
+      (n +=
+        '<div class="card"><p class="wp-leer">F\xFCr diese Woche gibt es noch keine Lernbausteine. Legt mit \u201ENeuer Lernbaustein\u201C alle Arten an und gestaltet sie je Art (z. B. Lernrallye mit Stationen). Einf\xFChrungen, Projekte, Lernstandsgespr\xE4che und Gruppen\xFCbungen k\xF6nnt ihr mit einem festen Termin platzieren; einfache feste Termine setzt ihr auch im Reiter \u201EFeste Termine & Sprechzeiten\u201C.</p></div>'),
+    [...Me, ...Object.keys(t).filter((a) => !Me.includes(a))]
+      .filter((a) => t[a])
+      .forEach((a) => {
+        const s = V(a);
+        n += `<div class="card wp-artcard" style="${y(a)}"><h3><span class="wp-art" style="${y(a)}">${o(ge[a]?.l || s.l)}</span> <small>${t[a].length}</small></h3><div class="wp-liste">${t[
+          a
+        ]
+          .map((l) => {
+            const r = T(l.fach);
+            return `<div><span class="wp-fl" style="--fc:${r.c};--fb:${r.bg}">${o(r.l)}</span><b>${o(l.titel)}</b><small>${o(x(l).label)}${l.pflicht ? " \xB7 Pflicht" : ""}${l.woche === "" ? " \xB7 jede Woche" : ""}${l.fixTag != null && l.fixTag !== "" ? " \xB7 fest: " + I[l.fixTag] + ", " + (l.fixStd || 1) + ". Std." : ""}${(l.anhaenge || []).length ? " \xB7 " + l.anhaenge.length + " Anhang" : ""}${l.typ === "lernstand" ? Yn(l) : ""}</small>
+  <span class="pill ${l.status === "live" ? "ok" : "warn"}">${l.status === "live" ? "live" : "Entwurf"}</span>
+  <span class="wp-rowact"><button class="secondary" onclick="wp.vorschau('${l.id}')">Vorschau</button><button class="secondary" onclick="wp.modulForm('${l.id}')">Bearbeiten</button><button class="secondary" onclick="wp.modulKopie('${l.id}')" title="als Entwurf in die n\xE4chste Woche kopieren">\u2192 N\xE4chste Woche</button><button class="secondary" onclick="wp.modulWeg('${l.id}')">L\xF6schen</button></span></div>`;
+          })
+          .join("")}</div></div>`;
+      }),
+    n
+  );
+}
+function On(e) {
+  const t = L(i.woche);
+  return [
+    [i.woche, "Diese Woche (" + Q(i.woche).split(" \xB7 ")[0] + ")"],
+    [B(N(t, 7)), "N\xE4chste Woche"],
+    ["", "Jede Woche verf\xFCgbar"],
+  ]
+    .map((n) => `<option value="${n[0]}" ${n[0] === e ? "selected" : ""}>${n[1]}</option>`)
+    .join("");
+}
+function Ze(e) {
+  return `<div id="fuerBox" class="wp-fuer"><b>F\xFCr wen ist das Lernstandsgespr\xE4ch?</b><small class="wp-hint">Das Gespr\xE4ch ist individuell: Nur die gew\xE4hlten Sch\xFCler:innen sehen und planen es. Ohne Auswahl gilt es f\xFCr die ganze Klasse.</small><div id="fuerListe" data-sel="${o((e || []).join(","))}"><small class="wp-leer">Sch\xFCler:innen werden geladen \u2026</small></div></div>`;
+}
+async function Ue() {
+  const e = f("fuerListe");
+  if (!e) return;
+  const t = new Set((e.dataset.sel || "").split(",").filter(Boolean));
+  try {
+    const n = (await A("users", M("role", "student")))
+      .filter((a) => a.status === "approved")
+      .sort((a, s) => String(c.zkAnzeige(a)).localeCompare(String(c.zkAnzeige(s)), "de"));
+    e.innerHTML = n.length
+      ? `<div class="wp-fuer-akt"><button type="button" class="text-button" onclick="wp.fuerAlle(true)">alle</button><button type="button" class="text-button" onclick="wp.fuerAlle(false)">keine</button></div><div class="wp-fuer-gitter">${n.map((a) => `<label class="check"><input type="checkbox" class="fuerC" value="${o(a.uid)}" ${t.has(a.uid) ? "checked" : ""}><span>${o(c.zkAnzeige(a))}</span></label>`).join("")}</div>`
+      : '<small class="wp-leer">Noch keine Sch\xFCler:innen freigeschaltet.</small>';
+  } catch {
+    e.innerHTML = '<small class="wp-leer">Die Liste konnte nicht geladen werden.</small>';
+  }
+}
+const Qn = (e) =>
+    document.querySelectorAll(".fuerC").forEach((t) => {
+      t.checked = !!e;
+    }),
+  kt = () => [...document.querySelectorAll(".fuerC:checked")].map((e) => e.value).slice(0, 60);
+function Yn(e) {
+  const t = Array.isArray(e.fuer) ? e.fuer.length : 0;
+  return t ? ` \xB7 f\xFCr ${t} Sch\xFCler:in${t === 1 ? "" : "nen"}` : "";
+}
+function Jn(e, pt) {
+  const t = e
+    ? i.d.module.find((n) => n.id === e)
+    : {
+        titel: "",
+        fach: "deutsch",
+        typ: Ye.includes(pt) ? pt : "selbstlern",
+        len: 1,
+        woche: i.woche,
+        beschr: "",
+        route: "",
+        link: "",
+        pflicht: !1,
+        mehrfach: !1,
+        status: "entwurf",
+      };
+  ((i.anh = [...(t.anhaenge || [])]),
+    (i.rally = (t.rallye || []).map(Bt)),
+    E(`<div id="mfWrap" class="wp-artform" style="${y(t.typ)}"><div id="mfBand" class="wp-artband" style="${y(t.typ)}">${o(V(t.typ).l)}</div><div class="kicker">LERNBAUSTEIN</div><h2>${e ? "Lernbaustein bearbeiten" : "Neuer Lernbaustein"}</h2><div class="form">
  <label>Titel<input id="mfTitel" maxlength="80" value="${o(t.titel)}"></label>
- <label>Fach<select id="mfFach">${_.map(n=>`<option value="${n.k}" ${n.k===t.fach?"selected":""}>${o(n.l)}</option>`).join("")}</select></label>
- <label>Art<select id="mfTyp" onchange="wp.artVorschau(this.value)">${[...Ye,...Ye.includes(t.typ)?[]:[t.typ]].map(n=>`<option value="${n}" ${n===t.typ?"selected":""}>${o(ge[n]?.l||V(n).l)}</option>`).join("")}</select></label>
- <label>Dauer<select id="mfLen">${we.map(n=>`<option value="${n[0]}" ${n[0]===(x(t).code||String(x(t).min))?"selected":""}>${n[1]}</option>`).join("")}</select></label>
- <label>Platzierung im Plan<select id="mfFixTag"><option value="">Frei w\xE4hlbar (Sch\xFCler:innen planen selbst)</option>${W.map((n,a)=>`<option value="${a}" ${String(t.fixTag)===String(a)?"selected":""}>Fester Termin: ${n}</option>`).join("")}</select></label>
- <label>\u2026 in der Stunde<select id="mfFixStd">${[...Array(10)].map((n,a)=>`<option value="${a+1}" ${(t.fixStd||1)===a+1?"selected":""}>${a+1}. Stunde (${o(Y()[a]||"")})</option>`).join("")}</select></label>
+ <label>Fach<select id="mfFach">${_.map((n) => `<option value="${n.k}" ${n.k === t.fach ? "selected" : ""}>${o(n.l)}</option>`).join("")}</select></label>
+ <label>Art<select id="mfTyp" onchange="wp.artVorschau(this.value)">${[...Ye, ...(Ye.includes(t.typ) ? [] : [t.typ])].map((n) => `<option value="${n}" ${n === t.typ ? "selected" : ""}>${o(ge[n]?.l || V(n).l)}</option>`).join("")}</select></label>
+ <label>Dauer<select id="mfLen">${we.map((n) => `<option value="${n[0]}" ${n[0] === (x(t).code || String(x(t).min)) ? "selected" : ""}>${n[1]}</option>`).join("")}</select></label>
+ <label>Platzierung im Plan<select id="mfFixTag"><option value="">Frei w\xE4hlbar (Sch\xFCler:innen planen selbst)</option>${W.map((n, a) => `<option value="${a}" ${String(t.fixTag) === String(a) ? "selected" : ""}>Fester Termin: ${n}</option>`).join("")}</select></label>
+ <label>\u2026 in der Stunde<select id="mfFixStd">${[...Array(10)].map((n, a) => `<option value="${a + 1}" ${(t.fixStd || 1) === a + 1 ? "selected" : ""}>${a + 1}. Stunde (${o(Y()[a] || "")})</option>`).join("")}</select></label>
  <small class="wp-hint">Bei \u201EFester Termin\u201C erscheint der Lernbaustein automatisch an diesem Tag und dieser Stunde im Wochenplan aller Sch\xFCler:innen (bei Tages-/Wochenbausteinen z\xE4hlt nur der Tag).</small>
  <label>Gilt f\xFCr<select id="mfWoche">${On(t.woche)}</select></label>
- <label>Beschreibung<textarea id="mfBeschr" rows="3" maxlength="400">${o(t.beschr||"")}</textarea></label>
- <div id="mfFuerWrap" ${t.typ==="lernstand"?"":"hidden"}>${Ze(t.fuer)}</div>
- <div id="mfGest" class="wp-gest">${Ne(t.typ,t.gestaltung)}</div>
+ <label>Beschreibung<textarea id="mfBeschr" rows="3" maxlength="400">${o(t.beschr || "")}</textarea></label>
+ <div id="mfFuerWrap" ${t.typ === "lernstand" ? "" : "hidden"}>${Ze(t.fuer)}</div>
+ <div id="mfGest" class="wp-gest">${Ne(t.typ, t.gestaltung)}</div>
  ${st()}
- <label>Verkn\xFCpfte Seite in der App<select id="mfRoute">${xt.map(n=>`<option value="${n[0]}" ${n[0]===(t.route||"")?"selected":""}>${n[1]}</option>`).join("")}</select></label>
- <label>oder Link (https://\u2026)<input id="mfLink" maxlength="300" value="${o(t.link||"")}"></label>
- <label class="check"><input type="checkbox" id="mfPflicht" ${t.pflicht?"checked":""}><span>Pflicht-Lernbaustein</span></label>
- <label class="check"><input type="checkbox" id="mfMehr" ${t.mehrfach?"checked":""}><span>Kann mehrfach eingeplant werden</span></label>
- <label>Status<select id="mfStatus"><option value="entwurf" ${t.status!=="live"?"selected":""}>Entwurf (nur Lehrkr\xE4fte)</option><option value="live" ${t.status==="live"?"selected":""}>Live (Sch\xFCler:innen sehen es)</option></select></label>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.modulSave('${e||""}')">Speichern</button></div></div></div>`),t.typ==="lernstand"&&Ue(),ubFill(t.typ,t.gestaltung),!e&&pt&&Ye.includes(pt)&&(Ft.includes(pt)&&f("mfFixTag")&&f("mfFixTag").value===""&&(f("mfFixTag").value="0"),(pt==="lernrallye"&&!(i.rally||[]).length&&(i.rally=[{typ:"info",titel:"Willkommen",text:"",punkte:0},{typ:"frei",titel:"",text:"",antwort:"",punkte:10}],f("mfGest")&&(f("mfGest").innerHTML=Ne(pt,{})))))}async function Xn(e){const t=f("mfTitel").value.trim();if(t.length<2)return c.toast("Bitte einen Titel eingeben.");const n=f("mfLink").value.trim();if(n&&!/^https:\/\//.test(n))return c.toast("Der Link muss mit https:// beginnen.");const ty=f("mfTyp").value;let n2=n,rt=f("mfRoute").value;const gz=Wt(ty);if(ty==="uebung"){if(!gz.ubZiel)return c.toast("Bitte eine \xDCbung oder einen Ordner w\xE4hlen.");n2=new URL(ubLink(gz.ubZiel),location.href).href,rt=""}else if(ty==="karteikarten"){if(!gz.kkLb)return c.toast("Bitte mindestens einen Lernbereich w\xE4hlen.");n2=new URL("karteikarten/index.html?lb="+gz.kkLb,location.href).href,rt=""}const a={titel:t,fach:f("mfFach").value,typ:f("mfTyp").value,dauer:x({dauer:f("mfLen").value}).code,len:x({dauer:f("mfLen").value}).len,anhaenge:i.anh||[],gestaltung:Wt(f("mfTyp").value),rallye:f("mfTyp").value==="lernrallye"?(i.rally||[]).map(Gt):[],fixTag:f("mfFixTag").value===""?null:Number(f("mfFixTag").value),fixStd:Number(f("mfFixStd").value)||1,woche:f("mfWoche").value,beschr:f("mfBeschr").value.trim(),route:rt,link:n2,pflicht:f("mfPflicht").checked,mehrfach:f("mfMehr").checked,status:f("mfStatus").value,fuer:f("mfTyp").value==="lernstand"?kt():[],updatedAt:c.serverTimestamp()};try{e?await c.updateDoc(z("wpModule",e),a):await c.addDoc(R("wpModule"),{...a,createdBy:S(),createdAt:c.serverTimestamp()}),c.closeModal(),c.toast("Gespeichert."),v()}catch(s){console.error(s),c.toast("Speichern nicht m\xF6glich.")}}async function ea(e){if(confirm("Diesen Lernbaustein l\xF6schen? Bereits eingeplante Eintr\xE4ge der Sch\xFCler:innen bleiben bestehen."))try{await c.deleteDoc(z("wpModule",e)),v()}catch{c.toast("Nicht m\xF6glich.")}}async function ta(e){const t=i.d.module.find(s=>s.id===e);if(!t)return;const{id:n,...a}=t;try{await c.addDoc(R("wpModule"),{...a,woche:B(N(L(i.woche),7)),status:"entwurf",createdBy:S(),createdAt:c.serverTimestamp(),updatedAt:c.serverTimestamp()}),c.toast("Als Entwurf in die n\xE4chste Woche kopiert.")}catch(s){console.error(s),c.toast("Nicht m\xF6glich.")}}function na(){E(`<div class="wp-artband" style="${y("eigen")}">Einstellungen</div><div class="kicker">EINSTELLUNGEN</div><h2>Stundenzeiten</h2><p>Beginn der 10 Stunden (45 Minuten). Gilt f\xFCr die ganze Klasse.</p><div class="wp-zeitenraster">${Y().map((e,t)=>`<label>${t+1}.<input id="zt${t}" type="time" value="${o(e)}"></label>`).join("")}</div>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.zeitenSave()">Speichern</button></div>`)}async function aa(){const e=[...Array(10)].map((t,n)=>f("zt"+n).value);if(e.some(t=>!/^\d\d:\d\d$/.test(t)))return c.toast("Bitte alle Zeiten ausf\xFCllen.");try{await c.setDoc(z("wpEinstellungen","zeiten"),{liste:e,updatedAt:c.serverTimestamp()}),i.zeiten=e,c.closeModal(),v()}catch{c.toast("Nicht m\xF6glich.")}}async function ia(){const e=await A("wpBuchungen",M("woche",i.woche)).catch(()=>[]);i.d.buchungen=Object.fromEntries(e.map(a=>[a.id,a]));let t='<div class="card"><p class="wp-hint">Tippt auf einen freien Platz, um eine <b>Einf\xFChrung</b>, ein <b>Projekt</b>, ein <b>Lernstandsgespr\xE4ch</b> oder eine <b>Gruppen\xFCbung</b> (feste Termine, die ihr setzt) oder eine <b>Anwesenheit/Sprechzeit</b> anzulegen. Sch\xFCler:innen sehen eure Anwesenheit als K\xFCrzel im Plan und buchen dort fachliche Fragen. Entw\xFCrfe sind gestrichelt und f\xFCr Sch\xFCler:innen unsichtbar.</p></div>';t+=ot()+Ce({teacher:!0});const n=[...i.d.slots].sort((a,s)=>a.d-s.d||a.h-s.h);return t+=`<div class="card"><h3>Sprechzeiten dieser Woche</h3>${n.length?`<div class="wp-liste">${n.map(a=>{const s=i.d.buchungen[a.id];return`<div><span></span><b>${I[a.d]} ${o(G(a.h,a.len||1))} \xB7 ${o(a.lehrkraft||"")}</b><small>${o(T(a.fach).l)}</small>${s?`<span class="wp-gebucht"><b>${o(s.pseudo)}</b>: ${o(s.frage)}</span>`:'<span class="pill">frei</span>'}<span class="pill ${a.status==="live"?"ok":"warn"}">${a.status==="live"?"live":"Entwurf"}</span><span class="wp-rowact"><button class="secondary" onclick="wp.slotBearbeiten('${a.id}')">Bearbeiten</button></span></div>`}).join("")}</div>`:'<p class="wp-leer">Noch keine Sprechzeiten.</p>'}</div>`,t}function la(e,t){i.tab==="plan"&&D(e,t,1)&&E(`<div class="kicker">${W[e]} \xB7 ${t}. Stunde</div><h2>Was soll hier stehen?</h2><div class="wp-wahl"><button class="primary" onclick="wp.einfForm(null,${e},${t},'einfuehrung')">Einf\xFChrung (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${e},${t},'projekt')">Projekt (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${e},${t},'lernstand')">Lernstandsgespr\xE4ch (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${e},${t},'gruppenuebung')">Gruppen\xFCbung (fester Termin)</button><button class="secondary" onclick="wp.slotForm(null,${e},${t})">Anwesenheit / Sprechzeit (buchbar f\xFCr fachliche Fragen)</button></div><div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button></div>`)}function yt(e,t,n,a){const s=e?i.d.einf.find(r=>r.id===e):{fach:"deutsch",titel:a==="lernstand"?"Lernstandsgespr\xE4ch":"",art:ne(a),d:t,h:n,len:1,lehrkraft:c.profile?.displayName||"",raum:"",status:"entwurf"},l=ae(s);i.anh=[...s.anhaenge||[]],E(`<div class="wp-artform" style="${y(ne(s.art))}"><div class="wp-artband" style="${y(ne(s.art))}">${o(l.l)}</div><div class="kicker">${l.kick}</div><h2>${e?l.edit:l.neu}</h2><div class="form">
- <label>Fach<select id="efFach">${_.map(r=>`<option value="${r.k}" ${r.k===s.fach?"selected":""}>${o(r.l)}</option>`).join("")}</select></label>
- <label>${s.art==="lernstand"?"Titel":"Thema / Titel"}<input id="efTitel" maxlength="80" value="${o(s.titel)}" placeholder="${o(l.ph)}"></label>
- <label>Tag<select id="efD">${W.map((r,d)=>`<option value="${d}" ${d===s.d?"selected":""}>${r}</option>`).join("")}</select></label>
- <label>Beginn (Stunde)<select id="efH">${[...Array(10)].map((r,d)=>`<option value="${d+1}" ${d+1===s.h?"selected":""}>${d+1}. Stunde (${o(Y()[d])})</option>`).join("")}</select></label>
- <label>Dauer<select id="efLen"><option value="1" ${s.len!==2?"selected":""}>45 Minuten</option><option value="2" ${s.len===2?"selected":""}>90 Minuten</option></select></label>
- ${s.art==="lernstand"?Ze(s.fuer):""}
+ <label>Verkn\xFCpfte Seite in der App<select id="mfRoute">${xt.map((n) => `<option value="${n[0]}" ${n[0] === (t.route || "") ? "selected" : ""}>${n[1]}</option>`).join("")}</select></label>
+ <label>oder Link (https://\u2026)<input id="mfLink" maxlength="300" value="${o(t.link || "")}"></label>
+ <label class="check"><input type="checkbox" id="mfPflicht" ${t.pflicht ? "checked" : ""}><span>Pflicht-Lernbaustein</span></label>
+ <label class="check"><input type="checkbox" id="mfMehr" ${t.mehrfach ? "checked" : ""}><span>Kann mehrfach eingeplant werden</span></label>
+ <label>Status<select id="mfStatus"><option value="entwurf" ${t.status !== "live" ? "selected" : ""}>Entwurf (nur Lehrkr\xE4fte)</option><option value="live" ${t.status === "live" ? "selected" : ""}>Live (Sch\xFCler:innen sehen es)</option></select></label>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.modulSave('${e || ""}')">Speichern</button></div></div></div>`),
+    t.typ === "lernstand" && Ue(),
+    ubFill(t.typ, t.gestaltung),
+    !e &&
+      pt &&
+      Ye.includes(pt) &&
+      (Ft.includes(pt) && f("mfFixTag") && f("mfFixTag").value === "" && (f("mfFixTag").value = "0"),
+      pt === "lernrallye" &&
+        !(i.rally || []).length &&
+        ((i.rally = [
+          { typ: "info", titel: "Willkommen", text: "", punkte: 0 },
+          { typ: "frei", titel: "", text: "", antwort: "", punkte: 10 },
+        ]),
+        f("mfGest") && (f("mfGest").innerHTML = Ne(pt, {})))));
+}
+async function Xn(e) {
+  const t = f("mfTitel").value.trim();
+  if (t.length < 2) return c.toast("Bitte einen Titel eingeben.");
+  const n = f("mfLink").value.trim();
+  if (n && !/^https:\/\//.test(n)) return c.toast("Der Link muss mit https:// beginnen.");
+  const ty = f("mfTyp").value;
+  let n2 = n,
+    rt = f("mfRoute").value;
+  const gz = Wt(ty);
+  if (ty === "uebung") {
+    if (!gz.ubZiel) return c.toast("Bitte eine \xDCbung oder einen Ordner w\xE4hlen.");
+    ((n2 = new URL(ubLink(gz.ubZiel), location.href).href), (rt = ""));
+  } else if (ty === "karteikarten") {
+    if (!gz.kkLb) return c.toast("Bitte mindestens einen Lernbereich w\xE4hlen.");
+    ((n2 = new URL("karteikarten/index.html?lb=" + gz.kkLb, location.href).href), (rt = ""));
+  }
+  const a = {
+    titel: t,
+    fach: f("mfFach").value,
+    typ: f("mfTyp").value,
+    dauer: x({ dauer: f("mfLen").value }).code,
+    len: x({ dauer: f("mfLen").value }).len,
+    anhaenge: i.anh || [],
+    gestaltung: Wt(f("mfTyp").value),
+    rallye: f("mfTyp").value === "lernrallye" ? (i.rally || []).map(Gt) : [],
+    fixTag: f("mfFixTag").value === "" ? null : Number(f("mfFixTag").value),
+    fixStd: Number(f("mfFixStd").value) || 1,
+    woche: f("mfWoche").value,
+    beschr: f("mfBeschr").value.trim(),
+    route: rt,
+    link: n2,
+    pflicht: f("mfPflicht").checked,
+    mehrfach: f("mfMehr").checked,
+    status: f("mfStatus").value,
+    fuer: f("mfTyp").value === "lernstand" ? kt() : [],
+    updatedAt: c.serverTimestamp(),
+  };
+  try {
+    (e ? await c.updateDoc(z("wpModule", e), a) : await c.addDoc(R("wpModule"), { ...a, createdBy: S(), createdAt: c.serverTimestamp() }),
+      c.closeModal(),
+      c.toast("Gespeichert."),
+      v());
+  } catch (s) {
+    (console.error(s), c.toast("Speichern nicht m\xF6glich."));
+  }
+}
+async function ea(e) {
+  if (confirm("Diesen Lernbaustein l\xF6schen? Bereits eingeplante Eintr\xE4ge der Sch\xFCler:innen bleiben bestehen."))
+    try {
+      (await c.deleteDoc(z("wpModule", e)), v());
+    } catch {
+      c.toast("Nicht m\xF6glich.");
+    }
+}
+async function ta(e) {
+  const t = i.d.module.find((s) => s.id === e);
+  if (!t) return;
+  const { id: n, ...a } = t;
+  try {
+    (await c.addDoc(R("wpModule"), {
+      ...a,
+      woche: B(N(L(i.woche), 7)),
+      status: "entwurf",
+      createdBy: S(),
+      createdAt: c.serverTimestamp(),
+      updatedAt: c.serverTimestamp(),
+    }),
+      c.toast("Als Entwurf in die n\xE4chste Woche kopiert."));
+  } catch (s) {
+    (console.error(s), c.toast("Nicht m\xF6glich."));
+  }
+}
+function na() {
+  E(`<div class="wp-artband" style="${y("eigen")}">Einstellungen</div><div class="kicker">EINSTELLUNGEN</div><h2>Stundenzeiten</h2><p>Beginn der 10 Stunden (45 Minuten). Gilt f\xFCr die ganze Klasse.</p><div class="wp-zeitenraster">${Y()
+    .map((e, t) => `<label>${t + 1}.<input id="zt${t}" type="time" value="${o(e)}"></label>`)
+    .join("")}</div>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.zeitenSave()">Speichern</button></div>`);
+}
+async function aa() {
+  const e = [...Array(10)].map((t, n) => f("zt" + n).value);
+  if (e.some((t) => !/^\d\d:\d\d$/.test(t))) return c.toast("Bitte alle Zeiten ausf\xFCllen.");
+  try {
+    (await c.setDoc(z("wpEinstellungen", "zeiten"), { liste: e, updatedAt: c.serverTimestamp() }), (i.zeiten = e), c.closeModal(), v());
+  } catch {
+    c.toast("Nicht m\xF6glich.");
+  }
+}
+async function ia() {
+  const e = await A("wpBuchungen", M("woche", i.woche)).catch(() => []);
+  i.d.buchungen = Object.fromEntries(e.map((a) => [a.id, a]));
+  let t =
+    '<div class="card"><p class="wp-hint">Tippt auf einen freien Platz, um eine <b>Einf\xFChrung</b>, ein <b>Projekt</b>, ein <b>Lernstandsgespr\xE4ch</b> oder eine <b>Gruppen\xFCbung</b> (feste Termine, die ihr setzt) oder eine <b>Anwesenheit/Sprechzeit</b> anzulegen. Sch\xFCler:innen sehen eure Anwesenheit als K\xFCrzel im Plan und buchen dort fachliche Fragen. Entw\xFCrfe sind gestrichelt und f\xFCr Sch\xFCler:innen unsichtbar.</p></div>';
+  t += ot() + Ce({ teacher: !0 });
+  const n = [...i.d.slots].sort((a, s) => a.d - s.d || a.h - s.h);
+  return (
+    (t += `<div class="card"><h3>Sprechzeiten dieser Woche</h3>${
+      n.length
+        ? `<div class="wp-liste">${n
+            .map((a) => {
+              const s = i.d.buchungen[a.id];
+              return `<div><span></span><b>${I[a.d]} ${o(G(a.h, a.len || 1))} \xB7 ${o(a.lehrkraft || "")}</b><small>${o(T(a.fach).l)}</small>${s ? `<span class="wp-gebucht"><b>${o(s.pseudo)}</b>: ${o(s.frage)}</span>` : '<span class="pill">frei</span>'}<span class="pill ${a.status === "live" ? "ok" : "warn"}">${a.status === "live" ? "live" : "Entwurf"}</span><span class="wp-rowact"><button class="secondary" onclick="wp.slotBearbeiten('${a.id}')">Bearbeiten</button></span></div>`;
+            })
+            .join("")}</div>`
+        : '<p class="wp-leer">Noch keine Sprechzeiten.</p>'
+    }</div>`),
+    t
+  );
+}
+function la(e, t) {
+  i.tab === "plan" &&
+    D(e, t, 1) &&
+    E(
+      `<div class="kicker">${W[e]} \xB7 ${t}. Stunde</div><h2>Was soll hier stehen?</h2><div class="wp-wahl"><button class="primary" onclick="wp.einfForm(null,${e},${t},'einfuehrung')">Einf\xFChrung (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${e},${t},'projekt')">Projekt (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${e},${t},'lernstand')">Lernstandsgespr\xE4ch (fester Termin)</button><button class="primary" onclick="wp.einfForm(null,${e},${t},'gruppenuebung')">Gruppen\xFCbung (fester Termin)</button><button class="secondary" onclick="wp.slotForm(null,${e},${t})">Anwesenheit / Sprechzeit (buchbar f\xFCr fachliche Fragen)</button></div><div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button></div>`,
+    );
+}
+function yt(e, t, n, a) {
+  const s = e
+      ? i.d.einf.find((r) => r.id === e)
+      : {
+          fach: "deutsch",
+          titel: a === "lernstand" ? "Lernstandsgespr\xE4ch" : "",
+          art: ne(a),
+          d: t,
+          h: n,
+          len: 1,
+          lehrkraft: c.profile?.displayName || "",
+          raum: "",
+          status: "entwurf",
+        },
+    l = ae(s);
+  ((i.anh = [...(s.anhaenge || [])]),
+    E(`<div class="wp-artform" style="${y(ne(s.art))}"><div class="wp-artband" style="${y(ne(s.art))}">${o(l.l)}</div><div class="kicker">${l.kick}</div><h2>${e ? l.edit : l.neu}</h2><div class="form">
+ <label>Fach<select id="efFach">${_.map((r) => `<option value="${r.k}" ${r.k === s.fach ? "selected" : ""}>${o(r.l)}</option>`).join("")}</select></label>
+ <label>${s.art === "lernstand" ? "Titel" : "Thema / Titel"}<input id="efTitel" maxlength="80" value="${o(s.titel)}" placeholder="${o(l.ph)}"></label>
+ <label>Tag<select id="efD">${W.map((r, d) => `<option value="${d}" ${d === s.d ? "selected" : ""}>${r}</option>`).join("")}</select></label>
+ <label>Beginn (Stunde)<select id="efH">${[...Array(10)].map((r, d) => `<option value="${d + 1}" ${d + 1 === s.h ? "selected" : ""}>${d + 1}. Stunde (${o(Y()[d])})</option>`).join("")}</select></label>
+ <label>Dauer<select id="efLen"><option value="1" ${s.len !== 2 ? "selected" : ""}>45 Minuten</option><option value="2" ${s.len === 2 ? "selected" : ""}>90 Minuten</option></select></label>
+ ${s.art === "lernstand" ? Ze(s.fuer) : ""}
  ${st()}
- <label>Lehrkraft<input id="efLk" maxlength="60" value="${o(s.lehrkraft||"")}"></label><label>Raum (optional)<input id="efRaum" maxlength="20" value="${o(s.raum||"")}"></label>
- <label>Status<select id="efStatus"><option value="entwurf" ${s.status!=="live"?"selected":""}>Entwurf</option><option value="live" ${s.status==="live"?"selected":""}>Live</option></select></label>
- <div class="form-actions">${e?`<button class="secondary" onclick="wp.einfWeg('${e}')">L\xF6schen</button>`:""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einfSave('${e||""}','${s.art||"einfuehrung"}')">Speichern</button></div></div></div>`),s.art==="lernstand"&&Ue()}async function sa(e,t){const n=Number(f("efD").value),a=Number(f("efH").value),s=Number(f("efLen").value)||1,l=f("efTitel").value.trim();if(l.length<2)return c.toast(t==="lernstand"?"Bitte einen Titel eingeben.":"Bitte ein Thema eingeben.");if(!D(n,a,s,e))return c.toast("Zu dieser Zeit ist schon etwas eingetragen (oder die Stunde reicht \xFCber den Tag hinaus).");const r={woche:i.woche,d:n,h:a,len:s,art:ne(t),fach:f("efFach").value,titel:l,lehrkraft:f("efLk").value.trim(),raum:f("efRaum").value.trim(),anhaenge:i.anh||[],fuer:ne(t)==="lernstand"?kt():[],status:f("efStatus").value,updatedAt:c.serverTimestamp()};try{e?await c.updateDoc(z("wpEinfuehrungen",e),r):await c.addDoc(R("wpEinfuehrungen"),{...r,createdBy:S(),createdAt:c.serverTimestamp()}),c.closeModal(),v()}catch(d){console.error(d),c.toast("Speichern nicht m\xF6glich.")}}async function ra(e){if(confirm(ae(i.d.einf.find(t=>t.id===e)).weg))try{await c.deleteDoc(z("wpEinfuehrungen",e)),c.closeModal(),v()}catch{c.toast("Nicht m\xF6glich.")}}function zt(e,t,n){const a=e?i.d.slots.find(s=>s.id===e):{fach:"deutsch",d:t,h:n,len:1,lehrkraft:c.profile?.displayName||"",status:"entwurf"};E(`<div class="wp-artband" style="${y("frage")}">Sprechzeit</div><div class="kicker">SPRECHZEIT</div><h2>${e?"Sprechzeit bearbeiten":"Neue Sprechzeit"}</h2><p class="wp-hint">Sch\xFCler:innen k\xF6nnen diesen Termin f\xFCr eine fachliche Frage buchen (ein Platz).</p><div class="form">
- <label>Lehrkraft<input id="slLk" maxlength="60" value="${o(a.lehrkraft||"")}"></label>
- <label>K\xFCrzel im Wochenplan (2\u20134 Buchstaben)<input id="slK" maxlength="4" value="${o(a.kuerzel||pe(a))}"></label>
- <label>Fach<select id="slFach">${_.map(s=>`<option value="${s.k}" ${s.k===a.fach?"selected":""}>${o(s.l)}</option>`).join("")}</select></label>
- <label>Tag<select id="slD">${W.map((s,l)=>`<option value="${l}" ${l===a.d?"selected":""}>${s}</option>`).join("")}</select></label>
- <label>Beginn (Stunde)<select id="slH">${[...Array(10)].map((s,l)=>`<option value="${l+1}" ${l+1===a.h?"selected":""}>${l+1}. Stunde (${o(Y()[l])})</option>`).join("")}</select></label>
- <label>Dauer<select id="slLen"><option value="1" ${a.len!==2?"selected":""}>45 Minuten</option><option value="2" ${a.len===2?"selected":""}>90 Minuten</option></select></label>
- <label>Status<select id="slStatus"><option value="entwurf" ${a.status!=="live"?"selected":""}>Entwurf</option><option value="live" ${a.status==="live"?"selected":""}>Live</option></select></label>
- <div class="form-actions">${e?`<button class="secondary" onclick="wp.slotWeg('${e}')">L\xF6schen</button>`:""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.slotSave('${e||""}')">Speichern</button></div></div>`)}async function ca(e){const t=Number(f("slD").value),n=Number(f("slH").value),a=Number(f("slLen").value)||1;if(!D(t,n,a,e))return c.toast("Zu dieser Zeit ist schon etwas eingetragen.");const s={woche:i.woche,d:t,h:n,len:a,fach:f("slFach").value,lehrkraft:f("slLk").value.trim(),kuerzel:f("slK").value.trim().toUpperCase().slice(0,4)||pe({lehrkraft:f("slLk").value}),lehrkraftUid:S(),status:f("slStatus").value,updatedAt:c.serverTimestamp()};try{e?await c.updateDoc(z("wpSlots",e),s):await c.addDoc(R("wpSlots"),{...s,createdAt:c.serverTimestamp()}),c.closeModal(),v()}catch(l){console.error(l),c.toast("Speichern nicht m\xF6glich.")}}async function oa(e){if(confirm("Diese Sprechzeit l\xF6schen? Eine bestehende Buchung wird dabei aufgehoben."))try{const t=c.writeBatch(c.db);t.delete(z("wpSlots",e)),i.d.buchungen&&i.d.buchungen[e]&&t.delete(z("wpBuchungen",e)),t.delete(z("wpBelegt",e)),await t.commit(),c.closeModal(),v()}catch(t){console.error(t);try{await c.deleteDoc(z("wpSlots",e)),c.closeModal(),v()}catch{c.toast("Nicht m\xF6glich.")}}}async function da(){const e=i.woche,[t,n,a]=await Promise.all([j("wpTeamPlan",e),j("wpAnwesenheit",e),c.schueler().catch(()=>[])]),s=t||{notizen:{},todos:[]};i.d.teamPlan=s,i.d.anw=n||{woche:e,eintraege:{},planung:""},i.d.schueler=a;const l=_.slice(0,7),r=i.d.module.filter(u=>u.status!=="live"&&u.woche===e).length+i.d.einf.filter(u=>u.status!=="live").length+i.d.slots.filter(u=>u.status!=="live").length,d=(u,p,g,h)=>`<details class="card wp-fold" id="${u}" ${i.fold&&i.fold[u]!==void 0?i.fold[u]?"open":"":h?"open":""} ontoggle="wp.foldMerk('${u}',this.open)"><summary><b>${p}</b></summary>${g}</details>`;let m=d("fdFreitag","Freitagsplanung \xB7 Anwesenheit der Woche",pa(),!0);return m+=d("fdChat","Klassenteam \xB7 Austausch",`<div id="wpChat" class="wp-chat"><p class="wp-leer">Wird geladen \u2026</p></div>
- <div class="wp-chatform"><input id="wpChatText" maxlength="500" placeholder="Nachricht ans Team \u2026" onkeydown="if(event.key==='Enter')wp.chatSenden()"><button class="primary" onclick="wp.chatSenden()">Senden</button></div><small class="wp-hint">Nur f\xFCr Lehrkr\xE4fte sichtbar. Bitte keine Sch\xFClernamen oder sensiblen Daten.</small>`,!1),m+=d("fdPlan",o(Q(e))+" gemeinsam planen",`<p class="wp-hint">Was steht in dieser Woche je Fach an? Eure Notizen sind nur f\xFCr das Team sichtbar.</p>
- ${l.map(u=>`<label class="wp-notiz" style="--fc:${u.c}"><span>${o(u.l)}</span><textarea rows="2" maxlength="400" onchange="wp.teamNotiz('${u.k}',this.value)" placeholder="Einf\xFChrung, Lernstandsgespr\xE4che, Check-out, Besonderheiten \u2026">${o(s.notizen?.[u.k]||"")}</textarea></label>`).join("")}
- <h4>To-dos f\xFCrs Team</h4><div id="wpTodos">${(s.todos||[]).map(u=>`<label class="check"><input type="checkbox" ${u.done?"checked":""} onchange="wp.todoToggle('${u.id}')"><span>${o(u.t)}</span> <button class="text-button" onclick="wp.todoWeg('${u.id}')">\xD7</button></label>`).join("")||'<small class="wp-leer">Noch keine To-dos.</small>'}</div>
+ <label>Lehrkraft<input id="efLk" maxlength="60" value="${o(s.lehrkraft || "")}"></label><label>Raum (optional)<input id="efRaum" maxlength="20" value="${o(s.raum || "")}"></label>
+ <label>Status<select id="efStatus"><option value="entwurf" ${s.status !== "live" ? "selected" : ""}>Entwurf</option><option value="live" ${s.status === "live" ? "selected" : ""}>Live</option></select></label>
+ <div class="form-actions">${e ? `<button class="secondary" onclick="wp.einfWeg('${e}')">L\xF6schen</button>` : ""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einfSave('${e || ""}','${s.art || "einfuehrung"}')">Speichern</button></div></div></div>`),
+    s.art === "lernstand" && Ue());
+}
+async function sa(e, t) {
+  const n = Number(f("efD").value),
+    a = Number(f("efH").value),
+    s = Number(f("efLen").value) || 1,
+    l = f("efTitel").value.trim();
+  if (l.length < 2) return c.toast(t === "lernstand" ? "Bitte einen Titel eingeben." : "Bitte ein Thema eingeben.");
+  if (!D(n, a, s, e)) return c.toast("Zu dieser Zeit ist schon etwas eingetragen (oder die Stunde reicht \xFCber den Tag hinaus).");
+  const r = {
+    woche: i.woche,
+    d: n,
+    h: a,
+    len: s,
+    art: ne(t),
+    fach: f("efFach").value,
+    titel: l,
+    lehrkraft: f("efLk").value.trim(),
+    raum: f("efRaum").value.trim(),
+    anhaenge: i.anh || [],
+    fuer: ne(t) === "lernstand" ? kt() : [],
+    status: f("efStatus").value,
+    updatedAt: c.serverTimestamp(),
+  };
+  try {
+    (e
+      ? await c.updateDoc(z("wpEinfuehrungen", e), r)
+      : await c.addDoc(R("wpEinfuehrungen"), { ...r, createdBy: S(), createdAt: c.serverTimestamp() }),
+      c.closeModal(),
+      v());
+  } catch (d) {
+    (console.error(d), c.toast("Speichern nicht m\xF6glich."));
+  }
+}
+async function ra(e) {
+  if (confirm(ae(i.d.einf.find((t) => t.id === e)).weg))
+    try {
+      (await c.deleteDoc(z("wpEinfuehrungen", e)), c.closeModal(), v());
+    } catch {
+      c.toast("Nicht m\xF6glich.");
+    }
+}
+function zt(e, t, n) {
+  const a = e
+    ? i.d.slots.find((s) => s.id === e)
+    : { fach: "deutsch", d: t, h: n, len: 1, lehrkraft: c.profile?.displayName || "", status: "entwurf" };
+  E(`<div class="wp-artband" style="${y("frage")}">Sprechzeit</div><div class="kicker">SPRECHZEIT</div><h2>${e ? "Sprechzeit bearbeiten" : "Neue Sprechzeit"}</h2><p class="wp-hint">Sch\xFCler:innen k\xF6nnen diesen Termin f\xFCr eine fachliche Frage buchen (ein Platz).</p><div class="form">
+ <label>Lehrkraft<input id="slLk" maxlength="60" value="${o(a.lehrkraft || "")}"></label>
+ <label>K\xFCrzel im Wochenplan (2\u20134 Buchstaben)<input id="slK" maxlength="4" value="${o(a.kuerzel || pe(a))}"></label>
+ <label>Fach<select id="slFach">${_.map((s) => `<option value="${s.k}" ${s.k === a.fach ? "selected" : ""}>${o(s.l)}</option>`).join("")}</select></label>
+ <label>Tag<select id="slD">${W.map((s, l) => `<option value="${l}" ${l === a.d ? "selected" : ""}>${s}</option>`).join("")}</select></label>
+ <label>Beginn (Stunde)<select id="slH">${[...Array(10)].map((s, l) => `<option value="${l + 1}" ${l + 1 === a.h ? "selected" : ""}>${l + 1}. Stunde (${o(Y()[l])})</option>`).join("")}</select></label>
+ <label>Dauer<select id="slLen"><option value="1" ${a.len !== 2 ? "selected" : ""}>45 Minuten</option><option value="2" ${a.len === 2 ? "selected" : ""}>90 Minuten</option></select></label>
+ <label>Status<select id="slStatus"><option value="entwurf" ${a.status !== "live" ? "selected" : ""}>Entwurf</option><option value="live" ${a.status === "live" ? "selected" : ""}>Live</option></select></label>
+ <div class="form-actions">${e ? `<button class="secondary" onclick="wp.slotWeg('${e}')">L\xF6schen</button>` : ""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.slotSave('${e || ""}')">Speichern</button></div></div>`);
+}
+async function ca(e) {
+  const t = Number(f("slD").value),
+    n = Number(f("slH").value),
+    a = Number(f("slLen").value) || 1;
+  if (!D(t, n, a, e)) return c.toast("Zu dieser Zeit ist schon etwas eingetragen.");
+  const s = {
+    woche: i.woche,
+    d: t,
+    h: n,
+    len: a,
+    fach: f("slFach").value,
+    lehrkraft: f("slLk").value.trim(),
+    kuerzel: f("slK").value.trim().toUpperCase().slice(0, 4) || pe({ lehrkraft: f("slLk").value }),
+    lehrkraftUid: S(),
+    status: f("slStatus").value,
+    updatedAt: c.serverTimestamp(),
+  };
+  try {
+    (e ? await c.updateDoc(z("wpSlots", e), s) : await c.addDoc(R("wpSlots"), { ...s, createdAt: c.serverTimestamp() }),
+      c.closeModal(),
+      v());
+  } catch (l) {
+    (console.error(l), c.toast("Speichern nicht m\xF6glich."));
+  }
+}
+async function oa(e) {
+  if (confirm("Diese Sprechzeit l\xF6schen? Eine bestehende Buchung wird dabei aufgehoben."))
+    try {
+      const t = c.writeBatch(c.db);
+      (t.delete(z("wpSlots", e)),
+        i.d.buchungen && i.d.buchungen[e] && t.delete(z("wpBuchungen", e)),
+        t.delete(z("wpBelegt", e)),
+        await t.commit(),
+        c.closeModal(),
+        v());
+    } catch (t) {
+      console.error(t);
+      try {
+        (await c.deleteDoc(z("wpSlots", e)), c.closeModal(), v());
+      } catch {
+        c.toast("Nicht m\xF6glich.");
+      }
+    }
+}
+async function da() {
+  const e = i.woche,
+    [t, n, a] = await Promise.all([j("wpTeamPlan", e), j("wpAnwesenheit", e), c.schueler().catch(() => [])]),
+    s = t || { notizen: {}, todos: [] };
+  ((i.d.teamPlan = s), (i.d.anw = n || { woche: e, eintraege: {}, planung: "" }), (i.d.schueler = a));
+  const l = _.slice(0, 7),
+    r =
+      i.d.module.filter((u) => u.status !== "live" && u.woche === e).length +
+      i.d.einf.filter((u) => u.status !== "live").length +
+      i.d.slots.filter((u) => u.status !== "live").length,
+    d = (u, p, g, h) =>
+      `<details class="card wp-fold" id="${u}" ${i.fold && i.fold[u] !== void 0 ? (i.fold[u] ? "open" : "") : h ? "open" : ""} ontoggle="wp.foldMerk('${u}',this.open)"><summary><b>${p}</b></summary>${g}</details>`;
+  let m = d("fdFreitag", "Freitagsplanung \xB7 Anwesenheit der Woche", pa(), !0);
+  return (
+    (m += d(
+      "fdChat",
+      "Klassenteam \xB7 Austausch",
+      `<div id="wpChat" class="wp-chat"><p class="wp-leer">Wird geladen \u2026</p></div>
+ <div class="wp-chatform"><input id="wpChatText" maxlength="500" placeholder="Nachricht ans Team \u2026" onkeydown="if(event.key==='Enter')wp.chatSenden()"><button class="primary" onclick="wp.chatSenden()">Senden</button></div><small class="wp-hint">Nur f\xFCr Lehrkr\xE4fte sichtbar. Bitte keine Sch\xFClernamen oder sensiblen Daten.</small>`,
+      !1,
+    )),
+    (m += d(
+      "fdPlan",
+      o(Q(e)) + " gemeinsam planen",
+      `<p class="wp-hint">Was steht in dieser Woche je Fach an? Eure Notizen sind nur f\xFCr das Team sichtbar.</p>
+ ${l.map((u) => `<label class="wp-notiz" style="--fc:${u.c}"><span>${o(u.l)}</span><textarea rows="2" maxlength="400" onchange="wp.teamNotiz('${u.k}',this.value)" placeholder="Einf\xFChrung, Lernstandsgespr\xE4che, Check-out, Besonderheiten \u2026">${o(s.notizen?.[u.k] || "")}</textarea></label>`).join("")}
+ <h4>To-dos f\xFCrs Team</h4><div id="wpTodos">${(s.todos || []).map((u) => `<label class="check"><input type="checkbox" ${u.done ? "checked" : ""} onchange="wp.todoToggle('${u.id}')"><span>${o(u.t)}</span> <button class="text-button" onclick="wp.todoWeg('${u.id}')">\xD7</button></label>`).join("") || '<small class="wp-leer">Noch keine To-dos.</small>'}</div>
  <div class="wp-chatform"><input id="wpTodoText" maxlength="120" placeholder="Neues To-do \u2026" onkeydown="if(event.key==='Enter')wp.todoNeu()"><button class="secondary" onclick="wp.todoNeu()">Hinzuf\xFCgen</button></div>
- <div class="wp-freigabe"><div><b>${r} Entwurf${r===1?"":"e"}</b> f\xFCr diese Woche \xB7 ${ga()}</div><div class="form-actions"><button class="secondary" onclick="wp.vorwoche()">Feste Termine der Vorwoche \xFCbernehmen</button><button class="primary" onclick="wp.freigeben()">Woche f\xFCr die Klasse freigeben</button></div></div>`,!0),setTimeout(ba,0),m}const Tt={"":{t:"\u2013",l:"offen"},a:{t:"A",l:"anwesend"},f:{t:"F",l:"fehlt"},e:{t:"E",l:"entschuldigt"}},ua={"":"a",a:"f",f:"e",e:""};function St(e,t){const n=(i.d.anw.eintraege?.[e]||{})[t]||"";return`<button type="button" class="wp-anw z-${n||"o"}" title="${Tt[n].l}" onclick="wp.anwKlick('${e}',${t},this)">${Tt[n].t}</button>`}function pa(){const e=L(i.woche),t=i.d.schueler||[];if(!t.length)return'<p class="wp-leer">Keine freigeschalteten Sch\xFCler:innen gefunden.</p>';const n=a=>Object.values(i.d.anw.eintraege?.[a]||{}).filter(s=>s==="f"||s==="e").length;return`<p class="wp-hint">Tippe auf ein Feld, um zu wechseln: \u2013 offen \u2192 A anwesend \u2192 F fehlt \u2192 E entschuldigt. Die Anwesenheit ist nur f\xFCr Lehrkr\xE4fte sichtbar und kann jeden Tag der Woche eingetragen werden.</p>
- <div class="wp-anwtab"><table><thead><tr><th>Sch\xFCler:in</th>${I.map((a,s)=>`<th>${a}<small>${Z(N(e,s))}</small><button type="button" class="text-button" onclick="wp.anwAlle(${s})" title="Alle offenen Felder dieses Tages auf anwesend setzen">alle A</button></th>`).join("")}<th>Fehltage</th></tr></thead>
- <tbody>${t.map(a=>`<tr><td>${o(a.displayName||a.email||"")}</td>${I.map((s,l)=>`<td id="anw_${a.uid}_${l}">${St(a.uid,l)}</td>`).join("")}<td id="anwsum_${a.uid}"><b>${n(a.uid)}</b></td></tr>`).join("")}</tbody></table></div>
- <label class="wp-notiz" style="--fc:#8f9bb3"><span>Planung f\xFCr Freitag</span><textarea rows="3" maxlength="600" onchange="wp.anwPlanung(this.value)" placeholder="Was wird am Freitag besprochen oder vorbereitet? R\xFCckmeldungen, Gespr\xE4che, Vorhaben der n\xE4chsten Woche \u2026">${o(i.d.anw.planung||"")}</textarea></label>`}async function qe(e){const t=z("wpAnwesenheit",i.woche);try{await c.updateDoc(t,{...e,updatedBy:S(),updatedAt:c.serverTimestamp()})}catch(n){if(n&&n.code==="not-found")await c.setDoc(t,{woche:i.woche,eintraege:{},planung:"",updatedBy:S(),updatedAt:c.serverTimestamp()}),await c.updateDoc(t,{...e,updatedBy:S(),updatedAt:c.serverTimestamp()});else throw n}}async function ha(e,t,n){const a=i.d.anw.eintraege=i.d.anw.eintraege||{};a[e]=a[e]||{};const s=a[e][t]||"",l=ua[s];a[e][t]=l;try{await qe({["eintraege."+e+"."+t]:l});const r=f("anw_"+e+"_"+t);r&&(r.innerHTML=St(e,t));const d=f("anwsum_"+e);d&&(d.innerHTML="<b>"+Object.values(a[e]).filter(m=>m==="f"||m==="e").length+"</b>")}catch(r){a[e][t]=s,console.error(r),c.toast("Anwesenheit konnte nicht gespeichert werden (firestore.rules ver\xF6ffentlicht?).")}}async function fa(e){const t=i.d.anw.eintraege=i.d.anw.eintraege||{},n={};if((i.d.schueler||[]).forEach(a=>{t[a.uid]=t[a.uid]||{},t[a.uid][e]||(t[a.uid][e]="a",n["eintraege."+a.uid+"."+e]="a")}),!!Object.keys(n).length)try{await qe(n),v()}catch(a){console.error(a),c.toast("Anwesenheit konnte nicht gespeichert werden.")}}async function ma(e){i.d.anw.planung=String(e).slice(0,600);try{await qe({planung:i.d.anw.planung})}catch{c.toast("Nicht m\xF6glich.")}}const ga=()=>i.d.wochenDoc&&i.d.wochenDoc.status==="live"?"f\xFCr die Klasse sichtbar":"noch nicht freigegeben";function ba(){window.__wpStop(),f("wpChat")&&(i.chatUnsub=c.onSnapshot(c.query(R("wpTeamChat"),c.orderBy("createdAt","desc"),c.limit(60)),t=>{const n=f("wpChat");if(!n)return;const a=S(),s=t.docs.map(l=>({id:l.id,...l.data()})).reverse();n.innerHTML=s.length?s.map(l=>`<div class="wp-msg${l.fromUid===a?" mine":""}"><small>${o(l.fromName||"Lehrkraft")} \xB7 ${l.createdAt?.toDate?o(l.createdAt.toDate().toLocaleString("de-DE",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"})):""}</small><div>${o(l.text)}</div></div>`).join(""):'<p class="wp-leer">Noch keine Nachrichten.</p>',n.scrollTop=n.scrollHeight},t=>{console.warn("Chat:",t);const n=f("wpChat");n&&(n.innerHTML='<p class="wp-leer">Chat nicht verf\xFCgbar.</p>')}))}async function wa(){const e=f("wpChatText"),t=(e?.value||"").trim();if(t)try{await c.addDoc(R("wpTeamChat"),{text:t.slice(0,500),fromUid:S(),fromName:c.profile?.displayName||"Lehrkraft",createdAt:c.serverTimestamp()}),e.value=""}catch(n){console.error(n),c.toast("Senden nicht m\xF6glich.")}}async function Te(){await c.setDoc(z("wpTeamPlan",i.woche),{woche:i.woche,notizen:i.d.teamPlan.notizen||{},todos:i.d.teamPlan.todos||[],updatedBy:S(),updatedAt:c.serverTimestamp()})}async function va(e,t){i.d.teamPlan.notizen=i.d.teamPlan.notizen||{},i.d.teamPlan.notizen[e]=String(t).slice(0,400);try{await Te()}catch{c.toast("Speichern nicht m\xF6glich.")}}async function $a(){const e=f("wpTodoText"),t=(e?.value||"").trim();if(t){i.d.teamPlan.todos=[...i.d.teamPlan.todos||[],{id:Ee(),t:t.slice(0,120),done:!1}];try{await Te(),v()}catch{c.toast("Nicht m\xF6glich.")}}}async function ka(e){const t=(i.d.teamPlan.todos||[]).find(n=>n.id===e);if(t){t.done=!t.done;try{await Te()}catch{c.toast("Nicht m\xF6glich.")}}}async function ya(e){i.d.teamPlan.todos=(i.d.teamPlan.todos||[]).filter(t=>t.id!==e);try{await Te(),v()}catch{c.toast("Nicht m\xF6glich.")}}async function za(){const e=[...i.d.module.filter(t=>t.status!=="live"&&t.woche===i.woche).map(t=>["wpModule",t.id]),...i.d.einf.filter(t=>t.status!=="live").map(t=>["wpEinfuehrungen",t.id]),...i.d.slots.filter(t=>t.status!=="live").map(t=>["wpSlots",t.id])];if(confirm("Alle "+e.length+" Entw\xFCrfe dieser Woche f\xFCr die Klasse freigeben?"))try{for(let t=0;t<e.length;t+=400){const n=c.writeBatch(c.db);e.slice(t,t+400).forEach(([a,s])=>n.update(z(a,s),{status:"live",updatedAt:c.serverTimestamp()})),await n.commit()}await c.setDoc(z("wpWochen",i.woche),{woche:i.woche,status:"live",updatedAt:c.serverTimestamp()},{merge:!0}),c.toast("Woche freigegeben."),v()}catch(t){console.error(t),c.toast("Freigabe nicht m\xF6glich.")}}async function Ta(){const e=B(N(L(i.woche),-7));try{const t=await A("wpEinfuehrungen",M("woche",e));if(!t.length)return c.toast("In der Vorwoche gibt es keine festen Termine.");let n=0;for(const a of t){const{id:s,...l}=a;D(l.d,l.h,l.len||1)&&(await c.addDoc(R("wpEinfuehrungen"),{...l,woche:i.woche,status:"entwurf",createdBy:S(),createdAt:c.serverTimestamp(),updatedAt:c.serverTimestamp()}),n++)}c.toast(n+" Termin(e) als Entwurf \xFCbernommen."),v()}catch(t){console.error(t),c.toast("Nicht m\xF6glich.")}}async function Sa(){const[e,t]=await Promise.all([A("wpAnfragen",M("woche",i.woche)).catch(()=>[]),A("wpTutor").catch(()=>[])]),n=s=>e.filter(l=>l.status===s).length;let a=`<div class="wp-kpis"><div class="card"><b>${t.filter(s=>s.art==="tutor").length}</b><small>Tutor:innen-Angebote</small></div><div class="card"><b>${t.filter(s=>s.art==="kompetenz").length}</b><small>Kompetenz-Angebote</small></div><div class="card"><b>${n("angenommen")}</b><small>best\xE4tigte Termine (Woche)</small></div><div class="card"><b>${n("offen")}</b><small>offene Anfragen (Woche)</small></div></div>`;return a+=`<div class="card"><h3>Angebote der Klasse</h3><div class="wp-liste">${t.map(s=>`<div><span>${s.art==="kompetenz",""}</span><b>${o(s.pseudo)}</b><small>${o(s.bereich)}${s.art==="tutor"?" \xB7 "+o(T(s.fach).l):""}</small><span class="wp-rowact"><button class="secondary" onclick="wp.angebotMod('${s.id}')">Entfernen</button></span></div>`).join("")||'<p class="wp-leer">Noch keine Angebote.</p>'}</div></div>`,a+=`<div class="card"><h3>Anfragen dieser Woche</h3><div class="wp-liste">${e.map(s=>`<div><span>${s.art==="kompetenz",""}</span><b>${o(s.vonPseudo)} \u2192 ${o(s.tutorPseudo)}</b><small>${I[s.d]} ${o(G(s.h,s.len||1))} \xB7 ${o(s.thema)}${s.projekt?" \xB7 "+o(s.projekt):""}</small><span class="pill ${s.status==="angenommen"?"ok":s.status==="offen"?"warn":""}">${o(s.status)}</span></div>`).join("")||'<p class="wp-leer">Keine Anfragen in dieser Woche.</p>'}</div></div>`,a}async function Aa(e){if(confirm("Dieses Angebot entfernen?"))try{await c.deleteDoc(z("wpTutor",e)),v()}catch{c.toast("Nicht m\xF6glich.")}}const he=e=>e==null?"\u2013":(Math.round(e*10)/10).toString().replace(".",","),La=["So","Mo","Di","Mi","Do","Fr","Sa"],fe=e=>e?String(e).slice(8,10)+"."+String(e).slice(5,7)+".":"";function Ea(){const e=(t,n)=>{const a=f(t);a&&(a.value=n)};e("mfTitel","Fachaufsatz: Aufbau und Bausteine"),e("mfFach","paedagogik"),e("mfLen","90"),e("mfBeschr","Du lernst, aus welchen Bausteinen ein Fachaufsatz besteht, pr\xFCfst Aufs\xE4tze mit einer Kriterienliste und schreibst in der Gruppe einen eigenen Fachaufsatz."),e("gf_ziel","Ich kann den Aufbau eines Fachaufsatzes erkl\xE4ren (Einleitung, Hauptteil, Schluss) und einen eigenen Fachaufsatz mit Zeilenangaben schreiben."),e("gf_ablauf",["Einstieg: Das Tafelbild mit den acht Bausteinen kennenlernen (20 Min.)","Aufsatz ordnen, Fehler finden und gemeinsame Kriterien festlegen (25 Min.)","In der Gruppe einen Fachaufsatz zu einem neuen Fallbeispiel schreiben (30 Min.)","Aufs\xE4tze vorstellen, R\xFCckmeldung mit Stern und Wunsch, Check-out (15 Min.)"].join(`
-`)),e("gf_material","Tafelbild als Webseite (Link) und Digitale Tafel \u201EFachaufsatz: Bausteine\u201C aus dem Vorlagen-Men\xFC der Digitalen Tafel."),e("gf_checkout","Erl\xE4utern Sie, aus welchen Bausteinen ein Fachaufsatz besteht, und begr\xFCnden Sie, warum der Einleitungssatz keinen Fallbezug enth\xE4lt."),e("gf_muster","Ein Fachaufsatz besteht aus Einleitung, Hauptteil und Schluss. Die Einleitung beginnt mit einem ganz allgemeinen Einleitungssatz, grenzt den Lernbereich durch die Definitionen von P\xE4dagogik und Psychologie ein und leitet mit Fallbezug und Zeilenangabe zum Hauptteil \xFCber. Im Hauptteil wird jeder Theoriepunkt genannt, erkl\xE4rt und am Fallbeispiel mit Zeilenangabe verdeutlicht (Transfer). Der Schluss enth\xE4lt einen passenden Gedanken oder Ausblick. Der Einleitungssatz hat keinen Fallbezug, weil er zuerst allgemein ins Thema f\xFChrt. Der Fallbezug folgt erst in der \xDCberleitung.");try{e("mfLink",new URL("deeper-learning/fachaufsatz-tafelbild.html",location.href).href)}catch{}c.toast("Vorlage eingef\xFCgt. Bitte pr\xFCfen und speichern.")}const Se=["stimme gar nicht zu","stimme eher nicht zu","teils/teils","stimme eher zu","stimme voll zu"],J=[{k:"lernen",l:"Lernen und Verstehen",f:[["q1","Ich habe in diesem Block viel dazugelernt."],["q2","Die Lernziele waren mir klar."],["q3","Die Aufgaben und Materialien waren verst\xE4ndlich."],["q4","Der Schwierigkeitsgrad war f\xFCr mich angemessen."]]},{k:"steuerung",l:"Selbststeuerung",f:[["q5","Ich konnte meine Woche gut selbst planen."],["q6","Ich wusste, wo und wann ich Hilfe bekomme."],["q7","Die Einf\xFChrungen der Lehrkr\xE4fte haben mir geholfen."]]},{k:"zusammen",l:"Zusammenarbeit",f:[["q8","Die Arbeit in der Gruppe hat gut funktioniert."],["q9","Ich konnte meine Ideen einbringen."],["q10","Ich konnte anderen helfen oder Hilfe annehmen."]]},{k:"material",l:"Material und Technik",f:[["q11","Das Material (Webseiten, Kurse, Digitale Tafel) war hilfreich."],["q12","Die App und die Digitale Tafel waren einfach zu bedienen."]]},{k:"gesamt",l:"Gesamteindruck",f:[["q13","Insgesamt war ich mit diesem Block zufrieden."],["q14","Ich w\xFCrde diese Art zu lernen weiterempfehlen."],["q15","Die R\xFCckmeldungen der Lehrkr\xE4fte haben mir weitergeholfen."]]}],Ve=["#4f86e0","#5aa85a","#d9922e","#8a68c9","#17384f"],At=["#f3c7c1","#f7dfc0","#efe9c4","#d3e7c0","#b6dba0"],X=3;function Oe(e){const t=e&&e.gestaltung&&e.gestaltung.extra,n=(Array.isArray(t)?t:ke(t)).slice(0,10).map((a,s)=>({id:"x"+(s+1),t:a,kat:"extra"}));return[...J.flatMap(a=>a.f.map(([s,l])=>({id:s,t:l,kat:a.k}))),...n]}function Da(e,t){return!e||e.mTyp!=="feedback"||!e.moduleId?"":i.d.fbGegeben&&i.d.fbGegeben.has(e.moduleId)?'<p class="wp-hint">Danke, deine R\xFCckmeldung ist angekommen.</p>':`<div class="form-actions"><button class="primary" onclick="closeModal();wp.fbForm('${e.moduleId}','${e.id}')">Feedback geben</button></div>`}function Ma(e,t){const n=i.d.module.find(p=>p.id===e),a=i.d.plan.eintraege.find(p=>p.id===t),s=n&&n.titel||a&&a.titel||"Block-Feedback",l=n&&n.fach||a&&a.fach||"fachuebergreifend",r=n&&n.gestaltung&&n.gestaltung.block||"",d=(p,g)=>`<fieldset class="wp-fb-z"><legend>${o(g)}</legend><div class="wp-fb-r">${[1,2,3,4,5].map(h=>`<label title="${o(Se[h-1])}"><input type="radio" name="fb_${p}" value="${h}"><span>${h}</span><em>${o(Se[h-1])}</em></label>`).join("")}</div></fieldset>`,m=Oe(n),u=[...J.map(p=>({l:p.l,f:m.filter(g=>g.kat===p.k)})),{l:"Weitere Aussagen",f:m.filter(p=>p.kat==="extra")}].filter(p=>p.f.length);E(`<div class="wp-artband" style="${y("feedback")}">Block-Feedback</div><div class="kicker">${o(T(l).l)}${r?" \xB7 "+o(r):""}</div><h2>${o(s)}</h2>
+ <div class="wp-freigabe"><div><b>${r} Entwurf${r === 1 ? "" : "e"}</b> f\xFCr diese Woche \xB7 ${ga()}</div><div class="form-actions"><button class="secondary" onclick="wp.vorwoche()">Feste Termine der Vorwoche \xFCbernehmen</button><button class="primary" onclick="wp.freigeben()">Woche f\xFCr die Klasse freigeben</button></div></div>`,
+      !0,
+    )),
+    setTimeout(ba, 0),
+    m
+  );
+}
+const Tt = { "": { t: "\u2013", l: "offen" }, a: { t: "A", l: "anwesend" }, f: { t: "F", l: "fehlt" }, e: { t: "E", l: "entschuldigt" } },
+  ua = { "": "a", a: "f", f: "e", e: "" };
+function St(e, t) {
+  const n = (i.d.anw.eintraege?.[e] || {})[t] || "";
+  return `<button type="button" class="wp-anw z-${n || "o"}" title="${Tt[n].l}" onclick="wp.anwKlick('${e}',${t},this)">${Tt[n].t}</button>`;
+}
+function pa() {
+  const e = L(i.woche),
+    t = i.d.schueler || [];
+  if (!t.length) return '<p class="wp-leer">Keine freigeschalteten Sch\xFCler:innen gefunden.</p>';
+  const n = (a) => Object.values(i.d.anw.eintraege?.[a] || {}).filter((s) => s === "f" || s === "e").length;
+  return `<p class="wp-hint">Tippe auf ein Feld, um zu wechseln: \u2013 offen \u2192 A anwesend \u2192 F fehlt \u2192 E entschuldigt. Die Anwesenheit ist nur f\xFCr Lehrkr\xE4fte sichtbar und kann jeden Tag der Woche eingetragen werden.</p>
+ <div class="wp-anwtab"><table><thead><tr><th>Sch\xFCler:in</th>${I.map((a, s) => `<th>${a}<small>${Z(N(e, s))}</small><button type="button" class="text-button" onclick="wp.anwAlle(${s})" title="Alle offenen Felder dieses Tages auf anwesend setzen">alle A</button></th>`).join("")}<th>Fehltage</th></tr></thead>
+ <tbody>${t.map((a) => `<tr><td>${o(a.displayName || a.email || "")}</td>${I.map((s, l) => `<td id="anw_${a.uid}_${l}">${St(a.uid, l)}</td>`).join("")}<td id="anwsum_${a.uid}"><b>${n(a.uid)}</b></td></tr>`).join("")}</tbody></table></div>
+ <label class="wp-notiz" style="--fc:#8f9bb3"><span>Planung f\xFCr Freitag</span><textarea rows="3" maxlength="600" onchange="wp.anwPlanung(this.value)" placeholder="Was wird am Freitag besprochen oder vorbereitet? R\xFCckmeldungen, Gespr\xE4che, Vorhaben der n\xE4chsten Woche \u2026">${o(i.d.anw.planung || "")}</textarea></label>`;
+}
+async function qe(e) {
+  const t = z("wpAnwesenheit", i.woche);
+  try {
+    await c.updateDoc(t, { ...e, updatedBy: S(), updatedAt: c.serverTimestamp() });
+  } catch (n) {
+    if (n && n.code === "not-found")
+      (await c.setDoc(t, { woche: i.woche, eintraege: {}, planung: "", updatedBy: S(), updatedAt: c.serverTimestamp() }),
+        await c.updateDoc(t, { ...e, updatedBy: S(), updatedAt: c.serverTimestamp() }));
+    else throw n;
+  }
+}
+async function ha(e, t, n) {
+  const a = (i.d.anw.eintraege = i.d.anw.eintraege || {});
+  a[e] = a[e] || {};
+  const s = a[e][t] || "",
+    l = ua[s];
+  a[e][t] = l;
+  try {
+    await qe({ ["eintraege." + e + "." + t]: l });
+    const r = f("anw_" + e + "_" + t);
+    r && (r.innerHTML = St(e, t));
+    const d = f("anwsum_" + e);
+    d && (d.innerHTML = "<b>" + Object.values(a[e]).filter((m) => m === "f" || m === "e").length + "</b>");
+  } catch (r) {
+    ((a[e][t] = s), console.error(r), c.toast("Anwesenheit konnte nicht gespeichert werden (firestore.rules ver\xF6ffentlicht?)."));
+  }
+}
+async function fa(e) {
+  const t = (i.d.anw.eintraege = i.d.anw.eintraege || {}),
+    n = {};
+  if (
+    ((i.d.schueler || []).forEach((a) => {
+      ((t[a.uid] = t[a.uid] || {}), t[a.uid][e] || ((t[a.uid][e] = "a"), (n["eintraege." + a.uid + "." + e] = "a")));
+    }),
+    !!Object.keys(n).length)
+  )
+    try {
+      (await qe(n), v());
+    } catch (a) {
+      (console.error(a), c.toast("Anwesenheit konnte nicht gespeichert werden."));
+    }
+}
+async function ma(e) {
+  i.d.anw.planung = String(e).slice(0, 600);
+  try {
+    await qe({ planung: i.d.anw.planung });
+  } catch {
+    c.toast("Nicht m\xF6glich.");
+  }
+}
+const ga = () => (i.d.wochenDoc && i.d.wochenDoc.status === "live" ? "f\xFCr die Klasse sichtbar" : "noch nicht freigegeben");
+function ba() {
+  (window.__wpStop(),
+    f("wpChat") &&
+      (i.chatUnsub = c.onSnapshot(
+        c.query(R("wpTeamChat"), c.orderBy("createdAt", "desc"), c.limit(60)),
+        (t) => {
+          const n = f("wpChat");
+          if (!n) return;
+          const a = S(),
+            s = t.docs.map((l) => ({ id: l.id, ...l.data() })).reverse();
+          ((n.innerHTML = s.length
+            ? s
+                .map(
+                  (l) =>
+                    `<div class="wp-msg${l.fromUid === a ? " mine" : ""}"><small>${o(l.fromName || "Lehrkraft")} \xB7 ${l.createdAt?.toDate ? o(l.createdAt.toDate().toLocaleString("de-DE", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })) : ""}</small><div>${o(l.text)}</div></div>`,
+                )
+                .join("")
+            : '<p class="wp-leer">Noch keine Nachrichten.</p>'),
+            (n.scrollTop = n.scrollHeight));
+        },
+        (t) => {
+          console.warn("Chat:", t);
+          const n = f("wpChat");
+          n && (n.innerHTML = '<p class="wp-leer">Chat nicht verf\xFCgbar.</p>');
+        },
+      )));
+}
+async function wa() {
+  const e = f("wpChatText"),
+    t = (e?.value || "").trim();
+  if (t)
+    try {
+      (await c.addDoc(R("wpTeamChat"), {
+        text: t.slice(0, 500),
+        fromUid: S(),
+        fromName: c.profile?.displayName || "Lehrkraft",
+        createdAt: c.serverTimestamp(),
+      }),
+        (e.value = ""));
+    } catch (n) {
+      (console.error(n), c.toast("Senden nicht m\xF6glich."));
+    }
+}
+async function Te() {
+  await c.setDoc(z("wpTeamPlan", i.woche), {
+    woche: i.woche,
+    notizen: i.d.teamPlan.notizen || {},
+    todos: i.d.teamPlan.todos || [],
+    updatedBy: S(),
+    updatedAt: c.serverTimestamp(),
+  });
+}
+async function va(e, t) {
+  ((i.d.teamPlan.notizen = i.d.teamPlan.notizen || {}), (i.d.teamPlan.notizen[e] = String(t).slice(0, 400)));
+  try {
+    await Te();
+  } catch {
+    c.toast("Speichern nicht m\xF6glich.");
+  }
+}
+async function $a() {
+  const e = f("wpTodoText"),
+    t = (e?.value || "").trim();
+  if (t) {
+    i.d.teamPlan.todos = [...(i.d.teamPlan.todos || []), { id: Ee(), t: t.slice(0, 120), done: !1 }];
+    try {
+      (await Te(), v());
+    } catch {
+      c.toast("Nicht m\xF6glich.");
+    }
+  }
+}
+async function ka(e) {
+  const t = (i.d.teamPlan.todos || []).find((n) => n.id === e);
+  if (t) {
+    t.done = !t.done;
+    try {
+      await Te();
+    } catch {
+      c.toast("Nicht m\xF6glich.");
+    }
+  }
+}
+async function ya(e) {
+  i.d.teamPlan.todos = (i.d.teamPlan.todos || []).filter((t) => t.id !== e);
+  try {
+    (await Te(), v());
+  } catch {
+    c.toast("Nicht m\xF6glich.");
+  }
+}
+async function za() {
+  const e = [
+    ...i.d.module.filter((t) => t.status !== "live" && t.woche === i.woche).map((t) => ["wpModule", t.id]),
+    ...i.d.einf.filter((t) => t.status !== "live").map((t) => ["wpEinfuehrungen", t.id]),
+    ...i.d.slots.filter((t) => t.status !== "live").map((t) => ["wpSlots", t.id]),
+  ];
+  if (confirm("Alle " + e.length + " Entw\xFCrfe dieser Woche f\xFCr die Klasse freigeben?"))
+    try {
+      for (let t = 0; t < e.length; t += 400) {
+        const n = c.writeBatch(c.db);
+        (e.slice(t, t + 400).forEach(([a, s]) => n.update(z(a, s), { status: "live", updatedAt: c.serverTimestamp() })), await n.commit());
+      }
+      (await c.setDoc(z("wpWochen", i.woche), { woche: i.woche, status: "live", updatedAt: c.serverTimestamp() }, { merge: !0 }),
+        c.toast("Woche freigegeben."),
+        v());
+    } catch (t) {
+      (console.error(t), c.toast("Freigabe nicht m\xF6glich."));
+    }
+}
+async function Ta() {
+  const e = B(N(L(i.woche), -7));
+  try {
+    const t = await A("wpEinfuehrungen", M("woche", e));
+    if (!t.length) return c.toast("In der Vorwoche gibt es keine festen Termine.");
+    let n = 0;
+    for (const a of t) {
+      const { id: s, ...l } = a;
+      D(l.d, l.h, l.len || 1) &&
+        (await c.addDoc(R("wpEinfuehrungen"), {
+          ...l,
+          woche: i.woche,
+          status: "entwurf",
+          createdBy: S(),
+          createdAt: c.serverTimestamp(),
+          updatedAt: c.serverTimestamp(),
+        }),
+        n++);
+    }
+    (c.toast(n + " Termin(e) als Entwurf \xFCbernommen."), v());
+  } catch (t) {
+    (console.error(t), c.toast("Nicht m\xF6glich."));
+  }
+}
+async function Sa() {
+  const [e, t] = await Promise.all([A("wpAnfragen", M("woche", i.woche)).catch(() => []), A("wpTutor").catch(() => [])]),
+    n = (s) => e.filter((l) => l.status === s).length;
+  let a = `<div class="wp-kpis"><div class="card"><b>${t.filter((s) => s.art === "tutor").length}</b><small>Tutor:innen-Angebote</small></div><div class="card"><b>${t.filter((s) => s.art === "kompetenz").length}</b><small>Kompetenz-Angebote</small></div><div class="card"><b>${n("angenommen")}</b><small>best\xE4tigte Termine (Woche)</small></div><div class="card"><b>${n("offen")}</b><small>offene Anfragen (Woche)</small></div></div>`;
+  return (
+    (a += `<div class="card"><h3>Angebote der Klasse</h3><div class="wp-liste">${t.map((s) => `<div><span>${(s.art === "kompetenz", "")}</span><b>${o(s.pseudo)}</b><small>${o(s.bereich)}${s.art === "tutor" ? " \xB7 " + o(T(s.fach).l) : ""}</small><span class="wp-rowact"><button class="secondary" onclick="wp.angebotMod('${s.id}')">Entfernen</button></span></div>`).join("") || '<p class="wp-leer">Noch keine Angebote.</p>'}</div></div>`),
+    (a += `<div class="card"><h3>Anfragen dieser Woche</h3><div class="wp-liste">${e.map((s) => `<div><span>${(s.art === "kompetenz", "")}</span><b>${o(s.vonPseudo)} \u2192 ${o(s.tutorPseudo)}</b><small>${I[s.d]} ${o(G(s.h, s.len || 1))} \xB7 ${o(s.thema)}${s.projekt ? " \xB7 " + o(s.projekt) : ""}</small><span class="pill ${s.status === "angenommen" ? "ok" : s.status === "offen" ? "warn" : ""}">${o(s.status)}</span></div>`).join("") || '<p class="wp-leer">Keine Anfragen in dieser Woche.</p>'}</div></div>`),
+    a
+  );
+}
+async function Aa(e) {
+  if (confirm("Dieses Angebot entfernen?"))
+    try {
+      (await c.deleteDoc(z("wpTutor", e)), v());
+    } catch {
+      c.toast("Nicht m\xF6glich.");
+    }
+}
+const he = (e) => (e == null ? "\u2013" : (Math.round(e * 10) / 10).toString().replace(".", ",")),
+  La = ["So", "Mo", "Di", "Mi", "Do", "Fr", "Sa"],
+  fe = (e) => (e ? String(e).slice(8, 10) + "." + String(e).slice(5, 7) + "." : "");
+function Ea() {
+  const e = (t, n) => {
+    const a = f(t);
+    a && (a.value = n);
+  };
+  (e("mfTitel", "Fachaufsatz: Aufbau und Bausteine"),
+    e("mfFach", "paedagogik"),
+    e("mfLen", "90"),
+    e(
+      "mfBeschr",
+      "Du lernst, aus welchen Bausteinen ein Fachaufsatz besteht, pr\xFCfst Aufs\xE4tze mit einer Kriterienliste und schreibst in der Gruppe einen eigenen Fachaufsatz.",
+    ),
+    e(
+      "gf_ziel",
+      "Ich kann den Aufbau eines Fachaufsatzes erkl\xE4ren (Einleitung, Hauptteil, Schluss) und einen eigenen Fachaufsatz mit Zeilenangaben schreiben.",
+    ),
+    e(
+      "gf_ablauf",
+      [
+        "Einstieg: Das Tafelbild mit den acht Bausteinen kennenlernen (20 Min.)",
+        "Aufsatz ordnen, Fehler finden und gemeinsame Kriterien festlegen (25 Min.)",
+        "In der Gruppe einen Fachaufsatz zu einem neuen Fallbeispiel schreiben (30 Min.)",
+        "Aufs\xE4tze vorstellen, R\xFCckmeldung mit Stern und Wunsch, Check-out (15 Min.)",
+      ].join(`
+`),
+    ),
+    e(
+      "gf_material",
+      "Tafelbild als Webseite (Link) und Digitale Tafel \u201EFachaufsatz: Bausteine\u201C aus dem Vorlagen-Men\xFC der Digitalen Tafel.",
+    ),
+    e(
+      "gf_checkout",
+      "Erl\xE4utern Sie, aus welchen Bausteinen ein Fachaufsatz besteht, und begr\xFCnden Sie, warum der Einleitungssatz keinen Fallbezug enth\xE4lt.",
+    ),
+    e(
+      "gf_muster",
+      "Ein Fachaufsatz besteht aus Einleitung, Hauptteil und Schluss. Die Einleitung beginnt mit einem ganz allgemeinen Einleitungssatz, grenzt den Lernbereich durch die Definitionen von P\xE4dagogik und Psychologie ein und leitet mit Fallbezug und Zeilenangabe zum Hauptteil \xFCber. Im Hauptteil wird jeder Theoriepunkt genannt, erkl\xE4rt und am Fallbeispiel mit Zeilenangabe verdeutlicht (Transfer). Der Schluss enth\xE4lt einen passenden Gedanken oder Ausblick. Der Einleitungssatz hat keinen Fallbezug, weil er zuerst allgemein ins Thema f\xFChrt. Der Fallbezug folgt erst in der \xDCberleitung.",
+    ));
+  try {
+    e("mfLink", new URL("deeper-learning/fachaufsatz-tafelbild.html", location.href).href);
+  } catch {}
+  c.toast("Vorlage eingef\xFCgt. Bitte pr\xFCfen und speichern.");
+}
+const Se = ["stimme gar nicht zu", "stimme eher nicht zu", "teils/teils", "stimme eher zu", "stimme voll zu"],
+  J = [
+    {
+      k: "lernen",
+      l: "Lernen und Verstehen",
+      f: [
+        ["q1", "Ich habe in diesem Block viel dazugelernt."],
+        ["q2", "Die Lernziele waren mir klar."],
+        ["q3", "Die Aufgaben und Materialien waren verst\xE4ndlich."],
+        ["q4", "Der Schwierigkeitsgrad war f\xFCr mich angemessen."],
+      ],
+    },
+    {
+      k: "steuerung",
+      l: "Selbststeuerung",
+      f: [
+        ["q5", "Ich konnte meine Woche gut selbst planen."],
+        ["q6", "Ich wusste, wo und wann ich Hilfe bekomme."],
+        ["q7", "Die Einf\xFChrungen der Lehrkr\xE4fte haben mir geholfen."],
+      ],
+    },
+    {
+      k: "zusammen",
+      l: "Zusammenarbeit",
+      f: [
+        ["q8", "Die Arbeit in der Gruppe hat gut funktioniert."],
+        ["q9", "Ich konnte meine Ideen einbringen."],
+        ["q10", "Ich konnte anderen helfen oder Hilfe annehmen."],
+      ],
+    },
+    {
+      k: "material",
+      l: "Material und Technik",
+      f: [
+        ["q11", "Das Material (Webseiten, Kurse, Digitale Tafel) war hilfreich."],
+        ["q12", "Die App und die Digitale Tafel waren einfach zu bedienen."],
+      ],
+    },
+    {
+      k: "gesamt",
+      l: "Gesamteindruck",
+      f: [
+        ["q13", "Insgesamt war ich mit diesem Block zufrieden."],
+        ["q14", "Ich w\xFCrde diese Art zu lernen weiterempfehlen."],
+        ["q15", "Die R\xFCckmeldungen der Lehrkr\xE4fte haben mir weitergeholfen."],
+      ],
+    },
+  ],
+  Ve = ["#4f86e0", "#5aa85a", "#d9922e", "#8a68c9", "#17384f"],
+  At = ["#f3c7c1", "#f7dfc0", "#efe9c4", "#d3e7c0", "#b6dba0"],
+  X = 3;
+function Oe(e) {
+  const t = e && e.gestaltung && e.gestaltung.extra,
+    n = (Array.isArray(t) ? t : ke(t)).slice(0, 10).map((a, s) => ({ id: "x" + (s + 1), t: a, kat: "extra" }));
+  return [...J.flatMap((a) => a.f.map(([s, l]) => ({ id: s, t: l, kat: a.k }))), ...n];
+}
+function Da(e, t) {
+  return !e || e.mTyp !== "feedback" || !e.moduleId
+    ? ""
+    : i.d.fbGegeben && i.d.fbGegeben.has(e.moduleId)
+      ? '<p class="wp-hint">Danke, deine R\xFCckmeldung ist angekommen.</p>'
+      : `<div class="form-actions"><button class="primary" onclick="closeModal();wp.fbForm('${e.moduleId}','${e.id}')">Feedback geben</button></div>`;
+}
+function Ma(e, t) {
+  const n = i.d.module.find((p) => p.id === e),
+    a = i.d.plan.eintraege.find((p) => p.id === t),
+    s = (n && n.titel) || (a && a.titel) || "Block-Feedback",
+    l = (n && n.fach) || (a && a.fach) || "fachuebergreifend",
+    r = (n && n.gestaltung && n.gestaltung.block) || "",
+    d = (p, g) =>
+      `<fieldset class="wp-fb-z"><legend>${o(g)}</legend><div class="wp-fb-r">${[1, 2, 3, 4, 5].map((h) => `<label title="${o(Se[h - 1])}"><input type="radio" name="fb_${p}" value="${h}"><span>${h}</span><em>${o(Se[h - 1])}</em></label>`).join("")}</div></fieldset>`,
+    m = Oe(n),
+    u = [
+      ...J.map((p) => ({ l: p.l, f: m.filter((g) => g.kat === p.k) })),
+      { l: "Weitere Aussagen", f: m.filter((p) => p.kat === "extra") },
+    ].filter((p) => p.f.length);
+  E(`<div class="wp-artband" style="${y("feedback")}">Block-Feedback</div><div class="kicker">${o(T(l).l)}${r ? " \xB7 " + o(r) : ""}</div><h2>${o(s)}</h2>
  <p class="wp-hint">Deine R\xFCckmeldung ist anonym. Ergebnisse sehen die Lehrkr\xE4fte erst, wenn mindestens ${X} Personen geantwortet haben. Skala: 1 = stimme gar nicht zu, 5 = stimme voll zu.</p>
- <div class="wp-fb">${u.map(p=>`<h4>${o(p.l)}</h4>${p.f.map(g=>d(g.id,g.t)).join("")}`).join("")}
+ <div class="wp-fb">${u.map((p) => `<h4>${o(p.l)}</h4>${p.f.map((g) => d(g.id, g.t)).join("")}`).join("")}
  <h4>In deinen Worten</h4>
  <label class="form"><span>Das fand ich gut:</span><textarea id="fbGut" rows="3" maxlength="600"></textarea></label>
  <label class="form"><span>Das sollte man verbessern:</span><textarea id="fbBesser" rows="3" maxlength="600"></textarea></label>
  <label class="form"><span>Das w\xFCnsche ich mir f\xFCr den n\xE4chsten Block (optional):</span><textarea id="fbWunsch" rows="2" maxlength="600"></textarea></label></div>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.fbSenden('${o(e)}','${o(t||"")}')">Absenden</button></div>`)}async function Fa(e,t){const n=i.d.module.find(g=>g.id===e),a=i.d.plan.eintraege.find(g=>g.id===t),s=Oe(n),l={};if(s.forEach(g=>{const h=document.querySelector(`input[name="fb_${g.id}"]:checked`);h&&(l[g.id]=Number(h.value))}),Object.keys(l).length<5)return c.toast("Bitte beantworte mindestens 5 Aussagen.");const r=g=>(f(g)?.value||"").trim().slice(0,600),d=S(),m=n&&n.titel||a&&a.titel||"Block-Feedback",u=n&&n.fach||a&&a.fach||"fachuebergreifend",p=n&&n.gestaltung&&n.gestaltung.block||"";try{const g=c.writeBatch(c.db);g.set(c.doc(R("wpFeedback")),{moduleId:e,fach:u,block:p,titel:m,blockDatum:n&&n.woche||"",datum:B(new Date),antworten:l,gut:r("fbGut"),besser:r("fbBesser"),wunsch:r("fbWunsch"),createdAt:c.serverTimestamp()}),g.set(z("wpFbGegeben",e+"_"+d),{uid:d,moduleId:e,createdAt:c.serverTimestamp()}),await g.commit(),i.d.fbGegeben.add(e),a&&!a.erledigt&&(a.erledigt=!0,a.doneAt=Date.now(),await F()),c.closeModal(),c.toast("Danke f\xFCr dein Feedback."),v()}catch(g){console.error(g),c.toast("Senden nicht m\xF6glich. Hast du schon Feedback gegeben?")}}function Ae(e){if(e._st)return e._st;const t=s=>typeof s=="number"&&s>=1&&s<=5,n={};e.items.forEach(s=>{const l=e.rs.map(d=>d.antworten&&d.antworten[s.id]).filter(t),r=[0,0,0,0,0];l.forEach(d=>r[d-1]++),n[s.id]={n:l.length,mean:l.length?l.reduce((d,m)=>d+m,0)/l.length:null,d:r}});const a={};return J.forEach(s=>{const l=s.f.flatMap(([r])=>e.rs.map(d=>d.antworten&&d.antworten[r]).filter(t));a[s.k]=l.length?l.reduce((r,d)=>r+d,0)/l.length:null}),e._st={st:n,kat:a}}const xa=e=>{const t=e.m.gestaltung&&e.m.gestaltung.block||e.m.titel||"Block";return t.length>13?t.slice(0,12)+"\u2026":t};function Na(e){if(!e.length)return"";const t=640,n=270,a=40,s=16,l=14,r=46,d=t-a-s,m=n-l-r,u=h=>a+(e.length===1?d/2:h*d/(e.length-1)),p=h=>l+(5-h)/4*m;let g=`<svg viewBox="0 0 ${t} ${n}" role="img" aria-label="Verlauf der Mittelwerte je Kategorie \xFCber die Bl\xF6cke" class="wp-chart">`;for(let h=1;h<=5;h++)g+=`<line x1="${a}" x2="${t-s}" y1="${p(h)}" y2="${p(h)}" stroke="#dce7ef" stroke-width="1"/><text x="${a-8}" y="${p(h)+4}" text-anchor="end" font-size="11" fill="#6c8190">${h}</text>`;return e.forEach((h,w)=>{g+=`<text x="${u(w)}" y="${n-26}" text-anchor="middle" font-size="11" fill="#17384f">${o(xa(h))}</text><text x="${u(w)}" y="${n-11}" text-anchor="middle" font-size="10" fill="#6c8190">${o(fe(h.datum))}</text>`}),J.forEach((h,w)=>{const $=e.map((k,K)=>({i:K,v:Ae(k).kat[h.k]})).filter(k=>k.v!=null);$.length>1&&(g+=`<polyline fill="none" stroke="${Ve[w]}" stroke-width="2.5"${h.k==="gesamt"?' stroke-dasharray="6 4"':""} points="${$.map(k=>u(k.i)+","+p(k.v)).join(" ")}"/>`),$.forEach(k=>{g+=`<circle cx="${u(k.i)}" cy="${p(k.v)}" r="4" fill="${Ve[w]}"><title>${o(h.l)}: ${he(k.v)}</title></circle>`})}),g+"</svg>"}async function Pa(){const[e,t,n]=await Promise.all([A("wpModule",M("typ","feedback")).catch(()=>[]),A("wpFeedback").catch(()=>[]),A("users",M("role","student")).catch(()=>[])]),a=n.filter(h=>h.status==="approved").length,s={};t.forEach(h=>(s[h.moduleId]=s[h.moduleId]||[]).push(h));const l=e.map(h=>{const w=s[h.id]||[];return{m:h,rs:w,n:w.length,items:Oe(h),datum:h.woche||w.map($=>$.datum).filter(Boolean).sort()[0]||""}}).sort((h,w)=>String(h.datum).localeCompare(String(w.datum))),r=[...new Set(l.map(h=>h.m.fach))],d=i.fbFach&&i.fbFach!=="alle"&&r.includes(i.fbFach)?i.fbFach:"alle",m=l.filter(h=>d==="alle"||h.m.fach===d),u=m.filter(h=>h.n>=X);let p=`<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">\uFF0B Neues Block-Feedback anlegen</button>${m.length?'<button class="secondary" onclick="wp.fbCsv()">Ergebnisse als CSV</button>':""}${r.length>1?`<label class="wp-fbfil">Fach <select onchange="wp.fbFach(this.value)"><option value="alle">Alle F\xE4cher</option>${r.map(h=>`<option value="${h}" ${h===d?"selected":""}>${o(T(h).l)}</option>`).join("")}</select></label>`:""}</div>`;if(p+=`<div class="card"><p class="wp-hint">Block-Feedback legt ihr wie einen Lernbaustein an (Art \u201EBlock-Feedback\u201C, Reiter \u201ELernbausteine\u201C). Die Sch\xFCler:innen bewerten Aussagen von \u201Estimme gar nicht zu\u201C bis \u201Estimme voll zu\u201C und schreiben, was gut war und was besser werden sollte. Die R\xFCckmeldungen sind anonym; Ergebnisse erscheinen ab ${X} R\xFCckmeldungen.</p></div>`,!m.length)return p+'<div class="card"><p class="wp-leer">Noch kein Block-Feedback angelegt.</p></div>';p+=`<div class="card"><div class="wp-th"><h3>Verlauf im Schuljahr</h3><small>Mittelwerte je Kategorie (1 = stimme gar nicht zu, 5 = stimme voll zu), nur Bl\xF6cke ab ${X} R\xFCckmeldungen</small></div>`,u.length?p+=`<div class="wp-chartbox">${Na(u)}</div><div class="wp-leg2">${J.map((h,w)=>`<span><i style="background:${Ve[w]}"></i>${o(h.l)}</span>`).join("")}</div>
-  <div class="wp-tabelle"><div class="wp-ftab wp-tk"><span>Block</span>${J.map(h=>`<span>${o(h.l)}</span>`).join("")}<span>Antworten</span></div>${u.map(h=>{const w=Ae(h).kat;return`<div class="wp-ftab"><span><b>${o(h.m.gestaltung&&h.m.gestaltung.block||h.m.titel)}</b><small>${o(T(h.m.fach).l)} \xB7 ${o(fe(h.datum))}</small></span>${J.map($=>`<span>${he(w[$.k])}</span>`).join("")}<span>${h.n} / ${a}</span></div>`}).join("")}</div>`:p+=`<p class="wp-leer">Der Verlauf erscheint, sobald ein Block mindestens ${X} R\xFCckmeldungen hat.</p>`,p+="</div>";const g=`<div class="wp-leg2">${Se.map((h,w)=>`<span><i style="background:${At[w]}"></i>${o(h)}</span>`).join("")}</div>`;return[...m].reverse().forEach(h=>{const w=T(h.m.fach),$=h.m.titel,k=h.m.gestaltung&&h.m.gestaltung.block||"";if(p+=`<div class="card wp-fbcard"><div class="wp-th"><h3><span class="wp-fl" style="--fc:${w.c};--fb:${w.bg}">${o(w.l)}</span> ${o($)}${k?` <small>${o(k)}</small>`:""}</h3><small>${h.n} von ${a} R\xFCckmeldungen${h.datum?" \xB7 "+o(fe(h.datum)):""}${h.m.status!=="live"?" \xB7 Entwurf":""}</small></div>`,h.n<X){p+=`<p class="wp-leer">${h.n?"Noch zu wenige R\xFCckmeldungen ("+h.n+"). ":"Noch keine R\xFCckmeldungen. "}Ergebnisse werden ab ${X} Personen angezeigt, damit niemand erkannt werden kann.</p></div>`;return}const K=Ae(h);p+=g,[...J.map(C=>({k:C.k,l:C.l})),{k:"extra",l:"Weitere Aussagen"}].forEach(C=>{const me=h.items.filter(ee=>ee.kat===C.k);me.length&&(p+=`<h4>${o(C.l)}${K.kat[C.k]!=null?` <small>\xD8 ${he(K.kat[C.k])}</small>`:""}</h4>`,me.forEach(ee=>{const H=K.st[ee.id];p+=`<div class="wp-fb-row"><span>${o(ee.t)}</span><div class="wp-fb-bar" role="img" aria-label="Verteilung der Antworten">${H.n?H.d.map((Le,Qe)=>Le?`<i style="width:${Le/H.n*100}%;background:${At[Qe]}" title="${o(Se[Qe])}: ${Le}"></i>`:"").join(""):""}</div><b>${he(H.mean)}</b></div>`}))});const P=(C,me)=>{const ee=h.rs.map(H=>H[C]).filter(H=>H&&String(H).trim());return ee.length?`<div class="wp-fb-offen"><h4>${o(me)}</h4><ul>${ee.map(H=>`<li>${o(H)}</li>`).join("")}</ul></div>`:""};p+=`<div class="wp-fb-offenwrap">${P("gut","Das fanden sie gut")}${P("besser","Das sollte man verbessern")}${P("wunsch","W\xFCnsche f\xFCr den n\xE4chsten Block")}</div></div>`}),i.fbListe=m,p}function ja(){const e=i.fbListe||[],t=l=>String(l??"").replace(/"/g,'""'),n=[["Block","Fach","Datum","R\xFCckmeldungen","Kategorie","Aussage","Mittelwert","1","2","3","4","5"]];e.forEach(l=>{const r=l.m.gestaltung&&l.m.gestaltung.block||l.m.titel,d=Ae(l);l.items.forEach(m=>{const u=d.st[m.id],p=J.find(g=>g.k===m.kat);n.push([r,T(l.m.fach).l,l.datum,l.n,p?p.l:"Weitere Aussagen",m.t,l.n>=X?he(u.mean):"",...l.n>=X?u.d:["","","","",""]])})});const a="\uFEFF"+n.map(l=>l.map(r=>'"'+t(r)+'"').join(";")).join(`\r
-`),s=document.createElement("a");s.href=URL.createObjectURL(new Blob([a],{type:"text/csv;charset=utf-8"})),s.download="block-feedback.csv",document.body.appendChild(s),s.click(),s.remove()}const Ba=["einfuehrung","projekt","lernstand","gruppenuebung","frage","deeperlearning","eigen"];function Wa(e){if(!e)return[];const t=new Set(i.d.plan.verworfen||[]),n=i.d.plan.eintraege;return(e.eintraege||[]).filter(a=>a.typ==="modul"&&!a.erledigt&&!a.lang&&!a.fest&&!Ba.includes(a.mTyp)&&!t.has(a.id)&&!n.some(s=>s.moduleId&&s.moduleId===a.moduleId)).map(a=>({...a,vonWoche:e.woche}))}function Lt(){const e=i.d.offen||[];return e.length?`<div class="card wp-offen"><div class="wp-th"><h3>Noch offen aus der letzten Woche</h3><small>${e.length} Lernbaustein${e.length===1?"":"e"} nicht abgehakt</small></div><div class="wp-liste">${e.map(t=>{const n=T(t.fach);return`<div><span class="wp-fl" style="--fc:${n.c};--fb:${n.bg}">${o(n.l)}</span><b>${o(t.titel)}</b><small>${o(V(t.mTyp).l)} \xB7 ${o(ie(x(t)))}</small><span class="wp-rowact"><button class="primary" onclick="wp.einplanen('offen','${t.id}')">Einplanen</button><button class="secondary" onclick="wp.offenWeg('${t.id}')">Nicht mehr n\xF6tig</button></span></div>`}).join("")}</div></div>`:""}async function Ra(e){i.d.plan.verworfen=[...i.d.plan.verworfen||[],e],await F(),v()}const Ga=[[/\bP\/?P\b|Pä|Pädagogik|Psycholog/i,"paedagogik"],[/\bSWR\b|Sozialwirtschaft/i,"sozialwirtschaft"],[/\bCh\b|Chemie/i,"chemie"],[/\bD\b|Deutsch/i,"deutsch"],[/\bE\b|Englisch/i,"englisch"],[/\bM\b|Mathe/i,"mathematik"],[/\bG\b|Geschichte/i,"geschichte"]];function Et(e){return e.umfang==="kompakt"?3:e.umfang==="intensiv"?e.art==="SA"?9:6:e.art==="SA"?6:4}function Ia(e,t){const n=new Date(t.getFullYear(),t.getMonth(),t.getDate()),a=L(e.datum),s=[];for(let h=new Date(n);h<a;h=N(h,1))(h.getDay()+6)%7<5&&s.push(new Date(h));if(!s.length)return[];const l=Et(e),r=s.length,d=s.map((h,w)=>1+w/Math.max(1,r-1)),m=d.reduce((h,w)=>h+w,0),u=d.map(h=>Math.min(2,Math.floor(l*h/m)));let p=l-u.reduce((h,w)=>h+w,0);const g=s.map((h,w)=>w).sort((h,w)=>d[w]-d[h]||w-h);for(;p>0;){let h=!1;for(const w of g){if(p<=0)break;u[w]<2&&(u[w]++,p--,h=!0)}if(!h)break}return s.map((h,w)=>({date:B(h),blocks:u[w]})).filter(h=>h.blocks>0)}function Ka(){const e=B(new Date),t=(i.d.lernplan&&i.d.lernplan.termine||[]).filter(a=>a.datum>=e).sort((a,s)=>a.datum.localeCompare(s.datum)),n=a=>{const s=Math.round((L(a.datum)-L(e))/864e5);return s===0?"heute":s===1?"morgen":"in "+s+" Tagen"};return`<div class="card wp-lp"><div class="wp-th"><h3>Lernplan bis zur Schulaufgabe oder Kurzarbeit</h3><button class="secondary" onclick="wp.lernplanForm()">Termin hinzuf\xFCgen</button></div>
- ${t.length?`<div class="wp-liste">${t.map(a=>{const s=T(a.fach);return`<div><span class="wp-fl" style="--fc:${s.c};--fb:${s.bg}">${o(s.l)}</span><b>${a.art==="SA"?"Schulaufgabe":"Kurzarbeit"} \xB7 ${La[L(a.datum).getDay()]}, ${o(fe(a.datum))}</b><small>${n(a)} \xB7 ${Et(a)} Lernzeiten</small><span class="wp-rowact"><button class="primary" onclick="wp.lernplanEinplanen('${a.id}')">In diese Woche einplanen</button><button class="secondary" onclick="wp.lernplanWeg('${a.id}')">L\xF6schen</button></span></div>`}).join("")}</div>`:'<p class="wp-hint">Trage deine n\xE4chste Schulaufgabe oder Kurzarbeit ein. Die App verteilt dann Lernzeiten auf freie Pl\xE4tze vor dem Termin, gegen Ende dichter.</p>'}</div>`}function Ca(){const e=B(new Date);E(`<div class="wp-artband" style="${y("checkout")}">Lernplan</div><div class="kicker">LERNPLAN</div><h2>Schulaufgabe oder Kurzarbeit eintragen</h2><div class="form">
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.fbSenden('${o(e)}','${o(t || "")}')">Absenden</button></div>`);
+}
+async function Fa(e, t) {
+  const n = i.d.module.find((g) => g.id === e),
+    a = i.d.plan.eintraege.find((g) => g.id === t),
+    s = Oe(n),
+    l = {};
+  if (
+    (s.forEach((g) => {
+      const h = document.querySelector(`input[name="fb_${g.id}"]:checked`);
+      h && (l[g.id] = Number(h.value));
+    }),
+    Object.keys(l).length < 5)
+  )
+    return c.toast("Bitte beantworte mindestens 5 Aussagen.");
+  const r = (g) => (f(g)?.value || "").trim().slice(0, 600),
+    d = S(),
+    m = (n && n.titel) || (a && a.titel) || "Block-Feedback",
+    u = (n && n.fach) || (a && a.fach) || "fachuebergreifend",
+    p = (n && n.gestaltung && n.gestaltung.block) || "";
+  try {
+    const g = c.writeBatch(c.db);
+    (g.set(c.doc(R("wpFeedback")), {
+      moduleId: e,
+      fach: u,
+      block: p,
+      titel: m,
+      blockDatum: (n && n.woche) || "",
+      datum: B(new Date()),
+      antworten: l,
+      gut: r("fbGut"),
+      besser: r("fbBesser"),
+      wunsch: r("fbWunsch"),
+      createdAt: c.serverTimestamp(),
+    }),
+      g.set(z("wpFbGegeben", e + "_" + d), { uid: d, moduleId: e, createdAt: c.serverTimestamp() }),
+      await g.commit(),
+      i.d.fbGegeben.add(e),
+      a && !a.erledigt && ((a.erledigt = !0), (a.doneAt = Date.now()), await F()),
+      c.closeModal(),
+      c.toast("Danke f\xFCr dein Feedback."),
+      v());
+  } catch (g) {
+    (console.error(g), c.toast("Senden nicht m\xF6glich. Hast du schon Feedback gegeben?"));
+  }
+}
+function Ae(e) {
+  if (e._st) return e._st;
+  const t = (s) => typeof s == "number" && s >= 1 && s <= 5,
+    n = {};
+  e.items.forEach((s) => {
+    const l = e.rs.map((d) => d.antworten && d.antworten[s.id]).filter(t),
+      r = [0, 0, 0, 0, 0];
+    (l.forEach((d) => r[d - 1]++), (n[s.id] = { n: l.length, mean: l.length ? l.reduce((d, m) => d + m, 0) / l.length : null, d: r }));
+  });
+  const a = {};
+  return (
+    J.forEach((s) => {
+      const l = s.f.flatMap(([r]) => e.rs.map((d) => d.antworten && d.antworten[r]).filter(t));
+      a[s.k] = l.length ? l.reduce((r, d) => r + d, 0) / l.length : null;
+    }),
+    (e._st = { st: n, kat: a })
+  );
+}
+const xa = (e) => {
+  const t = (e.m.gestaltung && e.m.gestaltung.block) || e.m.titel || "Block";
+  return t.length > 13 ? t.slice(0, 12) + "\u2026" : t;
+};
+function Na(e) {
+  if (!e.length) return "";
+  const t = 640,
+    n = 270,
+    a = 40,
+    s = 16,
+    l = 14,
+    r = 46,
+    d = t - a - s,
+    m = n - l - r,
+    u = (h) => a + (e.length === 1 ? d / 2 : (h * d) / (e.length - 1)),
+    p = (h) => l + ((5 - h) / 4) * m;
+  let g = `<svg viewBox="0 0 ${t} ${n}" role="img" aria-label="Verlauf der Mittelwerte je Kategorie \xFCber die Bl\xF6cke" class="wp-chart">`;
+  for (let h = 1; h <= 5; h++)
+    g += `<line x1="${a}" x2="${t - s}" y1="${p(h)}" y2="${p(h)}" stroke="#dce7ef" stroke-width="1"/><text x="${a - 8}" y="${p(h) + 4}" text-anchor="end" font-size="11" fill="#6c8190">${h}</text>`;
+  return (
+    e.forEach((h, w) => {
+      g += `<text x="${u(w)}" y="${n - 26}" text-anchor="middle" font-size="11" fill="#17384f">${o(xa(h))}</text><text x="${u(w)}" y="${n - 11}" text-anchor="middle" font-size="10" fill="#6c8190">${o(fe(h.datum))}</text>`;
+    }),
+    J.forEach((h, w) => {
+      const $ = e.map((k, K) => ({ i: K, v: Ae(k).kat[h.k] })).filter((k) => k.v != null);
+      ($.length > 1 &&
+        (g += `<polyline fill="none" stroke="${Ve[w]}" stroke-width="2.5"${h.k === "gesamt" ? ' stroke-dasharray="6 4"' : ""} points="${$.map((k) => u(k.i) + "," + p(k.v)).join(" ")}"/>`),
+        $.forEach((k) => {
+          g += `<circle cx="${u(k.i)}" cy="${p(k.v)}" r="4" fill="${Ve[w]}"><title>${o(h.l)}: ${he(k.v)}</title></circle>`;
+        }));
+    }),
+    g + "</svg>"
+  );
+}
+async function Pa() {
+  const [e, t, n] = await Promise.all([
+      A("wpModule", M("typ", "feedback")).catch(() => []),
+      A("wpFeedback").catch(() => []),
+      A("users", M("role", "student")).catch(() => []),
+    ]),
+    a = n.filter((h) => h.status === "approved").length,
+    s = {};
+  t.forEach((h) => (s[h.moduleId] = s[h.moduleId] || []).push(h));
+  const l = e
+      .map((h) => {
+        const w = s[h.id] || [];
+        return {
+          m: h,
+          rs: w,
+          n: w.length,
+          items: Oe(h),
+          datum:
+            h.woche ||
+            w
+              .map(($) => $.datum)
+              .filter(Boolean)
+              .sort()[0] ||
+            "",
+        };
+      })
+      .sort((h, w) => String(h.datum).localeCompare(String(w.datum))),
+    r = [...new Set(l.map((h) => h.m.fach))],
+    d = i.fbFach && i.fbFach !== "alle" && r.includes(i.fbFach) ? i.fbFach : "alle",
+    m = l.filter((h) => d === "alle" || h.m.fach === d),
+    u = m.filter((h) => h.n >= X);
+  let p = `<div class="wp-actions2"><button class="primary" onclick="wp.modulForm()">\uFF0B Neues Block-Feedback anlegen</button>${m.length ? '<button class="secondary" onclick="wp.fbCsv()">Ergebnisse als CSV</button>' : ""}${r.length > 1 ? `<label class="wp-fbfil">Fach <select onchange="wp.fbFach(this.value)"><option value="alle">Alle F\xE4cher</option>${r.map((h) => `<option value="${h}" ${h === d ? "selected" : ""}>${o(T(h).l)}</option>`).join("")}</select></label>` : ""}</div>`;
+  if (
+    ((p += `<div class="card"><p class="wp-hint">Block-Feedback legt ihr wie einen Lernbaustein an (Art \u201EBlock-Feedback\u201C, Reiter \u201ELernbausteine\u201C). Die Sch\xFCler:innen bewerten Aussagen von \u201Estimme gar nicht zu\u201C bis \u201Estimme voll zu\u201C und schreiben, was gut war und was besser werden sollte. Die R\xFCckmeldungen sind anonym; Ergebnisse erscheinen ab ${X} R\xFCckmeldungen.</p></div>`),
+    !m.length)
+  )
+    return p + '<div class="card"><p class="wp-leer">Noch kein Block-Feedback angelegt.</p></div>';
+  ((p += `<div class="card"><div class="wp-th"><h3>Verlauf im Schuljahr</h3><small>Mittelwerte je Kategorie (1 = stimme gar nicht zu, 5 = stimme voll zu), nur Bl\xF6cke ab ${X} R\xFCckmeldungen</small></div>`),
+    u.length
+      ? (p += `<div class="wp-chartbox">${Na(u)}</div><div class="wp-leg2">${J.map((h, w) => `<span><i style="background:${Ve[w]}"></i>${o(h.l)}</span>`).join("")}</div>
+  <div class="wp-tabelle"><div class="wp-ftab wp-tk"><span>Block</span>${J.map((h) => `<span>${o(h.l)}</span>`).join("")}<span>Antworten</span></div>${u
+    .map((h) => {
+      const w = Ae(h).kat;
+      return `<div class="wp-ftab"><span><b>${o((h.m.gestaltung && h.m.gestaltung.block) || h.m.titel)}</b><small>${o(T(h.m.fach).l)} \xB7 ${o(fe(h.datum))}</small></span>${J.map(($) => `<span>${he(w[$.k])}</span>`).join("")}<span>${h.n} / ${a}</span></div>`;
+    })
+    .join("")}</div>`)
+      : (p += `<p class="wp-leer">Der Verlauf erscheint, sobald ein Block mindestens ${X} R\xFCckmeldungen hat.</p>`),
+    (p += "</div>"));
+  const g = `<div class="wp-leg2">${Se.map((h, w) => `<span><i style="background:${At[w]}"></i>${o(h)}</span>`).join("")}</div>`;
+  return (
+    [...m].reverse().forEach((h) => {
+      const w = T(h.m.fach),
+        $ = h.m.titel,
+        k = (h.m.gestaltung && h.m.gestaltung.block) || "";
+      if (
+        ((p += `<div class="card wp-fbcard"><div class="wp-th"><h3><span class="wp-fl" style="--fc:${w.c};--fb:${w.bg}">${o(w.l)}</span> ${o($)}${k ? ` <small>${o(k)}</small>` : ""}</h3><small>${h.n} von ${a} R\xFCckmeldungen${h.datum ? " \xB7 " + o(fe(h.datum)) : ""}${h.m.status !== "live" ? " \xB7 Entwurf" : ""}</small></div>`),
+        h.n < X)
+      ) {
+        p += `<p class="wp-leer">${h.n ? "Noch zu wenige R\xFCckmeldungen (" + h.n + "). " : "Noch keine R\xFCckmeldungen. "}Ergebnisse werden ab ${X} Personen angezeigt, damit niemand erkannt werden kann.</p></div>`;
+        return;
+      }
+      const K = Ae(h);
+      ((p += g),
+        [...J.map((C) => ({ k: C.k, l: C.l })), { k: "extra", l: "Weitere Aussagen" }].forEach((C) => {
+          const me = h.items.filter((ee) => ee.kat === C.k);
+          me.length &&
+            ((p += `<h4>${o(C.l)}${K.kat[C.k] != null ? ` <small>\xD8 ${he(K.kat[C.k])}</small>` : ""}</h4>`),
+            me.forEach((ee) => {
+              const H = K.st[ee.id];
+              p += `<div class="wp-fb-row"><span>${o(ee.t)}</span><div class="wp-fb-bar" role="img" aria-label="Verteilung der Antworten">${H.n ? H.d.map((Le, Qe) => (Le ? `<i style="width:${(Le / H.n) * 100}%;background:${At[Qe]}" title="${o(Se[Qe])}: ${Le}"></i>` : "")).join("") : ""}</div><b>${he(H.mean)}</b></div>`;
+            }));
+        }));
+      const P = (C, me) => {
+        const ee = h.rs.map((H) => H[C]).filter((H) => H && String(H).trim());
+        return ee.length ? `<div class="wp-fb-offen"><h4>${o(me)}</h4><ul>${ee.map((H) => `<li>${o(H)}</li>`).join("")}</ul></div>` : "";
+      };
+      p += `<div class="wp-fb-offenwrap">${P("gut", "Das fanden sie gut")}${P("besser", "Das sollte man verbessern")}${P("wunsch", "W\xFCnsche f\xFCr den n\xE4chsten Block")}</div></div>`;
+    }),
+    (i.fbListe = m),
+    p
+  );
+}
+function ja() {
+  const e = i.fbListe || [],
+    t = (l) => String(l ?? "").replace(/"/g, '""'),
+    n = [["Block", "Fach", "Datum", "R\xFCckmeldungen", "Kategorie", "Aussage", "Mittelwert", "1", "2", "3", "4", "5"]];
+  e.forEach((l) => {
+    const r = (l.m.gestaltung && l.m.gestaltung.block) || l.m.titel,
+      d = Ae(l);
+    l.items.forEach((m) => {
+      const u = d.st[m.id],
+        p = J.find((g) => g.k === m.kat);
+      n.push([
+        r,
+        T(l.m.fach).l,
+        l.datum,
+        l.n,
+        p ? p.l : "Weitere Aussagen",
+        m.t,
+        l.n >= X ? he(u.mean) : "",
+        ...(l.n >= X ? u.d : ["", "", "", "", ""]),
+      ]);
+    });
+  });
+  const a =
+      "\uFEFF" +
+      n.map((l) => l.map((r) => '"' + t(r) + '"').join(";")).join(`\r
+`),
+    s = document.createElement("a");
+  ((s.href = URL.createObjectURL(new Blob([a], { type: "text/csv;charset=utf-8" }))),
+    (s.download = "block-feedback.csv"),
+    document.body.appendChild(s),
+    s.click(),
+    s.remove());
+}
+const Ba = ["einfuehrung", "projekt", "lernstand", "gruppenuebung", "frage", "deeperlearning", "eigen"];
+function Wa(e) {
+  if (!e) return [];
+  const t = new Set(i.d.plan.verworfen || []),
+    n = i.d.plan.eintraege;
+  return (e.eintraege || [])
+    .filter(
+      (a) =>
+        a.typ === "modul" &&
+        !a.erledigt &&
+        !a.lang &&
+        !a.fest &&
+        !Ba.includes(a.mTyp) &&
+        !t.has(a.id) &&
+        !n.some((s) => s.moduleId && s.moduleId === a.moduleId),
+    )
+    .map((a) => ({ ...a, vonWoche: e.woche }));
+}
+function Lt() {
+  const e = i.d.offen || [];
+  return e.length
+    ? `<div class="card wp-offen"><div class="wp-th"><h3>Noch offen aus der letzten Woche</h3><small>${e.length} Lernbaustein${e.length === 1 ? "" : "e"} nicht abgehakt</small></div><div class="wp-liste">${e
+        .map((t) => {
+          const n = T(t.fach);
+          return `<div><span class="wp-fl" style="--fc:${n.c};--fb:${n.bg}">${o(n.l)}</span><b>${o(t.titel)}</b><small>${o(V(t.mTyp).l)} \xB7 ${o(ie(x(t)))}</small><span class="wp-rowact"><button class="primary" onclick="wp.einplanen('offen','${t.id}')">Einplanen</button><button class="secondary" onclick="wp.offenWeg('${t.id}')">Nicht mehr n\xF6tig</button></span></div>`;
+        })
+        .join("")}</div></div>`
+    : "";
+}
+async function Ra(e) {
+  ((i.d.plan.verworfen = [...(i.d.plan.verworfen || []), e]), await F(), v());
+}
+const Ga = [
+  [/\bP\/?P\b|Pä|Pädagogik|Psycholog/i, "paedagogik"],
+  [/\bSWR\b|Sozialwirtschaft/i, "sozialwirtschaft"],
+  [/\bCh\b|Chemie/i, "chemie"],
+  [/\bD\b|Deutsch/i, "deutsch"],
+  [/\bE\b|Englisch/i, "englisch"],
+  [/\bM\b|Mathe/i, "mathematik"],
+  [/\bG\b|Geschichte/i, "geschichte"],
+];
+function Et(e) {
+  return e.umfang === "kompakt" ? 3 : e.umfang === "intensiv" ? (e.art === "SA" ? 9 : 6) : e.art === "SA" ? 6 : 4;
+}
+function Ia(e, t) {
+  const n = new Date(t.getFullYear(), t.getMonth(), t.getDate()),
+    a = L(e.datum),
+    s = [];
+  for (let h = new Date(n); h < a; h = N(h, 1)) (h.getDay() + 6) % 7 < 5 && s.push(new Date(h));
+  if (!s.length) return [];
+  const l = Et(e),
+    r = s.length,
+    d = s.map((h, w) => 1 + w / Math.max(1, r - 1)),
+    m = d.reduce((h, w) => h + w, 0),
+    u = d.map((h) => Math.min(2, Math.floor((l * h) / m)));
+  let p = l - u.reduce((h, w) => h + w, 0);
+  const g = s.map((h, w) => w).sort((h, w) => d[w] - d[h] || w - h);
+  for (; p > 0; ) {
+    let h = !1;
+    for (const w of g) {
+      if (p <= 0) break;
+      u[w] < 2 && (u[w]++, p--, (h = !0));
+    }
+    if (!h) break;
+  }
+  return s.map((h, w) => ({ date: B(h), blocks: u[w] })).filter((h) => h.blocks > 0);
+}
+function Ka() {
+  const e = B(new Date()),
+    t = ((i.d.lernplan && i.d.lernplan.termine) || []).filter((a) => a.datum >= e).sort((a, s) => a.datum.localeCompare(s.datum)),
+    n = (a) => {
+      const s = Math.round((L(a.datum) - L(e)) / 864e5);
+      return s === 0 ? "heute" : s === 1 ? "morgen" : "in " + s + " Tagen";
+    };
+  return `<div class="card wp-lp"><div class="wp-th"><h3>Lernplan bis zur Schulaufgabe oder Kurzarbeit</h3><button class="secondary" onclick="wp.lernplanForm()">Termin hinzuf\xFCgen</button></div>
+ ${
+   t.length
+     ? `<div class="wp-liste">${t
+         .map((a) => {
+           const s = T(a.fach);
+           return `<div><span class="wp-fl" style="--fc:${s.c};--fb:${s.bg}">${o(s.l)}</span><b>${a.art === "SA" ? "Schulaufgabe" : "Kurzarbeit"} \xB7 ${La[L(a.datum).getDay()]}, ${o(fe(a.datum))}</b><small>${n(a)} \xB7 ${Et(a)} Lernzeiten</small><span class="wp-rowact"><button class="primary" onclick="wp.lernplanEinplanen('${a.id}')">In diese Woche einplanen</button><button class="secondary" onclick="wp.lernplanWeg('${a.id}')">L\xF6schen</button></span></div>`;
+         })
+         .join("")}</div>`
+     : '<p class="wp-hint">Trage deine n\xE4chste Schulaufgabe oder Kurzarbeit ein. Die App verteilt dann Lernzeiten auf freie Pl\xE4tze vor dem Termin, gegen Ende dichter.</p>'
+ }</div>`;
+}
+function Ca() {
+  const e = B(new Date());
+  (E(`<div class="wp-artband" style="${y("checkout")}">Lernplan</div><div class="kicker">LERNPLAN</div><h2>Schulaufgabe oder Kurzarbeit eintragen</h2><div class="form">
  <label>Aus dem Kalender \xFCbernehmen<select id="lpKal" onchange="wp.lernplanKal(this.value)"><option value="">Kalender wird geladen \u2026</option></select></label>
- <label>Fach<select id="lpFach">${_.filter(t=>!["fpa","foerder","fachuebergreifend"].includes(t.k)).map(t=>`<option value="${t.k}">${o(t.l)}</option>`).join("")}</select></label>
+ <label>Fach<select id="lpFach">${_.filter((t) => !["fpa", "foerder", "fachuebergreifend"].includes(t.k))
+   .map((t) => `<option value="${t.k}">${o(t.l)}</option>`)
+   .join("")}</select></label>
  <label>Art<select id="lpArt"><option value="SA">Schulaufgabe (SA)</option><option value="KU">Kurzarbeit (KU)</option></select></label>
  <label>Datum<input id="lpDatum" type="date" min="${e}"></label>
  <label>Umfang der Vorbereitung<select id="lpUmfang"><option value="kompakt">kompakt (3 Lernzeiten)</option><option value="normal" selected>normal (SA 6, KU 4 Lernzeiten)</option><option value="intensiv">intensiv (SA 9, KU 6 Lernzeiten)</option></select></label>
  <small class="wp-hint">Eine Lernzeit dauert 45 Minuten. Du kannst die eingeplanten Lernzeiten jederzeit verschieben oder l\xF6schen.</small>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.lernplanSave()">Speichern</button></div></div>`),A("events").then(t=>{const n=/\b(SA|KU)\b|Schulaufgabe|Kurzarbeit/i;i.lpEv=t.filter(s=>n.test(String(s.title||""))&&String(s.start||s.date||"").slice(0,10)>=e).sort((s,l)=>String(s.start||s.date).localeCompare(String(l.start||l.date))).slice(0,30);const a=f("lpKal");a&&(a.innerHTML=`<option value="">${i.lpEv.length?"\u2013 Termin w\xE4hlen \u2013":"Keine passenden Kalendertermine gefunden"}</option>`+i.lpEv.map((s,l)=>`<option value="${l}">${o(fe(String(s.start||s.date).slice(0,10)))} \xB7 ${o(s.title)}</option>`).join(""))}).catch(()=>{const t=f("lpKal");t&&(t.innerHTML='<option value="">Kalender nicht verf\xFCgbar</option>')})}function Ha(e){const t=(i.lpEv||[])[Number(e)];if(!t)return;const n=String(t.title||"");f("lpDatum").value=String(t.start||t.date).slice(0,10),f("lpArt").value=/\bKU\b|Kurzarbeit/i.test(n)?"KU":"SA";const a=Ga.find(([s])=>s.test(n));a&&f("lpFach").querySelector(`option[value="${a[1]}"]`)&&(f("lpFach").value=a[1])}async function Dt(){try{await c.setDoc(z("wpLernplan",S()),{uid:S(),termine:i.d.lernplan.termine,updatedAt:c.serverTimestamp()})}catch(e){throw console.error(e),c.toast("Speichern nicht m\xF6glich."),e}}async function _a(){const e=f("lpDatum").value;if(!e)return c.toast("Bitte ein Datum w\xE4hlen.");if(e<B(new Date))return c.toast("Das Datum liegt in der Vergangenheit.");i.d.lernplan.termine=[...i.d.lernplan.termine||[],{id:Ee(),fach:f("lpFach").value,art:f("lpArt").value,datum:e,umfang:f("lpUmfang").value}].slice(-20);try{await Dt(),c.closeModal(),c.toast("Termin gespeichert."),v()}catch{}}async function Za(e){i.d.lernplan.termine=(i.d.lernplan.termine||[]).filter(t=>t.id!==e),i.d.plan.eintraege=i.d.plan.eintraege.filter(t=>!(t.lp===e&&!t.erledigt));try{await Dt(),await F(),v()}catch{}}async function Ua(e){const t=(i.d.lernplan.termine||[]).find(m=>m.id===e);if(!t)return;const n=L(i.woche),a=N(n,4);i.d.plan.eintraege=i.d.plan.eintraege.filter(m=>!(m.lp===e&&!m.erledigt));const s=Ia(t,new Date).filter(m=>{const u=L(m.date);return u>=n&&u<=a});if(!s.length)return c.toast("In dieser Woche ist keine Lernzeit mehr vor dem Termin.");const l=[7,8,6,9,5,4,3,2,10,1];let r=0,d=0;for(const m of s){const u=Math.round((L(m.date)-n)/864e5);for(const p of m.blocks===2?[2,1]:[1]){const g=l.find(h=>D(u,h,p));if(g!=null){i.d.plan.eintraege.push({id:q(),typ:"eigen",mTyp:"eigen",titel:"Lernplan "+t.art+": "+T(t.fach).l,fach:t.fach,d:u,h:g,len:p,dauer:p===2?"90":"45",woche:i.woche,erledigt:!1,lp:t.id}),r+=p;break}}i.d.plan.eintraege.some(p=>p.lp===e&&p.d===u)||(d+=m.blocks)}await F(),c.toast(r?`${r} Lernzeit${r===1?"":"en"} eingeplant${d?` (${d} ohne freien Platz)`:""}.`:"Es war kein freier Platz vorhanden."),v()}function qa(){let e="";const t=i.d.impulsPers;t&&t.text&&(e+=`<div class="wp-impuls"><b>Pers\xF6nlicher Impuls von ${o(t.von||"deiner Lehrkraft")}:</b> ${o(t.text)}</div>`),(i.d.gesp||[]).forEach(a=>{e+=`<div class="wp-gesp"><span><b>Dein Lernstandsgespr\xE4ch steht an:</b> ${W[a.d]}, ${o(Z(N(L(i.woche),a.d)))} \xB7 ${o(G(a.h,a.len||1))}${a.lehrkraft?" \xB7 "+o(a.lehrkraft):""}${a.raum?" \xB7 Raum "+o(a.raum):""}</span><button class="secondary" onclick="wp.info('gesp','${a.id}')">Vorbereiten</button></div>`});const n=i.d.zielGespraech;return n&&n.ziel&&(e+=`<div class="wp-ziel-ls"><b>Mein Ziel aus dem Lernstandsgespr\xE4ch:</b> ${o(n.ziel)}</div>`),e}const Mt=["Was ist mir in den letzten Wochen gut gelungen?","Wo brauche ich Unterst\xFCtzung, und von wem?","Welche Lernbausteine sind noch offen, und warum?","Welches Ziel setze ich mir bis zum n\xE4chsten Gespr\xE4ch?"];function Va(e){const t=(i.d.gesp||[]).find(n=>n.id===e);t&&E(`<div class="wp-artband" style="${y("lernstand")}">Lernstandsgespr\xE4ch</div><div class="kicker">DEIN TERMIN</div><h2>${W[t.d]}, ${o(Z(N(L(i.woche),t.d)))}</h2><p>${o(G(t.h,t.len||1))}${t.lehrkraft?" \xB7 "+o(t.lehrkraft):""}${t.raum?" \xB7 Raum "+o(t.raum):""}</p>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.lernplanSave()">Speichern</button></div></div>`),
+    A("events")
+      .then((t) => {
+        const n = /\b(SA|KU)\b|Schulaufgabe|Kurzarbeit/i;
+        i.lpEv = t
+          .filter((s) => n.test(String(s.title || "")) && String(s.start || s.date || "").slice(0, 10) >= e)
+          .sort((s, l) => String(s.start || s.date).localeCompare(String(l.start || l.date)))
+          .slice(0, 30);
+        const a = f("lpKal");
+        a &&
+          (a.innerHTML =
+            `<option value="">${i.lpEv.length ? "\u2013 Termin w\xE4hlen \u2013" : "Keine passenden Kalendertermine gefunden"}</option>` +
+            i.lpEv
+              .map((s, l) => `<option value="${l}">${o(fe(String(s.start || s.date).slice(0, 10)))} \xB7 ${o(s.title)}</option>`)
+              .join(""));
+      })
+      .catch(() => {
+        const t = f("lpKal");
+        t && (t.innerHTML = '<option value="">Kalender nicht verf\xFCgbar</option>');
+      }));
+}
+function Ha(e) {
+  const t = (i.lpEv || [])[Number(e)];
+  if (!t) return;
+  const n = String(t.title || "");
+  ((f("lpDatum").value = String(t.start || t.date).slice(0, 10)), (f("lpArt").value = /\bKU\b|Kurzarbeit/i.test(n) ? "KU" : "SA"));
+  const a = Ga.find(([s]) => s.test(n));
+  a && f("lpFach").querySelector(`option[value="${a[1]}"]`) && (f("lpFach").value = a[1]);
+}
+async function Dt() {
+  try {
+    await c.setDoc(z("wpLernplan", S()), { uid: S(), termine: i.d.lernplan.termine, updatedAt: c.serverTimestamp() });
+  } catch (e) {
+    throw (console.error(e), c.toast("Speichern nicht m\xF6glich."), e);
+  }
+}
+async function _a() {
+  const e = f("lpDatum").value;
+  if (!e) return c.toast("Bitte ein Datum w\xE4hlen.");
+  if (e < B(new Date())) return c.toast("Das Datum liegt in der Vergangenheit.");
+  i.d.lernplan.termine = [
+    ...(i.d.lernplan.termine || []),
+    { id: Ee(), fach: f("lpFach").value, art: f("lpArt").value, datum: e, umfang: f("lpUmfang").value },
+  ].slice(-20);
+  try {
+    (await Dt(), c.closeModal(), c.toast("Termin gespeichert."), v());
+  } catch {}
+}
+async function Za(e) {
+  ((i.d.lernplan.termine = (i.d.lernplan.termine || []).filter((t) => t.id !== e)),
+    (i.d.plan.eintraege = i.d.plan.eintraege.filter((t) => !(t.lp === e && !t.erledigt))));
+  try {
+    (await Dt(), await F(), v());
+  } catch {}
+}
+async function Ua(e) {
+  const t = (i.d.lernplan.termine || []).find((m) => m.id === e);
+  if (!t) return;
+  const n = L(i.woche),
+    a = N(n, 4);
+  i.d.plan.eintraege = i.d.plan.eintraege.filter((m) => !(m.lp === e && !m.erledigt));
+  const s = Ia(t, new Date()).filter((m) => {
+    const u = L(m.date);
+    return u >= n && u <= a;
+  });
+  if (!s.length) return c.toast("In dieser Woche ist keine Lernzeit mehr vor dem Termin.");
+  const l = [7, 8, 6, 9, 5, 4, 3, 2, 10, 1];
+  let r = 0,
+    d = 0;
+  for (const m of s) {
+    const u = Math.round((L(m.date) - n) / 864e5);
+    for (const p of m.blocks === 2 ? [2, 1] : [1]) {
+      const g = l.find((h) => D(u, h, p));
+      if (g != null) {
+        (i.d.plan.eintraege.push({
+          id: q(),
+          typ: "eigen",
+          mTyp: "eigen",
+          titel: "Lernplan " + t.art + ": " + T(t.fach).l,
+          fach: t.fach,
+          d: u,
+          h: g,
+          len: p,
+          dauer: p === 2 ? "90" : "45",
+          woche: i.woche,
+          erledigt: !1,
+          lp: t.id,
+        }),
+          (r += p));
+        break;
+      }
+    }
+    i.d.plan.eintraege.some((p) => p.lp === e && p.d === u) || (d += m.blocks);
+  }
+  (await F(),
+    c.toast(
+      r ? `${r} Lernzeit${r === 1 ? "" : "en"} eingeplant${d ? ` (${d} ohne freien Platz)` : ""}.` : "Es war kein freier Platz vorhanden.",
+    ),
+    v());
+}
+function qa() {
+  let e = "";
+  const t = i.d.impulsPers;
+  (t && t.text && (e += `<div class="wp-impuls"><b>Pers\xF6nlicher Impuls von ${o(t.von || "deiner Lehrkraft")}:</b> ${o(t.text)}</div>`),
+    (i.d.gesp || []).forEach((a) => {
+      e += `<div class="wp-gesp"><span><b>Dein Lernstandsgespr\xE4ch steht an:</b> ${W[a.d]}, ${o(Z(N(L(i.woche), a.d)))} \xB7 ${o(G(a.h, a.len || 1))}${a.lehrkraft ? " \xB7 " + o(a.lehrkraft) : ""}${a.raum ? " \xB7 Raum " + o(a.raum) : ""}</span><button class="secondary" onclick="wp.info('gesp','${a.id}')">Vorbereiten</button></div>`;
+    }));
+  const n = i.d.zielGespraech;
+  return (n && n.ziel && (e += `<div class="wp-ziel-ls"><b>Mein Ziel aus dem Lernstandsgespr\xE4ch:</b> ${o(n.ziel)}</div>`), e);
+}
+const Mt = [
+  "Was ist mir in den letzten Wochen gut gelungen?",
+  "Wo brauche ich Unterst\xFCtzung, und von wem?",
+  "Welche Lernbausteine sind noch offen, und warum?",
+  "Welches Ziel setze ich mir bis zum n\xE4chsten Gespr\xE4ch?",
+];
+function Va(e) {
+  const t = (i.d.gesp || []).find((n) => n.id === e);
+  t &&
+    E(`<div class="wp-artband" style="${y("lernstand")}">Lernstandsgespr\xE4ch</div><div class="kicker">DEIN TERMIN</div><h2>${W[t.d]}, ${o(Z(N(L(i.woche), t.d)))}</h2><p>${o(G(t.h, t.len || 1))}${t.lehrkraft ? " \xB7 " + o(t.lehrkraft) : ""}${t.raum ? " \xB7 Raum " + o(t.raum) : ""}</p>
  <p class="wp-hint">Fester Termin: Deine Lehrkraft spricht mit dir \xFCber deinen Lernstand. Wenn dort schon etwas in deinem Plan steht, geht das Gespr\xE4ch vor.</p>
- <h4>So bereitest du dich vor</h4><ol class="wp-steps"><li>Sieh dir in der Ansicht \u201EGeleistet\u201C an, was du schon erledigt hast.</li>${Mt.map(n=>`<li>${o(n)}</li>`).join("")}</ol>
- <div class="form-actions"><button class="secondary" onclick="closeModal();wp.ansicht('geleistet')">Zu \u201EGeleistet\u201C</button>${t.bestaetigt?'<span class="pill ok">Gesehen</span>':`<button class="primary" onclick="wp.gespGesehen('${t.id}')">Termin gesehen</button>`}</div>`)}async function Oa(e){try{await c.updateDoc(z("wpGespraeche",e),{bestaetigt:!0,updatedAt:c.serverTimestamp()});const t=(i.d.gesp||[]).find(n=>n.id===e);t&&(t.bestaetigt=!0),c.closeModal(),c.toast("Danke.")}catch(t){console.error(t),c.toast("Nicht m\xF6glich.")}}async function Qa(e){const t=(i.d.sts||[]).find($=>$.u.uid===e),n=t?c.zkAnzeige(t.u):"Sch\xFCler:in",[a,s,l,r]=await Promise.all([A("wpStatus",M("uid",e)).catch(()=>[]),j("wpGespraeche",e+"_"+i.woche),j("wpZiele",e),j("wpGespraechNotizen",e)]),d=a.sort(($,k)=>String($.woche).localeCompare(String(k.woche))).slice(-10),m=$=>d.reduce((k,K)=>k+(K[$]||0),0),u=m("modGesamt")?Math.round(m("modErledigt")/m("modGesamt")*100):0,p=Math.max(1,...d.map($=>Math.max($.geplantMin||0,$.erledigtMin||0))),g=d.filter($=>$.geteilt).slice(-4),h=(await Promise.all(g.map($=>j("wpPlan",e+"_"+$.woche)))).filter($=>$&&($.ziel||$.rueckblick)),w=s||{d:i.tag,h:1,len:1,lehrkraft:c.profile?.displayName||"",raum:""};E(`<div class="wp-artband" style="${y("lernstand")}">Lernstandsgespr\xE4ch</div><div class="kicker">VORBEREITUNG</div><h2>${o(n)}</h2>
+ <h4>So bereitest du dich vor</h4><ol class="wp-steps"><li>Sieh dir in der Ansicht \u201EGeleistet\u201C an, was du schon erledigt hast.</li>${Mt.map((n) => `<li>${o(n)}</li>`).join("")}</ol>
+ <div class="form-actions"><button class="secondary" onclick="closeModal();wp.ansicht('geleistet')">Zu \u201EGeleistet\u201C</button>${t.bestaetigt ? '<span class="pill ok">Gesehen</span>' : `<button class="primary" onclick="wp.gespGesehen('${t.id}')">Termin gesehen</button>`}</div>`);
+}
+async function Oa(e) {
+  try {
+    await c.updateDoc(z("wpGespraeche", e), { bestaetigt: !0, updatedAt: c.serverTimestamp() });
+    const t = (i.d.gesp || []).find((n) => n.id === e);
+    (t && (t.bestaetigt = !0), c.closeModal(), c.toast("Danke."));
+  } catch (t) {
+    (console.error(t), c.toast("Nicht m\xF6glich."));
+  }
+}
+async function Qa(e) {
+  const t = (i.d.sts || []).find(($) => $.u.uid === e),
+    n = t ? c.zkAnzeige(t.u) : "Sch\xFCler:in",
+    [a, s, l, r] = await Promise.all([
+      A("wpStatus", M("uid", e)).catch(() => []),
+      j("wpGespraeche", e + "_" + i.woche),
+      j("wpZiele", e),
+      j("wpGespraechNotizen", e),
+    ]),
+    d = a.sort(($, k) => String($.woche).localeCompare(String(k.woche))).slice(-10),
+    m = ($) => d.reduce((k, K) => k + (K[$] || 0), 0),
+    u = m("modGesamt") ? Math.round((m("modErledigt") / m("modGesamt")) * 100) : 0,
+    p = Math.max(1, ...d.map(($) => Math.max($.geplantMin || 0, $.erledigtMin || 0))),
+    g = d.filter(($) => $.geteilt).slice(-4),
+    h = (await Promise.all(g.map(($) => j("wpPlan", e + "_" + $.woche)))).filter(($) => $ && ($.ziel || $.rueckblick)),
+    w = s || { d: i.tag, h: 1, len: 1, lehrkraft: c.profile?.displayName || "", raum: "" };
+  E(`<div class="wp-artband" style="${y("lernstand")}">Lernstandsgespr\xE4ch</div><div class="kicker">VORBEREITUNG</div><h2>${o(n)}</h2>
  <div class="wp-kpis wp-kpis2"><div class="card"><b>${d.length}</b><small>Wochen mit Plan</small></div><div class="card"><b>${u} %</b><small>Lernbausteine erledigt</small></div><div class="card"><b>${U(m("erledigtMin"))}</b><small>Lernzeit erledigt (von ${U(m("geplantMin"))} geplant)</small></div><div class="card"><b>${m("checkouts")}</b><small>Check-outs erledigt</small></div></div>
- ${d.length?`<h4>Lernzeit pro Woche</h4><div class="wp-dwb">${d.map($=>`<div title="${o(Q($.woche))}: geplant ${U($.geplantMin||0)}, erledigt ${U($.erledigtMin||0)}"><span><i class="g" style="height:${Math.round(($.geplantMin||0)/p*100)}%"></i><i class="e" style="height:${Math.round(($.erledigtMin||0)/p*100)}%"></i></span><small>KW${ue(L($.woche))}</small></div>`).join("")}</div><div class="wp-leg2"><span><i style="background:#cfe1f2"></i>geplant</span><span><i style="background:#8fc27a"></i>erledigt</span></div>`:'<p class="wp-leer">Noch keine Wochenzahlen vorhanden.</p>'}
- ${h.length?`<h4>Aus geteilten Pl\xE4nen</h4>${h.map($=>`<div class="wp-zitat"><small>${o(Q($.woche))}</small>${$.ziel?`<p><b>Wochenziel:</b> ${o($.ziel)}</p>`:""}${$.rueckblick?`<p><b>R\xFCckblick:</b> ${o($.rueckblick)}</p>`:""}</div>`).join("")}`:'<p class="wp-hint">Pl\xE4ne, Ziele und R\xFCckblicke sind privat und nur sichtbar, wenn die Person ihren Plan teilt.</p>'}
- <h4>Gespr\xE4chsleitfaden</h4><ol class="wp-steps">${Mt.map($=>`<li>${o($)}</li>`).join("")}</ol>
- <h4>Termin${s?" (gesetzt)":""}</h4><div class="form wp-gform">
-  <label>Tag<select id="gsD">${W.map(($,k)=>`<option value="${k}" ${k===w.d?"selected":""}>${$}, ${Z(N(L(i.woche),k))}</option>`).join("")}</select></label>
-  <label>Beginn<select id="gsH">${[...Array(10)].map(($,k)=>`<option value="${k+1}" ${k+1===w.h?"selected":""}>${k+1}. Stunde (${o(Y()[k]||"")})</option>`).join("")}</select></label>
-  <label>Dauer<select id="gsLen"><option value="1" ${w.len!==2?"selected":""}>45 Minuten</option><option value="2" ${w.len===2?"selected":""}>90 Minuten</option></select></label>
-  <label>Lehrkraft<input id="gsLk" maxlength="60" value="${o(w.lehrkraft||"")}"></label>
-  <label>Raum (optional)<input id="gsRaum" maxlength="20" value="${o(w.raum||"")}"></label>
-  <div class="form-actions">${s?`<button class="secondary" onclick="wp.gespAbsagen('${e}')">Gespr\xE4ch absagen</button>`:""}<button class="primary" onclick="wp.gespSetzen('${e}')">${s?"Termin \xE4ndern":"Lernstandsgespr\xE4ch ansetzen"}</button></div></div>
+ ${d.length ? `<h4>Lernzeit pro Woche</h4><div class="wp-dwb">${d.map(($) => `<div title="${o(Q($.woche))}: geplant ${U($.geplantMin || 0)}, erledigt ${U($.erledigtMin || 0)}"><span><i class="g" style="height:${Math.round((($.geplantMin || 0) / p) * 100)}%"></i><i class="e" style="height:${Math.round((($.erledigtMin || 0) / p) * 100)}%"></i></span><small>KW${ue(L($.woche))}</small></div>`).join("")}</div><div class="wp-leg2"><span><i style="background:#cfe1f2"></i>geplant</span><span><i style="background:#8fc27a"></i>erledigt</span></div>` : '<p class="wp-leer">Noch keine Wochenzahlen vorhanden.</p>'}
+ ${h.length ? `<h4>Aus geteilten Pl\xE4nen</h4>${h.map(($) => `<div class="wp-zitat"><small>${o(Q($.woche))}</small>${$.ziel ? `<p><b>Wochenziel:</b> ${o($.ziel)}</p>` : ""}${$.rueckblick ? `<p><b>R\xFCckblick:</b> ${o($.rueckblick)}</p>` : ""}</div>`).join("")}` : '<p class="wp-hint">Pl\xE4ne, Ziele und R\xFCckblicke sind privat und nur sichtbar, wenn die Person ihren Plan teilt.</p>'}
+ <h4>Gespr\xE4chsleitfaden</h4><ol class="wp-steps">${Mt.map(($) => `<li>${o($)}</li>`).join("")}</ol>
+ <h4>Termin${s ? " (gesetzt)" : ""}</h4><div class="form wp-gform">
+  <label>Tag<select id="gsD">${W.map(($, k) => `<option value="${k}" ${k === w.d ? "selected" : ""}>${$}, ${Z(N(L(i.woche), k))}</option>`).join("")}</select></label>
+  <label>Beginn<select id="gsH">${[...Array(10)].map(($, k) => `<option value="${k + 1}" ${k + 1 === w.h ? "selected" : ""}>${k + 1}. Stunde (${o(Y()[k] || "")})</option>`).join("")}</select></label>
+  <label>Dauer<select id="gsLen"><option value="1" ${w.len !== 2 ? "selected" : ""}>45 Minuten</option><option value="2" ${w.len === 2 ? "selected" : ""}>90 Minuten</option></select></label>
+  <label>Lehrkraft<input id="gsLk" maxlength="60" value="${o(w.lehrkraft || "")}"></label>
+  <label>Raum (optional)<input id="gsRaum" maxlength="20" value="${o(w.raum || "")}"></label>
+  <div class="form-actions">${s ? `<button class="secondary" onclick="wp.gespAbsagen('${e}')">Gespr\xE4ch absagen</button>` : ""}<button class="primary" onclick="wp.gespSetzen('${e}')">${s ? "Termin \xE4ndern" : "Lernstandsgespr\xE4ch ansetzen"}</button></div></div>
  <h4>Zielvereinbarung und Notiz</h4><div class="form">
-  <label>Ziel bis zum n\xE4chsten Gespr\xE4ch (sichtbar f\xFCr die Sch\xFCler:in)<textarea id="gsZiel" rows="2" maxlength="300">${o(l&&l.ziel||"")}</textarea></label>
-  <label>Notiz (nur f\xFCr Lehrkr\xE4fte)<textarea id="gsNotiz" rows="3" maxlength="1000">${o(r&&r.text||"")}</textarea></label>
-  <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button><button class="primary" onclick="wp.dossierSpeichern('${e}')">Ziel und Notiz speichern</button></div></div>`)}async function Ya(e){const t=Number(f("gsD").value),n=Number(f("gsH").value),a=Number(f("gsLen").value)||1;if(n+a-1>10)return c.toast("Das Gespr\xE4ch reicht \xFCber den Tag hinaus.");const s=(i.d.sts||[]).find(l=>l.u.uid===e);try{await c.setDoc(z("wpGespraeche",e+"_"+i.woche),{uid:e,pseudo:s?c.zkAnzeige(s.u):"",woche:i.woche,d:t,h:n,len:a,lehrkraft:f("gsLk").value.trim(),raum:f("gsRaum").value.trim(),status:"live",bestaetigt:!1,createdBy:S(),createdAt:c.serverTimestamp(),updatedAt:c.serverTimestamp()}),c.closeModal(),c.toast("Lernstandsgespr\xE4ch angesetzt. Die Sch\xFCler:in sieht es im Wochenplan."),v()}catch(l){console.error(l),c.toast("Nicht m\xF6glich.")}}async function Ja(e){if(confirm("Dieses Lernstandsgespr\xE4ch absagen?"))try{await c.deleteDoc(z("wpGespraeche",e+"_"+i.woche)),c.closeModal(),c.toast("Gespr\xE4ch abgesagt."),v()}catch(t){console.error(t),c.toast("Nicht m\xF6glich.")}}async function Xa(e){try{const t=f("gsZiel").value.trim().slice(0,300),n=f("gsNotiz").value.trim().slice(0,1e3);await c.setDoc(z("wpZiele",e),{uid:e,ziel:t,von:c.profile?.displayName||"Lehrkraft",updatedAt:c.serverTimestamp()}),await c.setDoc(z("wpGespraechNotizen",e),{uid:e,text:n,updatedAt:c.serverTimestamp()}),c.toast("Gespeichert.")}catch(t){console.error(t),c.toast("Nicht m\xF6glich.")}}function ei(e){i.fbFach=e,v()}function ti(){const e=i.d.module.map(a=>{const{id:s,createdAt:l,updatedAt:r,createdBy:d,woche:m,status:u,...p}=a;return p});if(!e.length)return c.toast("Keine Lernbausteine zum Exportieren.");const t={art:"wp-lernbausteine",version:1,erstellt:B(new Date),module:e},n=document.createElement("a");n.href=URL.createObjectURL(new Blob([JSON.stringify(t,null,1)],{type:"application/json"})),n.download="lernbausteine-"+i.woche+".json",document.body.appendChild(n),n.click(),n.remove(),c.toast(e.length+" Lernbausteine exportiert.")}async function ni(e){const t=e.files&&e.files[0];if(e.value="",!!t)try{const n=JSON.parse(await t.text());if(!n||n.art!=="wp-lernbausteine"||!Array.isArray(n.module))throw new Error("format");const a=n.module.filter(l=>l&&typeof l.titel=="string"&&De[l.typ]).slice(0,60);if(!a.length)return c.toast("Die Datei enth\xE4lt keine passenden Lernbausteine.");if(!confirm(a.length+" Lernbausteine als Entwurf in diese Woche \xFCbernehmen?"))return;const s=c.writeBatch(c.db);a.forEach(l=>{const r={titel:String(l.titel).slice(0,80),fach:_.some(d=>d.k===l.fach)?l.fach:"fachuebergreifend",typ:l.typ,dauer:String(l.dauer||"45"),len:Number(l.len)||1,beschr:String(l.beschr||"").slice(0,400),gestaltung:l.gestaltung&&typeof l.gestaltung=="object"?l.gestaltung:{},rallye:Array.isArray(l.rallye)?l.rallye.slice(0,30):[],anhaenge:(Array.isArray(l.anhaenge)?l.anhaenge:[]).filter(d=>d&&/^https:\/\//.test(d.url||"")).slice(0,10),route:"",link:/^https:\/\//.test(l.link||"")?l.link:"",pflicht:!!l.pflicht,mehrfach:!!l.mehrfach,fixTag:l.fixTag==null?"":l.fixTag,fixStd:l.fixStd||1,woche:i.woche,status:"entwurf",createdBy:S(),createdAt:c.serverTimestamp(),updatedAt:c.serverTimestamp()};s.set(c.doc(R("wpModule")),r)}),await s.commit(),c.toast(a.length+" Lernbausteine als Entwurf \xFCbernommen."),v()}catch(n){console.error(n),c.toast("Die Datei konnte nicht gelesen werden.")}}Object.assign($t,{ltab:e=>{i.tab=e,v()},voll:()=>mt(!i.voll),vorschau:tn,rpStart:_t,rpWeiter:lt,rpPruefen:Jt,rpWahl:Xt,rpRhAdd:Vt,rpRhReset:Ot,rpHinweis:Yt,rallyAdd:It,rallyDel:Kt,rallyMove:Ct,rallySet:Ht,slotModal:$n,einplanen:kn,einplanenOk:yn,anhHoch:ln,anhWeg:sn,artVorschau:rn,anwKlick:ha,anwAlle:fa,anwPlanung:ma,foldMerk:(e,t)=>{i.fold=i.fold||{},i.fold[e]=t},planAnsehen:Un,impuls:qn,modulForm:Jn,modulSave:Xn,modulWeg:ea,modulKopie:ta,zeitenForm:na,zeitenSave:aa,einfForm:yt,einfBearbeiten:e=>yt(e),einfSave:sa,einfWeg:ra,slotForm:zt,slotBearbeiten:e=>zt(e),slotSave:ca,slotWeg:oa,chatSenden:wa,teamNotiz:va,todoNeu:$a,todoToggle:ka,todoWeg:ya,freigeben:za,vorwoche:Ta,angebotMod:Aa,rpScan:Ut,qrDruck:qt,qrNeu:Pe,reiheScroll:e=>{const t=f("wpReihe");t&&t.scrollBy({left:e*Math.max(200,t.clientWidth*.7),behavior:"smooth"})},fuerAlle:Qn,frageVormerken:Ln,dlVorlage:Ea,fbForm:Ma,fbSenden:Fa,fbCsv:ja,fbFach:ei,offenWeg:Ra,lernplanForm:Ca,lernplanKal:Ha,lernplanSave:_a,lernplanWeg:Za,lernplanEinplanen:Ua,gespGesehen:Oa,dossier:Qa,gespSetzen:Ya,gespAbsagen:Ja,dossierSpeichern:Xa,modulExport:ti,modulImport:ni}),window.wp=$t;export async function wpRender(){return i.armed=null,i.voll=!1,document.body.classList.remove("wp-voll-body"),`<div id="wpRoot" class="wp">${await ft()}</div>`}
+  <label>Ziel bis zum n\xE4chsten Gespr\xE4ch (sichtbar f\xFCr die Sch\xFCler:in)<textarea id="gsZiel" rows="2" maxlength="300">${o((l && l.ziel) || "")}</textarea></label>
+  <label>Notiz (nur f\xFCr Lehrkr\xE4fte)<textarea id="gsNotiz" rows="3" maxlength="1000">${o((r && r.text) || "")}</textarea></label>
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Schlie\xDFen</button><button class="primary" onclick="wp.dossierSpeichern('${e}')">Ziel und Notiz speichern</button></div></div>`);
+}
+async function Ya(e) {
+  const t = Number(f("gsD").value),
+    n = Number(f("gsH").value),
+    a = Number(f("gsLen").value) || 1;
+  if (n + a - 1 > 10) return c.toast("Das Gespr\xE4ch reicht \xFCber den Tag hinaus.");
+  const s = (i.d.sts || []).find((l) => l.u.uid === e);
+  try {
+    (await c.setDoc(z("wpGespraeche", e + "_" + i.woche), {
+      uid: e,
+      pseudo: s ? c.zkAnzeige(s.u) : "",
+      woche: i.woche,
+      d: t,
+      h: n,
+      len: a,
+      lehrkraft: f("gsLk").value.trim(),
+      raum: f("gsRaum").value.trim(),
+      status: "live",
+      bestaetigt: !1,
+      createdBy: S(),
+      createdAt: c.serverTimestamp(),
+      updatedAt: c.serverTimestamp(),
+    }),
+      c.closeModal(),
+      c.toast("Lernstandsgespr\xE4ch angesetzt. Die Sch\xFCler:in sieht es im Wochenplan."),
+      v());
+  } catch (l) {
+    (console.error(l), c.toast("Nicht m\xF6glich."));
+  }
+}
+async function Ja(e) {
+  if (confirm("Dieses Lernstandsgespr\xE4ch absagen?"))
+    try {
+      (await c.deleteDoc(z("wpGespraeche", e + "_" + i.woche)), c.closeModal(), c.toast("Gespr\xE4ch abgesagt."), v());
+    } catch (t) {
+      (console.error(t), c.toast("Nicht m\xF6glich."));
+    }
+}
+async function Xa(e) {
+  try {
+    const t = f("gsZiel").value.trim().slice(0, 300),
+      n = f("gsNotiz").value.trim().slice(0, 1e3);
+    (await c.setDoc(z("wpZiele", e), { uid: e, ziel: t, von: c.profile?.displayName || "Lehrkraft", updatedAt: c.serverTimestamp() }),
+      await c.setDoc(z("wpGespraechNotizen", e), { uid: e, text: n, updatedAt: c.serverTimestamp() }),
+      c.toast("Gespeichert."));
+  } catch (t) {
+    (console.error(t), c.toast("Nicht m\xF6glich."));
+  }
+}
+function ei(e) {
+  ((i.fbFach = e), v());
+}
+function ti() {
+  const e = i.d.module.map((a) => {
+    const { id: s, createdAt: l, updatedAt: r, createdBy: d, woche: m, status: u, ...p } = a;
+    return p;
+  });
+  if (!e.length) return c.toast("Keine Lernbausteine zum Exportieren.");
+  const t = { art: "wp-lernbausteine", version: 1, erstellt: B(new Date()), module: e },
+    n = document.createElement("a");
+  ((n.href = URL.createObjectURL(new Blob([JSON.stringify(t, null, 1)], { type: "application/json" }))),
+    (n.download = "lernbausteine-" + i.woche + ".json"),
+    document.body.appendChild(n),
+    n.click(),
+    n.remove(),
+    c.toast(e.length + " Lernbausteine exportiert."));
+}
+async function ni(e) {
+  const t = e.files && e.files[0];
+  if (((e.value = ""), !!t))
+    try {
+      const n = JSON.parse(await t.text());
+      if (!n || n.art !== "wp-lernbausteine" || !Array.isArray(n.module)) throw new Error("format");
+      const a = n.module.filter((l) => l && typeof l.titel == "string" && De[l.typ]).slice(0, 60);
+      if (!a.length) return c.toast("Die Datei enth\xE4lt keine passenden Lernbausteine.");
+      if (!confirm(a.length + " Lernbausteine als Entwurf in diese Woche \xFCbernehmen?")) return;
+      const s = c.writeBatch(c.db);
+      (a.forEach((l) => {
+        const r = {
+          titel: String(l.titel).slice(0, 80),
+          fach: _.some((d) => d.k === l.fach) ? l.fach : "fachuebergreifend",
+          typ: l.typ,
+          dauer: String(l.dauer || "45"),
+          len: Number(l.len) || 1,
+          beschr: String(l.beschr || "").slice(0, 400),
+          gestaltung: l.gestaltung && typeof l.gestaltung == "object" ? l.gestaltung : {},
+          rallye: Array.isArray(l.rallye) ? l.rallye.slice(0, 30) : [],
+          anhaenge: (Array.isArray(l.anhaenge) ? l.anhaenge : []).filter((d) => d && /^https:\/\//.test(d.url || "")).slice(0, 10),
+          route: "",
+          link: /^https:\/\//.test(l.link || "") ? l.link : "",
+          pflicht: !!l.pflicht,
+          mehrfach: !!l.mehrfach,
+          fixTag: l.fixTag == null ? "" : l.fixTag,
+          fixStd: l.fixStd || 1,
+          woche: i.woche,
+          status: "entwurf",
+          createdBy: S(),
+          createdAt: c.serverTimestamp(),
+          updatedAt: c.serverTimestamp(),
+        };
+        s.set(c.doc(R("wpModule")), r);
+      }),
+        await s.commit(),
+        c.toast(a.length + " Lernbausteine als Entwurf \xFCbernommen."),
+        v());
+    } catch (n) {
+      (console.error(n), c.toast("Die Datei konnte nicht gelesen werden."));
+    }
+}
+(Object.assign($t, {
+  ltab: (e) => {
+    ((i.tab = e), v());
+  },
+  voll: () => mt(!i.voll),
+  vorschau: tn,
+  rpStart: _t,
+  rpWeiter: lt,
+  rpPruefen: Jt,
+  rpWahl: Xt,
+  rpRhAdd: Vt,
+  rpRhReset: Ot,
+  rpHinweis: Yt,
+  rallyAdd: It,
+  rallyDel: Kt,
+  rallyMove: Ct,
+  rallySet: Ht,
+  slotModal: $n,
+  einplanen: kn,
+  einplanenOk: yn,
+  anhHoch: ln,
+  anhWeg: sn,
+  artVorschau: rn,
+  anwKlick: ha,
+  anwAlle: fa,
+  anwPlanung: ma,
+  foldMerk: (e, t) => {
+    ((i.fold = i.fold || {}), (i.fold[e] = t));
+  },
+  planAnsehen: Un,
+  impuls: qn,
+  modulForm: Jn,
+  modulSave: Xn,
+  modulWeg: ea,
+  modulKopie: ta,
+  zeitenForm: na,
+  zeitenSave: aa,
+  einfForm: yt,
+  einfBearbeiten: (e) => yt(e),
+  einfSave: sa,
+  einfWeg: ra,
+  slotForm: zt,
+  slotBearbeiten: (e) => zt(e),
+  slotSave: ca,
+  slotWeg: oa,
+  chatSenden: wa,
+  teamNotiz: va,
+  todoNeu: $a,
+  todoToggle: ka,
+  todoWeg: ya,
+  freigeben: za,
+  vorwoche: Ta,
+  angebotMod: Aa,
+  rpScan: Ut,
+  qrDruck: qt,
+  qrNeu: Pe,
+  reiheScroll: (e) => {
+    const t = f("wpReihe");
+    t && t.scrollBy({ left: e * Math.max(200, t.clientWidth * 0.8), behavior: "smooth" });
+  },
+  pfeilDrag: (ev, d) => {
+    ev.preventDefault();
+    const t = f("wpReihe");
+    t && (t.scrollLeft += d * 22);
+  },
+  layout: (m) => {
+    (wpUiSet({ lay: m }), v());
+  },
+  nav: () => {
+    const a = !wpUi().navAus;
+    (wpUiSet({ navAus: a }),
+      document.body.classList.toggle("wp-nav-aus", a),
+      v().then(() => f("wpWs")?.scrollIntoView({ block: "start" })));
+  },
+  fuerAlle: Qn,
+  frageVormerken: Ln,
+  dlVorlage: Ea,
+  fbForm: Ma,
+  fbSenden: Fa,
+  fbCsv: ja,
+  fbFach: ei,
+  offenWeg: Ra,
+  lernplanForm: Ca,
+  lernplanKal: Ha,
+  lernplanSave: _a,
+  lernplanWeg: Za,
+  lernplanEinplanen: Ua,
+  gespGesehen: Oa,
+  dossier: Qa,
+  gespSetzen: Ya,
+  gespAbsagen: Ja,
+  dossierSpeichern: Xa,
+  modulExport: ti,
+  modulImport: ni,
+}),
+  (window.wp = $t));
+export async function wpRender() {
+  return (
+    (i.armed = null),
+    (i.voll = !1),
+    document.body.classList.remove("wp-voll-body"),
+    document.body.classList.toggle("wp-nav-aus", !!wpUi().navAus),
+    setTimeout(wpPfeile, 150),
+    `<div id="wpRoot" class="wp">${await ft()}</div>`
+  );
+}
