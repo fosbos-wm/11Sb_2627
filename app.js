@@ -24,7 +24,7 @@ window.openPhaseDetail=openPhaseDetail;window.closePhaseDetail=closePhaseDetail;
 function toast(t){const
 x=$("toast");x.textContent=t;x.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>x.classList.remove("show"),
 2500)}
-let authModus="stuLogin";let codeRegPromise=null;
+let authModus="stuLogin";let codeRegPromise=null;let regPseudoModus=true;
 function authError(err){
  if(authModus!=="teacher"){
   const m2={"auth/invalid-credential":"Pseudonym oder PIN stimmt nicht.","auth/invalid-login-credentials":"Pseudonym oder PIN stimmt nicht.","auth/user-not-found":"Pseudonym oder PIN stimmt nicht.","auth/wrong-password":"Pseudonym oder PIN stimmt nicht.","auth/email-already-in-use":"Dieses Pseudonym ist schon vergeben. Bitte wähle ein anderes.","auth/weak-password":"Die PIN muss mindestens 6 Zeichen haben.","auth/invalid-email":"Bitte wähle ein anderes Pseudonym.","auth/too-many-requests":"Zu viele Versuche. Bitte warte kurz und versuche es später noch einmal.","auth/network-request-failed":"Keine Verbindung. Bitte prüfe dein Internet.","permission-denied":"Der Zugangscode ist ungültig oder wurde schon verwendet.","code-ungueltig":"Der Zugangscode ist ungültig oder wurde schon verwendet."};
@@ -32,7 +32,7 @@ function authError(err){
   if(t){$("authError").textContent=t;return}
  }
  const map={
- "auth/invalid-credential":"E-Mail oder Passwort ist nicht korrekt.","auth/email-already-in-use":"Für diese E-Mail existiert bereits ein Konto.","auth/weak-password":"Das Passwort muss mindestens 6 Zeichen haben.","auth/invalid-email":"Bitte eine gültige E-Mail-Adresse eingeben.","auth/too-many-requests":"Zu viele Versuche. Bitte später erneut versuchen."
+ "auth/invalid-credential":"Pseudonym/E-Mail oder Passwort ist nicht korrekt.","auth/invalid-login-credentials":"Pseudonym/E-Mail oder Passwort ist nicht korrekt.","auth/user-not-found":"Pseudonym/E-Mail oder Passwort ist nicht korrekt.","auth/wrong-password":"Pseudonym/E-Mail oder Passwort ist nicht korrekt.","auth/email-already-in-use":regPseudoModus?"Dieses Pseudonym ist schon vergeben. Bitte wähle ein anderes.":"Für diese E-Mail existiert bereits ein Konto.","auth/weak-password":"Das Passwort muss mindestens 6 Zeichen haben.","auth/invalid-email":regPseudoModus?"Bitte wähle ein anderes Pseudonym.":"Bitte eine gültige E-Mail-Adresse eingeben.","auth/too-many-requests":"Zu viele Versuche. Bitte später erneut versuchen.","rc-ungueltig":"Pseudonym oder Wiederherstellungscode stimmt nicht.","rc-passwort":"Das Passwort konnte nicht geändert werden. Bitte versuche es später noch einmal.","permission-denied":"Dafür fehlt die Berechtigung (Firestore-Regeln in der Firebase-Konsole veröffentlichen)."
  };
  $("authError").textContent=map[err?.code]||("Anmeldung konnte nicht durchgeführt werden."+(err?.code?" ("+err.code+")":""));
 }
@@ -284,12 +284,14 @@ function updateTeacherTeamNav(){
 }
 function showAuth(){
  $("authScreen").hidden=false;$("app").hidden=true;$("logoutBtn").hidden=true;
+ if($("recoveryBtn"))$("recoveryBtn").hidden=true;
  if($("motivBtn"))$("motivBtn").hidden=true;
  $("userName").textContent="";
 }
 function showApp(){
  $("authScreen").hidden=true;$("app").hidden=false;$("logoutBtn").hidden=false;
  $("userName").textContent=profile?.displayName||currentUser?.email||"Campus";
+ if($("recoveryBtn"))$("recoveryBtn").hidden=!(profile?.pseudonym&&isTeacher());
  motivButtonAktualisieren();
  updateTeacherTeamNav();
  render();
@@ -303,9 +305,10 @@ async function ensureProfile(user, displayName="", extra={}){
  const lastName=(extra.lastName||"").trim();
  const finalName=(firstName||lastName)?`${firstName} ${lastName}`.trim():(displayName||user.displayName||"Campus-Mitglied");
  await setDoc(ref,{
- uid:user.uid,email:user.email||"",
+ uid:user.uid,email:extra.pseudonym?"":(user.email||""),
  firstName,lastName,
  displayName:finalName,
+ ...(extra.pseudonym?{pseudonym:extra.pseudonym}:{}),
 role:"student",status:"pending",createdAt:serverTimestamp()
  });
  }
@@ -350,6 +353,7 @@ function showLoginForm(){
  $("registerTab").classList.remove("active");
  $("loginForm").hidden=false;
  $("registerForm").hidden=true;
+ $("resetForm").hidden=true;
  $("authError").textContent="";
 }
 function showRegisterForm(){
@@ -357,6 +361,16 @@ function showRegisterForm(){
  $("loginTab").classList.remove("active");
  $("loginForm").hidden=true;
  $("registerForm").hidden=false;
+ $("resetForm").hidden=true;
+ $("authError").textContent="";
+}
+function showResetForm(pseudo){
+ $("loginTab").classList.remove("active");
+ $("registerTab").classList.remove("active");
+ $("loginForm").hidden=true;
+ $("registerForm").hidden=true;
+ $("resetForm").hidden=false;
+ if(pseudo)$("resetPseudo").value=pseudo;
  $("authError").textContent="";
 }
 
@@ -956,6 +970,98 @@ $("stuSetupForm").addEventListener("submit",async e=>{
 })();
 $("loginTab").addEventListener("click",showLoginForm);
 $("registerTab").addEventListener("click",showRegisterForm);
+$("resetOpenBtn").addEventListener("click",()=>{const k=$("loginEmail").value.trim();showResetForm(k.includes("@")?"":k)});
+$("resetBackBtn").addEventListener("click",showLoginForm);
+/* ---- Wiederherstellungscode für Pseudonym-Konten (Lehrkräfte) ----
+   Es gibt keine E-Mail zum Zurücksetzen. Darum wird das Passwort im Browser mit dem Code
+   (PBKDF2 + AES-GCM) verschlüsselt und nur als unlesbarer Block in Firestore (pwRecovery) abgelegt.
+   Mit Pseudonym + Code lässt sich der Block entschlüsseln; danach wird ein neues Passwort gesetzt. */
+const RC_ALPHA="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function rcNeu(){const b=crypto.getRandomValues(new Uint8Array(12));let t="";for(const x of b)t+=RC_ALPHA[x%32];return t.replace(/(.{4})(?=.)/g,"$1-")}
+function rcNormal(c){return String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"")}
+const rcB64=u=>btoa(String.fromCharCode(...u)),rcUn64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function rcKey(code,salt){
+ const k=await crypto.subtle.importKey("raw",new TextEncoder().encode(rcNormal(code)),"PBKDF2",false,["deriveKey"]);
+ return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:250000,hash:"SHA-256"},k,{name:"AES-GCM",length:256},false,["encrypt","decrypt"]);
+}
+async function rcSpeichern(user,pw,code){
+ const slug=String(user.email||"").split("@")[0];
+ if(!slug)throw new Error("kein Pseudonym-Konto");
+ const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+ const ct=new Uint8Array(await crypto.subtle.encrypt({name:"AES-GCM",iv},await rcKey(code,salt),new TextEncoder().encode(pw)));
+ await setDoc(doc(db,"pwRecovery",slug),{uid:user.uid,v:1,salt:rcB64(salt),iv:rcB64(iv),ct:rcB64(ct),updatedAt:serverTimestamp()});
+}
+function rcAnzeigen(code){
+ modal(`<button class="modal-close"onclick="closeModal()">×</button><div class="kicker">WIEDERHERSTELLUNGSCODE</div><h2>Bitte jetzt notieren</h2>
+ <p>Mit diesem Code kannst du dein Passwort selbst zurücksetzen, falls du es vergisst (Anmeldung → Lehrkraft → „Passwort vergessen?“). Er wird <b>nur jetzt</b> angezeigt. Bewahre ihn getrennt vom Passwort auf.</p>
+ <div style="font:700 26px/1.2 ui-monospace,Menlo,Consolas,monospace;letter-spacing:.08em;padding:16px;background:#f3f8fc;border:1px solid var(--line);border-radius:12px;text-align:center;user-select:all">${esc(code)}</div>
+ <div class="form-actions"><button class="secondary"onclick="navigator.clipboard&&navigator.clipboard.writeText('${esc(code)}').then(()=>toast('Code kopiert.'))">Kopieren</button><button class="primary"onclick="closeModal()">Ich habe den Code notiert</button></div>`);
+}
+async function rcZuruecksetzen(pseudo,code,neuPw){
+ await loadFirebase();
+ const snap=await getDoc(doc(db,"pwRecovery",pseudoSlug(pseudo)));
+ if(!snap.exists())throw {code:"rc-ungueltig"};
+ const d=snap.data();let alt;
+ try{alt=new TextDecoder().decode(await crypto.subtle.decrypt({name:"AES-GCM",iv:rcUn64(d.iv)},await rcKey(code,rcUn64(d.salt)),rcUn64(d.ct)))}catch(_){throw {code:"rc-ungueltig"}}
+ const email=pseudoEmail(pseudo);
+ const cred=await signInWithEmailAndPassword(auth,email,alt);
+ const idToken=await cred.user.getIdToken();
+ const r=await fetch("https://identitytoolkit.googleapis.com/v1/accounts:update?key="+encodeURIComponent(firebaseConfig.apiKey),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({idToken,password:neuPw,returnSecureToken:false})});
+ if(!r.ok)throw {code:"rc-passwort"};
+ await signInWithEmailAndPassword(auth,email,neuPw);   // alte Anmeldung ist durch die Passwortänderung ungültig
+ await rcSpeichern(auth.currentUser,neuPw,code);
+}
+$("resetForm").addEventListener("submit",async e=>{
+ e.preventDefault();$("authError").textContent="";
+ if(setupLaeuft)return;
+ const pseudo=$("resetPseudo").value.trim(),code=$("resetCode").value,pw=$("resetPw").value;
+ if(pseudoSlug(pseudo).length<3){$("authError").textContent="Bitte dein Pseudonym eingeben.";return}
+ if(rcNormal(code).length!==12){$("authError").textContent="Der Code hat 12 Zeichen (XXXX-XXXX-XXXX).";return}
+ if(pw!==$("resetPw2").value){$("authError").textContent="Die Passwörter stimmen nicht überein.";return}
+ if(pw.length<8||!/[A-Za-zÄÖÜäöüß]/.test(pw)||!/[0-9]/.test(pw)){$("authError").textContent="Das Passwort muss mindestens 8 Zeichen lang sein und Buchstaben UND Zahlen enthalten.";return}
+ if(pseudoSlug(pw)===pseudoSlug(pseudo)){$("authError").textContent="Das Passwort darf nicht dem Pseudonym entsprechen.";return}
+ if(!configReady){$("authError").textContent="Firebase ist noch nicht konfiguriert.";return}
+ setupLaeuft=true;
+ const btn=e.target.querySelector('button[type="submit"]'),txt=btn?btn.textContent:"";
+ if(btn){btn.disabled=true;btn.textContent="Wird zurückgesetzt …"}
+ try{
+  await loadFirebase();
+  codeRegPromise=rcZuruecksetzen(pseudo,code,pw);   // die App wartet mit dem Start, bis alles fertig ist
+  try{await codeRegPromise}finally{codeRegPromise=null}
+  $("resetPw").value="";$("resetPw2").value="";$("resetCode").value="";
+  toast("Passwort geändert. Du bist angemeldet.");
+ }catch(err){console.error(err);try{await signOut(auth)}catch(_){}authError(err)}
+ finally{setupLaeuft=false;if(btn){btn.disabled=false;btn.textContent=txt}}
+});
+/* Für angemeldete Lehrkräfte mit Pseudonym: Code erzeugen bzw. erneuern */
+function rcDialog(){
+ modal(`<button class="modal-close"onclick="closeModal()">×</button><div class="kicker">PASSWORT-CODE</div><h2>Wiederherstellungscode erzeugen</h2>
+ <p>Mit dem Code kannst du dein Passwort selbst zurücksetzen. Ein bisheriger Code wird dadurch ungültig. Zur Sicherheit bitte kurz dein aktuelles Passwort eingeben.</p>
+ <div class="form"><label>Aktuelles Passwort<input id="rcPw"type="password"autocomplete="current-password"></label><div id="rcFehler"style="color:#b3261e;font-size:13px;min-height:18px"></div>
+ <div class="form-actions"><button class="secondary"onclick="closeModal()">Abbrechen</button><button class="primary"onclick="rcErzeugen()">Code erzeugen</button></div></div>`);
+}
+async function rcErzeugen(){
+ const pw=$("rcPw")?.value||"",f=$("rcFehler");
+ if(!pw){if(f)f.textContent="Bitte dein aktuelles Passwort eingeben.";return}
+ try{
+  const u=auth.currentUser;
+  if(!u||!u.email||u.email.includes("@")===false)throw new Error("x");
+  await signInWithEmailAndPassword(auth,u.email,pw);   // prüft das Passwort
+  const code=rcNeu();await rcSpeichern(auth.currentUser,pw,code);
+  rcAnzeigen(code);
+ }catch(err){console.error(err);if(f)f.textContent=(err&&String(err.code||"").startsWith("auth/"))?"Das Passwort stimmt nicht.":"Der Code konnte nicht gespeichert werden (Firestore-Regeln veröffentlicht?)."}
+}
+window.rcDialog=rcDialog;window.rcErzeugen=rcErzeugen;
+$("recoveryBtn").addEventListener("click",rcDialog);
+function regModusSetzen(pseudo){
+ regPseudoModus=!!pseudo;
+ $("regPseudoBox").hidden=!pseudo;$("regMailBox").hidden=!!pseudo;
+ $("registerPseudo").required=!!pseudo;
+ ["registerFirstName","registerLastName","registerEmail"].forEach(id=>{$(id).required=!pseudo});
+ $("regModeBtn").textContent=pseudo?"Lieber mit Name und E-Mail-Adresse registrieren":"Lieber mit Pseudonym registrieren (ohne Name und E-Mail)";
+ $("authError").textContent="";
+}
+$("regModeBtn").addEventListener("click",()=>regModusSetzen(!regPseudoModus));
 
 
 $("loginForm").addEventListener("submit",async e=>{
@@ -963,7 +1069,10 @@ $("loginForm").addEventListener("submit",async e=>{
  if(!configReady){$("authError").textContent="Firebase ist noch nicht konfiguriert.";return}
  try{
  await loadFirebase();
- await signInWithEmailAndPassword(auth,$("loginEmail").value.trim(),$("loginPassword").value);
+ const kennung=$("loginEmail").value.trim();
+ if(!kennung){$("authError").textContent="Bitte Pseudonym oder E-Mail-Adresse eingeben.";return}
+ if(!kennung.includes("@")&&pseudoSlug(kennung).length<3){$("authError").textContent="Bitte dein Pseudonym oder deine E-Mail-Adresse eingeben.";return}
+ await signInWithEmailAndPassword(auth,kennung.includes("@")?kennung:pseudoEmail(kennung),$("loginPassword").value);
  }catch(err){console.error(err);authError(err)}
 });
 let registerLaeuft=false;
@@ -975,18 +1084,38 @@ $("registerForm").addEventListener("submit",async e=>{
  if(pw!==$("registerPassword2").value){$("authError").textContent="Die Passwörter stimmen nicht überein.";return}
  if(pw.length<8||!/[A-Za-zÄÖÜäöüß]/.test(pw)||!/[0-9]/.test(pw)){$("authError").textContent="Das Passwort muss mindestens 8 Zeichen lang sein und Buchstaben UND Zahlen enthalten.";return}
  if(!configReady){$("authError").textContent="Firebase ist noch nicht konfiguriert.";return}
- const {firstName,lastName}=getRegisterNameFields();
- if(!firstName||!lastName){$("authError").textContent="Bitte Vorname und Nachname angeben.";return}
- registerLaeuft=true;
+ const pseudoReg=regPseudoModus,pseudo=($("registerPseudo")?.value||"").trim();
+ let firstName="",lastName="";
+ if(pseudoReg){
+  if(!pseudoGueltig(pseudo)){$("authError").textContent="Das Pseudonym braucht 3 bis 20 Zeichen (Buchstaben, Zahlen, Leerzeichen, - _ .).";return}
+  if(pseudoSlug(pw)===pseudoSlug(pseudo)){$("authError").textContent="Das Passwort darf nicht dem Pseudonym entsprechen.";return}
+ }else{
+  ({firstName,lastName}=getRegisterNameFields());
+  if(!firstName||!lastName){$("authError").textContent="Bitte Vorname und Nachname angeben.";return}
+  if(!$("registerEmail").value.trim()){$("authError").textContent="Bitte E-Mail-Adresse angeben.";return}
+ }
+ registerLaeuft=true;let neuerCode="";
  const btn=e.target.querySelector('button[type="submit"]'),btnText=btn?btn.textContent:"";
  if(btn){btn.disabled=true;btn.textContent="Konto wird erstellt …";}
- const email=$("registerEmail").value.trim();
+ const email=pseudoReg?pseudoEmail(pseudo):$("registerEmail").value.trim();
  try{
  await loadFirebase();
+ if(pseudoReg){
+  /* wie bei der Schüler-Einrichtung: onAuthStateChanged wartet, bis das Profil mit Pseudonym gespeichert ist */
+  codeRegPromise=(async()=>{
+   const cred=await createUserWithEmailAndPassword(auth,email,pw);
+   try{await updateProfile(cred.user,{displayName:pseudo})}catch(_){}
+   await ensureProfile(cred.user,pseudo,{pseudonym:pseudo});
+   try{neuerCode=rcNeu();await rcSpeichern(cred.user,pw,neuerCode)}catch(err){neuerCode="";console.warn("Wiederherstellungscode:",err)}
+  })();
+  try{await codeRegPromise}finally{codeRegPromise=null}
+  if(neuerCode)rcAnzeigen(neuerCode);else toast("Konto erstellt. Der Wiederherstellungscode konnte nicht gespeichert werden (Firestore-Regeln veröffentlicht?).");
+ }else{
  const cred=await createUserWithEmailAndPassword(auth,email,pw);
  const fullName=`${firstName} ${lastName}`.trim();
  await updateProfile(cred.user,{displayName:fullName});
  await ensureProfile(cred.user,fullName,{firstName,lastName});
+ }
  }catch(err){
   console.error(err);
   // Das Konto wurde gerade eben von dieser Anmeldung selbst angelegt: keine irreführende Fehlermeldung zeigen
@@ -1001,6 +1130,7 @@ $("registerForm").addEventListener("submit",async e=>{
 $("forgotBtn").onclick=async()=>{
  const email=$("loginEmail").value.trim();
  if(!email){$("authError").textContent="Bitte zuerst deine E-Mail-Adresse eingeben.";return}
+ if(!email.includes("@")){showResetForm(email);return}
  try{await loadFirebase();await sendPasswordResetEmail(auth,email);toast("E-Mail zum Zurücksetzen wurde versendet.")}catch(err)
 {console.error(err);authError(err)}
 };

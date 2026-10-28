@@ -1231,6 +1231,24 @@ service cloud.firestore {
 
 
     // ---------------------------------------------------------
+    // Passwort-Wiederherstellung für Pseudonym-Konten (Lehrkräfte):
+    // Der Block enthält das Passwort NUR verschlüsselt (Schlüssel = Wiederherstellungscode,
+    // wird nie gespeichert). Lesen einzelner Blöcke ist vor der Anmeldung nötig, Auflisten nicht.
+    // Schreiben darf nur das Konto, dessen technische Adresse zum Dokumentnamen passt.
+    // (Domain wie APP_MAILDOMAIN in firebase-config.js)
+    // ---------------------------------------------------------
+    match /pwRecovery/{slug} {
+      allow get: if true;
+      allow list: if false;
+      allow create, update: if signedIn()
+        && request.auth.token.email == slug + '@11sb2627.invalid'
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(['uid','v','salt','iv','ct','updatedAt']);
+      allow delete: if isAdmin()
+        || (signedIn() && request.auth.token.email == slug + '@11sb2627.invalid');
+    }
+
+    // ---------------------------------------------------------
     // Deny everything not explicitly listed above.
     // ---------------------------------------------------------
     match /{document=**} {

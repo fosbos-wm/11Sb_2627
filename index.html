@@ -34,6 +34,7 @@
   <div class="user-area">
     <span id="userName" class="user-name"></span>
     <button class="ghost-icon" id="motivBtn" hidden type="button" title="Motivations-Hinweise ein oder aus">Hinweise</button>
+    <button class="ghost-icon" id="recoveryBtn" hidden type="button" title="Code erzeugen, mit dem du dein Passwort selbst zurücksetzen kannst">Passwort-Code</button>
     <button class="ghost-icon" id="logoutBtn" hidden>Abmelden</button>
     <button class="menu-btn" id="menuBtn">Menü</button>
   </div>
@@ -71,15 +72,33 @@
       <button id="registerTab" class="auth-tab">Konto erstellen</button>
     </div>
     <form id="loginForm" class="form auth-form">
-      <label>E-Mail-Adresse<input id="loginEmail" type="email" autocomplete="email" required></label>
+      <label>Pseudonym oder E-Mail-Adresse<input id="loginEmail" type="text" maxlength="120" autocomplete="username" autocapitalize="off" required></label>
       <label>Passwort<input id="loginPassword" type="password" autocomplete="current-password" required></label>
       <button class="primary wide" type="submit">Anmelden</button>
       <button class="text-button" type="button" id="forgotBtn">Passwort vergessen?</button>
+      <button class="text-button" type="button" id="resetOpenBtn">Pseudonym-Konto: Passwort mit Code zurücksetzen</button>
+    </form>
+    <form id="resetForm" class="form auth-form" hidden>
+      <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Gib dein Pseudonym und den Wiederherstellungscode ein, den du bei der Registrierung erhalten hast.</p>
+      <label>Dein Pseudonym<input id="resetPseudo" maxlength="20" autocomplete="username" autocapitalize="off" required></label>
+      <label>Wiederherstellungscode<input id="resetCode" maxlength="16" autocomplete="off" autocapitalize="characters" placeholder="XXXX-XXXX-XXXX" required></label>
+      <label>Neues Passwort<input id="resetPw" type="password" minlength="8" autocomplete="new-password" required></label>
+      <label>Neues Passwort wiederholen<input id="resetPw2" type="password" minlength="8" autocomplete="new-password" required></label>
+      <small style="display:block;margin-top:-10px;margin-bottom:10px;color:var(--muted)">Mindestens 8 Zeichen, davon Buchstaben UND Zahlen.</small>
+      <button class="primary wide" type="submit">Passwort zurücksetzen</button>
+      <button class="text-button" type="button" id="resetBackBtn">Zurück zur Anmeldung</button>
     </form>
     <form id="registerForm" class="form auth-form" hidden>
-      <label>Vorname<input id="registerFirstName" maxlength="40" autocomplete="given-name" required></label>
-      <label>Nachname<input id="registerLastName" maxlength="40" autocomplete="family-name" required></label>
-      <label>E-Mail-Adresse<input id="registerEmail" type="email" autocomplete="email" required></label>
+      <div id="regPseudoBox">
+        <label>Dein Pseudonym<input id="registerPseudo" maxlength="20" autocomplete="username" autocapitalize="off" required></label>
+        <small style="display:block;margin-top:-10px;margin-bottom:10px;color:var(--muted)">3 bis 20 Zeichen, <b>kein</b> echter Name. Es wird keine E-Mail-Adresse gespeichert. Die Administration schaltet dein Konto danach frei.</small>
+      </div>
+      <div id="regMailBox" hidden>
+        <label>Vorname<input id="registerFirstName" maxlength="40" autocomplete="given-name"></label>
+        <label>Nachname<input id="registerLastName" maxlength="40" autocomplete="family-name"></label>
+        <label>E-Mail-Adresse<input id="registerEmail" type="email" autocomplete="email"></label>
+      </div>
+      <button class="text-button" type="button" id="regModeBtn" style="margin:-4px 0 8px">Lieber mit Name und E-Mail-Adresse registrieren</button>
       <label>Passwort<input id="registerPassword" type="password" minlength="8" autocomplete="new-password" required></label>
       <small style="display:block;margin-top:-10px;margin-bottom:10px;color:var(--muted)">Mindestens 8 Zeichen, davon Buchstaben UND Zahlen.</small>
       <label>Passwort wiederholen<input id="registerPassword2" type="password" minlength="8" autocomplete="new-password" required></label>
@@ -124,6 +143,6 @@
 <div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" id="modal"></div></div>
 <div class="toast" id="toast"></div>
 
-<script type="module" src="app.js?v=20261028c"></script>
+<script type="module" src="app.js?v=20261028e"></script>
 </body>
 </html>
