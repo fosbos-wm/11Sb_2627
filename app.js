@@ -114,7 +114,7 @@ const DS_DATEN=[
  ["whiteboardItems","authorUid",1],["whiteboardImages","authorUid",1],["whiteboardPresence","uid",1],
  ["randomPickerLists","createdBy",1],["profilePublic","id",1],
  /* Leistungsnachweise bleiben als schulische Unterlagen bei der Schule: nur Lehrkraft/Admin löscht */
- ["wpPlan","uid",1],["wpNachweise","uid",1],["wpStatus","uid",1],["wpBuchungen","uid",1],["wpTutor","uid",1],["wpAnfragen","vonUid",1],["wpAnfragen","tutorUid",1],
+ ["wpPlan","uid",1],["wpNachweise","uid",1],["lnVersuche","uid",0],["lnZeit","uid",1],["wpStatus","uid",1],["wpBuchungen","uid",1],["wpTutor","uid",1],["wpAnfragen","vonUid",1],["wpAnfragen","tutorUid",1],
  ["checkoutAbgaben","uid",0],["checkoutAuswahl","id",0],["lernstandVersuche","uid",0]
 ];
 async function dsLesen(uid,c,feld){
@@ -3598,8 +3598,7 @@ async function renderStart(){
  const upcomingTime=nextCalendar?.time?` · ${esc(nextCalendar.time)} Uhr`:"";
  const newsAction=(isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:"")
  +(isTeacher()?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
- return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 26/27</span><h1>Willkommen auf dem Campus.</h1><p>Hier
-verbinden wir Lernen, Projekte, Praxis und Gemeinschaft. Alle angemeldeten Mitglieder arbeiten am selben digitalen Campus.</p>
+ return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 26/27</span><h1>Willkommen auf dem Campus.</h1><p>Lernen, Projekte, Praxis und Gemeinschaft an einem Ort.</p>
 </div><div class="actions">${isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
  <div class="grid grid-3"style="gap:20px;margin-bottom:20px">
  <div class="card card-compact"style="border-left:4px solid #4a90d9"><h3> Campus-News</h3><div class="list">${news.slice(0,3).map(p=>`<div
@@ -3612,12 +3611,7 @@ class="list-item"><div><strong>${esc(p.title||p.text)}</strong>${p.title?`<small
  :`<div class="list-item"><div><strong>${birthdayInfo.people.map(p=>{const c=personColor(p.uid);return`<span style="color:${c.text}">${esc(p.name)}</span>`}).join(" & ")}</strong><small>${esc(birthdayInfo.date.toLocaleDateString("de-DE",{day:"2-digit",month:"long"}))} · ${birthdayInfo.days===1?"morgen":`in ${birthdayInfo.days} Tagen`}</small></div><span class="pill"style="background:${personColor(birthdayInfo.people[0].uid).border};color:#fff">Nächste(r)</span></div>`
  }</div>
  </div>
- <div class="grid grid-3"style="margin-bottom:20px;gap:20px">
- <div class="card card-compact"style="text-align:center">
- <h3 style="margin:0 0 6px"> Uhrzeit</h3>
- <div style="display:flex;justify-content:center">${analogClockSVG(64)}</div>
- <small class="live-clock-date"style="color:var(--muted);display:block;margin-top:4px">${new Date().toLocaleDateString("de-DE",{weekday:"long",day:"2-digit",month:"long"})}</small>
- </div>
+ <div class="grid"style="margin-bottom:20px;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
  <div class="card card-compact">
  <h3 style="margin:0 0 8px"> Kalender</h3>
  <div id="miniKalenderWrap">${miniKalender}</div>
@@ -3634,22 +3628,20 @@ class="list-item"><div><strong>${esc(p.title||p.text)}</strong>${p.title?`<small
  ${aktuellerPraktikumsauftrag.beschreibung?`<small style="display:block;margin-top:4px;color:var(--muted)">${esc(aktuellerPraktikumsauftrag.beschreibung.slice(0,140))}${aktuellerPraktikumsauftrag.beschreibung.length>140?"…":""}</small>`:""}
  </a>`:""}
  ${(()=>{ensureGlobalClock();return"";})()}
- <div style="height:16px"></div>
- <div class="card"style="margin-bottom:16px;text-align:center;border-left:4px solid #3fa66a">
- <h2 style="margin:0 0 8px"> FOSBOS-WM Jahresfokus: Solidarität und Zusammenhalt</h2>
- <p style="margin:0;font-style:italic;color:var(--muted)">„Solidarität lebt von kleinen Taten – heute schon jemandem geholfen?“</p>
- </div>
- ${pageHead("ÜBERSICHT","Unser Campus","Die wichtigsten Bereiche auf einen Blick.",newsAction)}
+ <p style="text-align:center;margin:0 0 18px;color:var(--muted)"><b>Jahresfokus: Solidarität und Zusammenhalt.</b> „Solidarität lebt von kleinen Taten – heute schon jemandem geholfen?“</p>
+ ${pageHead("ÜBERSICHT","Unser Campus","",newsAction)}
  <div class="grid grid-4">
- ${tile("","Mein Wochenplan","Lernbausteine einplanen, Termine buchen, Fortschritt sehen.","wochenplan")}
- ${tile(" ","Campus-Kompass","Dein persönlicher Lern- und Projektüberblick.","kompass")}
- ${tile(" ","Lernwerkstatt","Lernaufträge, Methoden, Tools und KI.","lernwerkstatt")}
- ${tile(" ","Campus-Forum","Austauschen, fragen, helfen und gemeinsam denken.","forum")}
- ${tile(" ","Projekte","Projektteams, Ziele, Fortschritt und Ergebnisse.","projekte")}
- ${tile(" ","Kompetenzwerkstatt","Kompetenzen sichtbar machen und entwickeln.","kompetenz")}
- ${tile(" ","Lernjournal","Lernweg, Reflexionen und nächste Schritte.","journal")}
- ${tile(" ","fpA","Theorie-Praxis-Transfer-Aufträge und Reflexion.","praktikum")}
- ${tile(" ","KI-Innovationslabor","KI-Ideen und Innovationspartnerschaften.","ki")}</div>
+ ${tile("","Mein Wochenplan","Planen und abhaken","wochenplan")}
+ ${isTeacher()?tile("","Lernstände","Wie steht die Klasse?","lernstaende"):""}
+ ${tile("","Leistungsnachweise","Aufgaben und Abgaben","pruefraum")}
+ ${tile(" ","Campus-Kompass","Mein Überblick","kompass")}
+ ${tile(" ","Lernwerkstatt","Aufträge, Methoden, KI","lernwerkstatt")}
+ ${tile(" ","Campus-Forum","Fragen und Austausch","forum")}
+ ${tile(" ","Projekte","Teams und Ergebnisse","projekte")}
+ ${tile(" ","Kompetenzwerkstatt","Stärken sichtbar machen","kompetenz")}
+ ${tile(" ","Lernjournal","Mein Lernweg","journal")}
+ ${tile(" ","fpA","Praxisaufträge","praktikum")}
+ ${tile(" ","KI-Innovationslabor","Ideen und Partner","ki")}</div>
 </div>${footer()}`;
 }
 async function getRecentForumActivityCount(days){
@@ -21299,7 +21291,7 @@ async function render(){
  navVerfolgen(p);
  if(["fach","faecher","lernpfad"].includes(p)&&typeof ppmLaden==="function")await ppmLaden().catch(()=>{});
  const pages={
- start:renderStart,wochenplan:renderWochenplanSeite,lernstaende:renderLernstaendeSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
+ start:renderStart,wochenplan:renderWochenplanSeite,lernstaende:renderLernstaendeSeite,pruefraum:renderPruefraumSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
  faecher:renderLernwerkstatt,fach:renderFachDetail,didaktik:renderDidaktikKompass,
  whiteboard:renderWhiteboardUebersicht,tafel:renderTafelUebersicht,"whiteboard-board":renderWhiteboardBoard,
  ressourcen:renderRessourcenRoute,lernpfad:renderLernpfadRoute,forum:renderForum,"forum-board":renderForumBoard,"forum-nachrichten":renderForumMessages,
@@ -21695,7 +21687,15 @@ window.CampusWP=(()=>{const o={};const g=(n,f)=>Object.defineProperty(o,n,{get:f
  g("getDoc",()=>getDoc);g("getDocs",()=>getDocs);g("query",()=>query);g("orderBy",()=>orderBy);g("limit",()=>limit);g("where",()=>where);
  g("onSnapshot",()=>onSnapshot);g("serverTimestamp",()=>serverTimestamp);g("writeBatch",()=>writeBatch);
  o.upload=(f,pfad)=>uploadCampusDatei(f,pfad);o.schueler=()=>getAllUsersForLernstand();o.isTeacher=()=>isTeacher();o.isAdmin=()=>isAdmin();o.toast=toast;o.modal=modal;o.closeModal=closeModal;o.zkAnzeige=zkAnzeige;o.dsHinweis=dsHinweis;return o})();
-let wpModul=null,lsModul=null;
+let wpModul=null,lsModul=null,lnModul=null;
+async function renderPruefraumSeite(){
+ try{
+  await loadFirebase();
+  if(!document.getElementById("lnCss")){const l=document.createElement("link");l.id="lnCss";l.rel="stylesheet";l.href="pruefraum.css?v=20261029a";document.head.appendChild(l);}
+  if(!lnModul)lnModul=await import("./pruefraum.js?v=20261029a");
+  return await lnModul.lnRender();
+ }catch(e){console.error("Leistungsnachweise:",e);return `<div class="card"><h3>Die Seite konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
+}
 async function renderLernstaendeSeite(){
  try{
   if(!isTeacher())return `<div class="card"><p>Diese Seite ist nur für Lehrkräfte.</p></div>`;

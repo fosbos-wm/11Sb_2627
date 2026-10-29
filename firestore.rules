@@ -1225,6 +1225,54 @@ service cloud.firestore {
           .hasOnly(['rueckmeldung', 'rueckmeldungVon', 'rueckmeldungAm', 'updatedAt'])));
       allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isAdmin());
     }
+    // ---------------------------------------------------------
+    // DIGITALE LEISTUNGSNACHWEISE (Raum „Leistungsnachweise“)
+    // lnAufgaben: Lehrkräfte schreiben; Schüler:innen lesen nur freigegebene Aufgaben.
+    // lnLoesungen und lnKorrekturen (Erwartungshorizont, KI-Vorschlag, Korrektur): nur Lehrkräfte.
+    // lnVersuche: die Person schreibt nur im Zeitfenster; danach nur Lehrkräfte.
+    // ---------------------------------------------------------
+    match /lnAufgaben/{id} {
+      allow read: if isApproved() && (isTeacher() || resource.data.status == 'frei');
+      allow create, update, delete: if isTeacher();
+    }
+    match /lnLoesungen/{id} {
+      allow read, write: if isTeacher();
+    }
+    match /lnKorrekturen/{id} {
+      allow read, write: if isTeacher();
+    }
+    match /lnZeit/{uid} {
+      allow read, write: if isApproved() && request.auth.uid == uid;
+    }
+    match /lnVersuche/{id} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.aufgabeId + '_' + request.auth.uid
+        && request.resource.data.status == 'laeuft'
+        && request.resource.data.keys().hasOnly(['uid', 'pseudo', 'aufgabeId', 'status', 'startedAt', 'endsAt', 'antworten', 'updatedAt'])
+        && exists(/databases/$(database)/documents/lnAufgaben/$(request.resource.data.aufgabeId))
+        && get(/databases/$(database)/documents/lnAufgaben/$(request.resource.data.aufgabeId)).data.status == 'frei'
+        && get(/databases/$(database)/documents/lnAufgaben/$(request.resource.data.aufgabeId)).data.von <= request.time
+        && request.time <= get(/databases/$(database)/documents/lnAufgaben/$(request.resource.data.aufgabeId)).data.bis
+        && request.resource.data.endsAt <= request.time
+             + duration.value(get(/databases/$(database)/documents/lnAufgaben/$(request.resource.data.aufgabeId)).data.dauerMin, 'm')
+             + duration.value(2, 'm')
+        && request.resource.data.endsAt <= get(/databases/$(database)/documents/lnAufgaben/$(request.resource.data.aufgabeId)).data.bis
+             + duration.value(30, 's');
+      allow update: if isApproved() && (
+        (resource.data.uid == request.auth.uid
+          && resource.data.status == 'laeuft'
+          && request.time <= resource.data.endsAt + duration.value(30, 's')
+          && request.resource.data.uid == resource.data.uid
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['antworten', 'status', 'abgabeAm', 'abgabeArt', 'updatedAt'])
+          && request.resource.data.status in ['laeuft', 'abgegeben'])
+        || (isTeacher()
+          && request.resource.data.diff(resource.data).affectedKeys()
+               .hasOnly(['status', 'abgabeAm', 'abgabeArt', 'endsAt', 'extraMin', 'ergebnis', 'updatedAt'])));
+      allow delete: if isAdmin();
+    }
+
     // Anfragen: nur die beteiligten Personen (und Lehrkräfte zur Übersicht).
     match /wpAnfragen/{id} {
       allow read: if isApproved() && (resource.data.vonUid == request.auth.uid
