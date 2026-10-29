@@ -1212,6 +1212,19 @@ service cloud.firestore {
     match /wpGespraechNotizen/{id} {
       allow read, write: if isApproved() && isTeacher();
     }
+    // Nachweise (Einschätzung, ein Satz, optional Datei): Die Person schreibt ihren Nachweis,
+    // Lehrkräfte lesen alle und ergänzen nur die Rückmeldung.
+    match /wpNachweise/{id} {
+      allow read: if isApproved() && (resource == null || resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved() && request.resource.data.uid == request.auth.uid
+        && id.matches(request.auth.uid + '_.*');
+      allow update: if isApproved() && (
+        (resource.data.uid == request.auth.uid && request.resource.data.uid == resource.data.uid
+          && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['rueckmeldung', 'rueckmeldungVon', 'rueckmeldungAm']))
+        || (isTeacher() && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['rueckmeldung', 'rueckmeldungVon', 'rueckmeldungAm', 'updatedAt'])));
+      allow delete: if isApproved() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
     // Anfragen: nur die beteiligten Personen (und Lehrkräfte zur Übersicht).
     match /wpAnfragen/{id} {
       allow read: if isApproved() && (resource.data.vonUid == request.auth.uid

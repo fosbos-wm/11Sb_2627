@@ -34,6 +34,15 @@ service firebase.storage {
       allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
     }
 
+    // Nachweise im Wochenplan (Audio, Foto, PDF) – privat: nur die Person selbst und
+    // Lehrkräfte sehen die Datei. Löschen: wer hochgeladen hat, oder eine Lehrkraft.
+    match /wpNachweise/{ordner}/{fileName} {
+      allow read: if isApproved() && (isUploader(fileName) || isTeacher());
+      allow create, update: if isApproved() && isUploader(fileName) && sizeOk()
+        && request.resource.contentType.matches('(audio|image)/.*|application/pdf');
+      allow delete: if isApproved() && (isUploader(fileName) || isTeacher());
+    }
+
     // Anhänge zu Lernbausteinen und Einführungen im Wochenplan:
     // PDF, Word, Bild, Video, Audio – nur Lehrkräfte laden hoch/löschen, alle lesen.
     match /wpAnhaenge/{ordner}/{fileName} {

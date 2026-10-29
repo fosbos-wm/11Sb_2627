@@ -114,7 +114,7 @@ const DS_DATEN=[
  ["whiteboardItems","authorUid",1],["whiteboardImages","authorUid",1],["whiteboardPresence","uid",1],
  ["randomPickerLists","createdBy",1],["profilePublic","id",1],
  /* Leistungsnachweise bleiben als schulische Unterlagen bei der Schule: nur Lehrkraft/Admin löscht */
- ["wpPlan","uid",1],["wpStatus","uid",1],["wpBuchungen","uid",1],["wpTutor","uid",1],["wpAnfragen","vonUid",1],["wpAnfragen","tutorUid",1],
+ ["wpPlan","uid",1],["wpNachweise","uid",1],["wpStatus","uid",1],["wpBuchungen","uid",1],["wpTutor","uid",1],["wpAnfragen","vonUid",1],["wpAnfragen","tutorUid",1],
  ["checkoutAbgaben","uid",0],["checkoutAuswahl","id",0],["lernstandVersuche","uid",0]
 ];
 async function dsLesen(uid,c,feld){
@@ -274,6 +274,7 @@ function updateTeacherTeamNav(){
  });
 
  // Find the actual team navigation item and give it exactly the requested label.
+ const ls=$("navLernstaende");if(ls){ls.hidden=!isTeacher();}
  const links=[...sidebar.querySelectorAll('a[href="#team"],button[data-page="team"],.nav-link[data-page="team"]')];
  const link=links[0];
  if(link){
@@ -21298,7 +21299,7 @@ async function render(){
  navVerfolgen(p);
  if(["fach","faecher","lernpfad"].includes(p)&&typeof ppmLaden==="function")await ppmLaden().catch(()=>{});
  const pages={
- start:renderStart,wochenplan:renderWochenplanSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
+ start:renderStart,wochenplan:renderWochenplanSeite,lernstaende:renderLernstaendeSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
  faecher:renderLernwerkstatt,fach:renderFachDetail,didaktik:renderDidaktikKompass,
  whiteboard:renderWhiteboardUebersicht,tafel:renderTafelUebersicht,"whiteboard-board":renderWhiteboardBoard,
  ressourcen:renderRessourcenRoute,lernpfad:renderLernpfadRoute,forum:renderForum,"forum-board":renderForumBoard,"forum-nachrichten":renderForumMessages,
@@ -21694,12 +21695,21 @@ window.CampusWP=(()=>{const o={};const g=(n,f)=>Object.defineProperty(o,n,{get:f
  g("getDoc",()=>getDoc);g("getDocs",()=>getDocs);g("query",()=>query);g("orderBy",()=>orderBy);g("limit",()=>limit);g("where",()=>where);
  g("onSnapshot",()=>onSnapshot);g("serverTimestamp",()=>serverTimestamp);g("writeBatch",()=>writeBatch);
  o.upload=(f,pfad)=>uploadCampusDatei(f,pfad);o.schueler=()=>getAllUsersForLernstand();o.isTeacher=()=>isTeacher();o.isAdmin=()=>isAdmin();o.toast=toast;o.modal=modal;o.closeModal=closeModal;o.zkAnzeige=zkAnzeige;o.dsHinweis=dsHinweis;return o})();
-let wpModul=null;
+let wpModul=null,lsModul=null;
+async function renderLernstaendeSeite(){
+ try{
+  if(!isTeacher())return `<div class="card"><p>Diese Seite ist nur für Lehrkräfte.</p></div>`;
+  await loadFirebase();
+  if(!document.getElementById("lsCss")){const l=document.createElement("link");l.id="lsCss";l.rel="stylesheet";l.href="lernstaende.css?v=20261029a";document.head.appendChild(l);}
+  if(!lsModul)lsModul=await import("./lernstaende.js?v=20261029a");
+  return await lsModul.lsRender();
+ }catch(e){console.error("Lernstände:",e);return `<div class="card"><h3>Die Seite konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
+}
 async function renderWochenplanSeite(){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261028b";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261028b");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261029a";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261029a");
   return await wpModul.wpRender();
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }

@@ -2197,3 +2197,11 @@ body.wp-nav-aus:has(#wpRoot) #content {
     display: block;
   }
 }
+
+/* Nachweis beim Abschluss wichtiger Lernbausteine */
+.wp-nw-t { margin: 0 0 10px; font-weight: 600; }
+.wp-nw { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 12px; }
+.wp-nw-b { flex: 1; min-width: 110px; padding: 12px 10px; border-radius: 12px; border: 2px solid #dfe8ee; background: #fff; font: inherit; font-weight: 700; cursor: pointer; }
+.wp-nw-b.nw-g.on { border-color: #3f9b5b; background: #dff1e5; }
+.wp-nw-b.nw-m.on { border-color: #e0a526; background: #fbefcf; }
+.wp-nw-b.nw-s.on { border-color: #d4574f; background: #f9dcd9; }
