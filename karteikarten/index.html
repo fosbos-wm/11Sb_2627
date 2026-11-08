@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Karteikarten Pädagogik/Psychologie</title>
+<style>
+:root{--bg:#f3f6f9;--panel:#fff;--fg:#142331;--muted:#5b6d7b;--line:#d6e0e8;--ok:#1b7f4b;--ok-soft:#dcf2e5;--warn:#b25a00;--warn-soft:#fdebd3;
+ --c1:#2f6fb0;--c2:#7a4fb3;--c3:#1f8a70;--c4:#d46f1f;--shadow:0 10px 30px rgba(20,35,49,.14)}
+@media (prefers-color-scheme:dark){:root{--bg:#0f171d;--panel:#18242d;--fg:#e8f0f5;--muted:#9db1be;--line:#2b3d49;--ok:#6fd49b;--ok-soft:#173826;--warn:#ffb86b;--warn-soft:#3d2a12;
+ --c1:#6aa5e0;--c2:#b394e6;--c3:#4fcfae;--c4:#f2a265;--shadow:0 10px 30px rgba(0,0,0,.5)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:12px max(12px,env(safe-area-inset-left)) 28px;max-width:860px;margin-inline:auto}
+button,select{font:inherit;color:inherit}
+.top{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px}
+h1{font-size:1.15rem;margin:0}
+.sub{color:var(--muted);font-size:.85rem}
+.tabs{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:8px;margin:8px 0 10px}
+.tab{border:2px solid var(--line);background:var(--panel);border-radius:14px;padding:8px 6px;text-align:center;cursor:pointer;position:relative;overflow:hidden}
+.tab b{display:block;font-size:1.05rem}
+.tab small{display:block;color:var(--muted);font-size:.74rem}
+.tab .bar{height:5px;border-radius:5px;background:var(--line);margin-top:6px;overflow:hidden}
+.tab .bar i{display:block;height:100%;width:0;background:var(--ac);transition:width .3s}
+.tab[aria-pressed="true"]{border-color:var(--ac);box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 22%,transparent)}
+.tab[aria-pressed="true"] b{color:var(--ac)}
+.tab[hidden]{display:none}
+.opts{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.opts select{flex:1 1 220px;min-width:0;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:9px 10px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:8px 13px;font-size:.88rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.stage{perspective:1400px;margin:6px 0 12px}
+.card{position:relative;width:100%;min-height:340px;height:min(62vh,430px);cursor:pointer;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.3,.7,.2,1);outline:none;border:0;background:none;padding:0;display:block;text-align:left}
+.card.flip{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:22px;background:var(--panel);box-shadow:var(--shadow);border:1px solid var(--line);display:flex;flex-direction:column;overflow:hidden}
+.face.back{transform:rotateY(180deg)}
+.band{background:var(--ac);color:#fff;padding:10px 18px;font-size:.82rem;font-weight:700;letter-spacing:.04em;display:flex;justify-content:space-between;gap:10px}
+.band span:last-child{opacity:.9;font-weight:600;text-align:right}
+.body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px 22px;text-align:center;gap:10px;overflow:auto}
+.term{font-size:clamp(1.5rem,5.4vw,2.35rem);font-weight:800;line-height:1.18;color:var(--ac);overflow-wrap:anywhere;hyphens:auto}
+.zus{color:var(--muted);font-size:.95rem}
+.hint{font-size:.8rem;color:var(--muted);padding:10px;text-align:center;border-top:1px dashed var(--line)}
+.lab{font-size:.74rem;font-weight:800;letter-spacing:.1em;color:var(--ac);text-transform:uppercase}
+.def{font-size:clamp(1rem,2.7vw,1.22rem);line-height:1.5;text-align:left;max-width:640px}
+.def.lang{font-size:clamp(.88rem,2.3vw,1.02rem);line-height:1.45}
+.back .body{justify-content:flex-start;align-items:stretch;text-align:left;padding-top:14px}
+.back .body>*{margin-block:auto}
+.back .body .lab{margin-block:0 4px}
+.badge{display:inline-block;border-radius:999px;padding:3px 10px;font-size:.74rem;font-weight:700}
+.badge.k{background:var(--ok-soft);color:var(--ok)}
+.badge.n{background:var(--warn-soft);color:var(--warn)}
+.act{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.act button{border:2px solid var(--line);background:var(--panel);border-radius:14px;padding:13px 10px;font-weight:700;cursor:pointer;min-height:52px}
+.act .no{border-color:var(--warn);color:var(--warn)}
+.act .yes{border-color:var(--ok);color:var(--ok)}
+.act button:disabled{opacity:.45;cursor:default}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.nav button{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:10px 16px;cursor:pointer;min-width:84px}
+.count{color:var(--muted);font-size:.9rem;text-align:center;flex:1}
+.fin{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:34px 20px;text-align:center;box-shadow:var(--shadow)}
+.fin h2{margin:.2em 0}
+.fin button{margin:6px;border:2px solid var(--ac);background:var(--ac);color:#fff;border-radius:12px;padding:11px 18px;font-weight:700;cursor:pointer}
+.fin button.alt{background:var(--panel);color:var(--ac)}
+.fine{color:var(--muted);font-size:.78rem;text-align:center;margin-top:14px}
+:focus-visible{outline:3px solid var(--ac);outline-offset:3px}
+.hide{display:none!important}
+@media (max-width:520px){.tab small{display:none}.band{font-size:.74rem}}
+@media (prefers-reduced-motion:reduce){.card{transition:none}}
+</style></head><body>
+<div class="top"><div><h1>Karteikarten</h1><div class="sub">Begriff ansehen, Definition aus dem Kopf sagen, dann umdrehen.</div></div></div>
+<div class="tabs" id="tabs"></div>
+<div class="opts"><select id="thema" aria-label="Thema wählen"></select>
+<button type="button" class="chip" id="mUeben" aria-pressed="false">Nur noch üben</button>
+<button type="button" class="chip" id="mMisch" aria-pressed="false">Mischen</button>
+<button type="button" class="chip" id="mRev" aria-pressed="false">Definition → Begriff</button></div>
+<div id="main"></div>
+<div class="fine">Dein Lernstand wird nur in diesem Browser gespeichert. Es werden keine Daten übertragen.</div>
+<script src="karten.js"></script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var ALL=window.KK_KARTEN||[];
+var QS=new URLSearchParams(location.search);
+var erlaubt=(QS.get("lb")||"1,2,3,4").split(",").map(Number).filter(function(n){return n>=1&&n<=4});
+if(!erlaubt.length)erlaubt=[1,2,3,4];
+var LBN={1:"Grundbegriffe",2:"Kognition, Gedächtnis, Emotion, Motivation",3:"Erziehung und Bildung",4:"Lernen"};
+var KEY="kk11-v1",st={};
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){st={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var qt=QS.get("thema")||"",qc=ALL.filter(function(k){return k.g===qt})[0];if(qc&&erlaubt.indexOf(qc.lb)<0)erlaubt.push(qc.lb);
+var S={lb:qc?qc.lb:erlaubt[0],thema:qc?qt:"",ueben:false,misch:false,rev:false,i:0,flip:false,order:[]};
+function ac(lb){document.documentElement.style.setProperty("--ac","var(--c"+lb+")")}
+function karten(lb){return ALL.filter(function(k){return k.lb===lb})}
+function stapel(){
+  var l=karten(S.lb).filter(function(k){return(!S.thema||k.g===S.thema)&&(!S.ueben||st[k.id]!==1)});
+  if(S.misch){var seed=S.seed||1;l=l.map(function(k,ix){return[k,Math.sin(seed*9301+ix*49297)*10000]}).sort(function(a,b){return(a[1]%1)-(b[1]%1)}).map(function(x){return x[0]})}
+  return l}
+function tabs(){
+  $("tabs").innerHTML=[1,2,3,4].map(function(n){
+    var ks=karten(n),kn=ks.filter(function(k){return st[k.id]===1}).length,p=ks.length?Math.round(kn/ks.length*100):0;
+    return'<button type="button" class="tab'+(erlaubt.indexOf(n)<0?" hide":"")+'" data-lb="'+n+'" aria-pressed="'+(n===S.lb)+'" style="--ac:var(--c'+n+')"><b>LB '+n+'</b><small>'+kn+' / '+ks.length+' gewusst</small><div class="bar"><i style="width:'+p+'%"></i></div></button>'}).join("");
+}
+function themen(){
+  var gs=[];karten(S.lb).forEach(function(k){if(gs.indexOf(k.g)<0)gs.push(k.g)});
+  $("thema").innerHTML='<option value="">Alle Themen von LB '+S.lb+' ('+karten(S.lb).length+')</option>'+gs.map(function(g){var n=karten(S.lb).filter(function(k){return k.g===g}).length;return'<option value="'+esc(g)+'"'+(g===S.thema?" selected":"")+'>'+esc(g)+' ('+n+')</option>'}).join("");
+}
+function chips(){
+  $("mUeben").setAttribute("aria-pressed",S.ueben);$("mMisch").setAttribute("aria-pressed",S.misch);$("mRev").setAttribute("aria-pressed",S.rev);
+}
+function render(){
+  ac(S.lb);tabs();chips();
+  var l=stapel();
+  if(S.i>=l.length)S.i=Math.max(0,l.length-1);
+  var m=$("main");
+  if(!l.length){
+    var alle=karten(S.lb).filter(function(k){return!S.thema||k.g===S.thema});
+    m.innerHTML='<div class="fin"><div style="font-size:2.6rem">🎉</div><h2>Stapel geschafft!</h2><p>Alle '+alle.length+' Karten in diesem Bereich hast du als „gewusst“ markiert.</p><button type="button" id="again">Alle noch einmal lernen</button><button type="button" class="alt" id="ganz">Alle Karten zeigen</button></div>';
+    $("again").onclick=function(){alle.forEach(function(k){delete st[k.id]});save();S.i=0;S.flip=false;render()};
+    $("ganz").onclick=function(){S.ueben=false;S.i=0;render()};
+    return}
+  var k=l[S.i],lang=k.d.length>230,vorn=S.rev?k.d:k.b,sv=S.rev?"":k.z;
+  var status=st[k.id]===1?'<span class="badge k">gewusst ✓</span>':(st[k.id]===2?'<span class="badge n">noch üben</span>':"");
+  var front='<div class="face front"><div class="band"><span>LB '+k.lb+'</span><span>'+esc(k.g)+'</span></div><div class="body">'+
+    (S.rev?'<div class="lab">Definition</div><div class="def'+(lang?' lang':'')+'">'+esc(k.d)+'</div>':'<div class="term">'+esc(k.b)+'</div>'+(k.z?'<div class="zus">'+esc(k.z)+'</div>':''))+status+'</div><div class="hint">Antippen zum Umdrehen</div></div>';
+  var back='<div class="face back"><div class="band"><span>LB '+k.lb+'</span><span>'+esc(k.g)+'</span></div><div class="body">'+
+    (S.rev?'<div class="lab">Begriff</div><div class="term">'+esc(k.b)+'</div>'+(k.z?'<div class="zus">'+esc(k.z)+'</div>':''):'<div class="lab">Definition · '+esc(k.b)+(k.z?' ('+esc(k.z)+')':'')+'</div><div class="def'+(lang?' lang':'')+'">'+esc(k.d)+'</div>')+'</div><div class="hint">Wusstest du es? Dann unten bewerten.</div></div>';
+  m.innerHTML='<div class="stage"><button type="button" class="card'+(S.flip?" flip":"")+'" id="card" aria-label="Karte umdrehen: '+esc(k.b)+'">'+front+back+'</button></div>'+
+    '<div class="act"><button type="button" class="no" id="no">Nochmal üben</button><button type="button" class="yes" id="yes">Gewusst ✓</button></div>'+
+    '<div class="nav"><button type="button" id="prev">‹ Zurück</button><div class="count">Karte '+(S.i+1)+' von '+l.length+'</div><button type="button" id="next">Weiter ›</button></div>';
+  $("card").onclick=flip;
+  $("prev").onclick=function(){go(-1)};$("next").onclick=function(){go(1)};
+  $("no").onclick=function(){mark(2)};$("yes").onclick=function(){mark(1)};
+  S.cur=k;S.n=l.length;
+}
+function flip(){S.flip=!S.flip;var c=$("card");if(c)c.classList.toggle("flip",S.flip)}
+function go(d){var n=S.n||1;S.i=(S.i+d+n)%n;S.flip=false;render()}
+function mark(v){
+  var k=S.cur;if(!k)return;st[k.id]=v;save();S.flip=false;
+  if(S.ueben&&v===1){render();return}
+  go(1)}
+document.addEventListener("click",function(e){
+  var t=e.target.closest(".tab");if(t){S.lb=+t.dataset.lb;S.thema="";S.i=0;S.flip=false;themen();render()}
+});
+$("thema").onchange=function(){S.thema=this.value;S.i=0;S.flip=false;render()};
+$("mUeben").onclick=function(){S.ueben=!S.ueben;S.i=0;S.flip=false;render()};
+$("mMisch").onclick=function(){S.misch=!S.misch;S.seed=Math.floor(Math.random()*1e6)+1;S.i=0;S.flip=false;render()};
+$("mRev").onclick=function(){S.rev=!S.rev;S.flip=false;render()};
+document.addEventListener("keydown",function(e){
+  if(/^(SELECT|INPUT|TEXTAREA)$/.test(e.target.tagName))return;
+  if(e.key===" "||e.key==="Enter"){if(e.target.tagName==="BUTTON"&&e.target.id!=="card")return;e.preventDefault();flip()}
+  else if(e.key==="ArrowRight")go(1);else if(e.key==="ArrowLeft")go(-1);
+  else if(e.key==="1")mark(2);else if(e.key==="2")mark(1)});
+var x0=null;
+document.addEventListener("touchstart",function(e){x0=e.touches[0].clientX},{passive:true});
+document.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(dx)>70&&e.target.closest(".stage"))go(dx<0?1:-1)},{passive:true});
+themen();render();
+})();
+</script></body></html>

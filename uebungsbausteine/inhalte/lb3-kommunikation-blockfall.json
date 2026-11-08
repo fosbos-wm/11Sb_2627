@@ -1,0 +1,68 @@
+{
+ "titel": "LB 3 · Erziehung als Austausch von Informationen · Blockfall",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Sprache",
+  "Mimik und Gestik",
+  "Körperkontakt und Musik"
+ ],
+ "items": [
+  {
+   "t": "Die Erzieherin sagt: „Bitte räumt jetzt auf.“",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Das Wort „Hund“ steht für eine bestimmte Tierart.",
+   "k": 0
+  },
+  {
+   "t": "Ein Vater erklärt seinem Sohn, warum man bei Rot stehen bleibt.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Der Erzieher liest eine Geschichte vor.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Die Mutter macht ein grimmiges Gesicht, als das Kind auf den Kochtopf schlägt.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Geschlossene Augen und Daumen nach oben bedeuten „toll gemacht“.",
+   "k": 1
+  },
+  {
+   "t": "Ein Fingerzeig bedeutet eine Belehrung.",
+   "k": 1
+  },
+  {
+   "t": "Die Erzieherin nickt anerkennend, als Mia ihr Bild zeigt.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Die Erzieherin nimmt das weinende Kind in den Arm.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Eine Mutter streicht ihrem Kind über den Kopf, um es zu beruhigen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Ein Wiegenlied soll das Kind zum Einschlafen bringen.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Die Gruppe singt ein Begrüßungslied, damit sich alle willkommen fühlen.",
+   "k": 2,
+   "f": 1
+  }
+ ]
+}

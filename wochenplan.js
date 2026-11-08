@@ -15,7 +15,7 @@ async function j(e, t) {
     return (console.warn("wp", e, n.code || n), null);
   }
 }
-const te = () => c.isTeacher(),
+const te = () => c.isTeacher() && window.__wpModus !== "schueler",
   S = () => c.currentUser.uid,
   ce = () => c.profile?.pseudonym || c.profile?.displayName || "Sch\xFCler:in",
   Ee = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-3),
@@ -1189,6 +1189,7 @@ const U = (e) => {
   return (Math.round(t * 10) / 10).toString().replace(".", ",") + " Std.";
 };
 async function F() {
+  if (c.isTeacher()) return;
   const e = i.d.plan,
     t = S(),
     n = Ke(),
@@ -1283,7 +1284,8 @@ function ot() {
   return `<div class="wp-tage">${I.map((t, n) => `<button class="${n === i.tag ? "on" : ""}" onclick="wp.tag(${n})">${t} ${Z(N(e, n))}</button>`).join("")}</div>`;
 }
 function dt() {
-  return `<div class="wp-nav"><button class="secondary" onclick="wp.woche(-1)" aria-label="Vorherige Woche">\u2190</button><b>${o(Q(i.woche))}</b><button class="secondary" onclick="wp.woche(1)" aria-label="N\xE4chste Woche">\u2192</button>${i.woche !== Ge() ? '<button class="secondary" onclick="wp.woche(0)">Heute</button>' : ""}</div>`;
+  const sel = te() ? wocheSelect() : "";
+  return `<div class="wp-nav">${sel}<button class="secondary" onclick="wp.woche(-1)" aria-label="Vorherige Woche">\u2190</button><b>${o(Q(i.woche))}</b><button class="secondary" onclick="wp.woche(1)" aria-label="N\xE4chste Woche">\u2192</button>${i.woche !== Ge() ? '<button class="secondary" onclick="wp.woche(0)">Heute</button>' : ""}</div>`;
 }
 const He = [
   { typ: "termin", ic: "", t: "Fachliche Frage", s: "Lehrkraft buchen" },
@@ -2213,7 +2215,21 @@ async function Kn(e, t) {
 }
 const $t = {
     woche: async (e) => {
-      ((i.woche = e === 0 ? Ge() : B(N(L(i.woche), 7 * e))), (i.armed = null), v());
+      const ziel = e === 0 ? Ge() : B(N(L(i.woche), 7 * e));
+      if (!c.isTeacher() && ziel > B(N(L(Ge()), 7))) return c.toast("Du siehst deine aktuelle und die n\xE4chste Woche. Die weiteren Wochen schalten deine Lehrkr\xE4fte rechtzeitig frei.");
+      ((i.woche = ziel), (i.armed = null), v());
+    },
+    wocheSet: (w) => {
+      w && ((i.woche = w), (i.armed = null), v());
+    },
+    geplant: zg,
+    planWoche: (w) => {
+      ((i.woche = w), (i.tab = "uebersicht"), (window.__wpModus = "plan"), (location.hash = "#wp-plan"));
+    },
+    jahrGeplant: async (w) => {
+      i.woche = w;
+      await ct();
+      await zg();
     },
     tag: (e) => {
       ((i.tag = e), v());
@@ -2426,7 +2442,7 @@ function Vn() {
           .map((l) => {
             const r = T(l.fach);
             return `<div><span class="wp-fl" style="--fc:${r.c};--fb:${r.bg}">${o(r.l)}</span><b>${o(l.titel)}</b><small>${o(x(l).label)}${l.pflicht ? " \xB7 Pflicht" : ""}${l.woche === "" ? " \xB7 jede Woche" : ""}${l.fixTag != null && l.fixTag !== "" ? " \xB7 fest: " + I[l.fixTag] + ", " + (l.fixStd || 1) + ". Std." : ""}${(l.anhaenge || []).length ? " \xB7 " + l.anhaenge.length + " Anhang" : ""}${l.typ === "lernstand" ? Yn(l) : ""}</small>
-  <span class="pill ${l.status === "live" ? "ok" : "warn"}">${l.status === "live" ? "live" : "Entwurf"}</span>
+  <span class="pill ${l.status === "live" ? "ok" : "warn"}">${l.status === "live" ? "live" : l.status === "geplant" ? "geplant" : "Entwurf"}</span>
   <span class="wp-rowact"><button class="secondary" onclick="wp.vorschau('${l.id}')">Vorschau</button><button class="secondary" onclick="wp.modulForm('${l.id}')">Bearbeiten</button><button class="secondary" onclick="wp.modulKopie('${l.id}')" title="als Entwurf in die n\xE4chste Woche kopieren">\u2192 N\xE4chste Woche</button><button class="secondary" onclick="wp.modulWeg('${l.id}')">L\xF6schen</button></span></div>`;
           })
           .join("")}</div></div>`;
@@ -2506,7 +2522,7 @@ function Jn(e, pt) {
  <label>oder Link (https://\u2026)<input id="mfLink" maxlength="300" value="${o(t.link || "")}"></label>
  <label class="check"><input type="checkbox" id="mfPflicht" ${t.pflicht ? "checked" : ""}><span>Pflicht-Lernbaustein</span></label>
  <label class="check"><input type="checkbox" id="mfMehr" ${t.mehrfach ? "checked" : ""}><span>Kann mehrfach eingeplant werden</span></label>
- <label>Status<select id="mfStatus"><option value="entwurf" ${t.status !== "live" ? "selected" : ""}>Entwurf (nur Lehrkr\xE4fte)</option><option value="live" ${t.status === "live" ? "selected" : ""}>Live (Sch\xFCler:innen sehen es)</option></select></label>
+ <label>Status<select id="mfStatus"><option value="entwurf" ${t.status !== "live" && t.status !== "geplant" ? "selected" : ""}>Entwurf (in Arbeit, nur Lehrkr\xE4fte)</option><option value="geplant" ${t.status === "geplant" ? "selected" : ""}>Geplant (wird 2 Wochen vorher automatisch sichtbar)</option><option value="live" ${t.status === "live" ? "selected" : ""}>Live (Sch\xFCler:innen sehen es)</option></select></label>
  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.modulSave('${e || ""}')">Speichern</button></div></div></div>`),
     t.typ === "lernstand" && Ue(),
     ubFill(t.typ, t.gestaltung),
@@ -2662,7 +2678,7 @@ function yt(e, t, n, a) {
  ${s.art === "lernstand" ? Ze(s.fuer) : ""}
  ${st()}
  <label>Lehrkraft<input id="efLk" maxlength="60" value="${o(s.lehrkraft || "")}"></label><label>Raum (optional)<input id="efRaum" maxlength="20" value="${o(s.raum || "")}"></label>
- <label>Status<select id="efStatus"><option value="entwurf" ${s.status !== "live" ? "selected" : ""}>Entwurf</option><option value="live" ${s.status === "live" ? "selected" : ""}>Live</option></select></label>
+ <label>Status<select id="efStatus"><option value="entwurf" ${s.status !== "live" && s.status !== "geplant" ? "selected" : ""}>Entwurf</option><option value="geplant" ${s.status === "geplant" ? "selected" : ""}>Geplant (automatisch 2 Wochen vorher sichtbar)</option><option value="live" ${s.status === "live" ? "selected" : ""}>Live</option></select></label>
  <div class="form-actions">${e ? `<button class="secondary" onclick="wp.einfWeg('${e}')">L\xF6schen</button>` : ""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.einfSave('${e || ""}','${s.art || "einfuehrung"}')">Speichern</button></div></div></div>`),
     s.art === "lernstand" && Ue());
 }
@@ -2717,7 +2733,7 @@ function zt(e, t, n) {
  <label>Tag<select id="slD">${W.map((s, l) => `<option value="${l}" ${l === a.d ? "selected" : ""}>${s}</option>`).join("")}</select></label>
  <label>Beginn (Stunde)<select id="slH">${[...Array(10)].map((s, l) => `<option value="${l + 1}" ${l + 1 === a.h ? "selected" : ""}>${l + 1}. Stunde (${o(Y()[l])})</option>`).join("")}</select></label>
  <label>Dauer<select id="slLen"><option value="1" ${a.len !== 2 ? "selected" : ""}>45 Minuten</option><option value="2" ${a.len === 2 ? "selected" : ""}>90 Minuten</option></select></label>
- <label>Status<select id="slStatus"><option value="entwurf" ${a.status !== "live" ? "selected" : ""}>Entwurf</option><option value="live" ${a.status === "live" ? "selected" : ""}>Live</option></select></label>
+ <label>Status<select id="slStatus"><option value="entwurf" ${a.status !== "live" && a.status !== "geplant" ? "selected" : ""}>Entwurf</option><option value="geplant" ${a.status === "geplant" ? "selected" : ""}>Geplant (automatisch 2 Wochen vorher sichtbar)</option><option value="live" ${a.status === "live" ? "selected" : ""}>Live</option></select></label>
  <div class="form-actions">${e ? `<button class="secondary" onclick="wp.slotWeg('${e}')">L\xF6schen</button>` : ""}<button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" onclick="wp.slotSave('${e || ""}')">Speichern</button></div></div>`);
 }
 async function ca(e) {
@@ -2792,7 +2808,7 @@ async function da() {
  ${l.map((u) => `<label class="wp-notiz" style="--fc:${u.c}"><span>${o(u.l)}</span><textarea rows="2" maxlength="400" onchange="wp.teamNotiz('${u.k}',this.value)" placeholder="Einf\xFChrung, Lernstandsgespr\xE4che, Check-out, Besonderheiten \u2026">${o(s.notizen?.[u.k] || "")}</textarea></label>`).join("")}
  <h4>To-dos f\xFCrs Team</h4><div id="wpTodos">${(s.todos || []).map((u) => `<label class="check"><input type="checkbox" ${u.done ? "checked" : ""} onchange="wp.todoToggle('${u.id}')"><span>${o(u.t)}</span> <button class="text-button" onclick="wp.todoWeg('${u.id}')">\xD7</button></label>`).join("") || '<small class="wp-leer">Noch keine To-dos.</small>'}</div>
  <div class="wp-chatform"><input id="wpTodoText" maxlength="120" placeholder="Neues To-do \u2026" onkeydown="if(event.key==='Enter')wp.todoNeu()"><button class="secondary" onclick="wp.todoNeu()">Hinzuf\xFCgen</button></div>
- <div class="wp-freigabe"><div><b>${r} Entwurf${r === 1 ? "" : "e"}</b> f\xFCr diese Woche \xB7 ${ga()}</div><div class="form-actions"><button class="secondary" onclick="wp.vorwoche()">Feste Termine der Vorwoche \xFCbernehmen</button><button class="primary" onclick="wp.freigeben()">Woche f\xFCr die Klasse freigeben</button></div></div>`,
+ <div class="wp-freigabe"><div><b>${r} Entwurf${r === 1 ? "" : "e"}</b> f\xFCr diese Woche \xB7 ${ga()}</div><div class="form-actions"><button class="secondary" onclick="wp.vorwoche()">Feste Termine der Vorwoche \xFCbernehmen</button><button class="secondary" onclick="wp.geplant()">Woche als \u201Egeplant\u201C markieren</button><button class="primary" onclick="wp.freigeben()">Jetzt f\xFCr die Klasse freigeben</button></div><small class="wp-hint">\u201EGeplant\u201C = fertig vorbereitet: wird automatisch sichtbar, sobald die Woche h\xF6chstens 2 Wochen entfernt ist (aktuelle + n\xE4chste Woche).</small></div>`,
       !0,
     )),
     setTimeout(ba, 0),
@@ -3827,13 +3843,113 @@ async function ni(e) {
   modulImport: ni,
 }),
   (window.wp = $t));
-export async function wpRender() {
+
+// ---- Woche per Auswahl (Schulwochen des Schuljahres) ----
+function wocheSelect() {
+  let l = [];
+  try {
+    l = c.schulwochen();
+  } catch {}
+  if (!l.length) return "";
+  const opts = l.map((w) => `<option value="${w.start}" ${w.start === i.woche ? "selected" : ""}>KW ${c.isoKw(w.start)} · ${Z(L(w.start))}–${Z(L(w.end))}</option>`);
+  if (!l.some((w) => w.start === i.woche)) opts.unshift(`<option value="${i.woche}" selected>${o(Q(i.woche))} (kein Unterricht?)</option>`);
+  return `<select class="wp-wsel" onchange="wp.wocheSet(this.value)" aria-label="Schulwoche wählen">${opts.join("")}</select>`;
+}
+// ---- Status "geplant": fertig vorbereitet, wird automatisch 2 Wochen vorher live ----
+async function zg() {
+  const e = [
+    ...i.d.module.filter((t) => t.status !== "live" && t.status !== "geplant" && t.woche === i.woche).map((t) => ["wpModule", t.id]),
+    ...i.d.einf.filter((t) => t.status !== "live" && t.status !== "geplant").map((t) => ["wpEinfuehrungen", t.id]),
+    ...i.d.slots.filter((t) => t.status !== "live" && t.status !== "geplant").map((t) => ["wpSlots", t.id]),
+  ];
+  if (!e.length) return c.toast("Nichts zu markieren: alle Einträge dieser Woche sind schon geplant oder live.");
+  try {
+    for (let t = 0; t < e.length; t += 400) {
+      const n = c.writeBatch(c.db);
+      (e.slice(t, t + 400).forEach(([a, s]) => n.update(z(a, s), { status: "geplant", updatedAt: c.serverTimestamp() })), await n.commit());
+    }
+    (c.toast(e.length + " Einträge sind jetzt „geplant“."), window.__wpAutoT = 0, await autoFreigabe(), v());
+  } catch (t) {
+    (console.error(t), c.toast("Konnte nicht gespeichert werden."));
+  }
+}
+// Teacher-Client gibt geplante Einträge frei, sobald ihre Woche höchstens 2 Wochen entfernt ist.
+async function autoFreigabe() {
+  if (!c.isTeacher() || Date.now() - (window.__wpAutoT || 0) < 6e5) return;
+  window.__wpAutoT = Date.now();
+  const grenze = B(N(cn(new Date()), 7));
+  try {
+    const k = ["wpModule", "wpEinfuehrungen", "wpSlots"],
+      l = await Promise.all(k.map((n) => A(n, M("status", "geplant")).catch(() => []))),
+      todo = [],
+      wochen = new Set();
+    l.forEach((arr, ix) =>
+      arr.forEach((d) => {
+        (!d.woche || d.woche <= grenze) && (todo.push([k[ix], d.id]), d.woche && wochen.add(d.woche));
+      }),
+    );
+    for (let t = 0; t < todo.length; t += 400) {
+      const n = c.writeBatch(c.db);
+      (todo.slice(t, t + 400).forEach(([a, s]) => n.update(z(a, s), { status: "live", updatedAt: c.serverTimestamp() })), await n.commit());
+    }
+    for (const w of wochen) await c.setDoc(z("wpWochen", w), { woche: w, status: "live", updatedAt: c.serverTimestamp() }, { merge: !0 });
+    todo.length && c.toast(todo.length + " geplante Einträge sind jetzt für die Klasse sichtbar.");
+  } catch (e) {
+    console.warn("Auto-Freigabe:", e);
+  }
+}
+// ---- Jahresplan (Lehrkräfte): alle Schulwochen auf einen Blick ----
+async function jahrHTML() {
+  const [mod, einf, slots, wd, th] = await Promise.all([
+    A("wpModule").catch(() => []),
+    A("wpEinfuehrungen").catch(() => []),
+    A("wpSlots").catch(() => []),
+    A("wpWochen").catch(() => []),
+    c.themenProWoche().catch(() => ({})),
+  ]);
+  const zeit = c.zeitleiste(),
+    heute = Ge(),
+    rang = (x) => (x.length ? (x.every((m) => m.status === "live") ? "live" : x.some((m) => m.status !== "live" && m.status !== "geplant") ? "entwurf" : "geplant") : "leer"),
+    lab = { live: "live", geplant: "geplant", entwurf: "Entwurf", leer: "leer" };
+  const dauer = mod.filter((m) => !m.woche);
+  let h = `<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>Jahresplan</h1><p>Alle Schulwochen auf einen Blick: Themen (KW), verbindliche Lernbausteine und feste Termine. Klick auf „Planen“ öffnet die Woche in der Wochenplanung. Schüler:innen sehen immer die aktuelle und die nächste Woche.</p></div></div>`;
+  h += `<div class="card wp-projektleiste"><b>Projekte</b> sind für alle Schüler:innen verpflichtend und laufen über das ganze Schuljahr (siehe Lernlandkarte, Projekt je Lernbereich).${dauer.length ? ` · ${dauer.length} dauerhafte Angebote ohne feste Woche` : ""}</div>`;
+  h += `<div class="card"><table class="wp-jahr"><thead><tr><th>KW</th><th>Woche</th><th>Themen</th><th>Pflicht</th><th>Autonom</th><th>Feste Termine</th><th>Status</th><th></th></tr></thead><tbody>`;
+  zeit.forEach((z0) => {
+    if (z0.art !== "woche") {
+      h += `<tr class="wp-jahr-block"><td colspan="8">${o(z0.titel)} · ${Z(L(z0.von))}–${Z(L(z0.bis))}${z0.n > 1 ? " (" + z0.n + " Wochen)" : ""}</td></tr>`;
+      return;
+    }
+    const w = z0.w,
+      m = mod.filter((x) => x.woche === w.start),
+      e = einf.filter((x) => x.woche === w.start),
+      s = slots.filter((x) => x.woche === w.start),
+      alle = [...m, ...e, ...s],
+      st = rang(alle),
+      themen = (th[w.start] || []).map((t) => `<span class="kw-chip">${o(t)}</span>`).join("");
+    h += `<tr class="${w.start === heute ? "wp-jahr-heute" : ""}${w.start > heute ? "" : " wp-jahr-alt"}"><td><b>${c.isoKw(w.start)}</b></td><td>${Z(L(w.start))}–${Z(L(w.end))}</td><td>${themen || '<small class="wp-hint">–</small>'}</td><td>${m.filter((x) => x.pflicht).length}</td><td>${m.filter((x) => !x.pflicht).length}</td><td>${e.length + s.length}</td><td><span class="pill ${st === "live" ? "ok" : st === "leer" ? "" : "warn"}">${lab[st]}</span></td><td class="wp-rowact"><button class="secondary" onclick="wp.planWoche('${w.start}')">Planen</button>${st === "entwurf" ? `<button class="secondary" onclick="wp.jahrGeplant('${w.start}')">→ geplant</button>` : ""}</td></tr>`;
+  });
+  return h + `</tbody></table></div>`;
+}
+export async function wpRender(modus) {
+  window.__wpModus = modus || "schueler";
+  autoFreigabe();
+  if (c.isTeacher() && modus === "jahr") return `<div id="wpRoot" class="wp">${await jahrHTML()}</div>`;
+  let proj = "";
+  try {
+    const pj = !te() && c.aktuellesProjekt();
+    pj && (proj = `<div class="card wp-projekt"><b>Projekt (verpflichtend, l\u00E4uft das ganze Jahr):</b> ${o(pj.titel)} \u00B7 LB ${pj.lbNum} <button class="secondary" onclick="CampusWP.projektOeffnen(${pj.lbNum})">Zum Projekt \u2192</button><small class="wp-hint">Plane in jeder Woche Zeit f\u00FCr dein Projekt ein.</small></div>`);
+  } catch {}
+  const kopf =
+    c.isTeacher() && modus === "schueler"
+      ? `<div class="card wp-vorschau"><b>\uD83D\uDC40 Vorschau: So sehen die Sch\u00FCler:innen ihren Wochenplan.</b> Sichtbar ist nur, was \u201Elive\u201C ist. <button class="secondary" onclick="go('wp-plan')">Zur Wochenplanung</button> <button class="secondary" onclick="go('wp-jahr')">Jahresplan</button></div>`
+      : "";
   return (
     (i.armed = null),
     (i.voll = !1),
     document.body.classList.remove("wp-voll-body"),
     document.body.classList.toggle("wp-nav-aus", !!wpUi().navAus),
     setTimeout(wpPfeile, 150),
-    `<div id="wpRoot" class="wp">${await ft()}</div>`
+    `<div id="wpRoot" class="wp">${kopf}${proj}${await ft()}</div>`
   );
 }

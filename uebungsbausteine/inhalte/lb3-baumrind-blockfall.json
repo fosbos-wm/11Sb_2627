@@ -1,0 +1,64 @@
+{
+ "titel": "LB 3 · Erziehungsstile nach Baumrind · Blockfall",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Autoritativ",
+  "Autoritär",
+  "Permissiv",
+  "Vernachlässigend"
+ ],
+ "items": [
+  {
+   "t": "Die Eltern erklären, warum eine feste Schlafenszeit wichtig ist, und einigen sich mit dem Kind auf eine Ausnahme am Wochenende.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Hohe Wärme und klare, konsequent durchgesetzte Regeln.",
+   "k": 0
+  },
+  {
+   "t": "Kinder gelten häufig als selbstbewusst und sozial kompetent.",
+   "k": 0
+  },
+  {
+   "t": "„Weil ich es sage. Ab ins Bett.“",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Strenge Regeln, aber kaum Zuwendung und keine Begründung.",
+   "k": 1
+  },
+  {
+   "t": "Kinder zeigen häufiger Unsicherheit oder trotzig-aggressives Verhalten.",
+   "k": 1
+  },
+  {
+   "t": "Das Kind darf aufbleiben, solange es möchte. Die Eltern wollen keinen Streit.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Viel Zuwendung, aber kaum Regeln und Forderungen.",
+   "k": 2
+  },
+  {
+   "t": "Kindern fällt es schwerer, Regeln einzuhalten und Frustration auszuhalten.",
+   "k": 2
+  },
+  {
+   "t": "Die Eltern fragen nie nach, wann das Kind nach Hause kommt oder was es erlebt hat.",
+   "k": 3,
+   "f": 1
+  },
+  {
+   "t": "Weder Wärme noch Anforderungen.",
+   "k": 3
+  },
+  {
+   "t": "Gilt als am stärksten mit negativen Entwicklungsfolgen verbunden.",
+   "k": 3
+  }
+ ]
+}

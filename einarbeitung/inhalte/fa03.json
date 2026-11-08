@@ -1,0 +1,718 @@
+{
+ "titel": "Satzbausteine für den Fachaufsatz",
+ "modulart": "selbstlern",
+ "lb": 1,
+ "einleitung": "Hier übst du die **Satzbausteine** eines Fachaufsatzes: Einleitungssatz, Eingrenzung, Überleitung, Theorie (nennen, beschreiben, erklären, verdeutlichen) und Schlusssatz. Mit Satzanfängen, Aufgaben und einem Aufsatz mit Strukturstreifen. Plane etwa 60 Minuten ein.",
+ "abschnitte": [
+  {
+   "kicker": "Satzbausteine Fachaufsatz",
+   "titel": "Worum es in diesem Kurs geht",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "In diesem Kurs übst du **Satzbausteine** für den Fachaufsatz. Für jeden Teil des Aufsatzes lernst du, **welche Aufgabe er hat**, und bekommst **Satzanfänge**, mit denen du sicher losschreibst. Du arbeitest selbstständig, die Aufgaben geben dir sofort Rückmeldung. Plane etwa 60 Minuten ein."
+    },
+    {
+     "typ": "situation",
+     "label": "Lernsituation",
+     "text": "(Z. 1) Familie Berger: Der 10-jährige Tim soll abends um 19 Uhr zu Hause sein.\n(Z. 2) Seine Eltern haben ihm erklärt, warum diese Regel für ihn wichtig ist.\n(Z. 3) Kommt Tim später, sprechen sie ruhig mit ihm darüber\n(Z. 4) und setzen auch Konsequenzen konsequent um.\n(Z. 5) Tim darf mitentscheiden, wohin die Familie am Wochenende fährt.\n(Z. 6) Die Eltern nehmen sich abends Zeit für ihn und hören ihm zu."
+    },
+    {
+     "typ": "situation",
+     "label": "Arbeitsauftrag",
+     "text": "Erläutern Sie den autoritativen Erziehungsstil am Beispiel von Familie Berger."
+    },
+    {
+     "typ": "text",
+     "text": "Dieses Beispiel begleitet dich durch den ganzen Kurs. Am Ende schreibst du selbst einen kompletten Fachaufsatz zu einer neuen Aufgabe."
+    },
+    {
+     "typ": "aufbau",
+     "legende": [
+      {
+       "name": "Einleitung",
+       "farbe": "pfirsich"
+      },
+      {
+       "name": "Überleitung",
+       "farbe": "gruen"
+      },
+      {
+       "name": "Hauptteil: Theorie",
+       "farbe": "blau"
+      },
+      {
+       "name": "Hauptteil: Beispiel",
+       "farbe": "gelb"
+      },
+      {
+       "name": "Schluss",
+       "farbe": "rot"
+      }
+     ],
+     "zeilen": [
+      {
+       "label": "1 Einleitungssatz",
+       "farbe": "pfirsich",
+       "text": "Ganz allgemein ins Thema einführen. Er nimmt nichts von der Theorie vorweg und nennt noch keine Fachbegriffe."
+      },
+      {
+       "label": "2 Eingrenzung",
+       "farbe": "pfirsich",
+       "text": "Das Thema dem Lernbereich zuordnen: Definition von Psychologie und Pädagogik, bei Erziehungsthemen auch von Erziehung."
+      },
+      {
+       "label": "3 Überleitung",
+       "farbe": "gruen",
+       "text": "Die Fragestellung aufgreifen (mit dem Fall) und sagen, was im Hauptteil folgt."
+      },
+      {
+       "label": "4 Theorie nennen",
+       "farbe": "blau",
+       "text": "Den Fachbegriff oder Theorieaspekt benennen."
+      },
+      {
+       "label": "5 Theorie beschreiben",
+       "farbe": "blau",
+       "text": "Die Merkmale und Inhalte darstellen."
+      },
+      {
+       "label": "6 Theorie erklären",
+       "farbe": "blau",
+       "text": "Zusammenhänge, Gründe und Wirkungen angeben."
+      },
+      {
+       "label": "7 Verdeutlichen",
+       "farbe": "gelb",
+       "text": "Am Fall zeigen, wo der Theorieaspekt erkennbar ist (Rückbezug mit Zeilenangabe)."
+      },
+      {
+       "label": "8 Schlusssatz",
+       "farbe": "rot",
+       "text": "Ein zum Thema passender Gedanke oder Ausblick."
+      }
+     ]
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Reihenfolge: **Einleitungssatz → Eingrenzung → Überleitung → (nennen → beschreiben → erklären → verdeutlichen) für jeden Theorieaspekt → Schlusssatz.**"
+    }
+   ]
+  },
+  {
+   "kicker": "Baustein 1",
+   "titel": "Der Einleitungssatz",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der erste Satz führt **ganz allgemein ins Thema** ein. Der Leser soll merken: Hier geht es um ein Thema aus dem Leben, nicht um eine Definition."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Ein guter Einleitungssatz …\n- ist **allgemein** und gilt für viele Menschen,\n- nennt **keinen Fachbegriff** der Theorie und **nimmt nichts vorweg**,\n- hat **keinen Bezug zum Fall** (keine Namen),\n- ist **ein** Satz."
+    },
+    {
+     "typ": "text",
+     "text": "**Satzanfänge für den Einleitungssatz:**\n- „Jeder Mensch wächst in einer Gemeinschaft auf, in der …“\n- „Von klein auf sind Kinder darauf angewiesen, dass …“\n- „Eltern wünschen sich für ihre Kinder in aller Regel …“\n- „Im Alltag jeder Familie gibt es Situationen, in denen …“\n- „Viele Menschen stellen sich die Frage, wie …“"
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Welcher Einleitungssatz passt zur Aufgabe über den autoritativen Erziehungsstil?",
+     "hinweis": "Ordne jeden Satz einer Gruppe zu.",
+     "kategorien": [
+      {
+       "name": "geeignet (allgemein, nimmt nichts vorweg)",
+       "items": [
+        "Eltern wünschen sich für ihre Kinder in aller Regel, dass diese zu selbstständigen und glücklichen Menschen heranwachsen.",
+        "Im Alltag jeder Familie gibt es Situationen, in denen Eltern entscheiden müssen, wie sie auf ihre Kinder reagieren."
+       ]
+      },
+      {
+       "name": "nimmt Theorie vorweg",
+       "items": [
+        "Der autoritative Erziehungsstil verbindet hohe emotionale Wärme mit klaren Regeln.",
+        "Erziehungsstile unterscheiden sich in emotionaler Wärme und Anforderung."
+       ]
+      },
+      {
+       "name": "zu speziell (Fallbezug)",
+       "items": [
+        "Familie Berger erklärt ihrem Sohn Tim, warum er abends zu Hause sein soll.",
+        "Tim darf bei den Bergers mitentscheiden, wohin die Familie fährt."
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Warum darf der Einleitungssatz keinen Fachbegriff wie „autoritativ“ enthalten?",
+     "optionen": [
+      "Weil Fachbegriffe in der Einleitung verboten sind.",
+      "Weil er ganz allgemein ins Thema einführen und nichts von der Theorie vorwegnehmen soll.",
+      "Weil der Satz sonst zu lang wird.",
+      "Weil die Lehrkraft den Begriff schon kennt."
+     ],
+     "richtig": 1,
+     "erklaerung": "Der Einleitungssatz führt ins Thema ein. Begriffe und Definitionen folgen in der Eingrenzung und im Hauptteil."
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänze den Einleitungssatz.",
+     "text": "{{Eltern}} wünschen sich für ihre {{Kinder}} in aller Regel, dass diese zu {{selbstständigen}} und glücklichen Menschen {{heranwachsen}}.",
+     "woerter": [
+      "Eltern",
+      "Kinder",
+      "selbstständigen",
+      "heranwachsen",
+      "Tim",
+      "autoritativen",
+      "Erziehungsstil"
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Schreibe einen Einleitungssatz zu dieser Aufgabe: „Erläutern Sie den autoritären Erziehungsstil am Beispiel von Familie Koch.“",
+     "hinweis": "Ein Satz, ganz allgemein, kein Fachbegriff, kein Name.",
+     "muster": "Im Alltag jeder Familie gibt es Situationen, in denen Eltern entscheiden müssen, wie sie ihre Kinder erziehen.",
+     "kriterien": [
+      "allgemein formuliert",
+      "kein Fachbegriff (z. B. „autoritär“, „Erziehungsstil“) und kein Name",
+      "genau ein Satz"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Baustein 2",
+   "titel": "Die Eingrenzung in den Lernbereich",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Nach dem Einleitungssatz **grenzt du das Thema ein**: Du sagst, welche Wissenschaften sich damit beschäftigen. Dazu **definierst du Psychologie und Pädagogik**. Geht es um ein Erziehungsthema, definierst du zusätzlich **Erziehung**."
+    },
+    {
+     "typ": "merke",
+     "label": "Definitionen zum Auswendiglernen",
+     "text": "Psychologie ist die Wissenschaft vom Verhalten und Erleben.\nPädagogik ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft.\nErziehung ist soziale Interaktion, die durch wechselseitiges Verhalten zwischen Erzieher und zu Erziehendem ein bestimmtes Ziel – ein Erziehungsziel – erreichen will."
+    },
+    {
+     "typ": "text",
+     "text": "**Satzanfänge für die Eingrenzung:**\n- „Mit dem Erleben und Verhalten von Menschen beschäftigt sich die Psychologie. Sie ist die Wissenschaft vom …“\n- „Mit der Frage, wie Erziehung gelingen kann, beschäftigt sich die Pädagogik. Sie ist der Oberbegriff für …“\n- „Erziehung ist soziale Interaktion, die …“\n- „Dieses Thema gehört zum Gegenstandsbereich der Psychologie und der Pädagogik.“"
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänze die Eingrenzung.",
+     "text": "Mit dem Erleben und {{Verhalten}} von Menschen beschäftigt sich die {{Psychologie}}. Sie ist die {{Wissenschaft}} vom Verhalten und Erleben. Mit der Erziehung beschäftigt sich die {{Pädagogik}}. Sie ist der {{Oberbegriff}} für Erziehungspraxis und {{Erziehungswissenschaft}}.",
+     "woerter": [
+      "Verhalten",
+      "Psychologie",
+      "Wissenschaft",
+      "Pädagogik",
+      "Oberbegriff",
+      "Erziehungswissenschaft",
+      "Soziologie",
+      "Gegenteil"
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Beurteile die Aussagen zur Eingrenzung.",
+     "aussagen": [
+      {
+       "text": "Die Eingrenzung ordnet das Thema dem Lernbereich zu.",
+       "richtig": true,
+       "erklaerung": "Genau dafür ist sie da."
+      },
+      {
+       "text": "In der Eingrenzung werden Psychologie und Pädagogik definiert.",
+       "richtig": true,
+       "erklaerung": "Das gehört zu jedem Fachaufsatz."
+      },
+      {
+       "text": "Die Eingrenzung enthält bereits die Anwendung auf den Fall.",
+       "richtig": false,
+       "erklaerung": "Der Fallbezug kommt erst in der Überleitung."
+      },
+      {
+       "text": "Die Eingrenzung steht noch vor dem Einleitungssatz.",
+       "richtig": false,
+       "erklaerung": "Zuerst kommt der Einleitungssatz, dann die Eingrenzung."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Baustein 3",
+   "titel": "Die Überleitung zum Hauptteil",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Die Überleitung hat **zwei Aufgaben:**\n1. Sie **greift die Fragestellung auf** (jetzt mit dem Fall).\n2. Sie **schildert, was im Hauptteil folgt**."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Überleitung = **Fragestellung aufgreifen** + **Ausblick auf den Hauptteil**. In der Überleitung nennst du zum ersten Mal den **Namen aus dem Fall**."
+    },
+    {
+     "typ": "text",
+     "text": "**Satzanfänge für die Überleitung:**\n- „Im Folgenden soll … am Beispiel von … erläutert werden.“\n- „Im Folgenden wird auf der Grundlage der Theorie … das Verhalten von … erklärt.“\n- „Daher stellt sich die Frage, … Dazu werden zunächst … und anschließend … dargestellt und auf … bezogen.“\n- „Im Weiteren wird gezeigt, …“"
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Bringe die Teile der Überleitung in die richtige Reihenfolge.",
+     "hinweis": "Ein Teil greift die Frage auf, ein Teil kündigt den Hauptteil an.",
+     "absaetze": [
+      "Im Folgenden soll erläutert werden, wie sich der autoritative Erziehungsstil im Erziehungsverhalten der Eltern von Familie Berger zeigt.",
+      "Dazu werden zunächst der Erziehungsstil und seine Merkmale dargestellt und anschließend auf Familie Berger bezogen."
+     ]
+    },
+    {
+     "typ": "zuordnung",
+     "titel": "Welche Aufgabe hat der Satzanfang?",
+     "paare": [
+      [
+       "„Im Folgenden soll … am Beispiel von … erläutert werden.“",
+       "greift die Fragestellung auf"
+      ],
+      [
+       "„Dazu werden zunächst … und anschließend … dargestellt.“",
+       "kündigt den Hauptteil an"
+      ],
+      [
+       "„Im Weiteren wird gezeigt, …“",
+       "kündigt den Hauptteil an"
+      ],
+      [
+       "„Daher stellt sich die Frage, …“",
+       "greift die Fragestellung auf"
+      ]
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Schreibe eine Überleitung zu: „Erläutern Sie den autoritären Erziehungsstil am Beispiel von Familie Koch.“",
+     "hinweis": "Zwei Teile: Frage aufgreifen mit Fall, dann Ausblick auf den Hauptteil.",
+     "muster": "Im Folgenden wird auf der Grundlage der Theorie der Erziehungsstile erläutert, wie sich der autoritäre Erziehungsstil bei Familie Koch zeigt. Dazu werden zunächst die Merkmale des autoritären Erziehungsstils dargestellt und anschließend am Beispiel von Familie Koch verdeutlicht.",
+     "kriterien": [
+      "Fragestellung mit Namen aus dem Fall aufgegriffen",
+      "Ausblick auf den Hauptteil genannt",
+      "kein Theorieinhalt vorweggenommen"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Baustein 4",
+   "titel": "Hauptteil: Theorie nennen, beschreiben, erklären",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Jeder Theorieaspekt wird nach demselben Muster bearbeitet. Im Beispiel: **emotionale Wärme** als Merkmal des autoritativen Erziehungsstils."
+    },
+    {
+     "typ": "aufbau",
+     "legende": [
+      {
+       "name": "Theorie",
+       "farbe": "blau"
+      },
+      {
+       "name": "Anwendung",
+       "farbe": "gelb"
+      }
+     ],
+     "zeilen": [
+      {
+       "label": "Nennen",
+       "farbe": "blau",
+       "text": "Den Theorieaspekt **benennen**.\nSatzanfänge: „Ein … ist …“ · „Zu den … gehört …“ · „Man unterscheidet …“"
+      },
+      {
+       "label": "Beschreiben",
+       "farbe": "blau",
+       "text": "**Merkmale, Inhalte, Arten** darstellen.\nSatzanfänge: „… bezeichnet …“ · „… umfasst …“ · „Dabei handelt es sich um …“"
+      },
+      {
+       "label": "Erklären",
+       "farbe": "blau",
+       "text": "**Zusammenhänge, Gründe, Wirkungen** angeben.\nSatzanfänge: „Dadurch …“ · „Das führt dazu, dass …“ · „Folglich …“ · „… weil …“"
+      },
+      {
+       "label": "Verdeutlichen",
+       "farbe": "gelb",
+       "text": "Am **Fall zeigen** (Rückbezug) mit **Zeilenangabe (Z. …)**. Der Name des Falls kommt erst hier.\nSatzanfänge: „Im Beispiel wird … deutlich in …“ · „… zeigt sich bei … darin, dass …“"
+      }
+     ]
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "**Nennen → Beschreiben → Erklären** sind **allgemeine Theorie** (kein Name!). **Verdeutlichen** ist die **Anwendung** auf den Fall und enthält immer eine **Zeilenangabe (Z. …)**."
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Welcher Schritt ist es?",
+     "hinweis": "Ordne jeden Satz dem Schritt zu.",
+     "kategorien": [
+      {
+       "name": "Nennen",
+       "items": [
+        "Ein Merkmal des autoritativen Erziehungsstils ist die hohe emotionale Wärme."
+       ]
+      },
+      {
+       "name": "Beschreiben",
+       "items": [
+        "Eltern mit autoritativem Erziehungsstil begegnen ihrem Kind mit Zuwendung und Interesse und beziehen es in Entscheidungen mit ein."
+       ]
+      },
+      {
+       "name": "Erklären",
+       "items": [
+        "Das Kind erlebt sich dadurch als angenommen und ernst genommen, weil seine Meinung zählt. Dadurch entwickelt es Vertrauen zu den Eltern und kann Regeln leichter akzeptieren."
+       ]
+      },
+      {
+       "name": "Verdeutlichen",
+       "items": [
+        "Im Beispiel wird die hohe emotionale Wärme deutlich darin, dass die Eltern sich abends Zeit für Tim nehmen und ihm zuhören (Z. 6) und ihn mitentscheiden lassen, wohin die Familie fährt (Z. 5)."
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Bringe den Absatz in die richtige Reihenfolge.",
+     "hinweis": "Nennen, Beschreiben, Erklären, Verdeutlichen.",
+     "absaetze": [
+      "Ein weiteres Merkmal des autoritativen Erziehungsstils sind klare, konsequent durchgesetzte Regeln.",
+      "Eltern erklären ihre Erwartungen und setzen die Regeln konsequent durch.",
+      "Dadurch erkennt das Kind, was von ihm erwartet wird und warum, und kann sich daran orientieren. Folglich entwickelt es Verständnis für Regeln und Selbstständigkeit.",
+      "Im Beispiel zeigt sich das darin, dass die Eltern Tim erklären, warum er um 19 Uhr zu Hause sein soll (Z. 2), und bei Verspätung Konsequenzen konsequent umsetzen (Z. 4)."
+     ]
+    },
+    {
+     "typ": "lueckentext",
+     "titel": "Ergänze den Absatz.",
+     "text": "Ein Merkmal des autoritativen Erziehungsstils sind klare, konsequent durchgesetzte {{Regeln}}. Eltern {{erklären}} ihre Erwartungen und setzen die Regeln {{konsequent}} durch. Dadurch erkennt das Kind, was von ihm {{erwartet}} wird. Im Beispiel zeigt sich das darin, dass die Eltern Tim erklären, warum er um 19 Uhr zu Hause sein soll {{(Z. 2)}}.",
+     "woerter": [
+      "Regeln",
+      "erklären",
+      "konsequent",
+      "erwartet",
+      "(Z. 2)",
+      "verbieten",
+      "zufällig"
+     ]
+    },
+    {
+     "typ": "kprim",
+     "stamm": "Beurteile die Aussagen zum Hauptteil.",
+     "aussagen": [
+      {
+       "text": "Beim Nennen und Beschreiben kommt kein Name aus dem Fall vor.",
+       "richtig": true,
+       "erklaerung": "Das ist allgemeine Theorie."
+      },
+      {
+       "text": "Beim Erklären gibt man Gründe und Wirkungen an.",
+       "richtig": true,
+       "erklaerung": "Typisch sind „weil“, „dadurch“, „folglich“."
+      },
+      {
+       "text": "Beim Verdeutlichen wird der Theorieaspekt am Fall gezeigt und die Zeile angegeben.",
+       "richtig": true,
+       "erklaerung": "Das ist der Rückbezug mit (Z. …)."
+      },
+      {
+       "text": "Man beginnt einen Theorieabsatz mit dem Fall.",
+       "richtig": false,
+       "erklaerung": "Zuerst kommt die Theorie, dann das Beispiel."
+      }
+     ]
+    },
+    {
+     "typ": "frei",
+     "frage": "Schreibe einen Absatz zum Merkmal „Beteiligung des Kindes an Entscheidungen“ (nennen, beschreiben, erklären, verdeutlichen am Beispiel von Familie Berger).",
+     "hinweis": "Vier Schritte, vier bis sechs Sätze. Der Name kommt erst im letzten Schritt, mit Zeilenangabe.",
+     "muster": "Ein weiteres Merkmal des autoritativen Erziehungsstils ist die Beteiligung des Kindes an Entscheidungen. Eltern fragen nach der Meinung des Kindes und beziehen sie in ihre Entscheidungen ein. Dadurch erlebt sich das Kind als ernst genommen und lernt, Verantwortung zu übernehmen. Im Beispiel wird dies deutlich darin, dass Tim mitentscheiden darf, wohin die Familie am Wochenende fährt (Z. 5).",
+     "kriterien": [
+      "Merkmal genannt",
+      "Inhalt beschrieben",
+      "Wirkung erklärt (weil/dadurch)",
+      "Rückbezug auf Tim im letzten Schritt mit Zeilenangabe"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Baustein 5",
+   "titel": "Der Schlusssatz",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Der Aufsatz endet mit **einem Gedanken oder Ausblick**, der zum Thema passt. Er rundet den Aufsatz ab und bringt keine neue Theorie."
+    },
+    {
+     "typ": "merke",
+     "label": "Merke",
+     "text": "Ein guter Schlusssatz …\n- greift das **Thema** noch einmal auf,\n- bietet einen **Gedanken oder Ausblick** (Bedeutung, Folgerung, Ausblick),\n- bringt **keine neue Theorie** und **keine Aufzählung** aller Punkte."
+    },
+    {
+     "typ": "text",
+     "text": "**Satzanfänge für den Schluss:**\n- „Abschließend lässt sich festhalten, dass …“\n- „Insgesamt wird deutlich, dass …“\n- „Für die Zukunft bleibt zu wünschen, dass …“\n- „Daraus folgt für die pädagogische Arbeit, dass …“\n- „Es bleibt die Frage, wie …“"
+    },
+    {
+     "typ": "sortieren",
+     "titel": "Welcher Schlusssatz ist geeignet?",
+     "hinweis": "Ordne jeden Satz einer Gruppe zu.",
+     "kategorien": [
+      {
+       "name": "geeignet",
+       "items": [
+        "Abschließend lässt sich festhalten, dass Kinder sich gut entwickeln können, wenn Eltern Zuwendung und klare Regeln verbinden.",
+        "Daraus folgt für die pädagogische Arbeit, dass Eltern in ihrer Erziehungskompetenz unterstützt werden sollten."
+       ]
+      },
+      {
+       "name": "bringt neue Theorie",
+       "items": [
+        "Ein weiterer Erziehungsstil ist der permissive Stil.",
+        "Hinzu kommt der vernachlässigende Erziehungsstil."
+       ]
+      },
+      {
+       "name": "nur Aufzählung / zu schwach",
+       "items": [
+        "Das war der Aufsatz.",
+        "Tim hat Regeln, Zeit, Mitbestimmung und Eltern, die zuhören."
+       ]
+      }
+     ]
+    },
+    {
+     "typ": "mc",
+     "frage": "Welcher Schlusssatz passt am besten zu Familie Berger?",
+     "optionen": [
+      "Tim muss um 19 Uhr zu Hause sein.",
+      "Abschließend wird deutlich, dass Eltern, die Zuwendung mit klaren Regeln verbinden, ihrem Kind gute Entwicklungsbedingungen bieten.",
+      "Ein weiterer Erziehungsstil ist der autoritäre Stil.",
+      "Damit ist der Aufsatz beendet."
+     ],
+     "richtig": 1,
+     "erklaerung": "Er greift das Thema auf und rundet mit einem Gedanken ab, ohne neue Theorie."
+    },
+    {
+     "typ": "frei",
+     "frage": "Schreibe einen Schlusssatz zur Aufgabe „autoritärer Erziehungsstil am Beispiel von Familie Koch“.",
+     "hinweis": "Gedanke oder Ausblick, ohne neue Theorie.",
+     "muster": "Abschließend zeigt sich, dass strenge Regeln ohne emotionale Wärme es Kindern schwer machen können, Vertrauen zu ihren Eltern aufzubauen.",
+     "kriterien": [
+      "Thema aufgegriffen",
+      "Gedanke oder Ausblick",
+      "keine neue Theorie"
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Alles zusammen",
+   "titel": "Der ganze Aufsatz in der richtigen Reihenfolge",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Hier siehst du den Fachaufsatz zu Familie Berger mit allen Bausteinen. Die Farbe zeigt den Baustein."
+    },
+    {
+     "typ": "aufbau",
+     "legende": [
+      {
+       "name": "Einleitung",
+       "farbe": "pfirsich"
+      },
+      {
+       "name": "Überleitung",
+       "farbe": "gruen"
+      },
+      {
+       "name": "Theorie",
+       "farbe": "blau"
+      },
+      {
+       "name": "Beispiel",
+       "farbe": "gelb"
+      },
+      {
+       "name": "Schluss",
+       "farbe": "rot"
+      }
+     ],
+     "zeilen": [
+      {
+       "label": "Einleitungssatz",
+       "farbe": "pfirsich",
+       "text": "Eltern wünschen sich für ihre Kinder in aller Regel, dass diese zu selbstständigen und glücklichen Menschen heranwachsen."
+      },
+      {
+       "label": "Eingrenzung",
+       "farbe": "pfirsich",
+       "text": "Mit dem Erleben und Verhalten von Menschen beschäftigt sich die Psychologie. Sie ist die Wissenschaft vom Verhalten und Erleben. Mit Erziehung beschäftigt sich die Pädagogik. Sie ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft. Erziehung ist soziale Interaktion, die durch wechselseitiges Verhalten zwischen Erzieher und zu Erziehendem ein bestimmtes Ziel – ein Erziehungsziel – erreichen will."
+      },
+      {
+       "label": "Überleitung",
+       "farbe": "gruen",
+       "text": "Im Folgenden wird auf der Grundlage der Theorie der Erziehungsstile erläutert, wie sich der autoritative Erziehungsstil bei Familie Berger zeigt. Dazu werden zunächst die Merkmale emotionale Wärme und klare Regeln dargestellt und jeweils auf Familie Berger bezogen."
+      },
+      {
+       "label": "Nennen",
+       "farbe": "blau",
+       "text": "Ein Merkmal des autoritativen Erziehungsstils ist die hohe emotionale Wärme."
+      },
+      {
+       "label": "Beschreiben",
+       "farbe": "blau",
+       "text": "Eltern mit autoritativem Erziehungsstil begegnen ihrem Kind mit Zuwendung und Interesse und beziehen es in Entscheidungen mit ein."
+      },
+      {
+       "label": "Erklären",
+       "farbe": "blau",
+       "text": "Das Kind erlebt sich dadurch als angenommen und ernst genommen, weil seine Meinung zählt. Dadurch entwickelt es Vertrauen zu den Eltern und kann Regeln leichter akzeptieren."
+      },
+      {
+       "label": "Verdeutlichen",
+       "farbe": "gelb",
+       "text": "Im Beispiel wird die hohe emotionale Wärme deutlich darin, dass die Eltern sich abends Zeit für Tim nehmen und ihm zuhören (Z. 6) und ihn mitentscheiden lassen, wohin die Familie fährt (Z. 5)."
+      },
+      {
+       "label": "Nennen",
+       "farbe": "blau",
+       "text": "Ein weiteres Merkmal des autoritativen Erziehungsstils sind klare, konsequent durchgesetzte Regeln."
+      },
+      {
+       "label": "Beschreiben",
+       "farbe": "blau",
+       "text": "Eltern erklären ihre Erwartungen und setzen die Regeln konsequent durch."
+      },
+      {
+       "label": "Erklären",
+       "farbe": "blau",
+       "text": "Dadurch erkennt das Kind, was von ihm erwartet wird und warum, und kann sich daran orientieren. Folglich entwickelt es Verständnis für Regeln und Selbstständigkeit."
+      },
+      {
+       "label": "Verdeutlichen",
+       "farbe": "gelb",
+       "text": "Im Beispiel zeigt sich das darin, dass die Eltern Tim erklären, warum er um 19 Uhr zu Hause sein soll (Z. 2), und bei Verspätung Konsequenzen konsequent umsetzen (Z. 4)."
+      },
+      {
+       "label": "Schlusssatz",
+       "farbe": "rot",
+       "text": "Abschließend wird deutlich, dass Eltern, die Zuwendung mit klaren Regeln verbinden, ihrem Kind gute Entwicklungsbedingungen bieten."
+      }
+     ]
+    },
+    {
+     "typ": "reihenfolge",
+     "titel": "Probe: Bringe die Bausteine des Aufsatzes in die richtige Reihenfolge.",
+     "hinweis": "Einleitung, Eingrenzung, Überleitung, Hauptteil, Schluss.",
+     "absaetze": [
+      "Eltern wünschen sich für ihre Kinder in aller Regel, dass diese zu selbstständigen und glücklichen Menschen heranwachsen.",
+      "Mit dem Erleben und Verhalten von Menschen beschäftigt sich die Psychologie. Sie ist die Wissenschaft vom Verhalten und Erleben. Mit Erziehung beschäftigt sich die Pädagogik. Sie ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft. Erziehung ist soziale Interaktion, die durch wechselseitiges Verhalten zwischen Erzieher und zu Erziehendem ein bestimmtes Ziel – ein Erziehungsziel – erreichen will.",
+      "Im Folgenden wird auf der Grundlage der Theorie der Erziehungsstile erläutert, wie sich der autoritative Erziehungsstil bei Familie Berger zeigt. Dazu werden zunächst die Merkmale emotionale Wärme und klare Regeln dargestellt und jeweils auf Familie Berger bezogen.",
+      "Ein Merkmal des autoritativen Erziehungsstils ist die hohe emotionale Wärme. Eltern mit autoritativem Erziehungsstil begegnen ihrem Kind mit Zuwendung und Interesse und beziehen es in Entscheidungen mit ein.",
+      "Das Kind erlebt sich dadurch als angenommen und ernst genommen, weil seine Meinung zählt. Dadurch entwickelt es Vertrauen zu den Eltern und kann Regeln leichter akzeptieren.",
+      "Im Beispiel wird die hohe emotionale Wärme deutlich darin, dass die Eltern sich abends Zeit für Tim nehmen und ihm zuhören (Z. 6) und ihn mitentscheiden lassen, wohin die Familie fährt (Z. 5).",
+      "Ein weiteres Merkmal des autoritativen Erziehungsstils sind klare, konsequent durchgesetzte Regeln. Eltern erklären ihre Erwartungen und setzen die Regeln konsequent durch.",
+      "Im Beispiel zeigt sich das darin, dass die Eltern Tim erklären, warum er um 19 Uhr zu Hause sein soll (Z. 2), und bei Verspätung Konsequenzen konsequent umsetzen (Z. 4).",
+      "Abschließend wird deutlich, dass Eltern, die Zuwendung mit klaren Regeln verbinden, ihrem Kind gute Entwicklungsbedingungen bieten."
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Selbst schreiben",
+   "titel": "Dein Fachaufsatz mit Strukturstreifen",
+   "bloecke": [
+    {
+     "typ": "text",
+     "text": "Jetzt schreibst du selbst. Die Streifen zeigen die Bausteine. Nutze die Satzanfänge aus dem Kurs und prüfe dich danach mit der Musterlösung."
+    },
+    {
+     "typ": "strukturstreifen",
+     "titel": "Formulieren Sie einen Fachaufsatz.",
+     "aufgabe": "Erläutern Sie den autoritären Erziehungsstil am Beispiel von Familie Koch.\n(Z. 1) Familie Koch: Die 9-jährige Mia darf abends nicht mitreden, wann sie ins Bett geht.\n(Z. 2) Ihr Vater sagt: „Wir machen das so, weil ich es sage.“\n(Z. 3) Kommt Mia zu spät zum Essen, wird sie scharf getadelt.\n(Z. 4) Gelobt wird sie selten, Umarmungen gibt es kaum.\n(Z. 5) Mia gehorcht, wirkt aber eingeschüchtert.",
+     "felder": [
+      {
+       "titel": "Einleitungssatz",
+       "farbe": "pfirsich",
+       "hilfe": "Ganz allgemein, ohne Fachbegriff und Namen. „Im Alltag jeder Familie …“",
+       "muster": "Im Alltag jeder Familie gibt es Situationen, in denen Eltern entscheiden müssen, wie sie ihre Kinder erziehen."
+      },
+      {
+       "titel": "Eingrenzung",
+       "farbe": "pfirsich",
+       "hilfe": "Psychologie, Pädagogik und Erziehung definieren.",
+       "muster": "Mit dem Erleben und Verhalten von Menschen beschäftigt sich die Psychologie. Sie ist die Wissenschaft vom Verhalten und Erleben. Mit Erziehung beschäftigt sich die Pädagogik. Sie ist der Oberbegriff für Erziehungspraxis und Erziehungswissenschaft. Erziehung ist soziale Interaktion, die durch wechselseitiges Verhalten zwischen Erzieher und zu Erziehendem ein bestimmtes Ziel – ein Erziehungsziel – erreichen will."
+      },
+      {
+       "titel": "Überleitung",
+       "farbe": "gruen",
+       "hilfe": "Frage mit Namen aufgreifen und Hauptteil ankündigen.",
+       "muster": "Im Folgenden wird auf der Grundlage der Theorie der Erziehungsstile erläutert, wie sich der autoritäre Erziehungsstil bei Familie Koch zeigt. Dazu werden zunächst die Merkmale des autoritären Erziehungsstils dargestellt und anschließend am Beispiel von Familie Koch verdeutlicht."
+      },
+      {
+       "titel": "Theorie nennen",
+       "farbe": "blau",
+       "hilfe": "Den Fachbegriff nennen.",
+       "muster": "Der autoritäre Erziehungsstil ist ein Erziehungsstil, der von strengen Regeln und hohen Anforderungen geprägt ist."
+      },
+      {
+       "titel": "Theorie beschreiben",
+       "farbe": "blau",
+       "hilfe": "Merkmale darstellen.",
+       "muster": "Der autoritäre Erziehungsstil ist von strengen Regeln und hohen Anforderungen bei gleichzeitig geringer emotionaler Wärme geprägt. Gehorsam wird eingefordert, ohne dass Entscheidungen erklärt werden."
+      },
+      {
+       "titel": "Theorie erklären",
+       "farbe": "blau",
+       "hilfe": "Wirkung: Warum ist das wichtig? (weil, dadurch)",
+       "muster": "Weil Entscheidungen nicht erklärt werden und wenig Zuwendung erfolgt, kann das Kind die Regeln nicht nachvollziehen. Dadurch folgt es ihnen aus Angst vor Strafe und baut nur schwer Vertrauen zu den Eltern auf."
+      },
+      {
+       "titel": "Verdeutlichen am Beispiel",
+       "farbe": "gelb",
+       "hilfe": "Rückbezug mit Zeilenangabe: „Im Beispiel wird … deutlich in …“",
+       "muster": "Im Beispiel wird der autoritäre Erziehungsstil deutlich darin, dass Mias Vater Entscheidungen nicht erklärt („weil ich es sage“, Z. 2), Mia scharf getadelt wird (Z. 3) und kaum Zuwendung erhält (Z. 4). Mia gehorcht, wirkt aber eingeschüchtert (Z. 5)."
+      },
+      {
+       "titel": "Schlusssatz",
+       "farbe": "rot",
+       "hilfe": "Gedanke oder Ausblick, keine neue Theorie.",
+       "muster": "Abschließend zeigt sich, dass strenge Regeln ohne emotionale Wärme es Kindern schwer machen können, Vertrauen zu ihren Eltern aufzubauen."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "kicker": "Abschluss",
+   "titel": "Deine Satzbaustein-Karte",
+   "bloecke": [
+    {
+     "typ": "frei",
+     "frage": "Schreibe zu jedem der acht Bausteine einen Satzanfang auf, den du dir merken willst.",
+     "hinweis": "Einleitungssatz, Eingrenzung, Überleitung, Nennen, Beschreiben, Erklären, Verdeutlichen, Schlusssatz.",
+     "muster": "Einleitungssatz: „Eltern wünschen sich …“ · Eingrenzung: „Mit … beschäftigt sich die Psychologie.“ · Überleitung: „Im Folgenden wird auf der Grundlage der Theorie … erläutert, …“ · Nennen: „Ein Merkmal … ist …“ · Beschreiben: „… bezeichnet …“ · Erklären: „Dadurch …“ · Verdeutlichen: „Im Beispiel wird … deutlich in … (Z. …)“ · Schluss: „Abschließend lässt sich festhalten, dass …“"
+    },
+    {
+     "typ": "merke",
+     "label": "Das nimmst du mit",
+     "text": "**Einleitungssatz** (allgemein) → **Eingrenzung** (Definitionen) → **Überleitung** (Frage + Ausblick) → **nennen, beschreiben, erklären, verdeutlichen** → **Schlusssatz** (Gedanke/Ausblick)."
+    }
+   ]
+  }
+ ]
+}

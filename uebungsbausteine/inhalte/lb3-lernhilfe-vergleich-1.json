@@ -1,0 +1,58 @@
+{
+ "titel": "LB 3 · Erziehung als beabsichtigte Lernhilfe · Theorievergleich (Vertiefung)",
+ "anleitung": "Tippe eine Karte an und dann die Spalte, zu der sie gehört. Wenn alle Karten sortiert sind, kannst du prüfen.",
+ "spalten": [
+  "Erziehung",
+  "Zufälliges Lernen"
+ ],
+ "karten": [
+  {
+   "t": "Beabsichtigte Lernhilfe",
+   "s": 0
+  },
+  {
+   "t": "Hat ein Erziehungsziel vor Augen",
+   "s": 0
+  },
+  {
+   "t": "Bewusst und planmäßig organisiert",
+   "s": 0
+  },
+  {
+   "t": "Der Erzieher führt Lernprozesse absichtlich herbei",
+   "s": 0
+  },
+  {
+   "t": "Zielt auf dauerhafte Verhaltensänderung",
+   "s": 0
+  },
+  {
+   "t": "Eine Mutter übt mit ihrem Sohn geduldig das Zähneputzen",
+   "s": 0
+  },
+  {
+   "t": "Kind lernt beiläufig vom Verhalten der Nachbarn",
+   "s": 1
+  },
+  {
+   "t": "Niemand verfolgt dabei ein Erziehungsziel",
+   "s": 1
+  },
+  {
+   "t": "Entsteht ohne Absicht zum Zweck der Erziehung",
+   "s": 1
+  },
+  {
+   "t": "Kind schaut sich unbeabsichtigt ein Schimpfwort ab",
+   "s": 1
+  },
+  {
+   "t": "Lernen nebenbei im Alltag",
+   "s": 1
+  },
+  {
+   "t": "Kein Erzieher plant diesen Lernprozess",
+   "s": 1
+  }
+ ]
+}

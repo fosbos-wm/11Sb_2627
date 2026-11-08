@@ -2205,3 +2205,15 @@ body.wp-nav-aus:has(#wpRoot) #content {
 .wp-nw-b.nw-g.on { border-color: #3f9b5b; background: #dff1e5; }
 .wp-nw-b.nw-m.on { border-color: #e0a526; background: #fbefcf; }
 .wp-nw-b.nw-s.on { border-color: #d4574f; background: #f9dcd9; }
+
+/* Jahresplan, Vorschau, Projekt-Hinweis */
+.wp-jahr{width:100%;border-collapse:collapse;font-size:13px}
+.wp-jahr th{text-align:left;font-size:11px;letter-spacing:.04em;color:#5a6b75;padding:6px 8px;border-bottom:2px solid #d9e2e7}
+.wp-jahr td{padding:7px 8px;border-bottom:1px solid #eaf0f3;vertical-align:middle}
+.wp-jahr .wp-rowact{white-space:nowrap}
+.wp-jahr-block td{background:#f2f4f6;color:#6b7a84;font-size:12px;font-style:italic}
+.wp-jahr-heute td{background:#eaf6ee}
+.wp-jahr-alt td{opacity:.65}
+.wp-vorschau{border-left:4px solid #8250b8;background:#f6f1fb;margin-bottom:12px}
+.wp-projekt{border-left:4px solid #1f9a8a;background:#eef8f6;margin-bottom:12px}
+.wp-wsel{border:1px solid #cfd9df;border-radius:8px;padding:6px 8px;font:inherit;font-weight:700;background:#fff;max-width:230px}

@@ -395,7 +395,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp01"
  },
  {
   "id": "f11-lb1-alltag-wissenschaft",
@@ -873,7 +874,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp02"
  },
  {
   "id": "f11-psy-gegenstand",
@@ -1216,7 +1218,8 @@
     "fs": 20,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp01"
  },
  {
   "id": "f11-paed-gegenstand",
@@ -1509,7 +1512,8 @@
     "fs": 20,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp1a1"
  },
  {
   "id": "f11-alltagstheorie",
@@ -1876,7 +1880,8 @@
     "fs": 20,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp02"
  },
  {
   "id": "f11-merkmale-wissenschaft",
@@ -2158,7 +2163,8 @@
     "fs": 20,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp02"
  },
  {
   "id": "f11-experiment",
@@ -2469,7 +2475,8 @@
     "fs": 20,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp03"
  },
  {
   "id": "f11-lb3-soziale-beziehung",
@@ -2882,7 +2889,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp04"
  },
  {
   "id": "f11-lb3-kommunikation",
@@ -3379,7 +3387,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp04"
  },
  {
   "id": "f11-lb3-lernhilfe",
@@ -3714,7 +3723,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp04"
  },
  {
   "id": "f11-lb3-soziales-handeln",
@@ -4106,7 +4116,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp04"
  },
  {
   "id": "f11-lb3-erziehungsstile",
@@ -4527,7 +4538,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp05"
  },
  {
   "id": "f11-lb3-kindergarten",
@@ -4930,7 +4942,8 @@
     "fs": 17,
     "text": "Zwei Gründe, warum Kitas wichtiger werden (mit Mollenhauer):"
    }
-  ]
+  ],
+  "kw": "pp1a4"
  },
  {
   "id": "f11-lb3-baybep",
@@ -5303,7 +5316,8 @@
     "fs": 18,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp07"
  },
  {
   "id": "f11-lb3-baybep-ueberblick",
@@ -5712,7 +5726,8 @@
     "fs": 19,
     "text": "Meine Eselsbrücke / mein Beispiel:"
    }
-  ]
+  ],
+  "kw": "pp07"
  },
  {
   "id": "f11-fa-jugend-gesamt",

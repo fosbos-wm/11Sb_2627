@@ -40,7 +40,7 @@ function modal(html){$("modal").innerHTML=html;$("modalBackdrop").hidden=false}
 function closeModal(){$("modalBackdrop").hidden=true;if(window.__coUnsub){try{window.__coUnsub()}catch(e){}window.__coUnsub=null;}if(ppDirty){ppDirty=false;if(activeFach==="paedagogik")render();}}
 function pageHead(k,h,p,actions=""){return`<div class="page-head"><div><div class="kicker">${k}</div><h1>${h}</h1><p>${p}</p>
 </div><div class="actions">${actions}</div></div>`}
-function footer(){return`<div class="footer"><span>F11Sb 26/27 · FOSBOS Weilheim</span><span>Gemeinsam · offen ·
+function footer(){return`<div class="footer"><span>F11Sb 27/28 · FOSBOS Weilheim</span><span>Gemeinsam · offen ·
 respektvoll</span><span><button type="button"onclick="showImpressum()"style="background:none;border:none;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer">Impressum</button> · <button type="button"onclick="showDatenschutz()"style="background:none;border:none;padding:0;font:inherit;color:inherit;text-decoration:underline;cursor:pointer">Datenschutz</button></span></div>`}
 
 /* =========================================================
@@ -256,6 +256,21 @@ function statusDot(s){return`<span class="dot ${s}"></span>`}
 function isApproved(){return profile?.status==="approved"}
 function isTeacher(){return isApproved() && (profile?.role==="teacher"||profile?.role==="admin")}
 function isAdmin(){return isApproved() && profile?.role==="admin"}
+
+// ============================================================
+// "LERNEN" – Kachelleiste über allen Lernseiten, Seitenleiste bleibt schlank
+// ============================================================
+const LERNEN_SEITEN=["start","kw-thema","kw-projekt","kw-checkouts","kw-fortschritt","wochenplan","wp-plan","wp-jahr","lernstaende","lernwerkstatt","faecher","fach","journal","kompetenz","pruefraum"];
+function lernenLeisteHTML(p){
+ const lk=isTeacher();
+ const T=[["start",lk?"Unterrichtsplanung":"Lernlandkarte","🗺️"]];
+ if(lk)T.push(["wp-jahr","Jahresplan","📅"],["wp-plan","Wochenplanung","🧩"],["wochenplan","Wochenplan (Schüleransicht)","👀"],["lernstaende","Lernstände","📊"],["kw-checkouts","Check-outs","✅"]);
+ else T.push(["wochenplan","Mein Wochenplan","🗓️"],["kw-checkouts","Meine Lernstände","📊"]);
+ T.push(["lernwerkstatt","Lernwerkstatt","🛠️"],["journal","Lernjournal","📓"],["kompetenz","Kompetenzwerkstatt","💪"],["pruefraum","Leistungsnachweise","📝"]);
+ const grp={"kw-thema":"start","kw-projekt":"start","kw-fortschritt":"start",faecher:"lernwerkstatt",fach:"lernwerkstatt"};
+ const akt=grp[p]||p;
+ return `<nav class="lern-leiste" aria-label="Lernen">${T.map(([r,l,ic])=>`<button type="button" class="${r===akt?"on":""}" onclick="go('${r}')"><span aria-hidden="true">${ic}</span> ${esc(l)}</button>`).join("")}</nav>`;
+}
 function updateTeacherTeamNav(){
  const sidebar=$("sidebar");
  if(!sidebar)return;
@@ -274,7 +289,8 @@ function updateTeacherTeamNav(){
  });
 
  // Find the actual team navigation item and give it exactly the requested label.
- const ls=$("navLernstaende");if(ls){ls.hidden=!isTeacher();}
+ const nl=$("navLernen");if(nl)nl.textContent=isTeacher()?"Unterrichtsplanung":"Lernen";
+ const nw=$("navWochenplanLk");if(nw)nw.hidden=!isTeacher();
  const links=[...sidebar.querySelectorAll('a[href="#team"],button[data-page="team"],.nav-link[data-page="team"]')];
  const link=links[0];
  if(link){
@@ -888,7 +904,7 @@ async function renderLernjournalRoute(){
 }
 
 function moduleError(title,file,error){
- return`${pageHead("CAMPUS-MODUL",title,"Das einzelne Modul konnte nicht geladen werden.",`<button class="secondary"onclick="go('start')">← Startseite</button>`)}
+ return`${pageHead("CAMPUS-MODUL",title,"Das einzelne Modul konnte nicht geladen werden.",`<button class="secondary"onclick="go('news')">← Startseite</button>`)}
  <div class="card">
  <h3>Die Campus-App selbst funktioniert.</h3>
  <p>Nur dieses Modul ist momentan nicht erreichbar.</p>
@@ -1234,7 +1250,7 @@ async function zkBauHtml(codes,namen,basis){
  const {qrcode}=await import("./qr-local.js?v=1");
  const karten=codes.map(c=>{
   const q=qrcode(0,"M");q.addData(basis+"?code="+encodeURIComponent(c));q.make();
-  return`<div class="k"><div class="kt">F11Sb 26/27 · Zugangskarte</div><div class="kc">${zkSchuetze(c)}</div><div class="kq">${q.createSvgTag(3,0)}</div>
+  return`<div class="k"><div class="kt">F11Sb 27/28 · Zugangskarte</div><div class="kc">${zkSchuetze(c)}</div><div class="kq">${q.createSvgTag(3,0)}</div>
   <ol><li>QR-Code scannen oder Seite öffnen und „Erstmals einrichten“ wählen.</li><li>Code eingeben, ein <b>Pseudonym</b> und eine <b>PIN</b> (mind. 6 Zeichen) festlegen.</li><li>Merke dir beides. Die Karte gilt nur <b>einmal</b>.</li></ol>
   <div class="kn">Kein echter Name, keine E-Mail-Adresse als Pseudonym.</div></div>`}).join("");
  const hatNamen=namen.some(Boolean);
@@ -1677,17 +1693,17 @@ const F11SB_FACHGRUPPEN=[
 // ============================================================
 // LERNWERKSTATT · FÄCHER-ZEITSTRAHL
 // ============================================================
-// Praktikumsphasen 2026/27 (gilt fachübergreifend, aus dem B-Block-Plan).
+// Praktikumsphasen 2027/28 (gilt fachübergreifend, aus dem B-Block-Plan).
 // B-Block-Termine exakt aus dem offiziellen Dokument "Einteilung Unterrichts-
 // und Praktikumszeit 2026/2027" der FOSBOS Weilheim übernommen (nur 6 Blöcke,
 // nicht 7 – vorherige Annahme war hier ungenau).
 const PRAKTIKUMSPHASEN=[
- {id:"pr1",start:"2026-09-15",end:"2026-10-02",titel:"Praktikum – B-Block – Erziehung (Block 1)",bereich:"Erziehungsbereich",icon:""},
- {id:"pr2",start:"2026-10-26",end:"2026-11-20",titel:"Praktikum – B-Block – Erziehung (Block 2)",bereich:"Erziehungsbereich",icon:""},
- {id:"pr3",start:"2026-12-14",end:"2027-01-15",titel:"Praktikum – B-Block – Erziehung (Block 3)",bereich:"Erziehungsbereich",icon:""},
- {id:"pr4",start:"2027-02-15",end:"2027-03-05",titel:"Praktikum – B-Block – Pflege (Block 1)",bereich:"Pflegebereich",icon:""},
- {id:"pr5",start:"2027-04-19",end:"2027-05-07",titel:"Praktikum – B-Block – Pflege (Block 2)",bereich:"Pflegebereich",icon:""},
- {id:"pr6",start:"2027-06-14",end:"2027-07-09",titel:"Praktikum – B-Block – Pflege (Block 3)",bereich:"Pflegebereich",icon:""}
+ {id:"pr1",start:"2027-09-14",end:"2027-10-01",titel:"Praktikum – B-Block – Erziehung (Block 1)",bereich:"Erziehungsbereich",icon:"",vorlaeufig:true},
+ {id:"pr2",start:"2027-10-25",end:"2027-11-19",titel:"Praktikum – B-Block – Erziehung (Block 2)",bereich:"Erziehungsbereich",icon:"",vorlaeufig:true},
+ {id:"pr3",start:"2027-12-13",end:"2028-01-14",titel:"Praktikum – B-Block – Erziehung (Block 3)",bereich:"Erziehungsbereich",icon:"",vorlaeufig:true},
+ {id:"pr4",start:"2028-02-14",end:"2028-03-03",titel:"Praktikum – B-Block – Pflege (Block 1)",bereich:"Pflegebereich",icon:"",vorlaeufig:true},
+ {id:"pr5",start:"2028-04-24",end:"2028-05-12",titel:"Praktikum – B-Block – Pflege (Block 2)",bereich:"Pflegebereich",icon:"",vorlaeufig:true},
+ {id:"pr6",start:"2028-06-19",end:"2028-07-14",titel:"Praktikum – B-Block – Pflege (Block 3)",bereich:"Pflegebereich",icon:"",vorlaeufig:true}
 ];
 
 // Aufträge je Praktikumsphase: von Lehrkräften gepflegt, überall live
@@ -1745,7 +1761,7 @@ window.savePraktikumsphaseAuftrag=savePraktikumsphaseAuftrag;
 window.deletePraktikumsphaseAuftrag=deletePraktikumsphaseAuftrag;
 
 // ============================================================
-// PÄDAGOGIK/PSYCHOLOGIE · ZEITSTRAHL MIT ZEITBUDGET (Umbau 26/27)
+// PÄDAGOGIK/PSYCHOLOGIE · ZEITSTRAHL MIT ZEITBUDGET (Umbau 27/28)
 // ------------------------------------------------------------
 // Aufbau: 4 Lernbereiche = 4 Blöcke im Zeitstrahl. Jeder Block besteht aus
 //   (1) dem PROJEKT (Projektinhalte + Team-Meilensteine) und danach
@@ -1757,38 +1773,46 @@ window.deletePraktikumsphaseAuftrag=deletePraktikumsphaseAuftrag;
 // Die Zeitbudgets rechnen in echten Schulwochen (siehe SCHULWOCHEN_PP).
 // ============================================================
 
-// Bayerische Ferien 2026/27 (BayMBl. 2022 Nr. 747).
-const FERIEN_2026_27=[
- {start:"2026-11-02",end:"2026-11-06",titel:"Herbstferien"},
- {start:"2026-12-24",end:"2027-01-08",titel:"Weihnachtsferien"},
- {start:"2027-02-08",end:"2027-02-12",titel:"Frühjahrsferien"},
- {start:"2027-03-22",end:"2027-04-02",titel:"Osterferien"},
- {start:"2027-05-18",end:"2027-05-28",titel:"Pfingstferien"}
+// ============================================================
+// SCHULJAHR 2027/28 – EINZIGE STELLE FÜR ALLE KALENDERDATEN
+// ============================================================
+// Ferien Bayern 2027/28 (KMK/Kultusministerium). Praktikumsblöcke oben
+// (PRAKTIKUMSPHASEN) sind VORLÄUFIG, bis der offizielle Blockplan der FOSBOS
+// Weilheim für 2027/28 vorliegt. Ändert sich etwas, nur diese Listen anpassen:
+// Schulwochen, Zeitstrahl, Zeitbudget und Kalender rechnen sich neu.
+const SCHULJAHR_LABEL="2027/28";
+const FERIEN_SJ=[
+ {start:"2027-11-02",end:"2027-11-05",titel:"Herbstferien"},
+ {start:"2027-12-24",end:"2028-01-07",titel:"Weihnachtsferien"},
+ {start:"2028-02-28",end:"2028-03-03",titel:"Frühjahrsferien"},
+ {start:"2028-04-10",end:"2028-04-21",titel:"Osterferien"},
+ {start:"2028-06-06",end:"2028-06-16",titel:"Pfingstferien"}
 ];
-// P/P-Schulwochen = alle Wochen außerhalb der B-Block-Praktika und der
-// Ferien. Ändert sich der Blockplan, nur HIER anpassen – Zeitbudget,
-// Zeitstrahl und Fortschritt rechnen sich automatisch neu.
-const SCHULWOCHEN_PP=[
- {id:"sw01",start:"2026-10-05",end:"2026-10-09"},
- {id:"sw02",start:"2026-10-12",end:"2026-10-16"},
- {id:"sw03",start:"2026-10-19",end:"2026-10-23"},
- {id:"sw04",start:"2026-11-23",end:"2026-11-27"},
- {id:"sw05",start:"2026-11-30",end:"2026-12-04"},
- {id:"sw06",start:"2026-12-07",end:"2026-12-11"},
- {id:"sw07",start:"2027-01-18",end:"2027-01-22"},
- {id:"sw08",start:"2027-01-25",end:"2027-01-29"},
- {id:"sw09",start:"2027-02-01",end:"2027-02-05"},
- {id:"sw10",start:"2027-03-08",end:"2027-03-12"},
- {id:"sw11",start:"2027-03-15",end:"2027-03-19"},
- {id:"sw12",start:"2027-04-05",end:"2027-04-09"},
- {id:"sw13",start:"2027-04-12",end:"2027-04-16"},
- {id:"sw14",start:"2027-05-10",end:"2027-05-14"},
- {id:"sw15",start:"2027-05-31",end:"2027-06-04"},
- {id:"sw16",start:"2027-06-07",end:"2027-06-11"},
- {id:"sw17",start:"2027-07-12",end:"2027-07-16"},
- {id:"sw18",start:"2027-07-19",end:"2027-07-23"},
- {id:"sw19",start:"2027-07-26",end:"2027-07-30"}
+// Für Kalender-Anzeige: inkl. Sommerferien davor/danach und Buß- und Bettag.
+const SCHULFERIEN_KALENDER=[
+ ["2027-08-02","2027-09-13","Sommerferien 2027"],
+ ["2027-11-02","2027-11-05","Herbstferien / unterrichtsfreie Tage um Allerheiligen"],
+ ["2027-11-17","2027-11-17","Buß- und Bettag (unterrichtsfrei)"],
+ ["2027-12-24","2028-01-07","Weihnachtsferien 2027/28"],
+ ["2028-02-28","2028-03-03","Frühjahrsferien 2028"],
+ ["2028-04-10","2028-04-21","Osterferien 2028"],
+ ["2028-06-06","2028-06-16","Pfingstferien 2028"],
+ ["2028-07-31","2028-09-11","Sommerferien 2028"]
 ];
+const SCHULJAHR_START="2027-09-14",SCHULJAHR_ENDE="2028-07-28";
+// P/P-Schulwochen = alle Wochen (Mo–Fr) außerhalb der B-Block-Praktika und
+// der Ferien – automatisch erzeugt. IDs sw01, sw02 … laufen in Schulwochen-
+// Reihenfolge; Projekte/Module verweisen auf diese IDs.
+const SCHULWOCHEN_PP=(()=>{
+ const iso=d=>d.toISOString().slice(0,10),out=[];
+ const sperr=[...PRAKTIKUMSPHASEN,...FERIEN_SJ];
+ for(let m=new Date("2027-10-04T12:00:00Z");iso(m)<=SCHULJAHR_ENDE;m.setUTCDate(m.getUTCDate()+7)){
+  const von=iso(m),f=new Date(m);f.setUTCDate(f.getUTCDate()+4);const bis=iso(f);
+  if(sperr.some(x=>x.start<=bis&&x.end>=von))continue;
+  out.push({id:"sw"+String(out.length+1).padStart(2,"0"),start:von,end:bis});
+ }
+ return out;
+})();
 function swById(id){return SCHULWOCHEN_PP.find(w=>w.id===id)||null;}
 
 // Vier ausbalancierte Lernbereichsfarben (gleiche Helligkeit/Sättigung,
@@ -2074,16 +2098,18 @@ function lernbereichAkzentfarbe(lbText){
 // Unterrichtsblöcke aus der Block- und Praxislogik der Jahresverlaufsplanung
 // (nur Pädagogik/Psychologie) – gruppieren die Wochen im Lernpfad zu klar
 // abgegrenzten Abschnitten mit Überschrift.
+// Unterrichtsblöcke = zusammenhängende Schulwochen (6 Std. je Woche), erzeugt.
 const UNTERRICHTSBLOECKE={
- paedagogik:[
- {id:"ub1",start:"2026-10-05",end:"2026-10-23",titel:"Unterrichtsblock 1",stunden:18},
- {id:"ub2",start:"2026-11-23",end:"2026-12-11",titel:"Unterrichtsblock 2",stunden:18},
- {id:"ub3",start:"2027-01-18",end:"2027-02-05",titel:"Unterrichtsblock 3",stunden:18},
- {id:"ub4",start:"2027-03-08",end:"2027-03-19",titel:"Unterrichtsblock 4",stunden:12},
- {id:"ub5",start:"2027-04-05",end:"2027-04-09",titel:"Unterrichtsblock 5",stunden:6},
- {id:"ub6",start:"2027-05-03",end:"2027-05-14",titel:"Unterrichtsblock 6",stunden:12},
- {id:"ub7",start:"2027-06-28",end:"2027-07-16",titel:"Unterrichtsblock 7",stunden:18}
- ]
+ paedagogik:(()=>{
+  const out=[];let cur=null;
+  SCHULWOCHEN_PP.forEach((w,i)=>{
+   const vor=SCHULWOCHEN_PP[i-1];
+   const direkt=vor&&new Date(w.start+"T12:00:00Z")-new Date(vor.start+"T12:00:00Z")===7*86400000;
+   if(cur&&direkt){cur.end=w.end;cur.stunden+=6;}
+   else{cur={id:"ub"+(out.length+1),start:w.start,end:w.end,titel:"Unterrichtsblock "+(out.length+1),stunden:6};out.push(cur);}
+  });
+  return out;
+ })()
 };
 function findUnterrichtsblock(fach,dateStr){
  return (UNTERRICHTSBLOECKE[fach]||[]).find(b=>dateStr>=b.start&&dateStr<=b.end)||null;
@@ -3561,10 +3587,7 @@ async function miniKalenderHTML(){
  try{birthdayEvents=await getBirthdayEvents()}catch(e){}
  await calAusgeblendetLaden();events=[...events,...calFesteTermine()];
  // Dieselben Schulferien-Zeiträume wie im vollständigen Campus-Kalender.
- const ferienZeitraeume=[
- ["2026-08-03","2026-09-14"],["2026-11-02","2026-11-06"],["2026-12-24","2027-01-08"],
- ["2027-02-08","2027-02-12"],["2027-03-22","2027-04-02"],["2027-05-18","2027-05-28"],["2027-08-02","2027-09-13"]
- ];
+ const ferienZeitraeume=SCHULFERIEN_KALENDER.map(x=>[x[0],x[1]]);
  const istFerien=key=>ferienZeitraeume.some(([von,bis])=>key>=von&&key<=bis);
  const today=new Date();today.setHours(0,0,0,0);
  const monday=new Date(today);monday.setDate(today.getDate()-((today.getDay()+6)%7));
@@ -3598,7 +3621,7 @@ async function renderStart(){
  const upcomingTime=nextCalendar?.time?` · ${esc(nextCalendar.time)} Uhr`:"";
  const newsAction=(isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:"")
  +(isTeacher()?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
- return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 26/27</span><h1>Willkommen auf dem Campus.</h1><p>Lernen, Projekte, Praxis und Gemeinschaft an einem Ort.</p>
+ return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 27/28</span><h1>Willkommen auf dem Campus.</h1><p>Lernen, Projekte, Praxis und Gemeinschaft an einem Ort.</p>
 </div><div class="actions">${isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
  <div class="grid grid-3"style="gap:20px;margin-bottom:20px">
  <div class="card card-compact"style="border-left:4px solid #4a90d9"><h3> Campus-News</h3><div class="list">${news.slice(0,3).map(p=>`<div
@@ -4071,7 +4094,6 @@ async function renderFaecherUebersicht(){
 // PÄDAGOGIK/PSYCHOLOGIE · ZEITSTRAHL (Ebene 1), TEILANSICHT (Ebene 2),
 // APT-INHALT (Ebene 3)
 // ============================================================
-const SCHULJAHR_START="2026-09-15",SCHULJAHR_ENDE="2027-07-30";
 function phaseStatus(ph,heute){return heute<ph.start?"kommend":heute>ph.end?"fertig":"laeuft";}
 function fmtKurz(d){const m=/^\d{4}-(\d{2})-(\d{2})/.exec(d||"");return m?`${m[2]}.${m[1]}.`:String(d||"")}
 function ppHexRgb(h){h=String(h).replace("#","");return [0,2,4].map(i=>parseInt(h.slice(i,i+2),16))}
@@ -4177,13 +4199,13 @@ function ppJahresleisteHTML(heute){
  const breite=(a,b)=>Math.max(0.4,pos(b)-pos(a)+86400000/(t1-t0)*100);
  const seg=(a,b,stil,titel,inner="",attr="")=>`<div class="pp-jl-seg"style="left:${pos(a).toFixed(2)}%;width:${breite(a,b).toFixed(2)}%;${stil}"title="${esc(titel)}"${attr}>${inner}</div>`;
  const prakt=PRAKTIKUMSPHASEN.map(p=>seg(p.start,p.end,"background:repeating-linear-gradient(135deg,#dde3e8 0 4px,#eef2f5 4px 8px)",`${p.titel} · ${fmtKurz(p.start)}–${fmtKurz(p.end)}`,`<span class="pp-jl-icon">${p.icon||""}</span>`)).join("");
- const ferien=FERIEN_2026_27.map(f=>seg(f.start,f.end,"background:#fff;border:1px dashed #c7d0d6",`${f.titel} · ${fmtKurz(f.start)}–${fmtKurz(f.end)}`)).join("");
+ const ferien=FERIEN_SJ.map(f=>seg(f.start,f.end,"background:#fff;border:1px dashed #c7d0d6",`${f.titel} · ${fmtKurz(f.start)}–${fmtKurz(f.end)}`)).join("");
  const wochen=PROJEKT_PHASEN.flatMap(ph=>["projekt","apt"].flatMap(teil=>ppTeilWochen(ph,teil).map(w=>{
   const c=ppFarbe(ph);
   const bg=teil==="projekt"?c:`repeating-linear-gradient(135deg,${c} 0 5px,${ppMix(c,.5)} 5px 10px)`;
   return seg(w.start,w.end,`background:${bg};cursor:pointer`,`${ph.lb} · ${ppTeilName(teil,ph)} · ${fmtKurz(w.start)}–${fmtKurz(w.end)}`,"",` onclick="openPhaseDetail('${ph.id}:${teil}')"`);
  }))).join("");
- const monate=["2026-10-01","2026-11-01","2026-12-01","2027-01-01","2027-02-01","2027-03-01","2027-04-01","2027-05-01","2027-06-01","2027-07-01"];
+ const monate=["2027-10-01","2027-11-01","2027-12-01","2028-01-01","2028-02-01","2028-03-01","2028-04-01","2028-05-01","2028-06-01","2028-07-01"];
  const mNamen=["Okt","Nov","Dez","Jan","Feb","Mär","Apr","Mai","Jun","Jul"];
  const heuteHTML=heute>=SCHULJAHR_START&&heute<=SCHULJAHR_ENDE?`<div class="pp-jl-heute"style="left:${pos(heute).toFixed(2)}%"title="Heute"></div>`:"";
  return`<div class="pp-jl-wrap">
@@ -4570,11 +4592,11 @@ function ppmPlusTage(iso,n){const d=new Date(iso+"T12:00:00Z");d.setUTCDate(d.ge
 // Alle Wochen des Schuljahres in der Reihenfolge: Schulwoche oder gesperrter Block (Praktikum, Ferien).
 function ppmZeitleiste(){
  const out=[];let cur=null;
- for(let start="2026-10-05";start<="2027-07-30";start=ppmPlusTage(start,7)){
+ for(let start=SCHULWOCHEN_PP[0].start;start<=SCHULJAHR_ENDE;start=ppmPlusTage(start,7)){
   const fr=ppmPlusTage(start,4),sw=SCHULWOCHEN_PP.find(w=>w.start===start);
   if(sw){out.push({art:"woche",w:sw});cur=null;continue;}
   const pr=PRAKTIKUMSPHASEN.find(x=>x.start<=fr&&x.end>=start);
-  const fe=pr?null:FERIEN_2026_27.find(x=>x.start<=fr&&x.end>=start);
+  const fe=pr?null:FERIEN_SJ.find(x=>x.start<=fr&&x.end>=start);
   const key=pr?pr.id:(fe?fe.titel:"frei");
   if(cur&&cur.key===key){cur.n++;cur.bis=fr;continue;}
   cur={art:"block",key,kind:pr?"praktikum":(fe?"ferien":"frei"),titel:pr?pr.titel:(fe?fe.titel:"Unterrichtsfrei"),icon:pr?pr.icon:"",von:pr?pr.start:(fe?fe.start:start),bis:pr?pr.end:(fe?fe.end:fr),n:1};
@@ -4954,7 +4976,7 @@ async function renderPPModulplan(){
  const legende=lehrer?`<div class="ppm-chips" aria-label="Lernbausteine anlegen">${Object.entries(PPM_TYPEN).filter(([k])=>k!=="experiment").map(([k,T])=>{const F=PPM_FARBE[k]||["#6b7f8c","#eef1f2"];return`<button type="button" class="ppm-chip" style="--ac:${F[0]};--ab:${F[1]}" data-ppm="neu" data-typ="${k}" title="${esc(T.name)}: ${esc(T.text)} – anklicken zum Gestalten">${esc(T.art||T.kurz||T.name)}</button>`}).join("")}</div>`:"";
  const zeilen=ppmZeitleiste().map(z=>{
   if(z.art==="block"){
-   const darin=z.kind==="praktikum"?FERIEN_2026_27.filter(f=>f.start<=z.bis&&f.end>=z.von).map(f=>f.titel):[];
+   const darin=z.kind==="praktikum"?FERIEN_SJ.filter(f=>f.start<=z.bis&&f.end>=z.von).map(f=>f.titel):[];
    return`<div class="ppm-block ${z.kind}"><span style="font-size:22px">${z.icon}</span><div><b>${esc(z.titel)}</b><br><small>${fmtKurz(z.von)}–${fmtKurz(z.bis)} · ${z.n} Woche${z.n===1?"":"n"} · gesperrt, kein Unterricht${darin.length?` · darin: ${esc(darin.join(", "))}`:""}</small></div></div>`;
   }
   const w=z.w,mm=proWoche[w.id]||[],ff=fort[w.id]||[],ee=legacy[w.id]||[];
@@ -5518,7 +5540,7 @@ function bepZeitraum(m){
  const pr=w.length>1?PRAKTIKUMSPHASEN.filter(p=>p.start>w1.end&&p.end<wL.start):[];
  return{w1:w1.start,w1Ende:w1.end,wL:wL.start,wLEnde:wL.end,einWoche:w.length===1,
   p1:pr.length?pr[0].start:null,pEnde:pr.length?pr[pr.length-1].end:null,
-  ferien:pr.length?FERIEN_2026_27.filter(f=>f.start<=pr[pr.length-1].end&&f.end>=pr[0].start).map(f=>f.titel):[]};
+  ferien:pr.length?FERIEN_SJ.filter(f=>f.start<=pr[pr.length-1].end&&f.end>=pr[0].start).map(f=>f.titel):[]};
 }
 function bepAnker(z,a){
  if(!z||!a)return null;
@@ -7122,7 +7144,7 @@ function ppAktuellerIndex(heute){
 // Liegen zwischen zwei Teilen Praktika oder Ferien? -> Symbol für die Pause.
 function ppPauseZwischen(nachDatum,vorDatum){
  const p=PRAKTIKUMSPHASEN.find(x=>x.start>nachDatum&&x.start<vorDatum);
- const f=FERIEN_2026_27.find(x=>x.start>nachDatum&&x.start<vorDatum);
+ const f=FERIEN_SJ.find(x=>x.start>nachDatum&&x.start<vorDatum);
  if(!p&&!f)return null;
  const titel=[p&&p.titel.replace("Praktikum – B-Block – ","Praktikum "),f&&f.titel].filter(Boolean).join(" + ");
  return{icon:p?(p.icon||""):"",titel};
@@ -8654,7 +8676,7 @@ const CHECKOUT_VORLAGEN_ALLE=[
   "id": "lb1-satz1",
   "titel": "Alltagstheorie, wissenschaftliche Aussagen und Experiment",
   "lbNum": 1,
-  "datum": "2026-10-23",
+  "datum": "2027-10-22",
   "aufgaben": [
    "lb1-pause-alltag",
    "lb1-pause-experiment"
@@ -8664,7 +8686,7 @@ const CHECKOUT_VORLAGEN_ALLE=[
   "id": "lb1-woche1",
   "titel": "Erleben und Verhalten, Alltagstheorie und Experiment",
   "lbNum": 1,
-  "datum": "2026-10-09",
+  "datum": "2027-10-08",
   "aufgaben": [
    "psy-nora",
    "alltag-bauer",
@@ -8675,7 +8697,7 @@ const CHECKOUT_VORLAGEN_ALLE=[
   "id": "lb1-woche2",
   "titel": "Gegenstand der Pädagogik, Erziehung und Erziehungsziele",
   "lbNum": 1,
-  "datum": "2026-10-16",
+  "datum": "2027-10-15",
   "aufgaben": [
    "paed-lehner",
    "paed-bereiche-jugendtreff",
@@ -8686,7 +8708,7 @@ const CHECKOUT_VORLAGEN_ALLE=[
   "id": "lb1-woche3",
   "titel": "Beziehung, Einrichtungen und Gegenstand der Psychologie",
   "lbNum": 1,
-  "datum": "2026-10-23",
+  "datum": "2027-10-22",
   "aufgaben": [
    "paed-beziehung",
    "erz-einrichtungen",
@@ -9055,7 +9077,7 @@ CHECKOUT_VORLAGEN_ALLE.unshift(...[
   "titel": "Gegenstand der Psychologie und der Pädagogik, Alltagstheorie und wissenschaftliche Aussagen",
   "lbNum": 1,
   "nr": 1,
-  "datum": "2026-10-16",
+  "datum": "2027-10-15",
   "aufgaben": [
    "kp-lb1-psychologie",
    "kp-lb1-paedagogik",
@@ -9068,7 +9090,7 @@ CHECKOUT_VORLAGEN_ALLE.unshift(...[
   "titel": "Das Experiment: Kriterien, Labor und Feld, Beobachtung und Messung",
   "lbNum": 1,
   "nr": 2,
-  "datum": "2026-10-23",
+  "datum": "2027-10-22",
   "aufgaben": [
    "kp-lb1-experiment",
    "kp-lb1-experiment-methoden",
@@ -11268,7 +11290,7 @@ function coRespizienzHTML(name,tests,abgaben,einst){
  const summe=`<tr style="border-top:2px solid #999"><td colspan="${4+nA}"><b>Gesamt (${zeilen.length} Tests)</b></td><td style="text-align:center"><b>${e.be}</b></td><td style="text-align:center"><b>${e.maxBE}</b></td><td style="text-align:center"><b>${coProz(gesamtProz)}</b></td><td style="text-align:center"><b>Ø ${e.schnitt.toFixed(2).replace(".",",")}</b></td><td></td></tr>`;
  const schl=FOSBOS_SCHLUESSEL.map(([np,min])=>`${np}: ab ${min} %`).join(" · ");
  return`<div class="item"style="background:#f5f7f8"><strong style="font-size:15px">${escPDF(name)}</strong>
-  <div>F11Sb · FOSBOS Weilheim · Pädagogik/Psychologie · Schuljahr 2026/27</div>
+  <div>F11Sb · FOSBOS Weilheim · Pädagogik/Psychologie · Schuljahr 2027/28</div>
   <div>Kurzarbeit-Ersatz: ${zeilen.length} von der Schülerin / dem Schüler gewählte Check-outs (jeweils ${nA} K-Prim-Aufgaben)</div></div>
  <table style="font-size:11.5px"><thead><tr><th>Nr.</th><th>Datum</th><th>Check-out</th><th>LB</th>${kopfA}<th>BE</th><th>max.</th><th>%</th><th>NP</th><th>Verteilung</th></tr></thead><tbody>${zl}${summe}</tbody></table>
  <div class="item"style="margin-top:12px"><div><b>Ergebnis:</b> Durchschnitt der Notenpunkte ${e.schnitt.toFixed(2).replace(".",",")}, gerundet (ab ,5 wird aufgerundet): <b style="font-size:15px">${escPDF(npText(e.np))}</b></div>
@@ -18874,7 +18896,7 @@ async function renderFragenHilfe(){
  ["Was ist Deeper Learning?","Deeper Learning bedeutet, dass du Wissen nicht nur aufnimmst, sondern es verstehst, anwendest, auf neue Situationen überträgst, Probleme löst, gemeinsam arbeitest und deine Ergebnisse reflektierst."],
  ["Was ist ein Lernjournal?","Im Lernjournal hältst du deinen Lernweg fest: Was habe ich gelernt? Was hat funktioniert? Wo gab es Schwierigkeiten? Was ist mein nächster Schritt?"],
  ["Was sind Lernstandsmessungen?","Sie helfen dir zu erkennen, wo du bei deinen Kompetenzen stehst und woran du als Nächstes arbeiten solltest. Die Ergebnisse können deine Kompetenzentwicklung sichtbar machen."],
- ["Wo finde ich Termine?","Im Campus-Kalender findest du die wichtigen Termine der F11Sb. Dort sind auch die Schulferien von Bayern für das Schuljahr 2026/27 markiert."],
+ ["Wo finde ich Termine?","Im Campus-Kalender findest du die wichtigen Termine der F11Sb. Dort sind auch die Schulferien von Bayern für das Schuljahr 2027/28 markiert."],
  ["Was mache ich bei Fragen zur F11Sb?","Wenn deine Frage hier nicht beantwortet wird, wende dich an deine Lehrkraft bzw. das Klassenteam. Die Seite soll dir zunächst schnelle Orientierung zu F11Sb und Lernen geben."]
  ];
 
@@ -18958,7 +18980,7 @@ async function renderPraktikum(){
  .pk-body small{display:block;color:var(--muted);font-size:11px;line-height:1.6}
  </style>
 
- <div class="kicker">PRAKTIKUMSPHASEN 2026/27</div>
+ <div class="kicker">PRAKTIKUMSPHASEN 2027/28</div>
  ${praktikumPhasenHTML(praktikumsAuftraege)}
 
  <div class="grid grid-4"style="margin-bottom:22px;gap:10px">
@@ -19318,15 +19340,7 @@ async function exportCampusCalendarICS(){
  }
  let birthdayEvents=[];
  try{birthdayEvents=await getBirthdayEvents()}catch(e){console.error(e)}
- const ferienZeitraeume=[
- ["2026-08-03","2026-09-14","Sommerferien 2026"],
- ["2026-11-02","2026-11-06","Herbstferien / unterrichtsfreie Tage um Allerheiligen"],
- ["2026-12-24","2027-01-08","Weihnachtsferien 2026/27"],
- ["2027-02-08","2027-02-12","Frühjahrsferien 2027"],
- ["2027-03-22","2027-04-02","Osterferien 2027"],
- ["2027-05-18","2027-05-28","Pfingstferien 2027"],
- ["2027-08-02","2027-09-13","Sommerferien 2027"]
- ];
+ const ferienZeitraeume=SCHULFERIEN_KALENDER;
  const ferienRangeEvents=ferienZeitraeume.map(([start,end,label])=>(
  {start,rangeEnd:end,title:label,description:"Schulferien in Bayern"}
  ));
@@ -19361,18 +19375,12 @@ const CAL_TYPEN={
  geburtstag:{label:"Geburtstag",className:"cal-birthday"},
  ferien:{label:"Schulferien Bayern",className:"cal-holiday"}
 };
-// Schulaufgaben (SA) und Kurzarbeiten (KU) der F11Sb, Schuljahr 26/27 (laut Leistungsnachweis-Plan, Stand 05.10.2026).
+// Schulaufgaben (SA) und Kurzarbeiten (KU) der F11Sb, Schuljahr 27/28 (laut Leistungsnachweis-Plan, Stand 05.10.2026).
 // Format: [Datum, Typ, Fach-Kürzel für die Monatsansicht, Fach (voll), Kürzel Lehrkraft]
 function calLeistungsnachweise(){
+ // Leistungsnachweis-Plan 2027/28 liegt noch nicht vor: hier eintragen, z. B.
+ // ["2027-12-07","schulaufgabe","D","Deutsch","Hm"]
  const L=[
-  ["2026-10-22","kurzarbeit","D","Deutsch","Hm"],
-  ["2026-10-23","kurzarbeit","P/P","Pädagogik/Psychologie","Rz"],
-  ["2026-12-07","schulaufgabe","D","Deutsch","Hm"],
-  ["2026-12-09","schulaufgabe","E","Englisch","Gf"],
-  ["2027-01-19","kurzarbeit","Ch","Chemie","Me"],
-  ["2027-01-21","schulaufgabe","P/P","Pädagogik/Psychologie","Rz"],
-  ["2027-04-15","schulaufgabe","E","Englisch","Gf"],
-  ["2027-06-09","schulaufgabe","D","Deutsch","Hm"]
  ];
  return L.map(([start,type,kurz,fach,lk])=>({
   start,type,kurz,fach,
@@ -19417,8 +19425,7 @@ async function calFixWiederherstellen(){
 window.calFixAusblenden=calFixAusblenden;window.calFixWiederherstellen=calFixWiederherstellen;
 function calFesteTermineRoh(){
  return[
-  {start:"2026-10-29",type:"digitaltag",title:"1. Digitaltag",description:"Digitaltag der FOSBOS Weilheim."},
-  ...calLeistungsnachweise()
+    ...calLeistungsnachweise()
  ];
 }
 // Kurzform für die Monatsübersicht: Vorname und Initial des Nachnamens
@@ -19436,16 +19443,8 @@ async function renderKalender(){
 
  const typeMeta=CAL_TYPEN;
 
- // Schulferien Bayern – Schuljahr 2026/27.
- const ferienZeitraeume=[
- ["2026-08-03","2026-09-14","Sommerferien 2026"],
- ["2026-11-02","2026-11-06","Herbstferien / unterrichtsfreie Tage um Allerheiligen"],
- ["2026-12-24","2027-01-08","Weihnachtsferien 2026/27"],
- ["2027-02-08","2027-02-12","Frühjahrsferien 2027"],
- ["2027-03-22","2027-04-02","Osterferien 2027"],
- ["2027-05-18","2027-05-28","Pfingstferien 2027"],
- ["2027-08-02","2027-09-13","Sommerferien 2027"]
- ];
+ // Schulferien Bayern – Schuljahr 2027/28 (siehe SCHULFERIEN_KALENDER).
+ const ferienZeitraeume=SCHULFERIEN_KALENDER;
  const ferienEvents=[];
  ferienZeitraeume.forEach(([von,bis,label])=>{
  const start=new Date(von+"T00:00:00");
@@ -19480,12 +19479,12 @@ async function renderKalender(){
  });
 
  const months=[
- {m:8,y:2026,name:"September 2026"},{m:9,y:2026,name:"Oktober 2026"},
- {m:10,y:2026,name:"November 2026"},{m:11,y:2026,name:"Dezember 2026"},
- {m:0,y:2027,name:"Januar 2027"},{m:1,y:2027,name:"Februar 2027"},
- {m:2,y:2027,name:"März 2027"},{m:3,y:2027,name:"April 2027"},
- {m:4,y:2027,name:"Mai 2027"},{m:5,y:2027,name:"Juni 2027"},{m:6,y:2027,name:"Juli 2027"},
- {m:7,y:2027,name:"August 2027"}
+ {m:8,y:2027,name:"September 2027"},{m:9,y:2027,name:"Oktober 2027"},
+ {m:10,y:2027,name:"November 2027"},{m:11,y:2027,name:"Dezember 2027"},
+ {m:0,y:2028,name:"Januar 2028"},{m:1,y:2028,name:"Februar 2028"},
+ {m:2,y:2028,name:"März 2028"},{m:3,y:2028,name:"April 2028"},
+ {m:4,y:2028,name:"Mai 2028"},{m:5,y:2028,name:"Juni 2028"},{m:6,y:2028,name:"Juli 2028"},
+ {m:7,y:2028,name:"August 2028"}
  ];
  const week=["Mo","Di","Mi","Do","Fr","Sa","So"];
 
@@ -19527,7 +19526,7 @@ async function renderKalender(){
  `<span class="cal-legend-item"><i class="cal-legend-dot ${v.className}"></i>${esc(v.label)}</span>`
  ).join("");
 
- const html=`${pageHead("ORGANISATION","Campus-Kalender","Das Schuljahr 26/27 auf einen Blick. Termine sind je nach Terminart farblich gekennzeichnet.",`${addButton}${birthdayButton}${exportButton}`)}
+ const html=`${pageHead("ORGANISATION","Campus-Kalender","Das Schuljahr 27/28 auf einen Blick. Termine sind je nach Terminart farblich gekennzeichnet.",`${addButton}${birthdayButton}${exportButton}`)}
  <style>
  .cal-months{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
  .cal-month{padding:18px}.cal-month-head{margin-bottom:10px}
@@ -19567,7 +19566,7 @@ async function renderKalender(){
 
 // Liest die Geburtstage (nur Tag/Monat, kein Jahr) aller freigeschalteten
 // Campus-Mitglieder aus users/{uid}.birthday ("MM-DD") und wandelt sie in
-// synthetische Kalendereinträge für das aktuelle Schuljahr 26/27 um.
+// synthetische Kalendereinträge für das aktuelle Schuljahr 27/28 um.
 // Ermittelt für die Startseiten-Kachel entweder: "heute hat jemand Geburtstag"
 // (inkl. Namen, falls mehrere am selben Tag) oder den/die nächsten anstehenden
 // Geburtstag(e), basierend auf users/{uid}.birthday ("MM-DD").
@@ -19605,8 +19604,8 @@ async function getUpcomingBirthdayInfo(){ return null;
 async function getBirthdayEvents(){ return [];
  try{
  const snap=await getDocs(collection(db,"profilePublic"));
- // Angezeigter Zeitraum: September 2026 bis August 2027.
- const yearFor=mm=>mm>=9?2026:2027; // Sept–Dez 2026, Jan–Aug 2027
+ // Angezeigter Zeitraum: September 2027 bis August 2028.
+ const yearFor=mm=>mm>=9?2027:2028;
  return snap.docs
  .map(d=>({uid:d.id,...d.data()}))
  .filter(u=>u.status==="approved" && u.birthday)
@@ -21247,7 +21246,7 @@ function navVerfolgen(p){
 }
 function navZurueck(){
  const v=NAV_STACK.pop();
- if(!v){go("start");return;}
+ if(!v){go("news");return;}
  NAV_SKIP=true;
  activeBoardId=v.a;activeFach=v.b;activePhaseDetail=v.c;activePPModul=v.d;activeWhiteboardId=v.e;activeWordcloudId=v.f;activeKanbanId=v.g;activeTermPollId=v.h;activeChecklistId=v.i;activeAmpelId=v.j;activePollId=v.k;activeZuordnungId=v.l;activeDeckId=v.m;activeEssayCaseId=v.n;activeConversationUid=v.o;activeConversationName=v.q;
  if(location.hash!=="#"+v.p)location.hash=v.p;else render();
@@ -21271,12 +21270,12 @@ document.addEventListener("click",ev=>{
 },true);
 function navZurueckLeiste(content,p,html){
  navZurueckKnoepfeAngleichen(content);
- if(p==="start"||p==="whiteboard-board")return;   // Startseite: nichts zurück; Board-Ansicht hat eigenen Zurück-Knopf
+ if(p==="start"||p==="news"||p==="whiteboard-board")return;   // Startseite: nichts zurück; Board-Ansicht hat eigenen Zurück-Knopf
  if([...content.querySelectorAll("button")].slice(0,25).some(navIstZurueckKnopf))return;   // Seite hat schon einen eigenen Zurück-Knopf
  if(!document.getElementById("navBackCss")){const st=document.createElement("style");st.id="navBackCss";st.textContent=".nav-back-bar{margin:0 0 12px}.nav-back{font-size:13px;padding:6px 14px;border-radius:999px}";document.head.appendChild(st);}
  const hatVerlauf=NAV_STACK.length>0;
  const bar=document.createElement("div");bar.className="nav-back-bar";
- bar.innerHTML=`<button type="button" class="secondary nav-back" onclick="${hatVerlauf?"navZurueck()":"go('start')"}">\u2190 ${hatVerlauf?"Zurück":"Startseite"}</button>`;
+ bar.innerHTML=`<button type="button" class="secondary nav-back" onclick="${hatVerlauf?"navZurueck()":"go('news')"}">\u2190 ${hatVerlauf?"Zurück":"Startseite"}</button>`;
  content.insertBefore(bar,content.firstChild);
 }
 async function render(){
@@ -21287,11 +21286,11 @@ async function render(){
  if(liveUnsubHeimat){liveUnsubHeimat();liveUnsubHeimat=null;}
  if(liveUnsubMiniKalender){liveUnsubMiniKalender();liveUnsubMiniKalender=null;}
  const seq=++__campusRenderSeq;
- const p=location.hash.replace("#","")||"start";
+ const p=location.hash.replace("#","")||"news";
  navVerfolgen(p);
- if(["fach","faecher","lernpfad"].includes(p)&&typeof ppmLaden==="function")await ppmLaden().catch(()=>{});
+ if(["fach","faecher","lernpfad","kompass","start","klassenteam","lernwerkstatt","kw-thema","kw-projekt"].includes(p)&&typeof ppmLaden==="function")await ppmLaden().catch(()=>{});
  const pages={
- start:renderStart,wochenplan:renderWochenplanSeite,lernstaende:renderLernstaendeSeite,pruefraum:renderPruefraumSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
+ start:renderKachelwand,news:renderStart,"kw-thema":renderKwThema,"kw-projekt":renderKwProjekt,"kw-checkouts":renderKwCheckouts,"kw-fortschritt":renderKwFortschritt,wochenplan:()=>renderWochenplanSeite("schueler"),"wp-plan":()=>renderWochenplanSeite("plan"),"wp-jahr":()=>renderWochenplanSeite("jahr"),lernstaende:renderLernstaendeSeite,pruefraum:renderPruefraumSeite,klassenteam:renderKlassenteam,kompass:renderKompass,lernwerkstatt:renderLernwerkstatt,"ki-lernen":renderKILernen,
  faecher:renderLernwerkstatt,fach:renderFachDetail,didaktik:renderDidaktikKompass,
  whiteboard:renderWhiteboardUebersicht,tafel:renderTafelUebersicht,"whiteboard-board":renderWhiteboardBoard,
  ressourcen:renderRessourcenRoute,lernpfad:renderLernpfadRoute,forum:renderForum,"forum-board":renderForumBoard,"forum-nachrichten":renderForumMessages,
@@ -21317,9 +21316,10 @@ async function render(){
  kompetenzprofil:()=>modulePlaceholder("Kompetenzprofil"),methoden:renderLernmethoden,lernstrategien:renderLernstrategienTest,metakognition:renderMetakognition,
  lerncoaching:renderLerncoaching
  };
+ if(p!=="whiteboard-board")wbVonKw=false;
  const fn=pages[p]||renderStart;
  document.querySelectorAll(".nav-link").forEach(a=>a.classList.toggle("active",
- a.dataset.page===p || (a.dataset.page==="forum" && p.startsWith("forum-")) || (a.dataset.page==="lernwerkstatt" && ["whiteboard","whiteboard-board","didaktik","tafel"].includes(p))));
+ a.dataset.page===p || (a.dataset.page==="forum" && p.startsWith("forum-")) || (a.dataset.page==="start" && LERNEN_SEITEN.includes(p) && !(p==="wochenplan"&&isTeacher())) || (a.dataset.page==="wochenplan" && p==="wochenplan" && isTeacher())));
  const content=$("content");
  if(!content)return;
  // Never leave a blank page while a module is loading.
@@ -21330,7 +21330,7 @@ async function render(){
  new Promise((_,reject)=>setTimeout(()=>reject(new Error("Die Seite hat zu lange zum Laden gebraucht.")),10000))
  ]);
  if(seq!==__campusRenderSeq)return;
- content.innerHTML=html||`<div class="card"><h3>Keine Inhalte vorhanden.</h3></div>`;
+ content.innerHTML=(LERNEN_SEITEN.includes(p)?lernenLeisteHTML(p):"")+(html||`<div class="card"><h3>Keine Inhalte vorhanden.</h3></div>`);
  navZurueckLeiste(content,p,html);
  window.scrollTo(0,0);
  if(p==="kompetenz"){
@@ -21344,7 +21344,7 @@ async function render(){
  if(p==="klassenteam"){
  subscribeHeimatkarteLive();
  }
- if(p==="start"){
+ if(p==="news"){
  subscribeMiniKalenderLive();
  }
  if(p==="ampel-board"&&activeAmpelId){
@@ -21401,7 +21401,7 @@ async function render(){
  }catch(e){
  if(seq!==__campusRenderSeq)return;
  console.error("Campus-Seitenfehler:",e);
- content.innerHTML=`<div class="card"><h3>Die Seite konnte nicht geladen werden.</h3><p>${esc(e?.message||"Unbekannter Fehler")}</p><button class="primary"onclick="go('start')">← Zur Startseite</button></div>`;
+ content.innerHTML=`<div class="card"><h3>Die Seite konnte nicht geladen werden.</h3><p>${esc(e?.message||"Unbekannter Fehler")}</p><button class="primary"onclick="go('news')">← Zur Startseite</button></div>`;
  window.scrollTo(0,0);
  }
  updateTeacherTeamNav();
@@ -21409,7 +21409,7 @@ async function render(){
 }
 
 function modulePlaceholder(title){
- return`${pageHead("CAMPUS-MODUL",title,"Dieser Bereich ist in der Master-Struktur vorbereitet.",`<button class="secondary"onclick="go('start')">← Startseite</button>`)}
+ return`${pageHead("CAMPUS-MODUL",title,"Dieser Bereich ist in der Master-Struktur vorbereitet.",`<button class="secondary"onclick="go('news')">← Startseite</button>`)}
  <div class="card"><span class="badge"> VORBEREITET</span><h2>${title}</h2><p>Dieser Bereich wird später als eigenes Modul
 entwickelt. Die übrige Campus-App bleibt dabei unverändert.</p></div>${footer()}`;
 }
@@ -21668,6 +21668,877 @@ window.openEssayModelAnswerForm=openEssayModelAnswerForm;
 window.saveEssayModelAnswer=saveEssayModelAnswer;
 
 
+
+// ============================================================
+// LERNLANDKARTE · FACHAUFSATZ · LERNÜBERSICHTEN (aus F11Sb übernommen)
+// ============================================================
+function anzeigeName(u,cu){
+ const p=u||{};
+ if(p.pseudonym)return p.pseudonym;
+ const id=String(p.uid||(cu&&cu.uid)||p.id||"").slice(0,4).toUpperCase();
+ return (p.role==="teacher"||p.role==="admin"?"Lehrkraft ":"Lernende/r ")+id;
+}
+async function kwBausteinWahl(themaId){
+ if(!isTeacher())return;
+ const e=kwThemaById(themaId);if(!e)return;
+ const ph=PROJEKT_PHASEN.find(p=>p.id===e.phase)||PROJEKT_PHASEN[0];
+ const woche=(ph.aptSchulwochen||[])[0]||null;
+ const [fa,ein]=await Promise.all([faLaden().catch(()=>[]),einarbeitungInfo(themaId).catch(()=>null)]);
+ const mine=(fa||[]).filter(u=>u.thema===themaId);
+ const kern=mine.filter(u=>!u.zusatz),mehr=mine.filter(u=>u.zusatz);
+ const lbAlle=(fa||[]).filter(u=>u.lb===ph.lbNum&&!u.zusatz);
+ const min=l=>l.reduce((x,u)=>x+(u.minuten||0),0);
+ const FARBE={selbstlern:"#1f8ea3",kprim:"#e08a2e",rallye:"#8460b8",uebung:"#4f9a35",lernuebersicht:"#3a7fd0",fachaufsatz:"#2f7d32",apt:"#3a7fd0",stunde:"#d4577f",einfuehrung:"#16907a",projekt:"#6b7a8c"};
+ const karte=(typ,titel,text,btn,extra)=>`<button type="button" class="bw-k" data-typ="${typ}" style="--k:${FARBE[typ]||"#4a90d9"}"${extra||""}><span class="bw-t"><b>${esc(titel)}</b><small>${esc(text)}</small></span><span class="bw-b">${esc(btn||"Einplanen")}</span></button>`;
+ const kursKarte=(ein&&!ein.entwurf)?karte("selbstlern",ein.titel||"Selbstlernkurs",`Selbstlernkurs zu diesem Thema${ein.aufgaben?" · "+ein.aufgaben+" Aufgaben":""}`,"Einplanen",` data-kurs="ea:${esc(themaId)}"`):"";
+ const faKarte=karte("fachaufsatz","Fachaufsatztraining",`Alle Fachaufsätze aus Abschlussprüfungen (Lernbereich 1 bis 4) mit ganzem Fall, Zeilennummern, Themafrage und Lösung zum Einblenden.`,"Auswählen");
+ const T=k=>PPM_TYPEN[k];
+ const einfach=(k,txt)=>karte(k,T(k).name,txt||T(k).text);
+ modal(`<button class="modal-close" onclick="closeModal()">×</button>
+  <div class="kicker">BAUSTEIN EINPLANEN</div><h2>${esc(kwKurz(e))}</h2>
+  <p style="color:var(--muted);margin:0 0 4px">Wähle einen Baustein. Danach legst du nur noch Woche und Dauer fest.</p>
+  <div class="bw">
+   <h3 class="bw-h" style="--k:#1f8ea3">Üben und Vertiefen</h3>
+   ${kursKarte}${einfach("kprim","Kurzer Test mit K-Prim-Aufgaben, automatisch ausgewertet.")}${einfach("rallye","Stationen mit Aufgaben, einzeln oder im Team, mit Punkten.")}
+   ${karte("lernuebersicht","Lernübersicht","Whiteboard mit dem Wichtigsten auf einen Blick – Schüler:innen ergänzen ihre eigene Kopie.","Auswählen")}
+   ${karte("uebung","Übungen und Spiele","Zuordnung (Ziehen), Memory, Blockfall, Lückentext, Karteikarten – nach Lernbereich geordnet.","Auswählen")}
+   <h3 class="bw-h" style="--k:#4f9a35">Fachaufsatz</h3>
+   ${faKarte}
+   <h3 class="bw-h" style="--k:#d4577f">Weitere Bausteine</h3>
+   ${einfach("selbstlern","Beliebigen Selbstlernkurs auswählen.")}${einfach("projekt","Team-Projekt mit Meilensteinen.")}
+  </div>
+  <div class="form-actions"><button class="secondary" type="button" onclick="closeModal()">Abbrechen</button></div>`);
+ document.querySelectorAll(".bw-k").forEach(b=>b.onclick=async()=>{
+  const typ=b.dataset.typ;
+  if(typ==="lernuebersicht"){await kwLuPicker(themaId);return}
+  if(typ==="uebung"){await kwFaPicker(null,themaId,"spiele");return}
+  if(typ==="fachaufsatz"){await kwFaPicker(null,themaId,"fa");return}
+  window.__kwThemaNeu=b.dataset.ohnethema?null:themaId;
+  await ppmDialog(null,typ,woche,{einfach:true,lb:ph.lbNum,themaTitel:kwKurz(e),kurs:b.dataset.kurs||""});
+ });
+}
+window.kwBausteinWahl=kwBausteinWahl;
+// Projekt: öffnet direkt „Das Experiment“ (Standard im Lernbereich mit Einstieg) oder die Projektseite mit Teams und Meilensteinen.
+let FA_DATEN=null,FA_HINWEIS="";
+async function faLaden(){
+ if(FA_DATEN)return FA_DATEN;
+ try{const r=await fetch("fachaufsatz/uebungen.json?v=1",{cache:"no-cache"});if(r.ok){const j=await r.json();const fl=j.faelle||{};FA_HINWEIS=j.hinweis||"";FA_DATEN=(Array.isArray(j.uebungen)?j.uebungen:[]).map(u=>{const f=fl[u.fallId]||{};let z=f.fall||u.fall||[];if(u.zeilenBis)z=z.filter(x=>!x[0]||Number(x[0])<=u.zeilenBis);return{...u,fall:z,fallkopf:f.kopf||u.fallkopf,fallHinweis:f.hinweis||""}})}else FA_DATEN=[]}catch(e){console.warn("Fachaufsatz-Übungen:",e);FA_DATEN=[]}
+ return FA_DATEN;
+}
+function faKey(id){return"fa:"+(currentUser?currentUser.uid:"x")+":"+id}
+function faLies(id){try{return JSON.parse(localStorage.getItem(faKey(id))||"{}")}catch(e){return{}}}
+function faSchreib(id,patch){try{localStorage.setItem(faKey(id),JSON.stringify({...faLies(id),...patch}))}catch(e){}}
+function faZeilenText(u){return(u.fall||[]).map(z=>z[0]?"Z. "+z[0]+": "+z[1]:z[1]).join("\n")}
+function faZeilenHTML(u){return`<div class="fa-fall"><b>${esc(u.fallkopf||"Fallbeispiel")}</b>${u.fallHinweis?`<small class="fa-zh">${esc(u.fallHinweis)}</small>`:""}${(u.fall||[]).map(z=>z[0]?`<div class="fa-z${Number(z[0])%5===0?" fa-z5":""}"><span>${esc(z[0])}</span><p>${esc(z[1])}</p></div>`:`<p class="fa-zk">${esc(z[1])}</p>`).join("")}</div>`}
+async function ppmFachaufsatzSeite(m,opt){
+ const lehrer=isTeacher(),alle=await faLaden();
+ const sel=(m.themen||[]);
+ const liste=m.uebIds?alle.filter(u=>m.uebIds.includes(u.id)):sel.length?alle.filter(u=>sel.includes(u.thema)):alle.filter(u=>u.lb===Number(m.lb));
+ const kern=liste.filter(u=>!u.zusatz),extra=liste.filter(u=>u.zusatz);
+ const min=kern.reduce((a,u)=>a+(u.minuten||0),0);
+ const links=await ladeTaskcardLinks().catch(()=>({}));
+ const fobizz=((links||{}).fobizz_fachaufsatz||{}).url||"";
+ const erl=kern.filter(u=>faLies(u.id).d).length;
+ const karte=(u,i,istKern)=>{
+  const s=faLies(u.id),th=kwThemaById(u.thema);
+  const loesBtn=lehrer?"":`<button type="button" class="ppm-btn" onclick="faLoesung('${u.id}')">Lösung ein-/ausblenden</button>`;
+  return`<details class="fa-ue${s.d?" fa-ok":""}" id="fa_${u.id}"${istKern?" data-kern=\"1\"":""}${i===0&&istKern?" open":""}>
+   <summary><span class="fa-nr" data-n="${i+1}">${s.d?"✓":(istKern?i+1:"+")}</span><span><b>${esc(u.titel)}</b><small>${esc(th?th.thema:(u.zusatz||u.thema))}${u.zusatz?" · "+esc(u.zusatz):""} · ${esc(u.format)}</small></span></summary>
+   <div class="fa-body">
+    ${zeilenKopfHinweis(u)}
+    ${faZeilenHTML(u)}
+    <div class="fa-aufg"><b>Aufgabe</b><p>${esc(u.aufgabe)}</p>${u.hinweis?`<small>${esc(u.hinweis)}</small>`:""}</div>
+    ${lehrer?"":`<label class="fa-label">Dein Text<textarea id="fat_${u.id}" rows="8" oninput="faTipp('${u.id}',this)" placeholder="Schreibe hier deine Antwort. Nenne die Theorie, erkläre sie und verdeutliche am Fall mit Zeilenangaben …">${esc(s.t||"")}</textarea></label>
+    <small class="fa-hinweis">Dein Text bleibt nur auf diesem Gerät gespeichert.</small>`}
+    <div class="fa-btns">${loesBtn}
+     ${lehrer?"":`<button type="button" class="ppm-btn" onclick="faKopieren('${u.id}')">Text für die KI kopieren</button>`}
+     ${fobizz?`<a class="ppm-btn" href="${esc(fobizz)}" target="_blank" rel="noopener noreferrer">KI-Assistent öffnen ↗</a>`:""}</div>
+    ${lehrer||!fobizz?"":`<small class="fa-hinweis">Erst „Text für die KI kopieren“, dann den Assistenten öffnen und einfügen.</small>`}
+    ${lehrer&&!fobizz?`<small class="fa-hinweis">Link zum KI-Assistenten: in der Lernwerkstatt beim Prüfungstraining hinterlegen (Fobizz-Link).</small>`:""}
+    <div class="fa-loes" id="fal_${u.id}"${lehrer?"":" hidden"}>
+     <b>${lehrer?"Musterlösung (nur für Lehrkräfte sichtbar, Schüler:innen blenden sie selbst ein)":"Musterlösung"}</b>
+     ${(u.loesung||[]).map(x=>`<p><span class="fa-b">${esc(x.b)}</span> ${esc(x.t)}</p>`).join("")}
+     <b class="fa-kk">${lehrer?"Kriterien für die Rückmeldung":"Prüfe selbst:"}</b>
+     <ul>${(u.kriterien||[]).map(k=>`<li>${esc(k)}</li>`).join("")}</ul>
+    </div>
+    ${lehrer?"":`<label class="check fa-fertig"><input type="checkbox" ${s.d?"checked ":""}onchange="faErledigt('${u.id}',this.checked)"><span>Erledigt</span></label>`}
+   </div></details>`;
+ };
+ const karten=kern.map((u,i)=>karte(u,i,true)).join("");
+ const zus=extra.length?`<details class="fa-zus"><summary>Mehr üben: ${extra.length} zusätzliche Übung${extra.length===1?"":"en"} (Vertiefung und weitere Themen)</summary>${extra.map((u,i)=>karte(u,i,false)).join("")}</details>`:"";
+ const css=`<style>.fa-ue{background:#fff;border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}.fa-ue>summary{display:flex;gap:12px;align-items:center;padding:12px 14px;cursor:pointer;list-style:none}.fa-ue>summary::-webkit-details-marker{display:none}
+ .fa-ue>summary small{display:block;color:var(--muted);font-size:12px}.fa-nr{flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--c,#3A8FD4);color:var(--c,#3A8FD4);display:grid;place-items:center;font-weight:800}.fa-ok .fa-nr{background:var(--c,#3A8FD4);color:#fff}
+ .fa-body{padding:2px 16px 16px}.fa-quelle{font-size:12px;color:var(--muted);margin:0 0 8px}.fa-fall{background:#f4f8fc;border-left:4px solid var(--c,#3A8FD4);border-radius:10px;padding:10px 12px;margin:8px 0}.fa-z{display:flex;gap:10px;margin-top:3px;line-height:1.4}.fa-z span{flex:none;min-width:26px;text-align:right;font-size:11px;color:var(--muted);padding-top:3px}.fa-z5 span{font-weight:800;color:var(--c,#3A8FD4)}.fa-zk{margin:8px 0 2px;font-weight:700}.fa-zh{display:block;color:var(--muted);font-size:12px;margin:2px 0 6px}.fa-zus{margin:14px 0}.fa-zus>summary{cursor:pointer;font-weight:700;padding:8px 2px}.fa-z p{margin:0}
+ .fa-aufg{margin:10px 0}.fa-aufg p{margin:4px 0}.fa-aufg small,.fa-hinweis{color:var(--muted);font-size:12px}.fa-label{display:block;font-weight:700;font-size:12px}.fa-label textarea{width:100%;font:inherit;font-weight:400;margin-top:4px}.fa-btns{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 4px}.fa-btns a{text-decoration:none;display:inline-block}
+ .fa-loes{background:#eef7ee;border-left:4px solid #3fa66a;border-radius:10px;padding:10px 12px;margin:10px 0}.fa-loes p{margin:6px 0}.fa-b{font-weight:800;color:#2e7d4f}.fa-kk{display:block;margin-top:8px}.fa-fertig{margin-top:8px}</style>`;
+ if(opt&&opt.karten)return css+liste.map((u,i)=>karte(u,i,true)).join("");
+ return`${ppmKopf(m,`<p style="color:var(--muted)">${kern.length} Übung${kern.length===1?"":"en"}${sel.length?" (ausgewählte Themen)":""}</p>`)}
+ ${css}
+ <div class="ppm-box"><h2>Fachaufsatz kurz geübt</h2>
+  <p>Lies den ganzen Fall, schreibe nur den gefragten Teil und belege mit <b>Zeilenangaben</b> (zum Beispiel „Z. 12–14“). Danach kannst du die Musterlösung einblenden oder deinen Text von der KI korrigieren lassen.</p>
+  ${lehrer?`<p class="ppm-leer">Lehrkräfte sehen die Musterlösungen sofort. Die Übungen gelten für den Lernbereich ${m.lb}${sel.length?" und die gewählten Themen":""}. Themen wählst du über „Modul bearbeiten“.</p>`:`<div class="ppm-balken"><b id="faStand">${erl} von ${kern.length} erledigt</b></div>`}
+ </div>
+ ${liste.length?karten+zus:`<div class="ppm-box"><p class="ppm-leer">Für diese Auswahl sind noch keine Übungen hinterlegt.</p></div>`}
+ ${lehrer&&FA_HINWEIS?`<p class="fa-quelle">${esc(FA_HINWEIS)}</p>`:""}
+ ${footer()}`;
+}
+function zeilenKopfHinweis(u){return u.herkunft?`<p class="fa-quelle">${esc(u.herkunft)}</p>`:""}
+function faTipp(id,el){faSchreib(id,{t:el.value})}
+function faLoesung(id){
+ const box=$("fal_"+id);if(!box)return;
+ const t=($("fat_"+id)||{}).value||"";
+ if(box.hidden&&t.trim().length<30){toast("Schreibe zuerst deine eigene Antwort. Dann kannst du die Lösung einblenden.");return}
+ box.hidden=!box.hidden;
+}
+async function faKopieren(id){
+ const alle=await faLaden(),u=alle.find(x=>x.id===id);if(!u)return;
+ const t=(($("fat_"+id)||{}).value||"").trim();
+ if(t.length<30){toast("Schreibe zuerst deine eigene Antwort.");return}
+ const p=`Du bist Lehrkraft für Pädagogik/Psychologie an der FOS/BOS in Bayern (Klasse 11) und gibst Rückmeldung zu einer kurzen Fachaufsatz-Übung. Bewerte nur die genannten Kriterien, gib keine Note. Antworte kurz und konkret: Was ist gelungen? Was fehlt? Gib einen Verbesserungsvorschlag.\n\nFALL\n${faZeilenText(u)}\n\nAUFGABE\n${u.aufgabe}\n\nKRITERIEN\n${(u.kriterien||[]).map(k=>"- "+k).join("\n")}\n\nTEXT DER SCHÜLERIN / DES SCHÜLERS\n${t}`;
+ try{await navigator.clipboard.writeText(p);toast("Kopiert. Jetzt den KI-Assistenten öffnen und einfügen.")}catch(e){
+  const ta=document.createElement("textarea");ta.value=p;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast("Kopiert. Jetzt den KI-Assistenten öffnen und einfügen.")}catch(_){toast("Kopieren nicht möglich. Bitte den Text selbst markieren.")}ta.remove()}
+}
+function faErledigt(id,an){
+ faSchreib(id,{d:!!an});
+ const d=$("fa_"+id);if(d){d.classList.toggle("fa-ok",!!an);const n=d.querySelector(".fa-nr");if(n)n.textContent=an?"✓":(n.dataset.n||n.textContent)}
+ const all=[...document.querySelectorAll(".fa-ue[data-kern]")],ok=all.filter(x=>x.classList.contains("fa-ok")).length,s=$("faStand");if(s)s.textContent=ok+" von "+all.length+" erledigt";
+}
+window.faLoesung=faLoesung;window.faKopieren=faKopieren;window.faTipp=faTipp;window.faErledigt=faErledigt;
+
+// ---- Experiment (interaktive Einheit mit wählbaren Teilen) ----
+async function openCheckIn(wocheId){
+ const fach="paedagogik",lehrer=isTeacher();
+ const e=kwThemaById(wocheId)||lehrplanWocheById(fach,wocheId);
+ if(!e){toast("Dieses Thema wurde nicht gefunden.");return}
+ const ph=projektPhaseByWoche(wocheId);
+ const c=ph?ppFarbe(ph):"#4a90d9";
+ const [fragen,mein]=await Promise.all([getBasischeckFragen(wocheId).catch(()=>[]),lehrer?Promise.resolve(null):getMyBasischeckVersuch(wocheId)]);
+ const lb=ph?`LB ${ph.lbNum}`:(e.lb||"");
+ modal(`<button class="modal-close"onclick="closeModal()">×</button>
+  <div id="ciAnsicht"class="ci-seite"style="--c:${c}">
+   <div class="kicker"style="color:${c}">${esc(lb)} · Check-In</div>
+   <h2>${esc(e.thema)}</h2>
+   <p class="ci-intro">${lehrer?"Lehrkraft-Ansicht: Hier bearbeitest du die Fragen. Gespeicherte Fragen ersetzen den Standard-Check-In für alle.":mein?"Dein Ergebnis:":"Was weißt du schon? Kein Test, keine Note. Du siehst danach, wo du stehst."}</p>
+   ${basischeckPanelHTML(fach,wocheId,fragen,mein)}
+   <div class="ci-fuss"><button type="button"class="secondary"onclick="closeModal()">Schließen</button></div>
+  </div>`);
+}
+window.openCheckIn=openCheckIn;
+
+// ---- Einarbeitung: interaktive Seite je Stunde (einarbeitung/inhalte/<id>.json) ----
+let wbVonKw=false;
+const KW_FARBEN={1:{c:"#2494A8",bg:"#DDF1F5",t:"#176A7A"},2:{c:"#8460B8",bg:"#EEE8F7",t:"#5F3F94"},3:{c:"#5FA33E",bg:"#E6F3DC",t:"#3F7226"},4:{c:"#E08A2E",bg:"#FCEBD6",t:"#9A5410"}};
+const KW={mat:{},fort:{},co:null,geladen:0};
+const KWT={}; // Thema → KW-Zuordnung (Sammlung wpThemenKW): {start:"sw05",wochen:2}
+let activeKwThema=null,activeKwLb=null;
+// Reihenfolge der Dateien auf jeder Themenseite (immer gleich)
+const KW_KAT=[
+ {key:"checkin",label:"Check-In",hint:"Zuerst: Was weißt du schon? Kein Test, keine Note."},
+ {key:"lehrtext",label:"Lehrtexte",hint:"Danach: Texte zum Nachlesen und Erarbeiten"},
+ {key:"arbeitsblatt",label:"Arbeitsblätter",hint:"Zum Bearbeiten im Unterricht"},
+ {key:"uebung",label:"Übungsaufgaben",hint:"Zum Üben und Festigen"},
+ {key:"vertiefung",label:"Vertiefungsaufgaben",hint:"In drei Schwierigkeitsgraden",stufen:[["vertiefung1","Stufe 1 · grundlegend"],["vertiefung2","Stufe 2 · erweitert"],["vertiefung3","Stufe 3 · anspruchsvoll"]]},
+ {key:"tafel",label:"Digitale Tafeln",hint:"Tafelbilder zur Stunde",board:true},
+ {key:"lernuebersicht",label:"Lernübersichten",hint:"Das Wichtigste auf einen Blick",board:true}
+];
+const KW_BAUSTEINE={selbstlern:["Selbstlernkurs","slk"],stunde:["Deeper-Learning-Einheit","std"],rallye:["Lernrallye","ral"],kprim:["KPrim-Test / Check-out","chk"],apt:["Fachaufsatztraining","ueb"],fachaufsatz:["Fachaufsatz-Übung","ueb"],einfuehrung:["Einführung","slk"]};
+// ---- Kalenderwochen (KW) je Thema ----
+function isoKw(iso){const d=new Date(iso+"T12:00:00Z");const n=d.getUTCDay()||7;d.setUTCDate(d.getUTCDate()+4-n);const y0=new Date(Date.UTC(d.getUTCFullYear(),0,1));return Math.ceil(((d-y0)/864e5+1)/7);}
+function kwListeText(kws){
+ const u=[...new Set(kws)];if(!u.length)return"";
+ const teile=[];let a=u[0],b=u[0];
+ for(let i=1;i<=u.length;i++){
+  if(i<u.length&&(u[i]===b+1||(b>=52&&u[i]===1))){b=u[i];continue;}
+  teile.push(a===b?String(a):a+"–"+b);a=u[i];b=u[i];
+ }
+ return"KW "+teile.join(", ");
+}
+function kwBereichText(von,bis){return kwListeText([isoKw(von),isoKw(bis)].filter((x,i,l)=>l.indexOf(x)===i));}
+// Schulwochen, in denen ein Thema dran ist: feste Zuordnung (wpThemenKW), sonst aus den Modulen des Modulplans.
+function kwThemaWochen(e){
+ const k=KWT[e.id];
+ if(k&&k.start){const i=ppmSwIndex(k.start);if(i>=0)return SCHULWOCHEN_PP.slice(i,i+(Number(k.wochen)||1));}
+ let best=null;
+ kwModuleThema(e.id).forEach(m=>{const w=ppmWochen(m);if(w.length&&(!best||w[0].start<best[0].start))best=w;});
+ return best||[];
+}
+function kwChipHTML(e,lehrer){
+ const w=kwThemaWochen(e);
+ if(!w.length)return lehrer?`<span class="kw-chip frei" title="Noch keiner Kalenderwoche zugeordnet">KW offen</span>`:"";
+ const heute=new Date().toISOString().slice(0,10),jetzt=w.some(x=>x.start<=heute&&x.end>=heute);
+ return`<span class="kw-chip${jetzt?" jetzt":""}" title="${esc(fmtKurz(w[0].start)+"–"+fmtKurz(w[w.length-1].end))}">${esc(kwListeText(w.map(x=>isoKw(x.start))))}</span>`;
+}
+function kwSetzenModal(id){
+ if(!isTeacher())return;
+ const e=kwThemaById(id);if(!e)return;
+ const k=KWT[id]||{};
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">KALENDERWOCHE</div><h2>${esc(kwKurz(e))}</h2>
+  <div class="form"><label>Beginn (Schulwoche)<select id="kwtStart"><option value="">– noch nicht festgelegt –</option>${SCHULWOCHEN_PP.map(w=>`<option value="${w.id}"${w.id===k.start?" selected":""}>KW ${isoKw(w.start)} · ${fmtKurz(w.start)}–${fmtKurz(w.end)}</option>`).join("")}</select></label>
+  <label>Dauer<select id="kwtDauer">${[1,2,3,4,5,6].map(n=>`<option value="${n}"${n===(Number(k.wochen)||1)?" selected":""}>${n} Schulwoche${n>1?"n":""}</option>`).join("")}</select></label>
+  <small>Schulwochen ohne Praktikum und Ferien werden automatisch übersprungen. Die KW erscheint auf der Lernlandkarte und im Jahresplan.</small>
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" id="kwtSave">Speichern</button></div></div>`);
+ $("kwtSave").onclick=async()=>{
+  const start=$("kwtStart").value,wochen=Number($("kwtDauer").value)||1;
+  try{
+   if(!start){await deleteDoc(doc(db,"wpThemenKW",id));delete KWT[id];}
+   else{const d={themaId:id,start,wochen,updatedBy:currentUser.uid,updatedAt:serverTimestamp()};await setDoc(doc(db,"wpThemenKW",id),d);KWT[id]={themaId:id,start,wochen};}
+   window.__fsDirty=Date.now();closeModal();toast("Kalenderwoche gespeichert.");render();
+  }catch(err){console.error(err);toast("Konnte nicht gespeichert werden (firestore.rules veröffentlicht?).");}
+ };
+}
+function kwKurz(e){return String(e.thema||"").split(":")[0].replace(/\s*\(.*\)\s*$/,"")}
+function kwThemenVonPhase(ph){return PP_EINHEITEN.filter(e=>e.phase===ph.id)}
+function kwThemaById(id){return PP_EINHEITEN.find(e=>e.id===id)||null}
+function kwPhase(lbNum){return PROJEKT_PHASEN.find(p=>p.lbNum===Number(lbNum))||null}
+function kwFarbe(lbNum){return KW_FARBEN[lbNum]||KW_FARBEN[1]}
+async function kwLaden(){
+ // Kurz zwischengespeichert (30 s): Wechsel zwischen Lernlandkarte und Themen lädt nicht jedes Mal alles neu.
+ // Jeder Schreibzugriff (window.__fsDirty) und jeder Benutzerwechsel macht den Zwischenspeicher ungültig.
+ const uid=currentUser?currentUser.uid:"";
+ if(KW.geladen&&KW.uid===uid&&Date.now()-KW.geladen<30000&&KW.geladen>(window.__fsDirty||0))return;
+ await ppmLaden().catch(()=>{});
+ const t0=Date.now();
+ const [mat,,co,kwt]=await Promise.all([
+  getDocs(collection(db,"lehrplanMaterialien")).catch(e=>{console.warn("Material:",e);return null}),
+  isTeacher()?null:ppmMeineLaden().catch(()=>{}),
+  ladeCheckoutDaten().catch(()=>null),
+  getDocs(collection(db,"wpThemenKW")).catch(e=>{console.warn("Themen-KW:",e);return null})]);
+ KW.mat={};KW.fort={};
+ Object.keys(KWT).forEach(k=>delete KWT[k]);
+ if(kwt)kwt.docs.forEach(d=>{KWT[d.id]=d.data()});
+ if(mat)mat.docs.forEach(d=>{const x={id:d.id,...d.data()};(KW.mat[x.wocheId]=KW.mat[x.wocheId]||[]).push(x)});
+ if(!isTeacher()){
+  if(PPM.meine.fortAlle)KW.fort=PPM.meine.fortAlle;
+  else try{(await getDocs(query(collection(db,"lehrplanFortschritt"),where("uid","==",currentUser.uid)))).docs.forEach(d=>{KW.fort[d.id.slice(currentUser.uid.length+1)]=d.data()})}catch(e){console.warn("Fortschritt:",e)}
+ }
+ KW.co=co;PPM.co=co;KW.uid=uid;KW.geladen=t0;
+}
+function kwModuleThema(id){return PPM.liste.filter(m=>m.modul!=="projekt"&&m.modul!=="experiment"&&(m.themen||[]).includes(id))}
+function kwModuleLb(lb){return PPM.liste.filter(m=>Number(m.lb)===Number(lb)&&m.modul!=="projekt"&&m.modul!=="experiment")}
+function kwErledigt(id){const f=KW.fort[id];return !!(f&&f.abgeschlossen)}
+function kwBloecke(){
+ const out=[];let cur=null;
+ ppmZeitleiste().forEach(z=>{
+  if(z.art==="woche"){if(!cur){cur={nr:out.length+1,von:z.w.start,bis:z.w.end,n:0};out.push(cur)}cur.bis=z.w.end;cur.n++}
+  else cur=null;
+ });
+ return out;
+}
+function kwBlockText(von,bis){
+ const b=kwBloecke().filter(x=>x.von<=bis&&x.bis>=von).map(x=>x.nr);
+ return b.length?(b.length>1?"Block "+b[0]+(b.length>2?"–":" + ")+b[b.length-1]:"Block "+b[0]):"";
+}
+function kwHeroHTML(){
+ const heute=new Date().toISOString().slice(0,10),bl=kwBloecke();
+ const tage=(a,b)=>Math.round((new Date(b+"T12:00:00Z")-new Date(a+"T12:00:00Z"))/86400000);
+ const d=new Date();const wt=["So","Mo","Di","Mi","Do","Fr","Sa"][d.getDay()];
+ const kopf=`HEUTE · ${wt} ${d.getDate()}.${d.getMonth()+1}.`;
+ const jetzt=bl.find(b=>b.von<=heute&&b.bis>=heute),next=bl.find(b=>b.von>heute);
+ let zeile,zahl,einheit;
+ if(jetzt){zeile=`Aktueller Schulblock: Block ${jetzt.nr} bis ${fmtKurz(jetzt.bis)}`;zahl=Math.max(0,tage(heute,jetzt.bis));einheit="Tage noch"}
+ else if(next){const pr=PRAKTIKUMSPHASEN.find(p=>p.start<=heute&&p.end>=heute),fe=FERIEN_SJ.find(f=>f.start<=heute&&f.end>=heute);
+  zeile=`Nächster Schulblock: Block ${next.nr} ab ${fmtKurz(next.von)}`;zahl=tage(heute,next.von);einheit="Tage"
+  ;return`<div class="kw-hero"><div><div class="kw-hero-k">${kopf}${pr?" · "+esc(pr.titel).toUpperCase():(fe?" · "+esc(fe.titel).toUpperCase():"")}</div><div class="kw-hero-t">${zeile}</div></div><div class="kw-hero-z"><b>${zahl}</b><span>${einheit}</span></div></div>`}
+ else{zeile="Das Schuljahr ist beendet";zahl="";einheit=""}
+ return`<div class="kw-hero"><div><div class="kw-hero-k">${kopf}</div><div class="kw-hero-t">${zeile}</div></div>${zahl!==""?`<div class="kw-hero-z"><b>${zahl}</b><span>${einheit}</span></div>`:""}</div>`;
+}
+function kwKachelHTML(ph,lehrer){
+ const F=kwFarbe(ph.lbNum),themen=kwThemenVonPhase(ph),heute=new Date().toISOString().slice(0,10);
+ const n=themen.length;
+ const fertig=lehrer?themen.filter(e=>(KW.mat[e.id]||[]).length||kwModuleThema(e.id).length).length:themen.filter(e=>kwErledigt(e.id)).length;
+ const proz=n?Math.round(fertig/n*100):0;
+ const status=lehrer?"":(fertig===n&&n?"geschafft":(ph.start<=heute&&ph.end>=heute?"läuft gerade":(ph.start>heute?(proz?"begonnen":"folgt"):"offen")));
+ const naechst=!lehrer&&PROJEKT_PHASEN.filter(p=>p.end>=heute).sort((a,b)=>a.start.localeCompare(b.start))[0]===ph&&ph.start>heute;
+ const projM=PPM.liste.find(m=>m.modul==="projekt"&&Number(m.lb)===ph.lbNum&&!m.projektId);
+ const projTitel=(projM&&projM.titel)||ph.titel;
+ // Bausteine, die die Lehrkräfte vorbereitet haben
+ const z={};kwModuleLb(ph.lbNum).forEach(m=>{z[m.modul]=(z[m.modul]||0)+1});
+ const nCo=KW.co&&KW.co.checkouts?KW.co.checkouts.filter(c=>Number(c.lbNum)===ph.lbNum).length:0;
+ if(nCo&&!z.kprim)z.kprim=nCo;
+ const chips=Object.entries(z).map(([k,v])=>{const b=KW_BAUSTEINE[k];return b?`<span class="chip ${b[1]}">${v} ${esc(b[0])}</span>`:""}).join("")||`<span class="kw-leer">Noch keine Bausteine vorbereitet</span>`;
+ const rows=themen.map(e=>{
+  const ok=!lehrer&&kwErledigt(e.id),nm=(KW.mat[e.id]||[]).length+kwModuleThema(e.id).length;
+  return`<button type="button" class="kw-row" data-kw="thema" data-id="${esc(e.id)}"><i class="kw-bx${ok?" d":""}"></i><em>${esc(e.nr)}</em><span>${esc(kwKurz(e))}</span>${kwChipHTML(e,lehrer)}${nm?`<small>${nm}</small>`:""}</button>`;
+ }).join("");
+ return`<article class="kw-tile${naechst?" kw-next":""}" style="--c:${F.c};--bg:${F.bg};--t:${F.t}">
+  <header class="kw-th"><div><small>LB ${ph.lbNum} · ${esc(kwBlockText(ph.start,ph.end)||fmtKurz(ph.start))} · ${esc(kwBereichText(ph.start,ph.end))}</small><b>${esc(ph.lbTitel)}</b></div>${status?`<span class="kw-st">${naechst?"als Nächstes":status}</span>`:""}</header>
+  <button type="button" class="kw-proj" data-kw="projekt" data-lb="${ph.lbNum}"><span class="chip prj">Projekt</span><b>${esc(projTitel)}</b><small>${fmtKurz(ph.projektStart)}–${fmtKurz(ph.projektEnde)}</small></button>
+  <div class="kw-lab">${n} THEMEN · ${lehrer?fertig+" MIT MATERIAL":fertig+" ERLEDIGT"}</div>
+  <div class="kw-rows">${rows}</div>
+  <div class="kw-lab">BAUSTEINE DER LEHRKRÄFTE</div>
+  <div class="kw-chips">${chips}</div>
+  <footer class="kw-fuss"><div class="kw-bar" role="progressbar" aria-valuenow="${proz}" aria-valuemin="0" aria-valuemax="100" aria-label="${lehrer?"Vorbereitung":"Fortschritt"} Lernbereich ${ph.lbNum}"><i style="width:${proz}%"></i></div><span>${lehrer?"Vorbereitet":"Fortschritt"} ${proz} %</span></footer>
+ </article>`;
+}
+async function renderKachelwand(){
+ await kwLaden();
+ const lehrer=isTeacher();
+ const alle=PROJEKT_PHASEN.flatMap(kwThemenVonPhase);
+ const fertig=lehrer?alle.filter(e=>(KW.mat[e.id]||[]).length||kwModuleThema(e.id).length).length:alle.filter(e=>kwErledigt(e.id)).length;
+ const p=alle.length?Math.round(fertig/alle.length*100):0;
+ const r=31,u=2*Math.PI*r,da=(u*p/100).toFixed(1);
+ const ring=`<svg width="56" height="56" viewBox="0 0 78 78" role="img" aria-label="Gesamtstand ${p} Prozent"><circle cx="39" cy="39" r="${r}" fill="none" stroke="#DCE9F5" stroke-width="10"/><circle cx="39" cy="39" r="${r}" fill="none" stroke="#3A8FD4" stroke-width="10" stroke-dasharray="${da} ${u.toFixed(1)}" transform="rotate(-90 39 39)" stroke-linecap="round"/></svg>`;
+ const links=lehrer
+  ?`<button class="secondary" data-kw="fortschritt">Erledigt? Selbstlernkurse und Rallyes</button><button class="secondary" onclick="go('kw-checkouts')">Check-outs</button><button class="secondary" onclick="go('news')">Startseite</button><button class="secondary" onclick="openUserManagement()">Benutzer verwalten</button>`
+  :`<button class="secondary" onclick="go('kw-checkouts')">Meine Lernstände</button><button class="secondary" onclick="go('news')">Startseite</button>`;
+ return`<div class="kw" id="kwRoot">
+  ${pageHead("PÄDAGOGIK/PSYCHOLOGIE","Lernlandkarte","Dein Weg durch das Schuljahr: vier Lernbereiche mit Projekt, Themen und Bausteinen.")}
+  <div class="kw-top">${kwHeroHTML()}<div class="kw-gesamt">${ring}<div><b>${lehrer?"Vorbereitung":"Gesamtstand"} ${p} %</b><small>${fertig} von ${alle.length} Themen ${lehrer?"mit Material oder Baustein":"erledigt"}</small></div></div></div>
+  <div class="kw-links">${links}</div>
+  <div class="kw-wand">${PROJEKT_PHASEN.map(ph=>kwKachelHTML(ph,lehrer)).join("")}</div>
+ </div>${footer()}`;
+}
+/* ------------------------------------------------ Projektseite */
+async function renderKwProjekt(){
+ await kwLaden();
+ const ph=kwPhase(activeKwLb);if(!ph)return await renderKachelwand();
+ const F=kwFarbe(ph.lbNum),lehrer=isTeacher();
+ const pm=PPM.liste.filter(m=>(m.modul==="projekt"||m.modul==="experiment")&&Number(m.lb)===ph.lbNum);
+ const projM=pm.find(m=>m.modul==="projekt"&&!m.projektId);
+ const dateien=[];
+ pm.forEach(m=>(m.material||[]).forEach(x=>dateien.push({titel:x.titel||x.name||"Material",url:x.url,typ:x.typ})));
+ [ph.projektWocheId,...ph.notwendigeWochen].forEach(wid=>(KW.mat[wid]||[]).forEach(x=>dateien.push({titel:x.titel,url:x.url,typ:x.kategorie,id:x.id,wid})));
+ if(projM&&projM.vorlage)try{await bepVorlage(projM.vorlage)}catch(e){}
+ const themen=PP_EINHEITEN.filter(e=>e.phase===ph.id&&e.typ==="projekt");
+ const auftrag=ph.auftrag?`<div class="kw-card"><h3>Auftrag</h3><div class="kw-text">${esc(ph.auftrag.text||"").replace(/\n/g,"<br>")}</div></div>`:"";
+ const ms=(ph.meilensteine||[]).length?`<div class="kw-card"><h3>Meilensteine</h3><ol class="kw-ms">${ph.meilensteine.map(x=>`<li>${esc(x)}</li>`).join("")}</ol></div>`:"";
+ const dl=dateien.length?dateien.map(d=>kwDateiHTML(d.titel,d.url,d.id,d.wid)).join(""):`<div class="kw-leer">${lehrer?"Noch keine Projektdateien. Lade sie im Projektbaustein oder in den Themen hoch.":"Deine Lehrkraft hat noch keine Dateien eingestellt."}</div>`;
+ const start=ph.einstieg?`<button class="primary" data-kw="exp">Interaktive Stunde „Das Experiment“ starten</button>`:`<button class="primary" data-kw="projektstart" data-lb="${ph.lbNum}">${lehrer?"Projektseite öffnen":"Projekt starten"}</button>`;
+ return`<div class="kw kw-seite" style="--c:${F.c};--bg:${F.bg};--t:${F.t}">
+  <button class="secondary" data-kw="wand">← Lernlandkarte</button>
+  <header class="kw-kopf"><small>LB ${ph.lbNum} · ${esc(kwBlockText(ph.projektStart,ph.projektEnde)||"")} · ${fmtKurz(ph.projektStart)}–${fmtKurz(ph.projektEnde)}</small><h1>${esc((projM&&projM.titel)||ph.titel)}</h1><p>${esc(ph.lbTitel)} · Projekt</p><div class="kw-aktionen">${start}</div></header>
+  ${auftrag}${ms}
+  <div class="kw-card"><h3>Dateien zum Projekt</h3><div class="kw-dateien">${dl}</div></div>
+  <div class="kw-card"><h3>Dafür brauchst du diese Themen</h3><div class="kw-rows">${themen.map(e=>`<button type="button" class="kw-row" data-kw="thema" data-id="${esc(e.id)}"><i class="kw-bx${kwErledigt(e.id)?" d":""}"></i><em>${esc(e.nr)}</em><span>${esc(kwKurz(e))}</span></button>`).join("")||`<div class="kw-leer">Keine Themen hinterlegt.</div>`}</div></div>
+ </div>${footer()}`;
+}
+/* ------------------------------------------------ Themenseite */
+function kwDateiHTML(titel,url,id,wid){
+ const del=isTeacher()&&id?`<button type="button" class="kw-del" data-kw="matweg" data-id="${esc(id)}" data-w="${esc(wid)}" aria-label="Löschen">×</button>`:"";
+ let a;
+ if(/^(uebungsbausteine|karteikarten)\//.test(String(url||"")))a=`<a class="kw-datei" href="${esc(url)}" target="_blank" rel="noopener"><span>${esc(titel)}</span><small>${/^karteikarten/.test(url)?"Karteikarten öffnen":"Übung starten"}</small></a>`;
+ else if(String(url||"").startsWith("fa:"))a=`<button type="button" class="kw-datei" data-kw="faueb" data-id="${esc(url.slice(3))}"><span>${esc(titel)}</span><small>Übung öffnen</small></button>`;
+ else if(String(url||"").startsWith("board:"))a=`<button type="button" class="kw-datei" data-kw="board" data-id="${esc(url.slice(6))}"><span>${esc(titel)}</span><small>Tafel öffnen</small></button>`;
+ else a=`<a class="kw-datei" href="${esc(url||"#")}" target="_blank" rel="noopener"><span>${esc(titel)}</span><small>${/^https?:\/\/[^/]*firebasestorage/.test(url||"")?"Datei":"Link"} öffnen</small></a>`;
+ return`<div class="kw-dz">${a}${del}</div>`;
+}
+function kwSekHTML(titel,hint,inner,addKat,lehrer,extraBtn){
+ return`<section class="kw-card kw-sek"><div class="kw-sek-kopf"><div><h3>${esc(titel)}</h3>${hint?`<small>${esc(hint)}</small>`:""}</div>${lehrer&&addKat?`<button type="button" class="secondary kw-add" data-kw="matadd" data-kat="${addKat}">+ hinzufügen</button>`:""}</div>${extraBtn||""}${inner}</section>`;
+}
+async function renderKwThema(){
+ await kwLaden();
+ const e=kwThemaById(activeKwThema);if(!e)return await renderKachelwand();
+ const ph=PROJEKT_PHASEN.find(p=>p.id===e.phase),F=kwFarbe(ph.lbNum),lehrer=isTeacher();
+ const mats=KW.mat[e.id]||[];
+ const ciP=lehrer?Promise.resolve([]):getBasischeckFragen(e.id).catch(()=>[]); // parallel zu den anderen Abfragen laden
+ const liste=kat=>{const l=mats.filter(m=>m.kategorie===kat);return l.length?l.map(m=>kwDateiHTML(m.titel,m.url,m.id,e.id)).join(""):`<div class="kw-leer">${lehrer?"Noch nichts eingestellt.":"Noch nichts eingestellt."}</div>`};
+ // Schülerseite: nur Abschnitte mit Inhalt anzeigen (Lehrkraft sieht alle, um etwas hinzuzufügen)
+ const ciFr=await ciP;
+ const secs=KW_KAT.map(k=>{
+  if(!lehrer){
+   const hat=k.stufen?k.stufen.some(([key])=>mats.some(m=>m.kategorie===key)):mats.some(m=>m.kategorie===k.key);
+   if(!hat&&!(k.key==="checkin"&&ciFr.length))return"";
+  }
+  let inner;
+  if(k.stufen)inner=k.stufen.filter(([key])=>lehrer||mats.some(m=>m.kategorie===key)).map(([key,l])=>`<div class="kw-stufe"><b>${esc(l)}</b>${liste(key)}${lehrer?`<button type="button" class="secondary kw-add" data-kw="matadd" data-kat="${key}">+ hinzufügen</button>`:""}</div>`).join("");
+  else inner=(!lehrer&&!mats.some(m=>m.kategorie===k.key))?"":`<div class="kw-dateien">${liste(k.key)}</div>`;
+  let extra="";
+  if(k.key==="checkin"){extra=`<div class="kw-aktionen"><button class="primary" data-kw="checkin" data-id="${esc(e.id)}">Check-In starten</button></div>`}
+  return kwSekHTML(k.label,k.hint,inner,k.stufen?null:k.key,lehrer,extra);
+ }).join("");
+ // Variante der Lerneinheit mit Start
+ const mod=kwModuleThema(e.id);
+ const ea=await einarbeitungInfo(e.id).catch(()=>null);
+ const eaF=!lehrer?(KW.fort[e.id]||{zieleErfuellt:{},abgeschlossen:false}):{};
+ const karten=[];
+ if(ea&&!ea.entwurf)karten.push(`<div class="kw-baust"><span class="chip slk">Selbstlernkurs</span><b>${esc(ea.titel||kwKurz(e))}</b><small>${eaF.einarbeitungAbgeschlossen?"abgeschlossen":(ea.aufgaben?ea.aufgaben+" Aufgaben":"")}</small><button class="primary" data-kw="ea" data-id="${esc(e.id)}">${eaF.einarbeitungAbgeschlossen?"Nochmal ansehen":"Starten"}</button></div>`);
+ mod.forEach(m=>{const T=KW_BAUSTEINE[m.modul]||["Baustein","chk"],f=ppmFort(m);
+  karten.push(`<div class="kw-baust"><span class="chip ${T[1]}">${esc(T[0])}</span><b>${esc(m.titel||T[0])}</b><small>${f?(f.done?"abgeschlossen":(f.frac>0?Math.round(f.frac*100)+" % bearbeitet":"noch offen")):(m.start&&swById(m.start)?"ab "+fmtKurz(swById(m.start).start):"")}</small><div class="kw-baust-btn"><button class="primary" data-kw="modul" data-id="${esc(m.id)}">${lehrer?"Öffnen":"Starten"}</button>${lehrer?`<button type="button" class="secondary kw-baust-weg" data-kw="modulweg" data-id="${esc(m.id)}" data-thema="${esc(e.id)}" title="Diesen Baustein von diesem Thema entfernen">Entfernen</button>`:""}</div></div>`)});
+ const lerneinheit=(!lehrer&&!karten.length)?"":kwSekHTML("Lerneinheit","Selbstlernkurs, Deeper-Learning-Stunde, Lernrallye oder anderes",
+  karten.length?`<div class="kw-baustliste">${karten.join("")}</div>`:`<div class="kw-leer">Für dieses Thema ist noch keine Lerneinheit ausgewählt.</div>`,null,lehrer,
+  lehrer?`<div class="kw-aktionen"><button class="secondary" data-kw="modulneu" data-id="${esc(e.id)}">Baustein einplanen</button><button class="secondary" data-kw="modulwahl" data-id="${esc(e.id)}">Vorhandenes Modul zuordnen</button></div>`:"");
+ // Check-out am Ende
+ // Check-outs gehören zum Lernbereich, nicht zum Thema: Schüler sehen sie hier nur, solange einer läuft (alle anderen unter „Lernstände“)
+ const cos=KW.co&&KW.co.checkouts?KW.co.checkouts.filter(c=>Number(c.lbNum)===ph.lbNum&&(lehrer||c.status==="live")):[];
+ const coInner=cos.length?cos.map(c=>{const a=(KW.co.meineAbgaben||{})[c.id];return`<div class="kw-dz"><button type="button" class="kw-datei" data-kw="checkouts"><span>${esc(coTitelAnzeige(c)||"Check-out")}</span><small>${a&&a.abgegeben?"abgegeben":(c.status==="live"?"läuft jetzt":(c.status==="beendet"?"beendet":"angelegt"))}</small></button></div>`}).join(""):`<div class="kw-leer">Die Lehrkraft legt den Check-out am Ende des Themas an.</div>`;
+ const checkout=(!lehrer&&!cos.length)?"":kwSekHTML("Check-out","Abschlusstest der Lehrkraft am Ende des Themas",`<div class="kw-dateien">${coInner}</div>`,null,lehrer,`<div class="kw-aktionen"><button class="secondary" data-kw="checkouts">${lehrer?"Check-outs verwalten":"Alle meine Check-outs"}</button><button class="secondary" onclick="go('lernstand')">Lernstandsmessung</button></div>`);
+ const fertigBtn=lehrer?"":`<button type="button" class="kw-fertig${kwErledigt(e.id)?" an":""}" data-kw="fertig" data-id="${esc(e.id)}"><i class="kw-bx${kwErledigt(e.id)?" d":""}"></i>${kwErledigt(e.id)?"Thema erledigt":"Als erledigt markieren"}</button>`;
+ return`<div class="kw kw-seite" style="--c:${F.c};--bg:${F.bg};--t:${F.t}">
+  <button class="secondary" data-kw="wand">← Lernlandkarte</button>
+  <header class="kw-kopf"><small>LB ${ph.lbNum} · ${esc(ph.lbTitel)} · Nr. ${esc(e.nr)} · ${e.typ==="projekt"?"für das Projekt":"Training"}</small><h1>${esc(e.thema)}</h1><p>${esc(e.planung||"")}</p><div class="kw-aktionen">${kwChipHTML(e,lehrer)}${lehrer?`<button class="secondary" data-kw="kwset" data-id="${esc(e.id)}">KW festlegen</button>`:""}${fertigBtn}<button class="secondary" data-kw="alt" data-id="${esc(e.id)}">Lernziele und Aufgaben</button></div></header>
+  ${secs}${lerneinheit}${checkout}${(!lehrer&&!secs&&!lerneinheit&&!checkout)?`<div class="kw-card"><div class="kw-leer">Deine Lehrkraft hat zu diesem Thema noch nichts eingestellt.</div></div>`:""}
+ </div>${footer()}`;
+}
+/* ------------------------------------------------ Lernstände: Check-Ins, Check-outs, digitale Tests mit KI-Vorkorrektur */
+const LT={tests:[],abg:{},alle:[],schueler:[],kiUrl:""};
+async function ltLaden(){
+ LT.tests=[];LT.abg={};LT.alle=[];LT.schueler=[];LT.kiUrl="";
+ try{LT.tests=(await getDocs(collection(db,"lernTests"))).docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>tsSek(a.createdAt)-tsSek(b.createdAt))}catch(e){console.warn("Tests:",e)}
+ try{
+  if(isTeacher())LT.alle=(await getDocs(collection(db,"lernTestAbgaben"))).docs.map(d=>({id:d.id,...d.data()}));
+  else(await getDocs(query(collection(db,"lernTestAbgaben"),where("uid","==",currentUser.uid)))).docs.forEach(d=>{const x=d.data();LT.abg[x.testId]={id:d.id,...x}});
+ }catch(e){console.warn("Abgaben:",e)}
+ try{const s=await getDoc(doc(db,"taskcardLinks","fobizz_test"));LT.kiUrl=s.exists()?(s.data().url||""):"";
+  if(!LT.kiUrl){const s2=await getDoc(doc(db,"taskcardLinks","fobizz_fachaufsatz"));LT.kiUrl=s2.exists()?(s2.data().url||""):""}}catch(e){}
+ if(isTeacher()){try{LT.schueler=(await getDocs(collection(db,"users"))).docs.map(d=>({uid:d.id,...d.data()})).filter(u=>u.status==="approved"&&istKlasse11Sb(u)).sort((a,b)=>anzeigeName(a).localeCompare(anzeigeName(b),"de"))}catch(e){console.warn("Schüler:",e)}}
+}
+function ltBE(t){return(t.fragen||[]).reduce((s,f)=>s+(Number(f.be)||0),0)}
+function ltStatus(t,a){
+ if(a&&a.bewertet)return`bewertet · ${a.be} von ${ltBE(t)} BE · ${a.notenpunkte} Notenpunkte`;
+ if(a&&a.abgegeben)return"abgegeben";
+ if(a&&Object.values(a.antworten||{}).some(x=>String(x).trim()))return"in Arbeit";
+ return t.status==="geschlossen"?"geschlossen":"noch offen";
+}
+async function lsCheckInsLaden(){
+ try{
+  const snap=isTeacher()?await getDocs(collection(db,"basischeckVersuche")):await getDocs(query(collection(db,"basischeckVersuche"),where("uid","==",currentUser.uid)));
+  return snap.docs.map(d=>d.data());
+ }catch(e){console.warn("Check-Ins:",e);return[]}
+}
+const LS_AMP={gruen:["#2E7D57","grün"],orange:["#E0A800","gelb"],rot:["#C0392B","rot"]};
+function lsAmpelPunkt(a,t){const f=(LS_AMP[a]||["#C5CCD3"])[0];return`<i class="ls-dot" style="background:${f}" title="${esc(t||"")}"></i>`}
+function lsThemenLb(n){const p=kwPhase(n);return p?kwThemenVonPhase(p):[]}
+function lsUnsicher(x){
+ const fr=(LT.fr||{})[x.wocheId]||[],out=[];
+ fr.forEach((f,i)=>{
+  const an=(x.antworten||[])[i],typ=f.typ||"mc";let ok;
+  if(typ==="mc")ok=an===f.richtig;
+  else if(typ==="kprim"){const s=String(an||"");ok=f.statements.every((st,k)=>(s[k]==="r")===st.correct)}
+  else if(typ==="zuordnung"){const p=String(an||"").split(",");ok=(f.paare||[]).every((_,k)=>p[k]===String(k))}
+  else if(typ==="lueckentext"){const p=String(an||"").split("|");ok=(f.loesung||[]).every((w,k)=>p[k]===w)}
+  else if(typ==="reihenfolge"){const p=String(an||"").split(",");ok=(f.schritte||[]).every((_,k)=>p[k]===String(k+1))}
+  else return;
+  if(!ok)out.push(f.tag||(String(f.text).slice(0,45)+"…"));
+ });
+ return out;
+}
+function lsTopUnsicher(id,max){
+ const m={};(LT.ci||[]).filter(x=>x.wocheId===id).forEach(x=>lsUnsicher(x).forEach(t=>m[t]=(m[t]||0)+1));
+ return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,max);
+}
+function lsUebersichtHTML(ci,co,abgaben){
+ const rows=LT.schueler.map(u=>{
+  const c=ci.filter(x=>x.uid===u.uid);
+  const a=abgaben.filter(x=>x.uid===u.uid&&x.abgegeben),aw=abgaben.filter(x=>x.uid===u.uid&&x.ausgewertet);
+  const np=aw.length?(aw.reduce((s,x)=>s+(Number(x.notenpunkte)||0),0)/aw.length).toFixed(1).replace(".",","):"–";
+  const t=LT.alle.filter(x=>x.uid===u.uid&&x.abgegeben);
+  const pu=["gruen","orange","rot"].map(k=>{const n=c.filter(x=>x.ampel===k).length;return n?`${lsAmpelPunkt(k)}${n} `:""}).join("");
+  return`<tr><th scope="row">${esc(anzeigeName(u))}</th><td>${c.length?`${c.length} · ${pu}`:"–"}</td><td>${a.length} abgegeben · Ø ${np} NP</td><td>${t.length}</td><td><button type="button" class="secondary kw-add" data-ls="detail" data-uid="${esc(u.uid)}">Details</button></td></tr>`;
+ }).join("");
+ return`<details class="kw-card ls-lern"><summary><b>Nach Lernenden</b> <small>Alles, was eine einzelne Person geleistet hat</small></summary><div class="kw-tabwrap">${LT.schueler.length?`<table class="kw-tab"><thead><tr><th>Pseudonym</th><th>Check-Ins</th><th>Check-outs und K-Prim-Tests</th><th>Digitale Tests</th><th></th></tr></thead><tbody>${rows}</tbody></table>`:`<div class="kw-leer">Noch keine freigeschalteten Schüler:innen.</div>`}</div><small>NP = Notenpunkte. Lehrkräfte-Konten erscheinen hier nicht.</small></details>`;
+}
+function lsCoZeile(c,d,lehrer,abgaben){
+ const a=d.meineAbgaben[c.id];
+ const st=c.status==="live"?`<span class="co-chip live"><span class="co-live-punkt"></span>läuft</span>`:c.status==="beendet"?`<span class="co-chip fertig">beendet</span>`:`<span class="co-chip entwurf">Entwurf</span>`;
+ let info="",rechts="";
+ if(lehrer){
+  const ab=abgaben.filter(x=>x.checkoutId===c.id&&x.abgegeben),aw=abgaben.filter(x=>x.checkoutId===c.id&&x.ausgewertet);
+  info=`${ab.length} von ${LT.schueler.length} abgegeben${aw.length?` · Ø ${(aw.reduce((s,x)=>s+(Number(x.notenpunkte)||0),0)/aw.length).toFixed(1).replace(".",",")} NP`:""}`;
+  rechts=c.status==="entwurf"?`<button class="secondary"onclick="openCheckoutEditor('${c.id}')">Bearbeiten</button><button class="primary"onclick="coLiveStarten('${c.id}')">▶ Live freischalten</button>`
+   :c.status==="live"?`<button class="primary"onclick="openCheckoutMonitor('${c.id}')">Live-Übersicht</button>`
+   :`<button class="secondary"onclick="openCheckoutErgebnisse('${c.id}')">Ergebnisse</button>`;
+ }else{
+  info=a?.ausgewertet?`${npText(a.notenpunkte)}`:a?.abgegeben?"abgegeben, wird ausgewertet":c.status==="live"?"läuft jetzt":"nicht teilgenommen";
+  rechts=c.status==="live"?(a?.abgegeben?`<span class="co-chip fertig">abgegeben ✓</span>`:`<button class="primary"onclick="openCheckoutTest('${c.id}')">${a?"Weiter":"Starten"}</button>`)
+   :a?.ausgewertet?`<button class="secondary"onclick="openCheckoutMeinErgebnis('${c.id}')">Ansehen</button>`:"";
+ }
+ return`<div class="ls-zeile"><span class="chip slk">Check-out</span><div class="ls-t"><b>${esc(coTitelAnzeige(c)||"Check-out")}</b><small>${coDatum(c.datum)} · ${(c.aufgaben||[]).length} K-Prim-Aufgaben · ${info}</small></div>${st}<div class="ls-a">${rechts}</div></div>`;
+}
+function lsTestZeile(t,lehrer){
+ const a=lehrer?null:LT.abg[t.id],n=lehrer?LT.alle.filter(x=>x.testId===t.id&&x.abgegeben).length:0;
+ const rechts=lehrer
+  ?`<button class="primary" data-ls="erg" data-id="${esc(t.id)}">Ergebnisse</button><button class="secondary" data-ls="testedit" data-id="${esc(t.id)}">Bearbeiten</button><button class="secondary" data-ls="toggle" data-id="${esc(t.id)}">${t.status==="geschlossen"?"Wieder öffnen":"Schließen"}</button><button class="secondary" data-ls="testweg" data-id="${esc(t.id)}">Löschen</button>`
+  :`<button class="primary" data-ls="open" data-id="${esc(t.id)}">${a&&a.abgegeben?"Ansehen":(t.status==="geschlossen"?"Ansehen":"Test starten")}</button>`;
+ return`<div class="ls-zeile"><span class="chip ueb">Digitaler Test</span><div class="ls-t"><b>${esc(t.titel)}</b><small>${ltBE(t)} BE${t.ki?" · mit KI-Vorkorrektur":""} · ${lehrer?`${n} von ${LT.schueler.length} abgegeben`:esc(ltStatus(t,a))}${t.status==="geschlossen"?" · geschlossen":""}</small></div><div class="ls-a">${rechts}</div></div>`;
+}
+function lsLbBlock(n,ci,co,abgaben,lehrer){
+ const ph=kwPhase(n),F=kwFarbe(n);if(!ph)return"";
+ const themen=lsThemenLb(n),N=LT.schueler.length;
+ const cos=((co&&co.checkouts)||[]).filter(c=>Number(c.lbNum)===n);
+ const tests=LT.tests.filter(t=>Number(t.lb)===n&&(lehrer||t.status!=="entwurf"));
+ // Kopfzahlen
+ let chip;
+ if(lehrer){
+  const v=ci.filter(x=>themen.some(e=>e.id===x.wocheId)).length;
+  chip=`Check-Ins ${v} von ${themen.length*N}`;
+ }else{
+  const v=themen.filter(e=>ci.some(x=>x.wocheId===e.id)).length;
+  chip=`Check-Ins ${v} von ${themen.length}`;
+ }
+ const zeilen=themen.map(e=>{
+  const mine=ci.filter(x=>x.wocheId===e.id);
+  if(lehrer){
+   const g=k=>mine.filter(x=>x.ampel===k).length,n3=mine.length;
+   const bar=n3?`<span class="ls-bar" title="grün ${g("gruen")} · gelb ${g("orange")} · rot ${g("rot")}">${["gruen","orange","rot"].map(k=>g(k)?`<i style="flex:${g(k)};background:${LS_AMP[k][0]}">${g(k)}</i>`:"").join("")}</span>`:`<span class="ls-bar leer"></span>`;
+   return`<div class="ls-th"><em>${esc(e.nr)}</em><span class="ls-tn">${esc(kwKurz(e))}${(()=>{const t=lsTopUnsicher(e.id,2);return t.length?`<small class="ls-uns">Unsicher: ${esc(t.map(x=>x[0]).join(" · "))}</small>`:""})()}</span>${bar}<small>${n3} von ${N}</small><button class="secondary kw-add" data-ls="thema" data-id="${esc(e.id)}">Wer?</button></div>`;
+  }
+  const x=mine[0];
+  return`<div class="ls-th"><em>${esc(e.nr)}</em><span class="ls-tn">${esc(kwKurz(e))}</span>${x?`${lsAmpelPunkt(x.ampel)}<small>${x.richtig} von ${x.gesamt} richtig</small>`:`<small class="ls-offen">Check-In offen</small>`}<button class="secondary kw-add" data-kw="checkin" data-id="${esc(e.id)}">${x?"Ansehen":"Starten"}</button></div>`;
+ }).join("");
+ const nachweise=cos.map(c=>lsCoZeile(c,co,lehrer,abgaben)).join("")+tests.map(t=>lsTestZeile(t,lehrer)).join("");
+ return`<details class="ls-lb" id="ls-lb${n}" style="--c:${F.c};--bg:${F.bg};--t:${F.t}"><summary class="ls-lbk"><small>LB ${n}</small><b>${esc(ph.lbTitel)}</b><span>${chip}</span><i class="ls-pf" aria-hidden="true">▾</i></summary>
+  <div class="ls-sek"><h4>Check-Ins nach Thema</h4>${zeilen||`<div class="kw-leer">Keine Themen.</div>`}</div>
+  <div class="ls-sek"><h4>Check-outs, K-Prim-Tests und digitale Tests</h4>${nachweise||`<div class="kw-leer">Zu diesem Lernbereich gibt es noch keinen Nachweis.</div>`}</div></details>`;
+}
+async function renderKwCheckouts(){
+ await kwLaden();await ltLaden();
+ const co=KW.co,lehrer=isTeacher();
+ const ci=await lsCheckInsLaden();LT.ci=ci;
+ let abgaben=[];
+ if(lehrer){try{abgaben=(await getDocs(collection(db,"checkoutAbgaben"))).docs.map(d=>d.data())}catch(e){}}
+ LT.abgaben=abgaben;
+ LT.fr={};
+ if(lehrer){const ids=[1,2,3,4].flatMap(n=>lsThemenLb(n).map(e=>e.id));await Promise.all(ids.map(async id=>{LT.fr[id]=await getBasischeckFragen(id)}))}
+ const nav=[1,2,3,4].map(n=>{const ph=kwPhase(n),F=kwFarbe(n);return ph?`<a class="ls-nav" href="#" data-ls="sprung" data-lb="${n}" style="--c:${F.c};--bg:${F.bg};--t:${F.t}"><small>LB ${n}</small><b>${esc(ph.lbTitel)}</b></a>`:""}).join("");
+ const bloecke=[1,2,3,4].map(n=>lsLbBlock(n,ci,co,abgaben,lehrer)).join("");
+ const verw=co?`<details class="kw-card ls-verw"><summary><b>Check-outs verwalten und Kurzarbeit-Ersatz</b> <small>${lehrer?"neuen Check-out anlegen, Einstellungen, Klassenübersicht":"deine Auswahl für den Kurzarbeit-Ersatz"}</small></summary>${checkoutSektionHTML(co)}</details>`:"";
+ return`<div class="kw kw-seite" style="--c:#3A8FD4;--bg:#E3F0FA;--t:#1F6FB2">
+  <button class="secondary" data-kw="wand">← Lernlandkarte</button>
+  <header class="kw-kopf"><small>LERNSTÄNDE</small><h1>${lehrer?"Lernstände der Klasse":"Meine Lernstände"}</h1><p>Geordnet nach Lernbereichen: Check-Ins je Thema, Check-outs, K-Prim-Tests und digitale Tests. Hier liegt auch der Alternative Leistungsnachweis (Kurzarbeit-Ersatz).</p><div class="kw-aktionen"><button class="secondary" onclick="go('lernstand')">Lernstandsmessung</button>${lehrer?`<button class="secondary" data-kw="fortschritt">Erledigt? Selbstlernkurse und Rallyes</button><button class="secondary" data-ls="testneu">Neuen Test anlegen</button><button class="secondary" data-ls="kilink">KI-Assistent-Link festlegen</button>`:""}</div></header>
+  ${co?checkoutLiveBannerHTML(co):""}
+  <div class="ls-navwrap">${nav}</div>
+  <div class="kw-aktionen" style="margin:0 0 10px"><button class="secondary" data-ls="alle" data-auf="1">Alle aufklappen</button><button class="secondary" data-ls="alle" data-auf="0">Alle zuklappen</button></div>
+  ${bloecke}
+  ${lehrer?lsUebersichtHTML(ci,co,abgaben):""}
+  ${verw}
+ </div>${footer()}`;
+}
+async function renderKwFortschritt(){
+ if(!isTeacher())return await renderKachelwand();
+ await kwLaden();
+ const [us,kf,rs,sa,lf]=await Promise.all([
+  getDocs(collection(db,"users")),getDocs(collection(db,"ppKursFortschritt")).catch(()=>({docs:[]})),
+  getDocs(collection(db,"ppRallyeStand")).catch(()=>({docs:[]})),getDocs(collection(db,"ppStundenAntworten")).catch(()=>({docs:[]})),
+  getDocs(collection(db,"lehrplanFortschritt")).catch(()=>({docs:[]}))]);
+ const schueler=us.docs.map(d=>({uid:d.id,...d.data()})).filter(u=>u.status==="approved"&&istKlasse11Sb(u)).sort((a,b)=>anzeigeName(a).localeCompare(anzeigeName(b),"de"));
+ const K={},R={},S={},L={};
+ kf.docs.forEach(d=>{const x=d.data();K[x.modulId+"_"+x.uid]=x});rs.docs.forEach(d=>{const x=d.data();R[x.modulId+"_"+x.uid]=x});
+ sa.docs.forEach(d=>{const x=d.data();S[x.modulId+"_"+x.uid]=x});lf.docs.forEach(d=>{L[d.id]=d.data()});
+ const mods=PPM.liste.filter(m=>["selbstlern","rallye","einfuehrung","apt","stunde"].includes(m.modul)).sort((a,b)=>(Number(a.lb)-Number(b.lb))||(ppmSwIndex(a.start)-ppmSwIndex(b.start)));
+ // Zelle: {t:Text, k:"ok"|"teil"|"flach"|"offen"}
+ const zelle=(m,u)=>{
+  try{
+   if(m.modul==="selbstlern"&&String(m.kursId||"").startsWith("ea:")){const f=L[u.uid+"_"+m.kursId.slice(3)]||{},a=f.einarbeitungAufgaben;
+    if(f.einarbeitungAbgeschlossen){const q=a&&a.gesamt?a.richtig/a.gesamt:1;return q<0.6?{t:`fertig, aber nur ${a.richtig}/${a.gesamt} richtig`,k:"flach"}:{t:a&&a.gesamt?`fertig · ${a.richtig}/${a.gesamt}`:"fertig",k:"ok"}}
+    return a?{t:`begonnen · ${a.richtig}/${a.gesamt}`,k:"teil"}:{t:"offen",k:"offen"}}
+   if(m.modul==="selbstlern"){const sch=ppmKursSchritte(m).filter(x=>x.typ!=="abschluss"),f=K[m.id+"_"+u.uid],n=f?sch.filter(x=>f.erledigt&&f.erledigt[x.id]).length:0;return n===sch.length&&sch.length?{t:"fertig",k:"ok"}:(n?{t:`${n}/${sch.length} Schritte`,k:"teil"}:{t:"offen",k:"offen"})}
+   if(m.modul==="rallye"){const s=R[m.id+"_"+u.uid]||{},n=(m.stationen||[]).length,f=Object.keys(s.erg||{}).length;
+    if(!f)return{t:"offen",k:"offen"};const richtig=Object.values(s.erg||{}).filter(x=>x&&(x.richtig===true||x.ok===true)).length;
+    return f>=n&&n?{t:`alle ${n} Stationen`,k:"ok"}:{t:`${f}/${n} Stationen`,k:"teil"}}
+   if(m.modul==="einfuehrung"){const ids=m.kurse||[];if(!ids.length)return{t:"–",k:"offen"};const n=ids.filter(id=>(L[u.uid+"_"+id]||{}).einarbeitungAbgeschlossen).length;return n===ids.length?{t:"fertig",k:"ok"}:(n?{t:`${n}/${ids.length} Kurse`,k:"teil"}:{t:"offen",k:"offen"})}
+   if(m.modul==="apt"){const f=S[m.id+"_"+u.uid]||{};return f.aptBewertung?{t:"verglichen",k:"ok"}:(f.aptAbgegeben?{t:"abgegeben",k:"teil"}:(f.aptAntwort?{t:"in Arbeit",k:"teil"}:{t:"offen",k:"offen"}))}
+   if(m.modul==="stunde"){const f=S[m.id+"_"+u.uid];return f&&f.fertig?{t:"fertig",k:"ok"}:(f?{t:"in Arbeit",k:"teil"}:{t:"offen",k:"offen"})}
+  }catch(e){}
+  return{t:"–",k:"offen"};
+ };
+ const kopf=mods.map(m=>{const T=KW_BAUSTEINE[m.modul]||["",""];return`<th><span class="chip ${T[1]}">${esc(T[0])}</span><br><small>LB ${esc(m.lb)} · ${esc(m.titel||"")}</small></th>`}).join("");
+ const zeilen=schueler.map(u=>`<tr><th scope="row">${esc(anzeigeName(u))}</th>${mods.map(m=>{const z=zelle(m,u);return`<td class="kw-z ${z.k}">${esc(z.t)}</td>`}).join("")}</tr>`).join("");
+ return`<div class="kw kw-seite" style="--c:#3A8FD4;--bg:#E3F0FA;--t:#1F6FB2">
+  <button class="secondary" data-kw="wand">← Lernlandkarte</button>
+  <header class="kw-kopf"><small>FÜR LEHRKRÄFTE</small><h1>Erledigt? Selbstlernkurse und Lernrallyes</h1><p>Grün: ordentlich abgeschlossen. Orange: begonnen oder nur flüchtig bearbeitet (fertig, aber weniger als 60 % richtig). Grau: noch offen. Lehrkräfte-Konten erscheinen hier nicht.</p></header>
+  <div class="kw-card"><div class="kw-tabwrap">${mods.length&&schueler.length?`<table class="kw-tab"><thead><tr><th>Pseudonym</th>${kopf}</tr></thead><tbody>${zeilen}</tbody></table>`:`<div class="kw-leer">Noch keine passenden Bausteine oder freigeschaltete Schüler:innen.</div>`}</div></div>
+  <div class="kw-card"><h3>Weitere Stellen</h3><div class="kw-aktionen"><button class="secondary" onclick="go('lernstand')">Lernstandsmessung (alle Aufgaben, Versuche)</button><button class="secondary" data-kw="checkouts">Check-out-Ergebnisse</button></div></div>
+ </div>${footer()}`;
+}
+/* ------------------------------------------------ Dateien am Thema anlegen */
+async function kwFaUebungOeffnen(uid){
+ const alle=await faLaden(),u=alle.find(x=>x.id===uid);
+ if(!u){toast("Diese Übung gibt es nicht mehr.");return}
+ const h=await ppmFachaufsatzSeite({lb:u.lb,themen:[],uebIds:[uid]},{karten:true});
+ const th=kwThemaById(u.thema);
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">ÜBUNGSAUFGABE · LB ${u.lb}</div><h2>${esc(u.titel)}</h2><p style="color:var(--muted);margin:0 0 6px">${esc(th?kwKurz(th):(u.zusatz||""))} </p>${h.replace(/<details class="fa-ue/,'<details open class="fa-ue')}<div class="form-actions"><button class="secondary" onclick="closeModal()">Schließen</button></div>`);
+}
+window.kwFaUebungOeffnen=kwFaUebungOeffnen;
+// Übungen (Fachaufsatztraining) für ein Thema auswählen: nach Lernbereichen geordnet, ohne Termin und Dauer.
+const KW_KK={pp04:"Merkmale von Erziehung (und Bildung)",pp05:"Erziehungsstile nach Baumrind",pp07:"Der Bayerische Bildungs- und Erziehungsplan (BayBEP)"};
+async function kwUbKatalog(){try{const r=await fetch("uebungsbausteine/stationen/katalog.json",{cache:"no-cache"});return r.ok?await r.json():[]}catch(e){return[]}}
+function kwWorte(t){return String(t||"").toLowerCase().replace(/[^a-zäöüß ]/g," ").split(/\s+/).filter(w=>w.length>=5)}
+// Übungen, Spiele und Karteikarten für ein Thema auswählen: nach Lernbereichen geordnet, ohne Termin und Dauer.
+async function kwFaPicker(kat,themaId,modus){
+ const nurFa=modus==="fa",nurSp=modus==="spiele";
+ const e=kwThemaById(themaId||activeKwThema);if(!e||!isTeacher())return;
+ const ph=PROJEKT_PHASEN.find(p=>p.id===e.phase);
+ const [alle,vorh,ub]=await Promise.all([faLaden(),getDocs(query(collection(db,"lehrplanMaterialien"),where("wocheId","==",e.id))).then(sn=>sn.docs.map(d=>d.data())).catch(()=>[]),kwUbKatalog()]);
+ const schon=new Set(vorh.filter(x=>String(x.url||"").startsWith("fa:")).map(x=>x.url.slice(3)));
+ const schonUrl=new Set(vorh.map(x=>x.url));
+ const kopf=g=>{const t=kwThemaById(g);return t?`Nr. ${t.nr} · ${kwKurz(t)}`:`Weiteres Thema: ${(alle.find(u=>u.thema===g)||{}).zusatz||g}`};
+ const zeile=u=>`<label class="check"><input type="checkbox" class="kwFaCb" value="${esc(u.id)}"${schon.has(u.id)?" checked disabled":(u.thema===e.id&&!u.zusatz?" checked":"")}> <span><b>${esc(u.titel)}</b> <small>${[u.zusatz?esc(u.zusatz):"",schon.has(u.id)?"schon hinzugefügt":""].filter(Boolean).join(" · ")}</small></span></label>`;
+ // Spiele und Übungsbausteine (uebungsbausteine/stationen/katalog.json), Zuordnung zum Thema über gemeinsame Wörter
+ const ew=new Set(kwWorte(e.thema));
+ const ubThemen=n=>[...new Set(ub.filter(x=>(x.pfad||[])[0]==="LB "+n).map(x=>x.thema))];
+ const passt=t=>kwWorte(t).some(w=>ew.has(w));
+ const ubZeile=x=>{const url=`uebungsbausteine/station.html?s=${x.id}`,da=schonUrl.has(url);return`<label class="check"><input type="checkbox" class="kwUbCb" value="${esc(x.id)}" data-st="${esc(x.stufe||"uebung")}"${da?" checked disabled":""}> <span><b>${esc(x.titel)}</b> <small>${[(x.pfad||[]).slice(-1)[0]||"",x.stufe==="vertiefung"?"Vertiefung":"",da?"schon hinzugefügt":""].filter(Boolean).map(esc).join(" · ")}</small></span></label>`};
+ const kkGr=KW_KK[e.id];
+ const lbGr=n=>{
+  const l=alle.filter(u=>u.lb===n),ut=ubThemen(n);if(nurFa?!l.length:nurSp?!ut.length:(!l.length&&!ut.length))return"";
+  const gr=[...new Set(l.map(u=>u.thema))].sort((a,b)=>(a===e.id?-1:b===e.id?1:0));
+  const lt=(PROJEKT_PHASEN.find(p=>p.lbNum===n)||{}).lbTitel||"";
+  const kk=n===ph.lbNum||true?(()=>{const url=`karteikarten/index.html?lb=${n}`+(n===ph.lbNum&&kkGr?`&thema=${encodeURIComponent(kkGr)}`:"");const da=schonUrl.has(url);return`<label class="check"><input type="checkbox" class="kwKkCb" value="${esc(url)}" data-t="${esc(`LB ${n} · ${n===ph.lbNum&&kkGr?kkGr:"Alle Themen"} · Karteikarten`)}"${da?" checked disabled":""}> <span><b>${esc(`LB ${n} · ${n===ph.lbNum&&kkGr?kkGr:"Alle Themen"} · Karteikarten`)}</b> <small>${da?"schon hinzugefügt":"Begriffe und Definitionen zum Üben"}</small></span></label>`})():"";
+  const ubHtml=ut.sort((a,b)=>(n===ph.lbNum?(passt(b)-passt(a)):0)).map(t=>`<div class="kw-fa-gr" style="--k:#8460b8"><b class="fa-lbkopf">Spiele und Übungen: ${esc(t)}</b>${ub.filter(x=>(x.pfad||[])[0]==="LB "+n&&x.thema===t).map(ubZeile).join("")}</div>`).join("");
+  return`<details class="fa-lbgr kw-fa-lb" data-lb="${n}"${n===ph.lbNum||nurFa?" open":""}><summary><b>Lernbereich ${n}</b> ${esc(lt)}<small>${[nurSp?"":l.length+" Übungen",nurFa?"":ub.filter(x=>(x.pfad||[])[0]==="LB "+n).length+" Spiele"].filter(Boolean).join(" · ")}</small></summary>
+   ${gr.length&&!nurSp?`<h4 class="kw-fa-h">Fachaufsatztraining</h4>`:""}${nurSp?"":gr.map(g=>`<div class="kw-fa-gr" style="--k:#4f9a35"><b class="fa-lbkopf">${esc(kopf(g))}</b>${l.filter(u=>u.thema===g).map(zeile).join("")}</div>`).join("")}
+   ${ut.length&&!nurFa?`<h4 class="kw-fa-h">Spiele, Zuordnungen und Vertiefungen</h4>${ubHtml}`:""}
+   ${nurFa?"":`<h4 class="kw-fa-h">Lernen mit Karteikarten</h4><div class="kw-fa-gr" style="--k:#e08a2e">${kk}</div>`}</details>`;
+ };
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">${esc(kwKurz(e)).toUpperCase()}</div><h2>${nurFa?"Fachaufsatztraining auswählen":nurSp?"Übungen und Spiele auswählen":"Übungen und Vertiefungen auswählen"}</h2>
+  <p style="color:var(--muted);margin:0 0 8px">${nurFa?"Kreuze die Fachaufsätze aus Abschlussprüfungen an, die bei diesem Thema erscheinen sollen. Alle Lernbereiche sind aufgeklappt, jeder Fall hat Zeilennummern.":"Kreuze an, was bei diesem Thema erscheinen soll: "+(nurSp?"":"Fachaufsatz-Übungen, ")+"Spiele (Zuordnung, Memory, Blockfall, Lückentext, Theorievergleich) und Karteikarten."} Sortiert nach Lernbereich.</p>
+  <div class="form kw-fa-pick">${[1,2,3,4].map(lbGr).join("")||`<div class="kw-leer">Noch keine Übungen vorhanden.</div>`}
+  ${kat?`<button type="button" class="text-button" id="kwFaDatei">Stattdessen eine eigene Datei oder einen Link hinzufügen</button>`:""}
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" id="kwFaSave">Hinzufügen</button></div></div>`);
+ if(kat)$("kwFaDatei").onclick=()=>kwMatFormDatei(kat);
+ $("kwFaSave").onclick=async()=>{
+  const ids=[...document.querySelectorAll(".kwFaCb:checked:not(:disabled)")].map(c=>c.value);
+  const ubs=[...document.querySelectorAll(".kwUbCb:checked:not(:disabled)")].map(c=>({id:c.value,st:c.dataset.st}));
+  const kks=[...document.querySelectorAll(".kwKkCb:checked:not(:disabled)")].map(c=>({url:c.value,t:c.dataset.t}));
+  const n=ids.length+ubs.length+kks.length;
+  if(!n){toast("Bitte mindestens einen Eintrag ankreuzen.");return}
+  const basis={wocheId:e.id,fach:"paedagogik",dateiName:"",createdBy:currentUser.uid};
+  try{
+   // Vertiefungen landen immer bei den Vertiefungsaufgaben: Lückentext = Stufe 1, Theorievergleich = Stufe 2, Fachaufsatz-Vertiefung = Stufe 3
+   const katFa=u=>(kat&&/^vertiefung\d$/.test(kat))?kat:(u.zusatz?"vertiefung3":"uebung");
+   const katUb=kt=>(kat&&/^vertiefung\d$/.test(kat))?kat:(kt.stufe==="vertiefung"?(/Lückentext/.test((kt.pfad||[]).slice(-1)[0]||"")?"vertiefung1":"vertiefung2"):"uebung");
+   for(const id of ids){const u=alle.find(x=>x.id===id);
+    await addDoc(collection(db,"lehrplanMaterialien"),{...basis,kategorie:katFa(u),titel:u.titel+(u.zusatz==="Vertiefung"?" (Vertiefung)":""),url:"fa:"+id,createdAt:serverTimestamp()})}
+   for(const x of ubs){const kt=ub.find(y=>y.id===x.id);
+    await addDoc(collection(db,"lehrplanMaterialien"),{...basis,kategorie:katUb(kt),titel:kt.titel,url:`uebungsbausteine/station.html?s=${x.id}`,createdAt:serverTimestamp()})}
+   for(const x of kks)await addDoc(collection(db,"lehrplanMaterialien"),{...basis,kategorie:(kat&&/^vertiefung\d$/.test(kat))?kat:"uebung",titel:x.t,url:x.url,createdAt:serverTimestamp()});
+   closeModal();toast(n===1?"Hinzugefügt.":n+" Einträge hinzugefügt.");render();
+  }catch(err){console.error(err);toast("Konnte nicht gespeichert werden.")}
+ };
+}
+window.kwFaPicker=kwFaPicker;
+async function kwMatForm(kat){
+ if(!isTeacher())return;
+ if(kat==="lernuebersicht")return kwLuPicker();
+ if(!/^(uebung|vertiefung\d?)$/.test(kat))return kwMatFormDatei(kat);
+ return kwFaPicker(kat);
+}
+async function kwMatFormDatei(kat){
+ const e=kwThemaById(activeKwThema);if(!e||!isTeacher())return;
+ const def=KW_KAT.find(k=>k.key===kat||(k.stufen||[]).some(s=>s[0]===kat));
+ const stufe=def&&def.stufen?def.stufen.find(s=>s[0]===kat):null;
+ const istBoard=!!(def&&def.board);
+ let boards=[];if(istBoard){try{boards=await getCollection("whiteboards","createdAt",true,200);boards=def.key==="lernuebersicht"?boards.filter(b=>b.lernVorlage===true):boards.filter(b=>b.art==="tafel"&&!b.lernVorlage&&!b.lernKey)}catch(x){}}
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">${esc(kwKurz(e)).toUpperCase()}</div><h2>${esc(def?def.label:"Datei")}${stufe?" · "+esc(stufe[1]):""} hinzufügen</h2>
+  <div class="form"><label>Titel<input id="kwTitel" maxlength="120"></label>
+  ${istBoard?`<label>Vorhandene Tafel wählen<select id="kwBoard"><option value="">– keine –</option>${boards.map(b=>`<option value="${esc(b.id)}">${esc(b.title||"Tafel")}</option>`).join("")}</select></label>`:""}
+  <label>Datei hochladen (max. 15 MB)<input id="kwDatei" type="file"></label>
+  <label>oder Link<input id="kwLink" type="url" placeholder="https://"></label>
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" id="kwSave">Speichern</button></div></div>`);
+ $("kwSave").onclick=async()=>{
+  const titel=$("kwTitel").value.trim(),f=$("kwDatei").files[0],link=$("kwLink").value.trim(),bd=$("kwBoard")?$("kwBoard").value:"";
+  if(!titel){toast("Bitte einen Titel eingeben.");return}
+  if(!f&&!link&&!bd){toast("Bitte Datei, Link oder Tafel angeben.");return}
+  try{
+   let url=bd?"board:"+bd:link,dateiName="";
+   if(f){toast("Datei wird hochgeladen …");const up=await uploadCampusDatei(f,`ppMaterial/thema_${e.id}`);url=up.url;dateiName=up.name}
+   await addDoc(collection(db,"lehrplanMaterialien"),{wocheId:e.id,fach:"paedagogik",kategorie:kat,titel,url,dateiName,createdBy:currentUser.uid,createdAt:serverTimestamp()});
+   closeModal();toast("Gespeichert.");render();
+  }catch(err){console.error(err);toast(err&&err.message?err.message:"Konnte nicht gespeichert werden.")}
+ };
+}
+async function kwModulWaehlen(themaId){
+ await ppmLaden(true);
+ const e=kwThemaById(themaId),ph=PROJEKT_PHASEN.find(p=>p.id===e.phase);
+ const l=PPM.liste.filter(m=>m.modul!=="projekt"&&m.modul!=="experiment"&&Number(m.lb)===ph.lbNum);
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">LERNEINHEIT ZUORDNEN</div><h2>${esc(kwKurz(e))}</h2>
+  <p>Setze einen Haken bei jedem Baustein des Lernbereichs, der zu diesem Thema gehört.</p>
+  <div class="form">${l.map(m=>`<label class="check"><input type="checkbox" class="kwMod" value="${esc(m.id)}"${(m.themen||[]).includes(themaId)?" checked":""}> ${esc((KW_BAUSTEINE[m.modul]||[m.modul])[0])}: ${esc(m.titel||"")}</label>`).join("")||`<div class="kw-leer">In diesem Lernbereich gibt es noch keine Bausteine. Plane zuerst einen ein.</div>`}
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" id="kwModSave">Speichern</button></div></div>`);
+ $("kwModSave").onclick=async()=>{
+  try{for(const c of document.querySelectorAll(".kwMod")){const m=ppmById(c.value),h=new Set(m.themen||[]);c.checked?h.add(themaId):h.delete(themaId);await updateDoc(doc(db,"ppModule",m.id),{themen:[...h],updatedAt:serverTimestamp()})}
+   closeModal();await ppmLaden(true);toast("Zugeordnet.");render()}catch(err){console.error(err);toast("Konnte nicht gespeichert werden.")}
+ };
+}
+async function kwModulEntfernen(modulId,themaId){
+ if(!isTeacher())return;
+ await ppmLaden(true);
+ const m=ppmById(modulId);if(!m)return;
+ const nm=m.titel||(KW_BAUSTEINE[m.modul]||["Baustein"])[0];
+ const rest=(m.themen||[]).filter(t=>t!==themaId);
+ if(!confirm(rest.length?`„${nm}“ von diesem Thema entfernen?\n\nDer Baustein bleibt bei den anderen Themen erhalten.`:`„${nm}“ wirklich entfernen?\n\nDer Baustein wird gelöscht (auch aus dem Modulplan). Fortschritte der Klasse bleiben in der Datenbank erhalten, sind aber nicht mehr sichtbar.`))return;
+ try{
+  if(rest.length)await updateDoc(doc(db,"ppModule",m.id),{themen:rest,updatedAt:serverTimestamp()});
+  else await deleteDoc(doc(db,"ppModule",m.id));
+  await ppmLaden(true);toast("Entfernt.");render();
+ }catch(err){console.error(err);toast("Das Entfernen hat nicht geklappt.")}
+}
+/* ------------------------------------------------ Klicks */
+document.addEventListener("click",async ev=>{
+ const b=ev.target.closest&&ev.target.closest("[data-kw]");if(!b||!currentUser)return;
+ const a=b.dataset.kw,id=b.dataset.id;
+ try{
+  if(a==="thema"){activeKwThema=id;go("kw-thema")}
+  else if(a==="projekt"){activeKwLb=Number(b.dataset.lb);go("kw-projekt")}
+  else if(a==="wand")go("start");
+  else if(a==="kwset")kwSetzenModal(b.dataset.id);
+  else if(a==="checkouts")go("kw-checkouts");
+  else if(a==="fortschritt")go("kw-fortschritt");
+  else if(a==="matadd")kwMatForm(b.dataset.kat);
+  else if(a==="faueb")kwFaUebungOeffnen(id);
+  else if(a==="matweg"){if(!confirm("Diese Datei wirklich entfernen?"))return;await deleteDoc(doc(db,"lehrplanMaterialien",id));toast("Entfernt.");render()}
+  else if(a==="board"){wbVonKw=true;if(isTeacher())openWhiteboard(id);else{const s=await getDoc(doc(db,"whiteboards",id));if(s.exists()&&s.data().lernVorlage)await lbMeineKopie(id,String(s.data().title||"").replace(/\s*–\s*Lernübersicht$/,""));else openWhiteboard(id)}}
+  else if(a==="checkin"){const e=kwThemaById(id);const fr=await getBasischeckFragen(id);if(!fr.length){toast("Für dieses Thema ist noch kein Check-In hinterlegt.");return}window.__eaRueck=null;openCheckIn(id)}
+  else if(a==="alt"){const e=kwThemaById(id);e.typ==="apt"?openAptDetail(id):openWocheDetail("paedagogik",id)}
+  else if(a==="ea"){window.__eaRueck=async()=>{await render()};openEinarbeitung(id)}
+  else if(a==="modul")ppmOeffnen(id);
+  else if(a==="modulneu"){const e=kwThemaById(id),ph=PROJEKT_PHASEN.find(p=>p.id===e.phase);window.__kwThemaNeu=id;kwBausteinWahl(id)}
+  else if(a==="modulwahl")kwModulWaehlen(id);
+  else if(a==="modulweg")await kwModulEntfernen(id,b.dataset.thema);
+  else if(a==="projektstart"){const ph=kwPhase(b.dataset.lb);const pm=PPM.liste.find(m=>m.modul==="projekt"&&Number(m.lb)===ph.lbNum&&!m.projektId);if(pm)ppmOeffnen(pm.id);else{activePPModul=null;activeFach="paedagogik";activePhaseDetail=ph.id+":projekt";go("fach")}}
+  else if(a==="exp"){activeFach="paedagogik";openExperimentStunde(null)}
+  else if(a==="fertig"){
+   const neu=!kwErledigt(id);
+   await setDoc(doc(db,"lehrplanFortschritt",`${currentUser.uid}_${id}`),{uid:currentUser.uid,wocheId:id,fach:"paedagogik",abgeschlossen:neu,updatedAt:serverTimestamp()},{merge:true});
+   if(neu)showMotivationsBild(true,"abgabe");render();
+  }
+ }catch(err){console.error("Kachelwand:",err);toast("Das hat nicht geklappt. Bitte erneut versuchen.")}
+});
+
+init();
+
+
+/* =========================================================
+ ROBUST INTERACTION BRIDGE – KALENDER & IMPULSE
+ ========================================================= */
+(function(){
+ if(window.__CampusInteractionBridgeInstalled)return;
+ window.__CampusInteractionBridgeInstalled=true;
+
+ document.addEventListener("click", async function(ev){
+ const el=ev.target.closest("[data-calendar-add],[data-calendar-day],[data-impulse-id],[data-open-impulse]");
+ if(!el)return;
+
+ ev.preventDefault();
+ ev.stopPropagation();
+
+ try{
+ if(el.hasAttribute("data-calendar-add")){
+ if(typeof window.openCalendarForm==="function") window.openCalendarForm();
+ else if(typeof openCalendarForm==="function") openCalendarForm();
+ return;
+ }
+
+ if(el.hasAttribute("data-calendar-day")){
+ const raw=el.getAttribute("data-calendar-day");
+ const parts=raw.split("-").map(Number);
+ if(parts.length===3 && typeof window.openCalendarDay==="function"){
+ window.openCalendarDay(parts[0],parts[1],parts[2]);
+ }
+ return;
+ }
+
+ const impulseId=el.getAttribute("data-impulse-id")||el.getAttribute("data-open-impulse");
+ if(impulseId){
+ if(typeof window.openImpulse==="function") window.openImpulse(impulseId);
+ else if(typeof window.openImpuls==="function") window.openImpuls(impulseId);
+ else if(typeof window.openImpulseModal==="function") window.openImpulseModal(impulseId);
+ else{
+ const data=window._campusImpulses||window.impulses||[];
+ const item=data.find(x=>String(x.id)===String(impulseId));
+ if(item){
+ const title=item.title||item.name||"Impuls";
+ const body=item.text||item.content||item.description||"";
+ if(typeof window.modal==="function") window.modal(`<button class="modal-close"onclick="closeModal()">×</button><div class="kicker">IMPULS</div><h2>${esc(title)}</h2><p>${esc(body)}</p>`);
+ }
+ }
+ }
+ }catch(err){
+ console.error("Campus Interaction:",err);
+ }
+ },true);
+})();
+
+
+/* Compatibility aliases */
+if(typeof window.openCalendarForm!=="function" && typeof openCalendarForm==="function") window.openCalendarForm=openCalendarForm;
+if(typeof window.addCalendar!=="function" && typeof addCalendar==="function") window.addCalendar=addCalendar;
+if(typeof window.openCalendarDay!=="function" && typeof openCalendarDay==="function") window.openCalendarDay=openCalendarDay;
+if(typeof window.openImpulse!=="function" && typeof openImpulse==="function") window.openImpulse=openImpulse;
+if(typeof window.openImpuls!=="function" && typeof openImpuls==="function") window.openImpuls=openImpuls;
+if(typeof window.openImpulseModal!=="function" && typeof openImpulseModal==="function") window.openImpulseModal=openImpulseModal;
+
+
+try{ if(typeof closeResilienzModal==="function") window.closeResilienzModal=closeResilienzModal; }catch(_){}
+
+
+/* Robust close handler for"Impuls für mich" */
+(function(){
+ if(window.__ImpulsCloseFixInstalled)return;
+ window.__ImpulsCloseFixInstalled=true;
+ document.addEventListener("click",function(ev){
+ const btn=ev.target.closest('[data-close-impuls-modal]');
+ if(!btn)return;
+ ev.preventDefault();
+ ev.stopPropagation();
+ try{
+ if(typeof window.closeModal==="function") window.closeModal();
+ else if(typeof closeModal==="function") closeModal();
+ }catch(err){ console.error("Impuls schließen:",err); }
+ },true);
+})();
+
+// ---------------------------------------------------------------
+// Inline-Handler (onclick="…", onchange="…") laufen im globalen Bereich. Weil app.js ein
+// Modul ist, muss alles, was sie aufrufen, am window hängen. (Ohne diese Zeile tun die
+// Knöpfe „Vorschau (Schüleransicht)“, „Aus der Aufgabenbank einsetzen“ und
+// „Ganzen Test aus Vorlage einsetzen“ nichts, ebenso die Haken „Prüfungsfrage gelesen“,
+// „mit KI korrigiert“ und der Besprechungswunsch, die serverTimestamp() nutzen.)
+Object.assign(window,{coEditorVorschau,coEditorVorschauZurueck,coBankEinsetzen,coVorlageWaehlen,coStandAktualisieren,reopenDetail,$,
+ serverTimestamp:(...a)=>serverTimestamp(...a)});
+
+
+// ============================================================
+// BAUSTEINE AN STUNDEN UND MODULEN: Digitale Tafel · Lernübersicht · Whiteboard
+// (nicht bei K-Prim-Test und Abschlussprüfungstraining)
+//  · Digitale Tafel: nur Lehrkräfte verändern sie, Schüler:innen sehen zu.
+//  · Lernübersicht: Die Lehrkraft baut sie als Whiteboard (art "tafel", nur für Lehrkräfte änderbar) als Zusammenfassung
+//    der Stunde. Jede:r Schüler:in bekommt beim ersten Öffnen eine EIGENE KOPIE (art "lern") und ergänzt dort
+//    Notizen, Bilder, Zeichnungen. Die Zuordnung steht in ppLernuebersicht (ID "<vorlageBoardId>_<uid>").
+//    Als PDF: Knopf „Als PDF“ im Whiteboard (Druckdialog „Als PDF sichern“), weitergearbeitet wird immer in der App.
+//  · Whiteboard: gemeinsames Team-Whiteboard, an dem alle mitarbeiten.
+// ============================================================
+async function lbEintragSicher(e){
+ const alt=await getDocs(query(collection(db,"whiteboards"),where("lernKey","==",e.id)));
+ if(alt.docs.length)return alt.docs[0].id;
+ const r=await addDoc(collection(db,"whiteboards"),{title:(e.thema+" – Lernübersicht").slice(0,120),description:"Lernübersicht: Zusammenfassung der Lehrkraft, Schüler:innen bekommen eine eigene Kopie zum Ergänzen",art:"tafel",schreibschutz:true,seiten:1,bg:"weiss",lernVorlage:true,lernKey:e.id,createdBy:currentUser.uid,createdByName:anzeigeName(profile,currentUser),createdAt:serverTimestamp()});
+ await lbItemsSchreiben(r.id,lbLernItems(0,0,e.thema,e));
+ return r.id;
+}
+async function kwLuPicker(themaId){
+ const t=kwThemaById(themaId||activeKwThema);if(!t||!isTeacher())return;
+ let liste=[];
+ try{const r=await fetch("lernuebersichten/lernuebersichten.json?v="+Date.now());if(!r.ok)throw new Error("HTTP "+r.status);liste=await r.json();}catch(err){console.error(err);toast("Die Datei lernuebersichten/lernuebersichten.json wurde nicht gefunden.");return;}
+ if(!Array.isArray(liste)||!liste.length){toast("Die Datei enthält keine Lernübersichten.");return;}
+ const [vorh,bs]=await Promise.all([
+  getDocs(query(collection(db,"lehrplanMaterialien"),where("wocheId","==",t.id))).then(sn=>new Set(sn.docs.map(d=>d.data().url))).catch(()=>new Set()),
+  getDocs(query(collection(db,"whiteboards"),where("lernVorlage","==",true))).then(sn=>Object.fromEntries(sn.docs.map(d=>[d.data().lernKey,d.id]))).catch(()=>({}))]);
+ const da=e=>!!(bs[e.id]&&vorh.has("board:"+bs[e.id]));
+ const zeile=(e,vor)=>`<label class="check"><input type="checkbox" class="kwLuCb" value="${esc(e.id)}"${da(e)?" checked disabled":(vor?" checked":"")}> <span><b>${esc(e.thema)}</b> <small>${[esc(e.unter||""),da(e)?"schon hinzugefügt":""].filter(Boolean).join(" · ")}</small></span></label>`;
+ const passend=liste.filter(e=>e.kw===t.id),rest=liste.filter(e=>e.kw!==t.id);
+ const lbN=e=>Number(((e.unter||"").match(/LB (\d)/)||[])[1])||0;
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">${esc(kwKurz(t)).toUpperCase()}</div><h2>Lernübersicht auswählen</h2>
+  <p style="color:var(--muted);margin:0 0 8px">Die Lernübersicht ist ein Whiteboard mit fünf Bausteinen. Schüler:innen bekommen beim Öffnen eine eigene Kopie zum Ergänzen. Fehlende Whiteboards werden beim Hinzufügen automatisch angelegt.</p>
+  <div class="form kw-fa-pick">
+  ${passend.length?`<div class="kw-fa-gr" style="--k:#3a7fd0"><b class="fa-lbkopf">Passend zu diesem Thema</b>${passend.map(e=>zeile(e,true)).join("")}</div>`:`<div class="kw-leer">Für dieses Thema gibt es noch keine passende Lernübersicht. Unten kannst du eine andere wählen.</div>`}
+  ${[1,2,3,4].map(n=>{const l=rest.filter(e=>lbN(e)===n);return l.length?`<details class="fa-lbgr kw-fa-lb"><summary><b>Weitere Lernübersichten · Lernbereich ${n}</b><small>${l.length}</small></summary><div class="kw-fa-gr" style="--k:#3a7fd0">${l.map(e=>zeile(e,false)).join("")}</div></details>`:""}).join("")}
+  ${rest.filter(e=>!lbN(e)).length?`<details class="fa-lbgr kw-fa-lb"><summary><b>Weitere Lernübersichten</b></summary><div class="kw-fa-gr" style="--k:#3a7fd0">${rest.filter(e=>!lbN(e)).map(e=>zeile(e,false)).join("")}</div></details>`:""}
+  <button type="button" class="text-button" id="kwLuDatei">Stattdessen eine eigene Tafel, Datei oder einen Link hinzufügen</button>
+  <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" id="kwLuSave">Hinzufügen</button></div></div>`);
+ $("kwLuDatei").onclick=()=>kwMatFormDatei("lernuebersicht");
+ $("kwLuSave").onclick=async()=>{
+  const ids=[...document.querySelectorAll(".kwLuCb:checked:not(:disabled)")].map(c=>c.value);
+  if(!ids.length){toast("Bitte mindestens eine Lernübersicht ankreuzen.");return}
+  try{
+   toast("Lernübersicht wird vorbereitet …");
+   for(const id of ids){const e=liste.find(x=>x.id===id),bid=await lbEintragSicher(e);
+    await addDoc(collection(db,"lehrplanMaterialien"),{wocheId:t.id,fach:"paedagogik",kategorie:"lernuebersicht",titel:e.thema,url:"board:"+bid,dateiName:"",createdBy:currentUser.uid,createdAt:serverTimestamp()});}
+   closeModal();toast(ids.length===1?"Hinzugefügt.":ids.length+" Lernübersichten hinzugefügt.");render();
+  }catch(err){console.error(err);toast("Konnte nicht gespeichert werden.")}
+ };
+}
+window.kwLuPicker=kwLuPicker;
+
 /* CAMPUS MODULE BRIDGE
  ES-Module erhalten die gemeinsamen Render-Helfer über window.
 */
@@ -21686,6 +22557,10 @@ window.CampusWP=(()=>{const o={};const g=(n,f)=>Object.defineProperty(o,n,{get:f
  g("collection",()=>collection);g("doc",()=>doc);g("addDoc",()=>addDoc);g("setDoc",()=>setDoc);g("updateDoc",()=>updateDoc);g("deleteDoc",()=>deleteDoc);
  g("getDoc",()=>getDoc);g("getDocs",()=>getDocs);g("query",()=>query);g("orderBy",()=>orderBy);g("limit",()=>limit);g("where",()=>where);
  g("onSnapshot",()=>onSnapshot);g("serverTimestamp",()=>serverTimestamp);g("writeBatch",()=>writeBatch);
+ o.schulwochen=()=>SCHULWOCHEN_PP;o.isoKw=isoKw;o.zeitleiste=()=>ppmZeitleiste();
+ o.themenProWoche=async()=>{await kwLaden();const m={};PP_EINHEITEN.forEach(e=>kwThemaWochen(e).forEach(w=>{(m[w.start]=m[w.start]||[]).push(kwKurz(e))}));return m;};
+ o.aktuellesProjekt=()=>{const h=new Date().toISOString().slice(0,10);const ph=PROJEKT_PHASEN.find(p=>p.projektStart<=h&&h<=p.projektEnde)||PROJEKT_PHASEN.find(p=>p.end>=h)||null;return ph?{lbNum:ph.lbNum,titel:ph.titel,lbTitel:ph.lbTitel,laeuft:ph.projektStart<=h&&h<=ph.projektEnde}:null;};
+ o.projektOeffnen=lb=>{activeKwLb=Number(lb);go("kw-projekt");};
  o.upload=(f,pfad)=>uploadCampusDatei(f,pfad);o.schueler=()=>getAllUsersForLernstand();o.isTeacher=()=>isTeacher();o.isAdmin=()=>isAdmin();o.toast=toast;o.modal=modal;o.closeModal=closeModal;o.zkAnzeige=zkAnzeige;o.dsHinweis=dsHinweis;return o})();
 let wpModul=null,lsModul=null,lnModul=null;
 async function renderPruefraumSeite(){
@@ -21705,12 +22580,12 @@ async function renderLernstaendeSeite(){
   return await lsModul.lsRender();
  }catch(e){console.error("Lernstände:",e);return `<div class="card"><h3>Die Seite konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
-async function renderWochenplanSeite(){
+async function renderWochenplanSeite(modus){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261029a";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261029a");
-  return await wpModul.wpRender();
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261108a";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261108a");
+  return await wpModul.wpRender(modus||"schueler");
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
 

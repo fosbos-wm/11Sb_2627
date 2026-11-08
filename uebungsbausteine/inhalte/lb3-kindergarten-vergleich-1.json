@@ -1,0 +1,58 @@
+{
+ "titel": "LB 3 · Der Kindergarten · Theorievergleich (Vertiefung)",
+ "anleitung": "Tippe eine Karte an und dann die Spalte, zu der sie gehört. Wenn alle Karten sortiert sind, kannst du prüfen.",
+ "spalten": [
+  "Schule",
+  "Kindergarten"
+ ],
+ "karten": [
+  {
+   "t": "Gesetzliche Schulpflicht",
+   "s": 0
+  },
+  {
+   "t": "Feste Altersregel für den Beginn",
+   "s": 0
+  },
+  {
+   "t": "Jeden Tag, feste Zeiten",
+   "s": 0
+  },
+  {
+   "t": "Besuch ist Pflicht",
+   "s": 0
+  },
+  {
+   "t": "Außerschulische Einrichtung: nein",
+   "s": 0
+  },
+  {
+   "t": "Unterricht nach festem Stundenplan",
+   "s": 0
+  },
+  {
+   "t": "Der Besuch ist freiwillig",
+   "s": 1
+  },
+  {
+   "t": "Eltern entscheiden je nach Entwicklungsstand des Kindes",
+   "s": 1
+  },
+  {
+   "t": "Nicht zwingend täglich, Zeiten flexibel nach Absprache",
+   "s": 1
+  },
+  {
+   "t": "Ergänzt die Erziehung der Familie",
+   "s": 1
+  },
+  {
+   "t": "Außerschulische Einrichtung: ja",
+   "s": 1
+  },
+  {
+   "t": "Betreut von Erziehern und Kinderpflegern",
+   "s": 1
+  }
+ ]
+}

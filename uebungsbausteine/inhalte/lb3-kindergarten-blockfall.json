@@ -1,0 +1,54 @@
+{
+ "titel": "LB 3 · Der Kindergarten · Blockfall",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Kinderkrippe",
+  "Kindergarten",
+  "Kinderhort"
+ ],
+ "items": [
+  {
+   "t": "Einrichtung für die Kleinsten unter drei Jahren.",
+   "k": 0
+  },
+  {
+   "t": "Die zweijährige Lena wird von einer Fachkraft betreut, während ihre Mutter arbeitet.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Einrichtung für Kinder von etwa 3 bis 6 Jahren.",
+   "k": 1
+  },
+  {
+   "t": "Der Besuch ist freiwillig. Die Eltern entscheiden je nach Entwicklungsstand ihres Kindes.",
+   "k": 1
+  },
+  {
+   "t": "Der vierjährige Ben geht vormittags in die Einrichtung und spielt im Garten.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Erzieher und Kinderpfleger kümmern sich um Pflege und Erziehung der Kinder bis zur Einschulung.",
+   "k": 1
+  },
+  {
+   "t": "Betreuung von Schulkindern nach dem Unterricht.",
+   "k": 2
+  },
+  {
+   "t": "Der achtjährige Paul geht nach der Schule dorthin und macht Hausaufgaben.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Einrichtung für Kinder, die schon zur Schule gehen.",
+   "k": 2
+  },
+  {
+   "t": "Die Einrichtung beginnt erst nach dem Schulunterricht.",
+   "k": 2
+  }
+ ]
+}

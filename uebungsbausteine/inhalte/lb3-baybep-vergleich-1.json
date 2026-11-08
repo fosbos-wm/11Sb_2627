@@ -1,0 +1,58 @@
+{
+ "titel": "LB 3 · Der BayBEP · Theorievergleich (Vertiefung)",
+ "anleitung": "Tippe eine Karte an und dann die Spalte, zu der sie gehört. Wenn alle Karten sortiert sind, kannst du prüfen.",
+ "spalten": [
+  "Bildung mit digitalen Medien",
+  "Bildung über digitale Medien"
+ ],
+ "karten": [
+  {
+   "t": "Die Kinder gestalten ein Hörspiel",
+   "s": 0
+  },
+  {
+   "t": "Die Kinder drehen einen kleinen Trickfilm",
+   "s": 0
+  },
+  {
+   "t": "Mit dem Tablet entsteht ein digitales Pflanzenbuch",
+   "s": 0
+  },
+  {
+   "t": "Medien werden als Werkzeug zum Gestalten genutzt",
+   "s": 0
+  },
+  {
+   "t": "Kinder fotografieren und präsentieren ihre Ergebnisse",
+   "s": 0
+  },
+  {
+   "t": "Eine App wird zum Bestimmen von Pflanzen eingesetzt",
+   "s": 0
+  },
+  {
+   "t": "Das Team spricht mit den Kindern darüber, wie Medien wirken",
+   "s": 1
+  },
+  {
+   "t": "Die Kinder überlegen, ob man allen Informationen aus dem Internet trauen kann",
+   "s": 1
+  },
+  {
+   "t": "Es gibt klare Regeln für Mediennutzung und Fotos",
+   "s": 1
+  },
+  {
+   "t": "Kinder lernen, was Algorithmen und Roboter sind",
+   "s": 1
+  },
+  {
+   "t": "Kinder erfahren etwas über ihre Rechte in der digitalen Welt",
+   "s": 1
+  },
+  {
+   "t": "Kinder lernen, sich zu schützen und sicher zu agieren",
+   "s": 1
+  }
+ ]
+}

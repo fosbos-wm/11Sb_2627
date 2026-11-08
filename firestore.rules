@@ -1205,6 +1205,27 @@ service cloud.firestore {
             && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['bestaetigt', 'updatedAt'])));
     }
     // Zielvereinbarung (Lehrkräfte schreiben, die Person liest) und Notizen (nur Lehrkräfte).
+    match /lernTests/{id} {
+      allow read: if isApproved();
+      allow write: if isTeacher();
+    }
+    match /lernTestAbgaben/{id} {
+      allow read: if isApproved() && (resource.data.uid == request.auth.uid || isTeacher());
+      allow create: if isApproved()
+        && request.resource.data.uid == request.auth.uid
+        && id == request.resource.data.testId + '_' + request.auth.uid
+        && !request.resource.data.keys().hasAny(['be','notenpunkte','bewertet','lehrerKommentar']);
+      allow update: if isApproved() && (isTeacher()
+        || (resource.data.uid == request.auth.uid
+            && request.resource.data.uid == resource.data.uid
+            && !request.resource.data.diff(resource.data).affectedKeys().hasAny(['be','notenpunkte','bewertet','lehrerKommentar','bewertetAt'])));
+      allow delete: if isTeacher();
+    }
+    // Thema -> Kalenderwoche (Lernlandkarte, Jahresplan)
+    match /wpThemenKW/{id} {
+      allow read: if isApproved();
+      allow write: if isTeacher();
+    }
     match /wpZiele/{id} {
       allow read: if isApproved() && (id == request.auth.uid || isTeacher());
       allow write: if isApproved() && isTeacher();

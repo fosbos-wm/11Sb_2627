@@ -449,5 +449,680 @@
    "Alle Bereiche gemischt",
    "Wichtel-Schubkarrenrennen"
   ]
+ },
+ {
+  "id": "lb3-beziehung-zuordnung",
+  "titel": "LB 3 · Erziehung als soziale Beziehung · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-beziehung-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-beziehung-memory",
+  "titel": "LB 3 · Erziehung als soziale Beziehung · Memory",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe mit ihren Erklärungen aufdecken und paaren.",
+  "datei": "memory.html?set=lb3-beziehung-memory",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Memory"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-beziehung-luecken",
+  "titel": "LB 3 · Erziehung als soziale Beziehung · Lückentext (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Wörter in einen Fall-Text einsetzen.",
+  "datei": "luecken.html?set=lb3-beziehung-luecken",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Lückentext (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-kommunikation-zuordnung",
+  "titel": "LB 3 · Erziehung als Austausch von Informationen · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-kommunikation-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-kommunikation-blockfall",
+  "titel": "LB 3 · Erziehung als Austausch von Informationen · Blockfall",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb3-kommunikation-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Blockfall"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-kommunikation-luecken",
+  "titel": "LB 3 · Erziehung als Austausch von Informationen · Lückentext (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Wörter in einen Fall-Text einsetzen.",
+  "datei": "luecken.html?set=lb3-kommunikation-luecken",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Lückentext (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-lernhilfe-zuordnung",
+  "titel": "LB 3 · Erziehung als beabsichtigte Lernhilfe · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-lernhilfe-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-lernhilfe-blockfall",
+  "titel": "LB 3 · Erziehung als beabsichtigte Lernhilfe · Blockfall",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb3-lernhilfe-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Blockfall"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-lernhilfe-vergleich-1",
+  "titel": "LB 3 · Erziehung als beabsichtigte Lernhilfe · Theorievergleich (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Karten in 2 Spalten sortieren.",
+  "datei": "vergleich.html?set=lb3-lernhilfe-vergleich-1",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Theorievergleich (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-handeln-zuordnung",
+  "titel": "LB 3 · Erziehung als soziales Handeln · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-handeln-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-handeln-memory",
+  "titel": "LB 3 · Erziehung als soziales Handeln · Memory",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe mit ihren Erklärungen aufdecken und paaren.",
+  "datei": "memory.html?set=lb3-handeln-memory",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Memory"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-handeln-luecken",
+  "titel": "LB 3 · Erziehung als soziales Handeln · Lückentext (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Wörter in einen Fall-Text einsetzen.",
+  "datei": "luecken.html?set=lb3-handeln-luecken",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Lückentext (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-merkmale-ueberblick-zuordnung",
+  "titel": "LB 3 · Die sechs Merkmale der Erziehung · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-merkmale-ueberblick-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Merkmale der Erziehung",
+  "pfad": [
+   "LB 3",
+   "Merkmale der Erziehung",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baumrind-zuordnung",
+  "titel": "LB 3 · Erziehungsstile nach Baumrind · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-baumrind-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baumrind-blockfall",
+  "titel": "LB 3 · Erziehungsstile nach Baumrind · Blockfall",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb3-baumrind-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "Blockfall"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baumrind-memory",
+  "titel": "LB 3 · Erziehungsstile nach Baumrind · Memory",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe mit ihren Erklärungen aufdecken und paaren.",
+  "datei": "memory.html?set=lb3-baumrind-memory",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "Memory"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baumrind-vergleich-2",
+  "titel": "LB 3 · Erziehungsstile nach Baumrind · Theorievergleich (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Karten in 2 Spalten sortieren.",
+  "datei": "vergleich.html?set=lb3-baumrind-vergleich-2",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "Theorievergleich (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-baumrind-luecken",
+  "titel": "LB 3 · Erziehungsstile nach Baumrind · Lückentext (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Wörter in einen Fall-Text einsetzen.",
+  "datei": "luecken.html?set=lb3-baumrind-luecken",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Erziehungsstile nach Baumrind",
+  "pfad": [
+   "LB 3",
+   "Erziehungsstile nach Baumrind",
+   "Lückentext (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-kindergarten-blockfall",
+  "titel": "LB 3 · Der Kindergarten · Blockfall",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb3-kindergarten-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Kindergarten",
+  "pfad": [
+   "LB 3",
+   "Der Kindergarten",
+   "Blockfall"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-kindergarten-memory",
+  "titel": "LB 3 · Der Kindergarten · Memory",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe mit ihren Erklärungen aufdecken und paaren.",
+  "datei": "memory.html?set=lb3-kindergarten-memory",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Kindergarten",
+  "pfad": [
+   "LB 3",
+   "Der Kindergarten",
+   "Memory"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-kindergarten-vergleich-1",
+  "titel": "LB 3 · Der Kindergarten · Theorievergleich (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Karten in 2 Spalten sortieren.",
+  "datei": "vergleich.html?set=lb3-kindergarten-vergleich-1",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Kindergarten",
+  "pfad": [
+   "LB 3",
+   "Der Kindergarten",
+   "Theorievergleich (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-kindergarten-luecken",
+  "titel": "LB 3 · Der Kindergarten · Lückentext (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Wörter in einen Fall-Text einsetzen.",
+  "datei": "luecken.html?set=lb3-kindergarten-luecken",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Kindergarten",
+  "pfad": [
+   "LB 3",
+   "Der Kindergarten",
+   "Lückentext (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-baybep-zuordnung",
+  "titel": "LB 3 · Der BayBEP · Zuordnung",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe und Erklärungen verbinden: ziehen oder antippen.",
+  "datei": "zuordnung.html?set=lb3-baybep-zuordnung",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "Zuordnung"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baybep-blockfall",
+  "titel": "LB 3 · Der BayBEP · Blockfall",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Fälle und Aussagen unter Zeitdruck der richtigen Kategorie zuordnen.",
+  "datei": "blockfall.html?set=lb3-baybep-blockfall",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "Blockfall"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baybep-memory",
+  "titel": "LB 3 · Der BayBEP · Memory",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Begriffe mit ihren Erklärungen aufdecken und paaren.",
+  "datei": "memory.html?set=lb3-baybep-memory",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "Memory"
+  ],
+  "stufe": "uebung"
+ },
+ {
+  "id": "lb3-baybep-vergleich-1",
+  "titel": "LB 3 · Der BayBEP · Theorievergleich (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Karten in 2 Spalten sortieren.",
+  "datei": "vergleich.html?set=lb3-baybep-vergleich-1",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "Theorievergleich (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
+ },
+ {
+  "id": "lb3-baybep-luecken",
+  "titel": "LB 3 · Der BayBEP · Lückentext (Vertiefung)",
+  "fach": "Pädagogik/Psychologie",
+  "beschreibung": "Wörter in einen Fall-Text einsetzen.",
+  "datei": "luecken.html?set=lb3-baybep-luecken",
+  "ergebnis": true,
+  "parameter": [
+   {
+    "name": "spiel",
+    "label": "Mischung (Nummer)",
+    "typ": "zahl",
+    "min": 1,
+    "max": 99,
+    "standard": 1
+   }
+  ],
+  "thema": "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+  "pfad": [
+   "LB 3",
+   "Der Bayerische Bildungs- und Erziehungsplan (BayBEP)",
+   "Lückentext (Vertiefung)"
+  ],
+  "stufe": "vertiefung"
  }
 ]

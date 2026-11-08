@@ -1,0 +1,65 @@
+{
+ "titel": "LB 3 · Erziehung als beabsichtigte Lernhilfe · Blockfall",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Erzieher",
+  "Zu Erziehender",
+  "Erziehungsziel"
+ ],
+ "items": [
+  {
+   "t": "Führt Lernprozesse absichtlich herbei.",
+   "k": 0
+  },
+  {
+   "t": "Die Erzieherin zeigt Lena, wie man die Schuhe bindet.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Löst Lernprozesse aus oder unterstützt sie.",
+   "k": 0
+  },
+  {
+   "t": "Der Vater übt mit seinem Sohn geduldig das Fahrradfahren.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Muss die Lernprozesse bewältigen.",
+   "k": 1
+  },
+  {
+   "t": "Max übt in der Kita, sich allein anzuziehen.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Soll Lernprozesse vollbringen.",
+   "k": 1
+  },
+  {
+   "t": "Mia versucht immer wieder, ihre Jacke selbst zuzumachen.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Eine relativ dauerhafte Änderung von Verhalten und Erleben.",
+   "k": 2
+  },
+  {
+   "t": "Das Kind soll später allein laufen und sprechen können.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Ohne dieses Ziel würde der Erzieher nicht mehr einwirken.",
+   "k": 2
+  },
+  {
+   "t": "Die Kinder sollen lernen, Konflikte ohne Schlagen zu lösen.",
+   "k": 2,
+   "f": 1
+  }
+ ]
+}

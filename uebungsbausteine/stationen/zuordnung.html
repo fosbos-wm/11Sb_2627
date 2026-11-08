@@ -13,6 +13,8 @@ h1{font-size:1.2rem;margin:0 0 4px}p{margin:0 0 12px;color:var(--muted)}
 .col{display:flex;flex-direction:column;gap:8px;min-width:0}
 .it{display:flex;gap:8px;align-items:flex-start;text-align:left;width:100%;font:inherit;color:var(--fg);background:var(--panel);border:2px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;min-height:48px}
 .it .no{flex:none;font:800 .8rem ui-monospace,Menlo,monospace;min-width:1.6em;height:1.6em;border-radius:50%;display:grid;place-items:center;background:var(--line);color:var(--fg)}
+.it{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}.it.arm{box-shadow:0 0 0 3px color-mix(in srgb,var(--pri) 35%,transparent)}.it.drop{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 14%,var(--panel));transform:scale(1.02)}
+.ghost{position:fixed;z-index:50;pointer-events:none;opacity:.92;box-shadow:0 10px 26px rgba(0,0,0,.28);max-width:min(80vw,340px);transform:rotate(-1.5deg)}
 .it.sel{border-color:var(--pri);box-shadow:0 0 0 3px color-mix(in srgb,var(--pri) 30%,transparent)}
 .it.p{border-color:var(--pc)}.it.p .no{background:var(--pc);color:var(--bg)}
 .it.ok{background:var(--ok-soft);border-color:var(--ok)}.it.bad{background:var(--bad-soft);border-color:var(--bad)}
@@ -23,7 +25,7 @@ button.b.alt{background:var(--panel);color:var(--fg);border-color:var(--line)}bu
 .stat{margin-left:auto;color:var(--muted);font-size:.9rem;font-variant-numeric:tabular-nums}
 :focus-visible{outline:3px solid var(--pri);outline-offset:2px}
 </style></head><body>
-<h1 id="t">Zuordnung</h1><p id="a"></p>
+<h1 id="t">Zuordnung</h1><p id="a"></p><p style="font-size:.85rem">Ziehe einen Eintrag auf den passenden Partner auf der anderen Seite. Antippen geht auch.</p>
 <div class="cols"><div class="col" id="L"></div><div class="col" id="R"></div></div>
 <div class="bar"><button class="b" id="chk" disabled type="button">Prüfen</button><button class="b alt" id="res" type="button">Neu mischen</button><span class="stat" id="st"></span></div>
 <div id="m" role="status"></div>
@@ -38,10 +40,41 @@ function render(res){
   const lnum={},rnum={};let n=0;Object.keys(link).forEach(l=>{n++;lnum[l]=n;rnum[link[l]]=n});
   $("L").innerHTML=Lo.map(i=>{const k=link[i]!==undefined,c=res?(res[i]?"ok":"bad"):"";return `<button type="button" class="it ${k?"p":""} ${sel===i?"sel":""} ${c}" style="--pc:${col(lnum[i]||0)}" data-l="${i}"><span class="no">${k?lnum[i]:""}</span><span>${esc(P[i][0])}</span></button>`}).join("");
   $("R").innerHTML=Ro.map(i=>{const l=Object.keys(link).find(x=>link[x]===i),k=l!==undefined,c=res&&k?(res[l]?"ok":"bad"):"";return `<button type="button" class="it ${k?"p":""} ${c}" style="--pc:${col(rnum[i]||0)}" data-r="${i}"><span class="no">${k?rnum[i]:""}</span><span>${esc(P[i][1])}</span></button>`}).join("");
+  dnd();
   $("chk").disabled=done||Object.keys(link).length!==P.length;
   $("st").textContent=Object.keys(link).length+" von "+P.length+" verbunden";
-  document.querySelectorAll("[data-l]").forEach(b=>b.addEventListener("click",()=>{if(done)return;const i=+b.dataset.l;if(link[i]!==undefined){delete link[i];sel=null}else sel=sel===i?null:i;m("");render()}));
-  document.querySelectorAll("[data-r]").forEach(b=>b.addEventListener("click",()=>{if(done)return;const j=+b.dataset.r,l=Object.keys(link).find(x=>link[x]===j);if(l!==undefined){delete link[l];render();return}if(sel===null)return;link[sel]=j;sel=null;m("");start();render()}));
+  document.querySelectorAll("[data-l]").forEach(b=>b.addEventListener("click",()=>{if(done||Date.now()<supp)return;const i=+b.dataset.l;if(link[i]!==undefined){delete link[i];sel=null}else sel=sel===i?null:i;m("");render()}));
+  document.querySelectorAll("[data-r]").forEach(b=>b.addEventListener("click",()=>{if(done||Date.now()<supp)return;const j=+b.dataset.r,l=Object.keys(link).find(x=>link[x]===j);if(l!==undefined){delete link[l];render();return}if(sel===null)return;link[sel]=j;sel=null;m("");start();render()}));
+}
+let supp=0,dragging=false;document.addEventListener("touchmove",e=>{if(dragging&&e.cancelable)e.preventDefault()},{passive:false});
+function dnd(){
+  document.querySelectorAll("#L .it,#R .it").forEach(b=>{
+    b.addEventListener("pointerdown",e=>{
+      if(done||(e.pointerType==="mouse"&&e.button!==0))return;
+      const sx=e.clientX,sy=e.clientY,left=b.dataset.l!==undefined,idx=+(left?b.dataset.l:b.dataset.r),touch=e.pointerType==="touch";let g=null,over=null,moved=false,armed=!touch,timer=null;
+      if(touch)timer=setTimeout(()=>{armed=true;dragging=true;b.classList.add("arm");if(navigator.vibrate)try{navigator.vibrate(15)}catch(x){}},220);
+      const mv=ev=>{
+        if(!moved&&Math.hypot(ev.clientX-sx,ev.clientY-sy)<10)return;
+        if(!armed){clearTimeout(timer);end();return}
+        if(!moved){moved=true;g=b.cloneNode(true);g.classList.add("ghost");g.style.width=b.offsetWidth+"px";document.body.appendChild(g)}
+        ev.preventDefault();g.style.left=(ev.clientX-g.offsetWidth/2)+"px";g.style.top=(ev.clientY-22)+"px";
+        g.style.display="none";const el=document.elementFromPoint(ev.clientX,ev.clientY);g.style.display="";
+        const t=el&&el.closest(left?"#R .it":"#L .it");
+        if(over&&over!==t)over.classList.remove("drop");over=t||null;if(over)over.classList.add("drop");
+      };
+      const end=()=>{clearTimeout(timer);dragging=false;b.classList.remove("arm");document.removeEventListener("pointermove",mv);document.removeEventListener("pointerup",up);document.removeEventListener("pointercancel",up)};
+      const up=ev=>{
+        end();
+        if(g)g.remove();if(over)over.classList.remove("drop");
+        if(!moved)return;supp=Date.now()+400;
+        if(!over||ev.type==="pointercancel")return;
+        const other=+(left?over.dataset.r:over.dataset.l),l=left?idx:other,r=left?other:idx;
+        Object.keys(link).forEach(x=>{if(+x===l||link[x]===r)delete link[x]});
+        link[l]=r;sel=null;m("");start();render();
+      };
+      document.addEventListener("pointermove",mv,{passive:false});document.addEventListener("pointerup",up);document.addEventListener("pointercancel",up);
+    });
+  });
 }
 function m(t,bad){$("m").innerHTML=t?`<div class="msg ${bad?"n":""}">${t}</div>`:""}
 function start(){if(tick)return;t0=Date.now();tick=setInterval(()=>{secs=Math.round((Date.now()-t0)/1000)},500)}

@@ -1,0 +1,65 @@
+{
+ "titel": "LB 3 · Der BayBEP · Blockfall",
+ "anleitung": "Ordne Fälle und Aussagen der passenden Kategorie zu, bevor der Block unten ankommt.",
+ "kategorien": [
+  "Digitale Medien",
+  "Umwelt",
+  "Gesundheit"
+ ],
+ "items": [
+  {
+   "t": "Die Kinder fotografieren Pflanzen mit dem Tablet und gestalten ein digitales Pflanzenbuch.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Gestalten statt Konsumieren.",
+   "k": 0
+  },
+  {
+   "t": "Das Digitale ergänzt das Analoge, es ersetzt es nicht.",
+   "k": 0
+  },
+  {
+   "t": "Die Kinder erstellen mit der Erzieherin ein Hörspiel.",
+   "k": 0,
+   "f": 1
+  },
+  {
+   "t": "Die Kinder untersuchen einen Bach und überlegen, wo sie in der Kita Wasser sparen können.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Naturbegegnung, Umweltschutz und nachhaltige Entwicklung sind drei Stufen.",
+   "k": 1
+  },
+  {
+   "t": "Kinder sollen Zuversicht entwickeln: „Ich kann etwas tun!“",
+   "k": 1
+  },
+  {
+   "t": "Die Kinder trennen gemeinsam den Müll in der Kita.",
+   "k": 1,
+   "f": 1
+  },
+  {
+   "t": "Kinder decken den Frühstückstisch und probieren unbekanntes Gemüse.",
+   "k": 2,
+   "f": 1
+  },
+  {
+   "t": "Gesundheit ist mehr als das Fehlen von Krankheit.",
+   "k": 2
+  },
+  {
+   "t": "Sichere Bindungserfahrungen stärken die Stressresistenz.",
+   "k": 2
+  },
+  {
+   "t": "Die Kinder lernen eine kurze Entspannungsübung für Momente der Wut.",
+   "k": 2,
+   "f": 1
+  }
+ ]
+}
