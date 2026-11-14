@@ -241,3 +241,230 @@ details.ls-lb:not([open])>summary.ls-lbk{border-radius:0 0 0 0}
 .kw-chip.frei{background:#f3f3f3;color:#777;border-color:#ddd}
 .kw-chip.jetzt{background:#e6f5ec;color:#1f6a3a;border-color:#bfe3cd}
 .kw-row .kw-chip{margin-left:auto;flex:none}
+
+/* ===== Umbau: Unterrichtsfächer, Themenseite, Lernwerkstatt, Lehrkräfte ===== */
+.lx-seite{display:block}
+.lx-h2{margin:26px 0 4px;font-size:20px}
+.lx-hint{margin:0 0 10px;color:var(--muted)}
+.lx-kacheln{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin:14px 0 20px}
+.lx-kacheln.lx-oben{margin-top:6px}
+.lx-kachel{display:flex;flex-direction:column;gap:6px;text-align:left;font:inherit;color:#17384f;background:#fff;border:2px solid #B8C0C8;border-radius:14px;padding:16px 18px;min-height:96px;text-decoration:none;cursor:pointer;transition:transform .12s,box-shadow .12s,border-color .12s}
+.lx-kachel b{font-size:16px;line-height:1.25}
+.lx-kachel small{color:var(--muted);font-size:13px;line-height:1.35}
+.lx-kachel:hover,.lx-kachel:focus-visible{border-color:#7E8A96;box-shadow:0 6px 18px rgba(23,56,79,.12);transform:translateY(-2px)}
+.lx-kachel.lx-aus{opacity:.55;cursor:default}
+.lx-kachel.lx-aus:hover{transform:none;box-shadow:none;border-color:#B8C0C8}
+.lx-badge{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#EEF1F4;color:#5A6772;border-radius:999px;padding:2px 10px}
+.lx-faecher .lx-kachel{min-height:130px}
+.lx-bar{display:block;height:8px;border-radius:99px;background:#E4EAF0;overflow:hidden;margin-top:4px}
+.lx-bar i{display:block;height:100%;background:#3A8FD4;border-radius:99px}
+.lx-bar-t{font-size:12px;color:var(--muted)}
+/* sieben Teile der Themenseite */
+.lx-weg{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.lx-chip{font:inherit;font-size:12.5px;font-weight:700;color:#17384f;background:#fff;border:2px solid var(--k);border-radius:999px;padding:5px 12px;cursor:pointer}
+.lx-chip b{display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;background:var(--k);color:#fff;font-size:11px;margin-right:4px}
+.lx-chip:hover{background:#F4F8FB}
+.lx-sek{border:3px solid var(--k);border-radius:16px;background:#fff;margin:16px 0;padding:0 16px 14px;overflow:hidden;scroll-margin-top:12px}
+.lx-sek-k{display:flex;align-items:center;gap:12px;margin:0 -16px 12px;padding:12px 16px;background:var(--kb);border-bottom:1px solid var(--k)}
+.lx-sek-k h3{margin:0;font-size:17px}
+.lx-sek-k small{color:#4B5B68}
+.lx-nr{flex:none;width:30px;height:30px;border-radius:50%;background:var(--k);color:#fff;font-weight:900;display:grid;place-items:center;font-size:14px}
+.lx-sek .kw-stufe{margin:10px 0}
+.lx-sicht{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin-top:12px;padding:10px 12px;border:1px dashed #B8C0C8;border-radius:12px;background:#FAFBFC}
+.lx-sicht small{color:var(--muted);flex-basis:100%}
+.lx-ab{color:#7A5A00;background:#FFF4D0;border-radius:999px;padding:1px 9px;font-size:11.5px;font-weight:700;white-space:nowrap}
+.lx-lock{opacity:.6}
+.lx-lock .kw-bx{opacity:.35}
+.kw-row.lx-lock{cursor:default}
+/* Lernstand */
+.lx-ls{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:0 0 12px}
+.lx-ls-z{display:flex;flex-direction:column;gap:3px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#FFFDF9}
+.lx-ls-z span{font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#7A5A2A}
+.lx-ls-z b{font-size:16px}
+.lx-ls-z small{color:var(--muted)}
+.lx-selbst{margin:8px 0 12px}
+.lx-selbst div{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.lx-sb{font:inherit;font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;border:2px solid #F28A24;background:#fff;color:#8A4A08;cursor:pointer}
+.lx-sb.an,.lx-sb:hover{background:#F28A24;color:#fff}
+.lx-ueben{margin:10px 0;padding:12px 16px;border-radius:14px;border:2px solid #F28A24;background:#FEF2E5}
+.lx-ueben.ok{border-color:#86CC6A;background:#F0FAEB}
+.lx-ueben ul{margin:6px 0 0;padding-left:20px}
+.lx-ueben li{margin:4px 0}
+.lx-offen-l{margin:4px 0 8px;padding-left:18px}
+.lx-ok{margin:6px 0;font-weight:700;color:#2E7D57}
+/* Lehrkräfte */
+.lx-legende{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 12px;font-size:12.5px;color:#4B5B68}
+.lx-legende span{display:inline-flex;align-items:center;gap:5px}
+.lx-pt{display:inline-block;width:11px;height:11px;border-radius:50%;border:2px solid var(--k);background:#fff}
+.lx-pt.an{background:var(--k)}
+.lx-pts{display:inline-flex;gap:3px;align-items:center}
+.lx-eintritt{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.lx-eintritt select{flex:1 1 260px;min-width:0}
+.nav-gruppe{font-size:10.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#7E8A96;padding:12px 12px 4px}
+.nav-gruppe[hidden],.nav-link[hidden]{display:none}
+/* Verstärkungen: mehrere Varianten */
+.motivations-karte.lxv2 .motivations-karte-inner{background:linear-gradient(135deg,#3FA66A,#1598d1)}
+.motivations-karte.lxv3 .motivations-karte-inner{background:linear-gradient(135deg,#F28A24,#E0457B)}
+.motivations-karte.lxv4 .motivations-karte-inner{background:linear-gradient(135deg,#6C3483,#F0C43C);color:#fff}
+.motivations-karte.lxv2 .motivations-emoji{display:inline-block;animation:lxDreh .7s ease-out}
+.motivations-karte.lxv3 .motivations-emoji{display:inline-block;animation:lxHupf .6s ease-out}
+.motiv-mini.lxm2{border-left-color:#3FA66A}
+.motiv-mini.lxm3{border-left-color:#F28A24;animation:motivMiniIn .35s cubic-bezier(.34,1.56,.64,1),motivMiniOut .3s ease-in 2.9s forwards}
+.motiv-konfetti i.st{width:14px;height:14px;border-radius:0;clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}
+.motiv-konfetti i.rd{width:10px;height:10px;border-radius:50%}
+@keyframes lxDreh{from{transform:rotate(-200deg) scale(.3)}to{transform:none}}
+@keyframes lxHupf{0%{transform:translateY(24px) scale(.5)}60%{transform:translateY(-10px) scale(1.15)}100%{transform:none}}
+@media(prefers-reduced-motion:reduce){.motivations-karte .motivations-emoji{animation:none!important}}
+.kw-wand.lx-wahl{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr))}
+.lx-wahl .kw-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lx-wahl .kw-row span{flex:1 1 180px;min-width:0;text-align:left}
+.lx-wahl .kw-row em{flex:none;min-width:34px}
+.lx-wahl .kw-row small{flex:none}
+@media(max-width:700px){.kw-wand.lx-wahl{grid-template-columns:1fr}}
+.lx-thema-b{margin:0 0 10px;padding-bottom:6px;border-bottom:1px solid rgba(0,0,0,.08)}.lx-thema-b>.kw-dateien,.lx-thema-b>.kw-stufe{margin:2px 0 4px 8px}
+/* Übersichten Übungen / Fachaufsatz: ruhige, lesbare Karten */
+.kw-wand.lx-ang{display:grid;grid-template-columns:repeat(auto-fit,minmax(440px,1fr));gap:18px;align-items:start}
+@media(max-width:700px){.kw-wand.lx-ang{grid-template-columns:1fr}}
+.lx-ang .kw-tile{min-width:0}
+.lx-ang .kw-rows{display:flex;flex-direction:column;gap:12px;padding:12px}
+.lx-ang .lx-thema-b{margin:0;padding:12px 14px 14px;border:0;border-radius:14px;background:rgba(255,255,255,.82);box-shadow:0 1px 3px rgba(23,56,79,.08)}
+.lx-ang .lx-thema-b>.kw-row{display:flex;align-items:center;gap:10px;width:100%;padding:0 0 8px;margin:0 0 8px;background:none;border:0;border-bottom:1px solid var(--line);border-radius:0;text-align:left;font:inherit;font-weight:800;font-size:15px;color:var(--ink);cursor:pointer}
+.lx-ang .lx-thema-b>.kw-row em{flex:none;font-style:normal;font-size:12px;font-weight:800;color:var(--t);background:var(--bg);border-radius:999px;padding:2px 9px;min-width:0}
+.lx-ang .lx-thema-b>.kw-row span{flex:1;min-width:0}
+.lx-ang .lx-thema-b>.kw-row .kw-bx{flex:none}
+.lx-ang .lx-thema-b>.kw-dateien,.lx-ang .lx-thema-b>.kw-stufe{margin:0}
+.lx-ang .kw-stufe{display:flex;flex-direction:column;gap:6px;margin:10px 0 0}
+.lx-ang .kw-stufe>b{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--t);background:var(--bg);border-radius:999px;padding:2px 10px}
+.lx-ang .kw-dz{display:flex;gap:6px}
+.lx-ang .kw-datei{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:9px 12px;border-radius:10px;background:#fff;border:1px solid var(--line);font-size:14px;font-weight:600;line-height:1.3;color:var(--ink);text-align:left;transition:border-color .12s,box-shadow .12s}
+.lx-ang .kw-datei:hover{border-color:var(--c);box-shadow:0 2px 8px rgba(23,56,79,.1)}
+.lx-ang .kw-datei span{flex:1;min-width:0;overflow-wrap:anywhere}
+.lx-ang .kw-datei small{flex:none;max-width:42%;font-size:11.5px;font-weight:700;line-height:1.25;white-space:normal;text-align:center;color:var(--t);background:var(--bg);border-radius:999px;padding:4px 10px}
+.lx-ang .lx-thema-b>.kw-stufe{margin-top:14px}
+.lx-ang .lx-thema-b>.kw-row+.kw-stufe,.lx-ang .lx-thema-b>.kw-row+.kw-dateien{margin-top:4px}
+
+/* Lernimpulse: besser lesbar, Schreibfeld klar erkennbar */
+.lxi{display:flex;flex-direction:column;gap:14px}
+.lxi-titel{margin:0;font-size:26px;line-height:1.25}
+.lxi-zufall{margin:0;padding:10px 14px;border-radius:12px;background:#FFF4D0;color:#5B4300}
+.lxi-b{display:flex;gap:14px;align-items:flex-start;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.lxi-b>div{flex:1;min-width:0}
+.lxi-b b{display:block;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.lxi-b p{margin:0;line-height:1.6;font-size:16px}
+.lxi-n{flex:none;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:14px;background:#E4EAF0;color:#17384f}
+.lxi-task{font-size:19px!important;line-height:1.55!important;font-weight:600}
+.lxi-aufgabe{background:#EEF6FC;border-color:#B7D6EE}.lxi-aufgabe .lxi-n{background:#3A8FD4;color:#fff}
+.lxi-hinweis{background:#FAFBFC}
+.lxi-schreiben{background:#F1FAEC;border:2px solid #86CC6A}.lxi-schreiben .lxi-n{background:#4FA72E;color:#fff}
+.lxi-schreiben label b{color:#2F6B16;font-size:13.5px;margin-bottom:8px}
+.lxi-schreiben textarea{display:block;width:100%;min-height:130px;box-sizing:border-box;padding:14px 16px;font:inherit;font-size:16px;line-height:1.55;color:var(--ink);background:#fff;border:2px dashed #86CC6A;border-radius:12px;resize:vertical}
+.lxi-schreiben textarea:focus{outline:none;border-style:solid;border-color:#4FA72E;box-shadow:0 0 0 4px rgba(79,167,46,.18)}
+.lxi-schreiben textarea::placeholder{color:#7A8A74}
+.lxi-danach{background:#FFFDF6;border-color:#EBDDA8}.lxi-danach .lxi-n{background:#E3B93C;color:#fff}
+.lxi-aktion{margin-top:4px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+/* Impuls-Karten und Bereiche mit mehr Luft */
+.impulse-choice-grid{gap:20px}
+.impulse-section{margin-top:28px}
+#impulseCards{gap:18px}
+.impulse-card{gap:6px;padding:20px 20px 18px!important}
+.impulse-card strong{font-size:17px;line-height:1.3}
+.impulse-card small{font-size:14px;line-height:1.55;color:var(--muted)}
+.impulse-card .pill{margin-top:12px}
+.impulse-category{padding:16px 16px!important}
+.impulse-category small{display:block;margin-top:6px;line-height:1.45}
+.impulse-progress-card{margin-top:20px}
+
+/* Tests: eine Spalte, jeder Lernbereich als breite Karte mit klaren Zeilen */
+.lx-tests{display:flex;flex-direction:column;gap:18px;margin-top:18px}
+.lx-tests .kw-tile{display:block;min-width:0}
+.lx-tests .kw-th{padding:14px 18px}
+.lx-tests .ls-liste{padding:4px 18px 8px;background:#fff;border-radius:0 0 14px 14px}
+.lx-tests .ls-zeile{display:grid;grid-template-columns:minmax(0,1fr) auto auto;align-items:center;gap:8px 18px;padding:14px 0;border-bottom:1px solid var(--line)}
+.lx-tests .ls-zeile:last-child{border-bottom:0}
+.lx-tests .ls-t b{display:block;font-size:15.5px;font-weight:700;line-height:1.35}
+.lx-tests .ls-t small{display:block;margin-top:3px;font-size:13px;color:var(--muted)}
+.lx-tests .ls-a{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.lx-tests .ls-a button{padding:8px 16px;font-size:14px;white-space:nowrap}
+.lx-tests .co-chip{justify-self:start;white-space:nowrap}
+.lx-t-leer{padding:14px 0!important;margin:0!important;text-align:left!important}
+@media(max-width:700px){.lx-tests .ls-zeile{grid-template-columns:1fr}.lx-tests .ls-a{justify-content:flex-start}}
+.lx-tests .kw-th{min-height:0;align-items:center}
+.lx-eintritt select{padding:11px 12px;font:inherit;border:2px solid #B8A2DC;border-radius:10px;background:#fff}
+
+/* Sidebar: zwei klar getrennte Bereiche */
+.nav-area{border-radius:14px;padding:8px 8px 10px;margin:0 0 14px;border:1px solid var(--line);display:flex;flex-direction:column;gap:3px}
+.nav-area[hidden]{display:none}
+.nav-area-l{background:#EEF3F8;border-color:#C5D3E0}
+.nav-area-s{background:#F1FAEC;border-color:#CBE8B8}
+.nav-bereich{display:flex;flex-direction:column;gap:2px;margin:0 0 6px;padding:8px 10px;border-radius:10px;color:#fff}
+.nav-area-l .nav-bereich{background:#17384f}
+.nav-area-s .nav-bereich{background:#4FA72E}
+.nav-bereich b{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.nav-bereich small{font-size:11.5px;opacity:.85}
+.nav-area .nav-link{padding:9px 12px}
+.nav-area .nav-link:hover{background:rgba(255,255,255,.7)}
+.nav-area .nav-link.active{background:#fff;box-shadow:0 1px 4px rgba(23,56,79,.14)}
+.nav-area-l .nav-link.active{color:#17384f;box-shadow:inset 3px 0 0 #17384f,0 1px 4px rgba(23,56,79,.14)}
+.nav-area-s .nav-link.active{color:#2F6B16;box-shadow:inset 3px 0 0 #4FA72E,0 1px 4px rgba(23,56,79,.14)}
+
+/* QR-Code der Startseite oben rechts */
+.hero-qr{left:auto!important;right:14px}
+.hero:has(.hero-qr){padding-left:28px!important;padding-right:150px}
+@media(max-width:800px){.hero-qr{right:auto}.hero:has(.hero-qr){padding-right:28px}}
+
+/* Umbau: Wochenplanarbeit vorbereiten */
+.wpw .wpw-kopf{display:flex;flex-direction:column;gap:12px;padding:16px 18px;margin-bottom:16px}
+.wpw-wahl{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.wpw-sel{display:flex;flex-direction:column;gap:3px;font-size:12px;color:#5a6b78}
+.wpw-sel select{min-width:230px;padding:9px 10px;border:1px solid #c9d6e2;border-radius:10px;font-size:15px;background:#fff;color:#17384f}
+.wpw-sum{display:flex;align-items:center;gap:14px;flex-wrap:wrap}.wpw-sum b{font-size:20px;color:#17384f}.wpw-sum span{color:#4a5c6a}
+.wpw-pills{display:flex;gap:6px;flex-wrap:wrap}
+.wpw-akt{display:flex;gap:8px;flex-wrap:wrap}
+.wpw-hinweis{margin:0;font-size:13px;color:#4a5c6a;background:#f3f7fb;border-radius:10px;padding:10px 12px}
+.wpw-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:16px;align-items:start}
+.wpw-karte{background:#fff;border:1px solid #dde6ee;border-left:6px solid var(--c);border-radius:14px;padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px}
+.wpw-karte header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.wpw-karte h3{margin:0;font-size:17px;color:var(--c)}
+.wpw-std-btn{border:1px solid var(--c);background:var(--bg);color:#17384f;border-radius:999px;padding:4px 12px;font-size:13px;font-weight:700;cursor:pointer}
+.wpw-bar{display:flex;height:10px;border-radius:6px;background:#e6edf3;overflow:hidden}
+.wpw-bar i{display:block;height:100%}.wpw-bar .f{background:var(--c)}.wpw-bar .v{background:color-mix(in srgb,var(--c) 45%,#fff)}
+.wpw-bar.ueber{outline:2px solid #C0392B}
+.wpw-bz{margin:0;font-size:13px;color:#4a5c6a}
+.wpw-liste{display:flex;flex-direction:column;gap:6px}
+.wpw-it{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--bg);border:1px solid color-mix(in srgb,var(--c) 30%,#fff);border-radius:10px;padding:7px 9px}
+.wpw-t{border:0;background:none;padding:0;font:inherit;font-weight:700;color:#17384f;text-align:left;cursor:pointer;flex:1 1 140px;min-width:0}
+.wpw-t:hover{text-decoration:underline}
+.wpw-lb{font-size:11px;font-weight:800;color:#fff;background:var(--c);border-radius:6px;padding:2px 6px}
+.wpw-pf{font-size:11px;font-weight:700;color:#8a3b00;background:#ffe9d0;border-radius:6px;padding:2px 6px}
+.wpw-fest{font-size:12px;font-weight:700;color:#17384f;background:#fff;border:1px solid #c9d6e2;border-radius:6px;padding:2px 6px}
+.wpw-dauer{padding:4px 6px;border:1px solid #c9d6e2;border-radius:8px;font-size:12px;background:#fff}
+.wpw-st{font-size:11px;font-weight:700;border-radius:6px;padding:2px 7px}
+.wpw-st.ent{background:#fff3cf;color:#7a5a00}.wpw-st.gep{background:#e3ecfa;color:#1d4e9e}.wpw-st.live{background:#dcf3e4;color:#1f7a44}
+.wpw-x{border:0;background:none;color:#8a99a6;font-size:15px;cursor:pointer;padding:2px 6px}.wpw-x:hover{color:#C0392B}
+.wpw-leer{margin:0;font-size:13px;color:#8a99a6}
+.wpw-lab{font-size:11px;font-weight:800;letter-spacing:.06em;color:#6c8190;text-transform:uppercase;margin-top:4px}
+.wpw-lbs{display:flex;flex-direction:column;gap:8px}
+.wpw-lbg{background:var(--bg);border:1px solid color-mix(in srgb,var(--c) 30%,#fff);border-radius:10px;padding:8px 10px}
+.wpw-lbg>small{display:block;font-weight:800;color:var(--t);margin-bottom:6px}
+.wpw-chips{display:flex;flex-wrap:wrap;gap:6px}
+.wpw-chip{border:1px solid #c9d6e2;background:#fff;color:#17384f;border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer}
+.wpw-chip:hover{border-color:#17384f}
+.wpw-lbg .wpw-chip{border-color:var(--c)}
+.wpw-chip.an{background:var(--c,#17384f);border-color:var(--c,#17384f);color:#fff;font-weight:700}
+.wpw-lib{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.wpw-lib small{width:100%;color:#6c8190;font-size:12px}
+.wpw-neu{display:flex;gap:8px}.wpw-neu input{flex:1;min-width:0;padding:8px 10px;border:1px solid #c9d6e2;border-radius:10px;font-size:14px}
+.wpw-rasterkarte{margin-top:16px}
+.wpw-raster{display:grid;grid-template-columns:34px repeat(5,minmax(0,1fr));gap:4px;font-size:12px}
+.wpw-raster>b{display:flex;align-items:center;justify-content:center;color:#5a6b78}
+.wpw-z{min-height:30px;border-radius:7px;border:1px dashed #cfd9e2;background:#fafcfe;padding:2px 5px;display:flex;align-items:center;justify-content:center;font-size:11px;overflow:hidden;white-space:nowrap}
+.wpw-z.belegt{background:var(--bg);border:1px solid var(--c);color:#17384f;font-weight:700;justify-content:flex-start}
+button.wpw-z.frei{cursor:pointer}button.wpw-z.frei:hover:not(:disabled){background:#e8f2fb;border-color:#3A8FD4}
+.wpw-z.sel{background:#17384f;color:#fff;border-style:solid;border-color:#17384f;font-weight:800}
+.wpw-leiste{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;padding:12px 16px;margin:8px 0 12px}
+.wpw-leiste>div:first-child{flex:1 1 260px}.wpw-leiste>div:first-child b{display:block;font-size:16px;color:#17384f}.wpw-leiste small{color:#5a6b78}
+.wpw-sum2{font-size:13px;font-weight:700;color:#17384f}
+.wpw-tog{margin-left:auto;font-size:12px;font-weight:800;border-radius:999px;padding:3px 10px;border:1px solid #17384f;color:#17384f;background:#fff;cursor:pointer;white-space:nowrap}
+.wpw-tog.an{background:#17384f;color:#fff}
+.lx-wahl .kw-row{align-items:center}
+@media(max-width:640px){.wpw-grid{grid-template-columns:1fr}.wpw-sel select{min-width:0;width:100%}}
+.kw-row .wpw-tog,.lx-wahl .kw-row .wpw-tog{flex:0 0 auto;width:auto;margin-left:auto;display:inline-block;text-align:center}
