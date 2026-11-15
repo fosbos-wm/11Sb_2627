@@ -176,6 +176,7 @@ const de = (e) => x(e).min,
   ie = (e) => (e.lang ? e.label : e.min + " Min."),
   De = {
     einfuehrung: { l: "Einf\xFChrung", c: "#4f86e0", bg: "#e4edfb" },
+    unterricht: { l: "Unterricht", c: "#2f7bd1", bg: "#e1edfb" },
     lernen: { l: "Lernbaustein", c: "#5aa85a", bg: "#e5f2e2" },
     projekt: { l: "Projekt", c: "#27998b", bg: "#dcf1ee" },
     vertiefung: { l: "Vertiefung", c: "#d9922e", bg: "#fbecd5" },
@@ -1284,6 +1285,7 @@ function ot() {
   return `<div class="wp-tage">${I.map((t, n) => `<button class="${n === i.tag ? "on" : ""}" onclick="wp.tag(${n})">${t} ${Z(N(e, n))}</button>`).join("")}</div>`;
 }
 function dt() {
+  if (window.__wpFbSeite) return "";
   const sel = te() ? wocheSelect() : "";
   return `<div class="wp-nav">${sel}<button class="secondary" onclick="wp.woche(-1)" aria-label="Vorherige Woche">\u2190</button><b>${o(Q(i.woche))}</b><button class="secondary" onclick="wp.woche(1)" aria-label="N\xE4chste Woche">\u2192</button>${i.woche !== Ge() ? '<button class="secondary" onclick="wp.woche(0)">Heute</button>' : ""}</div>`;
 }
@@ -2305,11 +2307,12 @@ const $t = {
     ["anfragen", "Hilfe in der Klasse"],
   ];
 function Hn() {
+  if (window.__wpFbSeite) return "";
   return `<div class="wp-seg wp-ltabs">${Cn.map((e) => `<button class="${i.tab === e[0] ? "on" : ""}" onclick="wp.ltab('${e[0]}')">${e[1]}</button>`).join("")}</div>`;
 }
 async function _n() {
   (i.tab !== "team" && window.__wpStop(), await ct());
-  let e = `<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>Wochenplanung der Klasse</h1><p>Ihr stellt Lernbausteine und feste Termine (Einf\xFChrungen, Lernstandsgespr\xE4che) ein \u2013 die Sch\xFCler:innen planen ihre Woche selbst.</p></div></div>
+  let e = `<div class="wp-head"><div><div class="kicker">LERNBEGLEITUNG</div><h1>${window.__wpFbSeite ? "Blockfeedback" : "Wochenplanung der Klasse"}</h1><p>${window.__wpFbSeite ? "Auswertung der R\xFCckmeldungen der Klasse zu den Bl\xF6cken. Ein neues Block-Feedback legst du hier an oder setzt es unter \u201EUnterricht planen\u201C in eine Stunde." : "Ihr stellt Lernbausteine und feste Termine (Einf\xFChrungen, Lernstandsgespr\xE4che) ein \u2013 die Sch\xFCler:innen planen ihre Woche selbst."}</p></div></div>
  <div class="wp-bar2">${dt()}${Hn()}</div>`;
   const t = i.d.wochenDoc,
     n = i.d.module.filter((s) => s.status === "live" && s.woche === i.woche).length + i.d.einf.filter((s) => s.status === "live").length,
@@ -3932,6 +3935,8 @@ async function jahrHTML() {
   return h + `</tbody></table></div>`;
 }
 export async function wpRender(modus) {
+  window.__wpFbSeite = modus === "feedback";
+  if (modus === "feedback") { i.tab = "feedback"; modus = "plan"; }
   window.__wpModus = modus || "schueler";
   autoFreigabe();
   if (c.isTeacher() && modus === "jahr") return `<div id="wpRoot" class="wp">${await jahrHTML()}</div>`;

@@ -22048,7 +22048,7 @@ async function kwFaPicker(kat,themaId,modus){
   ${kat?`<button type="button" class="text-button" id="kwFaDatei">Stattdessen eine eigene Datei oder einen Link hinzufügen</button>`:""}
   <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" id="kwFaSave">Hinzufügen</button></div></div>`);
  if(kat)$("kwFaDatei").onclick=()=>kwMatFormDatei(kat);
- $("kwFaSave").onclick=async()=>{
+ lxPickerAufwerten();$("kwFaSave").onclick=async()=>{
   const ids=[...document.querySelectorAll(".kwFaCb:checked:not(:disabled)")].map(c=>c.value);
   const ubs=[...document.querySelectorAll(".kwUbCb:checked:not(:disabled)")].map(c=>({id:c.value,st:c.dataset.st}));
   const kks=[...document.querySelectorAll(".kwKkCb:checked:not(:disabled)")].map(c=>({url:c.value,t:c.dataset.t}));
@@ -22071,6 +22071,7 @@ async function kwFaPicker(kat,themaId,modus){
 window.kwFaPicker=kwFaPicker;
 async function kwMatForm(kat){
  if(!isTeacher())return;
+ if(kat==="einfuehrung"||kat==="tafel")return lxTafelPicker(kat);
  if(kat==="lernuebersicht")return kwLuPicker();
  if(!/^(uebung|vertiefung\d?)$/.test(kat))return kwMatFormDatei(kat);
  return kwFaPicker(kat);
@@ -22345,8 +22346,8 @@ async function renderLernstaendeSeite(){
 async function renderWochenplanSeite(modus){
  try{
   await loadFirebase();
-  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261108a";document.head.appendChild(l);}
-  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261108a");
+  if(!document.getElementById("wpCss")){const l=document.createElement("link");l.id="wpCss";l.rel="stylesheet";l.href="wochenplan.css?v=20261115a";document.head.appendChild(l);}
+  if(!wpModul)wpModul=await import("./wochenplan.js?v=20261115a");
   return await wpModul.wpRender(modus||"schueler");
  }catch(e){console.error("Wochenplan:",e);return `<div class="card"><h3>Der Wochenplan konnte nicht geladen werden.</h3><p>${esc(e?.message||"")}</p></div>`;}
 }
@@ -23300,14 +23301,16 @@ document.addEventListener("click",async ev=>{
 const LX_VORLAUF_TAGE=14;
 // Die sieben Teile jeder Themenseite: Reihenfolge und Randfarbe sind für Schüler:innen und Lehrkräfte gleich.
 const LXF={
- 1:{c:"#8E5BD1",bg:"#F5EFFC",n:"Wissens-Check zu Beginn"},
- 2:{c:"#6EC3EE",bg:"#EDF8FE",n:"Lernsituationen · Lehrtexte · Arbeitsblätter"},
- 3:{c:"#86CC6A",bg:"#F0FAEB",n:"Übungs- und Vertiefungsaufgaben"},
- 4:{c:"#F0C43C",bg:"#FEF8E2",n:"Lernbausteine · Unterricht"},
- 5:{c:"#1D4E9E",bg:"#EAF0FA",n:"Tafelbilder · Lernübersichten"},
- 6:{c:"#8E5BD1",bg:"#F5EFFC",n:"Check-Out-Tests"},
- 7:{c:"#F28A24",bg:"#FEF2E5",n:"Persönlicher Lernstand zum Thema"}
+ 1:{c:"#8E5BD1",bg:"#F5EFFC",n:"Wissens-Check zu Beginn",d:1},
+ 8:{c:"#D9467A",bg:"#FCEDF3",n:"Einführung",d:2},
+ 2:{c:"#6EC3EE",bg:"#EDF8FE",n:"Lernsituationen · Lehrtexte · Arbeitsblätter",d:3},
+ 3:{c:"#86CC6A",bg:"#F0FAEB",n:"Übungs- und Vertiefungsaufgaben",d:4},
+ 4:{c:"#F0C43C",bg:"#FEF8E2",n:"Lernbausteine · Unterricht",d:5},
+ 5:{c:"#1D4E9E",bg:"#EAF0FA",n:"Tafelbilder · Lernübersichten",d:6},
+ 6:{c:"#14A39A",bg:"#E6F7F5",n:"Check-Out-Tests",d:7},
+ 7:{c:"#F28A24",bg:"#FEF2E5",n:"Persönlicher Lernstand zum Thema",d:8}
 };
+const LX_TEILE=[1,8,2,3,4,5,6,7];
 function lxIso(d){const z=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate())}
 function lxHeute(){return lxIso(new Date())}
 function lxPlus(t){const d=new Date();d.setDate(d.getDate()+t);return lxIso(d)}
@@ -23507,10 +23510,10 @@ async function renderKachelwand(){
  </div>${footer()}`;
 }
 
-/* ---------- Themenseite: immer dieselben sieben Teile in derselben Reihenfolge ---------- */
+/* ---------- Themenseite: immer dieselben acht Teile in derselben Reihenfolge ---------- */
 function lxSek(nr,titel,hint,inner,extra){
  const F=LXF[nr];
- return`<section class="lx-sek" id="lx-s${nr}" style="--k:${F.c};--kb:${F.bg}"><header class="lx-sek-k"><span class="lx-nr">${nr}</span><div><h3>${esc(titel)}</h3>${hint?`<small>${esc(hint)}</small>`:""}</div></header>${extra||""}${inner}</section>`;
+ return`<section class="lx-sek" id="lx-s${nr}" style="--k:${F.c};--kb:${F.bg}"><header class="lx-sek-k"><span class="lx-nr">${F.d||nr}</span><div><h3>${esc(titel)}</h3>${hint?`<small>${esc(hint)}</small>`:""}</div></header>${extra||""}${inner}</section>`;
 }
 function lxCoZeile(c,d,lehrer){
  const a=(d.meineAbgaben||{})[c.id];
@@ -23575,15 +23578,18 @@ async function renderKwThema(){
   leist?Promise.resolve(null):einarbeitungInfo(e.id).catch(()=>null),
   leist?Promise.resolve([]):Promise.all(KW_TRAININGS_ALLE.map(x=>einarbeitungInfo(x).catch(()=>null)))]);
  const aus=new Set((PPM.aus||[]).filter(a=>(a.themen||[]).includes(e.id)).map(a=>a.kursId));
- const nb=lxNachbIds();const trListe=KW_TRAININGS_ALLE.map((x,i)=>{const n=trInfos[i];if(!n||n.entwurf||aus.has(x)||nb.has(x))return"";const h=KW_TR_HINT[x];return`<div class="kw-dz"><button type="button" class="kw-datei" data-kw="ea" data-id="${esc(x)}"><span>${esc(n.titel)}</span><small>${h?esc(h)+" · ":""}${n.aufgaben?n.aufgaben+" Aufgaben":"Selbstlernkurs"}</small></button>${lehrer?`<button type="button" class="kw-del kw-baust-weg" data-kw="trweg" data-id="${esc(x)}" data-thema="${esc(e.id)}" aria-label="Ausblenden" title="Auf dieser Themenseite ausblenden">×</button>`:""}</div>`}).join("");
+ const nb=lxNachbIds();const trListe=KW_TRAININGS_ALLE.map((x,i)=>{const n=trInfos[i];if(!n||n.entwurf||aus.has(x)||nb.has(x))return"";const h=KW_TR_HINT[x];return lxUebDzHtml(`<div class="kw-dz"><button type="button" class="kw-datei" data-kw="ea" data-id="${esc(x)}"><span>${esc(n.titel)}</span><small>${h?esc(h)+" · ":""}${n.aufgaben?n.aufgaben+" Aufgaben":"Selbstlernkurs"}</small></button>${lehrer?`<button type="button" class="kw-del kw-baust-weg" data-kw="trweg" data-id="${esc(x)}" data-thema="${esc(e.id)}" aria-label="Ausblenden" title="Auf dieser Themenseite ausblenden">×</button>`:""}</div>`,ph.lbNum,kwKurz(e),"Fachaufsatztraining","a")}).join("");
  const liste=kat=>{const l=mats.filter(m=>m.kategorie===kat);return l.length?l.map(m=>kwDateiHTML(m.titel,m.url,m.id,e.id)).join(""):`<div class="kw-leer">Noch nichts eingestellt.</div>`};
  const hat=kat=>mats.some(m=>m.kategorie===kat);
  const add=kat=>lehrer?`<button type="button" class="secondary kw-add" data-kw="matadd" data-kat="${kat}">+ hinzufügen</button>`:"";
  const teil=(kat,label)=>(!lehrer&&!hat(kat))?"":`<div class="kw-stufe"><b>${esc(label)}</b>${liste(kat)}${add(kat)}</div>`;
+ const K=leist?{fa:[],ub:[]}:await lxUebKataloge();
  const mod=kwModuleThema(e.id);
  const faMod=mod.filter(m=>m.modul==="fachaufsatz"||m.modul==="apt"),restMod=mod.filter(m=>!(m.modul==="fachaufsatz"||m.modul==="apt"));
- const modZeile=m=>{const T=KW_BAUSTEINE[m.modul]||["Baustein","chk"],f=ppmFort(m);return`<div class="kw-dz"><button type="button" class="kw-datei" data-kw="modul" data-id="${esc(m.id)}"><span>${esc(m.titel||T[0])}</span><small>${f&&f.done?"abgeschlossen":(f&&f.frac>0?Math.round(f.frac*100)+" % bearbeitet":(lehrer?"Öffnen":"Starten"))}</small></button>${lehrer?`<button type="button" class="kw-del kw-baust-weg" data-kw="modulweg" data-id="${esc(m.id)}" data-thema="${esc(e.id)}" aria-label="Entfernen" title="Von dieser Seite entfernen">×</button>`:""}</div>`};
+ const modZeile=m=>lxUebDzHtml(modZeile0(m),ph.lbNum,kwKurz(e),"Fachaufsatztraining","a");
+ const modZeile0=m=>{const T=KW_BAUSTEINE[m.modul]||["Baustein","chk"],f=ppmFort(m);return`<div class="kw-dz"><button type="button" class="kw-datei" data-kw="modul" data-id="${esc(m.id)}"><span>${esc(m.titel||T[0])}</span><small>${f&&f.done?"abgeschlossen":(f&&f.frac>0?Math.round(f.frac*100)+" % bearbeitet":(lehrer?"Öffnen":"Starten"))}</small></button>${lehrer?`<button type="button" class="kw-del kw-baust-weg" data-kw="modulweg" data-id="${esc(m.id)}" data-thema="${esc(e.id)}" aria-label="Entfernen" title="Von dieser Seite entfernen">×</button>`:""}</div>`};
  const aktionBausteine=lehrer?`<div class="kw-aktionen"><button class="secondary" data-kw="modulneu" data-id="${esc(e.id)}">Baustein einplanen</button>${leist?"":`<button class="secondary" data-kw="modulwahl" data-id="${esc(e.id)}">Vorhandenes Modul zuordnen</button>`}</div>`:"";
+ const uebTeil=(kat,label)=>{if(!lehrer&&!hat(kat))return"";const l=mats.filter(m=>m.kategorie===kat);return`<div class="kw-stufe"><b>${esc(label)}</b>${l.length?l.map(m=>lxUebDz(m,kat,K,e,ph)).join(""):`<div class="kw-leer">Noch nichts eingestellt.</div>`}${add(kat)}</div>`};
  const teile=[];
 
  if(leist){
@@ -23599,11 +23605,14 @@ async function renderKwThema(){
    return lxSek(1,LXF[1].n,"Zuerst: Was weißt du schon? Kein Test, keine Note.",inner,akt);
   })():"";
   teile.push(s1);
+  // Einführung: Digitale Tafeln zum Einstieg ins Thema
+  const s8l=mats.filter(m=>m.kategorie==="einfuehrung");const s8in=s8l.length?`<div class="kw-dateien">${s8l.map(m=>kwDateiHTML(m.titel,m.url,m.id,e.id)).join("")}</div>`:"";
+  teile.push((lehrer||s8in)?lxSek(8,LXF[8].n,"Einstieg ins Thema mit einer Digitalen Tafel",s8in||`<div class="kw-leer">Noch keine Tafel ausgewählt.</div>`,lehrer?`<div class="kw-aktionen"><button type="button" class="secondary kw-add" data-kw="matadd" data-kat="einfuehrung">+ Digitale Tafel hinzufügen</button></div>`:""):"");
   // 2 Lernsituationen, Lehrtexte, Arbeitsblätter
   const s2in=teil("lernsituation","Lernsituationen")+teil("lehrtext","Lehrtexte")+teil("arbeitsblatt","Arbeitsblätter");
   teile.push(s2in?lxSek(2,LXF[2].n,"Einstieg, Texte zum Erarbeiten und Blätter für den Unterricht",s2in):"");
   // 3 Übungs- und Vertiefungsaufgaben
-  const ueIn=teil("uebung","Übungsaufgaben")+teil("vertiefung1","Vertiefung · Stufe 1 · grundlegend")+teil("vertiefung2","Vertiefung · Stufe 2 · erweitert")+teil("vertiefung3","Vertiefung · Stufe 3 · anspruchsvoll")
+  const ueIn=uebTeil("uebung","Übungsaufgaben")+uebTeil("vertiefung1","Vertiefung · Stufe 1 · grundlegend")+uebTeil("vertiefung2","Vertiefung · Stufe 2 · erweitert")+uebTeil("vertiefung3","Vertiefung · Stufe 3 · anspruchsvoll")
    +((lehrer||faMod.length||trListe)?`<div class="kw-stufe"><b>Fachaufsatz-Training</b>${(faMod.length||trListe)?`<div class="kw-dateien">${faMod.map(modZeile).join("")}${trListe}</div>`:`<div class="kw-leer">Noch kein Fachaufsatz eingestellt.</div>`}${lehrer&&aus.size?`<button class="secondary" data-kw="trzurueck" data-id="${esc(e.id)}">Ausgeblendete Kurse wieder einblenden</button>`:""}</div>`:"");
   teile.push(ueIn?lxSek(3,LXF[3].n,"Zum Üben und Festigen, die Vertiefung in drei Schwierigkeitsgraden",ueIn):"");
   // 4 Lernbausteine / Unterricht
@@ -23629,7 +23638,7 @@ async function renderKwThema(){
  const altBtn=(leist||LX_CFG.klasse!==11)?"":`<button class="secondary" data-kw="alt" data-id="${esc(e.id)}">Lernziele und Aufgaben</button>`;
  const st=lxThemaStart(e);
  const sichtZeile=lehrer&&!leist?`<div class="lx-sicht"><label>Schüler:innen sehen dieses Thema ab <input type="date" id="lxAb" value="${esc(st)}"></label><button type="button" class="secondary" data-lx="ab" data-id="${esc(e.id)}">Datum speichern</button><button type="button" class="text-button" data-lx="ab0" data-id="${esc(e.id)}">Automatisch</button><small>Sonst gilt: zwei Wochen vor dem geplanten Start.</small></div>`:"";
- const navChips=leist?"":`<nav class="lx-weg" aria-label="Aufbau des Themas">${[1,2,3,4,5,6,7].map(n=>`<button type="button" class="lx-chip" style="--k:${LXF[n].c}" data-lx="sprung" data-n="${n}"><b>${n}</b> ${esc(LXF[n].n)}</button>`).join("")}</nav>`;
+ const navChips=leist?"":`<nav class="lx-weg" aria-label="Aufbau des Themas">${LX_TEILE.map(n=>`<button type="button" class="lx-chip" style="--k:${LXF[n].c}" data-lx="sprung" data-n="${n}"><b>${LXF[n].d}</b> ${esc(LXF[n].n)}</button>`).join("")}</nav>`;
  return`<div class="kw kw-seite" style="--c:${F.c};--bg:${F.bg};--t:${F.t}">
   ${kwSchuelerBanner()}
   <button class="secondary" data-kw="wand">← Lernlandkarte</button>
@@ -23844,7 +23853,7 @@ function lxThemaWahlen(modus){
    const has=k=>mats.some(m=>m.kategorie===k||(k==="vertiefung"&&/^vertiefung/.test(m.kategorie||"")));
    const cos=(KW.co&&KW.co.checkouts||[]).some(c=>Number(c.lbNum)===ph.lbNum);
    const teile=[
-    [1,has("checkin")],[2,has("lernsituation")||has("lehrtext")||has("arbeitsblatt")],[3,has("uebung")||has("vertiefung")||mod.some(m=>m.modul==="fachaufsatz"||m.modul==="apt")],
+    [1,has("checkin")],[8,has("einfuehrung")],[2,has("lernsituation")||has("lehrtext")||has("arbeitsblatt")],[3,has("uebung")||has("vertiefung")||mod.some(m=>m.modul==="fachaufsatz"||m.modul==="apt")],
     [4,mod.some(m=>m.modul!=="fachaufsatz"&&m.modul!=="apt")],[5,has("tafel")||has("lernuebersicht")],[6,cos]];
    const pts=teile.map(([n,ok])=>`<i class="lx-pt${ok?" an":""}" style="--k:${LXF[n].c}" title="${esc(LXF[n].n)}: ${ok?"vorhanden":"fehlt"}"></i>`).join("");
    const st=lxThemaStart(e);
@@ -23853,15 +23862,14 @@ function lxThemaWahlen(modus){
   return`<article class="kw-tile" style="--c:${F.c};--bg:${F.bg};--t:${F.t}"><header class="kw-th"><div><small>LB ${ph.lbNum} · ${esc(kwBlockText(ph.start,ph.end)||fmtKurz(ph.start))}</small><b>${esc(ph.lbTitel)}</b></div></header><div class="kw-rows">${rows}${kwLeistungRow(ph)}</div></article>`;
  }).join("");
 }
-function lxLegende(){return`<div class="lx-legende">${[1,2,3,4,5,6,7].map(n=>`<span><i class="lx-pt an" style="--k:${LXF[n].c}"></i>${n} ${esc(LXF[n].n)}</span>`).join("")}</div>`}
+function lxLegende(){return`<div class="lx-legende">${LX_TEILE.map(n=>`<span><i class="lx-pt an" style="--k:${LXF[n].c}"></i>${LXF[n].d} ${esc(LXF[n].n)}</span>`).join("")}</div>`}
 async function renderLkUnterricht(){
  if(!isTeacher())return await renderKachelwand();
  await kwLaden();await wpwLaden();
- return`<div class="lx-seite">${pageHead("LEHRKRÄFTE","Unterricht planen","Plane Bausteine und stelle Inhalte ein: Materialien, Wissens-Checks, Selbstlernkurse, Stunden, Check-outs und Tests. Jedes Thema hat dieselben sieben Teile wie bei den Schüler:innen.")}
+ return`<div class="lx-seite">${pageHead("LEHRKRÄFTE","Unterricht planen","Plane Bausteine und stelle Inhalte ein: Materialien, Wissens-Checks, Selbstlernkurse, Stunden, Check-outs und Tests. Jedes Thema hat dieselben acht Teile wie bei den Schüler:innen.")}
+ ${wpwLeiste()}
  <div class="lx-kacheln">
-  ${lxKachel("wp-woche","Wochenplanarbeit vorbereiten","Themen je Fach für die nächste Woche wählen")}
-  ${lxKachel("wp-plan","Wochenplanung (Stundenplan)","Lernbausteine, feste Termine und Sprechzeiten")}
-  ${lxKachel("wp-jahr","Jahresplan","Alle Schulwochen auf einen Blick")}
+  ${lxKachel("blockfeedback","Blockfeedback","Rückmeldungen der Klasse zu den Blöcken")}
   ${lxKachel("fach","Fächer und Projekte","Lernbereiche, Projekte und Bausteine ansehen")}
   ${lxKachel("tafel","Digitale Tafel","Tafelbilder und Unterrichtsseiten bauen")}
   ${lxKachel("whiteboard","Team-Whiteboard","Lernübersichten und Tafelbilder gestalten")}
@@ -23872,7 +23880,7 @@ async function renderLkUnterricht(){
   ${lxKachel("kw-fortschritt","Erledigt? Selbstlernkurse und Rallyes","Wer hat welchen Baustein bearbeitet?")}
   ${lxKachel("ressourcen","Lernressourcen","Links, Videos und KI-Angebote pflegen")}
  </div>
- <h2 class="lx-h2">Thema wählen</h2>${wpwLeiste()}<p class="lx-hint">Ein Klick öffnet das Thema. Mit dem Schalter „+ Woche“ nimmst du es in die Wochenplanarbeit der gewählten Woche auf. Dort stellst du mit „+ hinzufügen“ Dateien in den passenden Teil ein und planst Bausteine („Baustein einplanen“, Teil 4). Die Punkte zeigen, was schon da ist.</p>${lxLegende()}
+ <h2 class="lx-h2">Thema wählen</h2><p class="lx-hint">Ein Klick öffnet das Thema. Mit dem Schalter oben links (Art, z. B. „+ Unterricht“) stellst du es für die gewählte Woche bereit. Dort stellst du mit „+ hinzufügen“ Dateien in den passenden Teil ein und planst Bausteine („Baustein einplanen“, Teil 4). Die Punkte zeigen, was schon da ist.</p>${lxLegende()}
  <div class="kw-wand lx-wahl">${lxThemaWahlen("unterricht")}</div></div>${footer()}`;
 }
 
@@ -23892,11 +23900,12 @@ function lxNavAktiv(seite,p){
  if(seite==="lernwerkstatt")return LW.includes(p);
  if(seite==="kompetenz")return["kompetenz","tests"].includes(p);
  if(seite==="lernstaende")return["lernstaende","kw-checkouts"].includes(p);
- if(seite==="lk-unterricht")return p==="lk-unterricht"||p==="lk-inhalte";
+ if(seite==="lk-unterricht")return p==="lk-unterricht"||p==="lk-inhalte"||p==="wp-woche";
+ if(seite==="blockfeedback")return p==="blockfeedback";
  return false;
 }
 function lxRouten(){return{
- "wp-woche":renderWpWoche,
+ "wp-woche":renderWpWoche,blockfeedback:()=>renderWochenplanSeite("feedback"),
  unterricht:renderUnterrichtsfaecher,"lw-pp":renderLwPP,"lw-mathe":renderLwMathe,"lw-ueben":renderLwPP,"lw-training":renderLwPP,"lw-ueben-pp":renderLwUebenPP,"lw-training-pp":renderLwTrainingPP,
  "lw-nachbereitung":renderLwNachbereitung,"lw-fachaufsatz":renderLwFachaufsatz,"lw-lernen":renderLwLernen,"lw-koop":renderLwKoop,tests:renderTests,kompetenz:renderKompetenzLx,
  lernstaende:renderLernstaendeLx,"kw-checkouts":renderLernstaendeLx,"lk-unterricht":renderLkUnterricht,"lk-inhalte":renderLkUnterricht}}
@@ -23983,6 +23992,106 @@ async function renderLwFachaufsatz(){
 lxNavRollen();
 
 /* =========================================================
+ Einheitliche Darstellung der Übungsaufgaben + Digitale-Tafel-Auswahl
+ Immer gleich: Lernbereich (LB 1–4) · Thema · Übungsart · Niveau
+ ========================================================= */
+const LX_NIV={g:{t:"grundlegend",c:"#2E7D57",bg:"#E4F4EB"},e:{t:"erweitert",c:"#B8860B",bg:"#FFF3CF"},a:{t:"anspruchsvoll",c:"#C0392B",bg:"#FCE7E4"}};
+function lxNiveauArt(art,stufe){
+ art=String(art||"");
+ if(/Fachaufsatz/.test(art))return"a";
+ if(/Theorievergleich|K-Prim/.test(art))return"e";
+ if(/Lückentext/.test(art))return"g";
+ return stufe==="vertiefung"?"e":"g";
+}
+function lxChipsHTML(lb,thema,art,niv){
+ const F=kwFarbe(Number(lb)||1),N=LX_NIV[niv]||LX_NIV.g;
+ return`<span class="lx-pr-meta"><i class="lx-lbchip" style="background:${F.c}">LB ${esc(String(lb||"?"))}</i><b class="lx-th">${esc(thema||"")}</b><em class="lx-art">${esc(art||"Übung")}</em><u class="lx-niv" style="color:${N.c};background:${N.bg};border-color:${N.c}">${N.t}</u></span>`;
+}
+async function lxUebKataloge(){
+ const fa=(typeof faLaden==="function")?await faLaden().catch(()=>[]):[];
+ const ub=(typeof kwUbKatalog==="function")?await kwUbKatalog().catch(()=>[]):[];
+ return{fa:fa||[],ub:ub||[]};
+}
+function lxUebMeta(m,kat,K,e,ph){
+ const url=String(m.url||"");
+ let lb=ph.lbNum,thema=kwKurz(e),art="Übung",niv="g";
+ if(url.startsWith("fa:")){
+  const u=K.fa.find(x=>x.id===url.slice(3));
+  art="Fachaufsatztraining";niv="a";
+  if(u){lb=u.lb||lb;const t=kwThemaById(u.thema);thema=t?kwKurz(t):(u.zusatz||thema)}
+ }else if(/^uebungsbausteine\/station\.html\?s=/.test(url)){
+  const x=K.ub.find(y=>y.id===url.split("s=")[1]);
+  if(x){lb=Number(String((x.pfad||[])[0]||"").replace(/\D/g,""))||lb;thema=x.thema||thema;art=String((x.pfad||[]).slice(-1)[0]||"Übung").replace(/\s*\(Vertiefung\)/,"");niv=lxNiveauArt(art,x.stufe)}
+ }else if(/^karteikarten\//.test(url)){
+  const q=url.split("?")[1]||"",p=new URLSearchParams(q);
+  lb=Number(p.get("lb"))||lb;thema=p.get("thema")||"Alle Themen";art="Karteikarten";niv="g";
+ }else{
+  if(/^vertiefung1$/.test(kat))niv="g";else if(kat==="vertiefung2")niv="e";else if(kat==="vertiefung3")niv="a";
+ }
+ return{lb,thema,art,niv};
+}
+// Eine Übungszeile der Themenseite (Datei/Übung) im einheitlichen Schema
+function lxUebDz(m,kat,K,e,ph){
+ const mt=lxUebMeta(m,kat,K,e,ph),F=kwFarbe(mt.lb);
+ let h=kwDateiHTML(m.titel,m.url,m.id,e.id);
+ h=h.replace(/(<(?:button|a)[^>]*class="kw-datei"[^>]*>)<span>([^<]*)<\/span>/,(s,a,t)=>a+`<span class="lx-pr-titel">${t}</span>`+lxChipsHTML(mt.lb,mt.thema,mt.art,mt.niv));
+ return`<div class="lx-ub" style="--k:${F.c};--kb:${F.bg}">${h}</div>`;
+}
+// Modul (Fachaufsatz-Selbstlernkurs) im selben Schema
+function lxUebDzHtml(inhalt,lb,thema,art,niv){
+ const F=kwFarbe(Number(lb)||1);
+ return`<div class="lx-ub" style="--k:${F.c};--kb:${F.bg}">${inhalt.replace(/(<(?:button|a)[^>]*class="kw-datei"[^>]*>)<span>([^<]*)<\/span>/,(s,a,t)=>a+`<span class="lx-pr-titel">${t}</span>`+lxChipsHTML(lb,thema,art,niv))}</div>`;
+}
+// Auswahlfenster „Übungen hinzufügen“: jede Zeile im Lernbereichs-Farbschema
+function lxPickerAufwerten(){
+ const wurzel=document.querySelector(".kw-fa-pick");if(!wurzel||wurzel.dataset.lxn)return;wurzel.dataset.lxn="1";wurzel.classList.add("lx-pickneu");
+ wurzel.querySelectorAll("details.kw-fa-lb").forEach(det=>{
+  const n=Number(det.dataset.lb)||1,F=kwFarbe(n);
+  det.style.setProperty("--k",F.c);det.style.setProperty("--kb",F.bg);
+  det.querySelectorAll("label.check").forEach(lab=>{
+   const cb=lab.querySelector("input");if(!cb)return;
+   const kopf=lab.closest(".kw-fa-gr")&&lab.closest(".kw-fa-gr").querySelector(".fa-lbkopf");
+   let kt=kopf?kopf.textContent:"";
+   const sp=lab.querySelector("span"),titel=(sp&&sp.querySelector("b")?sp.querySelector("b").textContent:"");
+   const kl=sp&&sp.querySelector("small")?sp.querySelector("small").textContent:"";
+   let thema,art,niv;
+   if(cb.classList.contains("kwFaCb")){art="Fachaufsatztraining";niv="a";thema=kt.replace(/^Nr\.\s*\S+\s*·\s*/,"").replace(/^Weiteres Thema:\s*/,"")}
+   else if(cb.classList.contains("kwUbCb")){thema=kt.replace(/^Spiele und Übungen:\s*/,"");art=(kl.split(" · ")[0]||"Übung").replace(/\s*\(Vertiefung\)/,"");niv=lxNiveauArt(art,cb.dataset.st)}
+   else{art="Karteikarten";niv="g";thema=String(cb.dataset.t||"").split(" · ")[1]||"Alle Themen"}
+   lab.classList.add("lx-pr");
+   const schon=/schon hinzugefügt/.test(kl);
+   const rest=sp?`<span class="lx-pr-titel">${esc(titel)}</span>${lxChipsHTML(n,thema,art,niv)}${schon?'<small class="lx-schon">schon hinzugefügt</small>':""}`:"";
+   if(sp)sp.innerHTML=rest;
+  });
+ });
+}
+// Digitale Tafeln: Auswahl als Liste im Lernbereichs-Farbschema (Einführung und Tafelbilder)
+async function lxTafelPicker(kat){
+ const e=kwThemaById(activeKwThema);if(!e||!kwLehrer())return;
+ const ph=LX_CFG.phasen().find(p=>p.id===e.phase)||LX_CFG.phasen()[0];
+ let boards=[];try{boards=await getCollection("whiteboards","createdAt",true,300)}catch(x){}
+ boards=boards.filter(b=>b.art==="tafel"&&!b.lernVorlage&&!b.lernKey);
+ const schon=new Set((KW.mat[e.id]||[]).filter(m=>m.kategorie===kat).map(m=>m.url));
+ const lbVon=b=>{const m=String(b.title||"").match(/(?:\bLB|Lernbereich)\s*([1-4])/i);return m?Number(m[1]):0};
+ const gruppen=[1,2,3,4,0].map(n=>({n,l:boards.filter(b=>lbVon(b)===n)})).filter(g=>g.l.length);
+ const art=kat==="einfuehrung"?"Einführung":"Tafelbild";
+ const zeile=(b,n)=>{const F=kwFarbe(n||ph.lbNum),da=schon.has("board:"+b.id);
+  return`<button type="button" class="lx-tz${da?" da":""}" data-id="${esc(b.id)}" data-t="${esc(b.title||"Tafel")}" style="--k:${F.c};--kb:${F.bg}"${da?" disabled":""}><i class="lx-lbchip" style="background:${F.c}">${n?"LB "+n:"Tafel"}</i><span class="lx-tz-t"><b>${esc(b.title||"Tafel")}</b><small>${b.einstieg?"Einstiegs-Tafel · ":""}${esc(b.description||"Digitale Tafel")}</small></span><em class="lx-art">${art}</em>${da?`<small class="lx-schon">schon hinzugefügt</small>`:`<span class="lx-tz-go">Auswählen</span>`}</button>`};
+ const liste=gruppen.map(g=>`<div class="lx-tg" style="--k:${g.n?kwFarbe(g.n).c:"#64748b"}"><h4>${g.n?"Lernbereich "+g.n:"Weitere Tafeln"}</h4>${g.l.map(b=>zeile(b,g.n)).join("")}</div>`).join("");
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">${esc(kwKurz(e)).toUpperCase()}</div><h2>Digitale Tafel ${kat==="einfuehrung"?"zur Einführung ":""}auswählen</h2>
+  <p style="color:var(--muted);margin:0 0 10px">Tippe auf eine Tafel, dann erscheint sie bei diesem Thema. Die Tafeln sind nach Lernbereich sortiert.</p>
+  <div class="lx-tlist">${liste||`<div class="kw-leer">Noch keine Digitalen Tafeln vorhanden. Lege sie im Bereich „Digitale Tafel“ an.</div>`}</div>
+  <div class="form-actions"><button type="button" class="text-button" id="lxTafelDatei">Stattdessen einen Link hinzufügen</button><button class="secondary" onclick="closeModal()">Schließen</button></div>`);
+ $("lxTafelDatei").onclick=()=>kwMatFormDatei(kat);
+ document.querySelectorAll(".lx-tz:not(.da)").forEach(b=>b.onclick=async()=>{
+  try{
+   await addDoc(collection(db,"lehrplanMaterialien"),{wocheId:e.id,fach:"paedagogik",kategorie:kat,titel:b.dataset.t,url:"board:"+b.dataset.id,dateiName:"",createdBy:currentUser.uid,createdAt:serverTimestamp()});
+   closeModal();toast("Tafel hinzugefügt.");render();
+  }catch(err){console.error(err);toast("Konnte nicht gespeichert werden.")}
+ });
+}
+
+/* =========================================================
  WOCHENPLANARBEIT VORBEREITEN (11Sb_2627)
  Lehrkräfte wählen je Schulwoche und je Fach, welche Themen und Inhalte die Schüler:innen
  in der Wochenplanarbeit bearbeiten. Daraus entstehen Lernbausteine (Sammlung wpModule),
@@ -24002,7 +24111,8 @@ const WPW_FAECHER=[
 const WPW_STD_DEF={paedagogik:1,deutsch:1,englisch:1,mathematik:1,sozialwirtschaft:1,geschichte:1,chemie:1,foerder:0};
 const WPW_TAGE=["Mo","Di","Mi","Do","Fr"];
 const WPW_DAUERN=[["15","15 Min."],["20","20 Min."],["30","30 Min."],["45","45 Min. (1 Std.)"],["60","60 Min."],["90","90 Min. (2 Std.)"],["120","120 Min."],["135","135 Min. (3 Std.)"]];
-const WPW={woche:"",std:{...WPW_STD_DEF},mod:[],einf:[],slots:[],wd:null,lib:[],autoT:0};
+const WPW_ARTEN=[["unterricht","Unterricht"],["projekt","Projekt"],["lernrallye","Lernrallye"],["gruppenuebung","Gruppenübung"],["selbstlern","Selbstlernkurs"],["deeperlearning","Deeper Learning"],["uebung","Übungsbaustein"],["fachaufsatz","Fachaufsatztraining"],["einfuehrung","Einführung"],["lernen","Lernbaustein"]];
+const WPW={art:"unterricht",woche:"",std:{...WPW_STD_DEF},mod:[],einf:[],slots:[],wd:null,lib:[],autoT:0};
 
 function wpwMontag(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7));return lxIso(d)}
 function wpwWocheGet(){
@@ -24017,6 +24127,7 @@ function wpwWocheInfo(w){const sw=SCHULWOCHEN_PP.find(x=>x.start===w);return sw?
 function wpwMin(m){const d=String(m.dauer==null?"":m.dauer);if(/^\d+$/.test(d))return Number(d);if(d==="")return(Number(m.len)||1)*45;return 0}
 function wpwStd(min){return String(Math.round(min/45*10)/10).replace(".",",")}
 function wpwLen(m){return Math.max(1,Math.ceil(wpwMin(m)/45))}
+function wpwArtL(k){const a=WPW_ARTEN.find(x=>x[0]===k);return a?a[1]:k==="feedback"?"Block-Feedback":"Lernbaustein"}
 function wpwFach(k){return WPW_FAECHER.find(f=>f.key===k)||{key:k,label:k,kurz:k}}
 function wpwFarbe(k){const c=fachFarbe(k);return{c:c.border||c.text,bg:c.bg}}
 
@@ -24062,15 +24173,16 @@ async function wpwNeu(fach,titel,extra){
 async function wpwThemaSchalten(themaId){
  if(!isTeacher())return;
  const e=kwThemaById(themaId);if(!e)return;
- const vorh=WPW.mod.filter(m=>m.themaId===themaId);
+ const art=WPW.art||"unterricht";
+ const vorh=WPW.mod.filter(m=>m.themaId===themaId&&(m.typ||"lernen")===art);
  try{
   if(vorh.length){
    for(const m of vorh)await deleteDoc(doc(db,"wpModule",m.id));
-   WPW.mod=WPW.mod.filter(m=>m.themaId!==themaId);toast("„"+kwKurz(e)+"“ ist nicht mehr in der Wochenplanarbeit.");
+   WPW.mod=WPW.mod.filter(m=>m.themaId!==themaId);toast("„"+kwKurz(e)+"“ ("+wpwArtL(art)+") ist nicht mehr in der Wochenplanarbeit.");
   }else{
    const ph=LX_CFG.phasen().find(p=>p.id===e.phase);
-   await wpwNeu("paedagogik",kwKurz(e),{themaId,lb:ph?ph.lbNum:0,route:"thema~"+themaId,beschr:"Arbeite an diesem Thema in der Lernlandkarte: Wissens-Check, Lehrtext, Übungen, Tafelbilder und Selbsteinschätzung."});
-   toast("„"+kwKurz(e)+"“ ist für die Wochenplanarbeit vorgemerkt (Entwurf).");
+   await wpwNeu("paedagogik",kwKurz(e),{typ:art,themaId,lb:ph?ph.lbNum:0,route:"thema~"+themaId,beschr:"Arbeite an diesem Thema in der Lernlandkarte: Wissens-Check, Lehrtext, Übungen, Tafelbilder und Selbsteinschätzung."});
+   toast("„"+kwKurz(e)+"“ ist als "+wpwArtL(art)+" vorgemerkt (Entwurf).");
   }
   window.__fsDirty=Date.now();
  }catch(err){console.error(err);toast("Das hat nicht geklappt (firestore.rules veröffentlicht?).")}
@@ -24112,7 +24224,7 @@ function wpwRaster(opt){
   for(let d=0;d<5;d++){
    const b=g[d+"_"+s],auswahl=sel&&sel.d===d&&s>=sel.h&&s<sel.h+sel.len;
    if(b){const f=wpwFarbe(b.fach);h+=`<span class="wpw-z belegt" style="--c:${f.c};--bg:${f.bg}" title="${esc(b.t)}">${esc(String(b.t).slice(0,14))}</span>`}
-   else h+=`<button type="button" class="wpw-z frei${auswahl?" sel":""}" ${o.waehlbar?`data-wpw="slot" data-d="${d}" data-h="${s}"`:"disabled"}>${auswahl?"✓":""}</button>`;
+   else h+=`<button type="button" class="wpw-z frei${auswahl?" sel":""}" ${o.waehlbar?`data-wpw="${o.attr||"slot"}" data-d="${d}" data-h="${s}"`:"disabled"}>${auswahl?"✓":""}</button>`;
   }
  }
  return h+"</div>";
@@ -24186,12 +24298,51 @@ async function renderWpWoche(){
 
 /* ---------- Leiste und Schalter in „Unterricht planen“ ---------- */
 function wpwLeiste(){
- const info=wpwWocheInfo(wpwWocheGet()),z=wpwStatusZahlen(),n=WPW.mod.filter(m=>m.themaId).length;
- return`<div class="wpw-leiste card"><div><b>Wochenplanarbeit</b><small>Wähle bei den Themen unten, was die Schüler:innen in dieser Woche bearbeiten (Schalter „Woche“).</small></div>${wpwWochenWahl()}<span class="wpw-sum2">${n} Themen gewählt${z.entwurf?` · ${z.entwurf} Entwurf`:""}</span><button type="button" class="primary" onclick="go('wp-woche')">Alle Fächer und Stunden planen →</button></div>`;
+ const z=wpwStatusZahlen(),info=wpwWocheInfo(wpwWocheGet());
+ const mods=WPW.mod.filter(m=>!m.block);
+ const arten=WPW_ARTEN.map(x=>`<button type="button" class="wpw-art${WPW.art===x[0]?" an":""}" data-wpw="art" data-k="${x[0]}" aria-pressed="${WPW.art===x[0]}">${esc(x[1])}</button>`).join("");
+ const liste=mods.length?mods.map(m=>`<span class="wpw-bs wpw-bs-${m.status==="live"?"live":m.status==="geplant"?"gep":"ent"}"><b>${esc(wpwArtL(m.typ||"lernen"))}</b> ${esc(m.titel)}<button type="button" class="wpw-x" data-wpw="del" data-id="${esc(m.id)}" aria-label="Entfernen">✕</button></span>`).join(""):`<span class="wpw-leer">Noch nichts bereitgestellt.</span>`;
+ const fachOpt=WPW_FAECHER.map(f=>`<option value="${f.key}">${esc(f.label)}</option>`).join("");
+ return`<section class="wpw-bereit card">
+  <h3>Inhalt für die Wochenplanung bereitstellen</h3>
+  <div class="wpw-b1"><div><small class="wpw-k">1 · Wann können die Schüler:innen ihn einplanen?</small>${wpwWochenWahl()}<p class="lx-hint">Gewählt: <b>KW ${info.kw}</b> (${info.von}–${info.bis}). Die Klasse sieht den Inhalt, sobald diese Woche höchstens zwei Wochen entfernt ist, und legt ihn dann selbst in ihren Wochenplan.</p></div>
+  <div class="wpw-akt"><button type="button" class="primary" data-wpw="fertig"${z.entwurf?"":" disabled"}>Fertigstellen (geplant)</button><button type="button" class="secondary" data-wpw="frei"${z.entwurf+z.geplant?"":" disabled"}>Sofort sichtbar machen</button></div></div>
+  <small class="wpw-k">2 · Als was erscheint er bei den Schüler:innen? (Art anklicken)</small><div class="wpw-arten">${arten}</div>
+  <small class="wpw-k">3 · Inhalt wählen: bei einem Thema unten „+ Woche“ anklicken, oder einen eigenen Inhalt eintragen</small>
+  <div class="wpw-eigen"><select id="wpwEFach" aria-label="Fach">${fachOpt}</select><input id="wpwETitel" maxlength="80" placeholder="Eigener Inhalt, z. B. Projektarbeit Teil 2"><button type="button" class="secondary" data-wpw="eigen">+ Bereitstellen als „${esc(wpwArtL(WPW.art))}“</button></div>
+  <div class="wpw-bsl"><small class="wpw-k">In KW ${info.kw} bereitgestellt (${z.live} sichtbar · ${z.geplant} geplant · ${z.entwurf} Entwurf)</small>${liste}</div>
+  ${wpwBlockPanel()}
+ </section>`;
+}
+// Stunden blocken: Unterricht für alle, Block-Feedback oder nicht verplanbar
+function wpwBlockPanel(){
+ const bl=WPW.mod.filter(m=>m.block);
+ const liste=bl.map(m=>`<span class="wpw-bs wpw-bs-blk"><b>${esc(WPW_TAGE[Number(m.fixTag)]||"")} ${Number(m.fixStd)||1}.${wpwLen(m)>1?"–"+((Number(m.fixStd)||1)+wpwLen(m)-1):""} Std.</b> ${esc(m.titel)}<button type="button" class="wpw-x" data-wpw="del" data-id="${esc(m.id)}" aria-label="Entfernen">✕</button></span>`).join("");
+ return`<details class="wpw-blk"${bl.length?" open":""}><summary>Stunden im Wochenplan blocken <small>Unterricht für alle · Block-Feedback · nicht verplanbar</small></summary>
+  <p class="lx-hint">Klicke eine freie Stunde an. Dort können die Schüler:innen nichts einplanen, sie steht für alle fest im Wochenplan.</p>
+  <div class="wpw-blkr">${wpwRaster({waehlbar:true,attr:"blk"})}</div>${liste?`<div class="wpw-bsl">${liste}</div>`:""}</details>`;
+}
+function wpwBlockModal(d,h){
+ modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">KW ${wpwWocheInfo(wpwWocheGet()).kw} · ${WPW_TAGE[d]} · ${h}. Stunde</div><h2>Stunde blocken</h2>
+ <div class="form"><label>Was findet statt?<select id="wpwBArt"><option value="unterricht">Unterricht für alle (nicht verplanbar)</option><option value="feedback">Block-Feedback ansetzen</option><option value="sperre">Sonst nicht verplanbar</option></select></label>
+ <label>Titel<input id="wpwBTitel" maxlength="60" placeholder="z. B. Mathematik-Unterricht"></label>
+ <label>Fach<select id="wpwBFach"><option value="fachuebergreifend">Fächerübergreifend</option>${WPW_FAECHER.map(f=>`<option value="${f.key}">${esc(f.label)}</option>`).join("")}</select></label>
+ <label>Anzahl Stunden<select id="wpwBLen">${[1,2,3,4].map(n=>`<option value="${n}">${n}</option>`).join("")}</select></label>
+ <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" data-wpw="blkspeichern" data-d="${d}" data-h="${h}">Blocken</button></div></div>`);
+}
+async function wpwBlockSpeichern(d,h){
+ const art=$("wpwBArt").value,len=Number($("wpwBLen").value)||1,fach=$("wpwBFach").value;
+ const g=wpwBelegt();for(let i=0;i<len;i++)if(g[d+"_"+(h+i)]||h+i>10)return toast("Die Stunden reichen nicht ab hier: Es ist schon etwas eingetragen oder der Tag ist zu Ende.");
+ const titel=($("wpwBTitel").value.trim()||(art==="feedback"?"Block-Feedback":art==="sperre"?"Nicht verplanbar":"Unterricht")).slice(0,60);
+ const extra={typ:art==="feedback"?"feedback":"unterricht",block:true,pflicht:true,fixTag:d,fixStd:h,len,dauer:String(len*45),status:"geplant",beschr:art==="feedback"?"Block-Feedback: Deine Rückmeldung hilft, den nächsten Block zu verbessern.":"Diese Stunde ist für alle festgelegt und kann nicht verplant werden."};
+ if(art==="feedback")extra.gestaltung={block:titel};
+ await wpwNeu(fach,titel,extra);
+ await wpwAuto(true);closeModal();toast("Stunde ist geblockt.");await wpwNeuRender();
 }
 function wpwSchalter(themaId){
- const an=WPW.mod.some(m=>m.themaId===themaId);
- return`<span class="wpw-tog${an?" an":""}" role="button" tabindex="0" data-wpw="thema" data-id="${esc(themaId)}" aria-pressed="${an}" title="${an?"In der Wochenplanarbeit dieser Woche. Klick entfernt es.":"In die Wochenplanarbeit dieser Woche aufnehmen"}">${an?"✓ KW "+wpwWocheInfo(wpwWocheGet()).kw:"+ Woche"}</span>`;
+ const art=WPW.art||"unterricht",an=WPW.mod.some(m=>m.themaId===themaId&&(m.typ||"lernen")===art);
+ const sonst=[...new Set(WPW.mod.filter(m=>m.themaId===themaId&&(m.typ||"lernen")!==art).map(m=>wpwArtL(m.typ||"lernen")))];
+ return`<span class="wpw-tog${an?" an":""}" role="button" tabindex="0" data-wpw="thema" data-id="${esc(themaId)}" aria-pressed="${an}" title="${an?"Als "+wpwArtL(art)+" in KW "+wpwWocheInfo(wpwWocheGet()).kw+" bereitgestellt. Klick entfernt es.":"Als "+wpwArtL(art)+" für KW "+wpwWocheInfo(wpwWocheGet()).kw+" bereitstellen"}${sonst.length?" (auch: "+sonst.join(", ")+")":""}">${an?"✓ "+wpwArtL(art)+" · KW "+wpwWocheInfo(wpwWocheGet()).kw:"+ "+wpwArtL(art)}${sonst.length?" <i>+"+sonst.length+"</i>":""}</span>`;
 }
 function lxWpwThemaOeffnen(p){
  const id=String(p).slice(6);activeKwThema=id;
@@ -24227,6 +24378,10 @@ document.addEventListener("click",async ev=>{
  const a=b.dataset.wpw,id=b.dataset.id;
  try{
   if(a==="thema"){await wpwThemaSchalten(id);await wpwNeuRender()}
+  else if(a==="art"){WPW.art=b.dataset.k;await wpwNeuRender()}
+  else if(a==="eigen"){const t=($("wpwETitel").value||"").trim();if(t.length<2)return toast("Bitte einen Inhalt eintragen.");await wpwNeu($("wpwEFach").value,t,{typ:WPW.art||"unterricht"});await wpwNeuRender()}
+  else if(a==="blk"){wpwBlockModal(Number(b.dataset.d),Number(b.dataset.h))}
+  else if(a==="blkspeichern"){await wpwBlockSpeichern(Number(b.dataset.d),Number(b.dataset.h))}
   else if(a==="woche"){if(b.dataset.w){wpwWocheSetzen(b.dataset.w);await wpwNeuRender()}}
   else if(a==="del"){const m=WPW.mod.find(x=>x.id===id);if(!m||!confirm("„"+m.titel+"“ aus dieser Woche entfernen?"))return;await deleteDoc(doc(db,"wpModule",id));WPW.mod=WPW.mod.filter(x=>x.id!==id);window.__fsDirty=Date.now();await wpwNeuRender()}
   else if(a==="edit")wpwEdit(id);

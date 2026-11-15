@@ -412,6 +412,32 @@ details.ls-lb:not([open])>summary.ls-lbk{border-radius:0 0 0 0}
 .hero:has(.hero-qr){padding-left:28px!important;padding-right:150px}
 @media(max-width:800px){.hero-qr{right:auto}.hero:has(.hero-qr){padding-right:28px}}
 
+/* ---- einheitliche Übungsdarstellung & Tafelauswahl ---- */
+.lx-pr-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:5px}
+.lx-lbchip{font-style:normal;font-weight:700;font-size:11px;color:#fff;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.lx-th{font-size:13px;color:#1f2d3a}
+.lx-art{font-style:normal;font-size:11px;font-weight:600;background:#fff;border:1px solid var(--k,#cbd5e1);color:#334155;padding:1px 8px;border-radius:6px}
+.lx-niv{text-decoration:none;font-size:11px;font-weight:700;padding:1px 8px;border-radius:6px;border:1px solid}
+.lx-pr-titel{display:block;font-weight:600}
+.lx-ub{border-left:6px solid var(--k);background:var(--kb);border-radius:10px;margin:6px 0;padding:2px 0}
+.lx-ub .kw-dz{margin:0}.lx-ub .kw-datei{background:transparent;border:0}
+.lx-pickneu .kw-fa-h,.lx-pickneu .fa-lbkopf{display:none}
+.lx-pickneu details.kw-fa-lb{border-left:6px solid var(--k);background:var(--kb);border-radius:10px;margin:8px 0;padding:6px 10px}
+.lx-pickneu details.kw-fa-lb>summary{color:var(--k)}
+.lx-pickneu .kw-fa-gr{border:0!important;padding:0;margin:0;background:transparent}
+.lx-pickneu label.lx-pr{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid #e1e8ef;border-left:4px solid var(--k);border-radius:8px;padding:7px 10px;margin:5px 0}
+.lx-schon{color:#64748b;font-size:11px;margin-left:6px}
+.lx-tlist{max-height:55vh;overflow:auto}
+.lx-tg{margin:10px 0}.lx-tg h4{margin:0 0 4px;color:var(--k);font-size:14px}
+.lx-tz{display:flex;width:100%;gap:10px;align-items:center;text-align:left;background:var(--kb);border:1px solid #e1e8ef;border-left:6px solid var(--k);border-radius:10px;padding:8px 12px;margin:5px 0;cursor:pointer}
+.lx-tz:hover:not(.da){box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.lx-tz.da{opacity:.55;cursor:default}
+.lx-tz-t{flex:1;display:flex;flex-direction:column}.lx-tz-t small{color:#64748b}
+.lx-tz-go{font-size:12px;font-weight:700;color:var(--k)}
+
+.lx-ub .kw-datei{flex-wrap:wrap;row-gap:2px}.lx-ub .lx-pr-titel{flex:1 0 100%}.lx-ub .kw-datei small{margin-left:auto}
+.lx-pickneu .lx-pr-titel{font-size:13px;font-weight:600;color:#1f2d3a}
+
 /* Umbau: Wochenplanarbeit vorbereiten */
 .wpw .wpw-kopf{display:flex;flex-direction:column;gap:12px;padding:16px 18px;margin-bottom:16px}
 .wpw-wahl{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
@@ -468,3 +494,18 @@ button.wpw-z.frei{cursor:pointer}button.wpw-z.frei:hover:not(:disabled){backgrou
 .lx-wahl .kw-row{align-items:center}
 @media(max-width:640px){.wpw-grid{grid-template-columns:1fr}.wpw-sel select{min-width:0;width:100%}}
 .kw-row .wpw-tog,.lx-wahl .kw-row .wpw-tog{flex:0 0 auto;width:auto;margin-left:auto;display:inline-block;text-align:center}
+
+/* ---- Bereitstellen für die Wochenplanung ---- */
+.wpw-bereit{padding:16px 18px;margin-bottom:16px;border-left:6px solid #2f7bd1}
+.wpw-bereit h3{margin:0 0 8px}
+.wpw-k{display:block;font-weight:700;color:#475569;margin:10px 0 4px;font-size:12px}
+.wpw-b1{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+.wpw-arten{display:flex;flex-wrap:wrap;gap:6px}
+.wpw-art{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:5px 13px;font-weight:600;cursor:pointer}
+.wpw-art.an{background:#2f7bd1;border-color:#2f7bd1;color:#fff}
+.wpw-eigen{display:flex;flex-wrap:wrap;gap:6px}.wpw-eigen input{flex:1;min-width:180px}
+.wpw-bsl{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.wpw-bs{display:inline-flex;gap:6px;align-items:center;border:1px solid #cbd5e1;border-radius:8px;padding:3px 8px;background:#fff;font-size:13px}
+.wpw-bs-live{background:#e4f4eb;border-color:#2E7D57}.wpw-bs-gep{background:#e1edfb;border-color:#2f7bd1}.wpw-bs-ent{background:#fff8e1;border-color:#e0a800}.wpw-bs-blk{background:#f1f5f9}
+.wpw-blk{margin-top:12px;border-top:1px dashed #cbd5e1;padding-top:8px}.wpw-blk summary{cursor:pointer;font-weight:700}.wpw-blk summary small{font-weight:400;color:#64748b;margin-left:6px}
+.wpw-blkr .wpw-raster{max-width:520px}
