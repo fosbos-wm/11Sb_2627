@@ -3622,10 +3622,10 @@ async function renderStart(){
  const upcomingDate=nextCalendar?.start||nextCalendar?.date||nextCalendar?.startDate;
  const upcomingDateText=upcomingDate?.seconds?new Date(upcomingDate.seconds*1000).toLocaleDateString("de-DE"):String(upcomingDate||"").slice(0,10);
  const upcomingTime=nextCalendar?.time?` · ${esc(nextCalendar.time)} Uhr`:"";
- const newsAction=(isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:"")
- +(isAdmin()?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
+ const newsAction=(isTeacher()&&window.__lxBereich!=="s"?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:"")
+ +(isAdmin()&&window.__lxBereich!=="s"?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
  return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 27/28</span><h1>Willkommen auf dem Campus.</h1><p>Lernen, Projekte, Praxis und Gemeinschaft an einem Ort.</p>
-</div><div class="actions">${isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
+</div><div class="actions">${isTeacher()&&window.__lxBereich!=="s"?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
  ${await lxOffenKachel()}
   <div class="grid grid-3"style="gap:20px;margin-bottom:20px">
  <div class="card card-compact"style="border-left:4px solid #4a90d9"><h3> Campus-News</h3><div class="list">${news.slice(0,3).map(p=>`<div
@@ -23918,6 +23918,7 @@ function lxRouten(){return{
 document.addEventListener("click",ev=>{
  const n=ev.target.closest&&ev.target.closest('.nav-link[data-page^="news-"]');if(!n)return;
  window.__lxBereich=n.dataset.page==="news-s"?"s":"l";
+ if(["","#","#news"].includes(location.hash))render();
  setTimeout(()=>document.querySelectorAll('.nav-link[data-page^="news-"]').forEach(a=>a.classList.toggle("active",lxNavAktiv(a.dataset.page,"news")&&(location.hash||"#news").replace("#","")==="news")),0);
 });
 document.addEventListener("click",async ev=>{
