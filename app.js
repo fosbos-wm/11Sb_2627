@@ -6,7 +6,7 @@ let writeBatch, initializeApp, getAuth, onAuthStateChanged, createUserWithEmailA
  F11Sb MASTER – STABILE MODULREGISTRY
  Die Master-App selbst enthält keine Pflicht-Imports
  von Zusatzmodulen. Module werden erst beim Öffnen geladen.
- ========================================================= */ const CAMPUS_MODULES={ lernpfad:{label:"Persönlicher Lernpfad",route:"lernpfad",ready:true}, lernressourcen:{label:"Lernressourcen",route:"ressourcen",ready:true}, lernjournal:{label:"Lernjournal",route:"journal",ready:true}, lernmethoden:{label:"Lernmethoden",route:"methoden",ready:true}, lernimpulse:{label:"Lernimpulse",route:"impulse",ready:false}, lernstand:{label:"Lernstandsmessung",route:"lernstand",ready:true}, lerncoaching:{label:"Lerncoaching",route:"lerncoaching",ready:false}, resilienz:{label:"Resilienz & Respressi",route:"resilienz",ready:false}, kompetenz:{label:"Kompetenzwerkstatt",route:"kompetenz",ready:true}, forum:{label:"Campus-Forum",route:"forum",ready:true}, pinnwand:{label:"Pinnwand",route:"pinnwand",ready:true}, kollaboration:{label:"Tools für Zusammenarbeit",route:"kollaboration",ready:true}, wortwolke:{label:"Wortwolke",route:"wortwolke",ready:true}, kanban:{label:"Kanban-Board",route:"kanban",ready:true}, terminfindung:{label:"Terminfindung",route:"terminfindung",ready:true}, teamgesucht:{label:"Team gesucht",route:"teamgesucht",ready:true}, checkliste:{label:"Gemeinsame Checkliste",route:"checkliste",ready:true}, ampel:{label:"Verständnis-Ampel",route:"ampel",ready:true}, umfrage:{label:"Live-Umfrage",route:"umfrage",ready:true}, zufallspicker:{label:"Wer ist dran?",route:"zufallspicker",ready:true}, lernwerkzeuge:{label:"Lern-Werkzeuge",route:"lernwerkzeuge",ready:true}, karteikarten:{label:"Karteikarten",route:"karteikarten",ready:true},"fokus-timer":{label:"Fokus-Timer",route:"fokus-timer",ready:true}, glossar:{label:"Glossar",route:"glossar",ready:true}, projekte:{label:"Projekte",route:"projekte",ready:true}, praxis:{label:"fpA",route:"praktikum",ready:true}, ki:{label:"KI-Innovationslabor",route:"ki",ready:true}, kalender:{label:"Campus-Kalender",route:"kalender",ready:true}, kompetenzprofil:{label:"Kompetenzprofil",route:"kompetenzprofil",ready:false}, team:{label:"Lehrkräfte Klassenteam",route:"team",ready:true} }; const configReady = !Object.values(firebaseConfig).some(v => String(v).includes("HIER_") || String(v).includes("DEIN-PROJEKT")); let app=null, auth=null, db=null; const $=id=>document.getElementById(id); const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
+ ========================================================= */ const CAMPUS_MODULES={ lernpfad:{label:"Persönlicher Lernpfad",route:"lernpfad",ready:true}, lernressourcen:{label:"Lernressourcen",route:"ressourcen",ready:true}, lernjournal:{label:"Lernjournal",route:"journal",ready:true}, lernmethoden:{label:"Lernmethoden",route:"methoden",ready:true}, lernimpulse:{label:"Lernimpulse",route:"impulse",ready:false}, lernstand:{label:"Lernstandsmessung",route:"lernstand",ready:true}, lerncoaching:{label:"Lerncoaching",route:"lerncoaching",ready:false}, resilienz:{label:"Resilienz & Respressi",route:"resilienz",ready:false}, kompetenz:{label:"Kompetenzwerkstatt",route:"kompetenz",ready:true}, forum:{label:"Campus-Forum",route:"forum",ready:true}, pinnwand:{label:"Pinnwand",route:"pinnwand",ready:true}, kollaboration:{label:"Tools für Zusammenarbeit",route:"kollaboration",ready:true}, wortwolke:{label:"Wortwolke",route:"wortwolke",ready:true}, kanban:{label:"Kanban-Board",route:"kanban",ready:true}, terminfindung:{label:"Terminfindung",route:"terminfindung",ready:true}, teamgesucht:{label:"Team gesucht",route:"teamgesucht",ready:true}, checkliste:{label:"Gemeinsame Checkliste",route:"checkliste",ready:true}, ampel:{label:"Verständnis-Ampel",route:"ampel",ready:true}, umfrage:{label:"Live-Umfrage",route:"umfrage",ready:true}, zufallspicker:{label:"Wer ist dran?",route:"zufallspicker",ready:true}, lernwerkzeuge:{label:"Lern-Werkzeuge",route:"lernwerkzeuge",ready:true}, karteikarten:{label:"Karteikarten",route:"karteikarten",ready:true},"fokus-timer":{label:"Fokus-Timer",route:"fokus-timer",ready:true}, glossar:{label:"Glossar",route:"glossar",ready:true}, projekte:{label:"Projekte",route:"projekte",ready:true}, praxis:{label:"fpA",route:"praktikum",ready:true}, ki:{label:"KI-Innovationslabor",route:"ki",ready:true}, kalender:{label:"Campus-Kalender",route:"kalender",ready:true}, kompetenzprofil:{label:"Kompetenzprofil",route:"kompetenzprofil",ready:false}, team:{label:"Klassenkonferenz",route:"team",ready:true} }; const configReady = !Object.values(firebaseConfig).some(v => String(v).includes("HIER_") || String(v).includes("DEIN-PROJEKT")); let app=null, auth=null, db=null; const $=id=>document.getElementById(id); const esc=v=>String(v??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]));
 const statusLabel={green:"Auf Kurs",yellow:"Klärungsbedarf",red:"Handlungsbedarf"};
 const labels={question:"Frage",info:"Info",idea:"Idee",project:"Projekt",practice:"Praxis"};
 let currentUser=null, profile=null, unsubscribers=[];
@@ -296,7 +296,7 @@ function updateTeacherTeamNav(){
  const links=[...sidebar.querySelectorAll('a[href="#team"],button[data-page="team"],.nav-link[data-page="team"]')];
  const link=links[0];
  if(link){
- link.textContent="Lehrkräfte Klassenteam";
+ link.textContent="Klassenkonferenz";
  link.hidden=!isTeacher();
  link.setAttribute("aria-hidden",String(!isTeacher()));
  }
@@ -19683,7 +19683,7 @@ async function renderTeam(){
  beobachtung:"Beobachtung",wichtig:"Wichtig",sonstiges:"Sonstiges"
  };
 
- return`${pageHead("LEHRKRÄFTE","Lehrkräfte Klassenteam","Interne Informationen für das Klassenteam – dokumentieren, informieren und später nachvollziehen.",`<button class="primary"onclick="openClassTeamUpdateForm()">＋ Information posten</button>`)}
+ return`${pageHead("LEHRKRÄFTE","Klassenkonferenz","Interne Informationen für das Klassenteam – dokumentieren, informieren und später nachvollziehen.",`<button class="primary"onclick="openClassTeamUpdateForm()">＋ Information posten</button>`)}
  <style>
  .team-info-grid{display:grid;grid-template-columns:minmax(280px,1fr) minmax(0,1.8fr);gap:16px}
  .team-history-item{border:1px solid var(--line);border-radius:12px;padding:15px;margin-bottom:10px;background:#fff}
@@ -23637,7 +23637,7 @@ async function renderKwThema(){
  const fertigBtn=lehrer||leist?"":`<button type="button" class="kw-fertig${kwErledigt(e.id)?" an":""}" data-kw="fertig" data-id="${esc(e.id)}"><i class="kw-bx${kwErledigt(e.id)?" d":""}"></i>${kwErledigt(e.id)?"Thema erledigt":"Als erledigt markieren"}</button>`;
  const altBtn=(leist||LX_CFG.klasse!==11)?"":`<button class="secondary" data-kw="alt" data-id="${esc(e.id)}">Lernziele und Aufgaben</button>`;
  const st=lxThemaStart(e);
- const sichtZeile=lehrer&&!leist?`<div class="lx-sicht"><label>Schüler:innen sehen dieses Thema ab <input type="date" id="lxAb" value="${esc(st)}"></label><button type="button" class="secondary" data-lx="ab" data-id="${esc(e.id)}">Datum speichern</button><button type="button" class="text-button" data-lx="ab0" data-id="${esc(e.id)}">Automatisch</button><small>Sonst gilt: zwei Wochen vor dem geplanten Start.</small></div>`:"";
+ const sichtZeile=""?`<div class="lx-sicht"><label>Schüler:innen sehen dieses Thema ab <input type="date" id="lxAb" value="${esc(st)}"></label><button type="button" class="secondary" data-lx="ab" data-id="${esc(e.id)}">Datum speichern</button><button type="button" class="text-button" data-lx="ab0" data-id="${esc(e.id)}">Automatisch</button><small>Sonst gilt: zwei Wochen vor dem geplanten Start.</small></div>`:"";
  const navChips=leist?"":`<nav class="lx-weg" aria-label="Aufbau des Themas">${LX_TEILE.map(n=>`<button type="button" class="lx-chip" style="--k:${LXF[n].c}" data-lx="sprung" data-n="${n}"><b>${LXF[n].d}</b> ${esc(LXF[n].n)}</button>`).join("")}</nav>`;
  return`<div class="kw kw-seite" style="--c:${F.c};--bg:${F.bg};--t:${F.t}">
   ${kwSchuelerBanner()}
@@ -24307,6 +24307,7 @@ function wpwLeiste(){
   <h3>Inhalt für die Wochenplanung bereitstellen</h3>
   <div class="wpw-b1"><div><small class="wpw-k">1 · Wann können die Schüler:innen ihn einplanen?</small>${wpwWochenWahl()}<p class="lx-hint">Gewählt: <b>KW ${info.kw}</b> (${info.von}–${info.bis}). Die Klasse sieht den Inhalt, sobald diese Woche höchstens zwei Wochen entfernt ist, und legt ihn dann selbst in ihren Wochenplan.</p></div>
   <div class="wpw-akt"><button type="button" class="primary" data-wpw="fertig"${z.entwurf?"":" disabled"}>Fertigstellen (geplant)</button><button type="button" class="secondary" data-wpw="frei"${z.entwurf+z.geplant?"":" disabled"}>Sofort sichtbar machen</button></div></div>
+  ${wpwSichtab()}
   <small class="wpw-k">2 · Als was erscheint er bei den Schüler:innen? (Art anklicken)</small><div class="wpw-arten">${arten}</div>
   <small class="wpw-k">3 · Inhalt wählen: bei einem Thema unten „+ Woche“ anklicken, oder einen eigenen Inhalt eintragen</small>
   <div class="wpw-eigen"><select id="wpwEFach" aria-label="Fach">${fachOpt}</select><input id="wpwETitel" maxlength="80" placeholder="Eigener Inhalt, z. B. Projektarbeit Teil 2"><button type="button" class="secondary" data-wpw="eigen">+ Bereitstellen als „${esc(wpwArtL(WPW.art))}“</button></div>
@@ -24315,6 +24316,14 @@ function wpwLeiste(){
  </section>`;
 }
 // Stunden blocken: Unterricht für alle, Block-Feedback oder nicht verplanbar
+function wpwSichtab(){
+ const phs=LX_CFG.phasen().slice().sort((a,b)=>a.lbNum-b.lbNum);
+ const opt=phs.map(ph=>`<optgroup label="LB ${ph.lbNum} · ${esc(ph.lbTitel)}">${kwThemenVonPhase(ph).map(e=>`<option value="${esc(e.id)}">${esc(e.nr)} · ${esc(kwKurz(e))}</option>`).join("")}</optgroup>`).join("");
+ const eig=Object.entries(LXS.sicht||{}).filter(([k,v])=>v&&kwThemaById(k)).sort((a,b)=>String(a[1]).localeCompare(String(b[1]))).map(([k,v])=>`<span class="wpw-bs wpw-bs-gep"><b>ab ${esc(fmtKurz(v))}</b> ${esc(kwKurz(kwThemaById(k)))}</span>`).join("");
+ return`<div class="wpw-sichtab"><small class="wpw-k">Thema in der Lernlandkarte sichtbar ab</small>
+  <div class="wpw-eigen"><select id="wpwSThema" data-wpw="sthema" aria-label="Thema">${opt}</select><input type="date" id="wpwSDatum" aria-label="Sichtbar ab" value="${esc(lxThemaStart(phs.length?kwThemenVonPhase(phs[0])[0]:null))}"><button type="button" class="secondary" data-wpw="sicht">Datum speichern</button><button type="button" class="text-button" data-wpw="sicht0">Automatisch</button></div>
+  <p class="lx-hint">Ohne eigenes Datum sehen die Schüler:innen ein Thema zwei Wochen vor dem geplanten Start.</p>${eig?`<div class="wpw-bsl">${eig}</div>`:""}</div>`;
+}
 function wpwBlockPanel(){
  const bl=WPW.mod.filter(m=>m.block);
  const liste=bl.map(m=>`<span class="wpw-bs wpw-bs-blk"><b>${esc(WPW_TAGE[Number(m.fixTag)]||"")} ${Number(m.fixStd)||1}.${wpwLen(m)>1?"–"+((Number(m.fixStd)||1)+wpwLen(m)-1):""} Std.</b> ${esc(m.titel)}<button type="button" class="wpw-x" data-wpw="del" data-id="${esc(m.id)}" aria-label="Entfernen">✕</button></span>`).join("");
@@ -24378,6 +24387,8 @@ document.addEventListener("click",async ev=>{
  const a=b.dataset.wpw,id=b.dataset.id;
  try{
   if(a==="thema"){await wpwThemaSchalten(id);await wpwNeuRender()}
+  else if(a==="sicht"){const t=$("wpwSThema").value,v=$("wpwSDatum").value;if(!v)return toast("Bitte ein Datum wählen.");await lxSichtSetzen(t,v);return}
+  else if(a==="sicht0"){await lxSichtSetzen($("wpwSThema").value,"");return}
   else if(a==="art"){WPW.art=b.dataset.k;await wpwNeuRender()}
   else if(a==="eigen"){const t=($("wpwETitel").value||"").trim();if(t.length<2)return toast("Bitte einen Inhalt eintragen.");await wpwNeu($("wpwEFach").value,t,{typ:WPW.art||"unterricht"});await wpwNeuRender()}
   else if(a==="blk"){wpwBlockModal(Number(b.dataset.d),Number(b.dataset.h))}
@@ -24413,6 +24424,7 @@ document.addEventListener("click",async ev=>{
 document.addEventListener("change",async ev=>{
  const s=ev.target;if(!s||!s.dataset||!s.dataset.wpw||!currentUser||!isTeacher())return;
  try{
+  if(s.dataset.wpw==="sthema"){const e=kwThemaById(s.value);$("wpwSDatum").value=e?lxThemaStart(e):"";return}
   if(s.dataset.wpw==="wochesel"){wpwWocheSetzen(s.value);await wpwNeuRender()}
   else if(s.dataset.wpw==="dauer"){const v=s.value;await wpwAktualisieren(s.dataset.id,{dauer:v,len:Math.max(1,Math.ceil(Number(v)/45))});await wpwNeuRender()}
  }catch(err){console.error(err)}
