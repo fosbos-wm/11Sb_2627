@@ -441,6 +441,14 @@ details.ls-lb:not([open])>summary.ls-lbk{border-radius:0 0 0 0}
 .kw-dz[draggable=true]{cursor:grab}.kw-dz[draggable=true]:active{cursor:grabbing}
 .lx-dnd-zieh{opacity:.4}.lx-dnd-oben{box-shadow:0 -3px 0 0 #2b7bbf}.lx-dnd-unten{box-shadow:0 3px 0 0 #2b7bbf}
 
+/* Abstände: Dateizeilen untereinander, Ampelpunkte zum Text */
+.kw-dateien .kw-dz,.kw-dz{margin-bottom:8px}
+.lx-ub .kw-dz{margin:0 0 8px}
+.kw-dateien:has(>.kw-dz) .kw-dz{margin-bottom:0}
+.ls-dot{margin-right:6px;vertical-align:baseline}
+.lx-ls-z small{word-spacing:1px}
+.lx-ls-z small .ls-dot:not(:first-child){margin-left:4px}
+
 /* Umbau: Wochenplanarbeit vorbereiten */
 .wpw .wpw-kopf{display:flex;flex-direction:column;gap:12px;padding:16px 18px;margin-bottom:16px}
 .wpw-wahl{display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap}
