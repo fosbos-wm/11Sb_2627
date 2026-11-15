@@ -554,3 +554,19 @@ button.wpw-z.frei{cursor:pointer}button.wpw-z.frei:hover:not(:disabled){backgrou
 .wpw-step .wpw-opt.an{border-color:var(--s)}
 .wpw-pfl{align-self:flex-end}
 .wpw-save{padding:12px;font-size:16px}
+
+/* Wissens-Check: Farbschema je Aufgabenart */
+.ci-k-mc{--ci:#1f8ea3}.ci-k-kprim{--ci:#e08a2e}.ci-k-offen{--ci:#3a7fd0}
+.bc-ed,.ci-q{--ci:#1f8ea3;border-left:6px solid var(--ci);background:color-mix(in srgb,var(--ci) 7%,#fff);border-color:color-mix(in srgb,var(--ci) 30%,#fff);border-left-color:var(--ci)}
+.bc-ed.ci-k-mc,.ci-q.ci-k-mc{--ci:#1f8ea3}.bc-ed.ci-k-kprim,.ci-q.ci-k-kprim{--ci:#e08a2e}.bc-ed.ci-k-offen,.ci-q.ci-k-offen{--ci:#3a7fd0}
+.bc-ed{position:relative;padding-top:34px}
+.bc-ed::before{position:absolute;top:0;left:0;padding:4px 14px;border-radius:0 0 12px 0;background:var(--ci);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.bc-ed.ci-k-mc::before{content:"Multiple Choice"}
+.bc-ed.ci-k-kprim::before{content:"K-Prim · richtig/falsch"}
+.bc-ed.ci-k-offen::before{content:"Offene Frage"}
+.bc-ed select[id^="bcTyp"]{border:2px solid var(--ci);color:var(--ci);font-weight:800;background:#fff}
+.bc-ed label{color:color-mix(in srgb,var(--ci) 55%,#17384f)}
+.bc-ed input[type=text],.bc-ed textarea,.bc-ed select,.ci-q textarea{border-color:color-mix(in srgb,var(--ci) 35%,#fff)}
+.bc-ed input:focus,.bc-ed textarea:focus,.bc-ed select:focus,.ci-q textarea:focus{outline:none;border-color:var(--ci);box-shadow:0 0 0 3px color-mix(in srgb,var(--ci) 18%,transparent)}
+.ci-art{display:block;width:max-content;margin:0 0 10px;padding:3px 11px;border-radius:999px;background:color-mix(in srgb,var(--ci) 14%,#fff);color:color-mix(in srgb,var(--ci) 75%,#10303f);border:1px solid color-mix(in srgb,var(--ci) 35%,#fff);font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.ci-q input[type=radio],.ci-q input[type=checkbox]{accent-color:var(--ci)}

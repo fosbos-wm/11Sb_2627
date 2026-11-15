@@ -2746,7 +2746,7 @@ async function getBasischeckFragen(wocheId){
  }catch(e){console.error("Basis-Check-Fragen laden:",e);return[]}
 }
 function basischeckTypToggle(i){
- const typ=$(`bcTyp${i}`)?.value;
+ const typ=$(`bcTyp${i}`)?.value;{const k=$(`bcKarte${i}`);if(k){k.className=k.className.replace(/ci-k-\w+/g,"")+" ci-k-"+typ}}
  const mc=$(`bcMcBereich${i}`),kp=$(`bcKprimBereich${i}`),of=$(`bcOffenBereich${i}`);
  if(mc)mc.style.display=typ==="mc"?"block":"none";
  if(kp)kp.style.display=typ==="kprim"?"block":"none";
@@ -3625,7 +3625,7 @@ async function renderStart(){
  const newsAction=(isTeacher()&&window.__lxBereich!=="s"?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:"")
  +(isAdmin()&&window.__lxBereich!=="s"?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
  return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 27/28</span><h1>Willkommen auf dem Campus.</h1><p>Lernen, Projekte, Praxis und Gemeinschaft an einem Ort.</p>
-</div><div class="actions">${isTeacher()&&window.__lxBereich!=="s"?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
+</div><div class="actions">${isTeacher()&&window.__lxBereich!=="s"?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
  ${await lxOffenKachel()}
   <div class="grid grid-3"style="gap:20px;margin-bottom:20px">
  <div class="card card-compact"style="border-left:4px solid #4a90d9"><h3> Campus-News</h3><div class="list">${news.slice(0,3).map(p=>`<div
@@ -7574,7 +7574,7 @@ function basischeckPanelHTML(fach,wocheId,basischeckFragen,meinBasischeck,extraS
   ${[0,1,2].map(i=>{
    const f=basischeckFragen[i]||{};
    const typ=f.typ||"mc";
-   return`<div class="card"style="margin-bottom:10px;background:#f7fafc">
+   return`<div class="card bc-ed ci-k-${typ}"id="bcKarte${i}"style="margin-bottom:10px">
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
      <label style="flex:1;min-width:200px">Frage ${i+1}${i>0?" (optional)":""}<input id="bcFrage${i}"type="text"value="${esc(f.text||"")}"placeholder="z. B. Was versteht man unter …?"></label>
      <label style="width:190px">Fragetyp<select id="bcTyp${i}"onchange="basischeckTypToggle(${i})">
@@ -7610,7 +7610,7 @@ function basischeckPanelHTML(fach,wocheId,basischeckFragen,meinBasischeck,extraS
  return`<div class="form">
   ${basischeckFragen.map((f,i)=>{
    const typ=f.typ||"mc";
-   return`<div class="card"style="margin-bottom:10px">
+   return`<div class="card ci-q ci-k-${typ}"style="margin-bottom:10px"><span class="ci-art">${({mc:"Auswahl",kprim:"Richtig oder falsch",offen:"Kurzantwort"})[typ]||""}</span>
     ${typ==="kprim"?kprimFrageKopfHTML(i+1,f.text,f.vignette):`<strong style="display:block;margin-bottom:8px">${i+1}. ${esc(f.text)}</strong>`}
     ${typ==="mc"?f.optionen.map((o,j)=>`<label style="display:flex;align-items:center;gap:8px;cursor:pointer;margin-bottom:4px"><input type="radio"name="bcQ${i}"value="${j}"> <span>${esc(o)}</span></label>`).join(""):""}
     ${typ==="kprim"?kprimTabelleHTML(`bcKp${i}`,f.statements.map(x=>x.text)):""}
@@ -11629,7 +11629,7 @@ async function openWocheDetail(fach,wocheId,startTabOverride){
  ${[0,1,2].map(i=>{
  const f=basischeckFragen[i]||{};
  const typ=f.typ||"mc";
- return`<div class="card"style="margin-bottom:10px;background:#f7fafc">
+ return`<div class="card bc-ed ci-k-${typ}"id="bcKarte${i}"style="margin-bottom:10px">
  <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end">
  <label style="flex:1;min-width:200px">Frage ${i+1}${i>0?" (optional)":""}<input id="bcFrage${i}"type="text"value="${esc(f.text||"")}"placeholder="z. B. Was versteht man unter …?"></label>
  <label style="width:190px">Fragetyp<select id="bcTyp${i}"onchange="basischeckTypToggle(${i})">
