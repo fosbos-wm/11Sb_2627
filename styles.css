@@ -514,3 +514,24 @@ button.wpw-z.frei{cursor:pointer}button.wpw-z.frei:hover:not(:disabled){backgrou
 .wpw-fb{display:flex;flex-direction:column;gap:2px;text-align:left;background:var(--bg);border:2px solid transparent;border-left:6px solid var(--c);border-radius:12px;padding:10px 12px;cursor:pointer}
 .wpw-fb b{color:#1f2d3a}.wpw-fb small{color:#64748b}
 .wpw-fb.an{border-color:var(--c);box-shadow:0 2px 10px rgba(0,0,0,.14)}
+
+/* ---- Fächerkacheln (Schrift ganz sichtbar) und Planung ---- */
+.wpw-fl{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))!important}
+.wpw-fb{min-width:0;overflow:visible}.wpw-fb b{white-space:normal;overflow-wrap:anywhere;line-height:1.25}
+.lx-plan{background:#fff;border:2px solid #cbd5e1;border-radius:14px;margin-top:18px}
+.lx-plan .lx-sek-k{background:#fff;border-bottom:1px solid #e2e8f0}
+.lx-plan .lx-nr{background:#475569}
+.lx-sek-body{padding:12px 16px}
+.wpw-pl{margin-top:12px;border-top:1px dashed #cbd5e1;padding-top:10px;display:flex;flex-direction:column;gap:10px}
+.wpw-pl h4{margin:0}.wpl-f{display:flex;flex-direction:column;gap:3px}.wpl-f>span{font-size:12px;font-weight:700;color:#475569}
+.wpl-f input[type=text],.wpl-f input:not([type]),.wpl-f input[type=date],.wpl-f select{width:100%}
+.wpw-pzeile{display:flex;flex-wrap:wrap;gap:12px}.wpw-pzeile .wpl-f{flex:1;min-width:190px}
+.wpw-pzeile[hidden]{display:none}
+.wpw-pfix{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px}
+.wpw-pll{display:flex;flex-direction:column;gap:6px}
+.wpw-plz{display:flex;flex-wrap:wrap;gap:8px;align-items:center;border:1px solid #e2e8f0;border-radius:10px;padding:6px 10px;background:#fff}
+.wpw-pla{font-size:12px;background:#e1edfb;color:#1d4e9e;border-radius:6px;padding:2px 8px}
+.wpw-plt{flex:1;min-width:140px;font-weight:600}.wpw-pf2{font-size:11px;font-weight:700;color:#b45309}
+.wpw-tag{font-size:11px;font-weight:700;background:#e1edfb;color:#1d4e9e;border-radius:6px;padding:1px 7px;margin-left:auto;white-space:nowrap}
+.wpw-frei{margin-top:16px;border:1px dashed #94a3b8;border-radius:12px;padding:8px 14px;background:#fff}.wpw-frei summary{cursor:pointer;font-weight:700}.wpw-frei summary small{font-weight:400;color:#64748b;margin-left:6px}
+.wpw-pbox{padding:14px 18px}

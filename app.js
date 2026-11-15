@@ -3623,7 +3623,7 @@ async function renderStart(){
  const upcomingDateText=upcomingDate?.seconds?new Date(upcomingDate.seconds*1000).toLocaleDateString("de-DE"):String(upcomingDate||"").slice(0,10);
  const upcomingTime=nextCalendar?.time?` · ${esc(nextCalendar.time)} Uhr`:"";
  const newsAction=(isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:"")
- +(isTeacher()?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
+ +(isAdmin()?`<button class="secondary"onclick="openUserManagement()"> Benutzer verwalten</button>`:"");
  return`${coBanner}<section class="hero"><div><span class="badge"> F11Sb 27/28</span><h1>Willkommen auf dem Campus.</h1><p>Lernen, Projekte, Praxis und Gemeinschaft an einem Ort.</p>
 </div><div class="actions">${isTeacher()?`<button class="primary"onclick="openNewsForm()">＋ News veröffentlichen</button>`:""}<button class="secondary"onclick="go('kompass')">Mein Kompass →</button><button class="secondary"onclick="go('forum')">Campus-Forum</button></div></section>
  ${await lxOffenKachel()}
@@ -23308,7 +23308,8 @@ const LXF={
  4:{c:"#F0C43C",bg:"#FEF8E2",n:"Lernbausteine · Unterricht",d:5},
  5:{c:"#1D4E9E",bg:"#EAF0FA",n:"Tafelbilder · Lernübersichten",d:6},
  6:{c:"#14A39A",bg:"#E6F7F5",n:"Check-Out-Tests",d:7},
- 7:{c:"#F28A24",bg:"#FEF2E5",n:"Persönlicher Lernstand zum Thema",d:8}
+ 7:{c:"#F28A24",bg:"#FEF2E5",n:"Persönlicher Lernstand zum Thema",d:8},
+ 9:{c:"#475569",bg:"#FFFFFF",n:"Planung für die Woche",d:9}
 };
 const LX_TEILE=[1,8,2,3,4,5,6,7];
 function lxIso(d){const z=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate())}
@@ -23633,12 +23634,13 @@ async function renderKwThema(){
   teile.push((lehrer||cos.length)?lxSek(6,LXF[6].n,"Abschlusstest der Lehrkraft, ausgewertet in Notenpunkten",s6in,s6akt):"");
   // 7 Persönlicher Lernstand
   teile.push(lehrer?await lxLernstandThemaLehrer(e):await lxLernstandThemaSchueler(e,ph));
+  if(lehrer){await wpwAlleLaden();teile.push(wpwPlanSek(e))}
  }
  const fertigBtn=lehrer||leist?"":`<button type="button" class="kw-fertig${kwErledigt(e.id)?" an":""}" data-kw="fertig" data-id="${esc(e.id)}"><i class="kw-bx${kwErledigt(e.id)?" d":""}"></i>${kwErledigt(e.id)?"Thema erledigt":"Als erledigt markieren"}</button>`;
  const altBtn=(leist||LX_CFG.klasse!==11)?"":`<button class="secondary" data-kw="alt" data-id="${esc(e.id)}">Lernziele und Aufgaben</button>`;
  const st=lxThemaStart(e);
  const sichtZeile=""?`<div class="lx-sicht"><label>Schüler:innen sehen dieses Thema ab <input type="date" id="lxAb" value="${esc(st)}"></label><button type="button" class="secondary" data-lx="ab" data-id="${esc(e.id)}">Datum speichern</button><button type="button" class="text-button" data-lx="ab0" data-id="${esc(e.id)}">Automatisch</button><small>Sonst gilt: zwei Wochen vor dem geplanten Start.</small></div>`:"";
- const navChips=leist?"":`<nav class="lx-weg" aria-label="Aufbau des Themas">${LX_TEILE.map(n=>`<button type="button" class="lx-chip" style="--k:${LXF[n].c}" data-lx="sprung" data-n="${n}"><b>${LXF[n].d}</b> ${esc(LXF[n].n)}</button>`).join("")}</nav>`;
+ const navChips=leist?"":`<nav class="lx-weg" aria-label="Aufbau des Themas">${[...LX_TEILE,...(lehrer?[9]:[])].map(n=>`<button type="button" class="lx-chip" style="--k:${LXF[n].c}" data-lx="sprung" data-n="${n}"><b>${LXF[n].d}</b> ${esc(LXF[n].n)}</button>`).join("")}</nav>`;
  return`<div class="kw kw-seite" style="--c:${F.c};--bg:${F.bg};--t:${F.t}">
   ${kwSchuelerBanner()}
   <button class="secondary" data-kw="wand">← Lernlandkarte</button>
@@ -23865,11 +23867,16 @@ function lxThemaWahlen(modus){
 function lxLegende(){return`<div class="lx-legende">${LX_TEILE.map(n=>`<span><i class="lx-pt an" style="--k:${LXF[n].c}"></i>${LXF[n].d} ${esc(LXF[n].n)}</span>`).join("")}</div>`}
 async function renderLkUnterricht(){
  if(!isTeacher())return await renderKachelwand();
- await kwLaden();await wpwLaden();const pae=(WPW.fach||"paedagogik")==="paedagogik";
- return`<div class="lx-seite">${pageHead("LEHRKRÄFTE","Unterricht planen","Plane Bausteine und stelle Inhalte ein: Materialien, Wissens-Checks, Selbstlernkurse, Stunden, Check-outs und Tests. Jedes Thema hat dieselben acht Teile wie bei den Schüler:innen.")}
+ await kwLaden();await wpwAlleLaden();
+ const fk=WPW.fach||"",fo=wpwFach(fk);let inhalt;
+ if(fk==="paedagogik")inhalt=`<h2 class="lx-h2">Pädagogik/Psychologie: Thema wählen</h2><p class="lx-hint">Ein Klick öffnet das Thema. Dort stellst du Inhalte ein und planst unter Teil 9 (weiß), wann die Einheit kommt und wann sie freigegeben wird.</p>${lxLegende()}<div class="kw-wand lx-wahl">${lxThemaWahlen("unterricht")}</div>
+  <details class="wpw-frei"><summary>Einheit ohne Thema planen <small>Lernstandsgespräch, Block-Feedback, Unterricht für alle …</small></summary>${wpwPlanListe((WPW.alle||[]).filter(m=>m.fach===fk&&!m.themaId))}${wpwPlanForm("",fk)}</details>`;
+ else if(fk)inhalt=`<h2 class="lx-h2">${esc(fo.label)}: Einheit planen</h2><div class="card wpw-pbox">${wpwPlanListe((WPW.alle||[]).filter(m=>m.fach===fk))}${wpwPlanForm("",fk)}</div>`;
+ else inhalt=`<p class="lx-hint">Wähle ein Fach, um Inhalte zu planen und für die Wochenplanung freizugeben.</p>`;
+ return`<div class="lx-seite">${pageHead("LEHRKRÄFTE","Unterricht planen","Wähle ein Fach. Bei Pädagogik/Psychologie öffnest du ein Thema und planst dort die Einheit für die Wochenplanung.")}
  ${wpwFaecherLeiste()}
- ${wpwLeiste()}
- ${pae?`<div class="lx-kacheln">
+ ${inhalt}
+ <div class="lx-kacheln">
   ${lxKachel("blockfeedback","Blockfeedback","Rückmeldungen der Klasse zu den Blöcken")}
   ${lxKachel("fach","Fächer und Projekte","Lernbereiche, Projekte und Bausteine ansehen")}
   ${lxKachel("tafel","Digitale Tafel","Tafelbilder und Unterrichtsseiten bauen")}
@@ -23880,9 +23887,7 @@ async function renderLkUnterricht(){
   ${lxKachel("tests","Tests verwalten","Live schalten, Ergebnisse ansehen")}
   ${lxKachel("kw-fortschritt","Erledigt? Selbstlernkurse und Rallyes","Wer hat welchen Baustein bearbeitet?")}
   ${lxKachel("ressourcen","Lernressourcen","Links, Videos und KI-Angebote pflegen")}
- </div>
- <h2 class="lx-h2">Thema wählen</h2><p class="lx-hint">Ein Klick öffnet das Thema. Mit dem Schalter oben links (Art, z. B. „+ Unterricht“) stellst du es für die gewählte Woche bereit. Dort stellst du mit „+ hinzufügen“ Dateien in den passenden Teil ein und planst Bausteine („Baustein einplanen“, Teil 4). Die Punkte zeigen, was schon da ist.</p>${lxLegende()}
- <div class="kw-wand lx-wahl">${lxThemaWahlen("unterricht")}</div>`:""}</div>${footer()}`;
+ </div></div>${footer()}`;
 }
 
 /* ---------- Navigation je Rolle, Routen, Klicks ---------- */
@@ -24112,8 +24117,8 @@ const WPW_FAECHER=[
 const WPW_STD_DEF={paedagogik:1,deutsch:1,englisch:1,mathematik:1,sozialwirtschaft:1,geschichte:1,chemie:1,foerder:0};
 const WPW_TAGE=["Mo","Di","Mi","Do","Fr"];
 const WPW_DAUERN=[["15","15 Min."],["20","20 Min."],["30","30 Min."],["45","45 Min. (1 Std.)"],["60","60 Min."],["90","90 Min. (2 Std.)"],["120","120 Min."],["135","135 Min. (3 Std.)"]];
-const WPW_ARTEN=[["unterricht","Unterricht"],["projekt","Projekt"],["lernrallye","Lernrallye"],["gruppenuebung","Gruppenübung"],["selbstlern","Selbstlernkurs"],["deeperlearning","Deeper Learning"],["uebung","Übungsbaustein"],["fachaufsatz","Fachaufsatztraining"],["einfuehrung","Einführung"],["lernen","Lernbaustein"]];
-const WPW={fach:"paedagogik",art:"unterricht",woche:"",std:{...WPW_STD_DEF},mod:[],einf:[],slots:[],wd:null,lib:[],autoT:0};
+const WPW_ARTEN=[["unterricht","Unterricht"],["projekt","Projekt"],["lernrallye","Lernrallye"],["gruppenuebung","Gruppenübung"],["selbstlern","Selbstlernkurs"],["deeperlearning","Deeper Learning"],["uebung","Übungsbaustein"],["fachaufsatz","Fachaufsatztraining"],["einfuehrung","Einführung"],["lernen","Lernbaustein"],["lernstand","Lernstandsgespräch"],["feedback","Block-Feedback"]];
+const WPW={alle:[],fach:"",art:"unterricht",woche:"",std:{...WPW_STD_DEF},mod:[],einf:[],slots:[],wd:null,lib:[],autoT:0};
 
 function wpwMontag(){const d=new Date();d.setDate(d.getDate()-((d.getDay()+6)%7));return lxIso(d)}
 function wpwWocheGet(){
@@ -24256,7 +24261,7 @@ function wpwFachKarte(f){
   const festTxt=m.fixTag!=null&&m.fixTag!==""?`<span class="wpw-fest" title="Verbindlicher Termin im Stundenplan">📌 ${WPW_TAGE[Number(m.fixTag)]||""} ${Number(m.fixStd)||1}. Std.</span>`:"";
   const st=m.status==="live"?"live":m.status==="geplant"?"geplant":"Entwurf";
   const lb=m.lb?`<span class="wpw-lb" style="--c:${kwFarbe(m.lb).c}">LB ${m.lb}</span>`:"";
-  return`<div class="wpw-it">${lb}<button type="button" class="wpw-t" data-wpw="edit" data-id="${esc(m.id)}" title="Bearbeiten">${esc(m.titel)}</button>${m.pflicht?`<span class="wpw-pf">Pflicht</span>`:""}${festTxt}
+  return`<div class="wpw-it">${lb}<button type="button" class="wpw-t" data-wpw="edit" data-id="${esc(m.id)}" title="Bearbeiten">${esc(m.titel)}</button>${m.pflicht?`<span class="wpl-f">Pflicht</span>`:""}${festTxt}
   <select class="wpw-dauer" data-wpw="dauer" data-id="${esc(m.id)}" aria-label="Dauer">${WPW_DAUERN.map(d=>`<option value="${d[0]}"${String(m.dauer)===d[0]?" selected":""}>${d[1]}</option>`).join("")}${WPW_DAUERN.some(d=>d[0]===String(m.dauer))?"":`<option selected>${esc(String(m.dauer))}</option>`}</select>
   <span class="wpw-st ${m.status==="live"?"live":m.status==="geplant"?"gep":"ent"}" title="Status">${st}</span>
   <button type="button" class="wpw-x" data-wpw="del" data-id="${esc(m.id)}" aria-label="Entfernen" title="Entfernen">✕</button></div>`;
@@ -24299,66 +24304,96 @@ async function renderWpWoche(){
 
 /* ---------- Leiste und Schalter in „Unterricht planen“ ---------- */
 function wpwFaecherLeiste(){
- const kn=WPW.mod.filter(m=>!m.block);
- return`<div class="wpw-fl" role="tablist" aria-label="Fach wählen">${WPW_FAECHER.map(f=>{const F=wpwFarbe(f.key),n=kn.filter(m=>m.fach===f.key).length,an=(WPW.fach||"paedagogik")===f.key;
-  return`<button type="button" class="wpw-fb${an?" an":""}" role="tab" aria-selected="${an}" data-wpw="fach" data-k="${f.key}" style="--c:${F.c};--bg:${F.bg}"><b>${esc(f.label)}</b><small>${n?n+" bereitgestellt":"noch nichts"}</small></button>`}).join("")}</div>`;
+ const heute=wpwMontag(),kn=(WPW.alle||[]).filter(m=>(m.woche||"")>=heute);
+ return`<div class="wpw-fl" role="tablist" aria-label="Fach wählen">${WPW_FAECHER.map(f=>{const F=wpwFarbe(f.key),n=kn.filter(m=>m.fach===f.key).length,an=(WPW.fach||"")===f.key;
+  return`<button type="button" class="wpw-fb${an?" an":""}" role="tab" aria-selected="${an}" data-wpw="fach" data-k="${f.key}" style="--c:${F.c};--bg:${F.bg}"><b>${esc(f.label)}</b><small>${n?n+" geplant":"noch nichts geplant"}</small></button>`}).join("")}</div>`;
 }
-function wpwLeiste(){
- const fk=WPW.fach||"paedagogik",pae=fk==="paedagogik",fo=wpwFach(fk);
- const z=wpwStatusZahlen(),info=wpwWocheInfo(wpwWocheGet());
- const mods=WPW.mod.filter(m=>!m.block&&m.fach===fk);
- const arten=WPW_ARTEN.map(x=>`<button type="button" class="wpw-art${WPW.art===x[0]?" an":""}" data-wpw="art" data-k="${x[0]}" aria-pressed="${WPW.art===x[0]}">${esc(x[1])}</button>`).join("");
- const liste=mods.length?mods.map(m=>`<span class="wpw-bs wpw-bs-${m.status==="live"?"live":m.status==="geplant"?"gep":"ent"}"><b>${esc(wpwArtL(m.typ||"lernen"))}</b> ${esc(m.titel)}<button type="button" class="wpw-x" data-wpw="del" data-id="${esc(m.id)}" aria-label="Entfernen">✕</button></span>`).join(""):`<span class="wpw-leer">Noch nichts bereitgestellt.</span>`;
- const fachOpt=WPW_FAECHER.map(f=>`<option value="${f.key}">${esc(f.label)}</option>`).join("");
- return`<section class="wpw-bereit card">
-  <h3>${esc(fo.label)}: Inhalt für die Wochenplanung bereitstellen</h3>
-  <div class="wpw-b1"><div><small class="wpw-k">1 · Wann können die Schüler:innen ihn einplanen?</small>${wpwWochenWahl()}<p class="lx-hint">Gewählt: <b>KW ${info.kw}</b> (${info.von}–${info.bis}). Die Klasse sieht den Inhalt, sobald diese Woche höchstens zwei Wochen entfernt ist, und legt ihn dann selbst in ihren Wochenplan.</p></div>
-  <div class="wpw-akt"><button type="button" class="primary" data-wpw="fertig"${z.entwurf?"":" disabled"}>Fertigstellen (geplant)</button><button type="button" class="secondary" data-wpw="frei"${z.entwurf+z.geplant?"":" disabled"}>Sofort sichtbar machen</button></div></div>
-  ${pae?wpwSichtab():""}
-  <small class="wpw-k">2 · Als was erscheint er bei den Schüler:innen? (Art anklicken)</small><div class="wpw-arten">${arten}</div>
-  <small class="wpw-k">3 · Inhalt wählen: ${pae?"bei einem Thema unten mit der Art-Schaltfläche bereitstellen, oder ":""}einen eigenen Inhalt eintragen</small>
-  <div class="wpw-eigen"><select id="wpwEFach" aria-label="Fach"><option value="${fk}">${esc(fo.label)}</option></select><input id="wpwETitel" maxlength="80" placeholder="Eigener Inhalt, z. B. Projektarbeit Teil 2"><button type="button" class="secondary" data-wpw="eigen">+ Bereitstellen als „${esc(wpwArtL(WPW.art))}“</button></div>
-  <div class="wpw-bsl"><small class="wpw-k">In KW ${info.kw} bereitgestellt (${z.live} sichtbar · ${z.geplant} geplant · ${z.entwurf} Entwurf)</small>${liste}</div>
-  ${wpwBlockPanel()}
- </section>`;
+async function wpwAlleLaden(){
+ await wpwLaden();
+ try{WPW.alle=(await getDocs(collection(db,"wpModule"))).docs.map(d=>({id:d.id,...d.data()})).sort((x,y)=>String(x.woche||"").localeCompare(String(y.woche||""))||String(x.titel).localeCompare(String(y.titel),"de"))}catch(e){WPW.alle=[]}
 }
-// Stunden blocken: Unterricht für alle, Block-Feedback oder nicht verplanbar
-function wpwSichtab(){
- const phs=LX_CFG.phasen().slice().sort((a,b)=>a.lbNum-b.lbNum);
- const opt=phs.map(ph=>`<optgroup label="LB ${ph.lbNum} · ${esc(ph.lbTitel)}">${kwThemenVonPhase(ph).map(e=>`<option value="${esc(e.id)}">${esc(e.nr)} · ${esc(kwKurz(e))}</option>`).join("")}</optgroup>`).join("");
- const eig=Object.entries(LXS.sicht||{}).filter(([k,v])=>v&&kwThemaById(k)).sort((a,b)=>String(a[1]).localeCompare(String(b[1]))).map(([k,v])=>`<span class="wpw-bs wpw-bs-gep"><b>ab ${esc(fmtKurz(v))}</b> ${esc(kwKurz(kwThemaById(k)))}</span>`).join("");
- return`<div class="wpw-sichtab"><small class="wpw-k">Thema in der Lernlandkarte sichtbar ab</small>
-  <div class="wpw-eigen"><select id="wpwSThema" data-wpw="sthema" aria-label="Thema">${opt}</select><input type="date" id="wpwSDatum" aria-label="Sichtbar ab" value="${esc(lxThemaStart(phs.length?kwThemenVonPhase(phs[0])[0]:null))}"><button type="button" class="secondary" data-wpw="sicht">Datum speichern</button><button type="button" class="text-button" data-wpw="sicht0">Automatisch</button></div>
-  <p class="lx-hint">Ohne eigenes Datum sehen die Schüler:innen ein Thema zwei Wochen vor dem geplanten Start.</p>${eig?`<div class="wpw-bsl">${eig}</div>`:""}</div>`;
+function wpwBelegtAus(mod,einf,slots,ohneId){
+ const g={};
+ const setze=(d,h,len,t)=>{for(let i=0;i<Math.max(1,len||1);i++){if(d>=0&&d<5&&h+i>=1&&h+i<=10)g[d+"_"+(h+i)]=t}};
+ mod.forEach(m=>{if(m.id===ohneId||m.fixTag==null||m.fixTag==="")return;setze(Number(m.fixTag),Number(m.fixStd)||1,wpwLen(m),m.titel)});
+ einf.forEach(x=>{if(x.d!=null&&x.h!=null)setze(Number(x.d),Number(x.h),Number(x.len)||1,x.titel)});
+ slots.forEach(x=>{if(x.d!=null&&x.h!=null)setze(Number(x.d),Number(x.h),Number(x.len)||1,x.titel||"Termin")});
+ return g;
 }
-function wpwBlockPanel(){
- const bl=WPW.mod.filter(m=>m.block);
- const liste=bl.map(m=>`<span class="wpw-bs wpw-bs-blk"><b>${esc(WPW_TAGE[Number(m.fixTag)]||"")} ${Number(m.fixStd)||1}.${wpwLen(m)>1?"–"+((Number(m.fixStd)||1)+wpwLen(m)-1):""} Std.</b> ${esc(m.titel)}<button type="button" class="wpw-x" data-wpw="del" data-id="${esc(m.id)}" aria-label="Entfernen">✕</button></span>`).join("");
- return`<details class="wpw-blk"${bl.length?" open":""}><summary>Stunden im Wochenplan blocken <small>Unterricht für alle · Block-Feedback · nicht verplanbar</small></summary>
-  <p class="lx-hint">Klicke eine freie Stunde an. Dort können die Schüler:innen nichts einplanen, sie steht für alle fest im Wochenplan.</p>
-  <div class="wpw-blkr">${wpwRaster({waehlbar:true,attr:"blk"})}</div>${liste?`<div class="wpw-bsl">${liste}</div>`:""}</details>`;
+const WPW_STATUS_L={entwurf:"Entwurf",geplant:"geplant",live:"sichtbar"};
+/* Planungsformular: wird in jedem Thema (Teil 9) und je Fach benutzt */
+function wpwPlanForm(themaId,fach){
+ const e=themaId?kwThemaById(themaId):null,heute=wpwMontag();
+ const wochen=SCHULWOCHEN_PP.filter(x=>x.start>=heute);
+ const w0=wochen.length?(wochen.find(x=>x.start===wpwWocheGet())||wochen[0]).start:"";
+ const arten=WPW_ARTEN.map((x,i)=>`<button type="button" class="wpw-art${i===0?" an":""}" data-wpw="pl-art" data-k="${x[0]}" aria-pressed="${i===0}">${esc(x[1])}</button>`).join("");
+ const st=e?lxThemaStart(e):"";
+ return`<div class="wpw-pl" data-fach="${esc(fach)}" data-thema="${esc(themaId||"")}">
+  <h4>Neue Einheit planen</h4>
+  <label class="wpl-f"><span>Titel (so sehen es die Schüler:innen)</span><input id="wplTitel" maxlength="80" value="${esc(e?kwKurz(e):"")}" placeholder="z. B. Projektarbeit Teil 2"></label>
+  <div class="wpl-f"><span>Bezeichnung der Einheit</span><div class="wpw-arten" id="wplArten">${arten}</div></div>
+  <div class="wpw-pzeile">
+   <label class="wpl-f"><span>Wann soll sie kommen?</span><select id="wplWoche">${wochen.map(x=>`<option value="${x.start}"${x.start===w0?" selected":""}>KW ${isoKw(x.start)} · ${fmtKurz(x.start)}–${fmtKurz(x.end)}</option>`).join("")}</select></label>
+   <label class="wpl-f"><span>Freigabe für die Schüler:innen</span><select id="wplStatus"><option value="geplant">Automatisch: zwei Wochen vorher sichtbar</option><option value="live">Sofort sichtbar</option><option value="entwurf">Entwurf (noch nicht sichtbar)</option></select></label>
+   ${e?`<label class="wpl-f"><span>Thema in der Lernlandkarte sichtbar ab</span><input type="date" id="wplSicht" value="${esc(st)}"></label>`:""}
+  </div>
+  <div class="wpl-f wpw-pfix"><label class="check"><input type="checkbox" id="wplFix" data-wplx="fix"><span><b>Verpflichtend im Wochenplan blocken</b> – feste Zeit, die die Schüler:innen nicht anders belegen können</span></label>
+   <div class="wpw-pzeile" id="wplFixZeile" hidden>
+    <label class="wpl-f"><span>Tag</span><select id="wplTag">${WPW_TAGE.map((t,i)=>`<option value="${i}">${t}</option>`).join("")}</select></label>
+    <label class="wpl-f"><span>ab Stunde</span><select id="wplStd">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${n}. Std.</option>`).join("")}</select></label>
+    <label class="wpl-f"><span>Dauer</span><select id="wplLen">${[1,2,3,4].map(n=>`<option value="${n}">${n} Std.</option>`).join("")}</select></label></div>
+   <div class="wpw-pzeile" id="wplDauerZeile"><label class="wpl-f"><span>Dauer der Bearbeitung</span><select id="wplDauer">${WPW_DAUERN.map(d=>`<option value="${d[0]}"${d[0]==="45"?" selected":""}>${d[1]}</option>`).join("")}</select></label>
+    <label class="check"><input type="checkbox" id="wplPflicht"><span>Pflicht für alle (ohne feste Zeit)</span></label></div></div>
+  <label class="wpl-f"><span>Hinweis an die Klasse (optional)</span><input id="wplBeschr" maxlength="300"></label>
+  <button type="button" class="primary" data-wpw="pl-save">Einheit planen</button></div>`;
 }
-function wpwBlockModal(d,h){
- modal(`<button class="modal-close" onclick="closeModal()">×</button><div class="kicker">KW ${wpwWocheInfo(wpwWocheGet()).kw} · ${WPW_TAGE[d]} · ${h}. Stunde</div><h2>Stunde blocken</h2>
- <div class="form"><label>Was findet statt?<select id="wpwBArt"><option value="unterricht">Unterricht für alle (nicht verplanbar)</option><option value="feedback">Block-Feedback ansetzen</option><option value="sperre">Sonst nicht verplanbar</option></select></label>
- <label>Titel<input id="wpwBTitel" maxlength="60" placeholder="z. B. Mathematik-Unterricht"></label>
- <label>Fach<select id="wpwBFach"><option value="fachuebergreifend">Fächerübergreifend</option>${WPW_FAECHER.map(f=>`<option value="${f.key}">${esc(f.label)}</option>`).join("")}</select></label>
- <label>Anzahl Stunden<select id="wpwBLen">${[1,2,3,4].map(n=>`<option value="${n}">${n}</option>`).join("")}</select></label>
- <div class="form-actions"><button class="secondary" onclick="closeModal()">Abbrechen</button><button class="primary" data-wpw="blkspeichern" data-d="${d}" data-h="${h}">Blocken</button></div></div>`);
+function wpwPlanListe(items){
+ if(!items.length)return`<p class="wpw-leer">Noch nichts geplant.</p>`;
+ return`<div class="wpw-pll">${items.map(m=>{const s=m.status==="live"?"live":m.status==="geplant"?"geplant":"entwurf";
+  const fest=m.fixTag!=null&&m.fixTag!==""?`<span class="wpw-fest">📌 ${WPW_TAGE[Number(m.fixTag)]||""} ${Number(m.fixStd)||1}.${wpwLen(m)>1?"–"+((Number(m.fixStd)||1)+wpwLen(m)-1):""} Std.</span>`:"";
+  return`<div class="wpw-plz"><b class="wpw-pla">${esc(wpwArtL(m.typ||"lernen"))}</b><span class="wpw-plt">${esc(m.titel)}</span><small>${m.woche?"KW "+isoKw(m.woche):""}</small>${fest}${m.pflicht&&!fest?`<span class="wpw-pf2">Pflicht</span>`:""}<span class="wpw-st ${s==="live"?"live":s==="geplant"?"gep":"ent"}">${WPW_STATUS_L[s]}</span>
+   ${s==="live"?`<button type="button" class="secondary" data-wpw="pl-st" data-id="${esc(m.id)}" data-s="entwurf">Verbergen</button>`:`<button type="button" class="secondary" data-wpw="pl-st" data-id="${esc(m.id)}" data-s="live">Jetzt freigeben</button>`}
+   <button type="button" class="wpw-x" data-wpw="pl-del" data-id="${esc(m.id)}" aria-label="Entfernen" title="Entfernen">✕</button></div>`}).join("")}</div>`;
 }
-async function wpwBlockSpeichern(d,h){
- const art=$("wpwBArt").value,len=Number($("wpwBLen").value)||1,fach=$("wpwBFach").value;
- const g=wpwBelegt();for(let i=0;i<len;i++)if(g[d+"_"+(h+i)]||h+i>10)return toast("Die Stunden reichen nicht ab hier: Es ist schon etwas eingetragen oder der Tag ist zu Ende.");
- const titel=($("wpwBTitel").value.trim()||(art==="feedback"?"Block-Feedback":art==="sperre"?"Nicht verplanbar":"Unterricht")).slice(0,60);
- const extra={typ:art==="feedback"?"feedback":"unterricht",block:true,pflicht:true,fixTag:d,fixStd:h,len,dauer:String(len*45),status:"geplant",beschr:art==="feedback"?"Block-Feedback: Deine Rückmeldung hilft, den nächsten Block zu verbessern.":"Diese Stunde ist für alle festgelegt und kann nicht verplant werden."};
- if(art==="feedback")extra.gestaltung={block:titel};
- await wpwNeu(fach,titel,extra);
- await wpwAuto(true);closeModal();toast("Stunde ist geblockt.");await wpwNeuRender();
+// Teil 9 einer Themenseite (weiß): Planung für die Woche
+function wpwPlanSek(e){
+ const items=(WPW.alle||[]).filter(m=>m.themaId===e.id);
+ return`<section class="lx-sek lx-plan" id="lx-s9" style="--k:#475569;--kb:#fff"><header class="lx-sek-k"><span class="lx-nr">9</span><div><h3>Planung für die Woche</h3><small>Wann kommt die Einheit, wann wird sie freigegeben und als was erscheint sie bei den Schüler:innen?</small></div></header>
+  <div class="lx-sek-body">${wpwPlanListe(items)}${wpwPlanForm(e.id,"paedagogik")}</div></section>`;
+}
+async function wpwPlanSpeichern(box){
+ const themaId=box.dataset.thema,fach=box.dataset.fach,e=themaId?kwThemaById(themaId):null;
+ const titel=($("wplTitel").value||"").trim();if(titel.length<2)return toast("Bitte einen Titel eingeben.");
+ const art=(box.querySelector(".wpw-art.an")||{dataset:{k:"unterricht"}}).dataset.k;
+ const woche=$("wplWoche").value;if(!woche)return toast("Bitte eine Woche wählen.");
+ const status=$("wplStatus").value,fix=$("wplFix").checked;
+ let fixTag=null,fixStd=1,len=1;
+ if(fix){
+  fixTag=Number($("wplTag").value);fixStd=Number($("wplStd").value);len=Number($("wplLen").value)||1;
+  const hole=async n=>{try{return(await getDocs(query(collection(db,n),where("woche","==",woche)))).docs.map(d=>({id:d.id,...d.data()}))}catch(x){return[]}};
+  const[m,ei,sl]=await Promise.all([hole("wpModule"),hole("wpEinfuehrungen"),hole("wpSlots")]);
+  const g=wpwBelegtAus(m,ei,sl);
+  for(let i=0;i<len;i++)if(g[fixTag+"_"+(fixStd+i)]||fixStd+i>10)return toast("Diese Zeit ist nicht frei: Dort steht schon „"+(g[fixTag+"_"+(fixStd+i)]||"Tagesende")+"“.");
+ }
+ const dauerV=fix?String(len*45):$("wplDauer").value;
+ const ph=e?LX_CFG.phasen().find(p=>p.id===e.phase):null;
+ const d={titel:titel.slice(0,80),fach,typ:art,dauer:dauerV,len:Math.max(1,Math.ceil(Number(dauerV)/45)),anhaenge:[],gestaltung:art==="feedback"?{block:titel.slice(0,80)}:{},rallye:[],fixTag,fixStd,woche,
+  beschr:($("wplBeschr").value||"").trim()||(e?"Arbeite an diesem Thema in der Lernlandkarte: Wissens-Check, Lehrtext, Übungen, Tafelbilder und Selbsteinschätzung.":""),
+  route:e?"thema~"+e.id:"",link:"",pflicht:fix||$("wplPflicht").checked,mehrfach:false,status,fuer:[],createdBy:currentUser.uid,createdAt:serverTimestamp(),updatedAt:serverTimestamp()};
+ if(e){d.themaId=e.id;d.lb=ph?ph.lbNum:0}
+ try{
+  await addDoc(collection(db,"wpModule"),d);window.__fsDirty=Date.now();
+  if(e&&$("wplSicht")&&$("wplSicht").value&&$("wplSicht").value!==lxThemaStart(e)){
+   const neu={...LXS.sicht,[e.id]:$("wplSicht").value};await setDoc(doc(db,"checkoutEinstellungen","kwsicht"),{themen:neu,updatedAt:serverTimestamp()},{merge:true});LXS.sicht=neu}
+  if(status==="geplant")await wpwAuto(true);
+  toast("„"+titel+"“ ist als "+wpwArtL(art)+" für KW "+isoKw(woche)+" geplant"+(fix?" und im Wochenplan geblockt.":"."));
+  await wpwNeuRender();
+ }catch(err){console.error(err);toast("Das hat nicht geklappt (firestore.rules veröffentlicht?).")}
 }
 function wpwSchalter(themaId){
- const art=WPW.art||"unterricht",an=WPW.mod.some(m=>m.themaId===themaId&&(m.typ||"lernen")===art);
- const sonst=[...new Set(WPW.mod.filter(m=>m.themaId===themaId&&(m.typ||"lernen")!==art).map(m=>wpwArtL(m.typ||"lernen")))];
- return`<span class="wpw-tog${an?" an":""}" role="button" tabindex="0" data-wpw="thema" data-id="${esc(themaId)}" aria-pressed="${an}" title="${an?"Als "+wpwArtL(art)+" in KW "+wpwWocheInfo(wpwWocheGet()).kw+" bereitgestellt. Klick entfernt es.":"Als "+wpwArtL(art)+" für KW "+wpwWocheInfo(wpwWocheGet()).kw+" bereitstellen"}${sonst.length?" (auch: "+sonst.join(", ")+")":""}">${an?"✓ "+wpwArtL(art)+" · KW "+wpwWocheInfo(wpwWocheGet()).kw:"+ "+wpwArtL(art)}${sonst.length?" <i>+"+sonst.length+"</i>":""}</span>`;
+ const l=(WPW.alle||[]).filter(m=>m.themaId===themaId&&(m.woche||"")>=wpwMontag());
+ if(!l.length)return"";
+ return`<span class="wpw-tag" title="${esc(l.map(m=>wpwArtL(m.typ||"lernen")+" KW "+isoKw(m.woche)+" ("+WPW_STATUS_L[m.status==="live"?"live":m.status==="geplant"?"geplant":"entwurf"]+")").join("\n"))}">${esc(wpwArtL(l[0].typ||"lernen"))} · KW ${isoKw(l[0].woche)}${l.length>1?" +"+(l.length-1):""}</span>`;
 }
 function lxWpwThemaOeffnen(p){
  const id=String(p).slice(6);activeKwThema=id;
@@ -24394,13 +24429,11 @@ document.addEventListener("click",async ev=>{
  const a=b.dataset.wpw,id=b.dataset.id;
  try{
   if(a==="thema"){await wpwThemaSchalten(id);await wpwNeuRender()}
-  else if(a==="sicht"){const t=$("wpwSThema").value,v=$("wpwSDatum").value;if(!v)return toast("Bitte ein Datum wählen.");await lxSichtSetzen(t,v);return}
-  else if(a==="sicht0"){await lxSichtSetzen($("wpwSThema").value,"");return}
   else if(a==="fach"){WPW.fach=b.dataset.k;await wpwNeuRender()}
-  else if(a==="art"){WPW.art=b.dataset.k;await wpwNeuRender()}
-  else if(a==="eigen"){const t=($("wpwETitel").value||"").trim();if(t.length<2)return toast("Bitte einen Inhalt eintragen.");await wpwNeu($("wpwEFach").value,t,{typ:WPW.art||"unterricht"});await wpwNeuRender()}
-  else if(a==="blk"){wpwBlockModal(Number(b.dataset.d),Number(b.dataset.h))}
-  else if(a==="blkspeichern"){await wpwBlockSpeichern(Number(b.dataset.d),Number(b.dataset.h))}
+  else if(a==="pl-art"){const bx=b.closest(".wpw-pl");bx.querySelectorAll(".wpw-art").forEach(x=>{x.classList.toggle("an",x===b);x.setAttribute("aria-pressed",x===b)})}
+  else if(a==="pl-save"){await wpwPlanSpeichern(b.closest(".wpw-pl"))}
+  else if(a==="pl-st"){await wpwAktualisieren(id,{status:b.dataset.s});if(b.dataset.s==="live"){const m=(WPW.alle||[]).find(x=>x.id===id);if(m&&m.woche)await setDoc(doc(db,"wpWochen",m.woche),{woche:m.woche,status:"live",updatedAt:serverTimestamp()},{merge:true})}toast(b.dataset.s==="live"?"Ist jetzt für die Klasse sichtbar.":"Ist für die Klasse nicht mehr sichtbar.");await wpwNeuRender()}
+  else if(a==="pl-del"){const m=(WPW.alle||[]).find(x=>x.id===id);if(!m||!confirm("„"+m.titel+"“ aus der Planung entfernen?"))return;await deleteDoc(doc(db,"wpModule",id));window.__fsDirty=Date.now();await wpwNeuRender()}
   else if(a==="woche"){if(b.dataset.w){wpwWocheSetzen(b.dataset.w);await wpwNeuRender()}}
   else if(a==="del"){const m=WPW.mod.find(x=>x.id===id);if(!m||!confirm("„"+m.titel+"“ aus dieser Woche entfernen?"))return;await deleteDoc(doc(db,"wpModule",id));WPW.mod=WPW.mod.filter(x=>x.id!==id);window.__fsDirty=Date.now();await wpwNeuRender()}
   else if(a==="edit")wpwEdit(id);
@@ -24429,10 +24462,10 @@ document.addEventListener("click",async ev=>{
   }
  }catch(err){console.error(err);toast("Das hat nicht geklappt.")}
 },true);
+document.addEventListener("change",ev=>{const t=ev.target;if(t&&t.dataset&&t.dataset.wplx==="fix"){$("wplFixZeile").hidden=!t.checked;$("wplDauerZeile").hidden=t.checked}});
 document.addEventListener("change",async ev=>{
  const s=ev.target;if(!s||!s.dataset||!s.dataset.wpw||!currentUser||!isTeacher())return;
  try{
-  if(s.dataset.wpw==="sthema"){const e=kwThemaById(s.value);$("wpwSDatum").value=e?lxThemaStart(e):"";return}
   if(s.dataset.wpw==="wochesel"){wpwWocheSetzen(s.value);await wpwNeuRender()}
   else if(s.dataset.wpw==="dauer"){const v=s.value;await wpwAktualisieren(s.dataset.id,{dauer:v,len:Math.max(1,Math.ceil(Number(v)/45))});await wpwNeuRender()}
  }catch(err){console.error(err)}
