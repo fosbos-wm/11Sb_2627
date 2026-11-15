@@ -437,6 +437,9 @@ details.ls-lb:not([open])>summary.ls-lbk{border-radius:0 0 0 0}
 
 .lx-ub .kw-datei{flex-wrap:wrap;row-gap:2px}.lx-ub .lx-pr-titel{flex:1 0 100%}.lx-ub .kw-datei small{margin-left:auto}
 .lx-pickneu .lx-pr-titel{font-size:13px;font-weight:600;color:#1f2d3a}
+.kw-grip{display:flex;align-items:center;padding:0 7px 0 3px;color:#9aa8b5;cursor:grab;font-weight:900;letter-spacing:-3px;user-select:none;flex:none}
+.kw-dz[draggable=true]{cursor:grab}.kw-dz[draggable=true]:active{cursor:grabbing}
+.lx-dnd-zieh{opacity:.4}.lx-dnd-oben{box-shadow:0 -3px 0 0 #2b7bbf}.lx-dnd-unten{box-shadow:0 3px 0 0 #2b7bbf}
 
 /* Umbau: Wochenplanarbeit vorbereiten */
 .wpw .wpw-kopf{display:flex;flex-direction:column;gap:12px;padding:16px 18px;margin-bottom:16px}

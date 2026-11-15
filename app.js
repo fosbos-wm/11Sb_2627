@@ -21872,7 +21872,7 @@ async function kwLaden(){
  KW.mat={};KW.fort={};
  Object.keys(KWT).forEach(k=>delete KWT[k]);
  if(kwt)kwt.docs.forEach(d=>{KWT[d.id]=d.data()});
- if(mat)mat.docs.forEach(d=>{const x={id:d.id,...d.data()};(KW.mat[x.wocheId]=KW.mat[x.wocheId]||[]).push(x)});
+ if(mat)mat.docs.forEach(d=>{const x={id:d.id,...d.data()};(KW.mat[x.wocheId]=KW.mat[x.wocheId]||[]).push(x)});lxMatSort();
  if(!kwLehrer()){
   if(PPM.meine.fortAlle)KW.fort=PPM.meine.fortAlle;
   else try{(await getDocs(query(collection(db,"lehrplanFortschritt"),where("uid","==",currentUser.uid)))).docs.forEach(d=>{KW.fort[d.id.slice(currentUser.uid.length+1)]=d.data()})}catch(e){console.warn("Fortschritt:",e)}
@@ -21943,7 +21943,7 @@ function kwDateiHTML(titel,url,id,wid){
  else if(String(url||"").startsWith("fa:"))a=`<button type="button" class="kw-datei" data-kw="faueb" data-id="${esc(url.slice(3))}"><span>${esc(titel)}</span><small>Übung öffnen</small></button>`;
  else if(String(url||"").startsWith("board:"))a=`<button type="button" class="kw-datei" data-kw="board" data-id="${esc(url.slice(6))}"><span>${esc(titel)}</span><small>Tafel öffnen</small></button>`;
  else a=`<a class="kw-datei" href="${esc(url||"#")}" target="_blank" rel="noopener"><span>${esc(titel)}</span><small>${/^https?:\/\/[^/]*firebasestorage/.test(url||"")?"Datei":"Link"} öffnen</small></a>`;
- return`<div class="kw-dz">${a}${del}</div>`;
+ return lxDzHtml(a,del,id);
 }
 function kwSekHTML(titel,hint,inner,addKat,lehrer,extraBtn){
  return`<section class="kw-card kw-sek"><div class="kw-sek-kopf"><div><h3>${esc(titel)}</h3>${hint?`<small>${esc(hint)}</small>`:""}</div>${lehrer&&addKat?`<button type="button" class="secondary kw-add" data-kw="matadd" data-kat="${addKat}">+ hinzufügen</button>`:""}</div>${extraBtn||""}${inner}</section>`;
@@ -24097,6 +24097,47 @@ async function lxTafelPicker(kat){
   }catch(err){console.error(err);toast("Konnte nicht gespeichert werden.")}
  });
 }
+
+/* =========================================================
+ Reihenfolge der Dateien per Drag & Drop (nur Lehrkräfte)
+ Speichert pro Material das Feld "ord" in lehrplanMaterialien
+ ========================================================= */
+function lxDndOn(id){return !!id&&(typeof kwLehrer==="function"?kwLehrer():isTeacher())}
+function lxDzHtml(a,del,id){
+ const dn=lxDndOn(id);
+ if(!dn)return`<div class="kw-dz">${a}${del}</div>`;
+ return`<div class="kw-dz"draggable="true"data-mid="${esc(id)}"><span class="kw-grip"title="Ziehen, um die Reihenfolge zu ändern"aria-hidden="true">⋮⋮</span>${String(a).replace(/^<a /,'<a draggable="false" ')}${del}</div>`;
+}
+function lxMatKey(x){return typeof x.ord==="number"?x.ord:1e12+((x.createdAt&&x.createdAt.seconds)||0)}
+function lxMatSort(){Object.keys(KW.mat||{}).forEach(k=>KW.mat[k].sort((a,b)=>lxMatKey(a)-lxMatKey(b)))}
+(function(){
+ let drag=null;
+ const clear=()=>document.querySelectorAll(".lx-dnd-oben,.lx-dnd-unten").forEach(x=>x.classList.remove("lx-dnd-oben","lx-dnd-unten"));
+ const zeile=ev=>ev.target&&ev.target.closest?ev.target.closest(".kw-dz[data-mid]"):null;
+ document.addEventListener("dragstart",ev=>{
+  const r=zeile(ev);if(!r)return;drag=r;r.classList.add("lx-dnd-zieh");
+  try{ev.dataTransfer.effectAllowed="move";ev.dataTransfer.setData("text/plain",r.dataset.mid)}catch(e){}
+ });
+ document.addEventListener("dragover",ev=>{
+  if(!drag)return;const r=zeile(ev);if(!r||r===drag||r.parentNode!==drag.parentNode)return;
+  ev.preventDefault();try{ev.dataTransfer.dropEffect="move"}catch(e){}
+  const b=r.getBoundingClientRect();clear();r.classList.add(ev.clientY<b.top+b.height/2?"lx-dnd-oben":"lx-dnd-unten");
+ });
+ document.addEventListener("dragend",()=>{if(drag)drag.classList.remove("lx-dnd-zieh");drag=null;clear()});
+ document.addEventListener("drop",async ev=>{
+  if(!drag)return;const r=zeile(ev);if(!r||r===drag||r.parentNode!==drag.parentNode){clear();return}
+  ev.preventDefault();
+  const b=r.getBoundingClientRect(),oben=ev.clientY<b.top+b.height/2,eltern=r.parentNode;
+  eltern.insertBefore(drag,oben?r:r.nextSibling);clear();drag.classList.remove("lx-dnd-zieh");
+  const alle=[].concat(...Object.values(KW.mat||{})),ids=[...eltern.children].filter(x=>x.matches&&x.matches(".kw-dz[data-mid]")).map(x=>x.dataset.mid);
+  drag=null;
+  try{
+   const jobs=[];
+   ids.forEach((id,i)=>{const m=alle.find(x=>x.id===id),neu=(i+1)*10;if(m&&m.ord!==neu){m.ord=neu;jobs.push(updateDoc(doc(db,"lehrplanMaterialien",id),{ord:neu}))}});
+   await Promise.all(jobs);lxMatSort();toast("Reihenfolge gespeichert.");
+  }catch(e){console.warn("Reihenfolge:",e);toast("Reihenfolge konnte nicht gespeichert werden.");render()}
+ });
+})();
 
 /* =========================================================
  WOCHENPLANARBEIT VORBEREITEN (11Sb_2627)
