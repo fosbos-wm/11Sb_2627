@@ -24322,30 +24322,25 @@ function wpwBelegtAus(mod,einf,slots,ohneId){
 }
 const WPW_STATUS_L={entwurf:"Entwurf",geplant:"geplant",live:"sichtbar"};
 /* Planungsformular: wird in jedem Thema (Teil 9) und je Fach benutzt */
+const WPW_ARTFARBE={unterricht:"#2f7bd1",projekt:"#27998b",lernrallye:"#d9922e",gruppenuebung:"#5c6bc0",selbstlern:"#5aa85a",deeperlearning:"#2a86a8",uebung:"#c2569a",fachaufsatz:"#8a68c9",einfuehrung:"#4f86e0",lernen:"#6b7f8c",lernstand:"#c0568f",feedback:"#7a8f2e"};
 function wpwPlanForm(themaId,fach){
  const e=themaId?kwThemaById(themaId):null,heute=wpwMontag();
  const wochen=SCHULWOCHEN_PP.filter(x=>x.start>=heute);
  const w0=wochen.length?(wochen.find(x=>x.start===wpwWocheGet())||wochen[0]).start:"";
- const arten=WPW_ARTEN.map((x,i)=>`<button type="button" class="wpw-art${i===0?" an":""}" data-wpw="pl-art" data-k="${x[0]}" aria-pressed="${i===0}">${esc(x[1])}</button>`).join("");
+ const arten=WPW_ARTEN.map((x,i)=>`<button type="button" class="wpw-art${i===0?" an":""}" style="--a:${WPW_ARTFARBE[x[0]]||"#2f7bd1"}" data-wpw="pl-art" data-k="${x[0]}" aria-pressed="${i===0}">${esc(x[1])}</button>`).join("");
  const st=e?lxThemaStart(e):"";
+ const opt=(grp,k,t,s,an)=>`<button type="button" class="wpw-opt ${grp}${an?" an":""}" data-wpw="pl-${grp==="wpw-vis"?"vis":"fix"}" data-k="${k}" aria-pressed="${!!an}"><b>${t}</b><small>${s}</small></button>`;
+ const sch=(nr,farbe,titel,hint,inner)=>`<section class="wpw-step" style="--s:${farbe}"><header><i>${nr}</i><div><b>${titel}</b><small>${hint}</small></div></header><div class="wpw-step-b">${inner}</div></section>`;
  return`<div class="wpw-pl" data-fach="${esc(fach)}" data-thema="${esc(themaId||"")}">
   <h4>Neue Einheit planen</h4>
-  <label class="wpl-f"><span>Titel (so sehen es die Schüler:innen)</span><input id="wplTitel" maxlength="80" value="${esc(e?kwKurz(e):"")}" placeholder="z. B. Projektarbeit Teil 2"></label>
-  <div class="wpl-f"><span>Bezeichnung der Einheit</span><div class="wpw-arten" id="wplArten">${arten}</div></div>
-  <div class="wpw-pzeile">
-   <label class="wpl-f"><span>Wann soll sie kommen?</span><select id="wplWoche">${wochen.map(x=>`<option value="${x.start}"${x.start===w0?" selected":""}>KW ${isoKw(x.start)} · ${fmtKurz(x.start)}–${fmtKurz(x.end)}</option>`).join("")}</select></label>
-   <label class="wpl-f"><span>Freigabe für die Schüler:innen</span><select id="wplStatus"><option value="geplant">Automatisch: zwei Wochen vorher sichtbar</option><option value="live">Sofort sichtbar</option><option value="entwurf">Entwurf (noch nicht sichtbar)</option></select></label>
-   ${e?`<label class="wpl-f"><span>Thema in der Lernlandkarte sichtbar ab</span><input type="date" id="wplSicht" value="${esc(st)}"></label>`:""}
-  </div>
-  <div class="wpl-f wpw-pfix"><label class="check"><input type="checkbox" id="wplFix" data-wplx="fix"><span><b>Verpflichtend im Wochenplan blocken</b> – feste Zeit, die die Schüler:innen nicht anders belegen können</span></label>
-   <div class="wpw-pzeile" id="wplFixZeile" hidden>
-    <label class="wpl-f"><span>Tag</span><select id="wplTag">${WPW_TAGE.map((t,i)=>`<option value="${i}">${t}</option>`).join("")}</select></label>
-    <label class="wpl-f"><span>ab Stunde</span><select id="wplStd">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${n}. Std.</option>`).join("")}</select></label>
-    <label class="wpl-f"><span>Dauer</span><select id="wplLen">${[1,2,3,4].map(n=>`<option value="${n}">${n} Std.</option>`).join("")}</select></label></div>
-   <div class="wpw-pzeile" id="wplDauerZeile"><label class="wpl-f"><span>Dauer der Bearbeitung</span><select id="wplDauer">${WPW_DAUERN.map(d=>`<option value="${d[0]}"${d[0]==="45"?" selected":""}>${d[1]}</option>`).join("")}</select></label>
-    <label class="check"><input type="checkbox" id="wplPflicht"><span>Pflicht für alle (ohne feste Zeit)</span></label></div></div>
+  ${sch(1,"#2f7bd1","Was kommt?","Titel und Bezeichnung: So erscheint die Einheit bei den Schüler:innen",`<label class="wpl-f"><span>Titel</span><input id="wplTitel" maxlength="80" value="${esc(e?kwKurz(e):"")}" placeholder="z. B. Projektarbeit Teil 2"></label><div class="wpl-f"><span>Bezeichnung (anklicken)</span><div class="wpw-arten" id="wplArten">${arten}</div></div>`)}
+  ${sch(2,"#2E7D57","Wann kommt sie?","Die Schulwoche, in der die Schüler:innen die Einheit bearbeiten",`<div class="wpw-pzeile"><label class="wpl-f"><span>Schulwoche</span><select id="wplWoche">${wochen.map(x=>`<option value="${x.start}"${x.start===w0?" selected":""}>KW ${isoKw(x.start)} · ${fmtKurz(x.start)}–${fmtKurz(x.end)}</option>`).join("")}</select></label>${e?`<label class="wpl-f"><span>Thema in der Lernlandkarte sichtbar ab</span><input type="date" id="wplSicht" value="${esc(st)}"></label>`:""}</div>`)}
+  ${sch(3,"#E0A800","Wann sehen es die Schüler:innen?","Freigabe: Bis dahin ist die Einheit für die Klasse unsichtbar",`<div class="wpw-opts">${opt("wpw-vis","geplant","Automatisch","zwei Wochen vorher",true)}${opt("wpw-vis","live","Sofort","gleich sichtbar",false)}${opt("wpw-vis","entwurf","Entwurf","noch nicht sichtbar",false)}</div>`)}
+  ${sch(4,"#8a68c9","Feste Zeit im Wochenplan?","Verpflichtend geblockte Stunden können die Schüler:innen nicht anders belegen",`<div class="wpw-opts">${opt("wpw-fixb","frei","Schüler:innen planen selbst","kein fester Termin",true)}${opt("wpw-fixb","fest","Verpflichtend blocken","fester Termin für alle",false)}</div>
+   <div class="wpw-pzeile" id="wplFixZeile" hidden><label class="wpl-f"><span>Tag</span><select id="wplTag">${WPW_TAGE.map((t,i)=>`<option value="${i}">${t}</option>`).join("")}</select></label><label class="wpl-f"><span>ab Stunde</span><select id="wplStd">${[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}">${n}. Std.</option>`).join("")}</select></label><label class="wpl-f"><span>Dauer</span><select id="wplLen">${[1,2,3,4].map(n=>`<option value="${n}">${n} Std.</option>`).join("")}</select></label></div>
+   <div class="wpw-pzeile" id="wplDauerZeile"><label class="wpl-f"><span>Bearbeitungszeit</span><select id="wplDauer">${WPW_DAUERN.map(d=>`<option value="${d[0]}"${d[0]==="45"?" selected":""}>${d[1]}</option>`).join("")}</select></label><label class="check wpw-pfl"><input type="checkbox" id="wplPflicht"><span>Pflicht für alle</span></label></div>`)}
   <label class="wpl-f"><span>Hinweis an die Klasse (optional)</span><input id="wplBeschr" maxlength="300"></label>
-  <button type="button" class="primary" data-wpw="pl-save">Einheit planen</button></div>`;
+  <button type="button" class="primary wpw-save" data-wpw="pl-save">✓ Einheit planen</button></div>`;
 }
 function wpwPlanListe(items){
  if(!items.length)return`<p class="wpw-leer">Noch nichts geplant.</p>`;
@@ -24366,7 +24361,7 @@ async function wpwPlanSpeichern(box){
  const titel=($("wplTitel").value||"").trim();if(titel.length<2)return toast("Bitte einen Titel eingeben.");
  const art=(box.querySelector(".wpw-art.an")||{dataset:{k:"unterricht"}}).dataset.k;
  const woche=$("wplWoche").value;if(!woche)return toast("Bitte eine Woche wählen.");
- const status=$("wplStatus").value,fix=$("wplFix").checked;
+ const status=(box.querySelector(".wpw-vis.an")||{dataset:{k:"geplant"}}).dataset.k,fix=(box.querySelector(".wpw-fixb.an")||{dataset:{k:"frei"}}).dataset.k==="fest";
  let fixTag=null,fixStd=1,len=1;
  if(fix){
   fixTag=Number($("wplTag").value);fixStd=Number($("wplStd").value);len=Number($("wplLen").value)||1;
@@ -24431,6 +24426,8 @@ document.addEventListener("click",async ev=>{
   if(a==="thema"){await wpwThemaSchalten(id);await wpwNeuRender()}
   else if(a==="fach"){WPW.fach=b.dataset.k;await wpwNeuRender()}
   else if(a==="pl-art"){const bx=b.closest(".wpw-pl");bx.querySelectorAll(".wpw-art").forEach(x=>{x.classList.toggle("an",x===b);x.setAttribute("aria-pressed",x===b)})}
+  else if(a==="pl-vis"){const bx=b.closest(".wpw-pl");bx.querySelectorAll(".wpw-vis").forEach(x=>{x.classList.toggle("an",x===b);x.setAttribute("aria-pressed",x===b)})}
+  else if(a==="pl-fix"){const bx=b.closest(".wpw-pl");bx.querySelectorAll(".wpw-fixb").forEach(x=>{x.classList.toggle("an",x===b);x.setAttribute("aria-pressed",x===b)});const f=b.dataset.k==="fest";$("wplFixZeile").hidden=!f;$("wplDauerZeile").hidden=f}
   else if(a==="pl-save"){await wpwPlanSpeichern(b.closest(".wpw-pl"))}
   else if(a==="pl-st"){await wpwAktualisieren(id,{status:b.dataset.s});if(b.dataset.s==="live"){const m=(WPW.alle||[]).find(x=>x.id===id);if(m&&m.woche)await setDoc(doc(db,"wpWochen",m.woche),{woche:m.woche,status:"live",updatedAt:serverTimestamp()},{merge:true})}toast(b.dataset.s==="live"?"Ist jetzt für die Klasse sichtbar.":"Ist für die Klasse nicht mehr sichtbar.");await wpwNeuRender()}
   else if(a==="pl-del"){const m=(WPW.alle||[]).find(x=>x.id===id);if(!m||!confirm("„"+m.titel+"“ aus der Planung entfernen?"))return;await deleteDoc(doc(db,"wpModule",id));window.__fsDirty=Date.now();await wpwNeuRender()}
