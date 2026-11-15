@@ -510,3 +510,7 @@ button.wpw-z.frei{cursor:pointer}button.wpw-z.frei:hover:not(:disabled){backgrou
 .wpw-blk{margin-top:12px;border-top:1px dashed #cbd5e1;padding-top:8px}.wpw-blk summary{cursor:pointer;font-weight:700}.wpw-blk summary small{font-weight:400;color:#64748b;margin-left:6px}
 .wpw-blkr .wpw-raster{max-width:520px}
 .wpw-sichtab{margin-top:10px;padding:10px 12px;background:#f5f9fe;border:1px dashed #9db8d9;border-radius:10px}.wpw-sichtab select{min-width:240px}
+.wpw-fl{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin:0 0 14px}
+.wpw-fb{display:flex;flex-direction:column;gap:2px;text-align:left;background:var(--bg);border:2px solid transparent;border-left:6px solid var(--c);border-radius:12px;padding:10px 12px;cursor:pointer}
+.wpw-fb b{color:#1f2d3a}.wpw-fb small{color:#64748b}
+.wpw-fb.an{border-color:var(--c);box-shadow:0 2px 10px rgba(0,0,0,.14)}
