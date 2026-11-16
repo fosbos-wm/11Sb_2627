@@ -23940,7 +23940,7 @@ function lxKachel(href,titel,text,opt){
 async function renderUnterrichtsfaecher(){
  await kwLaden().catch(()=>{});
  const lehrer=kwLehrer();
- const alle=LX_CFG.phasen().flatMap(kwThemenVonPhase);
+ const alle=LX_CFG.phasen().flatMap(kwThemenSicht);
  const fertig=lehrer?alle.filter(e=>(KW.mat[e.id]||[]).length||kwModuleThema(e.id).length).length:alle.filter(e=>kwErledigt(e.id)).length;
  const p=alle.length?Math.round(fertig/alle.length*100):0;
  const bar=`<span class="lx-bar" role="progressbar" aria-valuenow="${p}" aria-valuemin="0" aria-valuemax="100"><i style="width:${p}%"></i></span><span class="lx-bar-t">${lehrer?"Vorbereitet":"Erledigt"}: ${p} %</span>`;
@@ -23959,8 +23959,11 @@ function lxLandkartenKacheln(lehrer){
   ${lxKachel("ressourcen","Lernressourcen","Links, Videos, KI-Angebote und Material")}
  </div>`;
 }
+// Schüler:innen sehen nur Themen, zu denen die Lehrkraft Material oder Bausteine eingestellt hat
+function kwHatMaterial(e){return !!e&&((KW.mat[e.id]||[]).length>0||kwModuleThema(e.id).length>0)}
+function kwThemenSicht(ph){const t=kwThemenVonPhase(ph);return kwLehrer()?t:t.filter(kwHatMaterial)}
 function kwKachelHTML(ph,lehrer){
- const F=kwFarbe(ph.lbNum),themen=kwThemenVonPhase(ph),heute=lxHeute();
+ const F=kwFarbe(ph.lbNum),themen=kwThemenSicht(ph),heute=lxHeute();
  const n=themen.length;
  const fertig=lehrer?themen.filter(e=>(KW.mat[e.id]||[]).length||kwModuleThema(e.id).length).length:themen.filter(e=>kwErledigt(e.id)).length;
  const proz=n?Math.round(fertig/n*100):0;
@@ -23987,7 +23990,7 @@ function kwKachelHTML(ph,lehrer){
   <header class="kw-th"><div><small>LB ${ph.lbNum} · ${esc(kwBlockText(ph.start,ph.end)||fmtKurz(ph.start))}</small><b>${esc(ph.lbTitel)}</b></div>${status?`<span class="kw-st">${naechst?"als Nächstes":status}</span>`:""}</header>
   ${projKnopf}
   <div class="kw-lab">${n} THEMEN · ${lehrer?fertig+" MIT MATERIAL":fertig+" ERLEDIGT"}</div>
-  <div class="kw-rows">${rows}${kwLeistungRow(ph)}</div>
+  <div class="kw-rows">${rows||(lehrer?"":`<div class="kw-leer">Hier ist noch nichts eingestellt.</div>`)}${kwLeistungRow(ph)}</div>
   <div class="kw-lab">BAUSTEINE DER LEHRKRÄFTE</div>
   <div class="kw-chips">${chips}</div>
   <footer class="kw-fuss"><div class="kw-bar" role="progressbar" aria-valuenow="${proz}" aria-valuemin="0" aria-valuemax="100" aria-label="${lehrer?"Vorbereitung":"Fortschritt"} Lernbereich ${ph.lbNum}"><i style="width:${proz}%"></i></div><span>${lehrer?"Vorbereitet":"Fortschritt"} ${proz} %</span></footer>
@@ -23996,7 +23999,7 @@ function kwKachelHTML(ph,lehrer){
 async function renderKachelwand(){
  await kwLaden();
  const lehrer=kwLehrer();
- const alle=LX_CFG.phasen().flatMap(kwThemenVonPhase);
+ const alle=LX_CFG.phasen().flatMap(kwThemenSicht);
  const fertig=lehrer?alle.filter(e=>(KW.mat[e.id]||[]).length||kwModuleThema(e.id).length).length:alle.filter(e=>kwErledigt(e.id)).length;
  const p=alle.length?Math.round(fertig/alle.length*100):0;
  const r=31,u=2*Math.PI*r,da=(u*p/100).toFixed(1);
